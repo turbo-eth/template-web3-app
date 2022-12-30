@@ -14,14 +14,15 @@ export default function Home() {
         <div className="flex-center flex h-full flex-1 flex-col items-center justify-center ">
           <div className="card w-[420px] hover:scale-[102%]">
             <h3 className="text-2xl font-normal">
-              <ERC20Name chainId={chainId} address={String(address || '')} /> (<ERC20Symbol chainId={chainId} address={String(address || '')} />)
+              <ERC20Name chainId={Number(chainId)} address={String(address || '')} /> (
+              <ERC20Symbol chainId={Number(chainId)} address={String(address || '')} />)
             </h3>
             <div className="mt-3">
-              <span className="mr-2 font-bold">Decimals:</span> <ERC20Decimals chainId={chainId} address={String(address || '')} />
+              <span className="mr-2 font-bold">Decimals:</span> <ERC20Decimals chainId={Number(chainId)} address={String(address || '')} />
             </div>
             <hr className="my-3 dark:opacity-30" />
             <div className="mt-3">
-              <span className="mr-2 font-bold">Balance:</span> <WalletERC20Balance chainId={chainId} address={String(address || '')} />
+              <span className="mr-2 font-bold">Balance:</span> <WalletERC20Balance chainId={Number(chainId)} address={String(address || '')} />
             </div>
           </div>
         </div>
