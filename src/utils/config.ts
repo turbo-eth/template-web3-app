@@ -4,7 +4,7 @@ import { arbitrum, goerli, mainnet, optimism, polygon, sepolia } from '@wagmi/ch
 export const SITE_EMOJI = '⚡'
 export const SITE_NAME = 'TurboETH'
 export const SITE_TITLE = 'TurboETH - Web3 App Kit'
-export const SITE_DESCRIPTION = 'Next.js + (Tailwind/Chakra/Emotion) + Rainbow Kit'
+export const SITE_DESCRIPTION = 'Next.js + (Tailwind + Chakra) + (WAGMI + Rainbow Kit)'
 
 export const THEME_INITIAL_COLOR = 'system'
 export const THEME_COLOR_SCHEME: ThemingProps['colorScheme'] = 'gray'
