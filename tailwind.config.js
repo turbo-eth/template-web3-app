@@ -1,6 +1,6 @@
 module.exports = {
   darkMode: 'class',
-  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './src/**/*.{js,ts,jsx,tsx}'],
   safelist: [
     {
       pattern: /(dark|light|)bg-(red|green|blue|orange|purple|indigo|yellow|gray)-(100|200|500|700)/,

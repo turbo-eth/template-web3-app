@@ -12,7 +12,7 @@ export default function Home() {
       <Head />
       <main className="flex flex-1">
         <div className="flex-center flex h-full flex-1 flex-col items-center justify-center ">
-          <div className="card w-[420px] hover:scale-[102%]">
+          <div className="card w-[420px] ">
             <h3 className="text-2xl font-normal">
               <ERC20Name chainId={Number(chainId)} address={String(address || '')} /> (
               <ERC20Symbol chainId={Number(chainId)} address={String(address || '')} />)

@@ -12,8 +12,6 @@ interface Props {
   children: ReactNode
 }
 
-console.log(ETH_CHAINS, 'chainschains')
-
 export function RainbowKitProvider(props: Props) {
   const { chains, provider } = configureChains(ETH_CHAINS, [
     alchemyProvider({
