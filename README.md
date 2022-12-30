@@ -1,8 +1,5 @@
-<h2>TurboETH Web3 App Template<h2>
-<h3>Next + Tailwind + RainbowKit + Optimized Developer UX</h3>
-<hr/>
-
-A [Next.js](https://nextjs.org/) + Ethereum starter kit.
+# TurboETH Web3 App Template
+## Next + Tailwind + RainbowKit + Optimized Developer UX
 
 ## Getting Started
 
@@ -12,7 +9,7 @@ npm run dev
 yarn dev
 ```
 
-## Features
+### Features
 
 - [Next.js](https://nextjs.org/docs)
 - [Chakra UI](https://chakra-ui.com/)
@@ -22,23 +19,23 @@ yarn dev
 - [wagmi](https://wagmi.sh/)
 - [ethers.js](https://docs.ethers.org/)
 
-## 💻 Developer Experience
+### 💻 Developer Experience
 
 - [Husky](https://typicode.github.io/husky/#/)
 - [Commitlint](https://github.com/conventional-changelog/commitlint)
 - [TypeScript](https://www.typescriptlang.org/)
 - [eslint](https://eslint.org/) + [prettier](https://prettier.io/)
 
-## 🐕 What is husky
+### 🐕 What is husky
 Husky improves your git commits.
 
 You can use it to lint your commit messages, run tests, lint code, etc... when you commit or push. Husky supports all Git hooks.
 
-### 🪝 Hooks
+#### 🪝 Hooks
 - pre-commit: lint app codebase
 - commit-msg: apply commintlint
 
-## 📋 What is commitlint
+### 📋 What is commitlint
 
 commitlint checks if your commit messages meet the [conventional commit format](https://conventionalcommits.org).
 
