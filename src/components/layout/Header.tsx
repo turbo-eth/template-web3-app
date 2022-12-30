@@ -17,7 +17,7 @@ export function Header(props: Props) {
   const classes = classNames(props.className, 'Header', 'bg-gray-200 dark:bg-gray-900 dark:text-white px-4 py-3 mb-8 flex items-center')
 
   return (
-    <header className={classes} px={4} py={2} mb={8} alignItems="center">
+    <header className={classes}>
       <LinkComponent href="/">
         <h1 className="text-2xl font-bold">{SITE_NAME}</h1>
       </LinkComponent>

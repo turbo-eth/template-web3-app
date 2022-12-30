@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 
+// @ts-ignore
 import MoonIcon from '../../../public/icons/MoonIcon.svg?icon'
+// @ts-ignore
 import SunIcon from '../../../public/icons/SunIcon.svg?icon'
 
 export function ThemeSwitcher() {
@@ -20,13 +22,13 @@ export function ThemeSwitcher() {
     }
   }, [])
 
-  const handleToogle = (_e: any) => {
+  const handleToggle = (_e: any) => {
     document.documentElement.classList.toggle('dark')
     setColorMode(colorMode === 'dark' ? 'light' : 'dark')
   }
 
   return (
-    <div className={classes} onClick={handleToogle}>
+    <div className={classes} onClick={handleToggle}>
       {colorMode === 'light' ? <MoonIcon width={16} /> : <SunIcon width={16} />}
     </div>
   )
