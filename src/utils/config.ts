@@ -6,7 +6,6 @@ export const SITE_TITLE = 'TurboETH - Web3 App Template'
 export const SITE_DESCRIPTION = 'Web3 App Template built using Next.js, TailwindCSS and RainbowKit.'
 
 export const THEME_INITIAL_COLOR = 'system'
-export const THEME_COLOR_SCHEME: ThemingProps['colorScheme'] = 'gray'
 export const THEME_CONFIG = {
   initialColorMode: THEME_INITIAL_COLOR,
 }

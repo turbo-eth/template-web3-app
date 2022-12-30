@@ -24,7 +24,7 @@ export function RainbowKitProvider(props: Props) {
   })
 
   const wagmiClient = createClient({
-    autoConnect: false,
+    autoConnect: true,
     connectors,
     provider,
   })
