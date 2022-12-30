@@ -1,8 +1,10 @@
 import { ThemingProps } from '@chakra-ui/react'
 import { mainnet, goerli, sepolia, polygon, optimism, arbitrum } from '@wagmi/chains'
 
-export const SITE_NAME = 'Nexth'
-export const SITE_DESCRIPTION = 'Next.js + Ethereum starter kit'
+export const SITE_EMOJI = '⚡'
+export const SITE_NAME = 'TurboETH'
+export const SITE_TITLE = 'TurboETH - Web3 App Kit'
+export const SITE_DESCRIPTION = 'Next.js + (Tailwind/Chakra/Emotion) + Rainbow Kit'
 
 export const THEME_INITIAL_COLOR = 'system'
 export const THEME_COLOR_SCHEME: ThemingProps['colorScheme'] = 'gray'
@@ -10,10 +12,10 @@ export const THEME_CONFIG = {
   initialColorMode: THEME_INITIAL_COLOR,
 }
 
-export const SOCIAL_TWITTER = 'wslyvh'
-export const SOCIAL_GITHUB = 'wslyvh/nexth'
+export const SOCIAL_TWITTER = 'KamesGeraghty'
+export const SOCIAL_GITHUB = 'turbo-eth/next-tailwind-web3-app'
 
-export const ETH_CHAINS = [mainnet, goerli, sepolia, polygon, optimism, arbitrum]
+export const ETH_CHAINS = [mainnet, goerli, polygon, optimism, arbitrum]
 
 export const SERVER_SESSION_SETTINGS = {
   cookieName: SITE_NAME,

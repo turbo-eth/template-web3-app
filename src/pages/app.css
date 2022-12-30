@@ -1,0 +1,236 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.react-images__view {
+  display: flex;
+  justify-content: center;
+}
+
+.cropper__line--left {
+  border-left-width: 2px;
+}
+.cropper__line--top {
+  border-top-width: 2px;
+}
+
+.link {
+  @apply text-blue-700 hover:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300 cursor-pointer;
+}
+
+.content section {
+  @apply px-10;
+}
+
+.content h3 {
+  @apply mt-5 mb-2;
+}
+.content p {
+  @apply leading-7 text-base;
+}
+
+.content .list-disc li {
+  @apply py-2;
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
+
+.card {
+  @apply bg-white dark:bg-neutral-700 dark:text-white border-2 dark:border-neutral-700 rounded-lg p-6 shadow-sm hover:shadow-md hover:bg-white transition-all duration-300 ease-in-out;
+}
+
+.card1 {
+  @apply bg-neutral-50 dark:bg-neutral-600 dark:text-white bg-opacity-50 rounded-lg shadow-sm;
+}
+
+.input {
+  @apply border-0 px-3 py-3 placeholder-neutral-400 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150;
+}
+
+.btn-w-label {
+  @apply cursor-pointer font-semibold rounded-md shadow-md text-center focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 duration-200;
+}
+
+.btn {
+  @apply cursor-pointer font-semibold rounded-md shadow-md py-3 inline-block px-4 text-center focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 duration-200;
+}
+
+.btn-small {
+  @apply text-sm py-1 px-3;
+}
+.btn-sm {
+  @apply text-sm;
+}
+.btn-lg {
+  @apply text-lg px-5 py-4;
+}
+
+.btn-xl {
+  @apply text-xl px-5 py-4;
+}
+
+.btn-2xl {
+  @apply text-2xl px-6 py-4;
+}
+
+.btn-white {
+  @apply bg-white text-gray-600 hover:bg-gray-50 focus:ring-gray-400;
+}
+
+.btn-light {
+  @apply bg-neutral-50 hover:bg-neutral-100 focus:ring-neutral-300 text-neutral-700;
+}
+
+.btn-dark {
+  @apply bg-neutral-600 hover:bg-neutral-700 focus:ring-neutral-400 text-white;
+}
+
+.btn-green {
+  @apply bg-green-600 hover:bg-green-700 focus:ring-green-400 text-white;
+}
+
+.btn-purple {
+  @apply bg-purple-600 hover:bg-purple-700 focus:ring-purple-400 text-white;
+}
+
+.btn-indigo {
+  @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-400 text-white;
+}
+
+.btn-emerald {
+  @apply bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-400 text-white;
+}
+
+.btn-blue {
+  @apply bg-blue-600 hover:bg-blue-700 focus:ring-blue-400 text-white;
+}
+
+.btn-red {
+  @apply bg-red-600 hover:bg-red-700 focus:ring-red-400 text-white;
+}
+
+.tag {
+  @apply inline-flex text-xs leading-5 font-semibold rounded-lg;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+  padding-bottom: 0.125rem;
+  padding-top: 0.125rem;
+}
+
+.tag-base {
+  @apply text-base;
+}
+
+.tag-white {
+  @apply text-gray-700 bg-white;
+}
+.tag-cloud {
+  @apply text-gray-600 bg-gray-100;
+}
+.tag-smoke {
+  @apply text-gray-700 bg-gray-200;
+}
+
+.tag-charcoal {
+  @apply text-gray-100 bg-gray-700;
+}
+.tag-gray {
+  @apply text-gray-100 bg-gray-700;
+}
+.tag-green {
+  @apply text-green-100 bg-green-800;
+}
+.tag-green-light {
+  @apply text-green-800 bg-green-200 hover:bg-green-300;
+}
+.tag-red {
+  @apply text-red-100 bg-red-800;
+}
+.tag-blue {
+  @apply text-blue-100 bg-blue-800;
+}
+.tag-indigo {
+  @apply text-indigo-100 bg-indigo-800;
+}
+.tag-indigo {
+  @apply text-purple-100 bg-purple-800;
+}
+.tag-ens-1 {
+  @apply text-purple-100 bg-blue-600;
+}
+.tag-orange {
+  @apply text-yellow-100 bg-yellow-800;
+}
+
+.toggle-theme-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.toggle-theme-wrapper span {
+  font-size: 28px;
+}
+
+.toggle-theme {
+  position: relative;
+  display: inline-block;
+  height: 34px;
+  width: 60px;
+}
+
+.toggle-theme input {
+  display: none;
+}
+
+.slider {
+  background-color: #ccc;
+  position: absolute;
+  cursor: pointer;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition: 0.2s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: '';
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: 0.4s;
+  width: 26px;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+input:checked + .slider {
+  background-color: cornflowerblue;
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
