@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-    "prettier": "prettier './src' --write"
+    "prettier": "prettier './src' --write",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
@@ -30,7 +31,7 @@
     "@rainbow-me/rainbowkit": "^0.8.1",
     "@wagmi/chains": "^0.1.7",
     "dayjs": "^1.11.7",
-    "ethers": "^5.7.2",
+    "ethers": "5.5.1",
     "framer-motion": "^8.0.2",
     "iron-session": "^6.3.1",
     "next": "13.1.1",
@@ -40,9 +41,10 @@
     "siwe": "^1.1.6",
     "tailwindcss": "^3.2.4",
     "usehooks-ts": "^2.9.1",
-    "wagmi": "^0.10.0"
+    "wagmi": "^0.9.x"
   },
   "devDependencies": {
+    "@commitlint/config-conventional": "^17.3.0",
     "@tsconfig/next": "^1.0.4",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
@@ -51,7 +53,18 @@
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.4.6",
+    "eslint-plugin-jest-dom": "^4.0.2",
+    "eslint-plugin-jest-formatting": "^3.1.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-tailwindcss": "^3.5.0",
+    "eslint-plugin-testing-library": "^5.5.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "postcss": "^8.4.19",

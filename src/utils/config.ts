@@ -1,5 +1,5 @@
 import { ThemingProps } from '@chakra-ui/react'
-import { mainnet, goerli, sepolia, polygon, optimism, arbitrum } from '@wagmi/chains'
+import { arbitrum, goerli, mainnet, optimism, polygon, sepolia } from '@wagmi/chains'
 
 export const SITE_EMOJI = '⚡'
 export const SITE_NAME = 'TurboETH'

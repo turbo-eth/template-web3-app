@@ -1,9 +1,12 @@
 import React from 'react'
-import { Flex, useColorModeValue, Spacer, Heading } from '@chakra-ui/react'
+
+import { Flex, Heading, Spacer, useColorModeValue } from '@chakra-ui/react'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+
 import { SITE_NAME } from 'utils/config'
+
 import { LinkComponent } from './LinkComponent'
 import { ThemeSwitcher } from './ThemeSwitcher'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 interface Props {
   className?: string

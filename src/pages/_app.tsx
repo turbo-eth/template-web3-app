@@ -1,8 +1,10 @@
 import './app.css'
+
 import type { AppProps } from 'next/app'
+
 import { Layout } from 'components/layout'
-import { ChakraProvider } from 'providers/Chakra'
 import { useIsMounted } from 'hooks/useIsMounted'
+import { ChakraProvider } from 'providers/Chakra'
 import { RainbowKitProvider } from 'providers/RainbowKit'
 
 export default function App({ Component, pageProps }: AppProps) {

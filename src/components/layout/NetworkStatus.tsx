@@ -1,9 +1,12 @@
 import React from 'react'
+
 import { Badge, Flex, Text, useColorModeValue } from '@chakra-ui/react'
 import { useBlockNumber, useNetwork } from 'wagmi'
-import { GetNetworkColor } from 'utils/network'
-import { LinkComponent } from './LinkComponent'
+
 import { THEME_COLOR_SCHEME } from 'utils/config'
+import { GetNetworkColor } from 'utils/network'
+
+import { LinkComponent } from './LinkComponent'
 
 export function NetworkStatus() {
   const block = useBlockNumber({ watch: true })

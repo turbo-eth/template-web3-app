@@ -1,8 +1,11 @@
 import React from 'react'
+
 import { Flex, Text } from '@chakra-ui/react'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
-import { LinkComponent } from './LinkComponent'
+
 import { SITE_DESCRIPTION, SITE_TITLE, SOCIAL_GITHUB, SOCIAL_TWITTER } from 'utils/config'
+
+import { LinkComponent } from './LinkComponent'
 
 interface Props {
   className?: string

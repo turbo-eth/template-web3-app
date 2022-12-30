@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { default as NextHead } from 'next/head'
+
 import { SITE_DESCRIPTION, SITE_EMOJI, SITE_NAME, SITE_TITLE } from 'utils/config'
 
 interface Props {

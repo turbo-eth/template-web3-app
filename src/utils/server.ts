@@ -1,9 +1,11 @@
 import { withIronSessionApiRoute } from 'iron-session/next'
 import { NextApiHandler } from 'next'
 import { SiweMessage } from 'siwe'
+
 import { SERVER_SESSION_SETTINGS } from './config'
 
 declare module 'iron-session' {
+  // eslint-disable-next-line unused-imports/no-unused-vars
   interface IronSessionData {
     nonce: string
     siwe: SiweMessage

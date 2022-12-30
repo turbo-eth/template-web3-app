@@ -1,9 +1,12 @@
-import { configureChains, createClient, WagmiConfig } from 'wagmi'
 import '@rainbow-me/rainbowkit/styles.css'
-import { getDefaultWallets, RainbowKitProvider as RainbowKitP, darkTheme } from '@rainbow-me/rainbowkit'
-import { ETH_CHAINS } from 'utils/config'
-import { alchemyProvider } from 'wagmi/providers/alchemy'
+
 import { ReactNode } from 'react'
+
+import { RainbowKitProvider as RainbowKitP, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
+import { WagmiConfig, configureChains, createClient } from 'wagmi'
+import { alchemyProvider } from 'wagmi/providers/alchemy'
+
+import { ETH_CHAINS } from 'utils/config'
 
 interface Props {
   children: ReactNode

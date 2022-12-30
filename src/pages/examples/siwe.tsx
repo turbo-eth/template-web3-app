@@ -1,12 +1,15 @@
+/* eslint-disable unused-imports/no-unused-vars */
 import * as React from 'react'
-import { useAccount, useNetwork, useSignMessage } from 'wagmi'
-import { SiweMessage } from 'siwe'
 import { useEffect, useState } from 'react'
-import { SITE_NAME } from 'utils/config'
-import { Button, Heading, ListItem, UnorderedList } from '@chakra-ui/react'
-import { LinkComponent } from 'components/layout/LinkComponent'
 
-function SignInButton({ onSuccess, onError }: { onSuccess: (args: { address: string }) => void; onError: (args: { error: Error }) => void }) {
+import { Button, Heading, ListItem, UnorderedList } from '@chakra-ui/react'
+import { SiweMessage } from 'siwe'
+import { useAccount, useNetwork, useSignMessage } from 'wagmi'
+
+import { LinkComponent } from 'components/layout/LinkComponent'
+import { SITE_NAME } from 'utils/config'
+
+function SignInButton({ onSuccess, onError }: { onSuccess: (_args: { _address: string }) => void; onError: (_args: { _error: Error }) => void }) {
   const { address } = useAccount()
   const { chain } = useNetwork()
   const { signMessageAsync } = useSignMessage()

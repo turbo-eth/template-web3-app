@@ -1,4 +1,4 @@
-# TurboETH App Starter Kit (Next/(Tailwind + Chakra)/RainbowKit)
+# TurboETH Web3 App Starter Kit (Next/(Tailwind + Chakra)/RainbowKit)
 
 A [Next.js](https://nextjs.org/) + Ethereum starter kit.
 
