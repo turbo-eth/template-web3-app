@@ -8,7 +8,7 @@ specifiers:
   '@rainbow-me/rainbowkit': ^0.8.1
   '@svgr/webpack': ^6.5.1
   '@tsconfig/next': ^1.0.4
-  '@turbo-eth/erc20-wagmi': 0.0.0-beta.3
+  '@turbo-eth/erc20-wagmi': 0.0.0-beta.4
   '@types/node': 18.11.18
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.10
@@ -54,7 +54,7 @@ dependencies:
   '@next/bundle-analyzer': 13.1.1
   '@next/font': 13.1.1
   '@rainbow-me/rainbowkit': 0.8.1_imhbbmdvnpugztnf3ig3ttouje
-  '@turbo-eth/erc20-wagmi': 0.0.0-beta.3_bt7d76r7hgq4m56hacxkq35ouq
+  '@turbo-eth/erc20-wagmi': 0.0.0-beta.4_bt7d76r7hgq4m56hacxkq35ouq
   '@wagmi/chains': 0.1.7
   axios: 1.2.2
   classnames: 2.3.2
@@ -2545,8 +2545,8 @@ packages:
   /@tsconfig/node16/1.0.3:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
 
-  /@turbo-eth/erc20-wagmi/0.0.0-beta.3_bt7d76r7hgq4m56hacxkq35ouq:
-    resolution: {integrity: sha512-m7L0bZX6yRfdEfpAF4HOkMWRSEVXDGe7PhvzGMRSmOKQ6LOiDymd1Ihk7D/krP8IY+LnM6Pexu86rVlop7HHQw==}
+  /@turbo-eth/erc20-wagmi/0.0.0-beta.4_bt7d76r7hgq4m56hacxkq35ouq:
+    resolution: {integrity: sha512-kyaeeqxnODosOMpspRzX1tTGliVlYPdpmOjqWmjsM4o4kM9MO6HLKvJtOgFfUea4YoxlUDHDSJJO8gEOaaC4kg==}
     engines: {node: '>=12'}
     peerDependencies:
       '@rainbow-me/rainbowkit': 0.8.1
