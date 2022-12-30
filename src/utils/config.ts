@@ -1,6 +1,4 @@
-import { ThemingProps } from '@chakra-ui/react'
 import { arbitrum, goerli, mainnet, optimism, polygon, sepolia } from '@wagmi/chains'
-
 export const SITE_CANONICAL = 'https://turbo.district.dev'
 export const SITE_EMOJI = '⚡'
 export const SITE_NAME = 'TurboETH'

@@ -11,11 +11,7 @@ export function NetworkStatus({ className }: any) {
   const block = useBlockNumber({ watch: true })
   const network = useNetwork()
   const explorerUrl = network.chain?.blockExplorers?.default.url
-  const classes = classNames(
-    className,
-    'NetworkStatus',
-    'dark:bg-gray-800 bg-gray-100 z-10 flex shadow-md items-center rounded-full overflow-hidden bg-purple-200'
-  )
+  const classes = classNames(className, 'NetworkStatus', 'dark:bg-gray-800 bg-gray-100 z-10 flex shadow-md items-center rounded-full overflow-hidden')
   const classesBadge = classNames(
     'Badge uppercase text-xs font-bold tracking-wider leading-none rounded-full px-2',
     `bg-${GetNetworkColor(network.chain?.network)}-200`,

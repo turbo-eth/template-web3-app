@@ -1,7 +1,6 @@
-import { ColorModeScript } from '@chakra-ui/react'
 import { Head, Html, Main, NextScript } from 'next/document'
 
-import { APP_CONFIG, THEME_INITIAL_COLOR } from 'utils/config'
+import { APP_CONFIG } from 'utils/config'
 
 export default function Document() {
   return (
@@ -27,7 +26,6 @@ export default function Document() {
         <meta name="twitter:site" content="petpics" />
       </Head>
       <body>
-        <ColorModeScript initialColorMode={THEME_INITIAL_COLOR} />
         <Main />
         <NextScript />
       </body>

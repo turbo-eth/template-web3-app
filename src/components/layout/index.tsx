@@ -1,11 +1,10 @@
 import React, { ReactNode } from 'react'
 
-import { Box, Container } from '@chakra-ui/react'
 import classNames from 'classnames'
 
 import { Footer } from './Footer'
 import { Header } from './Header'
-import { NetworkStatus } from './NetworkStatus'
+import { NetworkStatus } from '../app/NetworkStatus'
 
 interface Props {
   children: ReactNode
