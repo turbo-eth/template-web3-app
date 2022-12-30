@@ -14,7 +14,7 @@ export const THEME_CONFIG = {
 }
 
 export const SOCIAL_TWITTER = 'KamesGeraghty'
-export const SOCIAL_GITHUB = 'turbo-eth/next-tailwind-web3-app'
+export const SOCIAL_GITHUB = 'turbo-eth/template-web3-app'
 
 export const APP_CONFIG = {
   canonical: SITE_CANONICAL,
