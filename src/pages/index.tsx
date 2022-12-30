@@ -25,7 +25,7 @@ export default function Home() {
             <div className="card">
               <h3 className="text-2xl font-semibold">ERC20</h3>
               <p className="">ERC20 smart contracts WAGMI modules.</p>
-              <Link className="tag tag-cloud mt-4 font-bold" href={`/erc20/${erc20TokenSymbolToAddress.USDC}`}>
+              <Link className="tag tag-cloud mt-4 font-bold" href={`/1/erc20/${erc20TokenSymbolToAddress.USDC}`}>
                 Example
               </Link>
             </div>

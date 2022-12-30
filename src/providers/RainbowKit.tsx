@@ -4,12 +4,15 @@ import { ReactNode } from 'react'
 import { RainbowKitProvider as RainbowKitProv, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import { WagmiConfig, configureChains, createClient } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { publicProvider } from 'wagmi/providers/public'
 
 import { ETH_CHAINS } from 'utils/config'
 
 interface Props {
   children: ReactNode
 }
+
+console.log(ETH_CHAINS, 'chainschains')
 
 export function RainbowKitProvider(props: Props) {
   const { chains, provider } = configureChains(ETH_CHAINS, [
