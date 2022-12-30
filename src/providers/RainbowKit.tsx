@@ -34,7 +34,7 @@ export function RainbowKitProvider(props: Props) {
       <RainbowKitP
         chains={chains}
         theme={darkTheme({
-          accentColor: '#A293FF',
+          accentColor: '#218242',
           accentColorForeground: 'white',
           borderRadius: 'small',
           fontStack: 'system',

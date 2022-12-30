@@ -10,8 +10,33 @@ npm run dev
 yarn dev
 ```
 
+## Features
 
-## What is commitlint
+- [Next.js](https://nextjs.org/docs)
+- [Chakra UI](https://chakra-ui.com/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [RainbowKit](https://www.rainbowkit.com/)
+- [siwe](https://login.xyz/)
+- [wagmi](https://wagmi.sh/)
+- [ethers.js](https://docs.ethers.org/)
+
+## 💻 Developer Experience
+
+- [Husky](https://typicode.github.io/husky/#/)
+- [Commitlint](https://github.com/conventional-changelog/commitlint)
+- [TypeScript](https://www.typescriptlang.org/)
+- [eslint](https://eslint.org/) + [prettier](https://prettier.io/)
+
+## 🐕 What is husky
+Husky improves your git commits.
+
+You can use it to lint your commit messages, run tests, lint code, etc... when you commit or push. Husky supports all Git hooks.
+
+### 🪝 Hooks
+- pre-commit: lint app codebase
+- commit-msg: apply commintlint
+
+## 📋 What is commitlint
 
 commitlint checks if your commit messages meet the [conventional commit format](https://conventionalcommits.org).
 
@@ -49,17 +74,6 @@ Common types according to [commitlint-config-conventional (based on the Angular 
 - style
 - test
 
-
-## Features
-
-- [Next.js](https://nextjs.org/docs)
-- [Chakra UI](https://chakra-ui.com/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [RainbowKit](https://www.rainbowkit.com/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [wagmi](https://wagmi.sh/)
-- [ethers.js](https://docs.ethers.org/)
-- [eslint](https://eslint.org/) + [prettier](https://prettier.io/)
 
 ## Deploy on Vercel
 

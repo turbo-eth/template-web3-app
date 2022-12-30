@@ -31,7 +31,7 @@
     "@rainbow-me/rainbowkit": "^0.8.1",
     "@wagmi/chains": "^0.1.7",
     "dayjs": "^1.11.7",
-    "ethers": "5.5.1",
+    "ethers": "5.7.2",
     "framer-motion": "^8.0.2",
     "iron-session": "^6.3.1",
     "next": "13.1.1",
