@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 
 import { Box, Container } from '@chakra-ui/react'
+import classNames from 'classnames'
 
 import { Footer } from './Footer'
 import { Header } from './Header'
@@ -8,22 +9,19 @@ import { NetworkStatus } from './NetworkStatus'
 
 interface Props {
   children: ReactNode
+  className?: string
 }
 
 export function Layout(props: Props) {
+  const classes = classNames(props.className, 'Footer', 'dark:bg-slate-900 dark:text-white h-[100vh] flex flex-col')
   return (
-    <Box margin="0 auto" minH="100vh" className="flex flex-col">
+    <div className={classes}>
       <Header />
-
-      <Container className="flex flex-1" maxW="container.lg">
-        {props.children}
-      </Container>
-
-      <Box position="fixed" bottom={2} right={2}>
+      <div className="container  mx-auto flex flex-1">{props.children}</div>
+      <div className="fixed bottom-6 right-6">
         <NetworkStatus />
-      </Box>
-
+      </div>
       <Footer />
-    </Box>
+    </div>
   )
 }

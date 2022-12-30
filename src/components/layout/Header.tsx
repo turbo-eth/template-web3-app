@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Flex, Heading, Spacer, useColorModeValue } from '@chakra-ui/react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import classNames from 'classnames'
 
 import { SITE_NAME } from 'utils/config'
 
@@ -13,22 +14,21 @@ interface Props {
 }
 
 export function Header(props: Props) {
-  const className = props.className ?? ''
+  const classes = classNames(props.className, 'Header', 'bg-gray-200 dark:bg-gray-900 dark:text-white px-4 py-3 mb-8 flex items-center')
 
   return (
-    <Flex as="header" className={className} bg={useColorModeValue('gray.100', 'gray.900')} px={4} py={2} mb={8} alignItems="center">
+    <header className={classes} px={4} py={2} mb={8} alignItems="center">
       <LinkComponent href="/">
-        <Heading as="h1" size="md">
-          {SITE_NAME}
-        </Heading>
+        <h1 className="text-2xl font-bold">{SITE_NAME}</h1>
       </LinkComponent>
 
-      <Spacer />
+      <div className="flex-1" />
 
-      <Flex alignItems="center" gap={4}>
+      <div className="flex items-center">
         <ConnectButton />
+        <div className="mx-2" />
         <ThemeSwitcher />
-      </Flex>
-    </Flex>
+      </div>
+    </header>
   )
 }

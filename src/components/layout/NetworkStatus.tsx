@@ -1,30 +1,38 @@
 import React from 'react'
 
-import { Badge, Flex, Text, useColorModeValue } from '@chakra-ui/react'
+import classNames from 'classnames'
 import { useBlockNumber, useNetwork } from 'wagmi'
 
-import { THEME_COLOR_SCHEME } from 'utils/config'
 import { GetNetworkColor } from 'utils/network'
 
 import { LinkComponent } from './LinkComponent'
 
-export function NetworkStatus() {
+export function NetworkStatus({ className }: any) {
   const block = useBlockNumber({ watch: true })
   const network = useNetwork()
   const explorerUrl = network.chain?.blockExplorers?.default.url
-  const bgColor = useColorModeValue(`${THEME_COLOR_SCHEME}.50`, `${THEME_COLOR_SCHEME}.800`)
+  const classes = classNames(
+    className,
+    'NetworkStatus',
+    'dark:bg-gray-800 bg-gray-100 z-10 flex shadow-md items-center rounded-full overflow-hidden bg-purple-200'
+  )
+  const classesBadge = classNames(
+    'Badge uppercase text-xs font-bold tracking-wider leading-none rounded-full px-2',
+    `bg-${GetNetworkColor(network.chain?.network)}-200`,
+    `text-${GetNetworkColor(network.chain?.network)}-700 dark:text-${GetNetworkColor(network.chain?.network)}-700 py-2`
+  )
 
   return (
-    <Flex alignItems="center" gap={2} zIndex={2} bgColor={bgColor} p={1}>
-      <Badge colorScheme={GetNetworkColor(network.chain?.network)} fontSize="2xs">
-        {network.chain?.name ?? 'Ethereum'}
-      </Badge>
+    <div className={classes}>
+      <span className={classesBadge}>
+        <span className="px-1">{network.chain?.name ?? 'Ethereum'}</span>
+      </span>
       {explorerUrl && (
-        <LinkComponent href={explorerUrl}>
-          <Text fontSize="2xs"># {block.data}</Text>
+        <LinkComponent href={explorerUrl} className="mx-3 text-2xs dark:hover:text-gray-200">
+          <>#{block.data}</>
         </LinkComponent>
       )}
-      {!explorerUrl && <Text fontSize="2xs"># {block.data}</Text>}
-    </Flex>
+      {!explorerUrl && <span className="mx-3 text-2xs"># {block.data}</span>}
+    </div>
   )
 }

@@ -1,11 +1,22 @@
 module.exports = {
   darkMode: 'class',
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  safelist: [
+    {
+      pattern: /(dark|light|)bg-(red|green|blue|orange|purple|indigo|yellow)-(100|200|500|700)/,
+      variants: ['lg', 'hover', 'focus', 'lg:hover', 'dark'],
+    },
+    {
+      pattern: /(dark|light|)text-(red|green|blue|orange|purple|indigo|yellow)-(100|200|500|700)/,
+      variants: ['lg', 'hover', 'focus', 'lg:hover', 'dark'],
+    },
+  ],
   theme: {
     fontFamily: {
       default: ['Roboto', 'sans-serif'],
     },
     fontSize: {
+      '2xs': '0.65rem',
       xs: '0.75rem',
       sm: '0.875rem',
       base: '1rem',

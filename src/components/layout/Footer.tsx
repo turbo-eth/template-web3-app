@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { Flex, Text } from '@chakra-ui/react'
+import classNames from 'classnames'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
-import { SITE_DESCRIPTION, SITE_TITLE, SOCIAL_GITHUB, SOCIAL_TWITTER } from 'utils/config'
+import { SITE_TITLE, SOCIAL_GITHUB, SOCIAL_TWITTER } from 'utils/config'
 
 import { LinkComponent } from './LinkComponent'
 
@@ -12,20 +12,23 @@ interface Props {
 }
 
 export function Footer(props: Props) {
-  const className = props.className ?? ''
+  const classes = classNames(props.className, 'Footer', 'px-4 py-6 flex flex-col justify-center items-center')
 
   return (
-    <Flex as="footer" className={className} flexDirection="column" justifyContent="center" alignItems="center" my={8}>
-      <Text>{SITE_TITLE}</Text>
-
-      <Flex color="gray.500" gap={2} alignItems="center" mt={2}>
+    <footer className={classes}>
+      <h3>{SITE_TITLE}</h3>
+      <a className="link my-2 text-xs" href="https://districtlabs.io/">
+        Sponsored by District Labs
+      </a>
+      <div className="mt-2 flex items-center">
         <LinkComponent href={`https://github.com/${SOCIAL_GITHUB}`}>
           <FaGithub />
         </LinkComponent>
+        <div className="mx-2" />
         <LinkComponent href={`https://twitter.com/${SOCIAL_TWITTER}`}>
           <FaTwitter />
         </LinkComponent>
-      </Flex>
-    </Flex>
+      </div>
+    </footer>
   )
 }

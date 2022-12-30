@@ -27,7 +27,11 @@ export const APP_CONFIG = {
   twitter: SOCIAL_TWITTER,
 }
 
-export const ETH_CHAINS = [mainnet, goerli, polygon, optimism, arbitrum]
+// Override the default Goerli icon so it's not the same as the default Ethereum icon
+// @ts-ignore
+goerli.iconUrl = '/icons/NetworkEthereumTest.png'
+
+export const ETH_CHAINS = [mainnet, polygon, optimism, arbitrum, goerli]
 
 export const SERVER_SESSION_SETTINGS = {
   cookieName: SITE_NAME,
