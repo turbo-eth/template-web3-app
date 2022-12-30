@@ -2,9 +2,9 @@ import React, { ReactNode } from 'react'
 
 import classNames from 'classnames'
 
+import { NetworkStatus } from '../app/NetworkStatus'
 import { Footer } from './Footer'
 import { Header } from './Header'
-import { NetworkStatus } from '../app/NetworkStatus'
 
 interface Props {
   children: ReactNode

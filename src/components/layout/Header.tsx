@@ -5,8 +5,8 @@ import classNames from 'classnames'
 
 import { SITE_NAME } from 'utils/config'
 
-import { ThemeSwitcher } from '../app/ThemeSwitcher'
 import { LinkComponent } from '../app/LinkComponent'
+import { ThemeSwitcher } from '../app/ThemeSwitcher'
 
 interface Props {
   className?: string
