@@ -44,6 +44,7 @@
     "wagmi": "^0.9.x"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@tsconfig/next": "^1.0.4",
     "@types/node": "18.11.18",
