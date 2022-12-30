@@ -1,4 +1,4 @@
-# Nexth
+# TurboETH App Starter Kit (Next/(Tailwind + Chakra)/RainbowKit)
 
 A [Next.js](https://nextjs.org/) + Ethereum starter kit.
 
@@ -14,6 +14,8 @@ yarn dev
 
 - [Next.js](https://nextjs.org/docs)
 - [Chakra UI](https://chakra-ui.com/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [RainbowKit](https://www.rainbowkit.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [wagmi](https://wagmi.sh/)
 - [ethers.js](https://docs.ethers.org/)
