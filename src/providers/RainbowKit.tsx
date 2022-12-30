@@ -20,7 +20,7 @@ interface Props {
   children: ReactNode
 }
 
-const API_URL = process.env.mode === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_DISTRICT_API_URL
+const API_URL = process.env.mode === 'development' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_API_URL
 
 export function RainbowKitProvider(props: Props) {
   const [status, setStatus] = useState<AuthenticationStatus>('unauthenticated')

@@ -1,5 +1,5 @@
 # TurboETH Web3 App Template
-## Next + Tailwind + RainbowKit + Optimized Developer UX
+Next + Tailwind + RainbowKit + Optimized Developer UX
 
 ## Getting Started
 
