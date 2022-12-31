@@ -73,9 +73,32 @@ Common types according to [commitlint-config-conventional (based on the Angular 
 - style
 - test
 
-
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=nexth&filter=next.js&utm_source=nexth&utm_campaign=nexth-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### Sponsors & Maintainers
+
+The TurboETH Web3 Build System development is (currently) sponsored (and maintained) by District Labs.
+
+<a alt="District Labs" href="https://districtlabs.com/" target="_blank">
+ <img src="https://red-effective-snake-988.mypinata.cloud/ipfs/QmXhSGcjL9oqQUpoSLzJ1vWto4B43epATpraqJhV5B4cdB">
+</a>
+
+Interested in sponsoring the development and maintenance of the `TurboETH - Web3 Build System` templates, utilities and modules?
+
+Contact us today at <a alt="District Labs" href="https://districtlabs.com/" target="_blank">District Labs</a> or collect (coming soon) the TurboETH Mirror Collection.
+
+<hr />
+
+Copyright 2022 [Kames Geraghty](https://twitter.com/KamesGeraghty)
+
+# Acknowledgements
+
+The code was forked from https://github.com/wslyvh/nexth
+
+The underlying wallet manage and design systems were changed, but the codebase is continuing to use the original folder structure, plus other developer experience optimizations.
+
+Thank you @wslyvh 🙏
