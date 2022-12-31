@@ -97,8 +97,8 @@ Copyright 2022 [Kames Geraghty](https://twitter.com/KamesGeraghty)
 
 # Acknowledgements
 
-The code was forked from https://github.com/wslyvh/nexth
+Original template was forked from https://github.com/wslyvh/nexth
 
-The underlying wallet manage and design systems were changed, but the codebase is continuing to use the original folder structure, plus other developer experience optimizations.
+Underlying wallet manage and design systems were changed, but the template is continuing to use the original folder structure, plus other developer experience optimizations.
 
 Thank you @wslyvh 🙏
