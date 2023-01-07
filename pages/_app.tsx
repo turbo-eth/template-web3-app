@@ -10,12 +10,14 @@ export default function App({ Component, pageProps }: AppProps) {
   const isMounted = useIsMounted()
 
   return (
-    <RainbowKitProvider>
+    <>
       {isMounted && (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <RainbowKitProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </RainbowKitProvider>
       )}
-    </RainbowKitProvider>
+    </>
   )
 }
