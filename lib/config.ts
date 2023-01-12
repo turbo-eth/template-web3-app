@@ -17,6 +17,6 @@ export const SERVER_SESSION_SETTINGS: IronSessionOptions = {
   password: process.env.NEXT_AUTH_SECRET ?? 'UPDATE_TO_complex_password_at_least_32_characters_long',
   cookieOptions: {
     secure: process.env.NODE_ENV == 'production',
-    httpOnly: true,
+    httpOnly: false, // hack to remove cookie from browser
   },
 }
