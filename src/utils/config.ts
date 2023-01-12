@@ -19,7 +19,7 @@ export const APP_CONFIG = {
   title: SITE_TITLE,
   site_name: SITE_NAME,
   description: SITE_DESCRIPTION,
-  previewImg: `${SITE_CANONICAL}/preview.jpeg`,
+  previewImg: `${SITE_CANONICAL}/preview.png`,
   locale: 'en',
   twitter: SOCIAL_TWITTER,
 }

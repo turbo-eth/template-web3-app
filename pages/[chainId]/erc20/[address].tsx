@@ -1,7 +1,7 @@
 import { ERC20Decimals, ERC20Name, ERC20Symbol, WalletERC20Balance } from '@turbo-eth/erc20-wagmi'
 import { useRouter } from 'next/router'
 
-import { Head } from 'components/layout/Head'
+import { Head } from '@/components/layout/Head'
 
 export default function Home() {
   const router = useRouter()
@@ -13,7 +13,12 @@ export default function Home() {
       <main className="flex flex-1">
         <div className="flex-center flex h-full flex-1 flex-col items-center justify-center ">
           <div className="card w-[420px] ">
-            <h3 className="text-2xl font-normal">
+            <img
+              alt={`Token ${address} icon`}
+              className="h-12 w-12 rounded-full border-2 border-white shadow-md"
+              src={`https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/${address}/logo.png`}
+            />
+            <h3 className="mt-4 text-2xl font-normal">
               <ERC20Name chainId={Number(chainId)} address={String(address || '')} /> (
               <ERC20Symbol chainId={Number(chainId)} address={String(address || '')} />)
             </h3>

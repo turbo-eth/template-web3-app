@@ -1,6 +1,6 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 
-import { APP_CONFIG } from 'utils/config'
+import { APP_CONFIG } from '@/utils/config'
 
 export default function Document() {
   return (
@@ -23,7 +23,7 @@ export default function Document() {
           </>
         )}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="petpics" />
+        <meta name="twitter:site" content="TurboETH" />
       </Head>
       <body>
         <Main />

@@ -1,17 +1,17 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import { ReactNode } from 'react'
 
-import { RainbowKitProvider as RainbowKitProv, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
+import { RainbowKitProvider, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import { WagmiConfig, configureChains, createClient } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 
-import { ETH_CHAINS } from 'utils/config'
+import { ETH_CHAINS } from '@/utils/config'
 
 interface Props {
   children: ReactNode
 }
 
-export function RainbowKitProvider(props: Props) {
+export function RainbowKit(props: Props) {
   const { chains, provider } = configureChains(ETH_CHAINS, [
     alchemyProvider({
       apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
@@ -19,19 +19,19 @@ export function RainbowKitProvider(props: Props) {
   ])
 
   const { connectors } = getDefaultWallets({
-    appName: 'Disco District',
+    appName: 'District Labs',
     chains,
   })
 
   const wagmiClient = createClient({
-    autoConnect: false,
+    autoConnect: true,
     connectors,
     provider,
   })
 
   return (
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProv
+      <RainbowKitProvider
         chains={chains}
         theme={darkTheme({
           accentColor: '#218242',
@@ -41,7 +41,7 @@ export function RainbowKitProvider(props: Props) {
           overlayBlur: 'large',
         })}>
         {props.children}
-      </RainbowKitProv>
+      </RainbowKitProvider>
     </WagmiConfig>
   )
 }

@@ -38,13 +38,13 @@
         ], // Follow the same ordering as the official plugin `prettier-plugin-tailwindcss`
         "unused-imports/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
         "sort-imports": [
-          "error",
+          1,
           {
             "ignoreDeclarationSort": true
           }
         ],
         "import/order": [
-          "error",
+          1,
           {
             "groups": ["builtin", "external", "internal"],
             "pathGroups": [
