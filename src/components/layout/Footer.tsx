@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'classnames'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
-import { SITE_TITLE, SOCIAL_GITHUB, SOCIAL_TWITTER } from 'utils/config'
+import { SITE_TITLE, SOCIAL_GITHUB, SOCIAL_TWITTER } from '@/utils/config'
 
 import { LinkComponent } from '../app/LinkComponent'
 
@@ -17,8 +17,8 @@ export function Footer(props: Props) {
   return (
     <footer className={classes}>
       <h3>{SITE_TITLE}</h3>
-      <a className="link my-2 text-xs" href="https://districtlabs.io/">
-        Sponsored by District Labs
+      <a className="link my-2 text-xs" href="https://districtlab.com/">
+        Built by District Labs
       </a>
       <div className="mt-2 flex items-center">
         <LinkComponent href={`https://github.com/${SOCIAL_GITHUB}`}>
