@@ -4,7 +4,7 @@ import { withSessionRoute } from '../../../lib/server'
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
-    await req.session.destroy()
+    req.session.destroy()
     return res.send({ ok: true })
   }
 
