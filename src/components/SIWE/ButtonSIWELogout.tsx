@@ -2,17 +2,21 @@ import * as React from 'react'
 
 import classNames from 'classnames'
 
-import { siweLogout } from '@/actions/siweLogout'
+import { siweLogout } from '../../actions/siweLogout'
 
 interface ButtonSIWELogoutProps {
   className?: string
   label?: string
 }
 
+function eraseCookie(name) {
+  document.cookie = name + '=; Max-Age=-99999999;'
+}
+
 export const ButtonSIWELogout = ({ className, label }: ButtonSIWELogoutProps) => {
   const handleLogout = async () => {
     await siweLogout()
-    // router.reload()
+    eraseCookie('TurboETH')
   }
 
   const classes = classNames(className, 'ButtonSIWELogout')
