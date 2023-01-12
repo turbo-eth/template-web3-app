@@ -53,9 +53,8 @@ export function Header(props: Props) {
 
           <div className="flex-1" />
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <BranchButtonLoginOrAccount classNameButtonLogin="tag tag-emerald" classNameButtonLogout="tag tag-dark" className="mr-3" />
-            <span className="">|</span>
             <WalletConnect />
             {/* <div className="mx-2" /> */}
             <ThemeSwitcher />

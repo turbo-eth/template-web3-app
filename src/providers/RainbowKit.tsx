@@ -9,6 +9,7 @@ import { ETH_CHAINS } from '@/utils/config'
 
 interface Props {
   children: ReactNode
+  autoConnect?: boolean
 }
 
 export function RainbowKit(props: Props) {
