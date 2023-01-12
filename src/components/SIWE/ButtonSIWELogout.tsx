@@ -1,7 +1,6 @@
 import * as React from 'react'
 
 import classNames from 'classnames'
-import { useRouter } from 'next/router'
 
 import { siweLogout } from '@/actions/siweLogout'
 
@@ -11,10 +10,9 @@ interface ButtonSIWELogoutProps {
 }
 
 export const ButtonSIWELogout = ({ className, label }: ButtonSIWELogoutProps) => {
-  const router = useRouter()
   const handleLogout = async () => {
     await siweLogout()
-    router.reload()
+    // router.reload()
   }
 
   const classes = classNames(className, 'ButtonSIWELogout')
