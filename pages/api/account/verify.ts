@@ -17,7 +17,6 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
       if (admins.includes(fields.address)) {
         req.session.isAdmin = true
       }
-
       await req.session.save()
       return res.json({ ok: true })
     } catch (ex) {
