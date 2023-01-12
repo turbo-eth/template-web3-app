@@ -4,9 +4,8 @@ import { generateNonce } from 'siwe'
 import { withSessionRoute } from '../../../lib/server'
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req.method, '/api/account/nonce', req.session)
-
   if (req.method) {
+    req.session.destroy()
     req.session.nonce = generateNonce()
     await req.session.save()
     res.setHeader('Content-Type', 'text/plain')
