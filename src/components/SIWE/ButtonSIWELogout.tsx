@@ -9,7 +9,7 @@ interface ButtonSIWELogoutProps {
   label?: string
 }
 
-function eraseCookie(name) {
+function eraseCookie(name: string) {
   document.cookie = name + '=; Max-Age=-99999999;'
 }
 
