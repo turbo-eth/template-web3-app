@@ -39,7 +39,6 @@ export function Header(props: Props) {
                 largeScreen: 'icon',
               }}
             />
-            {/* <span className="">|</span> */}
             <MenuMobile>
               <div className="btn btn-light btn-sm">MENU</div>
             </MenuMobile>
