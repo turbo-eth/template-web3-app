@@ -9,14 +9,9 @@ interface ButtonSIWELogoutProps {
   label?: string
 }
 
-function eraseCookie(name: string) {
-  document.cookie = name + '=; Max-Age=-99999999;'
-}
-
 export const ButtonSIWELogout = ({ className, label }: ButtonSIWELogoutProps) => {
   const handleLogout = async () => {
     await siweLogout()
-    eraseCookie('TurboETH')
   }
 
   const classes = classNames(className, 'ButtonSIWELogout')
