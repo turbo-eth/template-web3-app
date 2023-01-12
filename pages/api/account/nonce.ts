@@ -5,6 +5,7 @@ import { withSessionRoute } from '../../../lib/server'
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method) {
+    req.session.destroy()
     req.session.nonce = generateNonce()
     await req.session.save()
     res.setHeader('Content-Type', 'text/plain')
