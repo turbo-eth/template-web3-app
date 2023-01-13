@@ -1,4 +1,5 @@
-// @ts-nocheck
+import React from 'react'
+
 import { ERC721Attributes, ERC721Description, ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
 import { useRouter } from 'next/router'
 
@@ -16,11 +17,7 @@ export default function Home() {
             <h3 className="mb-3 text-2xl font-normal">
               <ERC721Name chainId={chainId} tokenId={String(tokenId || '1')} address={String(address || '')} />
             </h3>
-            <ERC721Image
-              address={String(address || '1')}
-              tokenId={String(tokenId || '1')}
-              className="my-4 rounded-xl border-2 border-white shadow-md"
-            />
+            <ERC721Image address={String(address)} tokenId={String(tokenId || '1')} className="my-4 rounded-xl border-2 border-white shadow-md" />
             <p className="text-xs leading-5">
               <ERC721Description chainId={chainId} tokenId={String(tokenId || '1')} address={String(address || '')} />
             </p>

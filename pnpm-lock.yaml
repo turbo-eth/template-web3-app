@@ -9,8 +9,8 @@ specifiers:
   '@svgr/webpack': ^6.5.1
   '@tsconfig/next': ^1.0.4
   '@turbo-eth/core-wagmi': 0.0.0-beta.3
-  '@turbo-eth/erc20-wagmi': 0.0.0-beta.5
-  '@turbo-eth/erc721-wagmi': 0.0.0-beta.1
+  '@turbo-eth/erc20-wagmi': 0.0.0-beta.7
+  '@turbo-eth/erc721-wagmi': 0.0.0-beta.4
   '@types/luxon': ^3.2.0
   '@types/node': 18.11.18
   '@types/react': 18.0.26
@@ -64,8 +64,8 @@ dependencies:
   '@next/font': 13.1.1
   '@rainbow-me/rainbowkit': 0.8.1_imhbbmdvnpugztnf3ig3ttouje
   '@turbo-eth/core-wagmi': 0.0.0-beta.3_bt7d76r7hgq4m56hacxkq35ouq
-  '@turbo-eth/erc20-wagmi': 0.0.0-beta.5_bt7d76r7hgq4m56hacxkq35ouq
-  '@turbo-eth/erc721-wagmi': 0.0.0-beta.1_bt7d76r7hgq4m56hacxkq35ouq
+  '@turbo-eth/erc20-wagmi': 0.0.0-beta.7_bt7d76r7hgq4m56hacxkq35ouq
+  '@turbo-eth/erc721-wagmi': 0.0.0-beta.4_bt7d76r7hgq4m56hacxkq35ouq
   '@wagmi/chains': 0.1.7
   axios: 1.2.2
   classnames: 2.3.2
@@ -2994,8 +2994,8 @@ packages:
       wagmi: 0.9.6_4xa22e4aecj6hl6hxycodwipxy
     dev: false
 
-  /@turbo-eth/erc20-wagmi/0.0.0-beta.5_bt7d76r7hgq4m56hacxkq35ouq:
-    resolution: {integrity: sha512-359xEruditzupPCLyDP+VwybbASkNRwYsDQDdLNFu/NqjXI5n5c2lm1plllMDnLO8aHwBYO7znfdjel3zI09Jg==}
+  /@turbo-eth/erc20-wagmi/0.0.0-beta.7_bt7d76r7hgq4m56hacxkq35ouq:
+    resolution: {integrity: sha512-zJkNfGV1LK6Ibs2bfMWxgGR0mxdwcskZioBXTbdwoGIEiCZZP5PN/o7aCzOEZ7xqdOC1t2O97mPwEZZoD60Quw==}
     engines: {node: '>=12'}
     peerDependencies:
       '@rainbow-me/rainbowkit': 0.8.1
@@ -3011,8 +3011,8 @@ packages:
       wagmi: 0.9.6_4xa22e4aecj6hl6hxycodwipxy
     dev: false
 
-  /@turbo-eth/erc721-wagmi/0.0.0-beta.1_bt7d76r7hgq4m56hacxkq35ouq:
-    resolution: {integrity: sha512-Hw3fbQ+hiveS+feDwOtRNY3yRr95FghkViaWvJcRa3bSkkBGnwVbQdfJOtDTX0/yL4Gs7Qp2QjlWQwBTtK9Ljg==}
+  /@turbo-eth/erc721-wagmi/0.0.0-beta.4_bt7d76r7hgq4m56hacxkq35ouq:
+    resolution: {integrity: sha512-Kfksrf7yu1S2fyW8g5AgT+F/F8VV6d/HN53f217zxK7NHT29D+tE+B/IHyuHP2w2a/Sxynm76odocGbzhen95A==}
     engines: {node: '>=12'}
     peerDependencies:
       '@rainbow-me/rainbowkit': 0.8.1
