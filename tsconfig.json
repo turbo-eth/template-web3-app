@@ -4,7 +4,7 @@
     "require": ["tsconfig-paths/register"]
   },
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -22,17 +22,17 @@
     "paths": {
       "*": ["types/*.d.ts"],
       "@/*": ["@/*"],
-      "@/actions/*": ["actions/*"],
       "@/components/*": ["components/*"],
-      "@/hooks/*": ["hooks/*"],
-      "@/data/*": ["data/*"],
-      "@/layouts/*": ["layouts/*"],
-      "@/utils/*": ["utils/*"],
       "@/lib/*": ["lib/*"],
-      "@/providers/*": ["providers/*"],
+      "@/actions/*": ["lib/actions/*"],
+      "@/hooks/*": ["lib/hooks/*"],
+      "@/data/*": ["data/*"],
+      "@/layouts/*": ["components/layouts/*"],
+      "@/providers/*": ["components/providers/*"],
       "@/styles/*": ["styles/*"],
       "@/types": ["types/index"],
-      "@/types/*": ["types/*"]
+      "@/types/*": ["types/*"],
+      "@/public/*": ["public/*"]
     },
     "plugins": [
       {

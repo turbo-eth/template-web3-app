@@ -1,0 +1,154 @@
+
+.card {
+  @apply bg-white dark:bg-neutral-700 dark:text-white border-2 dark:border-neutral-700 rounded-lg p-6 shadow-sm hover:shadow-md hover:bg-white transition-all duration-300 ease-in-out;
+}
+
+.card-min {
+  @apply bg-neutral-50 dark:bg-neutral-600 dark:text-white bg-opacity-50 rounded-lg shadow-sm;
+}
+
+.input {
+  @apply border-0 px-3 py-3 placeholder-neutral-400 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150;
+}
+
+.btn-w-label {
+  @apply cursor-pointer font-semibold rounded-md shadow-md text-center focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 duration-200;
+}
+
+.btn {
+  @apply cursor-pointer font-semibold rounded-md shadow-md py-3 inline-block px-4 text-center focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 duration-200;
+}
+
+.btn-small {
+  @apply text-sm py-1 px-3;
+}
+.btn-sm {
+  @apply text-sm;
+}
+.btn-lg {
+  @apply text-lg px-5 py-4;
+}
+
+.btn-pill {
+  @apply rounded-full;
+}
+
+.btn-curve {
+  @apply rounded-lg;
+}
+
+.btn-xl {
+  @apply text-xl px-5 py-4;
+}
+
+.btn-2xl {
+  @apply text-2xl px-6 py-4;
+}
+
+.btn-primary {
+  @apply bg-white text-gray-600 hover:bg-gray-50 focus:ring-gray-400;
+}
+
+.btn-secondary {
+  @apply bg-white text-gray-600 hover:bg-gray-50 focus:ring-gray-400;
+}
+
+.btn-tertiary {
+  @apply bg-white text-gray-600 hover:bg-gray-50 focus:ring-gray-400;
+}
+
+.btn-white {
+  @apply bg-white text-gray-600 hover:bg-gray-50 focus:ring-gray-400;
+}
+
+.btn-light {
+  @apply bg-neutral-50 hover:bg-neutral-100 focus:ring-neutral-300 text-neutral-700;
+}
+
+.btn-dark {
+  @apply bg-neutral-600 hover:bg-neutral-700 focus:ring-neutral-400 text-white;
+}
+
+.btn-green {
+  @apply bg-green-600 hover:bg-green-700 focus:ring-green-400 text-white;
+}
+
+.btn-purple {
+  @apply bg-purple-600 hover:bg-purple-700 focus:ring-purple-400 text-white;
+}
+
+.btn-indigo {
+  @apply bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-400 text-white;
+}
+
+.btn-emerald {
+  @apply bg-emerald-600 hover:bg-emerald-700 focus:ring-emerald-400 text-white;
+}
+
+.btn-blue {
+  @apply bg-blue-600 hover:bg-blue-700 focus:ring-blue-400 text-white;
+}
+
+.btn-red {
+  @apply bg-red-600 hover:bg-red-700 focus:ring-red-400 text-white;
+}
+
+.tag {
+  @apply inline-flex text-xs leading-5 font-semibold rounded-lg;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+  padding-bottom: 0.125rem;
+  padding-top: 0.125rem;
+}
+
+.tag-base {
+  @apply text-base;
+}
+
+.tag-white {
+  @apply text-gray-700 bg-white;
+}
+.tag-cloud, .tag-light {
+  @apply text-gray-600 bg-gray-100;
+}
+.tag-smoke {
+  @apply text-gray-700 bg-gray-200;
+}
+
+.tag-charcoal {
+  @apply text-gray-100 bg-gray-700;
+}
+.tag-dark {
+  @apply text-gray-100 bg-gray-800;
+}
+
+.tag-gray {
+  @apply text-gray-100 bg-gray-700;
+}
+.tag-green {
+  @apply text-green-100 bg-green-800;
+}
+.tag-emerald {
+  @apply text-emerald-100 bg-emerald-800;
+}
+.tag-green-light {
+  @apply text-green-800 bg-green-200 hover:bg-green-300;
+}
+.tag-red {
+  @apply text-red-100 bg-red-800;
+}
+.tag-blue {
+  @apply text-blue-100 bg-blue-800;
+}
+.tag-indigo {
+  @apply text-indigo-100 bg-indigo-800;
+}
+.tag-indigo {
+  @apply text-purple-100 bg-purple-800;
+}
+.tag-ens-1 {
+  @apply text-purple-100 bg-blue-600;
+}
+.tag-orange {
+  @apply text-yellow-100 bg-yellow-800;
+}

@@ -1,56 +1,229 @@
+import { WalletAddress, WalletBalance, WalletEnsName, WalletNonce } from '@turbo-eth/core-wagmi'
+import { ERC20Decimals, ERC20Name, ERC20Symbol, WalletERC20Balance } from '@turbo-eth/erc20-wagmi'
+import { ERC721Description, ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
+import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
+import { FaGithub } from 'react-icons/fa'
+import Balancer from 'react-wrap-balancer'
 
-import { Head } from '@/components/layout/Head'
-import { SITE_DESCRIPTION, SITE_EMOJI, SITE_NAME } from '@/utils/config'
-import erc20TokenSymbolToAddress from '@/utils/erc20TokenSymbolToAddress'
+import { DEPLOY_URL, FADE_DOWN_ANIMATION_VARIANTS, SITE_DESCRIPTION, SITE_EMOJI, SITE_NAME } from '@/lib/constants'
+import erc20TokenSymbolToAddress from '@/lib/erc20TokenSymbolToAddress'
+
+import BranchIsAuthenticated from '../components/Branch/BranchIsAuthenticated'
+import BranchIsWalletConnected from '../components/Branch/BranchIsWalletConnected'
+import Card from '../components/home/card'
+import ComponentGrid from '../components/home/component-grid'
+import { useDemoModal } from '../components/home/demo-modal'
+import { Head } from '../components/layout/Head'
+import ButtonSIWELogin from '../components/SIWE/ButtonSIWELogin'
+import ButtonSIWELogout from '../components/SIWE/ButtonSIWELogout'
+import WalletConnect from '../components/WalletConnect'
 export default function Home() {
+  const { DemoModal, setShowDemoModal } = useDemoModal()
   return (
     <>
       <Head />
-      <main className="flex flex-1">
+      <DemoModal />
+      <div className="relative flex flex-1">
         <div className="flex-center flex h-full flex-1 flex-col items-center justify-center text-center">
-          <h3 className="text-6xl font-normal">{SITE_EMOJI}</h3>
-          <h3 className="text-5xl font-bold">{SITE_NAME}</h3>
+          <motion.div
+            className="max-w-3xl px-5 xl:px-0"
+            initial="hidden"
+            whileInView="show"
+            animate="show"
+            viewport={{ once: true }}
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.15,
+                },
+              },
+            }}>
+            <h3 className="text-6xl font-normal">{SITE_EMOJI}</h3>
+            <motion.h1
+              className="font-display bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm dark:from-stone-100 dark:to-yellow-200 md:text-8xl md:leading-[6rem]"
+              variants={FADE_DOWN_ANIMATION_VARIANTS}>
+              <Balancer>Build Web3 In Turbo Mode</Balancer>
+            </motion.h1>
+            <motion.p className="mt-6 text-center text-gray-500 dark:text-gray-200 md:text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+              <Balancer className="text-xl">{SITE_DESCRIPTION}</Balancer>
+              {/* <Balancer>An opinionated collection of components, hooks, and utilities for your Next.js project.</Balancer> */}
+            </motion.p>
+            <motion.div className="mx-auto mt-6 flex items-center justify-center space-x-5" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+              <a
+                className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
+                href={DEPLOY_URL}
+                target="_blank"
+                rel="noopener noreferrer">
+                <svg className="h-4 w-4 group-hover:text-black" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 4L20 20H4L12 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <p>Deploy to Vercel</p>
+              </a>
+              <a
+                className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
+                href="https://github.com/turbo-eth/template-web3-app"
+                target="_blank"
+                rel="noopener noreferrer">
+                <FaGithub />
+                <p>Star on GitHub</p>
+              </a>
+            </motion.div>
+          </motion.div>
 
-          <h5 className="my-4 text-lg">{SITE_DESCRIPTION}</h5>
-          <div className="container mx-auto mt-10 flex max-w-screen-lg items-center gap-6 text-left">
-            <div className="grid w-full grid-cols-12 gap-5">
-              <div className="card col-span-6">
-                <span className="text-3xl">👛</span>
-                <h3 className="text-2xl font-semibold">Wallet</h3>
-                <p className="">Core Wallet components and hooks</p>
-                <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/wallet`}>
-                  Example
-                </Link>
-              </div>
-              <div className="card col-span-6">
-                <span className="text-3xl">💻</span>
-                <h3 className="text-2xl font-semibold">Sign-In With Ethereum</h3>
-                <p className="">Connect to applications using an Ethereum account.</p>
-                <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/siwe`}>
-                  Example
-                </Link>
-              </div>
-              <div className="card col-span-6">
-                <span className="text-3xl">🪙</span>
-                <h3 className="text-2xl font-semibold">ERC20</h3>
-                <p className="">ERC20 WAGMI components and hooks</p>
-                <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc20/${erc20TokenSymbolToAddress.USDC}`}>
-                  Example
-                </Link>
-              </div>
-              <div className="card col-span-6">
-                <span className="text-3xl">👾</span>
-                <h3 className="text-2xl font-semibold">ERC721</h3>
-                <p className="">ERC721 WAGMI components and hooks</p>
-                <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc721/0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8/10`}>
-                  Example
-                </Link>
-              </div>
-            </div>
+          <div className="">
+            <motion.div
+              className="my-10 grid w-full max-w-screen-xl grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0"
+              initial="hidden"
+              whileInView="show"
+              animate="show"
+              viewport={{ once: true }}
+              variants={{
+                hidden: {},
+                show: {
+                  transition: {
+                    delayChildren: 0.5,
+                    staggerChildren: 0.15,
+                  },
+                },
+              }}>
+              {features.map(({ title, description, demo, large }) => (
+                <Card
+                  key={title}
+                  title={title}
+                  description={description}
+                  demo={title === 'Beautiful, reusable components' ? <ComponentGrid setShowDemoModal={setShowDemoModal} /> : demo}
+                  large={large}
+                />
+              ))}
+            </motion.div>
           </div>
         </div>
-      </main>
+      </div>
     </>
   )
 }
+
+const features = [
+  {
+    title: 'Web3 components for the power developer',
+    description:
+      'Pre-built beautiful, a11y-first components,x powered by [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), and [Framer Motion](https://framer.com/motion)',
+    large: true,
+    demo: (
+      <div className="mx-auto block flex w-full max-w-[420px] justify-between gap-3 px-10">
+        <div className="">
+          <span className="mr-1 block font-bold">Address</span>
+          <WalletAddress truncate />
+        </div>
+        <div className="">
+          <span className="mr-1 block font-bold">Nonce</span> <WalletNonce />
+        </div>
+        <div className="">
+          <span className="mr-1 block font-bold">ENS</span> <WalletEnsName />
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: 'One-click Deploy',
+    description: 'Start your next Web3 project in ⚡ Turbo Mode with a deploy to [Vercel](https://vercel.com/) in one click.',
+    demo: (
+      <a href={DEPLOY_URL}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="https://vercel.com/button" alt="Deploy with Vercel" width={120} />
+      </a>
+    ),
+  },
+  {
+    title: 'Sign-In With Ethereum',
+    description: 'Authenticate users using a Web3 wallet like MetaMask or WalletConnect.',
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <Image alt="Prisma logo" src="/siwe.svg" width={80} height={80} />
+      </div>
+    ),
+  },
+  {
+    title: 'Rainbow Kit',
+    description: 'The best way to connect a wallet Designed for everyone. Built for developers.',
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        {/* <Image alt="Auth.js logo" src="/authjs.webp" width={50} height={50} /> */}
+        <Image alt="Rainbow logo" src="/rainbow.svg" width={100} height={100} />
+      </div>
+    ),
+  },
+  {
+    title: 'Turbo utilities, and hooks',
+    description: 'Precedent offers a collection of hooks, utilities, and `@vercel/og`',
+    demo: (
+      <div className="grid grid-flow-col grid-rows-3 gap-10 p-10">
+        <span className="font-mono font-semibold">useIntersectionObserver</span>
+        <span className="font-mono font-semibold">useLocalStorage</span>
+        <span className="font-mono font-semibold">useScroll</span>
+        <span className="font-mono font-semibold">nFormatter</span>
+        <span className="font-mono font-semibold">capitalize</span>
+        <span className="font-mono font-semibold">truncate</span>
+      </div>
+    ),
+  },
+  {
+    title: 'ERC20 WAGMI',
+    description: 'Read and Write to ERC20 smart contracts using minimal UI components.',
+    demo: (
+      <div className="text-center">
+        <img
+          alt={`Token USDC icon`}
+          className="mx-auto h-12 w-12 rounded-full border-2 border-white shadow-md"
+          src={`https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png`}
+        />
+        <h3 className="mt-4 text-2xl font-normal">
+          <ERC20Name chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'} /> (
+          <ERC20Symbol className="" chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'} />)
+        </h3>
+        <p className="">
+          Decimals <ERC20Decimals chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'} />
+        </p>
+        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc20/${erc20TokenSymbolToAddress.USDC}`}>
+          View Token Page
+        </Link>
+      </div>
+    ),
+  },
+  {
+    title: 'ERC721 WAGMI',
+    description: 'Read and Write to ERC721 smart contracts using minimal UI components.',
+    demo: (
+      <div className="text-center text-gray-800">
+        <h3 className="mb-3 text-2xl font-normal">
+          <ERC721Name chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
+        </h3>
+        <ERC721Image address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} tokenId={1} className="my-4 rounded-xl border-2 border-white shadow-md" />
+        <p className="text-xs leading-5">
+          <ERC721Description chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
+        </p>
+        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc721/0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8`}>
+          View Token Page
+        </Link>
+      </div>
+    ),
+  },
+  {
+    title: 'Authenticate with Web3',
+    description: 'Read and Write to ERC721 smart contracts using minimal UI components.',
+    demo: (
+      <div className="text-center text-gray-800">
+        <BranchIsWalletConnected>
+          <BranchIsAuthenticated>
+            <ButtonSIWELogout className="btn btn-blue btn-lg " />
+            <ButtonSIWELogin className="btn btn-emerald btn-lg min-h-[70px] min-w-[200px] text-xl" label="ΞID Connect" />
+          </BranchIsAuthenticated>
+          <WalletConnect />
+        </BranchIsWalletConnected>
+      </div>
+    ),
+  },
+]

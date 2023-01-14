@@ -3,7 +3,7 @@ import React from 'react'
 import { ERC721Attributes, ERC721Description, ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
 import { useRouter } from 'next/router'
 
-import { Head } from '@/components/layout/Head'
+import { Head } from '../components/layout/Head'
 
 export default function Home() {
   const router = useRouter()

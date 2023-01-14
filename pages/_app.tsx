@@ -1,20 +1,16 @@
-import '../src/styles/app.css'
-import '../src/styles/components.css'
-
-import { useEffect } from 'react'
+import './app.css'
+import '../styles/components.css'
 
 import type { AppProps } from 'next/app'
-import { useRouter } from 'next/router'
 import { ModalProvider } from 'react-modal-hook'
 import { SWRConfig } from 'swr'
 import { useAccount } from 'wagmi'
 
 import { siweLogout } from '@/actions/siweLogout'
-import { Layout } from '@/components/layout'
 import { useIsMounted } from '@/hooks/useIsMounted'
-import useUser from '@/hooks/useUser'
 import { RainbowKit } from '@/providers/RainbowKit'
 
+import { Layout } from '../components/layout'
 import fetchJson from '../lib/fetchJson'
 
 const HandleWalletEvents = ({ children }: any): any => {

@@ -1,6 +1,6 @@
 import { Head, Html, Main, NextScript } from 'next/document'
 
-import { APP_CONFIG } from '@/utils/config'
+import { APP_CONFIG } from '@/lib/constants'
 
 export default function Document() {
   return (

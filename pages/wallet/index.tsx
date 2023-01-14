@@ -1,6 +1,6 @@
 import { BlockNumber, WalletAddress, WalletBalance, WalletEnsName, WalletNonce } from '@turbo-eth/core-wagmi'
 
-import { Head } from '@/components/layout/Head'
+import { Head } from '../components/layout/Head'
 
 export default function Home() {
   return (
