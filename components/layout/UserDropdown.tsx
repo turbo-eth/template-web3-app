@@ -8,7 +8,7 @@ import Link from 'next/link'
 import Popover from '@/components/shared/popover'
 import { FADE_IN_ANIMATION_SETTINGS } from '@/lib/design'
 
-import ButtonSIWELogout from '../siwe/ButtonSIWELogout'
+import ButtonSIWELogout from '../siwe-update/ButtonSIWELogout'
 
 export default function UserDropdown() {
   const [openPopover, setOpenPopover] = useState(false)

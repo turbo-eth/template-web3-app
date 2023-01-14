@@ -7,7 +7,7 @@ import { useModal } from 'react-modal-hook'
 import { SITE_EMOJI, SITE_NAME, SOCIAL_GITHUB, SOCIAL_TWITTER } from '@/lib/constants'
 
 import { LinkComponent } from '../app/LinkComponent'
-import ModalDynamic from '../modal/ModalDynamic'
+import ModalDynamic from '../modal-update/ModalDynamic'
 interface MenuMobileProps {
   className?: string
   children: React.ReactNode
