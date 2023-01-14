@@ -59,7 +59,7 @@ export function Header(props: Props) {
         <>
           <LinkComponent className="flex items-center" href="/">
             <span className="mr-1">{SITE_EMOJI}</span>
-            <h1 className="text-2xl font-bold">{SITE_NAME}</h1>
+            <h1 className="text-gradient-sand text-2xl font-bold">{SITE_NAME}</h1>
           </LinkComponent>
 
           <div className="flex-1" />
