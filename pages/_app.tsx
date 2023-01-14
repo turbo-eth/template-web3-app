@@ -1,7 +1,7 @@
 import '../styles/global.css'
 import '../styles/app.css'
 import '../styles/components.css'
-import { Inter, Raleway } from '@next/font/google'
+import { Raleway } from '@next/font/google'
 import localFont from '@next/font/local'
 import type { AppProps } from 'next/app'
 import { ModalProvider } from 'react-modal-hook'
@@ -26,11 +26,6 @@ const raleway = Raleway({
   variable: '--font-raleway',
 })
 
-const inter = Inter({
-  variable: '--font-inter',
-  subsets: ['latin'],
-})
-
 const HandleWalletEvents = ({ children }: any): any => {
   useAccount({
     onDisconnect() {
@@ -50,7 +45,6 @@ export default function App({ Component, pageProps }: AppProps) {
           :root {
             --sfPro-font: ${sfPro.style.fontFamily};
             --raleway-font: ${raleway.style.fontFamily};
-            --inter-font: ${inter.style.fontFamily};
           }
         `}
       </style>
