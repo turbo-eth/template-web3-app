@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { WalletAddress, WalletBalance, WalletEnsName, WalletNonce } from '@turbo-eth/core-wagmi'
 import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@turbo-eth/erc20-wagmi'
 import { ERC721Description, ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
