@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
 
-import BranchIsAuthenticated from '@/components/branch-update/BranchIsAuthenticated'
-import BranchIsWalletConnected from '@/components/branch-update/BranchIsWalletConnected'
+import BranchIsAuthenticated from '@/components/branch/BranchIsAuthenticated'
+import BranchIsWalletConnected from '@/components/branch/BranchIsWalletConnected'
 import { Head } from '@/components/layout/Head'
-import ButtonSIWELogin from '@/components/siwe-update/ButtonSIWELogin'
-import ButtonSIWELogout from '@/components/siwe-update/ButtonSIWELogout'
+import ButtonSIWELogin from '@/components/siwe/ButtonSIWELogin'
+import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
 import WalletConnect from '@/components/WalletConnect'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
 

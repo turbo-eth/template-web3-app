@@ -2,10 +2,10 @@ import * as React from 'react'
 
 import Link from 'next/link'
 
-import BranchIsAuthenticated from '@/components/branch-update/BranchIsAuthenticated'
-import BranchIsWalletConnected from '@/components/branch-update/BranchIsWalletConnected'
-import ButtonSIWELogin from '@/components/siwe-update/ButtonSIWELogin'
-import ButtonSIWELogout from '@/components/siwe-update/ButtonSIWELogout'
+import BranchIsAuthenticated from '@/components/branch/BranchIsAuthenticated'
+import BranchIsWalletConnected from '@/components/branch/BranchIsWalletConnected'
+import ButtonSIWELogin from '@/components/siwe/ButtonSIWELogin'
+import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
 
 interface BranchButtonLoginOrAccountProps {
   className?: string

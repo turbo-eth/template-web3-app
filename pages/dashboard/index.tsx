@@ -4,7 +4,7 @@ import { LayoutDashboardIcon, NetworkIcon, Wallet } from 'lucide-react'
 import Link from 'next/link'
 
 import { Head } from '@/components/layout/Head'
-import ButtonSIWELogout from '@/components/siwe-update/ButtonSIWELogout'
+import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
 
 export default function SIWE() {
