@@ -22,7 +22,7 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
 import erc20TokenSymbolToAddress from '@/lib/erc20TokenSymbolToAddress'
 
 export default function Home() {
-  const { DemoModal, setShowDemoModal } = useDemoModal()
+  const { DemoModal } = useDemoModal()
   return (
     <>
       <Head />
@@ -78,7 +78,7 @@ export default function Home() {
 
           <div className="">
             <motion.div
-              className="my-10 grid w-full max-w-screen-xl grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0"
+              className="my-10 grid w-full max-w-screen-2xl grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0"
               initial="hidden"
               whileInView="show"
               animate="show"
@@ -93,13 +93,7 @@ export default function Home() {
                 },
               }}>
               {features.map(({ title, description, demo, large }) => (
-                <Card
-                  key={title}
-                  title={title}
-                  description={description}
-                  demo={title === 'Beautiful, reusable components' ? <ComponentGrid setShowDemoModal={setShowDemoModal} /> : demo}
-                  large={large}
-                />
+                <Card key={title} title={title} description={description} demo={demo} large={large} />
               ))}
             </motion.div>
           </div>
@@ -162,16 +156,31 @@ const features = [
     ),
   },
   {
+    title: 'Authenticate with Web3',
+    description: 'Connect to the Future of Web3 with TurboETH',
+    demo: (
+      <div className="text-center text-gray-800">
+        <BranchIsWalletConnected>
+          <BranchIsAuthenticated>
+            <ButtonSIWELogout className="btn btn-blue btn-lg " />
+            <ButtonSIWELogin className="btn btn-emerald btn-lg min-h-[70px] min-w-[200px] text-xl" label="ΞID Connect" />
+          </BranchIsAuthenticated>
+          <WalletConnect />
+        </BranchIsWalletConnected>
+      </div>
+    ),
+  },
+  {
     title: '⚡Turbo actions, and hooks',
     description: 'TurboETH offers a collection of actions, hooks and utilities',
     demo: (
-      <div className="grid grid-flow-col grid-rows-3 gap-10 p-10">
-        <span className="font-mono font-semibold">useIntersectionObserver</span>
-        <span className="font-mono font-semibold">useLocalStorage</span>
-        <span className="font-mono font-semibold">useScroll</span>
-        <span className="font-mono font-semibold">nFormatter</span>
-        <span className="font-mono font-semibold">capitalize</span>
-        <span className="font-mono font-semibold">truncate</span>
+      <div className="grid min-w-[220px] grid-flow-col grid-rows-3 gap-10 p-10">
+        <span className="font-mono font-semibold">&lt;Address/&gt;</span>
+        <span className="font-mono font-semibold">&lt;Balance /&gt;</span>
+        <span className="font-mono font-semibold">&lt;Nonce /&gt;</span>
+        <span className="font-mono font-semibold">&lt;ERC20Name /&gt;</span>
+        <span className="font-mono font-semibold">&lt;ERC20Symbol /&gt;</span>
+        <span className="font-mono font-semibold">&lt;ERC20Balance /&gt;</span>
       </div>
     ),
   },
@@ -214,21 +223,6 @@ const features = [
         <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc721/0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8/42`}>
           View Token Page
         </Link>
-      </div>
-    ),
-  },
-  {
-    title: 'Authenticate with Web3',
-    description: 'Prove your ownership of an Ethereum address with a signature',
-    demo: (
-      <div className="text-center text-gray-800">
-        <BranchIsWalletConnected>
-          <BranchIsAuthenticated>
-            <ButtonSIWELogout className="btn btn-blue btn-lg " />
-            <ButtonSIWELogin className="btn btn-emerald btn-lg min-h-[70px] min-w-[200px] text-xl" label="ΞID Connect" />
-          </BranchIsAuthenticated>
-          <WalletConnect />
-        </BranchIsWalletConnected>
       </div>
     ),
   },
