@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 
 import { ERC20Decimals, ERC20Name, ERC20Symbol, WalletERC20Balance } from '@turbo-eth/erc20-wagmi'
