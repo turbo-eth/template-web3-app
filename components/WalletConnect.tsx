@@ -6,19 +6,21 @@ interface WalletConnectProps {
   className?: string
 }
 
-export const WalletConnect = ({}: WalletConnectProps) => {
+export const WalletConnect = ({ className }: WalletConnectProps) => {
   return (
-    <ConnectButton
-      showBalance={false}
-      accountStatus={{
-        smallScreen: 'avatar',
-        largeScreen: 'avatar',
-      }}
-      chainStatus={{
-        smallScreen: 'icon',
-        largeScreen: 'icon',
-      }}
-    />
+    <span className={className}>
+      <ConnectButton
+        showBalance={false}
+        accountStatus={{
+          smallScreen: 'avatar',
+          largeScreen: 'avatar',
+        }}
+        chainStatus={{
+          smallScreen: 'icon',
+          largeScreen: 'icon',
+        }}
+      />
+    </span>
   )
 }
 

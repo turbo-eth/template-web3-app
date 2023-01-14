@@ -3,15 +3,20 @@ import React from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import classNames from 'classnames'
 
-import useScroll from '@/hooks/use-scroll'
 import { SITE_EMOJI, SITE_NAME } from '@/lib/constants'
+import useScroll from '@/lib/hooks/useScroll'
 
 import { LinkComponent } from '../app/LinkComponent'
 import { ThemeSwitcher } from '../app/ThemeSwitcher'
-import BranchButtonLoginOrAccount from '../Branch/BranchButtonLoginOrAccount'
-import ResponsiveMobileAndDesktop from '../Responsive/ResponsiveMobileAndDesktop'
+import BranchButtonLoginOrAccount from '../branch/BranchButtonLoginOrAccount'
+import BranchIsAuthenticated from '../branch/BranchIsAuthenticated'
+import BranchIsWalletConnected from '../branch/BranchIsWalletConnected'
+import ResponsiveMobileAndDesktop from '../responsive/ResponsiveMobileAndDesktop'
+import Popover from '../shared/popover'
+import ButtonSIWELogin from '../siwe/ButtonSIWELogin'
 import WalletConnect from '../WalletConnect'
 import MenuMobile from './MenuMobile'
+import UserDropdown from './UserDropdown'
 
 interface Props {
   className?: string
@@ -23,14 +28,12 @@ export function Header(props: Props) {
     props.className,
     'Header',
     'fixed top-0 w-full',
-    ' px-4 py-3 mb-8 flex items-center',
+    ' px-10 py-3 mb-8 flex items-center',
     {
       'border-b border-gray-200 bg-white/50 backdrop-blur-xl dark:bg-black/50 dark:border-gray-800': scrolled,
     },
     'z-30 transition-all'
   )
-
-  // <div className={`fixed top-0 w-full ${scrolled ? 'border-b border-gray-200 bg-white/50 backdrop-blur-xl' : 'bg-white/0'} z-30 transition-all`}>
   return (
     <header className={classes}>
       <ResponsiveMobileAndDesktop>
@@ -65,9 +68,12 @@ export function Header(props: Props) {
           <div className="flex-1" />
 
           <div className="flex items-center gap-4">
-            <BranchButtonLoginOrAccount classNameButtonLogin="tag tag-emerald" classNameButtonLogout="tag tag-dark" className="mr-3" />
-            <WalletConnect />
-            {/* <div className="mx-2" /> */}
+            <BranchIsWalletConnected>
+              <BranchIsAuthenticated>
+                <UserDropdown />
+                <ButtonSIWELogin />
+              </BranchIsAuthenticated>
+            </BranchIsWalletConnected>
             <ThemeSwitcher />
           </div>
         </>

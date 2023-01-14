@@ -1,7 +1,7 @@
 import { withIronSessionApiRoute, withIronSessionSsr } from 'iron-session/next'
 import { NextApiHandler } from 'next'
 
-import { SERVER_SESSION_SETTINGS } from './constants'
+import { SERVER_SESSION_SETTINGS } from './session'
 
 export function withSessionRoute(handler: NextApiHandler) {
   return withIronSessionApiRoute(handler, SERVER_SESSION_SETTINGS)

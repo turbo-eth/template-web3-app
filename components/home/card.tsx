@@ -1,10 +1,11 @@
+/* eslint-disable unused-imports/no-unused-vars */
 import { ReactNode } from 'react'
 
 import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import Balancer from 'react-wrap-balancer'
 
-import { FADE_UP_ANIMATION_VARIANTS } from '@/lib/constants'
+import { FADE_UP_ANIMATION_VARIANTS } from '@/lib/design'
 
 export default function Card({ title, description, demo, large }: { title: string; description: string; demo: ReactNode; large?: boolean }) {
   return (
@@ -18,7 +19,7 @@ export default function Card({ title, description, demo, large }: { title: strin
         <h2 className="font-display mb-3 bg-gradient-to-br from-black to-stone-500 bg-clip-text text-xl font-bold text-transparent dark:from-stone-100 dark:to-emerald-200 md:text-3xl md:font-normal">
           <Balancer>{title}</Balancer>
         </h2>
-        <div className="prose-sm md:prose content -mt-2 leading-normal text-gray-500 dark:text-gray-100">
+        <div className="content prose-sm -mt-2 leading-normal text-gray-500 dark:text-gray-100 md:prose">
           <Balancer>
             <ReactMarkdown
               components={{
@@ -30,7 +31,8 @@ export default function Card({ title, description, demo, large }: { title: strin
                     className="font-medium text-gray-800 underline transition-colors dark:text-blue-200"
                   />
                 ),
-                code: ({ node, ...props }) => <code {...props} className="font-mono rounded-sm bg-gray-100 px-1 py-0.5 font-medium text-gray-800" />,
+
+                code: ({ node, ...props }) => <code {...props} className="rounded-sm bg-gray-100 px-1 py-0.5 font-mono font-medium text-gray-800" />,
               }}>
               {description}
             </ReactMarkdown>

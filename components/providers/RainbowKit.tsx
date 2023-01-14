@@ -4,8 +4,9 @@ import { ReactNode } from 'react'
 import { RainbowKitProvider, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import { WagmiConfig, configureChains, createClient } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 
-import { ETH_CHAINS } from '@/lib/constants'
+import { ETH_CHAINS_PROD, ETH_CHAINS_TEST } from '@/lib/constants'
 
 interface Props {
   children: ReactNode
@@ -13,9 +14,22 @@ interface Props {
 }
 
 export function RainbowKit(props: Props) {
-  const { chains, provider } = configureChains(ETH_CHAINS, [
+  const CHAINS = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : ETH_CHAINS_TEST
+  const { chains, provider } = configureChains(CHAINS, [
     alchemyProvider({
       apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
+    }),
+    jsonRpcProvider({
+      rpc: () => ({
+        chainId: [11155111],
+        http: 'https://sepolia.infura.io/v3/',
+      }),
+    }),
+    jsonRpcProvider({
+      rpc: () => ({
+        chainId: [31337],
+        http: 'http://127.0.0.1:8545/',
+      }),
     }),
   ])
 

@@ -1,5 +1,5 @@
 import { WalletAddress, WalletBalance, WalletEnsName, WalletNonce } from '@turbo-eth/core-wagmi'
-import { ERC20Decimals, ERC20Name, ERC20Symbol, WalletERC20Balance } from '@turbo-eth/erc20-wagmi'
+import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@turbo-eth/erc20-wagmi'
 import { ERC721Description, ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -7,18 +7,18 @@ import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import Balancer from 'react-wrap-balancer'
 
-import { DEPLOY_URL, FADE_DOWN_ANIMATION_VARIANTS, SITE_DESCRIPTION, SITE_EMOJI, SITE_NAME } from '@/lib/constants'
+import { BranchIsAuthenticated } from '@/components/branch/BranchIsAuthenticated'
+import { BranchIsWalletConnected } from '@/components/branch/BranchIsWalletConnected'
+import Card from '@/components/home/card'
+import ComponentGrid from '@/components/home/component-grid'
+import { useDemoModal } from '@/components/home/demo-modal'
+import { Head } from '@/components/layout/Head'
+import ButtonSIWELogin from '@/components/siwe/ButtonSIWELogin'
+import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
+import WalletConnect from '@/components/WalletConnect'
+import { DEPLOY_URL, SITE_DESCRIPTION, SITE_EMOJI } from '@/lib/constants'
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
 import erc20TokenSymbolToAddress from '@/lib/erc20TokenSymbolToAddress'
-
-import BranchIsAuthenticated from '../components/Branch/BranchIsAuthenticated'
-import BranchIsWalletConnected from '../components/Branch/BranchIsWalletConnected'
-import Card from '../components/home/card'
-import ComponentGrid from '../components/home/component-grid'
-import { useDemoModal } from '../components/home/demo-modal'
-import { Head } from '../components/layout/Head'
-import ButtonSIWELogin from '../components/SIWE/ButtonSIWELogin'
-import ButtonSIWELogout from '../components/SIWE/ButtonSIWELogout'
-import WalletConnect from '../components/WalletConnect'
 export default function Home() {
   const { DemoModal, setShowDemoModal } = useDemoModal()
   return (
@@ -41,7 +41,8 @@ export default function Home() {
                 },
               },
             }}>
-            <h3 className="text-6xl font-normal">{SITE_EMOJI}</h3>
+            {/* <h3 className="text-6xl font-normal">{SITE_EMOJI}</h3> */}
+            <img src="/logo-fill.png" alt="Turbo ETH" className="mx-auto my-10 h-20 w-20" />
             <motion.h1
               className="font-display bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm dark:from-stone-100 dark:to-yellow-200 md:text-8xl md:leading-[6rem]"
               variants={FADE_DOWN_ANIMATION_VARIANTS}>
@@ -113,17 +114,20 @@ const features = [
       'Pre-built beautiful, a11y-first components,x powered by [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), and [Framer Motion](https://framer.com/motion)',
     large: true,
     demo: (
-      <div className="mx-auto block flex w-full max-w-[420px] justify-between gap-3 px-10">
-        <div className="">
-          <span className="mr-1 block font-bold">Address</span>
-          <WalletAddress truncate />
-        </div>
-        <div className="">
-          <span className="mr-1 block font-bold">Nonce</span> <WalletNonce />
-        </div>
-        <div className="">
-          <span className="mr-1 block font-bold">ENS</span> <WalletEnsName />
-        </div>
+      <div className="mx-auto flex w-full max-w-[420px] justify-between gap-3 px-10">
+        <BranchIsWalletConnected>
+          <>
+            <div className="">
+              <WalletAddress truncate className="text-xl" />
+              <span className="fot-light mr-1 block text-lg">Address</span>
+            </div>
+            <div className="">
+              <WalletNonce className="text-xl" />
+              <span className="fot-light mr-1 block text-lg">Transactions</span>
+            </div>
+          </>
+          <WalletConnect className="mx-auto inline-block" />
+        </BranchIsWalletConnected>
       </div>
     ),
   },
@@ -131,7 +135,7 @@ const features = [
     title: 'One-click Deploy',
     description: 'Start your next Web3 project in ⚡ Turbo Mode with a deploy to [Vercel](https://vercel.com/) in one click.',
     demo: (
-      <a href={DEPLOY_URL}>
+      <a target={'_blank'} href={DEPLOY_URL} rel="noreferrer">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="https://vercel.com/button" alt="Deploy with Vercel" width={120} />
       </a>
@@ -151,14 +155,13 @@ const features = [
     description: 'The best way to connect a wallet Designed for everyone. Built for developers.',
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        {/* <Image alt="Auth.js logo" src="/authjs.webp" width={50} height={50} /> */}
         <Image alt="Rainbow logo" src="/rainbow.svg" width={100} height={100} />
       </div>
     ),
   },
   {
-    title: 'Turbo utilities, and hooks',
-    description: 'Precedent offers a collection of hooks, utilities, and `@vercel/og`',
+    title: '⚡Turbo actions, and hooks',
+    description: 'TurboETH offers a collection of actions, hooks and utilities',
     demo: (
       <div className="grid grid-flow-col grid-rows-3 gap-10 p-10">
         <span className="font-mono font-semibold">useIntersectionObserver</span>
@@ -197,15 +200,16 @@ const features = [
     title: 'ERC721 WAGMI',
     description: 'Read and Write to ERC721 smart contracts using minimal UI components.',
     demo: (
-      <div className="text-center text-gray-800">
-        <h3 className="mb-3 text-2xl font-normal">
-          <ERC721Name chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
-        </h3>
-        <ERC721Image address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} tokenId={1} className="my-4 rounded-xl border-2 border-white shadow-md" />
-        <p className="text-xs leading-5">
-          <ERC721Description chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
-        </p>
-        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc721/0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8`}>
+      <div className="text-cente">
+        {/* @ts-ignore */}
+        <ERC721Name chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
+        <ERC721Image
+          // @ts-ignore
+          tokenId={1}
+          address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'}
+          className=" mx-auto my-4 w-[90px] rounded-xl border-2 border-white shadow-md"
+        />
+        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc721/0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8/42`}>
           View Token Page
         </Link>
       </div>
@@ -213,7 +217,7 @@ const features = [
   },
   {
     title: 'Authenticate with Web3',
-    description: 'Read and Write to ERC721 smart contracts using minimal UI components.',
+    description: 'Prove your ownership of an Ethereum address with a signature',
     demo: (
       <div className="text-center text-gray-800">
         <BranchIsWalletConnected>

@@ -3,7 +3,7 @@ import React from 'react'
 import { ERC20Decimals, ERC20Name, ERC20Symbol, WalletERC20Balance } from '@turbo-eth/erc20-wagmi'
 import { useRouter } from 'next/router'
 
-import { Head } from '../components/layout/Head'
+import { Head } from '@/components/layout/Head'
 
 export default function Home() {
   const router = useRouter()

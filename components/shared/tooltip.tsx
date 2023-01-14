@@ -74,7 +74,7 @@ export default function Tooltip({ children, content, fullWidth }: { children: Re
           <TooltipPrimitive.Content
             sideOffset={4}
             side="top"
-            className="animate-slide-up-fade z-30 hidden items-center overflow-hidden rounded-md border border-gray-200 bg-white drop-shadow-lg sm:block">
+            className="z-30 hidden animate-slide-up-fade items-center overflow-hidden rounded-md border border-gray-200 bg-white drop-shadow-lg sm:block">
             <TooltipPrimitive.Arrow className="fill-current text-white" />
             {typeof content === 'string' ? (
               <div className="p-5">

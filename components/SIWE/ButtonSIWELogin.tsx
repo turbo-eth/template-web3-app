@@ -9,8 +9,9 @@ import { siweLogin } from '@/lib/actions/siweLogin'
 interface ButtonSIWELoginProps {
   className?: string
   label?: string
+  children?: React.ReactNode
 }
-export const ButtonSIWELogin = ({ className, label }: ButtonSIWELoginProps) => {
+export const ButtonSIWELogin = ({ className, label, children }: ButtonSIWELoginProps) => {
   const { isLoading, signMessageAsync } = useSignMessage()
   const { address } = useAccount()
   const { chain } = useNetwork()
@@ -25,11 +26,14 @@ export const ButtonSIWELogin = ({ className, label }: ButtonSIWELoginProps) => {
     }
   }
   const classes = classNames(className, 'ButtonSIWELogin', 'relative')
+  const labelClasses = classNames('font-bold', 'shadow-black', 'drop-shadow-lg', {
+    'opacity-0': isLoading,
+  })
 
   return (
     <button onClick={handleCreateMessage} className={classes}>
       {isLoading && <span className="lds-dual-ring light absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}
-      {!isLoading && <span className="font-bold shadow-black drop-shadow-lg">{label}</span>}
+      <span className={labelClasses}>{children || label || 'Logout'}</span>
     </button>
   )
 }

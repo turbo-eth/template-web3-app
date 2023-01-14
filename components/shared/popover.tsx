@@ -14,6 +14,7 @@ export default function Popover({
   content: ReactNode | string
   align?: 'center' | 'start' | 'end'
   openPopover: boolean
+  // eslint-disable-next-line unused-imports/no-unused-vars
   setOpenPopover: (open: boolean) => void
 }) {
   const mobileTooltipRef = useRef<HTMLDivElement>(null)
@@ -77,7 +78,7 @@ export default function Popover({
         <PopoverPrimitive.Content
           sideOffset={4}
           align={align}
-          className="animate-slide-up-fade z-20 hidden items-center rounded-md border border-gray-200 bg-white shadow-md md:block">
+          className="z-20 hidden animate-slide-up-fade items-center rounded-md border border-gray-200 bg-white shadow-md md:block">
           {content}
         </PopoverPrimitive.Content>
       </PopoverPrimitive.Root>

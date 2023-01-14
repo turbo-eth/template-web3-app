@@ -1,17 +1,35 @@
-import './app.css'
+import '../styles/global.css'
+import '../styles/app.css'
 import '../styles/components.css'
-
+import { Inter, Raleway } from '@next/font/google'
+import localFont from '@next/font/local'
 import type { AppProps } from 'next/app'
 import { ModalProvider } from 'react-modal-hook'
+import { Provider as RWBProvider } from 'react-wrap-balancer'
 import { SWRConfig } from 'swr'
 import { useAccount } from 'wagmi'
 
 import { siweLogout } from '@/actions/siweLogout'
+import { Layout } from '@/components/layout'
 import { useIsMounted } from '@/hooks/useIsMounted'
+import fetchJson from '@/lib/fetchJson'
 import { RainbowKit } from '@/providers/RainbowKit'
 
-import { Layout } from '../components/layout'
-import fetchJson from '../lib/fetchJson'
+const sfPro = localFont({
+  src: '../styles/SF-Pro-Display-Medium.otf',
+  variable: '--font-sf',
+})
+
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['100', '200', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-raleway',
+})
+
+const inter = Inter({
+  variable: '--font-inter',
+  subsets: ['latin'],
+})
 
 const HandleWalletEvents = ({ children }: any): any => {
   useAccount({
@@ -27,6 +45,15 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
+      <style jsx global>
+        {`
+          :root {
+            --sfPro-font: ${sfPro.style.fontFamily};
+            --raleway-font: ${raleway.style.fontFamily};
+            --inter-font: ${inter.style.fontFamily};
+          }
+        `}
+      </style>
       <SWRConfig
         value={{
           fetcher: fetchJson,
@@ -35,15 +62,17 @@ export default function App({ Component, pageProps }: AppProps) {
           },
         }}>
         {isMounted && (
-          <ModalProvider>
-            <RainbowKit>
-              <HandleWalletEvents>
-                <Layout>
-                  <Component {...pageProps} />
-                </Layout>
-              </HandleWalletEvents>
-            </RainbowKit>
-          </ModalProvider>
+          <RWBProvider>
+            <ModalProvider>
+              <RainbowKit>
+                <HandleWalletEvents>
+                  <Layout>
+                    <Component {...pageProps} />
+                  </Layout>
+                </HandleWalletEvents>
+              </RainbowKit>
+            </ModalProvider>
+          </RWBProvider>
         )}
       </SWRConfig>
     </>

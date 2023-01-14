@@ -17,7 +17,7 @@ export function Footer(props: Props) {
   return (
     <footer className={classes}>
       <h3>{SITE_TITLE}</h3>
-      <a className="link my-2 text-xs" href="https://districtlab.com/">
+      <a className="link my-2 text-xs" target={'_blank'} href="https://districtlabs.com/" rel="noreferrer">
         Built by District Labs
       </a>
       <div className="mt-2 flex items-center">

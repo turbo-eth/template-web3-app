@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+// eslint-disable-next-line unused-imports/no-unused-vars
 const useLocalStorage = <T>(key: string, initialValue: T): [T, (value: T) => void] => {
   const [storedValue, setStoredValue] = useState(initialValue)
 

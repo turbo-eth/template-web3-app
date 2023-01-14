@@ -2,9 +2,8 @@ import React, { useEffect } from 'react'
 
 // @ts-ignore
 import MoonIcon from 'public/icons/MoonIcon.svg?icon'
-import SunIcon from 'public/icons/SunIcon.svg?icon'
-
 // @ts-ignore
+import SunIcon from 'public/icons/SunIcon.svg?icon'
 
 export function ThemeSwitcher() {
   const classes = 'cursor-pointer'

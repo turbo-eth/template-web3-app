@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.react-images__view {
+  display: flex;
+  justify-content: center;
+}
+
+.cropper__line--left {
+  border-left-width: 2px;
+}
+.cropper__line--top {
+  border-top-width: 2px;
+}
+
+.link {
+  @apply text-blue-700 hover:text-blue-600 dark:text-blue-200 dark:hover:text-blue-300 cursor-pointer;
+}
+
+.content section {
+  @apply px-10;
+}
+
+.content h3, {
+  @apply mt-5 mb-2;
+}
+.content p {
+  @apply leading-7 text-base;
+}
+
+.content .list-disc li {
+  @apply py-2;
+}
+
+.flex-center {
+  @apply flex justify-center items-center;
+}
