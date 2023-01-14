@@ -23,7 +23,7 @@ export default function Document() {
           </>
         )}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="TurboETH" />
+        <meta name="twitter:site" content={APP_CONFIG.site_name} />
       </Head>
       <body>
         <Main />

@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { WalletAddress, WalletBalance, WalletEnsName, WalletNonce } from '@turbo-eth/core-wagmi'
+import { WalletAddress, WalletNonce } from '@turbo-eth/core-wagmi'
 import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@turbo-eth/erc20-wagmi'
-import { ERC721Description, ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
+import { ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,9 +17,10 @@ import { Head } from '@/components/layout/Head'
 import ButtonSIWELogin from '@/components/siwe/ButtonSIWELogin'
 import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
 import WalletConnect from '@/components/WalletConnect'
-import { DEPLOY_URL, SITE_DESCRIPTION, SITE_EMOJI } from '@/lib/constants'
+import { DEPLOY_URL, SITE_DESCRIPTION } from '@/lib/constants'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
 import erc20TokenSymbolToAddress from '@/lib/erc20TokenSymbolToAddress'
+
 export default function Home() {
   const { DemoModal, setShowDemoModal } = useDemoModal()
   return (
