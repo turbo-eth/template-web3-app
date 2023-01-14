@@ -10,7 +10,7 @@ import { FADE_UP_ANIMATION_VARIANTS } from '@/lib/design'
 export default function Card({ title, description, demo, large }: { title: string; description: string; demo: ReactNode; large?: boolean }) {
   return (
     <motion.div
-      className={`relative col-span-1 h-96 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-md dark:border-gray-800 dark:bg-neutral-800 dark:text-white ${
+      className={`relative col-span-1 h-96 overflow-hidden rounded-xl border border-gray-200 bg-white px-4 shadow-md dark:border-gray-800 dark:bg-neutral-800 dark:text-white ${
         large ? 'md:col-span-2' : ''
       }`}
       variants={FADE_UP_ANIMATION_VARIANTS}>
