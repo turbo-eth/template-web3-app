@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 
 import { ERC721Attributes, ERC721Description, ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'

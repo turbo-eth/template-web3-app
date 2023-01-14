@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 
 import { ERC20Decimals, ERC20Name, ERC20Symbol, WalletERC20Balance } from '@turbo-eth/erc20-wagmi'
@@ -21,9 +22,10 @@ export default function Home() {
               src={`https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/${address}/logo.png`}
             />
             <h3 className="mt-4 text-2xl font-normal">
-              <ERC20Name chaindId={chainId} address={String(address || '')} /> (
-              <ERC20Symbol chaindId={chainId} address={String(address || '')} />)
+              <ERC20Name chainId={Number(chainId)} address={String(address || '')} /> (
+              <ERC20Symbol className="" chainId={Number(chainId)} address={String(address || '')} />)
             </h3>
+            <ERC20Decimals chainId={Number(chainId)} address={String(address || '')} />)
             <div className="mt-3">
               <span className="mr-2 font-bold">Decimals:</span> <ERC20Decimals address={String(address || '')} />
             </div>

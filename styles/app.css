@@ -1,0 +1,27 @@
+.bg-card {
+  @apply bg-white dark:bg-neutral-700 dark:text-white;
+}
+
+.bg-gradient-app {
+  @apply dark:bg-slate-900 dark:text-white bg-gradient-to-br from-indigo-50 via-white to-yellow-100 dark:from-indigo-800 dark:to-yellow-700;
+}
+
+.bg-gradient-primary {
+  @apply bg-gradient-to-br from-white to-neutral-50 dark:from-neutral-800 dark:to-neutral-700 dark:bg-slate-900 dark:text-white;
+}
+
+.text-gradient-primary {
+  @apply bg-gradient-to-br from-emerald-500 to-emerald-700 bg-clip-text dark:from-emerald-100 dark:to-emerald-200 text-transparent;
+}
+
+.text-gradient-secondary {
+  @apply bg-gradient-to-br from-indigo-600 to-purple-700 bg-clip-text dark:from-indigo-100 dark:to-purple-200 text-transparent;
+}
+
+.text-gradient-sand {
+  @apply bg-gradient-to-br from-black to-stone-500 bg-clip-text dark:from-stone-100 dark:to-yellow-200 text-transparent;
+}
+
+.menu-item {
+  @apply text-sm font-medium text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-200 flex items-center gap-2;
+}
