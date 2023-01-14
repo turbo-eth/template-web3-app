@@ -25,7 +25,6 @@ export default function Home() {
               <ERC20Name chainId={Number(chainId)} address={String(address || '')} /> (
               <ERC20Symbol className="" chainId={Number(chainId)} address={String(address || '')} />)
             </h3>
-            <ERC20Decimals chainId={Number(chainId)} address={String(address || '')} />)
             <div className="mt-3">
               <span className="mr-2 font-bold">Decimals:</span> <ERC20Decimals address={String(address || '')} />
             </div>
