@@ -12,7 +12,7 @@ interface ChainIdToApi {
 export const ETHEREUM_MAINNET_API_URL = 'https://api.etherscan.io'
 export const ETHEREUM_ROPSTEN_API_URL = 'https://api-ropsten.etherscan.io'
 export const ETHEREUM_RINKEBY_API_URL = 'https://api-rinkeby.etherscan.io'
-export const ETHEREUM_GOERLI_API_URL = 'https://api-rinkeby.etherscan.io'
+export const ETHEREUM_GOERLI_API_URL = 'https://api-goerli.etherscan.io'
 export const ETHEREUM_KOVAN_API_URL = 'https://api-kovan.etherscan.io'
 export const ETHEREUM_SEPOLIA_API_URL = 'https://api-sepolia.etherscan.io'
 export const ETHEREUM_NETWORK_NAME_API_URL_MAP = {
