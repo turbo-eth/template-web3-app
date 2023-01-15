@@ -20,7 +20,6 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
       }
       await req.session.save()
       await prisma.users.upsert({
-        // @ts-ignore
         where: { id: fields.address },
         update: {
           address: fields.address,
