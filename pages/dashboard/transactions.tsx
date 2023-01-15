@@ -37,9 +37,6 @@ export default function Page() {
           </div>
           <div className="flex-center col-span-12 flex flex-col lg:col-span-9">
             {!isLoading && <TransactionsTable data={data?.transactions} className="w-full" />}
-            <h3 className="mt-3 font-raleway text-lg font-normal">
-              Currently connected to <span className=" font-medium">{chain?.name}</span>
-            </h3>
           </div>
         </motion.div>
       </div>
