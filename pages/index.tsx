@@ -224,7 +224,7 @@ const features = [
     title: 'ERC721 WAGMI',
     description: 'Read and Write to ERC721 smart contracts using minimal UI components.',
     demo: (
-      <div className="text-cente">
+      <div className="text-center">
         {/* @ts-ignore */}
         <ERC721Name chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
         <ERC721Image
