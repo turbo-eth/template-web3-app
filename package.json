@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "next lint --fix",
     "prettier": "prettier './src' --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "prebuild": "prisma generate",
+    "predev": "prisma generate"
   },
   "husky": {
     "hooks": {
