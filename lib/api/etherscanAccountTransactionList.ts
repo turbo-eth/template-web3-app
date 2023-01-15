@@ -10,6 +10,7 @@ export function etherscanAccountTransactionList(client: AxiosInstance, address: 
     throw new Error('Etherscan Client Not Connected')
   }
   if (!isValidAddress(address)) throw new Error('Address Invalid')
+
   const query = querystring.stringify({
     module: 'account',
     action: 'txlist',
@@ -18,7 +19,7 @@ export function etherscanAccountTransactionList(client: AxiosInstance, address: 
     endblock: config.endblock || 99999999,
     sort: config.sort || 'asc',
     page: config.page || 1,
-    offset: config.offset || 1000,
+    offset: config.offset || 0,
   })
   return queryEtherscanClient(client, query)
 }

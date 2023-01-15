@@ -5,26 +5,28 @@ import MoonIcon from 'public/icons/MoonIcon.svg?icon'
 // @ts-ignore
 import SunIcon from 'public/icons/SunIcon.svg?icon'
 
+import { useColorMode } from '@/lib/state'
+
 export function ThemeSwitcher() {
   const classes = 'cursor-pointer'
-  const [colorMode, setColorMode] = React.useState<'light' | 'dark'>('light')
+  const [colorMode, toggleMode, setMode] = useColorMode()
 
   useEffect(() => {
     // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (localStorage.colorMode === 'dark' || (!('colorMode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
       document.documentElement.classList.add('dark')
       document.documentElement.classList.remove('light')
-      setColorMode('dark')
+      setMode('dark')
     } else {
       document.documentElement.classList.add('light')
       document.documentElement.classList.remove('dark')
-      setColorMode('light')
+      setMode('light')
     }
   }, [])
 
   const handleToggle = (_e: any) => {
     document.documentElement.classList.toggle('dark')
-    setColorMode(colorMode === 'dark' ? 'light' : 'dark')
+    toggleMode()
   }
 
   return (

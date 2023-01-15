@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import Balancer from 'react-wrap-balancer'
 
+import { BranchColorMode } from '@/components/branch/BranchColorMode'
 import { BranchIsAuthenticated } from '@/components/branch/BranchIsAuthenticated'
 import { BranchIsWalletConnected } from '@/components/branch/BranchIsWalletConnected'
 import Card from '@/components/home/card'
@@ -138,6 +139,15 @@ const features = [
     ),
   },
   {
+    title: 'Rainbow Kit',
+    description: 'The best way to connect a wallet Designed for everyone. Built for developers.',
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <Image alt="Rainbow logo" src="/rainbow.svg" width={100} height={100} />
+      </div>
+    ),
+  },
+  {
     title: 'Sign-In With Ethereum',
     description: 'Authenticate users using a Web3 wallet like MetaMask or WalletConnect.',
     demo: (
@@ -147,11 +157,14 @@ const features = [
     ),
   },
   {
-    title: 'Rainbow Kit',
-    description: 'The best way to connect a wallet Designed for everyone. Built for developers.',
+    title: 'Etherscan',
+    description: 'Request additional information about a transaction or address from Etherscan.',
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <Image alt="Rainbow logo" src="/rainbow.svg" width={100} height={100} />
+        <BranchColorMode>
+          <Image alt="Etherscan logo" src="/etherscan.svg" width={100} height={100} />
+          <Image alt="Etherscan logo" src="/etherscan-light.svg" width={100} height={100} />
+        </BranchColorMode>
       </div>
     ),
   },
@@ -170,25 +183,25 @@ const features = [
       </div>
     ),
   },
-  {
-    title: '⚡Turbo actions, and hooks',
-    description: 'TurboETH offers a collection of actions, hooks and utilities',
-    demo: (
-      <div className="grid min-w-[220px] grid-flow-col grid-rows-3 gap-10 p-10">
-        <span className="font-mono font-semibold">&lt;Address/&gt;</span>
-        <span className="font-mono font-semibold">&lt;Balance /&gt;</span>
-        <span className="font-mono font-semibold">&lt;Nonce /&gt;</span>
-        <span className="font-mono font-semibold">&lt;ERC20Name /&gt;</span>
-        <span className="font-mono font-semibold">&lt;ERC20Symbol /&gt;</span>
-        <span className="font-mono font-semibold">&lt;ERC20Balance /&gt;</span>
-      </div>
-    ),
-  },
+  // {
+  //   title: '⚡Turbo actions, and hooks',
+  //   description: 'TurboETH offers a collection of actions, hooks and utilities',
+  //   demo: (
+  //     <div className="grid min-w-[220px] grid-flow-col grid-rows-3 gap-10 p-10">
+  //       <span className="font-mono font-semibold">&lt;Address/&gt;</span>
+  //       <span className="font-mono font-semibold">&lt;Balance /&gt;</span>
+  //       <span className="font-mono font-semibold">&lt;Nonce /&gt;</span>
+  //       <span className="font-mono font-semibold">&lt;ERC20Name /&gt;</span>
+  //       <span className="font-mono font-semibold">&lt;ERC20Symbol /&gt;</span>
+  //       <span className="font-mono font-semibold">&lt;ERC20Balance /&gt;</span>
+  //     </div>
+  //   ),
+  // },
   {
     title: 'ERC20 WAGMI',
     description: 'Read and Write to ERC20 smart contracts using minimal UI components.',
     demo: (
-      <div className="text-center">
+      <div className="min-w-[220px] text-center">
         <img
           alt={`Token USDC icon`}
           className="mx-auto h-12 w-12 rounded-full border-2 border-white shadow-md"

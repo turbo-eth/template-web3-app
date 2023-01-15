@@ -1,6 +1,6 @@
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
 
-export async function accountTransactions(): Promise<
+export async function accountTransactions(params?: BlockPagination): Promise<
   | {
       address: string
       transactions: Array<any>
@@ -9,7 +9,9 @@ export async function accountTransactions(): Promise<
   | void
 > {
   try {
-    const { data } = await axios.get('/api/etherscan/account/transactions')
+    const { data } = await axios.get('/api/etherscan/account/transactions', {
+      params: params,
+    })
     return data
   } catch (error: any) {
     throw new Error(`Unexpected Error`)

@@ -29,3 +29,7 @@
 .menu-item.active {
   @apply text-neutral-900 dark:text-neutral-100;
 }
+
+.user-dropdown-menu-item{
+  @apply relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-neutral-800
+}

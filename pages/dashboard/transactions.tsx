@@ -1,15 +1,19 @@
 import { motion } from 'framer-motion'
 import { useQuery } from 'react-query'
+import { useNetwork } from 'wagmi'
 
 import DashboardSidebar from '@/components/layout/DashboardSidebar'
 import { Head } from '@/components/layout/Head'
 import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
 import TransactionsTable from '@/components/TransactionsTable'
-import { accountTransactions } from '@/lib/actions/accountTransactions'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
+import { useAccountTransactions } from '@/lib/hooks/useAccountTransactions'
 
 export default function Page() {
-  const { isLoading, data } = useQuery('accountTransactions', accountTransactions)
+  const { chain } = useNetwork()
+  const { isLoading, data } = useAccountTransactions({
+    chainId: chain?.id || 1,
+  })
   return (
     <>
       <Head />

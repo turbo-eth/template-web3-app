@@ -25,8 +25,8 @@ export default function SIWE() {
           <div className="flex-center col-span-12 flex flex-col lg:col-span-9">
             <div className="flex flex-col text-center">
               <WalletEnsName className="text-5xl" />
+              <WalletAddress className="my-5 block text-xl font-medium" />
               <WalletBalance className="font-primary text-3xl font-light" />
-              <WalletAddress className="mt-5 block text-xl font-medium" />
             </div>
           </div>
         </motion.div>

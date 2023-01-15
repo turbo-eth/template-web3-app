@@ -46,6 +46,7 @@ specifiers:
   framer-motion: ^8.4.3
   husky: ^8.0.2
   iron-session: ^6.3.1
+  jotai: ^1.13.0
   jsonwebtoken: ^9.0.0
   lint-staged: ^13.1.0
   lucide-react: 0.105.0-alpha.4
@@ -95,6 +96,7 @@ dependencies:
   focus-trap-react: 10.0.2_v2m5e27vhdewzwhryxwfaorcca
   framer-motion: 8.4.3_biqbaboplfbrettd7655fr4n2y
   iron-session: 6.3.1_next@13.1.1
+  jotai: 1.13.0_dojr2aquw55jwdpbannhlirjf4
   lucide-react: 0.105.0-alpha.4_react@18.2.0
   luxon: 3.2.1
   next: 13.1.1_7xlrwlvvs7cv2obrs6a5y6oxxq
@@ -7889,6 +7891,50 @@ packages:
       '@sideway/address': 4.1.4
       '@sideway/formula': 3.0.1
       '@sideway/pinpoint': 2.0.0
+    dev: false
+
+  /jotai/1.13.0_dojr2aquw55jwdpbannhlirjf4:
+    resolution: {integrity: sha512-SPTO46Jw1aJTp2i18tiKgk++nKNKJTMNw4qYFy9QRTydceWvD2Eys+YgB7cb1S6pzbM9i0Ik/y7Yl7IH8k9Lig==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@babel/core': '*'
+      '@babel/template': '*'
+      jotai-devtools: '*'
+      jotai-immer: '*'
+      jotai-optics: '*'
+      jotai-redux: '*'
+      jotai-tanstack-query: '*'
+      jotai-urql: '*'
+      jotai-valtio: '*'
+      jotai-xstate: '*'
+      jotai-zustand: '*'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      '@babel/template':
+        optional: true
+      jotai-devtools:
+        optional: true
+      jotai-immer:
+        optional: true
+      jotai-optics:
+        optional: true
+      jotai-redux:
+        optional: true
+      jotai-tanstack-query:
+        optional: true
+      jotai-urql:
+        optional: true
+      jotai-valtio:
+        optional: true
+      jotai-xstate:
+        optional: true
+      jotai-zustand:
+        optional: true
+    dependencies:
+      '@babel/core': 7.20.7
+      react: 18.2.0
     dev: false
 
   /js-sdsl/4.2.0:
