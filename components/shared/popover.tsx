@@ -54,15 +54,17 @@ export default function Popover({
               onDragEnd={handleDragEnd}
               dragElastic={{ top: 0, bottom: 1 }}
               dragConstraints={{ top: 0, bottom: 0 }}>
-              <div className={`rounded-t-4xl -mb-1 flex h-7 w-full items-center justify-center border-t border-gray-200 bg-white`}>
+              <div className={`rounded-t-4xl -mb-1 flex h-7 w-full items-center justify-center bg-white dark:bg-neutral-700 `}>
                 <div className="-mr-1 h-1 w-6 rounded-full bg-gray-300 transition-all group-active:rotate-12" />
                 <div className="h-1 w-6 rounded-full bg-gray-300 transition-all group-active:-rotate-12" />
               </div>
-              <div className="flex min-h-[150px] w-full items-center justify-center overflow-hidden bg-white align-middle shadow-xl">{content}</div>
+              <div className="flex min-h-[150px] w-full items-center justify-center overflow-hidden bg-white align-middle shadow-xl dark:bg-neutral-800">
+                {content}
+              </div>
             </motion.div>
             <motion.div
               key="mobile-tooltip-backdrop"
-              className="fixed inset-0 z-30 bg-gray-100 bg-opacity-10 backdrop-blur md:hidden"
+              className="dakr:bg-neutral-700 fixed inset-0 z-30 bg-gray-100 bg-opacity-10 backdrop-blur md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -78,7 +80,7 @@ export default function Popover({
         <PopoverPrimitive.Content
           sideOffset={4}
           align={align}
-          className="z-20 hidden animate-slide-up-fade items-center rounded-md border border-gray-200 bg-white shadow-md md:block">
+          className="z-20 hidden animate-slide-up-fade items-center rounded-md bg-white shadow-md dark:border-gray-800 dark:bg-neutral-800 md:block">
           {content}
         </PopoverPrimitive.Content>
       </PopoverPrimitive.Root>

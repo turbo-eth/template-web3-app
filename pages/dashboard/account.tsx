@@ -1,11 +1,8 @@
-import { WalletAddress } from '@turbo-eth/core-wagmi'
+import { WalletAddress, WalletBalance, WalletEnsName } from '@turbo-eth/core-wagmi'
 import { motion } from 'framer-motion'
-import { LayoutDashboardIcon, NetworkIcon, Wallet } from 'lucide-react'
-import Link from 'next/link'
 
 import DashboardSidebar from '@/components/layout/DashboardSidebar'
 import { Head } from '@/components/layout/Head'
-import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
 
 export default function SIWE() {
@@ -26,11 +23,10 @@ export default function SIWE() {
             <DashboardSidebar className="h-full flex-1" />
           </div>
           <div className="flex-center col-span-12 flex flex-col lg:col-span-9">
-            <div className="text-center">
-              <h3 className="font-primary text-2xl font-bold lg:text-6xl">
-                <span className="text-gradient-secondary">Hello, Web3 User</span> 👋
-              </h3>
-              <WalletAddress className="mt-5 block text-xl font-light" />
+            <div className="flex flex-col text-center">
+              <WalletEnsName className="text-5xl" />
+              <WalletAddress className="my-5 block text-xl font-medium" />
+              <WalletBalance className="font-primary text-3xl font-light" />
             </div>
           </div>
         </motion.div>

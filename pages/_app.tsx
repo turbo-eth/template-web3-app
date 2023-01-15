@@ -5,6 +5,7 @@ import { Raleway } from '@next/font/google'
 import localFont from '@next/font/local'
 import type { AppProps } from 'next/app'
 import { ModalProvider } from 'react-modal-hook'
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query'
 import { Provider as RWBProvider } from 'react-wrap-balancer'
 import { SWRConfig } from 'swr'
 import { useAccount } from 'wagmi'
@@ -35,6 +36,7 @@ const HandleWalletEvents = ({ children }: any): any => {
   return <>{children}</>
 }
 
+const queryClient = new QueryClient()
 export default function App({ Component, pageProps }: AppProps) {
   const isMounted = useIsMounted()
 
@@ -56,17 +58,19 @@ export default function App({ Component, pageProps }: AppProps) {
           },
         }}>
         {isMounted && (
-          <RWBProvider>
-            <ModalProvider>
-              <RainbowKit>
-                <HandleWalletEvents>
-                  <Layout>
-                    <Component {...pageProps} />
-                  </Layout>
-                </HandleWalletEvents>
-              </RainbowKit>
-            </ModalProvider>
-          </RWBProvider>
+          <QueryClientProvider client={queryClient}>
+            <RWBProvider>
+              <ModalProvider>
+                <RainbowKit>
+                  <HandleWalletEvents>
+                    <Layout>
+                      <Component {...pageProps} />
+                    </Layout>
+                  </HandleWalletEvents>
+                </RainbowKit>
+              </ModalProvider>
+            </RWBProvider>
+          </QueryClientProvider>
         )}
       </SWRConfig>
     </>

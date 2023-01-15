@@ -1,14 +1,20 @@
-import { WalletAddress } from '@turbo-eth/core-wagmi'
 import { motion } from 'framer-motion'
-import { LayoutDashboardIcon, NetworkIcon, Wallet } from 'lucide-react'
-import Link from 'next/link'
+import { useQuery } from 'react-query'
+import { useNetwork } from 'wagmi'
 
 import DashboardSidebar from '@/components/layout/DashboardSidebar'
 import { Head } from '@/components/layout/Head'
 import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
+import TransactionsTable from '@/components/TransactionsTable'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
+import { useAccountTransactions } from '@/lib/hooks/useAccountTransactions'
 
-export default function SIWE() {
+export default function Page() {
+  const { chain } = useNetwork()
+  const { isLoading, data } = useAccountTransactions({
+    chainId: chain?.id || 1,
+  })
+
   return (
     <>
       <Head />
@@ -24,14 +30,13 @@ export default function SIWE() {
             <h3 className="text-gradient-primary text-2xl font-bold">Wallet</h3>
             <hr className="my-5 dark:border-gray-200 dark:opacity-50" />
             <DashboardSidebar className="h-full flex-1" />
+            <div className="">
+              <hr className="my-5 dark:border-gray-200 dark:opacity-50" />
+              <ButtonSIWELogout className="link">Logout</ButtonSIWELogout>
+            </div>
           </div>
           <div className="flex-center col-span-12 flex flex-col lg:col-span-9">
-            <div className="text-center">
-              <h3 className="font-primary text-2xl font-bold lg:text-6xl">
-                <span className="text-gradient-secondary">Hello, Web3 User</span> 👋
-              </h3>
-              <WalletAddress className="mt-5 block text-xl font-light" />
-            </div>
+            {!isLoading && <TransactionsTable data={data?.transactions} className="w-full" />}
           </div>
         </motion.div>
       </div>
