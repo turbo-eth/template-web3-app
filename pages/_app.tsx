@@ -1,6 +1,8 @@
 import '../styles/global.css'
 import '../styles/app.css'
 import '../styles/components.css'
+import { useEffect } from 'react'
+
 import { Raleway } from '@next/font/google'
 import localFont from '@next/font/local'
 import type { AppProps } from 'next/app'
@@ -39,6 +41,10 @@ const HandleWalletEvents = ({ children }: any): any => {
 const queryClient = new QueryClient()
 export default function App({ Component, pageProps }: AppProps) {
   const isMounted = useIsMounted()
+
+  useEffect(() => {
+    queryClient.invalidateQueries()
+  }, [])
 
   return (
     <>

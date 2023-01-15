@@ -34,7 +34,7 @@ export default function SIWE() {
           <motion.h1
             className="text-gradient-sand text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
             variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <h3>Account</h3>
+            Application
           </motion.h1>
           <motion.h5 className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
             Authenticate using Sign-In With Ethereum (SIWE)

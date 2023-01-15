@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 
 import classNames from 'classnames'
 
-import { NetworkStatus } from '../app/NetworkStatus'
+import { NetworkStatus } from '../shared/NetworkStatus'
 import WalletConnect from '../WalletConnect'
 import { Footer } from './Footer'
 import { Header } from './Header'

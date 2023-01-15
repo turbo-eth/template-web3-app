@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { WalletAddress } from '@turbo-eth/core-wagmi'
 import { motion } from 'framer-motion'
-import { LayoutDashboard, LogOutIcon, PersonStanding, Wallet } from 'lucide-react'
+import { BinaryIcon, DatabaseIcon, LayoutDashboard, LogOutIcon, Wallet } from 'lucide-react'
 import Link from 'next/link'
 
 import Popover from '@/components/shared/popover'
@@ -18,15 +18,18 @@ export default function UserDropdown() {
       <Popover
         content={
           <div className="bg-card w-full rounded-md p-2 sm:w-56">
-            <Link className="user-dropdown-menu-item" href="/account">
-              <PersonStanding className="h-4 w-4" />
-              <p className="text-sm">Account</p>
+            <Link className="user-dropdown-menu-item" href="/application">
+              <BinaryIcon className="h-4 w-4" />
+              <p className="text-sm">Application</p>
             </Link>
             <Link className="user-dropdown-menu-item " href="/dashboard">
               <LayoutDashboard className="h-4 w-4" />
               <p className="text-sm">Dashboard</p>
             </Link>
-
+            <Link className="user-dropdown-menu-item " href="/admin">
+              <DatabaseIcon className="h-4 w-4" />
+              <p className="text-sm">Admin</p>
+            </Link>
             <ButtonSIWELogout className="user-dropdown-menu-item">
               <>
                 <LogOutIcon className="h-4 w-4" />
