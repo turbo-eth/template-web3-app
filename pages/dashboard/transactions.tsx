@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { useQuery } from 'react-query'
 import { useNetwork } from 'wagmi'
 
 import DashboardSidebar from '@/components/layout/DashboardSidebar'
@@ -35,9 +34,7 @@ export default function Page() {
               <ButtonSIWELogout className="link">Logout</ButtonSIWELogout>
             </div>
           </div>
-          <div className="flex-center col-span-12 flex flex-col lg:col-span-9">
-            {!isLoading && <TransactionsTable data={data?.transactions} className="w-full" />}
-          </div>
+          <div className="col-span-12 lg:col-span-9">{!isLoading && <TransactionsTable data={data?.transactions} className="w-full" />}</div>
         </motion.div>
       </div>
     </>

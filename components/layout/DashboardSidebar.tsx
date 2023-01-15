@@ -1,15 +1,13 @@
 import * as React from 'react'
 
 import classNames from 'classnames'
-
-interface DashboardSidebarProps {
-  className?: string
-}
-
 import { LayoutDashboardIcon, NetworkIcon, Wallet } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+interface DashboardSidebarProps {
+  className?: string
+}
 export const DashboardSidebar = ({ className }: DashboardSidebarProps) => {
   const cx = classNames(className, 'flex flex-col gap-1', 'DashboardSidebar')
 

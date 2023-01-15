@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { SiweMessage } from 'siwe'
 
-import { withSessionRoute } from '../../../lib/server'
+import { prisma } from '@/lib/prisma'
 
-const admins = ['0x0000000000000000000000000000000000000000']
+import { withSessionRoute } from '../../../lib/server'
+const admins = process.env.APP_ADMINS?.split(',') || []
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
@@ -18,6 +19,18 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
         req.session.isAdmin = true
       }
       await req.session.save()
+      await prisma.users.upsert({
+        // @ts-ignore
+        where: { id: fields.address },
+        update: {
+          address: fields.address,
+        },
+        create: {
+          id: fields.address,
+          address: fields.address,
+          createdAt: parseInt((new Date().getTime() / 1000).toFixed(0)),
+        },
+      })
       return res.json({ ok: true })
     } catch (ex) {
       console.error(ex)

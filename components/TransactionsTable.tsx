@@ -55,18 +55,18 @@ function TransactionsTable({ data }: any) {
         accessor: 'value',
         Cell: (props: any) => <span className="">{formatEther(props.value)}</span>,
       },
-      {
-        Header: () => null,
-        id: 'actions',
-        accessor: 'hash',
-        Cell: (props: any) => (
-          <div className="flex items-center justify-end gap-2">
-            <Link href={`/dashboard/transaction/${props.value}`}>
-              <span className="text-xs">View</span>
-            </Link>
-          </div>
-        ),
-      },
+      // {
+      //   Header: () => null,
+      //   id: 'actions',
+      //   accessor: 'hash',
+      //   Cell: (props: any) => (
+      //     <div className="flex items-center justify-end gap-2">
+      //       <Link href={`/dashboard/transaction/${props.value}`}>
+      //         <span className="text-xs">View</span>
+      //       </Link>
+      //     </div>
+      //   ),
+      // },
     ],
     []
   )
