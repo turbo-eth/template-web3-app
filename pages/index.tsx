@@ -103,7 +103,7 @@ const features = [
   {
     title: 'Web3 Components for the power developer',
     description:
-      'Pre-built beautiful, a11y-first components,x powered by [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), and [Framer Motion](https://framer.com/motion)',
+      'Pre-built Web3 components, powered by WAGMI [Core WAGMI](https://github.com/turbo-eth/core-wagmi), [ERC20 WAGMI](https://github.com/turbo-eth/erc20-wagmi), and [ERC721 WAGMI](https://github.com/turbo-eth/erc721-wagmi)',
     large: true,
     demo: (
       <div className="mx-auto  justify-between">
