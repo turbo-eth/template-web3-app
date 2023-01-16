@@ -116,8 +116,8 @@ const features = [
               <span className="mt-4 block font-mono text-xs font-semibold">&lt;WalletAddress isLink truncate styled /&gt;</span>
             </div>
             <div className="mt-6 block text-center lg:mt-0">
-              <WalletBalance decimals={2} className="text-xl" styled />
-              <span className="mt-4 block font-mono text-xs font-semibold">&lt;WalletBalance truncate styled /&gt;</span>
+              <WalletBalance decimals={4} styled />
+              <span className="mt-4 block font-mono text-xs font-semibold">&lt;WalletBalance {`decimals={4}`} styled /&gt;</span>
             </div>
           </div>
           <WalletConnect className="mx-auto inline-block" />

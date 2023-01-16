@@ -2,6 +2,8 @@ import '@rainbow-me/rainbowkit/styles.css'
 import { ReactNode } from 'react'
 
 import { RainbowKitProvider, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
+import { connectorsForWallets } from '@rainbow-me/rainbowkit'
+import { coinbaseWallet, injectedWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
 import { WagmiConfig, configureChains, createClient } from 'wagmi'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
@@ -33,10 +35,20 @@ export function RainbowKit(props: Props) {
     }),
   ])
 
-  const { connectors } = getDefaultWallets({
-    appName: 'District Labs',
-    chains,
-  })
+  const appName = 'TurboETH'
+
+  const connectors = connectorsForWallets([
+    {
+      groupName: 'Recommended',
+      wallets: [
+        injectedWallet({ chains }),
+        metaMaskWallet({ chains }),
+        rainbowWallet({ chains }),
+        coinbaseWallet({ chains, appName }),
+        walletConnectWallet({ chains }),
+      ],
+    },
+  ])
 
   const wagmiClient = createClient({
     autoConnect: true,
