@@ -1,11 +1,11 @@
 import React, { ReactNode } from 'react'
 
-import classNames from 'classnames'
+import classNames from 'clsx'
 
-import { NetworkStatus } from '../shared/NetworkStatus'
-import WalletConnect from '../WalletConnect'
 import { Footer } from './Footer'
 import { Header } from './Header'
+import { NetworkStatus } from '../shared/NetworkStatus'
+import WalletConnect from '../WalletConnect'
 
 interface Props {
   children: ReactNode

@@ -32,8 +32,6 @@ export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => 
     body: JSON.stringify({ message, signature }),
   })
 
-  console.log(verifyRes, 'verifyRes')
-
   if (!verifyRes.ok) throw new Error('Error verifying message')
   if (verifyRes.status === 200) {
     dispatchEvent(new Event('verified'))

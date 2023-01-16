@@ -1,19 +1,19 @@
 import React from 'react'
 
-import classNames from 'classnames'
+import classNames from 'clsx'
 import Image from 'next/image'
 
 import { SITE_EMOJI, SITE_NAME } from '@/lib/constants'
 import useScroll from '@/lib/hooks/useScroll'
 
-import { LinkComponent } from '../shared/LinkComponent'
+import UserDropdown from './UserDropdown'
 import { BranchColorMode } from '../branch/BranchColorMode'
 import BranchIsAuthenticated from '../branch/BranchIsAuthenticated'
 import BranchIsWalletConnected from '../branch/BranchIsWalletConnected'
 import ResponsiveMobileAndDesktop from '../responsive/ResponsiveMobileAndDesktop'
+import { LinkComponent } from '../shared/LinkComponent'
 import { ThemeSwitcher } from '../shared/ThemeSwitcher'
 import ButtonSIWELogin from '../siwe/ButtonSIWELogin'
-import UserDropdown from './UserDropdown'
 
 interface Props {
   className?: string
@@ -52,10 +52,7 @@ export function Header(props: Props) {
 
       <div className="flex items-center gap-4">
         <BranchIsWalletConnected>
-          <BranchIsAuthenticated>
-            <UserDropdown />
-            <ButtonSIWELogin />
-          </BranchIsAuthenticated>
+          <UserDropdown />
         </BranchIsWalletConnected>
         <ThemeSwitcher />
       </div>

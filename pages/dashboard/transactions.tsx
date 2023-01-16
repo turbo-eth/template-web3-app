@@ -4,7 +4,7 @@ import { useNetwork } from 'wagmi'
 import DashboardSidebar from '@/components/layout/DashboardSidebar'
 import { Head } from '@/components/layout/Head'
 import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
-import TransactionsTable from '@/components/TransactionsTable'
+import TransactionsTable from '@/components/blockchain/TransactionsTable'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
 import { useAccountTransactions } from '@/lib/hooks/useAccountTransactions'
 
