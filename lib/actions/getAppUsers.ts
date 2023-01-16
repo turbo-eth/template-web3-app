@@ -1,4 +1,4 @@
-import kyUniversal from 'ky-universal'
+import ky from 'ky'
 
 export async function getAppUsers(_params?: BlockPagination): Promise<
   | {
@@ -8,7 +8,7 @@ export async function getAppUsers(_params?: BlockPagination): Promise<
   | void
 > {
   try {
-    return await kyUniversal('/api/app/users').json()
+    return await ky('/api/app/users').json()
   } catch (error: any) {
     throw error
   }
