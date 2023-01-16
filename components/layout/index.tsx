@@ -17,7 +17,7 @@ export function Layout(props: Props) {
   return (
     <div className={classes}>
       <Header />
-      <main className="my-32 flex flex-1 flex-col lg:my-20 lg:py-20">{props.children}</main>
+      <main className="my-32 flex flex-1 flex-col md:px-10 lg:my-20 lg:py-20">{props.children}</main>
       <div className="fixed bottom-6 left-6">
         <NetworkStatus />
       </div>
