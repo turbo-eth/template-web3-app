@@ -1,4 +1,8 @@
 # TurboETH Web3 App Template
+Web3 App Template built using Next.js, TailwindCSS and RainbowKit.
+
+![screenshot](https://user-images.githubusercontent.com/3408362/212648345-6777b80f-e2f5-4c57-b273-6a6004ce32a7.jpg)
+
 Next + Tailwind + RainbowKit + Optimized Developer UX
 
 ## Getting Started
