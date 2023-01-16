@@ -41,8 +41,7 @@ export default function Home() {
                 },
               },
             }}>
-            {/* <h3 className="text-6xl font-normal">{SITE_EMOJI}</h3> */}
-            <img src="/logo-fill.png" alt="Turbo ETH" className="mx-auto my-10 h-20 w-20" />
+            <img src="/logo-fill.png" alt="Turbo ETH" className="mx-auto mb-10 h-20 w-20" />
             <motion.h1
               className="font-display bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm dark:from-stone-100 dark:to-yellow-200 md:text-8xl md:leading-[6rem]"
               variants={FADE_DOWN_ANIMATION_VARIANTS}>
@@ -50,7 +49,6 @@ export default function Home() {
             </motion.h1>
             <motion.p className="mt-6 text-center text-gray-500 dark:text-gray-200 md:text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <Balancer className="text-xl">{SITE_DESCRIPTION}</Balancer>
-              {/* <Balancer>An opinionated collection of components, hooks, and utilities for your Next.js project.</Balancer> */}
             </motion.p>
             <motion.div className="mx-auto mt-6 flex items-center justify-center space-x-5" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <a
@@ -74,7 +72,7 @@ export default function Home() {
             </motion.div>
           </motion.div>
 
-          <div className="">
+          <div className="mt-10">
             <motion.div
               className="my-10 grid w-full max-w-screen-2xl grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0"
               initial="hidden"
