@@ -26,7 +26,7 @@ export default function SIWE() {
             <div className="flex flex-col text-center">
               <WalletEnsName className="text-5xl" />
               <WalletAddress className="my-5 block text-xl font-medium" />
-              <WalletBalance className="font-primary text-3xl font-light" />
+              <WalletBalance decimals={7} className="font-primary text-3xl font-light" />
             </div>
           </div>
         </motion.div>

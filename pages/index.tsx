@@ -1,5 +1,6 @@
-// @ts-nocheck
-import { WalletAddress, WalletNonce } from '@turbo-eth/core-wagmi'
+// @ts-nochecks
+import { WalletAddress } from '@turbo-eth/core-wagmi'
+import { WalletBalance } from '@turbo-eth/core-wagmi'
 import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@turbo-eth/erc20-wagmi'
 import { ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
 import { motion } from 'framer-motion'
@@ -11,10 +12,8 @@ import Balancer from 'react-wrap-balancer'
 import { BranchColorMode } from '@/components/branch/BranchColorMode'
 import { BranchIsAuthenticated } from '@/components/branch/BranchIsAuthenticated'
 import { BranchIsWalletConnected } from '@/components/branch/BranchIsWalletConnected'
-import Card from '@/components/home/card'
-import ComponentGrid from '@/components/home/component-grid'
-import { useDemoModal } from '@/components/home/demo-modal'
 import { Head } from '@/components/layout/Head'
+import Card from '@/components/shared/card'
 import ButtonSIWELogin from '@/components/siwe/ButtonSIWELogin'
 import ButtonSIWELogout from '@/components/siwe/ButtonSIWELogout'
 import WalletConnect from '@/components/WalletConnect'
@@ -23,11 +22,9 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from '@/lib/design'
 import erc20TokenSymbolToAddress from '@/lib/erc20TokenSymbolToAddress'
 
 export default function Home() {
-  const { DemoModal } = useDemoModal()
   return (
     <>
       <Head />
-      <DemoModal />
       <div className="relative flex flex-1">
         <div className="flex-center flex h-full flex-1 flex-col items-center justify-center text-center">
           <motion.div
@@ -106,23 +103,23 @@ export default function Home() {
 
 const features = [
   {
-    title: 'Web3 components for the power developer',
+    title: 'Web3 Components for the power developer',
     description:
       'Pre-built beautiful, a11y-first components,x powered by [Tailwind CSS](https://tailwindcss.com/), [Radix UI](https://www.radix-ui.com/), and [Framer Motion](https://framer.com/motion)',
     large: true,
     demo: (
-      <div className="mx-auto flex w-full max-w-[420px] justify-between gap-3 px-10">
+      <div className="mx-auto  justify-between">
         <BranchIsWalletConnected>
-          <>
-            <div className="">
-              <WalletAddress truncate className="text-xl" />
-              <span className="fot-light mr-1 block text-lg">Address</span>
+          <div className="flex flex-col gap-5 lg:flex-row lg:gap-5 lg:pt-10">
+            <div className=" block text-center">
+              <WalletAddress truncate styled isLink />
+              <span className="mt-4 block font-mono text-xs font-semibold">&lt;WalletAddress isLink truncate styled /&gt;</span>
             </div>
-            <div className="">
-              <WalletNonce className="text-xl" />
-              <span className="fot-light mr-1 block text-lg">Transactions</span>
+            <div className="mt-6 block text-center lg:mt-0">
+              <WalletBalance decimals={2} className="text-xl" styled />
+              <span className="mt-4 block font-mono text-xs font-semibold">&lt;WalletBalance truncate styled /&gt;</span>
             </div>
-          </>
+          </div>
           <WalletConnect className="mx-auto inline-block" />
         </BranchIsWalletConnected>
       </div>

@@ -8,6 +8,8 @@ import Link from 'next/link'
 import Popover from '@/components/shared/popover'
 import { FADE_IN_ANIMATION_SETTINGS } from '@/lib/design'
 
+import BranchIsAuthenticated from '../branch/BranchIsAuthenticated'
+import ButtonSIWELogin from '../siwe/ButtonSIWELogin'
 import ButtonSIWELogout from '../siwe/ButtonSIWELogout'
 
 export default function UserDropdown() {
@@ -24,18 +26,26 @@ export default function UserDropdown() {
             </Link>
             <Link className="user-dropdown-menu-item " href="/dashboard">
               <LayoutDashboard className="h-4 w-4" />
-              <p className="text-sm">Dashboard</p>
+              <p className="text-sm">Blockchain</p>
             </Link>
             <Link className="user-dropdown-menu-item " href="/admin">
               <DatabaseIcon className="h-4 w-4" />
               <p className="text-sm">Admin</p>
             </Link>
-            <ButtonSIWELogout className="user-dropdown-menu-item">
-              <>
-                <LogOutIcon className="h-4 w-4" />
-                <p className="text-sm">Logout</p>
-              </>
-            </ButtonSIWELogout>
+            <BranchIsAuthenticated>
+              <ButtonSIWELogout className="user-dropdown-menu-item">
+                <>
+                  <LogOutIcon className="h-4 w-4" />
+                  <p className="text-sm">Logout</p>
+                </>
+              </ButtonSIWELogout>
+              <ButtonSIWELogin className="user-dropdown-menu-item flex">
+                <>
+                  {/* <LogOutIcon className="h-4 w-4" /> */}
+                  <span className="text-sm">Login</span>
+                </>
+              </ButtonSIWELogin>
+            </BranchIsAuthenticated>
           </div>
         }
         align="end"

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react'
 
-import classNames from 'classnames'
+import classNames from 'clsx'
 
 interface ITablePagination {
   canPreviousPage: Function

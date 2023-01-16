@@ -1,0 +1,18 @@
+
+> @turbo-eth/template-web3-app@0.0.2 build /Users/kames/workspace/turbo-eth/code/turbo/packages/@turbo-eth-next-web3-app
+> next build
+
+info  - Loaded env from /Users/kames/workspace/turbo-eth/code/turbo/packages/@turbo-eth-next-web3-app/.env.local
+info  - Loaded env from /Users/kames/workspace/turbo-eth/code/turbo/packages/@turbo-eth-next-web3-app/.env
+info  - Linting and checking validity of types...
+Failed to compile.
+
+./lib/prisma.ts:1:10
+Type error: Module '"@prisma/client"' has no exported member 'PrismaClient'.
+
+[0m[31m[1m>[22m[39m[90m 1 | [39m[36mimport[39m { [33mPrismaClient[39m } [36mfrom[39m [32m'@prisma/client'[39m[0m
+[0m [90m   | [39m         [31m[1m^[22m[39m[0m
+[0m [90m 2 | [39m[0m
+[0m [90m 3 | [39m[36mexport[39m [36mconst[39m prisma [33m=[39m [36mnew[39m [33mPrismaClient[39m()[0m
+[0m [90m 4 | [39m[0m
+ ELIFECYCLE  Command failed with exit code 1.

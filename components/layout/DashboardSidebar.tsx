@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import classNames from 'classnames'
+import classNames from 'clsx'
 import { LayoutDashboardIcon, NetworkIcon, Wallet } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'

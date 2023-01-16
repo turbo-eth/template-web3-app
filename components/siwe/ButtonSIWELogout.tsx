@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import classNames from 'classnames'
+import classNames from 'clsx'
 import { useRouter } from 'next/router'
 
 import { siweLogout } from '@/lib/actions/siweLogout'
@@ -18,7 +18,7 @@ export const ButtonSIWELogout = ({ className, label, children }: ButtonSIWELogou
     router.reload()
   }
 
-  const classes = classNames(className, 'ButtonSIWELogout')
+  const classes = classNames('ButtonSIWELogout', className)
   return (
     <button onClick={handleLogout} className={classes}>
       {children || label || 'Logout'}

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import classNames from 'classnames'
+import classNames from 'clsx'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 import { SITE_TITLE, SOCIAL_GITHUB, SOCIAL_TWITTER } from '@/lib/constants'
