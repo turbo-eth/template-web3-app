@@ -1,35 +1,53 @@
-# TurboETH Web3 App Template
-Web3 App Template built using Next.js, TailwindCSS and RainbowKit.
+# ⚡ TurboETH Web3 App Template
+Build Web3 In Turbo Mode
 
-![screenshot](https://user-images.githubusercontent.com/3408362/212648345-6777b80f-e2f5-4c57-b273-6a6004ce32a7.jpg)
+[Demo](https://turboeth.xyz) | [Deploy](https://deploy.turboeth.xyz)
 
-Next + Tailwind + RainbowKit + Optimized Developer UX
 
-## Getting Started
+# Getting Started
 
 ```bash
-npm run dev
-# or
-yarn dev
+pnpm install
 ```
 
-### Web3 Features
-- [RainbowKit](https://www.rainbowkit.com/)
-- [siwe](https://login.xyz/)
-- [wagmi](https://wagmi.sh/)
-- [ethers.js](https://docs.ethers.org/)
+#### Development
+```bash
+pnpm dev
+```
 
-### Core Features
+#### Build
+```bash
+pnpm dev
+```
 
-- [Next.js](https://nextjs.org/docs)
-- [Chakra UI](https://chakra-ui.com/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [Prisma](https://www.prisma.io/) – Typescript-first ORM for Node.js
+### Web3 Frameworks
+- RainbowKit - Wallet connection manager
+- Sign-In With Ethereum - Account authentication
+- Etherscan - Blockchain Metadata 
 
-## Etherscan
-Etherscan API services are integrated in `/pages/api/etherscan` and `/lib/services/etherscan` folder.
+### Web2 Frameworks
+- Vercel - App Infrastructure
+- Prisma - Database ORM 
 
-## Backend Database
+### Developer Experience
+- TypeScript – Static type checker for end-to-end typesafety
+- Prettier – Opinionated code formatter for consistent code style
+- ESLint – Pluggable linter for Next.js and TypeScript
+
+### User Interface
+- Tailwind CSS – Utility-first CSS framework for rapid UI development
+- Radix – Primitives like modal, popover, etc. to build a stellar user experience
+- Framer Motion – Motion library for React to animate components with ease
+- Lucide – Beautifully simple, pixel-perfect icons
+
+# 🏗️ Setup
+The TurboETH application includes several core features:
+
+- Database
+- Sign-In With Ethereum
+- Etherscan
+
+## Database
 
 1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
 
@@ -42,13 +60,16 @@ Etherscan API services are integrated in `/pages/api/etherscan` and `/lib/servic
 More information in our documentation:
 https://pris.ly/d/getting-started
 
-### 💻 Developer Experience
+## Sign-In With Ethereum
 
-- [Husky](https://typicode.github.io/husky/#/)
-- [Commitlint](https://github.com/conventional-changelog/commitlint)
-- [TypeScript](https://www.typescriptlang.org/)
-- [eslint](https://eslint.org/) + [prettier](https://prettier.io/)
+More information coming soon...
 
+## Etherscan
+Etherscan API services are integrated in `/pages/api/etherscan` and `/lib/services/etherscan` folder.
+
+More information coming soon...
+
+# 💻 Developer Experience
 
 ### 🐕 What is husky
 Husky improves your git commits.
@@ -101,11 +122,13 @@ Common types according to [commitlint-config-conventional (based on the Angular 
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=nexth&filter=next.js&utm_source=nexth&utm_campaign=nexth-readme) from the creators of Next.js.
 
+https://deploy.turboeth.xyz
+
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-### Sponsors & Maintainers
+### Sponsors
 
-The TurboETH Web3 Build System development is (currently) sponsored (and maintained) by District Labs.
+The TurboETH Web3 Build System is sponsored and maintained by District Labs.
 
 <a alt="District Labs" href="https://districtlabs.com/" target="_blank">
  <img src="https://red-effective-snake-988.mypinata.cloud/ipfs/QmXhSGcjL9oqQUpoSLzJ1vWto4B43epATpraqJhV5B4cdB">
@@ -115,10 +138,6 @@ Interested in sponsoring the development and maintenance of the `TurboETH - Web3
 
 Contact us today at <a alt="District Labs" href="https://districtlabs.com/" target="_blank">District Labs</a> or collect (coming soon) the TurboETH Mirror Collection.
 
-<hr />
-
-Copyright 2022 [Kames Geraghty](https://twitter.com/KamesGeraghty)
-
 # Acknowledgements
 
 Original template was forked from https://github.com/wslyvh/nexth
@@ -126,3 +145,20 @@ Original template was forked from https://github.com/wslyvh/nexth
 Underlying wallet manage and design systems were changed, but the template is continuing to use the original folder structure, plus other developer experience optimizations.
 
 Thank you @wslyvh 🙏
+
+The Precedent design system was absorbed (https://github.com/steven-tey/precedent) into TurboETH. 
+
+Muchas gracies @steven-tey 🙏
+
+# Why TurboETH? Hybrid Applications!
+TurboETH blends traditional Web2 application technologies with cutting-edge Web3 cryptographic primitives. 
+
+Why? So developers can start building next-generation applications today.
+
+<img width="420px" src="https://user-images.githubusercontent.com/3408362/212877207-58a9b8c3-937b-4048-a1d4-5a2f79c977ff.png" />
+
+https://twitter.com/ryanberckmans/status/1613947275625074696
+
+<hr/>
+
+Copyright 2022 [Kames Geraghty](https://twitter.com/KamesGeraghty)
