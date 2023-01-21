@@ -15,47 +15,47 @@ interface Props {
   autoConnect?: boolean
 }
 
+const CHAINS = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : ETH_CHAINS_TEST
+const { chains, provider } = configureChains(CHAINS, [
+  alchemyProvider({
+    apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
+  }),
+  jsonRpcProvider({
+    rpc: () => ({
+      chainId: [11155111],
+      http: 'https://sepolia.infura.io/v3/',
+    }),
+  }),
+  jsonRpcProvider({
+    rpc: () => ({
+      chainId: [31337],
+      http: 'http://127.0.0.1:8545/',
+    }),
+  }),
+])
+
+const appName = 'TurboETH'
+
+const connectors = connectorsForWallets([
+  {
+    groupName: 'Recommended',
+    wallets: [
+      injectedWallet({ chains }),
+      metaMaskWallet({ chains }),
+      rainbowWallet({ chains }),
+      coinbaseWallet({ chains, appName }),
+      walletConnectWallet({ chains }),
+    ],
+  },
+])
+
+const wagmiClient = createClient({
+  autoConnect: true,
+  connectors,
+  provider,
+})
+
 export function RainbowKit(props: Props) {
-  const CHAINS = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : ETH_CHAINS_TEST
-  const { chains, provider } = configureChains(CHAINS, [
-    alchemyProvider({
-      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
-    }),
-    jsonRpcProvider({
-      rpc: () => ({
-        chainId: [11155111],
-        http: 'https://sepolia.infura.io/v3/',
-      }),
-    }),
-    jsonRpcProvider({
-      rpc: () => ({
-        chainId: [31337],
-        http: 'http://127.0.0.1:8545/',
-      }),
-    }),
-  ])
-
-  const appName = 'TurboETH'
-
-  const connectors = connectorsForWallets([
-    {
-      groupName: 'Recommended',
-      wallets: [
-        injectedWallet({ chains }),
-        metaMaskWallet({ chains }),
-        rainbowWallet({ chains }),
-        coinbaseWallet({ chains, appName }),
-        walletConnectWallet({ chains }),
-      ],
-    },
-  ])
-
-  const wagmiClient = createClient({
-    autoConnect: true,
-    connectors,
-    provider,
-  })
-
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider
