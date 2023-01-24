@@ -1,19 +1,16 @@
 'use client'
 import { motion } from 'framer-motion'
 
-import { Head } from '@/components/layout/Head'
 import BranchIsAuthenticated from '@/components/shared/branch/BranchIsAuthenticated'
 import BranchIsWalletConnected from '@/components/shared/branch/BranchIsWalletConnected'
 import ButtonSIWELogin from '@/components/web3/siwe/ButtonSIWELogin'
 import ButtonSIWELogout from '@/components/web3/siwe/ButtonSIWELogout'
 import WalletConnect from '@/components/web3/WalletConnect'
-
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
 export default function PageApplication() {
   return (
     <>
-      <Head />
       <div className="flex-center flex flex-1 flex-col items-center justify-center text-center">
         <motion.div
           className="max-w-3xl px-5 xl:px-0"

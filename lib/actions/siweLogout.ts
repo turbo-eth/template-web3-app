@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios'
-import { SITE_NAME } from 'config/constants'
+import { SITE_NAME } from '@/config/constants'
 
 export async function siweLogout(): Promise<boolean> {
   try {

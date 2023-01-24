@@ -25,7 +25,7 @@ export const ButtonSIWELogin = ({ className, label, disabled, children, styled }
   const handleCreateMessage = async () => {
     try {
       await siweLogin({ address, chain, signMessageAsync })
-      router.reload()
+      router.refresh()
     } catch (error) {
       console.error(error)
     }

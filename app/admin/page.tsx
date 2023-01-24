@@ -4,9 +4,7 @@ import { motion } from 'framer-motion'
 
 import UsersTable from '@/components/app/UsersTable'
 import AdminSidebar from '@/components/layout/AdminSidebar'
-import { Head } from '@/components/layout/Head'
 import ButtonSIWELogout from '@/components/web3/siwe/ButtonSIWELogout'
-
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { useGetAppUsers } from '@/hooks/use-get-app-users'
 
@@ -14,7 +12,6 @@ export default function PageAdmin() {
   const { isLoading, isError, data } = useGetAppUsers()
   return (
     <>
-      <Head />
       <div className="flex-center container mx-auto flex flex-1 flex-col items-center justify-center">
         <motion.div
           className="grid w-full flex-1 grid-cols-12 gap-x-10"

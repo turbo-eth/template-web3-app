@@ -17,7 +17,7 @@ export const ButtonSIWELogout = ({ className, label, children }: ButtonSIWELogou
   const router = useRouter()
   const handleLogout = async () => {
     await siweLogout()
-    router.reload()
+    router.refresh()
   }
 
   const classes = classNames('ButtonSIWELogout', className)

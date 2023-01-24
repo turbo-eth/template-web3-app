@@ -1,7 +1,7 @@
 import React from 'react'
 
 import classNames from 'clsx'
-import { SITE_NAME } from 'config/constants'
+import { SITE_NAME } from '@/config/constants'
 import Image from 'next/image'
 
 import useScroll from '@/hooks/use-scroll'

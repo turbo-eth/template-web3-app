@@ -4,14 +4,11 @@ import { WalletAddress, WalletBalance, WalletEnsName } from '@turbo-eth/core-wag
 import { motion } from 'framer-motion'
 
 import DashboardSidebar from '@/components/layout/DashboardSidebar'
-import { Head } from '@/components/layout/Head'
-
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
 export default function PageDashboardAccount() {
   return (
     <>
-      <Head />
       <div className="flex-center container mx-auto flex flex-1 flex-col items-center justify-center">
         <motion.div
           className="grid w-full flex-1 grid-cols-12 gap-x-10"

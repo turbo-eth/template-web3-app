@@ -1,4 +1,4 @@
-import { SITE_NAME } from 'config/constants'
+import { SITE_NAME } from '@/config/constants'
 import { SiweMessage } from 'siwe'
 
 export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => {

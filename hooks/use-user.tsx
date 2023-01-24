@@ -1,11 +1,13 @@
 'use client'
 import { useEffect } from 'react'
 
-import Router from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
 
 export default function useUser({ redirectTo = '', redirectIfFound = false } = {}) {
   const { data: user, mutate: mutateUser } = useSWR<any>('/api/user')
+
+  const Router = useRouter()
 
   useEffect(() => {
     // if no redirect needed, just return (example: already on /dashboard)

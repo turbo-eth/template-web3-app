@@ -13,11 +13,6 @@ export function ThemeToggle() {
   const { setTheme } = useTheme()
   const [colorMode, toggleMode, setMode] = useColorMode()
 
-  const handleToggle = (_e: any) => {
-    setTheme(colorMode === 'light' ? 'dark' : 'light')
-    setMode(colorMode === 'light' ? 'dark' : 'light')
-  }
-
   const handleSetLightTheme = (_e: any) => {
     setTheme('light')
     setMode('light')
@@ -32,6 +27,10 @@ export function ThemeToggle() {
     setTheme('system')
     setMode('system')
   }
+
+  React.useEffect(() => {
+    colorMode === 'system' ? setTheme('system') : colorMode === 'dark' ? setTheme('dark') : setTheme('light')
+  }, [colorMode])
 
   return (
     <DropdownMenu>

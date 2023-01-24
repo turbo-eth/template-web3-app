@@ -8,9 +8,8 @@ import { SWRConfig } from 'swr'
 
 import { RainbowKit } from '@/components/providers/RainbowKit'
 import HandleWalletEvents from '@/components/web3/HandleWalletEvents'
-import fetchJson from '@/lib/fetchJson'
-
 import { useIsMounted } from '@/hooks/use-is-mounted'
+import fetchJson from '@/lib/fetchJson'
 
 const queryClient = new QueryClient()
 interface RootProviderProps {

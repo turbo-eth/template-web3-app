@@ -1,7 +1,7 @@
 import React from 'react'
 
 import classNames from 'clsx'
-import { SITE_TITLE, SOCIAL_GITHUB, SOCIAL_TWITTER } from 'config/constants'
+import { SITE_TITLE, SOCIAL_GITHUB, SOCIAL_TWITTER } from '@/config/constants'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 import { LinkComponent } from '../shared/LinkComponent'
