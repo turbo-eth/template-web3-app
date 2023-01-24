@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useCallback, useEffect, useRef } from 'react'
 
 import FocusTrap from 'focus-trap-react'
 import { AnimatePresence, motion, useAnimation } from 'framer-motion'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 export default function Modal({
   children,

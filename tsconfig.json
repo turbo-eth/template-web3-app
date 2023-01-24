@@ -21,18 +21,8 @@
     "incremental": true,
     "paths": {
       "*": ["types/*.d.ts"],
-      "@/*": ["@/*"],
-      "@/components/*": ["components/*"],
-      "@/lib/*": ["lib/*"],
-      "@/actions/*": ["lib/actions/*"],
-      "@/hooks/*": ["lib/hooks/*"],
-      "@/data/*": ["data/*"],
-      "@/layouts/*": ["components/layouts/*"],
-      "@/providers/*": ["components/providers/*"],
-      "@/styles/*": ["styles/*"],
-      "@/types": ["types/index"],
-      "@/types/*": ["types/*"],
-      "@/public/*": ["public/*"]
+      "@/*": ["./*"],
+      "@/actions/*": ["lib/actions/*"]
     },
     "plugins": [
       {

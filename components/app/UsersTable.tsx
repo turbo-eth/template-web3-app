@@ -3,8 +3,8 @@ import React from 'react'
 import { Address } from '@turbo-eth/core-wagmi'
 import Link from 'next/link'
 
-import TableCore from '../table/TableCore'
-import TimeFromEpoch from '../time/TimeFromEpoch'
+import TableCore from '../shared/table/TableCore'
+import TimeFromEpoch from '../shared/time/TimeFromEpoch'
 
 function UsersTable({ data, className }: any) {
   const columns = React.useMemo(

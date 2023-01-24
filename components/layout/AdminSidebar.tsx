@@ -3,7 +3,7 @@ import * as React from 'react'
 import classNames from 'clsx'
 import { PersonStandingIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 
 interface AdminSidebarProps {
   className?: string

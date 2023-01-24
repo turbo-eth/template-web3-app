@@ -3,8 +3,8 @@ import React from 'react'
 import { Address, Balance, trimFormattedBalance } from '@turbo-eth/core-wagmi'
 import { formatEther } from 'ethers/lib/utils.js'
 
-import TableCore from '../table/TableCore'
-import TimeFromEpoch from '../time/TimeFromEpoch'
+import TableCore from '../shared/table/TableCore'
+import TimeFromEpoch from '../shared/time/TimeFromEpoch'
 
 /*
 {

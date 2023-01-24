@@ -5,7 +5,7 @@ import classNames from 'clsx'
 import { Footer } from './Footer'
 import { Header } from './Header'
 import { NetworkStatus } from '../shared/NetworkStatus'
-import WalletConnect from '../WalletConnect'
+import WalletConnect from '../web3/WalletConnect'
 
 interface Props {
   children: ReactNode

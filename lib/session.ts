@@ -1,7 +1,7 @@
 import { IronSessionOptions } from 'iron-session'
 import { SiweMessage } from 'siwe'
 
-import { SITE_NAME } from './constants'
+import { SITE_NAME } from '../config/constants'
 
 declare module 'iron-session' {
   // eslint-disable-next-line unused-imports/no-unused-vars
