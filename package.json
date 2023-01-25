@@ -1,6 +1,6 @@
 {
   "name": "@turbo-eth/template-web3-app",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
