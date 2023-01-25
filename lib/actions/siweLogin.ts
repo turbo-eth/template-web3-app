@@ -1,6 +1,5 @@
+import { SITE_NAME } from '@/config/constants'
 import { SiweMessage } from 'siwe'
-
-import { SITE_NAME } from '@/lib/constants'
 
 export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => {
   // 1. Get random nonce from API

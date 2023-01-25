@@ -14,6 +14,7 @@ export const AdminSidebar = ({ className }: AdminSidebarProps) => {
   const router = useRouter()
   return (
     <div className={cx}>
+      {/* Fix the currentPath prop */}
       <Item currentPath={router.pathname} className="menu-item my-2" href="/admin">
         <PersonStandingIcon width={22} />
         <span className="">Users</span>

@@ -1,28 +1,3 @@
-.WalletAddress {
-  @apply font-medium;
-}
-
-.WalletAddress.styled {
-  @apply bg-gray-100 text-gray-800 font-bold text-sm px-4 py-2 rounded-md shadow-md hover:shadow-lg;
-}
-
-.WalletBalance.styled {
-  @apply bg-gray-100 text-gray-800 font-bold text-sm px-4 py-2 rounded-md shadow-md hover:shadow-lg;
-}
-
-.ButtonSIWELogin.styled {
-  @apply bg-gradient-to-br from-emerald-500 to-emerald-700 text-white font-bold text-sm px-4 py-2 rounded-md shadow-md hover:shadow-lg hover:from-emerald-600 hover:to-emerald-800;
-}
-
-.ButtonSIWELogin.styled:disabled {
-  @apply bg-gray-400 cursor-not-allowed !important;
-}
-
-.ButtonSIWELogin.styled:disabled:hover {
-  @apply bg-gray-400 !important;
-}
-
-
 .lds-dual-ring {
   display: inline-block;
   width: 22px;

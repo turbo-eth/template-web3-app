@@ -1,19 +1,17 @@
 import React from 'react'
 
 import classNames from 'clsx'
+import { SITE_NAME } from '@/config/constants'
 import Image from 'next/image'
 
-import { SITE_EMOJI, SITE_NAME } from '@/lib/constants'
-import useScroll from '@/lib/hooks/useScroll'
+import useScroll from '@/hooks/use-scroll'
 
-import UserDropdown from './UserDropdown'
-import { BranchColorMode } from '../branch/BranchColorMode'
-import BranchIsAuthenticated from '../branch/BranchIsAuthenticated'
-import BranchIsWalletConnected from '../branch/BranchIsWalletConnected'
-import ResponsiveMobileAndDesktop from '../responsive/ResponsiveMobileAndDesktop'
+import UserDropdown from './user-dropdown'
+import { BranchColorMode } from '../shared/branch/BranchColorMode'
+import { BranchIsWalletConnected } from '../shared/branch/BranchIsWalletConnected'
 import { LinkComponent } from '../shared/LinkComponent'
-import { ThemeSwitcher } from '../shared/ThemeSwitcher'
-import ButtonSIWELogin from '../siwe/ButtonSIWELogin'
+import ResponsiveMobileAndDesktop from '../shared/responsive/ResponsiveMobileAndDesktop'
+import { ThemeToggle } from '../shared/theme-toggle'
 
 interface Props {
   className?: string
@@ -54,7 +52,8 @@ export function Header(props: Props) {
         <BranchIsWalletConnected>
           <UserDropdown />
         </BranchIsWalletConnected>
-        <ThemeSwitcher />
+
+        <ThemeToggle />
       </div>
     </header>
   )

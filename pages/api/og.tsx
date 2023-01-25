@@ -6,7 +6,7 @@ export const config = {
   runtime: 'experimental-edge',
 }
 
-const sfPro = fetch(new URL('../../styles/SF-Pro-Display-Medium.otf', import.meta.url)).then((res) => res.arrayBuffer())
+const sfPro = fetch(new URL('../../assets/fonts/SF-Pro-Display-Medium.otf', import.meta.url)).then((res) => res.arrayBuffer())
 
 export default async function handler(req: NextRequest) {
   const [sfProData] = await Promise.all([sfPro])

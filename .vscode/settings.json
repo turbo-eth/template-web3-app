@@ -10,10 +10,16 @@
     "source.addMissingImports",
     "source.fixAll.eslint"
   ],
-  "eslint.validate": ["typescript", "javascript", "javascriptreact"],
+  "eslint.validate": [
+    "typescript",
+    "javascript",
+    "javascriptreact"
+  ],
   "jest.autoRun": {
     "watch": true, // Start the jest with the watch flag
-    "onStartup": ["all-tests"] // Run all tests upon project launch
+    "onStartup": [
+      "all-tests"
+    ] // Run all tests upon project launch
   },
   "jest.showCoverageOnLoad": true, // Show code coverage when the project is launched
   "jest.showTerminalOnLaunch": false, // Don't automatically open test explorer terminal on launch
@@ -25,5 +31,7 @@
   "jest.jestCommandLine": "jest",
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "typescript.tsdk": "../../node_modules/.pnpm/typescript@4.9.4/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

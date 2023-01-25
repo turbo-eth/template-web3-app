@@ -2,16 +2,16 @@ import { WritableAtom, atom, useAtom } from 'jotai'
 
 let strAtom: WritableAtom<string, string>
 if (typeof window !== 'undefined') {
-  strAtom = atom(window?.localStorage.getItem('colorMode') ?? window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+  strAtom = atom(window?.localStorage.getItem('theme') || 'system')
 } else {
-  strAtom = atom('light')
+  strAtom = atom('system')
 }
 
 export const colorMode = atom(
   (get) => get(strAtom),
   (get, set, newStr: string) => {
     set(strAtom, newStr)
-    localStorage.setItem('colorMode', newStr)
+    localStorage.setItem('theme', newStr)
   }
 )
 

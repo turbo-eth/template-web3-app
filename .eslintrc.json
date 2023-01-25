@@ -30,13 +30,13 @@
         "@typescript-eslint/comma-dangle": "off", // Avoid conflict rule between Eslint and Prettier
         "@typescript-eslint/consistent-type-imports": "off", // Ensure `import type` is used when it's necessary
         "import/prefer-default-export": "off", // Named export is easier to refactor automatically
+        "unused-imports/no-unused-vars": "off",
         "tailwindcss/classnames-order": [
           "warn",
           {
             "officialSorting": true
           }
-        ], // Follow the same ordering as the official plugin `prettier-plugin-tailwindcss`
-        "unused-imports/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+        ],
         "sort-imports": [
           1,
           {
