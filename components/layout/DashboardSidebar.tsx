@@ -1,9 +1,10 @@
+'use client'
 import * as React from 'react'
 
 import classNames from 'clsx'
 import { LayoutDashboardIcon, NetworkIcon, Wallet } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 
 interface DashboardSidebarProps {
   className?: string
@@ -11,18 +12,18 @@ interface DashboardSidebarProps {
 export const DashboardSidebar = ({ className }: DashboardSidebarProps) => {
   const cx = classNames(className, 'flex flex-col gap-1', 'DashboardSidebar')
 
-  const router = useRouter()
+  const pathname = usePathname()
   return (
     <div className={cx}>
-      <Item currentPath={router.pathname} className="menu-item my-2" href="/dashboard">
+      <Item currentPath={pathname} className="menu-item my-2" href="/dashboard">
         <LayoutDashboardIcon width={22} />
         <span className="">Dashboard</span>
       </Item>
-      <Item currentPath={router.pathname} className="menu-item my-2" href="/dashboard/account">
+      <Item currentPath={pathname} className="menu-item my-2" href="/dashboard/account">
         <Wallet width={22} />
         <span className="">Account</span>
       </Item>
-      <Item currentPath={router.pathname} className="menu-item my-2" href="/dashboard/transactions">
+      <Item currentPath={pathname} className="menu-item my-2" href="/dashboard/transactions">
         <NetworkIcon width={22} />
         <span className="">Transactions</span>
       </Item>

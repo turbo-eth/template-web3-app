@@ -3,7 +3,8 @@ import * as React from 'react'
 import classNames from 'clsx'
 import { PersonStandingIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
+import router from 'next/router'
 
 interface AdminSidebarProps {
   className?: string
@@ -11,11 +12,10 @@ interface AdminSidebarProps {
 export const AdminSidebar = ({ className }: AdminSidebarProps) => {
   const cx = classNames(className, 'flex flex-col gap-1', 'AdminSidebar')
 
-  const router = useRouter()
+  const pathname = usePathname()
   return (
     <div className={cx}>
-      {/* Fix the currentPath prop */}
-      <Item currentPath={router.pathname} className="menu-item my-2" href="/admin">
+      <Item currentPath={pathname} className="menu-item my-2" href="/admin">
         <PersonStandingIcon width={22} />
         <span className="">Users</span>
       </Item>
