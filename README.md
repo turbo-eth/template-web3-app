@@ -20,6 +20,20 @@ pnpm dev
 pnpm dev
 ```
 
+## WAGMI CLI
+
+TurboETH includes support for [`@wagmi/cli`](https://wagmi.sh/cli/getting-started) to automatically generate hooks and other boilerplate.
+
+#### Init
+```bash
+pnpm wagmi:init
+```
+
+#### Generate
+```bash
+pnpm wagmi:generate
+```
+
 ### Web3 Frameworks
 - RainbowKit - Wallet connection manager
 - Sign-In With Ethereum - Account authentication

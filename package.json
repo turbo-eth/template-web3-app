@@ -10,8 +10,10 @@
     "lint": "next lint --fix",
     "prettier": "prettier './src' --write",
     "prepare": "husky install",
-    "prebuild": "prisma generate",
-    "predev": "prisma generate"
+    "wagmi:init": "wagmi init",
+    "wagmi:generate": "wagmi generate",
+    "prebuild": "prisma generate ; wagmi generate",
+    "predev": "prisma generate ; wagmi generate"
   },
   "husky": {
     "hooks": {
@@ -69,6 +71,8 @@
     "@turbo-eth/erc721-wagmi": "0.0.0-beta.5",
     "@vercel/analytics": "^0.1.6",
     "@vercel/og": "^0.0.27",
+    "@wagmi/core": "^0.9.0",
+    "@wagmi/cli": "^0.1.2",
     "@wagmi/chains": "^0.1.7",
     "axios": "^1.2.2",
     "class-variance-authority": "^0.4.0",
@@ -103,7 +107,7 @@
     "tailwind-merge": "^1.8.1",
     "tailwindcss": "^3.2.4",
     "usehooks-ts": "^2.9.1",
-    "wagmi": "0.9.x"
+    "wagmi": "~0.11.0"
   },
   "devDependencies": {
     "@babel/core": "7.18.5",
@@ -112,9 +116,10 @@
     "@svgr/webpack": "^6.5.1",
     "@tsconfig/next": "^1.0.4",
     "@types/luxon": "^3.2.0",
-    "@types/node": "18.11.18",
+    "@types/node": "^17.0.31",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.10",
+    "@wagmi/cli": "^0.1.2",
     "autoprefixer": "^10.4.13",
     "eslint": "8.30.0",
     "eslint-config-next": "13.1.1",
