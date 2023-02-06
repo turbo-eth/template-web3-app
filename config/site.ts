@@ -17,7 +17,7 @@ interface SiteConfig {
 export const SITE_CANONICAL = 'https://turboeth.xyz'
 
 export const siteConfig: SiteConfig = {
-  name: '⚡ TurboETH',
+  name: 'TurboETH',
   title: 'TurboETH - Web3 App Template',
   emoji: '⚡',
   description: 'Web3 App Template built using Next.js, RainbowKit, SIWE, and more!',
