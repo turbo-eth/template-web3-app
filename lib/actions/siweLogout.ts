@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios'
-import { SITE_NAME } from '@/config/constants'
+
+import { siteConfig } from '@/config/site'
 
 export async function siweLogout(): Promise<boolean> {
   try {
@@ -9,7 +10,7 @@ export async function siweLogout(): Promise<boolean> {
     //        but that is not working. This is a workaround until
     //        the issue is resolved. See:
     //        /api/account/logout
-    document.cookie = `${SITE_NAME}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+    document.cookie = `${siteConfig.name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
     return true
   } catch (error: any) {
     if (error instanceof AxiosError == true) {

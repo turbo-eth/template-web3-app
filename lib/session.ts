@@ -1,7 +1,7 @@
 import { IronSessionOptions } from 'iron-session'
 import { SiweMessage } from 'siwe'
 
-import { SITE_NAME } from '../config/constants'
+import { siteConfig } from '@/config/site'
 
 declare module 'iron-session' {
   // eslint-disable-next-line unused-imports/no-unused-vars
@@ -20,7 +20,7 @@ export const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET
 // a hack to remove the cookie from the browser
 // See: /api/account/logout
 export const SERVER_SESSION_SETTINGS: IronSessionOptions = {
-  cookieName: SITE_NAME,
+  cookieName: siteConfig.name,
   password: NEXTAUTH_SECRET ?? 'UPDATE_TO_complex_password_at_least_32_characters_long',
   cookieOptions: {
     secure: process.env.NODE_ENV == 'production',

@@ -1,5 +1,6 @@
-import { SITE_NAME } from '@/config/constants'
 import { SiweMessage } from 'siwe'
+
+import { siteConfig } from '@/config/site'
 
 export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => {
   // 1. Get random nonce from API
@@ -10,7 +11,7 @@ export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => 
   const message = new SiweMessage({
     domain: window.location.host,
     address,
-    statement: `Sign in with Ethereum to ${SITE_NAME}`,
+    statement: `Sign in with Ethereum to ${siteConfig.name}`,
     uri: window.location.origin,
     version: '1',
     chainId: chainId,
