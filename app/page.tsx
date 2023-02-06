@@ -5,7 +5,6 @@ import { WalletAddress } from '@turbo-eth/core-wagmi'
 import { WalletBalance } from '@turbo-eth/core-wagmi'
 import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@turbo-eth/erc20-wagmi'
 import { ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
-import { DEPLOY_URL, SITE_DESCRIPTION } from '@/config/constants'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -19,9 +18,10 @@ import Card from '@/components/shared/card'
 import ButtonSIWELogin from '@/components/web3/siwe/ButtonSIWELogin'
 import ButtonSIWELogout from '@/components/web3/siwe/ButtonSIWELogout'
 import WalletConnect from '@/components/web3/WalletConnect'
-import erc20TokenSymbolToAddress from '@/lib/erc20TokenSymbolToAddress'
-
+import { DEPLOY_URL, SITE_DESCRIPTION } from '@/config/constants'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
+import { siteConfig } from '@/config/site'
+import erc20TokenSymbolToAddress from '@/lib/erc20TokenSymbolToAddress'
 
 export default function Home() {
   return (
@@ -49,7 +49,7 @@ export default function Home() {
               <Balancer>Build Web3 In Turbo Mode</Balancer>
             </motion.h1>
             <motion.p className="mt-6 text-center text-gray-500 dark:text-gray-200 md:text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-              <Balancer className="text-xl">{SITE_DESCRIPTION}</Balancer>
+              <Balancer className="text-xl font-semibold">{siteConfig.description}</Balancer>
             </motion.p>
             <motion.div className="mx-auto mt-6 flex items-center justify-center space-x-5" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <a
@@ -71,6 +71,7 @@ export default function Home() {
                 <p>Star on GitHub</p>
               </a>
             </motion.div>
+            <p className="mt-6">TurboETH is in active development i.e. early alpha.</p>
           </motion.div>
 
           <div className="mt-10">
