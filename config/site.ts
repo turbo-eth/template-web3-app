@@ -14,13 +14,13 @@ interface SiteConfig {
   }
 }
 
-export const SITE_CANONICAL = 'https://turbo.district.dev'
+export const SITE_CANONICAL = 'https://turboeth.xyz'
 
 export const siteConfig: SiteConfig = {
-  name: 'TurboETH',
+  name: '⚡ TurboETH',
   title: 'TurboETH - Web3 App Template',
   emoji: '⚡',
-  description: 'Beautifully designed components built with Radix UI and Tailwind CSS.',
+  description: 'Web3 App Build System',
   previewImg: `${SITE_CANONICAL}/preview.png`,
   localeDefault: 'en',
   links: {
