@@ -1,5 +1,13 @@
+.bg-gradient-button {
+  @apply dark:bg-slate-900 dark:text-white text-white bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 dark:from-blue-800 dark:to-indigo-600 dark:via-indigo-500;
+}
+
 .bg-card {
   @apply bg-white dark:bg-neutral-700 dark:text-white;
+}
+
+.bg-gradient-credential {
+  @apply dark:bg-slate-900 dark:text-white bg-gradient-to-b from-white to-neutral-100 dark:from-slate-800 dark:to-slate-700 ;
 }
 
 .bg-gradient-app {
@@ -82,7 +90,7 @@
 }
 
 .btn-primary {
-  @apply bg-white text-gray-600 hover:bg-gray-50 focus:ring-gray-400;
+  @apply bg-neutral-700 hover:bg-neutral-600 text-white focus:ring-gray-400 dark:bg-neutral-600 hover:dark:bg-neutral-700;
 }
 
 .btn-secondary {
