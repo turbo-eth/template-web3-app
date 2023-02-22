@@ -6,6 +6,8 @@ Build Web3 In Turbo Mode
 
 # Getting Started
 
+The `pnpm` CLI is the recommended package manager but `npm` and `yarn` should work too.
+
 ```bash
 pnpm install
 ```
@@ -20,32 +22,19 @@ pnpm dev
 pnpm dev
 ```
 
-## WAGMI CLI
 
-TurboETH includes support for [`@wagmi/cli`](https://wagmi.sh/cli/getting-started) to automatically generate hooks and other boilerplate.
-
-#### Init
-```bash
-pnpm wagmi:init
-```
-
-#### Generate
-```bash
-pnpm wagmi:generate
-```
-
-### Web3 Frameworks
-- RainbowKit - Wallet connection manager
-- [Sign-In With Ethereum](https://login.xyz/) - Account authentication
+### Web3 Protocols and Services
 - [Disco](https://docs.disco.xyz/) - Web3 identity simplified 
 - [Etherscan](https://docs.etherscan.io) - Blockchain metadata 
+- [Sign-In With Ethereum](https://login.xyz/) - Account authentication
 
 ### Web3 Developer Experience
+- [RainbowKit](https://www.rainbowkit.com/) - Wallet connection manager
 - [WAGMI CLI](https://wagmi.sh/cli/getting-started) - Automatic React Hook Generation
 
 ### Web2 Frameworks
-- Vercel - App Infrastructure
-- Prisma - Database ORM 
+- [Vercel](https://vercel.com/) - App Infrastructure
+- [Prisma](https://www.prisma.io/) - Database ORM 
 
 ### Developer Experience
 - TypeScript – Static type checker for end-to-end typesafety
@@ -57,6 +46,8 @@ pnpm wagmi:generate
 - Radix – Primitives like modal, popover, etc. to build a stellar user experience
 - Framer Motion – Motion library for React to animate components with ease
 - Lucide – Beautifully simple, pixel-perfect icons
+
+The [ui.shadcn.com](https://ui.shadcn.com) components are included in the `/components/shared/ui` folder.
 
 # 🏗️ Setup
 The TurboETH build system currently supports several Web3 integrations:
@@ -79,6 +70,20 @@ More information coming soon...
 Etherscan API services are integrated in `/pages/api/etherscan` and `/lib/services/etherscan` folder.
 
 More information coming soon...
+
+## WAGMI CLI
+
+TurboETH includes support for [`@wagmi/cli`](https://wagmi.sh/cli/getting-started) to automatically generate hooks and other boilerplate.
+
+#### Init
+```bash
+pnpm wagmi:init
+```
+
+#### Generate
+```bash
+pnpm wagmi:generate
+```
 
 # Application Database
 
