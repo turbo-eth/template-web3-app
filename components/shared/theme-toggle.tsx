@@ -2,12 +2,11 @@ import * as React from 'react'
 
 import { useTheme } from 'next-themes'
 
-import { Icons } from '@/components/icons'
-import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { useColorMode } from '@/lib/state'
-
-import { BranchColorMode } from './branch/BranchColorMode'
+import { BranchColorMode } from '@/components/shared/branch-color-mode'
+import { Icons } from '@/components/shared/icons'
+import { Button } from '@/components/shared/ui/button'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/shared/ui/dropdown-menu'
+import { useColorMode } from '@/lib/state/color-mode'
 
 export function ThemeToggle() {
   const { setTheme } = useTheme()

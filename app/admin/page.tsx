@@ -2,11 +2,11 @@
 
 import { motion } from 'framer-motion'
 
-import UsersTable from '@/components/app/UsersTable'
-import AdminSidebar from '@/components/layout/AdminSidebar'
-import ButtonSIWELogout from '@/components/web3/siwe/ButtonSIWELogout'
+import AppUsersTable from '@/components/app/app-users-table'
+import MenuAdminSidebar from '@/components/layout/dashboard/menu-admin-sidebar'
+import ButtonSIWELogout from '@/components/siwe/button-siwe-logout'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
-import { useGetAppUsers } from '@/hooks/use-get-app-users'
+import { useGetAppUsers } from '@/hooks/app/use-get-app-users'
 
 export default function PageAdmin() {
   const { isLoading, isError, data } = useGetAppUsers()
@@ -23,7 +23,7 @@ export default function PageAdmin() {
           <div className="bg-gradient-primary col-span-12 flex w-full flex-col rounded-lg p-6 shadow-lg lg:col-span-3">
             <h3 className="text-gradient-primary text-2xl font-bold">Admin Area</h3>
             <hr className="my-5 dark:border-gray-200 dark:opacity-50" />
-            <AdminSidebar className="h-full flex-1" />
+            <MenuAdminSidebar className="h-full flex-1" />
             <div className="">
               <hr className="my-5 dark:border-gray-200 dark:opacity-50" />
               <ButtonSIWELogout className="link">Logout</ButtonSIWELogout>
@@ -31,7 +31,7 @@ export default function PageAdmin() {
           </div>
           <div className="flex-center col-span-12 flex flex-col lg:col-span-9">
             {isError && <h3 className="text-lg font-normal">Unauthorized Access</h3>}
-            {!isLoading && <UsersTable data={data?.users} className="w-full flex-1" />}
+            {!isLoading && <AppUsersTable data={data?.users} className="w-full flex-1" />}
           </div>
         </motion.div>
       </div>

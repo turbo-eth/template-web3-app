@@ -7,10 +7,24 @@ import Balancer from 'react-wrap-balancer'
 
 import { FADE_UP_ANIMATION_VARIANTS } from '@/config/design'
 
-export default function Card({ title, description, demo, large }: { title: string; description: string; demo: ReactNode; large?: boolean }) {
+import { LinkComponent } from './link-component'
+
+export default function Card({
+  title,
+  description,
+  href,
+  demo,
+  large,
+}: {
+  title: string
+  description: string
+  demo: ReactNode
+  large?: boolean
+  href: string
+}) {
   return (
     <motion.div
-      className={`relative col-span-1 h-96 overflow-hidden rounded-xl border border-gray-200 bg-white px-4 shadow-md dark:border-gray-800 dark:bg-neutral-800 dark:text-white ${
+      className={`relative col-span-1  overflow-hidden rounded-xl border border-gray-200 bg-white px-4 shadow-md dark:border-gray-800 dark:bg-neutral-800 dark:text-white ${
         large ? 'md:col-span-2' : ''
       }`}
       variants={FADE_UP_ANIMATION_VARIANTS}>
@@ -38,6 +52,11 @@ export default function Card({ title, description, demo, large }: { title: strin
             </ReactMarkdown>
           </Balancer>
         </div>
+        {!href ? null : (
+          <LinkComponent href={href}>
+            <button className="btn btn-light my-4">Demo</button>
+          </LinkComponent>
+        )}
       </div>
     </motion.div>
   )
