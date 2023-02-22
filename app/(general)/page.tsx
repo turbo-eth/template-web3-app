@@ -182,7 +182,7 @@ const features = [
         <BranchIsWalletConnected>
           <BranchIsAuthenticated>
             <ButtonSIWELogout className="btn btn-blue btn-lg " />
-            <ButtonSIWELogin className="btn btn-emerald btn-lg min-h-[70px] min-w-[200px] text-xl" label="ΞID Connect" />
+            <ButtonSIWELogin className="btn btn-emerald" label="Web3 Connect" />
           </BranchIsAuthenticated>
           <WalletConnect />
         </BranchIsWalletConnected>
