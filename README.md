@@ -36,8 +36,12 @@ pnpm wagmi:generate
 
 ### Web3 Frameworks
 - RainbowKit - Wallet connection manager
-- Sign-In With Ethereum - Account authentication
-- Etherscan - Blockchain Metadata 
+- [Sign-In With Ethereum](https://login.xyz/) - Account authentication
+- [Disco](https://docs.disco.xyz/) - Web3 identity simplified 
+- [Etherscan](https://docs.etherscan.io) - Blockchain metadata 
+
+### Web3 Developer Experience
+- [WAGMI CLI](https://wagmi.sh/cli/getting-started) - Automatic React Hook Generation
 
 ### Web2 Frameworks
 - Vercel - App Infrastructure
@@ -55,13 +59,28 @@ pnpm wagmi:generate
 - Lucide – Beautifully simple, pixel-perfect icons
 
 # 🏗️ Setup
-The TurboETH application includes several core features:
+The TurboETH build system currently supports several Web3 integrations:
 
-- Database
-- Sign-In With Ethereum
-- Etherscan
+- [Sign-In With Ethereum](https://login.xyz/)
+- [Disco Data Backpack](https://docs.disco.xyz/)
+- [Etherscan](https://docs.etherscan.io)
 
-## Database
+Have a suggestion? Open a ticket!
+
+## Sign-In With Ethereum
+
+More information coming soon...
+
+## Disco Data Backpack
+
+More information coming soon...
+
+## Etherscan
+Etherscan API services are integrated in `/pages/api/etherscan` and `/lib/services/etherscan` folder.
+
+More information coming soon...
+
+# Application Database
 
 1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
 
@@ -73,15 +92,6 @@ The TurboETH application includes several core features:
 
 More information in our documentation:
 https://pris.ly/d/getting-started
-
-## Sign-In With Ethereum
-
-More information coming soon...
-
-## Etherscan
-Etherscan API services are integrated in `/pages/api/etherscan` and `/lib/services/etherscan` folder.
-
-More information coming soon...
 
 # 💻 Developer Experience
 
