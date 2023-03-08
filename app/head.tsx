@@ -2,7 +2,7 @@ import { siteConfig } from '@/config/site'
 
 export default function Head() {
   const url = process.env.NEXTAUTH_URL || 'http://localhost:3000'
-  const ogUrl = new URL(`${url}/og.jpg`)
+  const ogUrl = new URL(`${url}/api/og.jpg`)
 
   return (
     <>

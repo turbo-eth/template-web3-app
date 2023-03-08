@@ -11,9 +11,7 @@
     "prettier": "prettier './src' --write",
     "prepare": "husky install",
     "wagmi:init": "wagmi init",
-    "wagmi:generate": "wagmi generate",
-    "prebuild": "prisma generate ; wagmi generate",
-    "predev": "prisma generate ; wagmi generate"
+    "wagmi:generate": "wagmi generate"
   },
   "husky": {
     "hooks": {
@@ -34,6 +32,8 @@
   "dependencies": {
     "@next/bundle-analyzer": "^13.1.1",
     "@next/font": "13.1.1",
+    "@orbisclub/components": "^0.1.50",
+    "@orbisclub/orbis-sdk": "^0.4.19",
     "@prisma/client": "^4.8.1",
     "@radix-ui/react-accessible-icon": "^1.0.1",
     "@radix-ui/react-accordion": "^1.1.0",

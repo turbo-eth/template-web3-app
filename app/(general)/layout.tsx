@@ -16,7 +16,7 @@ export default function GeneralLayout({ children }: any) {
         <div className="fixed bottom-6 left-6">
           <NetworkStatus />
         </div>
-        <div className="fixed bottom-6 right-6 flex items-center">
+        <div className="fixed bottom-6 left-0 flex items-center">
           <WalletConnect />
         </div>
         <Footer />
