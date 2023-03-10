@@ -45,7 +45,7 @@ export default function Home() {
             <motion.h1
               className="font-display bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm dark:from-stone-100 dark:to-yellow-200 md:text-8xl md:leading-[6rem]"
               variants={FADE_DOWN_ANIMATION_VARIANTS}>
-              <Balancer>Buidl Week</Balancer>
+              <Balancer>Build Web3 in Turbo Mode</Balancer>
             </motion.h1>
             <motion.p className="mt-6 text-center text-gray-500 dark:text-gray-200 md:text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <Balancer className="text-xl font-semibold">{siteConfig.description}</Balancer>
