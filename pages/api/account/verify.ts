@@ -19,7 +19,7 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
         req.session.isAdmin = true
       }
       await req.session.save()
-      await prisma.users.upsert({
+      await prisma.User.upsert({
         where: { id: fields.address },
         update: {
           address: fields.address,

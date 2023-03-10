@@ -7,8 +7,9 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
+model User {
   id        String @id @map("_id")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   address   String
-  createdAt Int
 }
