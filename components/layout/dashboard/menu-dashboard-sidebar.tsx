@@ -5,7 +5,7 @@ import classNames from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { dashboardMenu } from '@/config/menu-dashboard'
+import { menuDashboard } from '@/config/menu-dashboard'
 
 interface MenuDashboardSidebarProps {
   className?: string
@@ -16,7 +16,7 @@ export const MenuDashboardSidebar = ({ className }: MenuDashboardSidebarProps) =
   const pathname = usePathname()
   return (
     <div className={cx}>
-      {dashboardMenu.map((item) => {
+      {menuDashboard.map((item) => {
         return (
           <Item key={item.href} currentPath={pathname} className="menu-item my-2" href={item.href}>
             <span className="text-lg">{item.label}</span>

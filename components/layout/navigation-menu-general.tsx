@@ -14,7 +14,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/components/shared/ui/navigation-menu'
+} from '@/components/ui/navigation-menu'
 import { turboIntegrations } from '@/data/turbo-integrations'
 import { cn } from '@/lib/utils'
 
@@ -38,7 +38,7 @@ export function NavigationMenuGeneral() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <LinkComponent href="https://github.com/turbo-eth/template-web3-app" isExternal>
+          <LinkComponent href="https://docs.turboeth.xyz/overview" isExternal>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>Documentation</NavigationMenuLink>
           </LinkComponent>
         </NavigationMenuItem>

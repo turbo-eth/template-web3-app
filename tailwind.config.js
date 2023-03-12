@@ -2,7 +2,7 @@
 const plugin = require('tailwindcss/plugin')
 module.exports = {
   darkMode: ['class', '[data-theme="dark"]'],
-  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}', './integrations/**/*.{js,ts,jsx,tsx}'],
   safelist: [
     {
       pattern: /(dark|light|)bg-(red|green|blue|orange|purple|indigo|yellow|gray)-(100|200|500|700)/,

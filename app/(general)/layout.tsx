@@ -2,12 +2,12 @@
 import classNames from 'clsx'
 
 import { NetworkStatus } from '@/components/blockchain/network-status'
-import WalletConnect from '@/components/blockchain/wallet-connect'
+import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { Footer } from '@/components/layout/general/footer'
 import { Header } from '@/components/layout/general/header'
 
 export default function GeneralLayout({ children }: any) {
-  const classes = classNames('App', 'bg-gradient-dark min-h-[100vh] flex flex-col')
+  const classes = classNames('App', 'bg-gradient-dark min-h-[100vh] flex flex-col pb-10 lg:pb-32')
   return (
     <>
       <div className={classes}>

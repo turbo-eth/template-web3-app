@@ -13,5 +13,3 @@ export const ResponsiveMobileAndDesktop = ({ children }: ResponsiveMobileAndDesk
   if (!isTabletOrMobile && children && Array.isArray(children)) return children[1]
   return null
 }
-
-export default ResponsiveMobileAndDesktop

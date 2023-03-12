@@ -4,7 +4,8 @@ import { Address } from '@turbo-eth/core-wagmi'
 import Link from 'next/link'
 
 import TableCore from '../shared/table/table-core'
-import TimeFromEpoch from '../shared/time-from-epoch'
+import { TimeFromUtc } from '../shared/time-from-utc'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 
 function AppUsersTable({ data, className }: any) {
   const columns = React.useMemo(
@@ -17,7 +18,7 @@ function AppUsersTable({ data, className }: any) {
       {
         Header: 'Created',
         accessor: 'createdAt',
-        Cell: (props: any) => <TimeFromEpoch epoch={props.value || 0} />,
+        Cell: (props: any) => <TimeFromUtc date={props.value || 0} />,
       },
       {
         Header: () => null,
@@ -25,9 +26,12 @@ function AppUsersTable({ data, className }: any) {
         accessor: 'id',
         Cell: (props: any) => (
           <div className="flex items-center justify-end gap-2">
-            <Link href={`/admin/user/${props.value}`}>
-              <span className="tag tag-white text-xs">View</span>
-            </Link>
+            <Popover>
+              <PopoverTrigger>
+                <span className="tag tag-white text-xs">Profile</span>
+              </PopoverTrigger>
+              <PopoverContent>Add user profile information 🥳</PopoverContent>
+            </Popover>
           </div>
         ),
       },
@@ -35,6 +39,7 @@ function AppUsersTable({ data, className }: any) {
     []
   )
   if (!data) return null
+  console.log(data)
   return <TableCore columns={columns} data={data} className={className} />
 }
 

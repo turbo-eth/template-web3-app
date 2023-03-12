@@ -24,5 +24,3 @@ export const WalletConnect = ({ className }: WalletConnectProps) => {
     </span>
   )
 }
-
-export default WalletConnect

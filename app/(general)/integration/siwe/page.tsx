@@ -4,23 +4,19 @@ import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 import { useNetwork } from 'wagmi'
 
-import TransactionsTable from '@/components/blockchain/transactions-table'
-import WalletConnect from '@/components/blockchain/wallet-connect'
+import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import BranchIsAuthenticated from '@/components/shared/branch-is-authenticated'
-import BranchIsWalletConnected from '@/components/shared/branch-is-wallet-connected'
+import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
+import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
-import ButtonSIWELogin from '@/components/siwe/button-siwe-login'
-import ButtonSIWELogout from '@/components/siwe/button-siwe-logout'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { useAccountTransactions } from '@/hooks/etherscan/use-account-transactions'
+import TransactionsTable from '@/integrations/etherscan/components/transactions-table'
+import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
+import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
+import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
 
-export default function PageApplication() {
-  const { chain } = useNetwork()
-  const { isLoading, data } = useAccountTransactions({
-    chainId: chain?.id || 1,
-  })
+export default function PageIntegration() {
   return (
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center text-center">
@@ -39,8 +35,8 @@ export default function PageApplication() {
             },
           }}>
           <BranchColorMode>
-            <Image className="mx-auto" alt="Etherscan logo" src={turboIntegrations.siwe.imgDark} width={100} height={100} />
-            <Image className="mx-auto" alt="Etherscan logo" src={turboIntegrations.siwe.imgLight} width={100} height={100} />
+            <Image className="mx-auto" alt="Sign-In With Ethereum logo" src={turboIntegrations.siwe.imgDark} width={100} height={100} />
+            <Image className="mx-auto" alt="Sign-In With Ethereum logo" src={turboIntegrations.siwe.imgLight} width={100} height={100} />
           </BranchColorMode>
           <motion.h1
             className="text-gradient-sand my-8 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
@@ -57,11 +53,11 @@ export default function PageApplication() {
           </motion.div>
         </motion.div>
 
-        <div className="card container mx-auto mt-10  max-w-screen-xl gap-6 text-center">
+        <div className="container mx-auto mt-10  max-w-screen-xl gap-6 text-center">
           <BranchIsWalletConnected>
             <BranchIsAuthenticated>
               <ButtonSIWELogout className="btn btn-blue btn-lg " />
-              <ButtonSIWELogin className="btn btn-pill btn-emerald btn-lg min-h-[70px] min-w-[200px] text-xl" label="ΞID Connect" />
+              <ButtonSIWELogin className="btn btn-pill btn-emerald btn-lg min-h-[70px] min-w-[200px] text-xl" label="Web3 Login" />
             </BranchIsAuthenticated>
             <WalletConnect className="mx-auto inline-block" />
           </BranchIsWalletConnected>

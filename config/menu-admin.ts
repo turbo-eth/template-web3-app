@@ -1,6 +1,9 @@
-export const adminMenu = [
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Menu Admin
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+export const menuAdmin = [
   {
-    label: 'Overview',
+    label: 'Users (Authenticated)',
     href: '/admin',
   },
 ]

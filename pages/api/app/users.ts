@@ -10,7 +10,7 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
       if (!isAdmin) {
         return res.status(401).send('Unauthorized')
       }
-      const users = await prisma.users.findMany()
+      const users = await prisma.user.findMany()
       return res.send({ users, object: 'Users' })
     } catch (error: any) {
       console.log(error)
