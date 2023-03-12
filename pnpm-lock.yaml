@@ -42,9 +42,9 @@ specifiers:
   '@tanstack/query-core': ^4.3.8
   '@tanstack/react-query': ^4.3.9
   '@tsconfig/next': ^1.0.4
-  '@turbo-eth/core-wagmi': 0.0.0-beta.4
-  '@turbo-eth/erc20-wagmi': 0.0.0-beta.8
-  '@turbo-eth/erc721-wagmi': 0.0.0-beta.5
+  '@turbo-eth/core-wagmi': 0.0.0-beta.6
+  '@turbo-eth/erc20-wagmi': 0.0.0-beta.12
+  '@turbo-eth/erc721-wagmi': 0.0.0-beta.6
   '@types/luxon': ^3.2.0
   '@types/node': ^17.0.31
   '@types/react': 18.0.26
@@ -152,9 +152,9 @@ dependencies:
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
   '@tanstack/query-core': 4.24.4
   '@tanstack/react-query': 4.24.4_mm6ssz5t7nsja4qwwvdafuklbu
-  '@turbo-eth/core-wagmi': 0.0.0-beta.4_li42rxunqhhb3j2jyhlde5s3iu
-  '@turbo-eth/erc20-wagmi': 0.0.0-beta.8_li42rxunqhhb3j2jyhlde5s3iu
-  '@turbo-eth/erc721-wagmi': 0.0.0-beta.5_li42rxunqhhb3j2jyhlde5s3iu
+  '@turbo-eth/core-wagmi': 0.0.0-beta.6_sxkgiblucyl4luzsl2xgitpqle
+  '@turbo-eth/erc20-wagmi': 0.0.0-beta.12_uztjlmwi2dtwrqciji3j5wooma
+  '@turbo-eth/erc721-wagmi': 0.0.0-beta.6_uztjlmwi2dtwrqciji3j5wooma
   '@types/react-copy-to-clipboard': 5.0.4
   '@vercel/analytics': 0.1.8_react@18.2.0
   '@vercel/og': 0.0.27
@@ -5440,10 +5440,36 @@ packages:
   /@tsconfig/node16/1.0.3:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
 
-  /@turbo-eth/core-wagmi/0.0.0-beta.4_li42rxunqhhb3j2jyhlde5s3iu:
-    resolution: {integrity: sha512-8Cf6ZCOPEJeRU4yEkw1U2y5jPubbSBHcqUerfT8qwfMgzW7ZsaPG7TWkxPcNw3zGXw7Pg281/TinIQeswfqtfw==}
+  /@turbo-eth/core-wagmi/0.0.0-beta.6_sxkgiblucyl4luzsl2xgitpqle:
+    resolution: {integrity: sha512-XSQJzWaIl/53eaIfzvVxNZWVyNMRForB6a1iDEnHCrfZkfRv4ipoXVYaxPCLzZKZ926vgmZz+7r+A7Qugi6/sA==}
     engines: {node: '>=12'}
     hasBin: true
+    peerDependencies:
+      '@rainbow-me/rainbowkit': 0.8.1
+      ethers: 5.7.2
+      react: '>=17'
+      react-dom: '>=17'
+      wagmi: 0.9.x
+    dependencies:
+      '@rainbow-me/rainbowkit': 0.8.1_rv47owgxnl6mzvw54pmx5y3jmi
+      classnames: 2.3.1
+      clsx: 1.2.1
+      ethers: 5.7.2
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      viem: 0.1.13_typescript@4.9.4
+      wagmi: 0.11.3_6kkabcqcqeonxfjy25epmzx3zu
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    dev: false
+
+  /@turbo-eth/erc20-wagmi/0.0.0-beta.12_uztjlmwi2dtwrqciji3j5wooma:
+    resolution: {integrity: sha512-GfMY8iRWSkHg45Ev1HdEHhUc0bfks6Ln+jkImzzFig8Vdi+jAEbdb45Q9WtY7i8xS3aKnKKfetdtUEk9Pkd6+w==}
+    engines: {node: '>=12'}
     peerDependencies:
       '@rainbow-me/rainbowkit': 0.8.1
       '@tanstack/query-core': ^4.3.8
@@ -5462,19 +5488,17 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-native: 0.71.0_fz72vpftmnaczycpteam7fadla
+      viem: 0.1.13_typescript@4.9.4
       wagmi: 0.11.3_6kkabcqcqeonxfjy25epmzx3zu
     transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/preset-env'
       - bufferutil
-      - encoding
-      - supports-color
+      - typescript
       - utf-8-validate
+      - zod
     dev: false
 
-  /@turbo-eth/erc20-wagmi/0.0.0-beta.8_li42rxunqhhb3j2jyhlde5s3iu:
-    resolution: {integrity: sha512-q3PKrmS/NtAhJp7nYKkTU5a7gTfDznobvRISX71sY9/VAEMhXe7J0kD9oaHBXRf3TViRm6VFtaHCpJIhL9emFQ==}
+  /@turbo-eth/erc721-wagmi/0.0.0-beta.6_uztjlmwi2dtwrqciji3j5wooma:
+    resolution: {integrity: sha512-swhaXJbqzFWzaJVpxe0gxeUqHlugPm5Lb2Bu6dJNIeXupMBPagiucd2mAaLWRXWBdeb3ODlbPKockus9uFzN8w==}
     engines: {node: '>=12'}
     peerDependencies:
       '@rainbow-me/rainbowkit': 0.8.1
@@ -5489,50 +5513,18 @@ packages:
       '@tanstack/query-core': 4.24.4
       '@tanstack/react-query': 4.24.4_mm6ssz5t7nsja4qwwvdafuklbu
       classnames: 2.3.1
+      clsx: 1.2.1
       ethers: 5.7.2
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-native: 0.71.0_fz72vpftmnaczycpteam7fadla
+      viem: 0.1.13_typescript@4.9.4
       wagmi: 0.11.3_6kkabcqcqeonxfjy25epmzx3zu
     transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/preset-env'
       - bufferutil
-      - encoding
-      - supports-color
+      - typescript
       - utf-8-validate
-    dev: false
-
-  /@turbo-eth/erc721-wagmi/0.0.0-beta.5_li42rxunqhhb3j2jyhlde5s3iu:
-    resolution: {integrity: sha512-yAsPaFwOA4zqXVpMR9YbgyNxmmHHjl5wlPtUw/owp9tScDBaE4Gq7JtYOTQwXr7XnHwudgpga/PY3bPnBGoBMw==}
-    engines: {node: '>=12'}
-    peerDependencies:
-      '@rainbow-me/rainbowkit': 0.8.1
-      '@tanstack/query-core': ^4.3.8
-      '@tanstack/react-query': ^4.3.9
-      ethers: 5.7.2
-      react: '>=17'
-      react-dom: '>=17'
-      wagmi: 0.9.x
-    dependencies:
-      '@rainbow-me/rainbowkit': 0.8.1_rv47owgxnl6mzvw54pmx5y3jmi
-      '@tanstack/query-core': 4.24.4
-      '@tanstack/react-query': 4.24.4_mm6ssz5t7nsja4qwwvdafuklbu
-      classnames: 2.3.1
-      ethers: 5.7.2
-      prop-types: 15.8.1
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-      react-native: 0.71.0_fz72vpftmnaczycpteam7fadla
-      wagmi: 0.11.3_6kkabcqcqeonxfjy25epmzx3zu
-    transitivePeerDependencies:
-      - '@babel/core'
-      - '@babel/preset-env'
-      - bufferutil
-      - encoding
-      - supports-color
-      - utf-8-validate
+      - zod
     dev: false
 
   /@types/accepts/1.3.5:
@@ -5945,6 +5937,17 @@ packages:
 
   /@wagmi/chains/0.1.14:
     resolution: {integrity: sha512-hSzb6Ni/PejVzliKkc5T3ehzRJxr5k4fZMGYuouqwArWQ8z7R4jrIlm2j2nNOD7Epz6ZucdiVluU1YH0d/EEyw==}
+    dev: false
+
+  /@wagmi/chains/0.2.11_typescript@4.9.4:
+    resolution: {integrity: sha512-aMrI1zKKXdeAaiTxBiv+3Zfgd3IajCDpxBtPPvpjXuWVRe4ikwzbyZ1HARKj3V1+wNMPng8EJiWpN966PcvROg==}
+    peerDependencies:
+      typescript: '>=4.9.4'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 4.9.4
     dev: false
 
   /@wagmi/chains/0.2.4_typescript@4.9.4:
@@ -6569,6 +6572,18 @@ packages:
     peerDependencies:
       typescript: '>=4.9.4'
       zod: '>=3.19.1'
+    peerDependenciesMeta:
+      zod:
+        optional: true
+    dependencies:
+      typescript: 4.9.4
+    dev: false
+
+  /abitype/0.7.1_typescript@4.9.4:
+    resolution: {integrity: sha512-VBkRHTDZf9Myaek/dO3yMmOzB/y2s3Zo6nVU7yaw1G+TvCHAjwaJzNGN9yo4K5D8bU/VZXKP1EJpRhFr862PlQ==}
+    peerDependencies:
+      typescript: '>=4.9.4'
+      zod: ^3 >=3.19.1
     peerDependenciesMeta:
       zod:
         optional: true
@@ -10314,6 +10329,13 @@ packages:
     resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
     dev: false
 
+  /idna-uts46-hx/4.1.2:
+    resolution: {integrity: sha512-EAB3egrcalcTQHcjA7yzXXkE4E09TIFerR//4yUYGYCeCfXmkU0LgsGJgYSIQA1lQunfsn4ZCWJhbelgl3cdiQ==}
+    engines: {node: '>=16.15.1', npm: '>=8.11.1'}
+    dependencies:
+      punycode: 2.3.0
+    dev: false
+
   /ieee754/1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
     dev: false
@@ -10795,6 +10817,14 @@ packages:
       ws: '*'
     dependencies:
       ws: 7.5.9
+    dev: false
+
+  /isomorphic-ws/5.0.0_ws@8.12.0:
+    resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
+    peerDependencies:
+      ws: '*'
+    dependencies:
+      ws: 8.12.0
     dev: false
 
   /its-fine/1.0.8_react@18.2.0:
@@ -13415,7 +13445,6 @@ packages:
   /punycode/2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
-    dev: true
 
   /pvtsutils/1.3.2:
     resolution: {integrity: sha512-+Ipe2iNUyrZz+8K/2IOo+kKikdtfhRKzNpQbruF2URmqPtoqAs8g3xS7TJvFF2GcPXjh7DkqMnpVveRFq4PgEQ==}
@@ -15623,6 +15652,22 @@ packages:
       vfile-message: 3.1.3
     dev: false
 
+  /viem/0.1.13_typescript@4.9.4:
+    resolution: {integrity: sha512-ubtfRB7nHiCHI+0R3H1fWAv2Bd4ifKyaV4D2SYGJAmBaY3Pdqd147nIrD6577b3mIPXXAlVCcVAAgU1pd/dyRQ==}
+    dependencies:
+      '@noble/hashes': 1.2.0
+      '@wagmi/chains': 0.2.11_typescript@4.9.4
+      abitype: 0.7.1_typescript@4.9.4
+      idna-uts46-hx: 4.1.2
+      isomorphic-ws: 5.0.0_ws@8.12.0
+      ws: 8.12.0
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    dev: false
+
   /vlq/1.0.1:
     resolution: {integrity: sha512-gQpnTgkubC6hQgdIcRdYGDSDc+SaujOdyesZQMv6JlfQee/9Mp0Qhnys6WxDWvQnL5WZdT7o2Ul187aSt0Rq+w==}
     dev: false
@@ -15870,6 +15915,19 @@ packages:
     peerDependencies:
       bufferutil: ^4.0.1
       utf-8-validate: ^5.0.2
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
+    dev: false
+
+  /ws/8.12.0:
+    resolution: {integrity: sha512-kU62emKIdKVeEIOIKVegvqpXMSTAMLJozpHZaJNDYqBjzlSYXQGviYwN1osDLJ9av68qHd4a2oSjd7yD4pacig==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
     peerDependenciesMeta:
       bufferutil:
         optional: true
