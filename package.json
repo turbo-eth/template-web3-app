@@ -9,11 +9,7 @@
     "start": "next start",
     "lint": "next lint --fix",
     "prettier": "prettier './src' --write",
-    "prepare": "husky install",
-    "prisma:init": "prisma init",
-    "prisma:generate": "prisma generate",
-    "wagmi:init": "wagmi init",
-    "wagmi:generate": "wagmi generate"
+    "prepare": "husky install ; prisma generate ; wagmi generate"
   },
   "husky": {
     "hooks": {
