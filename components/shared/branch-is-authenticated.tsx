@@ -1,6 +1,6 @@
 import React from 'react'
 
-import useUser from '@/hooks/app/use-user'
+import useUser from '@/lib/hooks/app/use-user'
 
 interface BranchIsAuthenticatedProps {
   children?: Array<React.ReactElement>
@@ -13,5 +13,3 @@ export const BranchIsAuthenticated = ({ children }: BranchIsAuthenticatedProps):
   if (!user?.isLoggedIn) return children[1]
   return children[0]
 }
-
-export default BranchIsAuthenticated

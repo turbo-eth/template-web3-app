@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'clsx'
 import { useBlockNumber, useNetwork } from 'wagmi'
 
-import { GetNetworkColor } from '@/lib/get-network-color'
+import { GetNetworkColor } from '@/lib/utils/get-network-color'
 
 import { LinkComponent } from '../shared/link-component'
 

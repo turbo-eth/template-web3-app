@@ -9,11 +9,7 @@
     "start": "next start",
     "lint": "next lint --fix",
     "prettier": "prettier './src' --write",
-    "prepare": "husky install",
-    "prisma:init": "prisma init",
-    "prisma:generate": "prisma generate",
-    "wagmi:init": "wagmi init",
-    "wagmi:generate": "wagmi generate"
+    "prepare": "husky install ; prisma generate ; wagmi generate"
   },
   "husky": {
     "hooks": {
@@ -59,6 +55,7 @@
     "@radix-ui/react-slot": "^1.0.1",
     "@radix-ui/react-switch": "^1.0.1",
     "@radix-ui/react-tabs": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.3",
     "@radix-ui/react-toggle-group": "^1.0.1",
     "@radix-ui/react-tooltip": "^1.0.3",
     "@rainbow-me/rainbowkit": "0.8.1",
@@ -70,6 +67,7 @@
     "@turbo-eth/core-wagmi": "0.0.0-beta.4",
     "@turbo-eth/erc20-wagmi": "0.0.0-beta.8",
     "@turbo-eth/erc721-wagmi": "0.0.0-beta.5",
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "@vercel/analytics": "^0.1.6",
     "@vercel/og": "^0.0.27",
     "@wagmi/chains": "^0.1.7",
@@ -92,6 +90,7 @@
     "next-themes": "^0.2.1",
     "query-string": "^8.1.0",
     "react": ">=17",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": ">=17",
     "react-icons": "^4.7.1",
     "react-markdown": "^8.0.4",

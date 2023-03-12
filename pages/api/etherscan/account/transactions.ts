@@ -1,12 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { etherscanAccountTransactionList } from '@/lib/api/etherscanAccountTransactionList'
+import { etherscanAccountTransactions } from '@/integrations/etherscan/account-transactions'
 import { withSessionRoute } from '@/lib/server'
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     try {
       const address = req.session.siwe?.address
+      console.log(req.session.siwe, 'req.session.siwe')
       if (!address) {
         return res.status(401).send('Unauthorized')
       }
@@ -24,7 +25,7 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
         page: page ? Number(page) : 1,
         offset: offset ? Number(offset) : 0,
       }
-      const transactions = await etherscanAccountTransactionList(chainId, address, config)
+      const transactions = await etherscanAccountTransactions(chainId, address, config)
       return res.send({ address: req.session.siwe?.address, transactions })
     } catch (error: any) {
       console.log(error)

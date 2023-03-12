@@ -4,19 +4,18 @@ import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 import { useAccount } from 'wagmi'
 
-import TransactionsTable from '@/components/blockchain/transactions-table'
-import WalletConnect from '@/components/blockchain/wallet-connect'
-import DiscoProfileBasic from '@/components/disco/disco-profile-basic'
-import DiscoProfileCredentials from '@/components/disco/disco-profile-credentials'
+import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import BranchIsAuthenticated from '@/components/shared/branch-is-authenticated'
-import BranchIsWalletConnected from '@/components/shared/branch-is-wallet-connected'
+import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
+import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
-import ButtonSIWELogin from '@/components/siwe/button-siwe-login'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import { DiscoProfileBasic } from '@/integrations/disco/components/disco-profile-basic'
+import { DiscoProfileCredentials } from '@/integrations/disco/components/disco-profile-credentials'
+import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 
-export default function PageApplication() {
+export default function PageIntegration() {
   const { address } = useAccount()
   return (
     <>
@@ -36,8 +35,8 @@ export default function PageApplication() {
             },
           }}>
           <BranchColorMode>
-            <Image className="mx-auto" alt="Etherscan logo" src={turboIntegrations.disco.imgDark} width={100} height={100} />
-            <Image className="mx-auto" alt="Etherscan logo" src={turboIntegrations.disco.imgLight} width={100} height={100} />
+            <Image className="mx-auto rounded-full" alt="Disco logo" src={turboIntegrations.disco.imgDark} width={100} height={100} />
+            <Image className="mx-auto rounded-full" alt="Disco logo" src={turboIntegrations.disco.imgLight} width={100} height={100} />
           </BranchColorMode>
           <motion.h1
             className="text-gradient-sand my-8 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"

@@ -3,16 +3,13 @@
 import { motion } from 'framer-motion'
 import { useNetwork } from 'wagmi'
 
-import TransactionsTable from '@/components/blockchain/transactions-table'
+import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
-import { useAccountTransactions } from '@/hooks/etherscan/use-account-transactions'
+import TransactionsTable from '@/integrations/etherscan/components/transactions-table'
+import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
+import useUser from '@/lib/hooks/app/use-user'
 
 export default function PageDashboardTransaction() {
-  const { chain } = useNetwork()
-  const { isLoading, data } = useAccountTransactions({
-    chainId: chain?.id || 1,
-  })
-
   return (
     <section className="p-10">
       <h3 className="text-4xl font-normal">Transactions</h3>
@@ -24,8 +21,25 @@ export default function PageDashboardTransaction() {
         whileInView="show"
         animate="show"
         viewport={{ once: true }}>
-        <div className="w-full">{!isLoading && <TransactionsTable data={data?.transactions} className="w-full" />}</div>
+        <Table />
+        <BranchIsAuthenticated>
+          <></>
+          <></>
+        </BranchIsAuthenticated>
       </motion.div>
     </section>
   )
+}
+
+const Table = () => {
+  const { user } = useUser()
+  const { chain } = useNetwork()
+  const { isLoading, data } = useEtherscanAccountTransactions(
+    {
+      chainId: chain?.id || 1,
+    },
+    [user]
+  )
+
+  return <div className="w-full">{!isLoading && <TransactionsTable data={data?.transactions} className="w-full" />}</div>
 }

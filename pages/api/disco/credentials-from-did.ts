@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { discoGetCredentialsFromDID } from '@/lib/actions/disco/get-credentials-from-did'
+import { discoGetCredentialsFromDID } from '@/integrations/disco/get-credentials-from-did'
 import { withSessionRoute } from '@/lib/server'
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {

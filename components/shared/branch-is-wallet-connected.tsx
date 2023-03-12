@@ -15,5 +15,3 @@ export function BranchIsWalletConnected({ children }: BranchIsWalletConnectedPro
   if (address && Array.isArray(children)) return children[0]
   if (!address && Array.isArray(children)) return children[1]
 }
-
-export default BranchIsWalletConnected

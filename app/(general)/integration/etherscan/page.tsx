@@ -4,20 +4,20 @@ import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 import { useNetwork } from 'wagmi'
 
-import TransactionsTable from '@/components/blockchain/transactions-table'
-import WalletConnect from '@/components/blockchain/wallet-connect'
+import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import BranchIsAuthenticated from '@/components/shared/branch-is-authenticated'
-import BranchIsWalletConnected from '@/components/shared/branch-is-wallet-connected'
+import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
+import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
-import ButtonSIWELogin from '@/components/siwe/button-siwe-login'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { useAccountTransactions } from '@/hooks/etherscan/use-account-transactions'
+import TransactionsTable from '@/integrations/etherscan/components/transactions-table'
+import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
+import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 
-export default function PageApplication() {
+export default function PageIntegration() {
   const { chain } = useNetwork()
-  const { isLoading, data } = useAccountTransactions({
+  const { isLoading, data } = useEtherscanAccountTransactions({
     chainId: chain?.id || 1,
   })
   return (

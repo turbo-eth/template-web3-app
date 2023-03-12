@@ -10,17 +10,16 @@ import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import Balancer from 'react-wrap-balancer'
 
-import WalletConnect from '@/components/blockchain/wallet-connect'
+import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
 import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import Card from '@/components/shared/card'
-import ButtonSIWELogin from '@/components/siwe/button-siwe-login'
-import ButtonSIWELogout from '@/components/siwe/button-siwe-logout'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { DEPLOY_URL, siteConfig } from '@/config/site'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import erc20TokenSymbolToAddress from '@/lib/erc20TokenSymbolToAddress'
+import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
+import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
 
 export default function Home() {
   return (
@@ -137,7 +136,7 @@ const features = [
     href: turboIntegrations.disco.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <Image alt="Disco logo" src="/integrations/disco.jpeg" width={100} height={100} />
+        <Image alt="Disco logo" src="/integrations/disco.jpeg" className="rounded-full" width={100} height={100} />
       </div>
     ),
   },
@@ -206,7 +205,7 @@ const features = [
         <p className="">
           Decimals <ERC20Decimals chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'} />
         </p>
-        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc20/${erc20TokenSymbolToAddress.USDC}`}>
+        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc20/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}>
           View Token Page
         </Link>
       </div>

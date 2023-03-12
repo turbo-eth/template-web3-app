@@ -21,7 +21,7 @@
     "incremental": true,
     "paths": {
       "@/*": ["./*"],
-      "@/actions/*": ["lib/actions/*"]
+      "@/actions/*": ["integrations/*"]
     },
     "plugins": [
       {

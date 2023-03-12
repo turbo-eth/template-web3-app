@@ -1,14 +1,17 @@
-export const dashboardMenu = [
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+// Menu Dashboard
+// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+export const menuDashboard = [
   {
     label: 'Dashboard',
     href: '/dashboard',
   },
   {
-    label: 'Account (Blockchain)',
+    label: 'Wallet Account',
     href: '/dashboard/wallet',
   },
   {
-    label: 'Transactions (Etherscan)',
+    label: 'Transactions (Authenticated)',
     href: '/dashboard/transactions',
   },
 ]
