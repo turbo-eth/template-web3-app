@@ -4,7 +4,7 @@ import { siteConfig } from '@/config/site'
 
 export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => {
   // 1. Get random nonce from API
-  const nonceRes = await fetch('/api/account/nonce')
+  const nonceRes = await fetch('/api/siwe/nonce')
   const nonce = await nonceRes.text()
 
   // 2. Create SIWE message with pre-fetched nonce and sign with wallet
@@ -24,7 +24,7 @@ export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => 
   })
 
   // 3. Verify signature
-  const verifyRes = await fetch('/api/account/verify', {
+  const verifyRes = await fetch('/api/siwe/verify', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

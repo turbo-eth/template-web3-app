@@ -3,10 +3,12 @@
 import { motion } from 'framer-motion'
 import { useNetwork } from 'wagmi'
 
+import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import TransactionsTable from '@/integrations/etherscan/components/transactions-table'
 import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
+import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import useUser from '@/lib/hooks/app/use-user'
 
 export default function PageDashboardTransaction() {
@@ -21,10 +23,12 @@ export default function PageDashboardTransaction() {
         whileInView="show"
         animate="show"
         viewport={{ once: true }}>
-        <Table />
         <BranchIsAuthenticated>
-          <></>
-          <></>
+          <Table />
+          <div className="text-center">
+            <ButtonSIWELogin className="btn btn-emerald" label="Web3 Connect" />
+            <p className="mt-3 text-sm text-gray-600 dark:text-gray-100">Authenticate to access application API</p>
+          </div>
         </BranchIsAuthenticated>
       </motion.div>
     </section>

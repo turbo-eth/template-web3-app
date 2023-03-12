@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios'
 
 export async function siweLogout(): Promise<boolean> {
   try {
-    await axios.get('/api/account/logout')
+    await axios.get('/api/siwe/logout')
     return true
   } catch (error: any) {
     if (error instanceof AxiosError == true) {

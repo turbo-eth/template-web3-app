@@ -39,7 +39,6 @@ function AppUsersTable({ data, className }: any) {
     []
   )
   if (!data) return null
-  console.log(data)
   return <TableCore columns={columns} data={data} className={className} />
 }
 
