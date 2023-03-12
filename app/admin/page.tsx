@@ -7,7 +7,6 @@ import useUser from '@/lib/hooks/app/use-user'
 export default function PageAdmin() {
   const { user } = useUser()
   const { isLoading, isError, data } = useGetAppUsers(user)
-  console.log(isLoading, isError, data)
   return (
     <section className="p-10 lg:p-20">
       <div className="flex-center col-span-12 flex flex-col lg:col-span-9">

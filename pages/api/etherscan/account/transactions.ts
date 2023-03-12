@@ -7,7 +7,6 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
   if (req.method === 'GET') {
     try {
       const address = req.session.siwe?.address
-      console.log(req.session.siwe, 'req.session.siwe')
       if (!address) {
         return res.status(401).send('Unauthorized')
       }
