@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-import apiDisco from '@/data/api-disco'
+import { discoAPI } from '@/integrations/disco/disco-api'
 
 export async function discoGetCredentialsFromDID(did?: string): Promise<any> {
   if (!did) {
     return null
   }
-  const { data } = await apiDisco.get(`/profile/${did}/credentials`)
+  const { data } = await discoAPI.get(`/profile/${did}/credentials`)
   return data
 }
 
