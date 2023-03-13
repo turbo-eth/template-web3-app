@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-import apiDisco from '@/data/api-disco'
+import { discoAPI } from '@/integrations/disco/disco-api'
 
 export async function discoGetProfileFromAddress(address?: string): Promise<any> {
   if (!address) {
     return null
   }
-  const { data } = await apiDisco.get(`/profile/address/${address}`)
+  const { data } = await discoAPI.get(`/profile/address/${address}`)
   return data
 }
 
