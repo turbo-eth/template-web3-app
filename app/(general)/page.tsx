@@ -199,11 +199,11 @@ const features = [
           src={`https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png`}
         />
         <h3 className="mt-4 text-2xl font-normal">
-          <ERC20Name chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'} /> (
-          <ERC20Symbol className="" chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'} />)
+          <ERC20Name chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} /> (
+          <ERC20Symbol className="" chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} />)
         </h3>
         <p className="">
-          Decimals <ERC20Decimals chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'} />
+          Decimals <ERC20Decimals chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} />
         </p>
         <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc20/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}>
           View Token Page

@@ -28,15 +28,11 @@ export default function PageERC721({ params }: any) {
           <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} className="flex-center flex h-full flex-1 flex-col items-center justify-center ">
             <div className="card w-[420px] ">
               <h3 className="mb-3 text-2xl font-normal">
-                <ERC721TokenName chainId={chainId} tokenId={String(tokenId || '1')} address={String(address || '')} />
+                <ERC721TokenName tokenId={String(tokenId || '1')} address={address} />
               </h3>
-              <ERC721TokenImage
-                address={String(address)}
-                tokenId={String(tokenId || '1')}
-                className="my-4 rounded-xl border-2 border-white shadow-md"
-              />
+              <ERC721TokenImage address={address} tokenId={String(tokenId || '1')} className="my-4 rounded-xl border-2 border-white shadow-md" />
               <p className="text-xs leading-5">
-                <ERC721TokenDescription chainId={chainId} tokenId={String(tokenId || '1')} address={String(address || '')} />
+                <ERC721TokenDescription tokenId={String(tokenId || '1')} address={address} />
               </p>
             </div>
           </motion.div>
