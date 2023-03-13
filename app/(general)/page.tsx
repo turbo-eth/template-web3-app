@@ -3,7 +3,7 @@
 // @ts-nocheck
 import { WalletAddress } from '@turbo-eth/core-wagmi'
 import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@turbo-eth/erc20-wagmi'
-import { ERC721Image, ERC721Name } from '@turbo-eth/erc721-wagmi'
+import { ERC721TokenImage, ERC721TokenName } from '@turbo-eth/erc721-wagmi'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -217,8 +217,8 @@ const features = [
     demo: (
       <div className="text-center">
         {/* @ts-ignore */}
-        <ERC721Name chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
-        <ERC721Image
+        <ERC721TokenName chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
+        <ERC721TokenImage
           // @ts-ignore
           tokenId={1}
           address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'}

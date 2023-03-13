@@ -39,4 +39,5 @@ if (process.env.NEXT_PUBLIC_PROVIDER_PUBLIC) {
   PROVIDERS.push(publicProvider())
 }
 
+// @ts-ignore
 export const { chains, provider } = configureChains(CHAINS, PROVIDERS)
