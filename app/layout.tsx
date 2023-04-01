@@ -9,7 +9,6 @@ import { Inter as FontSans } from '@next/font/google'
 import localFont from '@next/font/local'
 
 import RootProvider from '@/components/providers/root-provider'
-import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
 
 const sfPro = localFont({
@@ -41,9 +40,7 @@ export default function RootLayout({ children }: any) {
               }
             `}
           </style>
-          <RootProvider>
-            {children} <Toaster />
-          </RootProvider>
+          <RootProvider>{children}</RootProvider>
         </body>
       </html>
     </>

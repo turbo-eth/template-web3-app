@@ -1,36 +1,31 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { useNetwork } from 'wagmi'
 
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
-import TransactionsTable from '@/integrations/etherscan/components/transactions-table'
+import { TransactionsTable } from '@/integrations/etherscan/components/transactions-table'
 import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
-import useUser from '@/lib/hooks/app/use-user'
+import { useUser } from '@/lib/hooks/app/use-user'
 
-export default function PageDashboardTransaction() {
+export default function PageDashboardTransactions() {
   return (
     <section className="p-10">
-      <h3 className="text-4xl font-normal">Transactions</h3>
-      <hr className="my-5 opacity-50" />
-      <motion.div
-        className="flex-center flex h-full w-full"
-        variants={FADE_DOWN_ANIMATION_VARIANTS}
-        initial="hidden"
-        whileInView="show"
-        animate="show"
-        viewport={{ once: true }}>
+      <div className="flex items-center justify-between">
+        <h3 className="text-4xl font-normal">Transactions</h3>
         <BranchIsAuthenticated>
-          <Table />
-          <div className="text-center">
-            <ButtonSIWELogin className="btn btn-emerald" label="Web3 Connect" />
-            <p className="mt-3 text-sm text-gray-600 dark:text-gray-100">Authenticate to access application API</p>
+          <></>
+          <div className="flex items-center gap-x-5 text-center">
+            <span className="text-sm text-gray-600 dark:text-gray-100">Login to access the TurboETH free API</span>
+            <ButtonSIWELogin className="btn btn-emerald" />
           </div>
         </BranchIsAuthenticated>
-      </motion.div>
+      </div>
+      <hr className="my-5 opacity-50" />
+      <BranchIsAuthenticated>
+        <Table />
+        <></>
+      </BranchIsAuthenticated>
     </section>
   )
 }

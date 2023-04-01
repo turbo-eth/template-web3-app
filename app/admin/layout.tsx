@@ -4,18 +4,17 @@ import classNames from 'clsx'
 import Image from 'next/image'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { DashboardFooter } from '@/components/layout/dashboard/dashboard-footer'
-import { DashboardHeader } from '@/components/layout/dashboard/dashboard-header'
-import MenuAdminSidebar from '@/components/layout/dashboard/menu-admin-sidebar'
-import MenuDashboardSidebar from '@/components/layout/dashboard/menu-dashboard-sidebar'
-import UserDropdown from '@/components/layout/user-dropdown'
+import { DashboardFooter } from '@/components/layout/dashboard-footer'
+import { DashboardHeader } from '@/components/layout/dashboard-header'
+import { MenuAdminSidebar } from '@/components/layout/menu-admin-sidebar'
+import { UserDropdown } from '@/components/layout/user-dropdown'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
 import { LinkComponent } from '@/components/shared/link-component'
 import { ResponsiveMobileAndDesktop } from '@/components/shared/responsive-mobile-and-desktop'
 import { siteConfig } from '@/config/site'
 
-export default function DashboardLayout({ children }: any) {
-  const classes = classNames('App', 'bg-gradient-dark h-screen lg:grid lg:grid-cols-12')
+export default function AdminLayout({ children }: any) {
+  const classes = classNames('AdminLayout', 'bg-gradient-dark h-screen lg:grid lg:grid-cols-12')
   return (
     <>
       <div className={classes}>

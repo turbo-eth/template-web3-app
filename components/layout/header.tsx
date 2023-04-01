@@ -9,13 +9,13 @@ import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-logi
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
 import useScroll from '@/lib/hooks/use-scroll'
 
-import { BranchColorMode } from '../../shared/branch-color-mode'
-import { BranchIsWalletConnected } from '../../shared/branch-is-wallet-connected'
-import { LinkComponent } from '../../shared/link-component'
-import { ResponsiveMobileAndDesktop } from '../../shared/responsive-mobile-and-desktop'
-import { ThemeToggle } from '../../shared/theme-toggle'
-import { NavigationMenuGeneral } from '../navigation-menu-general'
-import UserDropdown from '../user-dropdown'
+import { NavigationMenuGeneral } from './navigation-menu-general'
+import { UserDropdown } from './user-dropdown'
+import { BranchColorMode } from '../shared/branch-color-mode'
+import { BranchIsWalletConnected } from '../shared/branch-is-wallet-connected'
+import { LinkComponent } from '../shared/link-component'
+import { ResponsiveMobileAndDesktop } from '../shared/responsive-mobile-and-desktop'
+import { ThemeToggle } from '../shared/theme-toggle'
 
 interface Props {
   className?: string
@@ -64,8 +64,8 @@ export function Header(props: Props) {
           <div className="flex items-center gap-4">
             <BranchIsWalletConnected>
               <BranchIsAuthenticated>
-                <ButtonSIWELogout className="tag tag-light" />
-                <ButtonSIWELogin className="tag tag-light" label="Web3 Login" />
+                <ButtonSIWELogout className="tag tag-light" label="Logout" />
+                <ButtonSIWELogin label="Web3 Login" />
               </BranchIsAuthenticated>
               <></>
             </BranchIsWalletConnected>

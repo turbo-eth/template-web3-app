@@ -5,14 +5,14 @@ import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 import { siteConfig } from '@/config/site'
 
-import { LinkComponent } from '../../shared/link-component'
+import { LinkComponent } from '../shared/link-component'
 
 interface Props {
   className?: string
 }
 
-export function DashboardFooter(props: Props) {
-  const classes = classNames(props.className, 'Footer', 'flex flex-col justify-center')
+export function Footer(props: Props) {
+  const classes = classNames(props.className, 'Footer', 'px-4 py-6 flex flex-col justify-center items-center')
 
   return (
     <footer className={classes}>

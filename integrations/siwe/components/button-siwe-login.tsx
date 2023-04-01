@@ -5,9 +5,9 @@ import * as React from 'react'
 import classNames from 'clsx'
 import { useAccount, useNetwork, useSignMessage } from 'wagmi'
 
-import useUser from '@/lib/hooks/app/use-user'
-import { cn } from '@/lib/utils/cn'
 import { siweLogin } from '@/integrations/siwe/siwe-login'
+import { useUser } from '@/lib/hooks/app/use-user'
+import { cn } from '@/lib/utils/cn'
 
 interface ButtonSIWELoginProps {
   className?: string
@@ -16,7 +16,7 @@ interface ButtonSIWELoginProps {
   styled?: boolean
   disabled?: boolean
 }
-export const ButtonSIWELogin = ({ className, label = 'Login', disabled, children, styled }: ButtonSIWELoginProps) => {
+export const ButtonSIWELogin = ({ className, label = 'Sign-In With Ethereum', disabled, children, styled }: ButtonSIWELoginProps) => {
   const { mutateUser } = useUser()
   const { isLoading, signMessageAsync } = useSignMessage()
   const { address } = useAccount()

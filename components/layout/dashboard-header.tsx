@@ -13,7 +13,7 @@ import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-logi
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
 import { useToast } from '@/lib/hooks/use-toast'
 
-import { ThemeToggle } from '../../shared/theme-toggle'
+import { ThemeToggle } from '../shared/theme-toggle'
 
 interface Props {
   className?: string
@@ -54,7 +54,7 @@ export function DashboardHeader(props: Props) {
         <BranchIsWalletConnected>
           <BranchIsAuthenticated>
             <ButtonSIWELogout />
-            <ButtonSIWELogin />
+            <ButtonSIWELogin label="Web3 Login" />
           </BranchIsAuthenticated>
           <WalletConnect />
         </BranchIsWalletConnected>

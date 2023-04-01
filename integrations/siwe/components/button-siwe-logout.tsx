@@ -4,8 +4,8 @@ import * as React from 'react'
 
 import classNames from 'clsx'
 
-import useUser from '@/lib/hooks/app/use-user'
 import { siweLogout } from '@/integrations/siwe/siwe-logout'
+import { useUser } from '@/lib/hooks/app/use-user'
 
 interface ButtonSIWELogoutProps {
   className?: string

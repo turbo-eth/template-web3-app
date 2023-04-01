@@ -1,4 +1,4 @@
-export const turboIntegrations = {
+export const documentation = {
   siwe: {
     name: 'SIWE',
     href: 'https://docs.turboeth.xyz/integration/sign-in-with-ethereum',

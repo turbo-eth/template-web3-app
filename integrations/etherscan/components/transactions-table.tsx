@@ -1,7 +1,6 @@
 import React from 'react'
 
-import { Address, Balance, trimFormattedBalance } from '@turbo-eth/core-wagmi'
-import { formatEther } from 'ethers/lib/utils.js'
+import { Address } from '@turbo-eth/core-wagmi'
 
 import TableCore from '../../../components/shared/table/table-core'
 import TimeFromEpoch from '../../../components/shared/time-from-epoch'
@@ -31,7 +30,7 @@ import TimeFromEpoch from '../../../components/shared/time-from-epoch'
 }
 */
 
-function TransactionsTable({ data }: any) {
+export function TransactionsTable({ data }: any) {
   const columns = React.useMemo(
     () => [
       {
@@ -52,20 +51,7 @@ function TransactionsTable({ data }: any) {
       {
         Header: 'Sent',
         accessor: 'value',
-        // Cell: (props: any) => <span className="">{trimFormattedBalance(props?.value || '0.00')}</span>,
       },
-      // {
-      //   Header: () => null,
-      //   id: 'actions',
-      //   accessor: 'hash',
-      //   Cell: (props: any) => (
-      //     <div className="flex items-center justify-end gap-2">
-      //       <Link href={`/dashboard/transaction/${props.value}`}>
-      //         <span className="text-xs">View</span>
-      //       </Link>
-      //     </div>
-      //   ),
-      // },
     ],
     []
   )

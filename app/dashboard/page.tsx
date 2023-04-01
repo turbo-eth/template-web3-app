@@ -1,6 +1,6 @@
 'use client'
 
-import { WalletAddress, WalletBalance } from '@turbo-eth/core-wagmi'
+import { WalletAddress, WalletBalance, WalletEnsName } from '@turbo-eth/core-wagmi'
 import { motion } from 'framer-motion'
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
@@ -18,7 +18,9 @@ export default function PageDashboard() {
         <div className="flex-center col-span-12 flex flex-col lg:col-span-9">
           <div className="text-center">
             <h3 className="font-primary text-2xl font-bold lg:text-6xl">
-              <span className="text-gradient-secondary">Hello, Web3 User</span> 👋
+              <span className="text-gradient-secondary">
+                hi 👋 <WalletEnsName />
+              </span>
             </h3>
             <span className="font-light">
               <WalletAddress className="mt-5 block text-xl font-light" />
