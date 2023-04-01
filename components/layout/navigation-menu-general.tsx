@@ -50,7 +50,7 @@ export function NavigationMenuGeneral() {
                     <h3 className="text-lg font-bold">🎛️ Dashboard</h3>
                     <div className="my-2" />
                     <p className="text-xs">
-                      The TurboETH Dashboard is a great place to start. It's where you can see your app's features, and get started.
+                      The TurboETH Dashboard is a great place to start. It&apos;s where you can see your app&apos;s features, and get started.
                     </p>
                   </div>
                 </LinkComponent>
@@ -58,7 +58,7 @@ export function NavigationMenuGeneral() {
                   <div className="card bg-card-with-hover">
                     <h3 className="text-lg font-bold">🔐 Admin</h3>
                     <div className="my-2" />
-                    <p className="text-xs">The TurboETH Admin area is where you can see your app's users.</p>
+                    <p className="text-xs">The TurboETH Admin area is where you can see your app&apos;s users.</p>
                   </div>
                 </LinkComponent>
               </li>
