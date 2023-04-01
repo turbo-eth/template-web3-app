@@ -1,5 +1,3 @@
-import { title } from 'process'
-
 import { WalletAddress } from '@turbo-eth/core-wagmi'
 import classNames from 'clsx'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -41,11 +39,13 @@ export function DashboardHeader(props: Props) {
         <span className="flex items-center gap-2">
           <WalletAddress truncate isLink />
           <span className="">
-            <CopyToClipboard text={address as string}>
-              <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                <FaCopy onClick={handleToast} className=" text-neutral-600 dark:text-neutral-100" />
-              </span>
-            </CopyToClipboard>
+            <BranchIsWalletConnected>
+              <CopyToClipboard text={address as string}>
+                <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+                  <FaCopy onClick={handleToast} className=" text-neutral-600 dark:text-neutral-100" />
+                </span>
+              </CopyToClipboard>
+            </BranchIsWalletConnected>
           </span>
         </span>
       </div>

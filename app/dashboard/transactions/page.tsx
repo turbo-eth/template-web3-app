@@ -3,6 +3,7 @@
 import { useNetwork } from 'wagmi'
 
 import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
+import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { TransactionsTable } from '@/integrations/etherscan/components/transactions-table'
 import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
@@ -13,18 +14,20 @@ export default function PageDashboardTransactions() {
     <section className="p-10">
       <div className="flex items-center justify-between">
         <h3 className="text-4xl font-normal">Transactions</h3>
-        <BranchIsAuthenticated>
-          <></>
-          <div className="flex items-center gap-x-5 text-center">
-            <span className="text-sm text-gray-600 dark:text-gray-100">Login to access the TurboETH free API</span>
-            <ButtonSIWELogin className="btn btn-emerald" />
-          </div>
-        </BranchIsAuthenticated>
+        <BranchIsWalletConnected>
+          <BranchIsAuthenticated>
+            <></>
+            <div className="flex items-center gap-x-5 text-center">
+              <span className="text-sm text-gray-600 dark:text-gray-100">Login to access the TurboETH free API</span>
+              <ButtonSIWELogin className="btn btn-emerald" />
+            </div>
+          </BranchIsAuthenticated>
+          <span className="">Connect wallet and login to access page</span>
+        </BranchIsWalletConnected>
       </div>
       <hr className="my-5 opacity-50" />
       <BranchIsAuthenticated>
         <Table />
-        <></>
       </BranchIsAuthenticated>
     </section>
   )

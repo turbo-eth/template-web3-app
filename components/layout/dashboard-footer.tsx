@@ -7,16 +7,16 @@ import { siteConfig } from '@/config/site'
 
 import { LinkComponent } from '../shared/link-component'
 
-interface Props {
+interface DashboardFooterProps {
   className?: string
 }
 
-export function DashboardFooter(props: Props) {
-  const classes = classNames(props.className, 'Footer', 'flex flex-col justify-center')
+export function DashboardFooter({ className }: DashboardFooterProps) {
+  const classes = classNames(className, 'Footer', 'flex flex-col justify-center')
 
   return (
     <footer className={classes}>
-      <h3>{siteConfig.title}</h3>
+      <h3 className="text-sm font-semibold">{siteConfig.title}</h3>
       <a className="link my-2 text-xs" target={'_blank'} href="https://districtlabs.com/" rel="noreferrer">
         Built by District Labs
       </a>
