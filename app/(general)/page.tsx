@@ -29,7 +29,7 @@ export default function Home() {
             }}>
             <img src="/logo-fill.png" alt="Turbo ETH" className="mx-auto mb-10 h-20 w-20" />
             <motion.h1
-              className="font-display bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-6xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm dark:from-stone-100 dark:to-yellow-200 md:text-8xl md:leading-[6rem]"
+              className="text-gradient-sand text-center text-6xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
               variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <Balancer>Get Started</Balancer>
             </motion.h1>

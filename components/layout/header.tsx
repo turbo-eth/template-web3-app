@@ -70,7 +70,7 @@ export function Header(props: Props) {
               <></>
             </BranchIsWalletConnected>
             <LinkComponent className="flex items-center" href="/dashboard">
-              <button className="btn btn-pill bg-gradient-button">
+              <button className="btn btn-pill bg-gradient-button hover:scale-105 hover:shadow-lg">
                 <span className="px-2">Dashboard</span>
               </button>
             </LinkComponent>

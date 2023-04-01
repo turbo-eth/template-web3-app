@@ -1,9 +1,8 @@
 'use client'
 
-import '@/styles/global.css'
 import '@/styles/app.css'
-import '@/styles/components.css'
-import '@/styles/turbo.css'
+import '@/styles/gradient.css'
+import '@/styles/periphery.css'
 import { Raleway } from '@next/font/google'
 import { Inter as FontSans } from '@next/font/google'
 import localFont from '@next/font/local'
