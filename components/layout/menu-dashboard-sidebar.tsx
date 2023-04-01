@@ -38,5 +38,3 @@ const Item = ({ children, href, currentPath }: any) => {
     </Link>
   )
 }
-
-export default MenuDashboardSidebar

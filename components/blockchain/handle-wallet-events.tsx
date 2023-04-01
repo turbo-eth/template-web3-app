@@ -5,7 +5,7 @@ import * as React from 'react'
 import { useAccount } from 'wagmi'
 
 import { siweLogout } from '@/integrations/siwe/siwe-logout'
-import useUser from '@/lib/hooks/app/use-user'
+import { useUser } from '@/lib/hooks/app/use-user'
 interface HandleWalletEventsProps {
   className?: string
   children: React.ReactNode

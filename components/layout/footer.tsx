@@ -5,7 +5,7 @@ import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 import { siteConfig } from '@/config/site'
 
-import { LinkComponent } from '../../shared/link-component'
+import { LinkComponent } from '../shared/link-component'
 
 interface Props {
   className?: string

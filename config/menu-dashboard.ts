@@ -7,11 +7,11 @@ export const menuDashboard = [
     href: '/dashboard',
   },
   {
-    label: 'Wallet Account',
-    href: '/dashboard/wallet',
+    label: 'Account',
+    href: '/dashboard/account',
   },
   {
-    label: 'Transactions (Authenticated)',
+    label: 'Transactions',
     href: '/dashboard/transactions',
   },
 ]

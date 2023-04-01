@@ -9,7 +9,7 @@ import { ButtonSIWELogin } from '../../integrations/siwe/components/button-siwe-
 import { ButtonSIWELogout } from '../../integrations/siwe/components/button-siwe-logout'
 import { BranchIsAuthenticated } from '../shared/branch-is-authenticated'
 
-export default function UserDropdown() {
+export function UserDropdown() {
   return (
     <motion.div className="relative inline-block text-left text-neutral-700" {...FADE_IN_ANIMATION_SETTINGS}>
       <Popover>

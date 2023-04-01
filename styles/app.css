@@ -6,6 +6,10 @@
   @apply bg-white dark:bg-neutral-700 dark:text-white;
 }
 
+.bg-card-with-hover {
+  @apply bg-white dark:bg-neutral-700 dark:text-white hover:dark:bg-neutral-800;
+}
+
 .bg-gradient-credential {
   @apply dark:bg-slate-900 dark:text-white bg-gradient-to-b from-white to-neutral-100 dark:from-slate-800 dark:to-slate-700 ;
 }

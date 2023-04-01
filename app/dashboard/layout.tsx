@@ -4,17 +4,18 @@ import classNames from 'clsx'
 import Image from 'next/image'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { DashboardFooter } from '@/components/layout/dashboard/dashboard-footer'
-import { DashboardHeader } from '@/components/layout/dashboard/dashboard-header'
-import MenuDashboardSidebar from '@/components/layout/dashboard/menu-dashboard-sidebar'
-import UserDropdown from '@/components/layout/user-dropdown'
+import { DashboardFooter } from '@/components/layout/dashboard-footer'
+import { DashboardHeader } from '@/components/layout/dashboard-header'
+import { MenuDashboardSidebar } from '@/components/layout/menu-dashboard-sidebar'
+import { UserDropdown } from '@/components/layout/user-dropdown'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
 import { LinkComponent } from '@/components/shared/link-component'
 import { ResponsiveMobileAndDesktop } from '@/components/shared/responsive-mobile-and-desktop'
+import { Toaster } from '@/components/ui/toaster'
 import { siteConfig } from '@/config/site'
 
 export default function DashboardLayout({ children }: any) {
-  const classes = classNames('App', 'bg-gradient-dark h-screen flex flex-col lg:grid lg:grid-cols-12')
+  const classes = classNames('DashboardLayout', 'bg-gradient-dark h-screen flex flex-col lg:grid lg:grid-cols-12')
   return (
     <>
       <div className={classes}>
@@ -62,6 +63,7 @@ export default function DashboardLayout({ children }: any) {
           <main className="w-full flex-1 overflow-auto">{children}</main>
         </div>
       </div>
+      <Toaster />
     </>
   )
 }

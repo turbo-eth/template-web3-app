@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
 
-export default function useUser({ redirectTo = '', redirectIfFound = false } = {}) {
+export function useUser({ redirectTo = '', redirectIfFound = false } = {}) {
   const { data: user, mutate: mutateUser } = useSWR<any>('/api/user')
 
   const Router = useRouter()
