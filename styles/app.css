@@ -38,7 +38,7 @@ body {
   @apply mt-5 mb-2;
 }
 .content p {
-  @apply leading-7 text-base;
+  @apply mb-3 text-base;
 }
 
 .content .list-disc li {
@@ -57,7 +57,7 @@ body {
   @apply text-neutral-900 dark:text-neutral-100;
 }
 
-.user-dropdown-menu-item{
+.user-dropdown-menu-item {
   @apply relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-neutral-800
 }
 
@@ -68,6 +68,7 @@ body {
 .bg-card-with-hover {
   @apply bg-white dark:bg-neutral-700 dark:text-white hover:dark:bg-neutral-800;
 }
+
 .card {
   @apply bg-card border-2 dark:border-neutral-700 rounded-lg p-6 shadow-sm hover:shadow-md hover:bg-white transition-all duration-300 ease-in-out;
 }
