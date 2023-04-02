@@ -94,17 +94,18 @@ body {
   margin-top: 4px;
   border-radius: 50%;
   animation: lds-dual-ring 1.2s linear infinite;
-}
-
-.lds-dual-ring.light:after {
   border: 6px solid #FFF;
   border-color: #FFF transparent #FFF transparent;
-  @apply shadow-lg;
 }
 
-.lds-dual-ring.dark:after {
-  border: 6px solid #3e3e3e;
-  border-color: #3e3e3e transparent #3e3e3e transparent;
+[data-theme="light"] .colormode .lds-dual-ring:after {
+  border: 6px solid #3e3e3e !important;
+  border-color: #3e3e3e transparent #3e3e3e transparent !important;
+}
+
+[data-theme="dark"] .colormode .lds-dual-ring:after {
+  border: 6px solid #FFF !important;
+  border-color: #FFF transparent #FFF transparent !important;
 }
 
 @keyframes lds-dual-ring {

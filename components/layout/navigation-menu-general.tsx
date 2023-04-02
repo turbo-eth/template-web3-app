@@ -39,7 +39,7 @@ export function NavigationMenuGeneral() {
                       <p className="mb-3 text-sm leading-tight text-white/90">
                         TurboETH is a Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!
                       </p>
-                      <p className="text-sm font-bold leading-tight text-white/90">#turboETH</p>
+                      <p className="text-sm font-bold leading-tight text-white/90">#TurboETH</p>
                     </div>
                   </div>
                 </NavigationMenuLink>

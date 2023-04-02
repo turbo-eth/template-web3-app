@@ -37,14 +37,16 @@ export function DashboardHeader(props: Props) {
     <header className={classes}>
       <div className="flex flex-1 ">
         <span className="flex items-center gap-2">
-          <WalletAddress truncate isLink />
+          <WalletAddress truncate isLink className="tag tag-primary hover:shadow-sm" />
           <span className="">
             <BranchIsWalletConnected>
-              <CopyToClipboard text={address as string}>
-                <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                  <FaCopy onClick={handleToast} className=" text-neutral-600 dark:text-neutral-100" />
-                </span>
-              </CopyToClipboard>
+              <span onClick={handleToast} className="">
+                <CopyToClipboard text={address as string}>
+                  <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+                    <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+                  </span>
+                </CopyToClipboard>
+              </span>
             </BranchIsWalletConnected>
           </span>
         </span>
@@ -53,8 +55,8 @@ export function DashboardHeader(props: Props) {
       <div className="flex items-center gap-4">
         <BranchIsWalletConnected>
           <BranchIsAuthenticated>
-            <ButtonSIWELogout />
-            <ButtonSIWELogin label="Web3 Login" />
+            <ButtonSIWELogout className="menu-item" />
+            <ButtonSIWELogin className=" menu-item colormode" />
           </BranchIsAuthenticated>
           <WalletConnect />
         </BranchIsWalletConnected>

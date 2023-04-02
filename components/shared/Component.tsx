@@ -1,3 +1,8 @@
+/*
+Notes(@kames): This is a helper component that will render a React component or a React element.
+It might be a good idea to move this to a separate package or remove it completely.
+*/
+
 // @ts-nocheck
 import React, { ReactElement, ReactNode } from 'react'
 

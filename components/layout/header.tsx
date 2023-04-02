@@ -11,6 +11,7 @@ import useScroll from '@/lib/hooks/use-scroll'
 
 import { NavigationMenuGeneral } from './navigation-menu-general'
 import { UserDropdown } from './user-dropdown'
+import BranchButtonLoginOrAccount from '../shared/branch-button-login-or-account'
 import { BranchColorMode } from '../shared/branch-color-mode'
 import { BranchIsWalletConnected } from '../shared/branch-is-wallet-connected'
 import { LinkComponent } from '../shared/link-component'
@@ -62,13 +63,7 @@ export function Header(props: Props) {
           </div>
 
           <div className="flex items-center gap-4">
-            <BranchIsWalletConnected>
-              <BranchIsAuthenticated>
-                <ButtonSIWELogout className="tag tag-light" label="Logout" />
-                <ButtonSIWELogin label="Web3 Login" />
-              </BranchIsAuthenticated>
-              <></>
-            </BranchIsWalletConnected>
+            <BranchButtonLoginOrAccount classNameButtonLogout="menu-item" classNameButtonLogin="menu-item colormode" />
             <LinkComponent className="flex items-center" href="/dashboard">
               <button className="btn btn-pill bg-gradient-button hover:scale-105 hover:shadow-lg">
                 <span className="px-2">Dashboard</span>

@@ -7,7 +7,6 @@ import { useAccount, useNetwork, useSignMessage } from 'wagmi'
 
 import { siweLogin } from '@/integrations/siwe/siwe-login'
 import { useUser } from '@/lib/hooks/app/use-user'
-import { cn } from '@/lib/utils/cn'
 
 interface ButtonSIWELoginProps {
   className?: string
@@ -16,7 +15,7 @@ interface ButtonSIWELoginProps {
   styled?: boolean
   disabled?: boolean
 }
-export const ButtonSIWELogin = ({ className, label = 'Sign-In With Ethereum', disabled, children, styled }: ButtonSIWELoginProps) => {
+export const ButtonSIWELogin = ({ className, label = 'Sign-In With Ethereum', disabled, children }: ButtonSIWELoginProps) => {
   const { mutateUser } = useUser()
   const { isLoading, signMessageAsync } = useSignMessage()
   const { address } = useAccount()
@@ -30,12 +29,13 @@ export const ButtonSIWELogin = ({ className, label = 'Sign-In With Ethereum', di
       console.error(error)
     }
   }
-  const labelClasses = classNames('font-bold', 'shadow-black', 'drop-shadow-lg', {
+  const classes = classNames('ButtonSIWELogin', 'relative', className)
+  const labelClasses = classNames('ButtonSIWELogin__label', {
     'opacity-0': isLoading,
   })
 
   return (
-    <button disabled={disabled} onClick={handleCreateMessage} className={cn('ButtonSIWELogin relative', { styled: styled }, className)}>
+    <button disabled={disabled} onClick={handleCreateMessage} className={classes}>
       {isLoading && <span className="lds-dual-ring light absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}
       <span className={labelClasses}>{children || label || 'Logout'}</span>
     </button>

@@ -1,11 +1,11 @@
 import * as React from 'react'
 
-import Link from 'next/link'
-
 import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
+
+import { LinkComponent } from './link-component'
 
 interface BranchButtonLoginOrAccountProps {
   className?: string
@@ -18,12 +18,12 @@ export const BranchButtonLoginOrAccount = ({ classNameButtonLogin, classNameButt
     <BranchIsWalletConnected>
       <BranchIsAuthenticated>
         <div className="flex items-center gap-3">
-          <Link href="/account">
-            <span className="tag tag-light">Account</span>
-          </Link>
           <ButtonSIWELogout className={classNameButtonLogout} />
+          <LinkComponent href="/account" className="menu-item">
+            <span className="">Account</span>
+          </LinkComponent>
         </div>
-        <ButtonSIWELogin className={classNameButtonLogin} />
+        <ButtonSIWELogin className={'colormode'} />
       </BranchIsAuthenticated>
       <></>
     </BranchIsWalletConnected>

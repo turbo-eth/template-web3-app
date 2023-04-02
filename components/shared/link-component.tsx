@@ -1,8 +1,12 @@
+'use client'
 import React, { ReactNode } from 'react'
 
+import classNames from 'clsx'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
 
-interface Props {
+interface LinkComponentProps {
   href: string
   children: ReactNode
   isExternal?: boolean
@@ -10,8 +14,11 @@ interface Props {
   target?: string
 }
 
-export function LinkComponent({ href, children, isExternal, className, target = '_blank' }: Props) {
-  const classes = className ?? ''
+export function LinkComponent({ href, children, isExternal, className, target = '_blank' }: LinkComponentProps) {
+  const pathname = usePathname()
+  const classes = classNames(className, 'LinkComponent', {
+    active: pathname === href,
+  })
   const isExternalEnabed = href.match(/^([a-z0-9]*:|.{0})\/\/.*$/) || isExternal
 
   if (isExternalEnabed) {
