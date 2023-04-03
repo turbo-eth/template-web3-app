@@ -56,7 +56,7 @@ export default function Home() {
             </motion.div>
             <p className="mt-6 text-center text-sm">
               <LinkComponent className="link" href="https://github.com/turbo-eth/template-web3-app/tree/demo/integrations">
-                Click here to view the <span className="font-bold">demo branch</span> for more integration examples.
+                Click here to view the <span className="font-bold">integrations branch</span> for more examples.
               </LinkComponent>
             </p>
           </motion.div>

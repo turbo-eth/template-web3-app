@@ -6,7 +6,7 @@ import classNames from 'clsx'
 import { useAccount, useNetwork, useSignMessage } from 'wagmi'
 
 import { siweLogin } from '@/integrations/siwe/siwe-login'
-import { useUser } from '@/lib/hooks/app/use-user'
+import { useUser } from '@/lib/hooks/use-user'
 
 interface ButtonSIWELoginProps {
   className?: string
@@ -35,7 +35,7 @@ export const ButtonSIWELogin = ({ className, label = 'Sign-In With Ethereum', di
   })
 
   return (
-    <button disabled={disabled} onClick={handleCreateMessage} className={classes}>
+    <button type="button" disabled={disabled} onClick={handleCreateMessage} className={classes}>
       {isLoading && <span className="lds-dual-ring light absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}
       <span className={labelClasses}>{children || label || 'Logout'}</span>
     </button>

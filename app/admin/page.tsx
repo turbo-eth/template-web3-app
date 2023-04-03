@@ -4,7 +4,7 @@ import AppUsersTable from '@/components/app/app-users-table'
 import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { useGetAppUsers } from '@/lib/hooks/app/use-get-app-users'
-import { useUser } from '@/lib/hooks/app/use-user'
+import { useUser } from '@/lib/hooks/use-user'
 
 export default function PageDashboardTransactions() {
   return (
@@ -14,7 +14,7 @@ export default function PageDashboardTransactions() {
         <BranchIsAuthenticated>
           <></>
           <div className="flex items-center gap-x-5 text-center">
-            <span className="text-sm text-gray-600 dark:text-gray-100">Authenticate to access admin area.</span>
+            <span className="text-sm text-gray-600 dark:text-gray-100">Authenticate to access admin area</span>
             <ButtonSIWELogin className="btn btn-emerald btn-sm" />
           </div>
         </BranchIsAuthenticated>
