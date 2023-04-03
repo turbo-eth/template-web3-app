@@ -70,7 +70,7 @@ body {
 }
 
 .card {
-  @apply bg-card border-2 dark:border-neutral-700 rounded-lg p-6 shadow-sm hover:shadow-md hover:bg-white transition-all duration-300 ease-in-out;
+  @apply bg-card border-2 dark:border-neutral-700 rounded-lg p-6 shadow-sm;
 }
 
 .card-min {

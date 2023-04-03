@@ -67,7 +67,7 @@ export function NavigationMenuGeneral() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Examples</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Integrations</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[600px] gap-3 p-4 md:grid-cols-2">
               {Object.values(turboIntegrations).map((component) => (
