@@ -11,6 +11,7 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 import { turboIntegrations } from '@/data/turbo-integrations'
 import { cn } from '@/lib/utils'
@@ -66,7 +67,7 @@ export function NavigationMenuGeneral() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Documentation</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Examples</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[600px] gap-3 p-4 md:grid-cols-2">
               {Object.values(turboIntegrations).map((component) => (
@@ -76,6 +77,11 @@ export function NavigationMenuGeneral() {
               ))}
             </ul>
           </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <LinkComponent href="https://docs.turboeth.xyz/overview">
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Documentation</NavigationMenuLink>
+          </LinkComponent>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

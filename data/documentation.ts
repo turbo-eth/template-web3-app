@@ -1,7 +1,7 @@
 export const turboIntegrations = {
   siwe: {
     name: 'SIWE',
-    href: '/integration/sign-in-with-ethereum',
+    href: 'https://docs.turboeth.xyz/integration/sign-in-with-ethereum',
     url: 'https://login.xyz/',
     description: 'Sign-In with Ethereum is Web3 authentication using an Ethereum account.',
     imgLight: '/integrations/siwe.svg',
@@ -9,7 +9,7 @@ export const turboIntegrations = {
   },
   disco: {
     name: 'Disco',
-    href: '/integration/disco',
+    href: 'https://docs.turboeth.xyz/integration/disco',
     url: 'https://disco.xyz',
     description: 'Disco is identity simplified. Giving the tools to consent to how information is shared and with whom.',
     imgLight: '/integrations/disco.jpeg',
@@ -17,7 +17,7 @@ export const turboIntegrations = {
   },
   etherscan: {
     name: 'Etherscan',
-    href: '/integration/etherscan',
+    href: 'https://docs.turboeth.xyz/integration/etherscan',
     url: 'https://etherscan.io',
     description: 'Etherscan is the leading block explorer and search, API & analytics platform for Ethereum.',
     imgLight: '/integrations/etherscan-light.svg',
@@ -25,7 +25,7 @@ export const turboIntegrations = {
   },
   rainbowkit: {
     name: 'Rainbowkit',
-    href: '/integration/rainbowkit',
+    href: 'https://docs.turboeth.xyz/integration/rainbowkit',
     url: 'https://rainbowkit.com',
     description: 'The best way to connect a wallet. Designed for everyone. Built for developers.',
     imgLight: '/integrations/rainbowkit.svg',
