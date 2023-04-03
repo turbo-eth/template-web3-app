@@ -59,7 +59,7 @@ export default function DashboardLayout({ children }: any) {
           </ResponsiveMobileAndDesktop>
         </div>
         <div className="relative col-span-12 flex max-h-[100vh] flex-1 flex-col lg:col-span-10">
-          <DashboardHeader className="bg-slate-100 py-3 shadow-md dark:bg-slate-700" />
+          <DashboardHeader className="bg-slate-100 py-3 shadow-sm dark:bg-slate-700" />
           <main className="w-full flex-1 overflow-auto">{children}</main>
         </div>
       </div>
