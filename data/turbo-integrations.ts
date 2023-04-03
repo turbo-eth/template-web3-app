@@ -7,13 +7,21 @@ export const turboIntegrations = {
     imgLight: '/integrations/siwe.svg',
     imgDark: '/integrations/siwe.svg',
   },
-  disco: {
-    name: 'Disco',
-    href: '/integration/disco',
-    url: 'https://disco.xyz',
-    description: 'Disco is identity simplified. Giving the tools to consent to how information is shared and with whom.',
-    imgLight: '/integrations/disco.jpeg',
-    imgDark: '/integrations/disco.jpeg',
+  rainbowkit: {
+    name: 'Rainbowkit',
+    href: '/integration/rainbowkit',
+    url: 'https://rainbowkit.com',
+    description: 'The best way to connect a wallet. Designed for everyone. Built for developers.',
+    imgLight: '/integrations/rainbowkit.svg',
+    imgDark: '/integrations/rainbowkit.svg',
+  },
+  erc20: {
+    name: 'ERC20',
+    href: '/integration/erc20',
+    url: 'https://eips.ethereum.org/EIPS/eip-20',
+    description: 'ERC20 is a standard for fungible tokens on EVM chains',
+    imgLight: '/integrations/erc20-icon.png',
+    imgDark: '/integrations/erc20-icon.png',
   },
   etherscan: {
     name: 'Etherscan',
@@ -23,12 +31,12 @@ export const turboIntegrations = {
     imgLight: '/integrations/etherscan-light.svg',
     imgDark: '/integrations/etherscan-dark.svg',
   },
-  rainbowkit: {
-    name: 'Rainbowkit',
-    href: '/integration/rainbowkit',
-    url: 'https://rainbowkit.com',
-    description: 'The best way to connect a wallet. Designed for everyone. Built for developers.',
-    imgLight: '/integrations/rainbowkit.svg',
-    imgDark: '/integrations/rainbowkit.svg',
+  disco: {
+    name: 'Disco',
+    href: '/integration/disco',
+    url: 'https://disco.xyz',
+    description: 'Disco is identity simplified. Giving the tools to consent to how information is shared and with whom.',
+    imgLight: '/integrations/disco.jpeg',
+    imgDark: '/integrations/disco.jpeg',
   },
 }
