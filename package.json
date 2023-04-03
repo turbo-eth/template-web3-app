@@ -1,7 +1,13 @@
 {
   "name": "@turbo-eth/template-web3-app",
-  "version": "0.0.4",
+  "version": "0.0.0",
   "license": "MIT",
+  "contributors": [
+    {
+      "name": "Kames Geraghty",
+      "did": "kames.eth"
+    }
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
