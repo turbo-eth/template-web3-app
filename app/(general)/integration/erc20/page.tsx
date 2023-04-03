@@ -15,7 +15,6 @@ import { ERC20WriteMint } from '@/integrations/erc20/components/erc20-write-mint
 import { ERC20WriteTransfer } from '@/integrations/erc20/components/erc20-write-transfer'
 
 export default function PageIntegration() {
-  const { address } = useAccount()
   return (
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center">
