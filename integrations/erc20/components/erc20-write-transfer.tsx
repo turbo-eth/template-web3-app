@@ -37,8 +37,8 @@ export function ERC20ContractTransferTokens() {
         <label>To</label>
         <input placeholder="kames.eth" {...register('to')} className="input" />
         {errors.exampleRequired && <span>This field is required</span>}
-        <button type="submit" className="btn btn-primary">
-          Deploy
+        <button type="submit" className="btn btn-emerald">
+          Transfer
         </button>
       </form>
     </>

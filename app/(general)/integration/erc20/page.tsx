@@ -72,7 +72,9 @@ export default function PageIntegration() {
                 <></>
               </BranchTokenMinted>
             </div>
-            <WalletConnect className="mx-auto inline-block" />
+            <div className="flex flex-center">
+              <WalletConnect />
+            </div>
           </BranchIsWalletConnected>
         </div>
       </section>

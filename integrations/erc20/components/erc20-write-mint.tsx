@@ -34,7 +34,7 @@ function ERC20ContractMintTokens() {
         <label>Amount</label>
         <input className="input" placeholder="1000" {...register('amount')} />
         {errors.exampleRequired && <span>This field is required</span>}
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-emerald">
           Mint
         </button>
       </form>

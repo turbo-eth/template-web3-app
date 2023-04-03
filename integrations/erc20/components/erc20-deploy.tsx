@@ -37,7 +37,7 @@ export function DeployERC20Contract() {
         <label>Symbol</label>
         <input {...register('symbol')} className="input" />
         {errors.exampleRequired && <span>This field is required</span>}
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-emerald">
           Deploy
         </button>
       </form>
