@@ -6,7 +6,6 @@ import Balancer from 'react-wrap-balancer'
 
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
-import { DEPLOY_URL } from '@/config/site'
 
 export default function Home() {
   return (
@@ -54,11 +53,11 @@ export default function Home() {
                 <p>Star on GitHub</p>
               </a>
             </motion.div>
-            <p className="mt-6 text-center text-sm">
+            <motion.p className="mt-6 text-center text-sm" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <LinkComponent className="link" href="https://github.com/turbo-eth/template-web3-app/tree/integrations">
                 Click here to view the <span className="font-bold">integrations branch</span> for more examples.
               </LinkComponent>
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </div>
