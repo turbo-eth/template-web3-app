@@ -4,7 +4,7 @@ import { utils } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useAccount } from 'wagmi'
 import { useErc20MintableMint } from '../erc20-wagmi'
-import { useTokenStorage } from '../use-token-storage'
+import { useTokenStorage } from '../hooks/use-token-storage'
 
 import ERC20EventMint from './erc20-event-mint'
 

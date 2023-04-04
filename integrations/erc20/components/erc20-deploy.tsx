@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { useSigner } from 'wagmi'
 import { erc20MintableABI } from '../abis/erc20MintableABI'
 import { erc20MintableByteCode } from '../abis/erc20MintableByteCode'
-import { useTokenStorage } from '../use-token-storage'
+import { useTokenStorage } from '../hooks/use-token-storage'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 

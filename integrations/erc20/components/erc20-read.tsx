@@ -2,7 +2,7 @@ import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-co
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { BigNumber, utils } from 'ethers'
 import { useErc20Decimals, useErc20Name, useErc20Symbol, useErc20TotalSupply } from '../erc20-wagmi'
-import { useTokenStorage } from '../use-token-storage'
+import { useTokenStorage } from '../hooks/use-token-storage'
 
 export function ERC20Image({ address }: { address?: `0x${string}`; className?: string }) {
   return (

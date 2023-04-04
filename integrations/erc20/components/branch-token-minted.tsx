@@ -1,4 +1,4 @@
-import { useTokenStorage } from '../use-token-storage'
+import { useTokenStorage } from '../hooks/use-token-storage'
 
 export function BranchTokenMinted({ children }: any) {
   const [token] = useTokenStorage()

@@ -5,7 +5,7 @@ import { BigNumberish, constants, utils } from 'ethers'
 import { useContractEvent, useToken } from 'wagmi'
 
 import { erc20ABI } from '../erc20-wagmi'
-import { useTokenStorage } from '../use-token-storage'
+import { useTokenStorage } from '../hooks/use-token-storage'
 
 export default function ERC20EventMint() {
   const [token] = useTokenStorage()
