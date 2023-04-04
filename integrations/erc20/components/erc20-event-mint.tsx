@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import { BigNumberish, constants, utils } from 'ethers'
 import { useContractEvent, useToken } from 'wagmi'
+
 import { erc20ABI } from '../erc20-wagmi'
 import { useTokenStorage } from '../use-token-storage'
 
@@ -33,16 +34,14 @@ export default function ERC20EventMint() {
   if (!event) return null
 
   return (
-    <div className="card">
-      <div className="col-span-6">
-        {!event?.to ? null : (
-          <>
-            <p className="">From: {event?.from}</p>
-            <p className="">To: {event?.to}</p>
-            <p className="">Amount: {utils.formatEther(event?.amount.toString() || '0')}</p>
-          </>
-        )}
-      </div>
+    <div className="content py-6">
+      {!event?.to ? null : (
+        <>
+          <p className="">From: {event?.from}</p>
+          <p className="">To: {event?.to}</p>
+          <p className="">Amount: {utils.formatEther(event?.amount.toString() || '0')}</p>
+        </>
+      )}
     </div>
   )
 }

@@ -4,8 +4,9 @@ import { useState } from 'react'
 
 import { BigNumberish, constants, utils } from 'ethers'
 import { useContractEvent } from 'wagmi'
-import { useTokenStorage } from '../use-token-storage'
+
 import { erc20ABI } from '../erc20-wagmi'
+import { useTokenStorage } from '../use-token-storage'
 
 export default function ERC20EventTransfer() {
   const [token] = useTokenStorage()
@@ -33,7 +34,7 @@ export default function ERC20EventTransfer() {
   if (!token) return null
   if (!event) return null
   return (
-    <div className="py-6 content">
+    <div className="content py-6">
       {!event?.to ? null : (
         <>
           <p className="">From: {event?.from}</p>
