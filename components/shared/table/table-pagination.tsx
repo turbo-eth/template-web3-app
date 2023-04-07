@@ -62,6 +62,8 @@ export const TablePagination = ({
             <input
               className="input ml-3 h-[32px] w-[64px] text-neutral-700 dark:text-neutral-800"
               type="number"
+              min={1}
+              max={pageCount}
               defaultValue={pageIndex + 1}
               onChange={(e) => {
                 const page = e.target.value ? Number(e.target.value) - 1 : 0
