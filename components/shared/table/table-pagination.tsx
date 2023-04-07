@@ -76,7 +76,7 @@ export const TablePagination = ({
       </div>
       <div className="">
         <select
-          className="tag tag-smoke text-xl"
+          className="tag tag-smoke min-w-[90px] bg-white text-xl text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
           value={pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value))
