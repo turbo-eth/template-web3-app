@@ -23,7 +23,6 @@ export const TablePagination = ({
   canPreviousPage,
   canNextPage,
   pageCount,
-  pageOptions,
   pageIndex,
   gotoPage,
   nextPage,
@@ -53,7 +52,7 @@ export const TablePagination = ({
         <span className="mx-2">
           Page{' '}
           <strong>
-            {pageIndex + 1} of {pageOptions.length}
+            {pageIndex + 1} of {pageCount}
           </strong>{' '}
         </span>
         |
