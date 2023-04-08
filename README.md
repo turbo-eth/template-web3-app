@@ -19,7 +19,7 @@ pnpm dev
 
 #### Build
 ```bash
-pnpm dev
+pnpm build
 ```
 
 
