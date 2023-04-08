@@ -6,13 +6,13 @@ import { useNetwork } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 import TransactionsTable from '@/integrations/etherscan/components/transactions-table'
 import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
 
@@ -57,7 +57,7 @@ export default function PageIntegration() {
           <BranchIsWalletConnected>
             <BranchIsAuthenticated>
               <ButtonSIWELogout className="btn btn-blue btn-lg " />
-              <ButtonSIWELogin className="btn btn-pill btn-emerald btn-lg min-h-[70px] min-w-[200px] text-xl" label="Web3 Login" />
+              <ButtonSIWELogin className="btn btn-pill btn-emerald btn-lg min-h-[70px] min-w-[200px] text-xl" />
             </BranchIsAuthenticated>
             <WalletConnect className="mx-auto inline-block" />
           </BranchIsWalletConnected>

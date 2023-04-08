@@ -6,7 +6,7 @@ import { useNetwork } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'

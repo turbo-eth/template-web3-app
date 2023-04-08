@@ -1,13 +1,15 @@
 import { useState } from 'react'
 
-import { ethers, Signer } from 'ethers'
+import { Signer, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useSigner } from 'wagmi'
-import { erc20MintableABI } from '../abis/erc20MintableABI'
-import { erc20MintableByteCode } from '../abis/erc20MintableByteCode'
-import { useTokenStorage } from '../hooks/use-token-storage'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
+import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+
+import { erc20MintableABI } from '../abis/erc20-mintable-abi'
+import { erc20MintableByteCode } from '../abis/erc20-mintable-bytecode'
+import { useTokenStorage } from '../hooks/use-token-storage'
 
 export function DeployERC20Contract() {
   const [token, setToken] = useTokenStorage()

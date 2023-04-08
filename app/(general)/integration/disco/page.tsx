@@ -6,7 +6,7 @@ import { useAccount } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
@@ -72,7 +72,7 @@ export default function PageIntegration() {
             </div>
             <>
               <div className="text-center">
-                <ButtonSIWELogin className="btn btn-emerald" label="Web3 Connect" />
+                <ButtonSIWELogin className="btn btn-emerald" label="Sign-In With Ethereum" />
                 <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-200">
                   Accessing the Disco API requires authenticating with an Ethereum Account.
                 </p>

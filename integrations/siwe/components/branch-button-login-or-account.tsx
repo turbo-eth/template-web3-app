@@ -1,11 +1,10 @@
 import * as React from 'react'
 
-import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { LinkComponent } from '@/components/shared/link-component'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
-
-import { LinkComponent } from './link-component'
 
 interface BranchButtonLoginOrAccountProps {
   className?: string
