@@ -23,7 +23,6 @@ export const TablePagination = ({
   canPreviousPage,
   canNextPage,
   pageCount,
-  pageOptions,
   pageIndex,
   gotoPage,
   nextPage,
@@ -53,7 +52,7 @@ export const TablePagination = ({
         <span className="mx-2">
           Page{' '}
           <strong>
-            {pageIndex + 1} of {pageOptions.length}
+            {pageIndex + 1} of {pageCount}
           </strong>{' '}
         </span>
         |
@@ -63,6 +62,8 @@ export const TablePagination = ({
             <input
               className="input ml-3 h-[32px] w-[64px] text-neutral-700 dark:text-neutral-800"
               type="number"
+              min={1}
+              max={pageCount}
               defaultValue={pageIndex + 1}
               onChange={(e) => {
                 const page = e.target.value ? Number(e.target.value) - 1 : 0
@@ -75,7 +76,7 @@ export const TablePagination = ({
       </div>
       <div className="">
         <select
-          className="tag tag-smoke text-xl"
+          className="tag tag-smoke min-w-[90px] bg-white text-xl text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
           value={pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value))
