@@ -5,7 +5,7 @@ import * as React from 'react'
 import classNames from 'clsx'
 import { useAccount, useNetwork, useSignMessage } from 'wagmi'
 
-import { siweLogin } from '@/integrations/siwe/siwe-login'
+import { siweLogin } from '@/integrations/siwe/actions/siwe-login'
 import { useUser } from '@/lib/hooks/use-user'
 
 interface ButtonSIWELoginProps {

@@ -5,7 +5,7 @@ import { FaCopy } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
