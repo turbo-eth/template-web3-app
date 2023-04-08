@@ -12,7 +12,7 @@ import Balancer from 'react-wrap-balancer'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import Card from '@/components/shared/card'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
@@ -181,7 +181,7 @@ const features = [
         <BranchIsWalletConnected>
           <BranchIsAuthenticated>
             <ButtonSIWELogout className="btn btn-blue btn-lg " />
-            <ButtonSIWELogin className="btn btn-emerald" label="Web3 Connect" />
+            <ButtonSIWELogin className="btn btn-emerald" label="Sign-In With Ethereum" />
           </BranchIsAuthenticated>
           <WalletConnect />
         </BranchIsWalletConnected>

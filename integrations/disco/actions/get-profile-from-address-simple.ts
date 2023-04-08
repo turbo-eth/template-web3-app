@@ -1,10 +1,10 @@
-import { discoAPI } from '@/integrations/disco/disco-api'
+import { discoClient } from '@/integrations/disco/disco-client'
 
 export async function discoGetProfileFromAddress(address?: string): Promise<any> {
   if (!address) {
     return null
   }
-  const { data } = await discoAPI.get(`/profile/address/${address}`)
+  const { data } = await discoClient.get(`/profile/address/${address}`)
   return data
 }
 

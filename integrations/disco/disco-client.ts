@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const discoAPI = axios.create({
+export const discoClient = axios.create({
   baseURL: 'https://api.disco.xyz/v1',
   timeout: 20000,
   headers: {

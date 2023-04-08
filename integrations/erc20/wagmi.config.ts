@@ -1,8 +1,8 @@
 import { defineConfig } from '@wagmi/cli'
 import { react } from '@wagmi/cli/plugins'
 
-import { erc20ABI } from './abis/erc20ABI'
-import { erc20MintableABI } from './abis/erc20MintableABI'
+import { erc20ABI } from './abis/erc20-abi'
+import { erc20MintableABI } from './abis/erc20-mintable-abi'
 
 export default defineConfig({
   out: './erc20-wagmi.ts',

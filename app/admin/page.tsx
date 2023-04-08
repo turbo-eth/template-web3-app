@@ -1,7 +1,7 @@
 'use client'
 
 import AppUsersTable from '@/components/app/app-users-table'
-import { BranchIsAuthenticated } from '@/components/shared/branch-is-authenticated'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { useGetAppUsers } from '@/lib/hooks/app/use-get-app-users'
 import { useUser } from '@/lib/hooks/app/use-user'

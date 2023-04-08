@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { discoGetProfileFromAddress } from '@/integrations/disco/get-profile-from-address'
+import { discoGetProfileFromAddress } from '@/integrations/disco/actions/get-profile-from-address'
 import { withSessionRoute } from '@/lib/server'
 
 const routeDiscoProfileFromAddress = withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {

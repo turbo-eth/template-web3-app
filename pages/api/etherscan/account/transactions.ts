@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
-import { etherscanAccountTransactions } from '@/integrations/etherscan/account-transactions'
+import { etherscanAccountTransactions } from '@/integrations/etherscan/actions/etherscan-account-transactions'
 import { withSessionRoute } from '@/lib/server'
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
