@@ -1,8 +1,31 @@
-# ⚡ TurboETH Web3 App Template
-Build Web3 In Turbo Mode
+![image](https://user-images.githubusercontent.com/3408362/230732083-1c98e451-08af-41c2-b522-126370e8c6a5.png)
 
-[Demo](https://turboeth.xyz) | [Deploy](https://deploy.turboeth.xyz)
+# ⚡ TurboETH - Web3 App Starter Kit
+Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!
 
+### Start Kit Examples
+- [Main](https://light.turboeth.xyz) - `main` branch
+- [Heavy](https://turboeth.xyz) - `integrations` branch
+
+Deploy TurboETH `main` directly to [Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app&project-name=TurboETH&repository-name=turbo-eth&demo-title=TurboETH&env=APP_ADMINS,NEXT_PUBLIC_ALCHEMY_API_KEY,NEXTAUTH_SECRET,ETHERSCAN_API_KEY,ETHERSCAN_API_KEY_OPTIMISM,ETHERSCAN_API_KEY_ARBITRUM,ETHERSCAN_API_KEY_POLYGON,DATABASE_URL&envDescription=How%20to%20get%20these%20env%20variables%3A&envLink=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app%2Fblob%2Fmain%2F.env.example)
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fnext.js%2Ftree%2Fcanary%2Fexamples%2Fhello-world)
+
+### [Documentation](https://docs.turboeth.xyz)
+- Getting Started
+  - [Environment Variables](https://docs.turboeth.xyz/getting-started/environment)
+  - [JSON-RPC](https://docs.turboeth.xyz/getting-started/json-rpc)
+  - [WAGMI CLI](https://docs.turboeth.xyz/getting-started/wagmi-cli)
+  - [UI Components](https://docs.turboeth.xyz/getting-started/design-system)
+  - [Backend Database](https://docs.turboeth.xyz/getting-started/database)
+ - Core Integrations
+   - [🌈 RainbowKit](https://docs.turboeth.xyz/integration/rainbowkit)
+   - [🔏 Sign-In With Ethereum](https://docs.turboeth.xyz/integration/sign-in-with-ethereum)
+- Smart Contract Integrations
+  - [ERC20](https://docs.turboeth.xyz/integration/smart-contract-erc20)
+- API Integrations
+  - [Disco](https://docs.turboeth.xyz/integration/disco)
+  - [Etherscan](https://docs.turboeth.xyz/integration/etherscan)
 
 # Getting Started
 
@@ -19,84 +42,30 @@ pnpm dev
 
 #### Build
 ```bash
-pnpm dev
+pnpm build
 ```
 
-
-### Web3 Protocols and Services
-- [Disco](https://docs.disco.xyz/) - Web3 identity simplified 
-- [Etherscan](https://docs.etherscan.io) - Blockchain metadata 
-- [Sign-In With Ethereum](https://login.xyz/) - Account authentication
-
-### Web3 Developer Experience
-- [RainbowKit](https://www.rainbowkit.com/) - Wallet connection manager
+### Web3 Core
 - [WAGMI CLI](https://wagmi.sh/cli/getting-started) - Automatic React Hook Generation
+- [RainbowKit](https://www.rainbowkit.com/) - Wallet connection manager
+- [Sign-In With Ethereum](https://login.xyz/) - Account authentication
 
 ### Web2 Frameworks
 - [Vercel](https://vercel.com/) - App Infrastructure
 - [Prisma](https://www.prisma.io/) - Database ORM 
 
 ### Developer Experience
-- TypeScript – Static type checker for end-to-end typesafety
-- Prettier – Opinionated code formatter for consistent code style
-- ESLint – Pluggable linter for Next.js and TypeScript
+- [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety
+- [Prettier](https://prettier.io/) – Opinionated code formatter for consistent code style
+- [ESLint](https://eslint.org/) – Pluggable linter for Next.js and TypeScript
 
 ### User Interface
-- Tailwind CSS – Utility-first CSS framework for rapid UI development
-- Radix – Primitives like modal, popover, etc. to build a stellar user experience
-- Framer Motion – Motion library for React to animate components with ease
-- Lucide – Beautifully simple, pixel-perfect icons
+- [TailwindCSS](https://tailwindcss.com) – Utility-first CSS framework for rapid UI development
+- [Radix](https://www.radix-ui.com/) – Primitives like modal, popover, etc. to build a stellar user experience
+- [Framer Motion](https://www.framer.com/motion/) – Motion library for React to animate components with ease
+- [Lucide](https://lucide.dev/docs/lucide-react) – Beautifully simple, pixel-perfect icons
 
 The [ui.shadcn.com](https://ui.shadcn.com) components are included in the `/components/shared/ui` folder.
-
-# 🏗️ Setup
-The TurboETH build system currently supports several Web3 integrations:
-
-- [Sign-In With Ethereum](https://login.xyz/)
-- [Disco Data Backpack](https://docs.disco.xyz/)
-- [Etherscan](https://docs.etherscan.io)
-
-Have a suggestion? Open a ticket!
-
-## Sign-In With Ethereum
-
-More information coming soon...
-
-## Disco Data Backpack
-
-More information coming soon...
-
-## Etherscan
-Etherscan API services are integrated in `/pages/api/etherscan` and `/lib/services/etherscan` folder.
-
-More information coming soon...
-
-## WAGMI CLI
-
-TurboETH includes support for [`@wagmi/cli`](https://wagmi.sh/cli/getting-started) to automatically generate hooks and other boilerplate.
-
-#### Init
-```bash
-pnpm wagmi:init
-```
-
-#### Generate
-```bash
-pnpm wagmi:generate
-```
-
-# Application Database
-
-1. Set the DATABASE_URL in the .env file to point to your existing database. If your database has no tables yet, read https://pris.ly/d/getting-started
-
-2. Set the provider of the datasource block in schema.prisma to match your database: postgresql, mysql, sqlite, sqlserver, mongodb or cockroachdb.
-
-3. Run `prisma db pull` to turn your database schema into a Prisma schema.
-
-4. Run `prisma generate` to generate the Prisma Client. You can then start querying your database.
-
-More information in our documentation:
-https://pris.ly/d/getting-started
 
 # 💻 Developer Experience
 
@@ -147,47 +116,12 @@ Common types according to [commitlint-config-conventional (based on the Angular 
 - style
 - test
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=nexth&filter=next.js&utm_source=nexth&utm_campaign=nexth-readme) from the creators of Next.js.
-
-https://deploy.turboeth.xyz
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-### Sponsors
-
-The TurboETH Web3 Build System is sponsored and maintained by District Labs.
-
-<a alt="District Labs" href="https://districtlabs.com/" target="_blank">
- <img src="https://red-effective-snake-988.mypinata.cloud/ipfs/QmXhSGcjL9oqQUpoSLzJ1vWto4B43epATpraqJhV5B4cdB">
-</a>
-
-Interested in sponsoring the development and maintenance of the `TurboETH - Web3 Build System` templates, utilities and modules?
-
-Contact us today at <a alt="District Labs" href="https://districtlabs.com/" target="_blank">District Labs</a> or collect (coming soon) the TurboETH Mirror Collection.
-
 # Acknowledgements
 
 Original template was forked from https://github.com/wslyvh/nexth
 
-Underlying wallet manage and design systems were changed, but the template is continuing to use the original folder structure, plus other developer experience optimizations.
-
 Thank you @wslyvh 🙏
-
-The Precedent design system was absorbed (https://github.com/steven-tey/precedent) into TurboETH. 
-
-Muchas gracies @steven-tey 🙏
-
-# Why TurboETH? Hybrid Applications!
-TurboETH blends traditional Web2 application technologies with cutting-edge Web3 cryptographic primitives. 
-
-Why? So developers can start building next-generation applications today.
-
-<img width="420px" src="https://user-images.githubusercontent.com/3408362/212877207-58a9b8c3-937b-4048-a1d4-5a2f79c977ff.png" />
-
-https://twitter.com/ryanberckmans/status/1613947275625074696
 
 <hr/>
 
-Copyright 2022 [Kames Geraghty](https://twitter.com/KamesGeraghty)
+Copyright 2023 [Kames Geraghty](https://twitter.com/KamesGeraghty)
