@@ -1,6 +1,6 @@
 ![image](https://user-images.githubusercontent.com/3408362/230732083-1c98e451-08af-41c2-b522-126370e8c6a5.png)
 
-# ⚡ TurboETH - Web3 App Starter Kit
+# ⚡ TurboETH - Web3 App Template
 Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!
 
 ### Start Kit Examples
