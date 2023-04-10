@@ -14,8 +14,9 @@ This React Hook allows you to add, get, and manage Ethereum private keys in a br
 `sessionKeys`
 An array of session keys from IndexedDB. Any changes to the session keys in IndexedDB will be reflected in the sessionKeys array automatically, thanks to Dexie's live query.
 
-`createSessionKey()`
+`createSessionKey(id)`
 Creates a new Ethereum private key using the [viem](https://viem.sh/) library, saves it to IndexedDB with [Dexie.js](https://dexie.org/), and returns the newly created session key object containing the session key's address and private.
+An optional `id` parameter can be provided, which will be saved as the session key entry in IndexedDB; if no `id` is given, it will default to the generated session key `address`.
 
 **Error Handling:**
 - Throws an error if the session key is already saved or if it is not a valid private key.
@@ -32,8 +33,9 @@ Deletes a session key from IndexedDB using the given Ethereum address.
 Deletes all session keys from IndexedDB.
 
 
-`getSessionAccount(address)`
-Retrieves a Viem account corresponding to a specific Ethereum private key stored in IndexedDB using the given Ethereum address.
+`getSessionAccount(id)`
+Retrieves a Viem account corresponding to a specific Ethereum private key stored in IndexedDB using the given `id`.
+
 **Error Handling:**
 - Throws an error if the session key does not exist or if the session key is not a valid private key.
 
