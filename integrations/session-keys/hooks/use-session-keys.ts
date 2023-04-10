@@ -23,26 +23,26 @@ export const useSessionKeys = () => {
 
   /**
    * Gets a session private key from indexedDB
-   * @param address - The address of the session key
+   * @param id - The id of the session key database entry
    * @returns sessionKey - The stored session key object
    */
-  const getStoredSessionKey = async (address: `0x${string}`) => {
-    const storedSessionKey = await db.sessionKey.get(address)
+  const getStoredSessionKey = async (id: string) => {
+    const storedSessionKey = await db.sessionKey.get(id)
     return storedSessionKey
   }
 
   /**
    * Checks if a session private key is valid
-   * @param sessionKey - The session private key
+   * @param privateKey - The session private key
    * @returns object - Object with a boolean success and an error if the session key is not valid or the viem account if it is valid
    * @throws Error - If the session key is not a valid private key
    * @example
    * isValidSessionKey('0x12343') // false
    * isValidSessionKey('0x1234567890123456789012345678901234567890123456789012345678901234') // true
    * */
-  const isValidPrivateKey = (sessionKey: `0x${string}`) => {
+  const isValidPrivateKey = (privateKey: `0x${string}`) => {
     try {
-      const account = privateKeyToAccount(sessionKey)
+      const account = privateKeyToAccount(privateKey)
       return { success: true, account }
     } catch (error) {
       return { success: false, error }
@@ -50,15 +50,18 @@ export const useSessionKeys = () => {
   }
 
   /**
-   * Saves a session key to indexedDB
-   * @param sessionKey - The session private key
+   * Saves a session key to indexedDB using an optional id and the given Ethereum address and private key.
+   * If id is not provided, the address will be used as the id of the indexedDB entry.
+   * @param id - The id of the session key database entry (optional)
+   * @param privateKey - The session private key
    * @returns void
    * @throws Error - If the session key is already saved
    * @throws Error - If the session key is not a valid private key
    *  */
-  const saveSessionKey = async (privateKey: `0x${string}`) => {
-    const account = privateKeyToAccount(privateKey)
-    const storedSessionKey = await getStoredSessionKey(account.address)
+  const saveSessionKey = async ({ id, privateKey }: { id?: string; privateKey: `0x${string}` }) => {
+    const { address } = privateKeyToAccount(privateKey)
+    const storedSessionKey = await getStoredSessionKey(address)
+    const entryId = id ?? address
 
     if (!!storedSessionKey) {
       throw new Error('Session key already exists')
@@ -66,41 +69,43 @@ export const useSessionKeys = () => {
 
     if (isValidPrivateKey(privateKey).success) {
       await db.sessionKey.add({
-        address: account.address,
+        id: entryId,
+        address,
         privateKey,
       })
     } else {
       throw new Error('Invalid private key')
     }
-    return { address: account.address, privateKey }
+    return { address, privateKey }
   }
 
   /**
    * Creates a session key and saves it to indexedDB
-   * Should return an object with address and privateKey
+   * If id is not provided, the address will be used as the id of the indexedDB entry.
+   * @param id - The id of the session key database entry (optional)
    * @returns sessionKey - Object with the session's address and private key
    * @throws Error - If the session key is already saved
    * @throws Error - If the session key is not a valid private key
    * */
-  const createSessionKey = () => {
-    const sessionKey = generatePrivateKey()
-    return saveSessionKey(sessionKey)
+  const createSessionKey = (id?: string) => {
+    const privateKey = generatePrivateKey()
+    return saveSessionKey({ id, privateKey })
   }
 
   /**
-   * Deletes a session key from IndexedDB using the given Ethereum address.
-   * @param address - The address of the session key
+   * Deletes a session key from IndexedDB using the id of the session key.
+   * @param id - The id of the session key
    * @returns void
    * @throws Error - If the session key does not exist
    * @throws Error - If the session key is not a valid private key
    *  */
-  const deleteSessionKey = async (address: `0x${string}`) => {
-    const storedSessionKey = await getStoredSessionKey(address)
+  const deleteSessionKey = async (id: string) => {
+    const storedSessionKey = await getStoredSessionKey(id)
     if (!storedSessionKey) {
       throw new Error('Session key does not exist')
     }
     if (isValidPrivateKey(storedSessionKey.privateKey).success) {
-      await db.sessionKey.delete(address)
+      await db.sessionKey.delete(id)
     }
   }
 
@@ -114,13 +119,13 @@ export const useSessionKeys = () => {
 
   /**
    * Gets a session account from indexedDB
-   * @param address - The address of the session key
+   * @param id - The id of the session key
    * @returns account - The viem account of the session key
    * @throws Error - If the session key does not exist
    * @throws Error - If the session key is not a valid private key
    * */
-  const getSessionAccount = async (address: `0x${string}`) => {
-    const storedSessionKey = await getStoredSessionKey(address)
+  const getSessionAccount = async (id: string) => {
+    const storedSessionKey = await getStoredSessionKey(id)
     if (!storedSessionKey) {
       throw new Error('Session key does not exist')
     }
