@@ -1,29 +1,10 @@
-import { SiweMessage } from 'siwe'
-
-import { siteConfig } from '@/config/site'
+import { siweMessage } from './siwe-message'
 
 export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => {
-  // 1. Get random nonce from API
-  const nonceRes = await fetch('/api/siwe/nonce')
-  const nonce = await nonceRes.text()
+  // 1. Create and sign SIWE message
+  const { message, signature } = await siweMessage({ address, chainId, signMessageAsync })
 
-  // 2. Create SIWE message with pre-fetched nonce and sign with wallet
-  const message = new SiweMessage({
-    domain: window.location.host,
-    address,
-    statement: `Sign in with Ethereum to ${siteConfig.name}`,
-    uri: window.location.origin,
-    version: '1',
-    chainId: chainId,
-    nonce: nonce,
-  })
-
-  // 3. Sign message
-  const signature = await signMessageAsync({
-    message: message.prepareMessage(),
-  })
-
-  // 3. Verify signature
+  // 2. Verify signature
   const verifyRes = await fetch('/api/siwe/verify', {
     method: 'POST',
     headers: {
