@@ -7,7 +7,7 @@ import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-co
 import { TransactionsTable } from '@/integrations/etherscan/components/transactions-table'
 import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
-import { useUser } from '@/lib/hooks/app/use-user'
+import { useUser } from '@/lib/hooks/use-user'
 
 export default function PageDashboardTransactions() {
   return (

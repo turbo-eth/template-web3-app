@@ -1,8 +1,22 @@
 import { SiweMessage } from 'siwe'
+import { SignMessageArgs } from 'wagmi/dist/actions'
 
 import { siteConfig } from '@/config/site'
 
-export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => {
+interface SiweMessageOptions {
+  address: string
+  chainId: number
+  signMessageAsync: (args?: SignMessageArgs | undefined) => Promise<`0x${string}`>
+}
+
+/**
+ * Utility function to create and sign a SIWE message
+ * @param address - Ethereum address
+ * @param chainId - Ethereum chain ID
+ * @param signMessageAsync - Wallet sign message function
+ * @returns SIWE message and signature
+ */
+export const siweMessage = async ({ address, chainId, signMessageAsync }: SiweMessageOptions) => {
   // 1. Get random nonce from API
   const nonceRes = await fetch('/api/siwe/nonce')
   const nonce = await nonceRes.text()
@@ -23,17 +37,8 @@ export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => 
     message: message.prepareMessage(),
   })
 
-  // 3. Verify signature
-  const verifyRes = await fetch('/api/siwe/verify', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ message, signature }),
-  })
-
-  if (!verifyRes.ok) throw new Error('Error verifying message')
-  if (verifyRes.status === 200) {
-    dispatchEvent(new Event('verified'))
+  return {
+    message,
+    signature,
   }
 }

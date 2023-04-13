@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useUser } from '@/lib/hooks/app/use-user'
+import { useUser } from '@/lib/hooks/use-user'
 
 interface BranchIsAuthenticatedProps {
   children?: React.ReactElement | Array<React.ReactElement>
