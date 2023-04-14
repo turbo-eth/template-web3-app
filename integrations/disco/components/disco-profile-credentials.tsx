@@ -3,7 +3,7 @@ import * as React from 'react'
 import classNames from 'clsx'
 
 import { useDiscoGetProfileFromAddress } from '@/integrations/disco/hooks/use-disco-get-profile-from-address'
-import { useUser } from '@/lib/hooks/app/use-user'
+import { useUser } from '@/lib/hooks/use-user'
 
 interface DiscoProfileCredentialsProps {
   className?: string
