@@ -48,4 +48,12 @@ export const turboIntegrations = {
     imgLight: '/integrations/session-keys.png',
     imgDark: '/integrations/session-keys.png',
   },
+  litProtocol: {
+    name: 'Lit Protocol',
+    href: '/integration/lit-protocol/share',
+    url: 'https://litprotocol.com/',
+    description: 'Lit is distributed key management for encryption, signing, and compute.',
+    imgLight: '/integrations/lit-protocol.svg',
+    imgDark: '/integrations/lit-protocol.svg',
+  },
 }

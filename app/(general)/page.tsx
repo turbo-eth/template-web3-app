@@ -12,12 +12,12 @@ import Balancer from 'react-wrap-balancer'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import Card from '@/components/shared/card'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { DEPLOY_URL, siteConfig } from '@/config/site'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
 
@@ -227,6 +227,16 @@ const features = [
         <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc721/0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8/42`}>
           View Token Page
         </Link>
+      </div>
+    ),
+  },
+  {
+    title: turboIntegrations.litProtocol.name,
+    description: turboIntegrations.litProtocol.description,
+    href: turboIntegrations.litProtocol.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <Image alt="Lit Protocol logo" src="/integrations/lit-protocol.svg" width={100} height={100} />
       </div>
     ),
   },
