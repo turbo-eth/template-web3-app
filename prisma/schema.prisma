@@ -8,8 +8,19 @@ datasource db {
 }
 
 model User {
-  id        String @id @map("_id")
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id        String   @id @map("_id")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   address   String
+}
+
+model LitProtocolMessage {
+  id              String              @id @default(uuid()) @map("_id")
+  encryptedString String
+  metadata        LitProtocolMetadata
+}
+
+type LitProtocolMetadata {
+  accessControlConditions Json[]
+  encryptedSymmetricKey   String
 }

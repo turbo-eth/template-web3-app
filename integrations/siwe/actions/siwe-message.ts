@@ -14,7 +14,7 @@ interface SiweMessageOptions {
  * @param address - Ethereum address
  * @param chainId - Ethereum chain ID
  * @param signMessageAsync - Wallet sign message function
- * @returns SIWE message and signature
+ * @returns SIWE message, message to sign and signature
  */
 export const siweMessage = async ({ address, chainId, signMessageAsync }: SiweMessageOptions) => {
   // 1. Get random nonce from API
@@ -32,13 +32,17 @@ export const siweMessage = async ({ address, chainId, signMessageAsync }: SiweMe
     nonce: nonce,
   })
 
-  // 3. Sign message
+  // 3. Prepare the message to sign
+  const messageToSign = message.prepareMessage()
+
+  // 4. Sign message
   const signature = await signMessageAsync({
     message: message.prepareMessage(),
   })
 
   return {
     message,
+    messageToSign,
     signature,
   }
 }
