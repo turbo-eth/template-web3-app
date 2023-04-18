@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { Address } from '@turbo-eth/core-wagmi'
-import Link from 'next/link'
 
 import TableCore from '../shared/table/table-core'
 import { TimeFromUtc } from '../shared/time-from-utc'
