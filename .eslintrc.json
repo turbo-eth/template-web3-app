@@ -31,6 +31,7 @@
         "@typescript-eslint/consistent-type-imports": "off", // Ensure `import type` is used when it's necessary
         "import/prefer-default-export": "off", // Named export is easier to refactor automatically
         "unused-imports/no-unused-vars": "off",
+        "unused-imports/no-unused-imports-ts": "error",
         "tailwindcss/classnames-order": [
           "warn",
           {
