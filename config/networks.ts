@@ -16,8 +16,8 @@ arbitrumGoerli.iconUrl = '/icons/NetworkArbitrumTest.svg'
 // @ts-ignore
 baseGoerli.iconUrl = '/icons/NetworkBaseTest.svg'
 
-const CHAINS_SUPPORTED_BY_ALCHEMY = [mainnet, goerli, sepolia]
-const CHAINS_SUPPORTED_BY_INFURA = [mainnet, goerli, sepolia]
+const CHAINS_SUPPORTED_BY_ALCHEMY = [mainnet, goerli, sepolia] // TODO add other chains supported by Alchemy
+const CHAINS_SUPPORTED_BY_INFURA = [mainnet, goerli, sepolia]  // TODO add other chains supported by Infura
 const CHAINS_SUPPORTED_BY_PUBLIC_PROVIER = [arbitrum, arbitrumGoerli, baseGoerli, goerli, mainnet, optimism, optimismGoerli, polygon, sepolia]
 const CHAINS_SUPPORTED_BY_HARDHAT = [hardhat]
 
