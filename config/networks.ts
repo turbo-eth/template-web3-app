@@ -17,7 +17,7 @@ arbitrumGoerli.iconUrl = '/icons/NetworkArbitrumTest.svg'
 baseGoerli.iconUrl = '/icons/NetworkBaseTest.svg'
 
 const CHAINS_SUPPORTED_BY_ALCHEMY = [mainnet, goerli, sepolia] // TODO add other chains supported by Alchemy
-const CHAINS_SUPPORTED_BY_INFURA = [mainnet, goerli, sepolia]  // TODO add other chains supported by Infura
+const CHAINS_SUPPORTED_BY_INFURA = [mainnet, goerli, sepolia] // TODO add other chains supported by Infura
 const CHAINS_SUPPORTED_BY_PUBLIC_PROVIER = [arbitrum, arbitrumGoerli, baseGoerli, goerli, mainnet, optimism, optimismGoerli, polygon, sepolia]
 const CHAINS_SUPPORTED_BY_HARDHAT = [hardhat]
 
@@ -42,15 +42,14 @@ if (process.env.NEXT_PUBLIC_INFURA_API_KEY) {
   )
 }
 
-// Fallback to public provider
-// Only include public provider if no other providers are available.
-if (process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER) {
-  CHAINS.push(...CHAINS_SUPPORTED_BY_PUBLIC_PROVIER)
+if (process.env.NEXT_PUBLIC_USE_HARDHAT) {
+  CHAINS.push(...CHAINS_SUPPORTED_BY_HARDHAT)
   PROVIDERS.push(publicProvider())
 }
 
-if (process.env.NEXT_PUBLIC_USE_HARDHAT) {
-  CHAINS.push(...CHAINS_SUPPORTED_BY_HARDHAT)
+// Include public provider if no other providers are available.
+if (process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER || PROVIDERS.length === 0) {
+  CHAINS.push(...CHAINS_SUPPORTED_BY_PUBLIC_PROVIER)
   PROVIDERS.push(publicProvider())
 }
 
@@ -58,4 +57,5 @@ if (process.env.NEXT_PUBLIC_USE_HARDHAT) {
 const UNIQUE_CHAINS = [...new Set(CHAINS)]
 
 // @ts-ignore
+// TODO: The sepolia chain is throwing type errors for some reason.
 export const { chains, provider } = configureChains(UNIQUE_CHAINS, [...PROVIDERS])
