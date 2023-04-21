@@ -42,7 +42,7 @@ if (process.env.NEXT_PUBLIC_INFURA_API_KEY) {
   )
 }
 
-if (process.env.NEXT_PUBLIC_USE_HARDHAT) {
+if (process.env.NEXT_PUBLIC_USE_HARDHAT_PROVIDER) {
   CHAINS.push(...CHAINS_SUPPORTED_BY_HARDHAT)
   PROVIDERS.push(publicProvider())
 }
