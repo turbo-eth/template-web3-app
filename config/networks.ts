@@ -16,14 +16,16 @@ arbitrumGoerli.iconUrl = '/icons/NetworkArbitrumTest.svg'
 // @ts-ignore
 baseGoerli.iconUrl = '/icons/NetworkBaseTest.svg'
 
-export const ETH_CHAINS_TEST = [mainnet, baseGoerli, optimismGoerli, arbitrumGoerli, goerli, sepolia, hardhat]
-export const ETH_CHAINS_PROD = [mainnet, optimism, arbitrum, polygon]
-
-export const CHAINS = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : ETH_CHAINS_TEST
+const CHAINS_SUPPORTED_BY_ALCHEMY = [mainnet, goerli, sepolia] // TODO add other chains supported by Alchemy
+const CHAINS_SUPPORTED_BY_INFURA = [mainnet, goerli, sepolia] // TODO add other chains supported by Infura
+const CHAINS_SUPPORTED_BY_PUBLIC_PROVIER = [arbitrum, arbitrumGoerli, baseGoerli, goerli, mainnet, optimism, optimismGoerli, polygon, sepolia]
+const CHAINS_SUPPORTED_BY_HARDHAT = [hardhat]
 
 const PROVIDERS = []
+const CHAINS = []
 
 if (process.env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
+  CHAINS.push(...CHAINS_SUPPORTED_BY_ALCHEMY)
   PROVIDERS.push(
     alchemyProvider({
       apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
@@ -32,6 +34,7 @@ if (process.env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
 }
 
 if (process.env.NEXT_PUBLIC_INFURA_API_KEY) {
+  CHAINS.push(...CHAINS_SUPPORTED_BY_INFURA)
   PROVIDERS.push(
     infuraProvider({
       apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string,
@@ -39,11 +42,20 @@ if (process.env.NEXT_PUBLIC_INFURA_API_KEY) {
   )
 }
 
-// Only include public provider if no other providers are available.
-// Or if the public provider is manually added.
-if (PROVIDERS.length === 0 || process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER) {
+if (process.env.NEXT_PUBLIC_USE_HARDHAT_PROVIDER) {
+  CHAINS.push(...CHAINS_SUPPORTED_BY_HARDHAT)
   PROVIDERS.push(publicProvider())
 }
 
+// Include public provider if no other providers are available.
+if (process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER || PROVIDERS.length === 0) {
+  CHAINS.push(...CHAINS_SUPPORTED_BY_PUBLIC_PROVIER)
+  PROVIDERS.push(publicProvider())
+}
+
+// deduplicate chains
+const UNIQUE_CHAINS = [...new Set(CHAINS)]
+
 // @ts-ignore
-export const { chains, provider } = configureChains(CHAINS, [...PROVIDERS])
+// TODO: The sepolia chain is throwing type errors for some reason.
+export const { chains, provider } = configureChains(UNIQUE_CHAINS, [...PROVIDERS])
