@@ -9,6 +9,7 @@ export default function Head() {
       <title>{`${siteConfig.name} - ${siteConfig.description}`}</title>
       <meta charSet="utf-8" />
       <meta name="description" content={siteConfig.description} />
+
       <link rel="icon" type="image/x-icon" href="/favicon.ico"></link>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta property="og:type" content="website" />
