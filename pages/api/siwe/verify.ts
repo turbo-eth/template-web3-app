@@ -4,7 +4,8 @@ import { SiweMessage } from 'siwe'
 import { prisma } from '@/lib/prisma'
 
 import { withSessionRoute } from '../../../lib/server'
-const admins = process.env.APP_ADMINS?.split(',') || []
+const DATABASE_URL = process.env.DATABASE_URL
+const ADMINS = process.env.APP_ADMINS?.split(',') || []
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
@@ -15,20 +16,24 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
       if (fields.nonce !== req.session.nonce) return res.status(422).json({ message: 'Invalid nonce.' })
       req.session.siwe = fields
 
-      if (admins.includes(fields.address)) {
+      if (ADMINS.includes(fields.address)) {
         req.session.isAdmin = true
       }
       await req.session.save()
-      await prisma.user.upsert({
-        where: { id: fields.address },
-        update: {
-          address: fields.address,
-        },
-        create: {
-          id: fields.address,
-          address: fields.address,
-        },
-      })
+      // Minimal feature flag.
+      // TODO: Add a proper feature flagging system.
+      if (DATABASE_URL) {
+        await prisma.user.upsert({
+          where: { id: fields.address },
+          update: {
+            address: fields.address,
+          },
+          create: {
+            id: fields.address,
+            address: fields.address,
+          },
+        })
+      }
       return res.json({ ok: true })
     } catch (ex) {
       console.error(ex)
