@@ -1,12 +1,11 @@
 'use client'
 import { motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
-import { useAccount } from 'wagmi'
 
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 import { BranchTokenMinted } from '@/integrations/erc20/components/branch-token-minted'
 import { ERC20Deploy } from '@/integrations/erc20/components/erc20-deploy'
@@ -48,7 +47,7 @@ export default function PageIntegration() {
         </motion.div>
       </div>
       <section className="w-full lg:mt-10">
-        <div className="container max-w-screen-lg w-full">
+        <div className="container w-full max-w-screen-lg">
           <BranchIsWalletConnected>
             <div className="w-full">
               <div className="card mb-10">
@@ -71,7 +70,7 @@ export default function PageIntegration() {
                 <></>
               </BranchTokenMinted>
             </div>
-            <div className="flex flex-center">
+            <div className="flex-center flex">
               <WalletConnect />
             </div>
           </BranchIsWalletConnected>

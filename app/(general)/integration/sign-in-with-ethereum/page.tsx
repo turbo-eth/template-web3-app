@@ -2,7 +2,6 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
-import { useNetwork } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
@@ -10,8 +9,6 @@ import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-co
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import TransactionsTable from '@/integrations/etherscan/components/transactions-table'
-import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
 import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
