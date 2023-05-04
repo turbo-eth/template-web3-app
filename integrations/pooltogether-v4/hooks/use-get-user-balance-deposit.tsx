@@ -22,5 +22,5 @@ export function GetUserBalanceDeposit() {
     args: [accountAddress as `0x${string}`],
   })
 
-  return (formatUnits(data?.toString() as unknown as bigint, decimals as number) as unknown as number) || 0.0
+  return data ? (formatUnits(data.toString() as unknown as bigint, decimals as number) as unknown as number) : 0.0
 }
