@@ -63,7 +63,16 @@ export function FormDeposit() {
             </Form.Label>
           </div>
           <Form.Control asChild>
-            <input className="input" value={depositAmount} onChange={(e) => handleChange(e)} type="number" required min="0" max={userBalance} step="any" />
+            <input
+              className="input"
+              value={depositAmount}
+              onChange={(e) => handleChange(e)}
+              type="number"
+              required
+              min="0"
+              max={userBalance}
+              step="any"
+            />
           </Form.Control>
         </Form.Field>
         <Form.Submit asChild>
