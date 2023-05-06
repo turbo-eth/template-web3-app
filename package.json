@@ -121,7 +121,6 @@
     "viem": "^0.2.12",
     "wagmi": "0.11.7"
   },
-  "peerDependencies": {},
   "devDependencies": {
     "@babel/core": "7.18.5",
     "@commitlint/cli": "^17.3.0",
