@@ -3,9 +3,9 @@
 # ⚡ TurboETH - Web3 App Starter Kit
 Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!
 
-### Start Kit Examples
+### Starter Kit Examples
 - [Main](https://light.turboeth.xyz) - `main` branch
-- [Heavy](https://turboeth.xyz) - `integrations` branch
+- [Integrations](https://turboeth.xyz) - `integrations` branch
 
 Deploy TurboETH `main` directly to [Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app&project-name=TurboETH&repository-name=turbo-eth&demo-title=TurboETH&env=APP_ADMINS,NEXT_PUBLIC_ALCHEMY_API_KEY,NEXTAUTH_SECRET,ETHERSCAN_API_KEY,ETHERSCAN_API_KEY_OPTIMISM,ETHERSCAN_API_KEY_ARBITRUM,ETHERSCAN_API_KEY_POLYGON,DATABASE_URL&envDescription=How%20to%20get%20these%20env%20variables%3A&envLink=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app%2Fblob%2Fmain%2F.env.example)
 
