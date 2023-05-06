@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 export async function getAppUsers(): Promise<
   | {
       users?: Array<any>
@@ -8,7 +6,10 @@ export async function getAppUsers(): Promise<
   | void
 > {
   try {
-    const { data } = await axios.get('/api/app/users')
+    const response = await fetch('/api/app/users')
+    if (!response?.ok) throw new Error(response?.statusText)
+
+    const data = await response.json()
     return data
   } catch (error: any) {
     throw error

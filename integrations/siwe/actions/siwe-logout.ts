@@ -1,11 +1,10 @@
-import axios, { AxiosError } from 'axios'
-
 export async function siweLogout(): Promise<boolean> {
   try {
-    await axios.get('/api/siwe/logout')
+    const response = await fetch('/api/siwe/logout')
+    if (!response?.ok) throw new Error(response?.statusText)
     return true
-  } catch (error: any) {
-    if (error instanceof AxiosError == true) {
+  } catch (error: unknown) {
+    if (error instanceof Error == true) {
       return false
     }
     throw new Error(`Unexpected Error`)
