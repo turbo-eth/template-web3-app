@@ -34,7 +34,7 @@
   },
   "packageManager": "pnpm@7.1.8",
   "dependencies": {
-    "@lit-protocol/lit-node-client": "2.1.55",
+    "@lit-protocol/lit-node-client": "2.1.161",
     "@next/bundle-analyzer": "^13.1.1",
     "@next/font": "13.1.1",
     "@prisma/client": "^4.8.1",
