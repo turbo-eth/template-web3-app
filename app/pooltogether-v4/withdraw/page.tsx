@@ -18,6 +18,7 @@ export default function PageDashboardAccount() {
         viewport={{ once: true }}>
         <BranchIsWalletConnected>
           <FormWithdraw />
+          <h3 className="text-lg font-normal">Connect your wallet to withdraw from PoolTogether.</h3>
         </BranchIsWalletConnected>
       </motion.div>
     </>
