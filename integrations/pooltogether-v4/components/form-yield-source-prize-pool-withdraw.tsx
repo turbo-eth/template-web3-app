@@ -6,7 +6,7 @@ import { useDebounce } from 'usehooks-ts'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 
 import { YIELD_SOURCE_PRIZE_POOL_ABI } from '@/actions/pooltogether-v4/abis/yield-source-prize-pool-abi'
-import { GetUserBalanceWithdraw } from '@/actions/pooltogether-v4/hooks/use-get-user-balance-withdraw'
+import { GetUserBalanceWithdraw } from '@/actions/pooltogether-v4/hooks/get-user-balance-withdraw'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
 
@@ -16,8 +16,8 @@ interface Props {
 
 export function FormWithdraw() {
   //  const classes = classNames(props.className, 'Header', 'px-6 lg:px-10 py-3 flex items-center w-full')
-  const [withdrawAmount, setWithdrawAmount] = React.useState(0)
-  const debouncedWithdrawAmount = useDebounce(withdrawAmount * 1000000, 500)
+  const [withdrawAmount, setWithdrawAmount] = React.useState('')
+  const debouncedWithdrawAmount = useDebounce(Number(withdrawAmount) * 1000000, 500)
   const userBalance = GetUserBalanceWithdraw()
   const { address } = useAccount()
   const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)
@@ -41,10 +41,9 @@ export function FormWithdraw() {
   }
 
   const handleChange = (event: any) => {
-    if (isNaN(event.target.valueAsNumber)) {
-      setWithdrawAmount(0)
-    } else {
-      const value = Math.max(0, Math.min(userBalance, Number(event.target.valueAsNumber)))
+    const value = event.target.value
+    const regex = /^[0-9]*\.?[0-9]*$/
+    if (regex.test(value)) {
       setWithdrawAmount(value)
     }
   }
@@ -56,21 +55,18 @@ export function FormWithdraw() {
           <div className="flex justify-between align-baseline">
             <Form.Label className="FormLabel mb-2">Amount </Form.Label>
             <Form.Label className="FormLabel mb-2">
-              <a className="ml-10 cursor-pointer hover:underline" onClick={() => setWithdrawAmount(userBalance)}>
-                {userBalance}
+              <a className="ml-10 cursor-pointer hover:underline" onClick={() => setWithdrawAmount(userBalance.toString())}>
+                {Number(userBalance).toFixed(2)} USDC
               </a>
             </Form.Label>
           </div>
           <Form.Control asChild>
             <input
               className="input"
-              value={withdrawAmount}
+              value={Number(withdrawAmount) < userBalance ? withdrawAmount : userBalance}
               onChange={(e) => handleChange(e)}
-              type="number"
-              required
-              min="0"
-              max={userBalance}
-              step="any"
+              type="text"
+              required={true}
             />
           </Form.Control>
         </Form.Field>
