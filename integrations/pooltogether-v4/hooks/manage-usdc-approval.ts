@@ -16,5 +16,5 @@ export function ManageUsdcApproval(userBalance: number) {
     functionName: 'allowance',
     args: [accountAddress as `0x${string}`, prizePoolAddress],
   })
-  return !BigNumber.from(data).eq(BigNumber.from(0)) && BigNumber.from(data).gte(BigNumber.from(userBalance * 1000000))
+  return data ? !BigNumber.from(data).eq(BigNumber.from(0)) && BigNumber.from(data).gte(BigNumber.from(userBalance * 1000000)) : false
 }
