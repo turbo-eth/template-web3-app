@@ -2,36 +2,36 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 
 import * as Form from '@radix-ui/react-form'
+import { useErc20Decimals } from '@turbo-eth/erc20-wagmi'
 import { BigNumber, ethers } from 'ethers'
 import { useDebounce } from 'usehooks-ts'
 import { erc20ABI, useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 
 import { YIELD_SOURCE_PRIZE_POOL_ABI } from '@/actions/pooltogether-v4/abis/yield-source-prize-pool-abi'
-
-import { GetUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/get-user-balance-deposit'
-import { ManageUsdcApproval } from '@/actions/pooltogether-v4/hooks/manage-usdc-approval'
+import { useUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/use-user-balance-deposit'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/usdc-contract-list'
 import { Checkbox } from '@/components/ui/checkbox'
-
-interface Props {
-  className?: string
-}
+import { useUsdcApproval } from '@/actions/pooltogether-v4/hooks/use-usdc-approval'
 
 export function FormDeposit() {
-  //  const classes = classNames(props.className, 'Header', 'px-6 lg:px-10 py-3 flex items-center w-full')
-  const [depositAmount, setDepositAmount] = useState('')
-  const debouncedDepositAmount = useDebounce(Number(depositAmount) * 1000000, 500)
-  const userBalance = GetUserBalanceDeposit()
-  const isApproved = ManageUsdcApproval(userBalance)
-  const [isChecked, setIsChecked] = useState(false)
-  const [approvalAmount, setApprovalAmount] = useState<BigNumber>(BigNumber.from(0))
-  const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
-
   const { address } = useAccount()
   const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)
   const usdcAddress = useLoadContractFromChainId(USDC_CONTRACT)
+
+  const { data: decimals } = useErc20Decimals({ address: usdcAddress })
+  const POWER: any = decimals != undefined ? BigNumber.from(10).pow(decimals) : BigNumber.from(10).pow(6)
+
+  const userBalance = useUserBalanceDeposit()
+  const isApproved = useUsdcApproval(userBalance)
+
+  const [depositAmount, setDepositAmount] = useState('')
+  const debouncedDepositAmount = useDebounce((POWER as any) * Number(depositAmount), 500)
+
+  const [isChecked, setIsChecked] = useState(false)
+  const [approvalAmount, setApprovalAmount] = useState<BigNumber>(BigNumber.from(0))
+  const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
 
   const { config } = usePrepareContractWrite({
     address: prizePoolAddress,
@@ -41,17 +41,16 @@ export function FormDeposit() {
     enabled: isApproved && Boolean(debouncedDepositAmount),
   })
   const { data, write: depositToken } = useContractWrite(config)
-
-  const { isLoading, isSuccess } = useWaitForTransaction({
+  const { isLoading } = useWaitForTransaction({
     hash: data?.hash,
   })
+
   const { config: configApproval } = usePrepareContractWrite({
     address: usdcAddress,
     abi: erc20ABI,
     functionName: 'approve',
     args: [prizePoolAddress, approvalAmount],
   })
-
   const { data: approveData, write: approval } = useContractWrite(configApproval)
   const { isLoading: loadApprove, isSuccess: successApprove } = useWaitForTransaction({
     hash: approveData?.hash,
@@ -68,10 +67,6 @@ export function FormDeposit() {
     }
   }, [successApprove, submitDeposit])
 
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked)
-  }
-
   const handleSubmit = (event: any) => {
     event.preventDefault()
     if (!isApproved) {
@@ -84,13 +79,13 @@ export function FormDeposit() {
     const regex = /^[0-9]*\.?[0-9]*$/
     if (regex.test(value)) {
       setDepositAmount(value)
-      setApprovalAmount(BigNumber.from(parseFloat(value) * 1000000))
+      setApprovalAmount(BigNumber.from(value * POWER))
     }
   }
 
   const handleAmount = () => {
     setDepositAmount(userBalance.toString())
-    setApprovalAmount(BigNumber.from(userBalance * 1000000))
+    setApprovalAmount(BigNumber.from(userBalance * POWER))
   }
 
   return (
@@ -118,7 +113,7 @@ export function FormDeposit() {
 
         {!isApproved && (
           <div className="mt-4 flex justify-center space-x-2">
-            <Checkbox onClick={handleCheckboxChange} />
+            <Checkbox onClick={() => setIsChecked(!isChecked)} />
             <span>Infinite Approval</span>
           </div>
         )}

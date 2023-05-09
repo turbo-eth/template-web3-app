@@ -5,7 +5,7 @@ import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/usdc-contract-list'
 
-export function ManageUsdcApproval(userBalance: number) {
+export function useUsdcApproval(userBalance: number) {
   const { address: accountAddress } = useAccount()
   const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)
   const usdcAddress = useLoadContractFromChainId(USDC_CONTRACT)
