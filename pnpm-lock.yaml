@@ -80,6 +80,7 @@ specifiers:
   eslint-plugin-testing-library: ^5.5.1
   eslint-plugin-unused-imports: ^2.0.0
   ethers: 5.7.2
+  eventsource-parser: ^1.0.0
   focus-trap-react: ^10.0.2
   framer-motion: ^8.4.3
   husky: ^8.0.2
@@ -176,6 +177,7 @@ dependencies:
   dexie-react-hooks: 1.1.3_5qhjl3gdc6ctyboiwfoninc5ri
   encoding: 0.1.13
   ethers: 5.7.2
+  eventsource-parser: 1.0.0
   focus-trap-react: 10.1.1_v2m5e27vhdewzwhryxwfaorcca
   framer-motion: 8.5.5_biqbaboplfbrettd7655fr4n2y
   iron-session: 6.3.1_next@13.4.0
@@ -10616,6 +10618,11 @@ packages:
   /events/3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
+    dev: false
+
+  /eventsource-parser/1.0.0:
+    resolution: {integrity: sha512-9jgfSCa3dmEme2ES3mPByGXfgZ87VbP97tng1G2nWwWx6bV2nYxm2AWCrbQjXToSe+yYlqaZNtxffR9IeQr95g==}
+    engines: {node: '>=14.18'}
     dev: false
 
   /execa/1.0.0:

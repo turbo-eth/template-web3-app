@@ -240,4 +240,17 @@ const features = [
       </div>
     ),
   },
+  {
+    title: turboIntegrations.openai.name,
+    description: turboIntegrations.openai.description,
+    href: turboIntegrations.openai.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <BranchColorMode>
+          <Image alt="OpenAI logo" src={turboIntegrations.openai.imgDark} width={100} height={100} />
+          <Image alt="OpenAI logo" src={turboIntegrations.openai.imgLight} width={100} height={100} />
+        </BranchColorMode>
+      </div>
+    ),
+  },
 ]

@@ -88,6 +88,7 @@
     "dexie-react-hooks": "^1.1.3",
     "encoding": "^0.1.13",
     "ethers": "5.7.2",
+    "eventsource-parser": "^1.0.0",
     "focus-trap-react": "^10.0.2",
     "framer-motion": "^8.4.3",
     "iron-session": "^6.3.1",
