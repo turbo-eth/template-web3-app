@@ -56,4 +56,12 @@ export const turboIntegrations = {
     imgLight: '/integrations/lit-protocol.svg',
     imgDark: '/integrations/lit-protocol.svg',
   },
+  openai: {
+    name: 'OpenAI',
+    href: '/integration/openai',
+    url: 'https://www.openai.com/',
+    description: 'OpenAI offers AI models designed for advanced natural language processing.',
+    imgLight: '/integrations/openai-light.svg',
+    imgDark: '/integrations/openai-dark.svg',
+  },
 }
