@@ -8,12 +8,12 @@ import { useDebounce } from 'usehooks-ts'
 import { erc20ABI, useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 
 import { YIELD_SOURCE_PRIZE_POOL_ABI } from '@/actions/pooltogether-v4/abis/yield-source-prize-pool-abi'
-import { useUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/use-user-balance-deposit'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
+import { useUsdcApproval } from '@/actions/pooltogether-v4/hooks/use-usdc-approval'
+import { useUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/use-user-balance-deposit'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/usdc-contract-list'
 import { Checkbox } from '@/components/ui/checkbox'
-import { useUsdcApproval } from '@/actions/pooltogether-v4/hooks/use-usdc-approval'
 
 export function FormDeposit() {
   const { address } = useAccount()
@@ -32,6 +32,7 @@ export function FormDeposit() {
   const [isChecked, setIsChecked] = useState(false)
   const [approvalAmount, setApprovalAmount] = useState<BigNumber>(BigNumber.from(0))
   const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
+  const [isValidAmount, setValidAmount] = useState<boolean>(true)
 
   const { config } = usePrepareContractWrite({
     address: prizePoolAddress,
@@ -39,6 +40,9 @@ export function FormDeposit() {
     functionName: 'depositTo',
     args: [address, debouncedDepositAmount],
     enabled: isApproved && Boolean(debouncedDepositAmount),
+    overrides: {
+      gasPrice: BigNumber.from(750000),
+    },
   })
   const { data, write: depositToken } = useContractWrite(config)
   const { isLoading } = useWaitForTransaction({
@@ -50,6 +54,9 @@ export function FormDeposit() {
     abi: erc20ABI,
     functionName: 'approve',
     args: [prizePoolAddress, approvalAmount],
+    overrides: {
+      gasPrice: BigNumber.from(750000),
+    },
   })
   const { data: approveData, write: approval } = useContractWrite(configApproval)
   const { isLoading: loadApprove, isSuccess: successApprove } = useWaitForTransaction({
@@ -69,16 +76,21 @@ export function FormDeposit() {
 
   const handleSubmit = (event: any) => {
     event.preventDefault()
-    if (!isApproved) {
-      approval?.()
+    if (parseFloat(depositAmount) >= 2.0) {
+      if (!isApproved) {
+        approval?.()
+      }
+      setSubmitDeposit(true)
+    } else {
+      setValidAmount(false)
     }
-    setSubmitDeposit(true)
   }
   const handleChange = (event: any) => {
     const value = event.target.value
     const regex = /^[0-9]*\.?[0-9]*$/
     if (regex.test(value)) {
       setDepositAmount(value)
+      setValidAmount(true)
       setApprovalAmount(BigNumber.from(value * POWER))
     }
   }
@@ -110,7 +122,11 @@ export function FormDeposit() {
             />
           </Form.Control>
         </Form.Field>
-
+        {!isValidAmount && (
+          <div className="relative mt-2 rounded border border-red-400 bg-red-100 py-1 text-center text-red-700" role="alert">
+            <strong className="font-bold">Min. 2 USDC</strong>
+          </div>
+        )}
         {!isApproved && (
           <div className="mt-4 flex justify-center space-x-2">
             <Checkbox onClick={() => setIsChecked(!isChecked)} />

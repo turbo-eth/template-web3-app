@@ -28,6 +28,9 @@ export function FormWithdraw() {
     functionName: 'withdrawFrom',
     args: [address, debouncedWithdrawAmount],
     enabled: Boolean(debouncedWithdrawAmount),
+    overrides: {
+      gasPrice: BigNumber.from(750000),
+    },
   })
   const { data, write: withdrawToken } = useContractWrite(config)
   const { isLoading } = useWaitForTransaction({
