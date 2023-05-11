@@ -58,4 +58,4 @@ const UNIQUE_CHAINS = [...new Set(CHAINS)]
 
 // @ts-ignore
 // TODO: The sepolia chain is throwing type errors for some reason.
-export const { chains, provider } = configureChains(UNIQUE_CHAINS, [...PROVIDERS])
+export const { chains, publicClient, webSocketPublicClient } = configureChains(UNIQUE_CHAINS, [...PROVIDERS])
