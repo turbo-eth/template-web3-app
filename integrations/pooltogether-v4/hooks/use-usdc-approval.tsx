@@ -1,5 +1,6 @@
+import { useErc20Allowance } from '@turbo-eth/erc20-wagmi'
 import { BigNumber } from 'ethers'
-import { erc20ABI, useAccount, useContractRead } from 'wagmi'
+import { useAccount } from 'wagmi'
 
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
@@ -10,10 +11,8 @@ export function useUsdcApproval(userBalance: number) {
   const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)
   const usdcAddress = useLoadContractFromChainId(USDC_CONTRACT)
 
-  const { data, isError, isLoading } = useContractRead({
+  const { data, isError, isLoading } = useErc20Allowance({
     address: usdcAddress,
-    abi: erc20ABI,
-    functionName: 'allowance',
     args: [accountAddress as `0x${string}`, prizePoolAddress],
   })
   return data ? !BigNumber.from(data).eq(BigNumber.from(0)) && BigNumber.from(data).gte(BigNumber.from(userBalance * 1000000)) : false

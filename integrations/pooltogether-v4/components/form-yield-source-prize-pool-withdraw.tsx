@@ -4,17 +4,17 @@ import * as Form from '@radix-ui/react-form'
 import { useErc20Decimals } from '@turbo-eth/erc20-wagmi'
 import { BigNumber } from 'ethers'
 import { useDebounce } from 'usehooks-ts'
-import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 
-import { YIELD_SOURCE_PRIZE_POOL_ABI } from '@/actions/pooltogether-v4/abis/yield-source-prize-pool-abi'
-import { useUserBalanceWithdraw } from '@/actions/pooltogether-v4/hooks/use-user-balance-withdraw'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
-import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
+import { useUserBalanceWithdraw } from '@/actions/pooltogether-v4/hooks/use-user-balance-withdraw'
+import { usePoolTogetherPrizePoolWithdrawFrom } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
+import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/ticket-contract-list'
 
 export function FormWithdraw() {
   const { address } = useAccount()
   const userBalance = useUserBalanceWithdraw()
-  const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)
+  const prizePoolAddress = useLoadContractFromChainId(TICKET_CONTRACT)
 
   const { data: decimals } = useErc20Decimals({ address: prizePoolAddress })
   const POWER: any = decimals != undefined ? BigNumber.from(10).pow(decimals) : BigNumber.from(10).pow(6)
@@ -22,17 +22,16 @@ export function FormWithdraw() {
   const [withdrawAmount, setWithdrawAmount] = React.useState('')
   const debouncedWithdrawAmount = useDebounce(Number(withdrawAmount) * POWER, 500)
 
-  const { config } = usePrepareContractWrite({
+  // @ts-ignore
+  const { data, write: withdrawToken } = usePoolTogetherPrizePoolWithdrawFrom({
     address: prizePoolAddress,
-    abi: YIELD_SOURCE_PRIZE_POOL_ABI,
-    functionName: 'withdrawFrom',
     args: [address, debouncedWithdrawAmount],
     enabled: Boolean(debouncedWithdrawAmount),
     overrides: {
-      gasPrice: BigNumber.from(750000),
+      gasLimit: BigNumber.from(1000000),
     },
   })
-  const { data, write: withdrawToken } = useContractWrite(config)
+
   const { isLoading } = useWaitForTransaction({
     hash: data?.hash,
   })

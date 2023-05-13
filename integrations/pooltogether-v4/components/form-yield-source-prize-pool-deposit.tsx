@@ -2,15 +2,15 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 
 import * as Form from '@radix-ui/react-form'
-import { useErc20Decimals } from '@turbo-eth/erc20-wagmi'
+import { useErc20Approve, useErc20Decimals } from '@turbo-eth/erc20-wagmi'
 import { BigNumber, ethers } from 'ethers'
 import { useDebounce } from 'usehooks-ts'
-import { erc20ABI, useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 
-import { YIELD_SOURCE_PRIZE_POOL_ABI } from '@/actions/pooltogether-v4/abis/yield-source-prize-pool-abi'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { useUsdcApproval } from '@/actions/pooltogether-v4/hooks/use-usdc-approval'
 import { useUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/use-user-balance-deposit'
+import { usePoolTogetherPrizePoolDepositTo } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/usdc-contract-list'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -34,31 +34,23 @@ export function FormDeposit() {
   const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
   const [isValidAmount, setValidAmount] = useState<boolean>(true)
 
-  const { config } = usePrepareContractWrite({
+  // @ts-ignore
+  const { data, write: depositToken } = usePoolTogetherPrizePoolDepositTo({
     address: prizePoolAddress,
-    abi: YIELD_SOURCE_PRIZE_POOL_ABI,
-    functionName: 'depositTo',
     args: [address, debouncedDepositAmount],
     enabled: isApproved && Boolean(debouncedDepositAmount),
-    overrides: {
-      gasPrice: BigNumber.from(750000),
-    },
   })
-  const { data, write: depositToken } = useContractWrite(config)
+
   const { isLoading } = useWaitForTransaction({
     hash: data?.hash,
   })
 
-  const { config: configApproval } = usePrepareContractWrite({
+  // @ts-ignore
+  const { data: approveData, write: approval } = useErc20Approve({
     address: usdcAddress,
-    abi: erc20ABI,
-    functionName: 'approve',
     args: [prizePoolAddress, approvalAmount],
-    overrides: {
-      gasPrice: BigNumber.from(750000),
-    },
   })
-  const { data: approveData, write: approval } = useContractWrite(configApproval)
+
   const { isLoading: loadApprove, isSuccess: successApprove } = useWaitForTransaction({
     hash: approveData?.hash,
   })
