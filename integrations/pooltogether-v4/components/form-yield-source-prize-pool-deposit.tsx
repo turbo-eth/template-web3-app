@@ -39,6 +39,9 @@ export function FormDeposit() {
     address: prizePoolAddress,
     args: [address, debouncedDepositAmount],
     enabled: isApproved && Boolean(debouncedDepositAmount),
+    overrides: {
+      gasLimit: BigNumber.from(750000),
+    },
   })
 
   const { isLoading } = useWaitForTransaction({
@@ -49,6 +52,9 @@ export function FormDeposit() {
   const { data: approveData, write: approval } = useErc20Approve({
     address: usdcAddress,
     args: [prizePoolAddress, approvalAmount],
+    overrides: {
+      gasLimit: BigNumber.from(750000),
+    },
   })
 
   const { isLoading: loadApprove, isSuccess: successApprove } = useWaitForTransaction({

@@ -9,26 +9,28 @@ import { useAccount, useWaitForTransaction } from 'wagmi'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { useUserBalanceWithdraw } from '@/actions/pooltogether-v4/hooks/use-user-balance-withdraw'
 import { usePoolTogetherPrizePoolWithdrawFrom } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
+import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
 import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/ticket-contract-list'
 
 export function FormWithdraw() {
   const { address } = useAccount()
   const userBalance = useUserBalanceWithdraw()
-  const prizePoolAddress = useLoadContractFromChainId(TICKET_CONTRACT)
+  const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)
+  const ticketAddress = useLoadContractFromChainId(TICKET_CONTRACT)
 
-  const { data: decimals } = useErc20Decimals({ address: prizePoolAddress })
+  const { data: decimals } = useErc20Decimals({ address: ticketAddress })
   const POWER: any = decimals != undefined ? BigNumber.from(10).pow(decimals) : BigNumber.from(10).pow(6)
 
   const [withdrawAmount, setWithdrawAmount] = React.useState('')
   const debouncedWithdrawAmount = useDebounce(Number(withdrawAmount) * POWER, 500)
-
+  console.log(debouncedWithdrawAmount)
   // @ts-ignore
   const { data, write: withdrawToken } = usePoolTogetherPrizePoolWithdrawFrom({
     address: prizePoolAddress,
     args: [address, debouncedWithdrawAmount],
     enabled: Boolean(debouncedWithdrawAmount),
     overrides: {
-      gasLimit: BigNumber.from(1000000),
+      gasLimit: BigNumber.from(750000),
     },
   })
 
