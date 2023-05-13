@@ -77,8 +77,9 @@ export function FormDeposit() {
     if (parseFloat(depositAmount) >= 2.0) {
       if (!isApproved) {
         approval?.()
+      } else {
+        setSubmitDeposit(true)
       }
-      setSubmitDeposit(true)
     } else {
       setValidAmount(false)
     }
