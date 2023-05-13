@@ -39,10 +39,10 @@ export default function PoolTogetherHome() {
               <Balancer className="text-xl font-semibold">Start interacting with PoolTogether today</Balancer>
             </motion.p>
             <motion.div className="mx-auto mt-6 flex items-center justify-center space-x-8" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-              <Link href="/pooltogether-v4/deposit">
+              <Link href="/integration/pooltogether-v4/deposit">
                 <p className={button}>Deposit</p>
               </Link>
-              <Link href="/pooltogether-v4/withdraw">
+              <Link href="/integration/pooltogether-v4/withdraw">
                 <p className={button}>Withdraw</p>
               </Link>
             </motion.div>

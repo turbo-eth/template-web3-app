@@ -23,7 +23,7 @@ export function FormWithdraw() {
 
   const [withdrawAmount, setWithdrawAmount] = React.useState('')
   const debouncedWithdrawAmount = useDebounce(Number(withdrawAmount) * POWER, 500)
-  console.log(debouncedWithdrawAmount)
+
   // @ts-ignore
   const { data, write: withdrawToken } = usePoolTogetherPrizePoolWithdrawFrom({
     address: prizePoolAddress,

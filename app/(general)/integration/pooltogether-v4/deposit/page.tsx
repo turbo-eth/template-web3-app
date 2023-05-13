@@ -7,11 +7,11 @@ import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
-export default function PageDashboardAccount() {
+export default function PoolTogetherDeposit() {
   return (
     <>
       <motion.div
-        className="flex-center flex h-full w-full"
+        className="flex h-full w-full"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
         initial="hidden"
         whileInView="show"

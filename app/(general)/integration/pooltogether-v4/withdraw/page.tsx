@@ -7,7 +7,7 @@ import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
-export default function PageDashboardAccount() {
+export default function PoolTogetherWithdraw() {
   return (
     <>
       <motion.div
