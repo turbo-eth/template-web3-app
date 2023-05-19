@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { useEffect, useState } from 'react'
 
 import * as Form from '@radix-ui/react-form'
@@ -11,11 +10,16 @@ import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-
 import { useUsdcApproval } from '@/actions/pooltogether-v4/hooks/use-usdc-approval'
 import { useUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/use-user-balance-deposit'
 import { usePoolTogetherPrizePoolDepositTo } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
-import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
-import { USDC_CONTRACT } from '@/actions/pooltogether-v4/usdc-contract-list'
+import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
+import { USDC_CONTRACT } from '@/actions/pooltogether-v4/utils/usdc-contract-list'
 import { Checkbox } from '@/components/ui/checkbox'
 
 export function FormDeposit() {
+  const [isChecked, setIsChecked] = useState(false)
+  const [approvalAmount, setApprovalAmount] = useState<BigNumber>(BigNumber.from(0))
+  const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
+  const [isValidAmount, setValidAmount] = useState<boolean>(true)
+
   const { address } = useAccount()
   const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)
   const usdcAddress = useLoadContractFromChainId(USDC_CONTRACT)
@@ -28,11 +32,6 @@ export function FormDeposit() {
 
   const [depositAmount, setDepositAmount] = useState('')
   const debouncedDepositAmount = useDebounce((POWER as any) * Number(depositAmount), 500)
-
-  const [isChecked, setIsChecked] = useState(false)
-  const [approvalAmount, setApprovalAmount] = useState<BigNumber>(BigNumber.from(0))
-  const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
-  const [isValidAmount, setValidAmount] = useState<boolean>(true)
 
   // @ts-ignore
   const { data, write: depositToken } = usePoolTogetherPrizePoolDepositTo({
@@ -134,8 +133,22 @@ export function FormDeposit() {
         )}
         <div className="mt-4 flex justify-center space-x-5">
           <Form.Submit asChild>
-            <button disabled={isLoading || debouncedDepositAmount == 0} className="btn btn-emerald btn-sm">
-              {isApproved ? (isLoading ? 'Processing...' : 'Deposit') : loadApprove ? 'Processing...' : 'Approve and Deposit'}
+            <button
+              disabled={prizePoolAddress == undefined && (isLoading || debouncedDepositAmount == 0)}
+              className={
+                debouncedDepositAmount == 0 || prizePoolAddress == undefined
+                  ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50'
+                  : 'btn btn-emerald btn-sm'
+              }>
+              {prizePoolAddress == undefined
+                ? 'Please switch network'
+                : isApproved
+                ? isLoading
+                  ? 'Processing...'
+                  : 'Deposit'
+                : loadApprove
+                ? 'Processing...'
+                : 'Approve and Deposit'}
             </button>
           </Form.Submit>
         </div>

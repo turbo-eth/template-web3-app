@@ -841,4 +841,4 @@ export const YIELD_SOURCE_PRIZE_POOL_ABI = [
     stateMutability: 'view',
     type: 'function',
   },
-]
+] as const

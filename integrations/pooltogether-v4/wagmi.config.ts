@@ -7,7 +7,6 @@ export default defineConfig({
   contracts: [
     {
       name: 'poolTogetherPrizePool',
-      // @ts-ignore
       abi: YIELD_SOURCE_PRIZE_POOL_ABI,
     },
   ],

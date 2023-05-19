@@ -9,8 +9,8 @@ import { useAccount, useWaitForTransaction } from 'wagmi'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { useUserBalanceWithdraw } from '@/actions/pooltogether-v4/hooks/use-user-balance-withdraw'
 import { usePoolTogetherPrizePoolWithdrawFrom } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
-import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/prize-pool-contract-list'
-import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/ticket-contract-list'
+import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
+import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/utils/ticket-contract-list'
 
 export function FormWithdraw() {
   const { address } = useAccount()
@@ -74,8 +74,14 @@ export function FormWithdraw() {
         </Form.Field>
         <Form.Submit asChild>
           <div className="mt-4 flex justify-center">
-            <button disabled={!withdrawToken || isLoading} className="btn btn-emerald btn-sm">
-              {isLoading ? 'Processing...' : 'Withdraw'}
+            <button
+              disabled={prizePoolAddress == undefined && (!withdrawToken || isLoading)}
+              className={
+                prizePoolAddress == undefined || debouncedWithdrawAmount == 0
+                  ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50'
+                  : 'btn btn-emerald btn-sm'
+              }>
+              {prizePoolAddress == undefined ? 'Please switch network' : isLoading ? 'Processing...' : 'Withdraw'}
             </button>
           </div>
         </Form.Submit>

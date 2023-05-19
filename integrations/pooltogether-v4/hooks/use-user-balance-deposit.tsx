@@ -3,7 +3,7 @@ import { formatUnits } from 'ethers/lib/utils'
 import { useAccount, useNetwork } from 'wagmi'
 
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
-import { USDC_CONTRACT } from '@/actions/pooltogether-v4/usdc-contract-list'
+import { USDC_CONTRACT } from '@/actions/pooltogether-v4/utils/usdc-contract-list'
 
 export function useUserBalanceDeposit() {
   const { address: accountAddress } = useAccount()
