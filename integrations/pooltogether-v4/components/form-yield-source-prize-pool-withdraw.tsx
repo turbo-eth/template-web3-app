@@ -12,7 +12,7 @@ import { usePoolTogetherPrizePoolWithdrawFrom } from '@/actions/pooltogether-v4/
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
 import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/utils/ticket-contract-list'
 
-export function FormWithdraw() {
+export function PoolTogetherFormWithdraw() {
   const { address } = useAccount()
   const userBalance = useUserBalanceWithdraw()
   const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)

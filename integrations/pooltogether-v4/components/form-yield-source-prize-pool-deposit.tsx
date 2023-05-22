@@ -14,7 +14,7 @@ import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/utils/usdc-contract-list'
 import { Checkbox } from '@/components/ui/checkbox'
 
-export function FormDeposit() {
+export function PoolTogetherFormDeposit() {
   const [isChecked, setIsChecked] = useState<boolean>(false)
   const [approvalAmount, setApprovalAmount] = useState<BigNumber>(BigNumber.from(0))
   const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)

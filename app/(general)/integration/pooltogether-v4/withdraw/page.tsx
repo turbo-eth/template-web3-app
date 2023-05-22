@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 
-import { FormWithdraw } from '@/actions/pooltogether-v4/components/form-yield-source-prize-pool-withdraw'
+import { PoolTogetherFormWithdraw } from '@/actions/pooltogether-v4/components/form-yield-source-prize-pool-withdraw'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
@@ -18,7 +18,7 @@ export default function PoolTogetherWithdraw() {
         animate="show"
         viewport={{ once: true }}>
         <BranchIsWalletConnected>
-          <FormWithdraw />
+          <PoolTogetherFormWithdraw />
           <div className="flex flex-col items-center justify-center">
             <h3 className="mb-3 text-lg font-normal">Connect your wallet to withdraw from PoolTogether.</h3>
             <WalletConnect />
