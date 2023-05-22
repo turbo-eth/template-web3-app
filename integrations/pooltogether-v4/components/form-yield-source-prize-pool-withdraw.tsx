@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 import * as Form from '@radix-ui/react-form'
 import { useErc20Decimals } from '@turbo-eth/erc20-wagmi'
@@ -19,16 +19,18 @@ export function FormWithdraw() {
   const ticketAddress = useLoadContractFromChainId(TICKET_CONTRACT)
 
   const { data: decimals } = useErc20Decimals({ address: ticketAddress })
-  const POWER: any = decimals != undefined ? BigNumber.from(10).pow(decimals) : BigNumber.from(10).pow(6)
+  const POWER = decimals != undefined ? BigNumber.from(10).pow(decimals) : BigNumber.from(10).pow(6)
 
-  const [withdrawAmount, setWithdrawAmount] = React.useState('')
-  const debouncedWithdrawAmount = useDebounce(Number(withdrawAmount) * POWER, 500)
+  const [withdrawAmount, setWithdrawAmount] = useState<number>()
+  const debouncedWithdrawAmount = useDebounce(
+    withdrawAmount != undefined ? BigNumber.from(withdrawAmount * POWER.toNumber()) : BigNumber.from(0),
+    500
+  )
 
-  // @ts-ignore
   const { data, write: withdrawToken } = usePoolTogetherPrizePoolWithdrawFrom({
+    mode: 'recklesslyUnprepared',
     address: prizePoolAddress,
-    args: [address, debouncedWithdrawAmount],
-    enabled: Boolean(debouncedWithdrawAmount),
+    args: [address || '0x0', debouncedWithdrawAmount],
     overrides: {
       gasLimit: BigNumber.from(750000),
     },
@@ -37,27 +39,24 @@ export function FormWithdraw() {
   const { isLoading } = useWaitForTransaction({
     hash: data?.hash,
   })
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     withdrawToken?.()
   }
 
-  const handleChange = (event: any) => {
-    const value = event.target.value
-    const regex = /^[0-9]*\.?[0-9]*$/
-    if (regex.test(value)) {
-      setWithdrawAmount(value)
-    }
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value != '' ? event.target.valueAsNumber : undefined
+    setWithdrawAmount(value)
   }
 
   return (
     <>
-      <Form.Root className="FormRoot" onSubmit={handleSubmit}>
-        <Form.Field className="FormField" name="amountWithdraw">
+      <Form.Root onSubmit={handleSubmit}>
+        <Form.Field name="amountWithdraw">
           <div className="flex justify-between align-baseline">
             <Form.Label className="FormLabel mb-2">Amount </Form.Label>
             <Form.Label className="FormLabel mb-2">
-              <a className="ml-10 cursor-pointer hover:underline" onClick={() => setWithdrawAmount(userBalance.toString())}>
+              <a className="ml-10 cursor-pointer hover:underline" onClick={() => setWithdrawAmount(userBalance)}>
                 {parseFloat(userBalance.toString()).toFixed(2)} USDC
               </a>
             </Form.Label>
@@ -65,9 +64,12 @@ export function FormWithdraw() {
           <Form.Control asChild>
             <input
               className="input"
-              value={Number(withdrawAmount) < userBalance ? withdrawAmount : userBalance}
+              value={withdrawAmount != undefined && withdrawAmount > userBalance ? userBalance : withdrawAmount}
               onChange={(e) => handleChange(e)}
-              type="text"
+              type="number"
+              min={0}
+              max={userBalance}
+              step={'any'}
               required={true}
             />
           </Form.Control>
@@ -77,7 +79,7 @@ export function FormWithdraw() {
             <button
               disabled={prizePoolAddress == undefined && (!withdrawToken || isLoading)}
               className={
-                prizePoolAddress == undefined || debouncedWithdrawAmount == 0
+                prizePoolAddress == undefined || debouncedWithdrawAmount.eq(0)
                   ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50'
                   : 'btn btn-emerald btn-sm'
               }>

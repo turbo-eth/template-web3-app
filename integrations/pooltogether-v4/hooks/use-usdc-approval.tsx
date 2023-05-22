@@ -11,9 +11,9 @@ export function useUsdcApproval(userBalance: number) {
   const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)
   const usdcAddress = useLoadContractFromChainId(USDC_CONTRACT)
 
-  const { data, isError, isLoading } = useErc20Allowance({
+  const { data } = useErc20Allowance({
     address: usdcAddress,
-    args: [accountAddress as `0x${string}`, prizePoolAddress],
+    args: [accountAddress || '0x0', prizePoolAddress],
   })
   return data ? !BigNumber.from(data).eq(BigNumber.from(0)) && BigNumber.from(data).gte(BigNumber.from(userBalance * 1000000)) : false
 }

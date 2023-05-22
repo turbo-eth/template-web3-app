@@ -15,8 +15,8 @@ export function useUserBalanceDeposit() {
     chainId: chain?.id,
     address,
     watch: true,
-    args: [accountAddress as `0x${string}`],
+    args: [accountAddress || '0x0'],
   })
 
-  return erc20Balance ? (formatUnits(erc20Balance.toString() as unknown as bigint, decimals as number) as unknown as number) : 0
+  return erc20Balance ? Number(formatUnits(erc20Balance.toBigInt(), decimals)) : 0
 }

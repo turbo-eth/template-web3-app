@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import * as Form from '@radix-ui/react-form'
 import { useErc20Approve, useErc20Decimals } from '@turbo-eth/erc20-wagmi'
@@ -15,7 +15,7 @@ import { USDC_CONTRACT } from '@/actions/pooltogether-v4/utils/usdc-contract-lis
 import { Checkbox } from '@/components/ui/checkbox'
 
 export function FormDeposit() {
-  const [isChecked, setIsChecked] = useState(false)
+  const [isChecked, setIsChecked] = useState<boolean>(false)
   const [approvalAmount, setApprovalAmount] = useState<BigNumber>(BigNumber.from(0))
   const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
   const [isValidAmount, setValidAmount] = useState<boolean>(true)
@@ -25,19 +25,18 @@ export function FormDeposit() {
   const usdcAddress = useLoadContractFromChainId(USDC_CONTRACT)
 
   const { data: decimals } = useErc20Decimals({ address: usdcAddress })
-  const POWER: any = decimals != undefined ? BigNumber.from(10).pow(decimals) : BigNumber.from(10).pow(6)
+  const POWER = decimals != undefined ? BigNumber.from(10).pow(decimals) : BigNumber.from(10).pow(6)
 
   const userBalance = useUserBalanceDeposit()
   const isApproved = useUsdcApproval(userBalance)
 
-  const [depositAmount, setDepositAmount] = useState('')
-  const debouncedDepositAmount = useDebounce((POWER as any) * Number(depositAmount), 500)
+  const [depositAmount, setDepositAmount] = useState<number>()
+  const debouncedDepositAmount = useDebounce(BigNumber.from(depositAmount != undefined ? depositAmount * POWER.toNumber() : 0), 500)
 
-  // @ts-ignore
   const { data, write: depositToken } = usePoolTogetherPrizePoolDepositTo({
+    mode: 'recklesslyUnprepared',
     address: prizePoolAddress,
-    args: [address, debouncedDepositAmount],
-    enabled: isApproved && Boolean(debouncedDepositAmount),
+    args: [address || '0x0', BigNumber.from(debouncedDepositAmount)],
     overrides: {
       gasLimit: BigNumber.from(750000),
     },
@@ -47,8 +46,8 @@ export function FormDeposit() {
     hash: data?.hash,
   })
 
-  // @ts-ignore
   const { data: approveData, write: approval } = useErc20Approve({
+    mode: 'recklesslyUnprepared',
     address: usdcAddress,
     args: [prizePoolAddress, approvalAmount],
     overrides: {
@@ -71,9 +70,9 @@ export function FormDeposit() {
     }
   }, [successApprove, submitDeposit])
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (parseFloat(depositAmount) >= 2.0) {
+    if (depositAmount != undefined && depositAmount >= 2.0) {
       if (!isApproved) {
         approval?.()
       } else {
@@ -83,25 +82,22 @@ export function FormDeposit() {
       setValidAmount(false)
     }
   }
-  const handleChange = (event: any) => {
-    const value = event.target.value
-    const regex = /^[0-9]*\.?[0-9]*$/
-    if (regex.test(value)) {
-      setDepositAmount(value)
-      setValidAmount(true)
-      setApprovalAmount(BigNumber.from(value * POWER))
-    }
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value != '' ? event.target.valueAsNumber : undefined
+    console.log(value)
+    setDepositAmount(value)
+    setApprovalAmount(value != undefined ? BigNumber.from(value * POWER.toNumber()) : BigNumber.from(0))
   }
 
   const handleAmount = () => {
-    setDepositAmount(userBalance.toString())
-    setApprovalAmount(BigNumber.from(userBalance * POWER))
+    setDepositAmount(userBalance)
+    setApprovalAmount(BigNumber.from(userBalance * POWER.toNumber()))
   }
 
   return (
     <>
-      <Form.Root className="FormRoot" onSubmit={handleSubmit}>
-        <Form.Field className="FormField" name="amountDeposit">
+      <Form.Root onSubmit={handleSubmit}>
+        <Form.Field name="amountDeposit">
           <div className="flex justify-between align-baseline">
             <Form.Label className="FormLabel mb-2">Amount</Form.Label>
             <Form.Label className="FormLabel mb-2">
@@ -113,9 +109,12 @@ export function FormDeposit() {
           <Form.Control asChild>
             <input
               className="input"
-              value={Number(depositAmount) < userBalance ? depositAmount : userBalance}
               onChange={(e) => handleChange(e)}
-              type="text"
+              value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
+              type="number"
+              min={0}
+              max={userBalance}
+              step={'any'}
               required={true}
             />
           </Form.Control>
@@ -134,9 +133,9 @@ export function FormDeposit() {
         <div className="mt-4 flex justify-center space-x-5">
           <Form.Submit asChild>
             <button
-              disabled={prizePoolAddress == undefined && (isLoading || debouncedDepositAmount == 0)}
+              disabled={prizePoolAddress == undefined && (isLoading || debouncedDepositAmount.eq(0))}
               className={
-                debouncedDepositAmount == 0 || prizePoolAddress == undefined
+                debouncedDepositAmount.eq(0) || prizePoolAddress == undefined
                   ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50'
                   : 'btn btn-emerald btn-sm'
               }>
