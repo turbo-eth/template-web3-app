@@ -45,7 +45,7 @@ export function PoolTogetherFormWithdraw() {
   }
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value != '' ? event.target.valueAsNumber : undefined
+    const value = event.target.value != '' ? parseFloat(event.target.valueAsNumber.toFixed(decimals)) : undefined
     setWithdrawAmount(value)
   }
 
