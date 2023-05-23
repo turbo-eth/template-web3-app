@@ -104,6 +104,7 @@ specifiers:
   react: ^18.2.0
   react-copy-to-clipboard: ^5.1.0
   react-dom: ^18.2.0
+  react-dropzone: ^14.2.3
   react-hook-form: ^7.43.9
   react-icons: ^4.7.1
   react-markdown: ^8.0.4
@@ -195,6 +196,7 @@ dependencies:
   react: 18.2.0
   react-copy-to-clipboard: 5.1.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-dropzone: 14.2.3_react@18.2.0
   react-hook-form: 7.43.9_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
   react-markdown: 8.0.5_kzbn2opkn2327fwg5yzwzya5o4
@@ -2763,16 +2765,16 @@ packages:
       - supports-color
     dev: false
 
-  /@babel/preset-flow/7.21.4_@babel+core@7.21.0:
+  /@babel/preset-flow/7.21.4_@babel+core@7.18.5:
     resolution: {integrity: sha512-F24cSq4DIBmhq4OzK3dE63NHagb27OPE3eWR+HLekt4Z3Y5MzIIUGF3LlLgV0gN8vzbDViSY7HnrReNVCJXTeA==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.21.0
+      '@babel/core': 7.18.5
       '@babel/helper-plugin-utils': 7.21.5
       '@babel/helper-validator-option': 7.21.0
-      '@babel/plugin-transform-flow-strip-types': 7.21.0_@babel+core@7.21.0
+      '@babel/plugin-transform-flow-strip-types': 7.21.0_@babel+core@7.18.5
     dev: false
 
   /@babel/preset-modules/0.1.5_@babel+core@7.18.5:
@@ -2830,29 +2832,29 @@ packages:
       - supports-color
     dev: true
 
-  /@babel/preset-typescript/7.21.5_@babel+core@7.21.0:
+  /@babel/preset-typescript/7.21.5_@babel+core@7.18.5:
     resolution: {integrity: sha512-iqe3sETat5EOrORXiQ6rWfoOg2y68Cs75B9wNxdPW4kixJxh7aXQE1KPdWLDniC24T/6dSnguF33W9j/ZZQcmA==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.21.0
+      '@babel/core': 7.18.5
       '@babel/helper-plugin-utils': 7.21.5
       '@babel/helper-validator-option': 7.21.0
-      '@babel/plugin-syntax-jsx': 7.21.4_@babel+core@7.21.0
-      '@babel/plugin-transform-modules-commonjs': 7.21.5_@babel+core@7.21.0
-      '@babel/plugin-transform-typescript': 7.21.3_@babel+core@7.21.0
+      '@babel/plugin-syntax-jsx': 7.21.4_@babel+core@7.18.5
+      '@babel/plugin-transform-modules-commonjs': 7.21.5_@babel+core@7.18.5
+      '@babel/plugin-transform-typescript': 7.21.3_@babel+core@7.18.5
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@babel/register/7.21.0_@babel+core@7.21.0:
+  /@babel/register/7.21.0_@babel+core@7.18.5:
     resolution: {integrity: sha512-9nKsPmYDi5DidAqJaQooxIhsLJiNMkGr8ypQ8Uic7cIox7UCDsM7HuUGxdGT7mSDTYbqzIdsOWzfBton/YJrMw==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.21.0
+      '@babel/core': 7.18.5
       clone-deep: 4.0.1
       find-cache-dir: 2.1.0
       make-dir: 2.1.0
@@ -7997,6 +7999,11 @@ packages:
     engines: {node: '>=8.0.0'}
     dev: false
 
+  /attr-accept/2.2.2:
+    resolution: {integrity: sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==}
+    engines: {node: '>=4'}
+    dev: false
+
   /autoprefixer/10.4.14_postcss@8.4.21:
     resolution: {integrity: sha512-FQzyfOsTlwVzjHxKEqRIAdJx9niO6VCBCoEwax/VLSoQF29ggECcPuBqUMZ+u8jCZOPSy8b8/8KnuFbp0SaFZQ==}
     engines: {node: ^10 || ^12 || >=14}
@@ -8046,12 +8053,12 @@ packages:
       deep-equal: 2.2.0
     dev: true
 
-  /babel-core/7.0.0-bridge.0_@babel+core@7.21.0:
+  /babel-core/7.0.0-bridge.0_@babel+core@7.18.5:
     resolution: {integrity: sha512-poPX9mZH/5CSanm50Q+1toVci6pv5KSRv/5TWCwtzQS5XEwn40BcCrgIeMFWP9CKKIniKXNxoIOnOq4VVlGXhg==}
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.21.0
+      '@babel/core': 7.18.5
     dev: false
 
   /babel-plugin-polyfill-corejs2/0.3.3_@babel+core@7.18.5:
@@ -10859,6 +10866,13 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
+  /file-selector/0.6.0:
+    resolution: {integrity: sha512-QlZ5yJC0VxHxQQsQhXvBaC7VRJ2uaxTf+Tfpu4Z/OcVQJVpZO+DGU0rkoVW5ce2SccxugvpBJoMvUs59iILYdw==}
+    engines: {node: '>= 12'}
+    dependencies:
+      tslib: 2.5.0
+    dev: false
+
   /file-uri-to-path/1.0.0:
     resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     dev: false
@@ -12518,17 +12532,17 @@ packages:
     peerDependencies:
       '@babel/preset-env': ^7.1.6
     dependencies:
-      '@babel/core': 7.21.0
+      '@babel/core': 7.18.5
       '@babel/parser': 7.21.8
-      '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.21.0
-      '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6_@babel+core@7.21.0
-      '@babel/plugin-proposal-optional-chaining': 7.21.0_@babel+core@7.21.0
-      '@babel/plugin-transform-modules-commonjs': 7.21.5_@babel+core@7.21.0
+      '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.18.5
+      '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6_@babel+core@7.18.5
+      '@babel/plugin-proposal-optional-chaining': 7.21.0_@babel+core@7.18.5
+      '@babel/plugin-transform-modules-commonjs': 7.21.5_@babel+core@7.18.5
       '@babel/preset-env': 7.21.5_@babel+core@7.18.5
-      '@babel/preset-flow': 7.21.4_@babel+core@7.21.0
-      '@babel/preset-typescript': 7.21.5_@babel+core@7.21.0
-      '@babel/register': 7.21.0_@babel+core@7.21.0
-      babel-core: 7.0.0-bridge.0_@babel+core@7.21.0
+      '@babel/preset-flow': 7.21.4_@babel+core@7.18.5
+      '@babel/preset-typescript': 7.21.5_@babel+core@7.18.5
+      '@babel/register': 7.21.0_@babel+core@7.18.5
+      babel-core: 7.0.0-bridge.0_@babel+core@7.18.5
       chalk: 4.1.2
       flow-parser: 0.185.2
       graceful-fs: 4.2.11
@@ -15166,6 +15180,18 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-dropzone/14.2.3_react@18.2.0:
+    resolution: {integrity: sha512-O3om8I+PkFKbxCukfIR3QAGftYXDZfOE2N1mr/7qebQJHs7U+/RSL/9xomJNpRg9kM5h9soQSdf0Gc7OHF5Fug==}
+    engines: {node: '>= 10.13'}
+    peerDependencies:
+      react: '>= 16.8 || 18.0.0'
+    dependencies:
+      attr-accept: 2.2.2
+      file-selector: 0.6.0
+      prop-types: 15.8.1
+      react: 18.2.0
     dev: false
 
   /react-hook-form/7.43.9_react@18.2.0:
