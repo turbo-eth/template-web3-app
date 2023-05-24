@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import * as Form from '@radix-ui/react-form'
 import { useErc20Approve, useErc20Decimals } from '@turbo-eth/erc20-wagmi'
 import { BigNumber, ethers } from 'ethers'
+import { ExternalLinkIcon } from 'lucide-react'
 import { useDebounce } from 'usehooks-ts'
 import { useAccount, useWaitForTransaction } from 'wagmi'
 
@@ -33,7 +34,11 @@ export function PoolTogetherFormDeposit() {
   const [depositAmount, setDepositAmount] = useState<number>()
   const debouncedDepositAmount = useDebounce(BigNumber.from(depositAmount != undefined ? depositAmount * POWER.toNumber() : 0), 500)
 
-  const { data, write: depositToken } = usePoolTogetherPrizePoolDepositToAndDelegate({
+  const {
+    data,
+    write: depositToken,
+    isSuccess: successDeposit,
+  } = usePoolTogetherPrizePoolDepositToAndDelegate({
     mode: 'recklesslyUnprepared',
     address: prizePoolAddress,
     args: [address || '0x0', BigNumber.from(debouncedDepositAmount), address || '0x0'],
@@ -94,11 +99,11 @@ export function PoolTogetherFormDeposit() {
   }
 
   return (
-    <>
+    <div className="flex-col">
       <Form.Root onSubmit={handleSubmit}>
         <Form.Field name="amountDeposit">
           <div className="flex justify-between align-baseline">
-            <Form.Label className="mb-2">Amount</Form.Label>
+            <Form.Label className="mb-2 font-semibold">Amount</Form.Label>
             <Form.Label className="mb-2">
               <span className="ml-10 cursor-pointer hover:underline" onClick={() => handleAmount()}>
                 {parseFloat(userBalance.toString()).toFixed(2)} USDC
@@ -120,13 +125,13 @@ export function PoolTogetherFormDeposit() {
         </Form.Field>
         {!isValidAmount && (
           <div className="relative mt-2 rounded border border-red-400 bg-red-100 py-1 text-center text-red-700" role="alert">
-            <strong className="font-bold">Min. 2 USDC</strong>
+            <strong className="font-semibold">Min. 2 USDC</strong>
           </div>
         )}
         {!isApproved && (
           <div className="mt-4 flex justify-center space-x-2">
             <Checkbox onClick={() => setIsChecked(!isChecked)} />
-            <span>Infinite Approval</span>
+            <span className="font-semibold">Infinite Approval</span>
           </div>
         )}
         <div className="mt-4 flex justify-center space-x-5">
@@ -151,6 +156,15 @@ export function PoolTogetherFormDeposit() {
           </Form.Submit>
         </div>
       </Form.Root>
-    </>
+      {successDeposit && (
+        <div className="mt-4 space-x-2 rounded border p-3 text-center text-xs font-semibold">
+          Manage your account on&nbsp; <br />
+          <a target={'_blank'} href="https://app.pooltogether.com/" className="flex items-center text-xl">
+            <span className="text-gradient-pooltogether">PoolTogether</span>
+            <ExternalLinkIcon size="16" className="text-gradient-pooltogether-link ml-1" />
+          </a>
+        </div>
+      )}
+    </div>
   )
 }
