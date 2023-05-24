@@ -109,7 +109,7 @@ export function PoolTogetherFormDeposit() {
           <Form.Control asChild>
             <input
               className="input"
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
               type="number"
               min={0}
