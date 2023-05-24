@@ -101,9 +101,9 @@ export function PoolTogetherFormDeposit() {
           <div className="flex justify-between align-baseline">
             <Form.Label className="mb-2">Amount</Form.Label>
             <Form.Label className="mb-2">
-              <a className="ml-10 cursor-pointer hover:underline" onClick={() => handleAmount()}>
+              <span className="ml-10 cursor-pointer hover:underline" onClick={() => handleAmount()}>
                 {parseFloat(userBalance.toString()).toFixed(2)} USDC
-              </a>
+              </span>
             </Form.Label>
           </div>
           <Form.Control asChild>
