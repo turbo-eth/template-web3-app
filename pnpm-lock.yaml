@@ -18,6 +18,7 @@ specifiers:
   '@radix-ui/react-context-menu': ^2.1.1
   '@radix-ui/react-dialog': ^1.0.2
   '@radix-ui/react-dropdown-menu': ^2.0.1
+  '@radix-ui/react-form': ^0.0.2
   '@radix-ui/react-hover-card': ^1.0.3
   '@radix-ui/react-label': ^2.0.0
   '@radix-ui/react-menubar': ^1.0.0
@@ -137,6 +138,7 @@ dependencies:
   '@radix-ui/react-context-menu': 2.1.3_ib3m5ricvtkl2cll7qpr2f6lvq
   '@radix-ui/react-dialog': 1.0.3_ib3m5ricvtkl2cll7qpr2f6lvq
   '@radix-ui/react-dropdown-menu': 2.0.4_ib3m5ricvtkl2cll7qpr2f6lvq
+  '@radix-ui/react-form': 0.0.2_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-hover-card': 1.0.5_ib3m5ricvtkl2cll7qpr2f6lvq
   '@radix-ui/react-label': 2.0.1_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-menubar': 1.0.2_ib3m5ricvtkl2cll7qpr2f6lvq
@@ -4734,6 +4736,23 @@ packages:
       '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
       '@radix-ui/react-primitive': 1.0.2_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-use-callback-ref': 1.0.0_react@18.2.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@radix-ui/react-form/0.0.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-+WQU4Gs4MqjYsHwh5d19Ka4CMcWeXd7WPuWYCYGtNbDRMHFG2TtgM9PlEK4Yrk7wG1f5/da6Bgtteky2ggDXUg==}
+    peerDependencies:
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    dependencies:
+      '@babel/runtime': 7.21.0
+      '@radix-ui/primitive': 1.0.0
+      '@radix-ui/react-compose-refs': 1.0.0_react@18.2.0
+      '@radix-ui/react-context': 1.0.0_react@18.2.0
+      '@radix-ui/react-id': 1.0.0_react@18.2.0
+      '@radix-ui/react-label': 2.0.1_biqbaboplfbrettd7655fr4n2y
+      '@radix-ui/react-primitive': 1.0.2_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: false

@@ -25,3 +25,11 @@
 .text-gradient-sand {
   @apply bg-gradient-to-br from-black to-stone-500 dark:from-stone-100 dark:to-yellow-200 text-gradient;
 }
+
+.text-gradient-pooltogether {
+  @apply bg-gradient-to-r from-indigo-800 to-purple-800 dark:from-indigo-800 dark:to-purple-800 text-gradient;
+}
+
+.bg-gradient-pooltogether {
+  @apply bg-gradient-to-r from-indigo-800 to-purple-800 dark:from-indigo-800 dark:to-purple-800;
+}

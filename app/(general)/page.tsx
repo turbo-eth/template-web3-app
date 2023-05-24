@@ -253,4 +253,17 @@ const features = [
       </div>
     ),
   },
+  {
+    title: turboIntegrations.pooltogether_v4.name,
+    description: turboIntegrations.pooltogether_v4.description,
+    href: turboIntegrations.pooltogether_v4.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <BranchColorMode>
+          <Image alt="PoolTogether logo" src={turboIntegrations.pooltogether_v4.imgDark} width={100} height={100} />
+          <Image alt="PoolTogether logo" src={turboIntegrations.pooltogether_v4.imgLight} width={100} height={100} />
+        </BranchColorMode>
+      </div>
+    ),
+  },
 ]
