@@ -65,7 +65,7 @@ export function PoolTogetherFormWithdraw() {
             <input
               className="input"
               value={withdrawAmount != undefined && withdrawAmount > userBalance ? userBalance : withdrawAmount}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               type="number"
               min={0}
               max={userBalance}
