@@ -9,7 +9,7 @@ import { useAccount, useWaitForTransaction } from 'wagmi'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { useUsdcApproval } from '@/actions/pooltogether-v4/hooks/use-usdc-approval'
 import { useUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/use-user-balance-deposit'
-import { usePoolTogetherPrizePoolDepositTo } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
+import { usePoolTogetherPrizePoolDepositToAndDelegate } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/utils/usdc-contract-list'
 import { Checkbox } from '@/components/ui/checkbox'
@@ -33,10 +33,10 @@ export function PoolTogetherFormDeposit() {
   const [depositAmount, setDepositAmount] = useState<number>()
   const debouncedDepositAmount = useDebounce(BigNumber.from(depositAmount != undefined ? depositAmount * POWER.toNumber() : 0), 500)
 
-  const { data, write: depositToken } = usePoolTogetherPrizePoolDepositTo({
+  const { data, write: depositToken } = usePoolTogetherPrizePoolDepositToAndDelegate({
     mode: 'recklesslyUnprepared',
     address: prizePoolAddress,
-    args: [address || '0x0', BigNumber.from(debouncedDepositAmount)],
+    args: [address || '0x0', BigNumber.from(debouncedDepositAmount), address || '0x0'],
     overrides: {
       gasLimit: BigNumber.from(750000),
     },
