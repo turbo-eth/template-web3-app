@@ -54,18 +54,18 @@ export function PoolTogetherFormWithdraw() {
       <Form.Root onSubmit={handleSubmit}>
         <Form.Field name="amountWithdraw">
           <div className="flex justify-between align-baseline">
-            <Form.Label className="FormLabel mb-2">Amount </Form.Label>
-            <Form.Label className="FormLabel mb-2">
-              <a className="ml-10 cursor-pointer hover:underline" onClick={() => setWithdrawAmount(userBalance)}>
+            <Form.Label className="mb-2">Amount </Form.Label>
+            <Form.Label className="mb-2">
+              <span className="ml-10 cursor-pointer hover:underline" onClick={() => setWithdrawAmount(userBalance)}>
                 {parseFloat(userBalance.toString()).toFixed(2)} USDC
-              </a>
+              </span>
             </Form.Label>
           </div>
           <Form.Control asChild>
             <input
               className="input"
               value={withdrawAmount != undefined && withdrawAmount > userBalance ? userBalance : withdrawAmount}
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               type="number"
               min={0}
               max={userBalance}

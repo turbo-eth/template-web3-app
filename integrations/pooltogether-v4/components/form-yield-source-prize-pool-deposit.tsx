@@ -98,17 +98,17 @@ export function PoolTogetherFormDeposit() {
       <Form.Root onSubmit={handleSubmit}>
         <Form.Field name="amountDeposit">
           <div className="flex justify-between align-baseline">
-            <Form.Label className="FormLabel mb-2">Amount</Form.Label>
-            <Form.Label className="FormLabel mb-2">
-              <a className="ml-10 cursor-pointer hover:underline" onClick={() => handleAmount()}>
+            <Form.Label className="mb-2">Amount</Form.Label>
+            <Form.Label className="mb-2">
+              <span className="ml-10 cursor-pointer hover:underline" onClick={() => handleAmount()}>
                 {parseFloat(userBalance.toString()).toFixed(2)} USDC
-              </a>
+              </span>
             </Form.Label>
           </div>
           <Form.Control asChild>
             <input
               className="input"
-              onChange={(e) => handleChange(e)}
+              onChange={handleChange}
               value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
               type="number"
               min={0}
