@@ -72,4 +72,12 @@ export const turboIntegrations = {
     imgLight: '/integrations/pooltogether.svg',
     imgDark: '/integrations/pooltogether.svg',
   },
+  livePeer: {
+    name: 'LivePeer',
+    href: '/integration/livepeer',
+    url: 'https://livepeer.org/',
+    description: 'Livepeer is a video infrastructure protocol designed to power the new creator economy.',
+    imgLight: '/integrations/livepeer.svg',
+    imgDark: '/integrations/livepeer.svg',
+  },
 }

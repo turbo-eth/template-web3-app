@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 
 import { Player, useCreateStream } from '@livepeer/react'
 
@@ -11,7 +11,7 @@ export const Stream = () => {
   const [streamName, setStreamName] = useState<string>('')
   const { mutate: createStream, data: stream, status } = useCreateStream(streamName ? { name: streamName } : null)
 
-  const isLoading = useMemo(() => status === 'loading', [status])
+  const isLoading = status === 'loading'
   return (
     <div>
       <label>
