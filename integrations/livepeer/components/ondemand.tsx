@@ -5,40 +5,7 @@ import { useDropzone } from 'react-dropzone'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-
-const baseStyle = {
-  flex: 1,
-  display: 'flex',
-  flexDirection: 'column' as 'column',
-  alignItems: 'center',
-  padding: '20px',
-  borderWidth: 2,
-  borderRadius: 2,
-  borderColor: '#eeeeee',
-  borderStyle: 'dashed',
-  backgroundColor: '#fafafa',
-  color: '#bdbdbd',
-  outline: 'none',
-  transition: 'border .24s ease-in-out',
-}
-
-const focusedStyle = {
-  borderColor: '#2196f3',
-}
-
-const acceptStyle = {
-  borderColor: '#00e676',
-}
-
-const rejectStyle = {
-  borderColor: '#ff1744',
-}
-
-const flexColumnCenter = {
-  display: 'flex',
-  flexDirection: 'column' as 'column',
-  justifyContent: 'center',
-}
+import { cn } from '@/lib/utils'
 
 export const Asset = () => {
   const [video, setVideo] = useState<File | undefined>()
@@ -91,21 +58,18 @@ export const Asset = () => {
     [progress]
   )
 
-  const style = useMemo(
-    () => ({
-      ...baseStyle,
-      ...(isFocused ? focusedStyle : {}),
-      ...(isDragAccept ? acceptStyle : {}),
-      ...(isDragReject ? rejectStyle : {}),
-    }),
-    [isFocused, isDragAccept, isDragReject]
-  )
-
   return (
-    <div>
+    <div className="card w-full">
       <div>
         {!asset && (
-          <div {...getRootProps({ style })}>
+          <div
+            className={cn(
+              'transition-border flex flex-1 flex-col items-center rounded border-2 border-dashed border-[#eeeeee] bg-[#fafafa] p-4 text-[#bdbdbd] outline-none duration-150 ease-in-out',
+              isFocused && 'border-[#2196f3]',
+              isDragAccept && 'border-[#00e676]',
+              isDragReject && 'border-[#ff1744]'
+            )}
+            {...getRootProps()}>
             <input {...getInputProps()} />
             <p>Drag and drop or browse files</p>
 
@@ -113,17 +77,23 @@ export const Asset = () => {
           </div>
         )}
 
-        {asset?.[0]?.playbackId && <Player title={asset[0].name} playbackId={asset[0].playbackId} />}
+        {asset?.[0]?.playbackId && (
+          <div className="relative z-0 mt-4 flex h-80 w-full justify-items-center rounded border-4 p-2">
+            {' '}
+            <Player title={asset[0].name} playbackId={asset[0].playbackId} />{' '}
+          </div>
+        )}
 
-        <div style={flexColumnCenter}>
-          {metrics?.metrics?.[0] && <p>Views: {metrics?.metrics?.[0]?.startViews}</p>}
+        <div className="flex flex-col justify-items-center">
+          {metrics?.metrics?.[0] && <p className="mt-2">Views: {metrics?.metrics?.[0]?.startViews}</p>}
 
-          {video ? <p>{video.name}</p> : <p>Select a video file to upload.</p>}
+          {video ? <p className="mt-2">{video.name}</p> : <p className="mt-2">Select a video file to upload.</p>}
 
-          {progressFormatted && <p>{progressFormatted}</p>}
+          {progressFormatted && <p className="mt-2">{progressFormatted}</p>}
 
           {!asset?.[0].id && (
             <Button
+              className="mt-2"
               onClick={() => {
                 createAsset?.()
               }}
@@ -133,13 +103,17 @@ export const Asset = () => {
           )}
         </div>
       </div>
-      <div style={{ textAlign: 'center', margin: '10px 0px' }}>OR</div>
-      <div style={flexColumnCenter}>
+      <div className="my-5 text-center ">OR</div>
+      <div className="flex flex-col justify-items-center">
         <label>
           Enter playback Id
-          <Input value={playbackId} onChange={(e) => setPlaybackId(e.target.value)} placeholder="PlaybackId from studio goes here" />
+          <Input className="mt-2" value={playbackId} onChange={(e) => setPlaybackId(e.target.value)} placeholder="PlaybackId from studio goes here" />
         </label>
-        {playbackId && <Player playbackId={playbackId} />}
+        {playbackId && (
+          <div className="relative z-0 mt-4 flex h-80 w-full justify-items-center rounded border-4 p-2">
+            <Player playbackId={playbackId} />
+          </div>
+        )}
       </div>
     </div>
   )

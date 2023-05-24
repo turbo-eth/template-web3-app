@@ -13,18 +13,20 @@ export const Stream = () => {
 
   const isLoading = status === 'loading'
   return (
-    <div>
+    <div className="card w-full">
       <label>
         Enter a stream name
-        <Input style={{ margin: '10px 0px' }} type="text" placeholder="Stream name" onChange={(e) => setStreamName(e.target.value)} />
+        <Input className="my-5" type="text" placeholder="Stream name" onChange={(e) => setStreamName(e.target.value)} />
       </label>
-
-      {stream?.playbackId && <Player title={stream?.name} playbackId={stream?.playbackId} autoPlay muted />}
+      {stream?.playbackId && (
+        <div className="relative z-0 mt-4 flex h-80 w-full justify-items-center rounded border-4 p-2">
+          <Player title={stream?.name} playbackId={stream?.playbackId} autoPlay muted />
+        </div>
+      )}
 
       <div>
         {!stream && (
           <Button
-            style={{ margin: '10px 0px' }}
             onClick={() => {
               createStream?.()
             }}
@@ -34,9 +36,9 @@ export const Stream = () => {
         )}
       </div>
       {stream && (
-        <div>
+        <div className="card mt-2">
           Please enter these details in the obs for testing
-          <div>
+          <div className="my-2">
             rtmp ingest url: <strong>{stream?.rtmpIngestUrl.replace(`/${stream.streamKey}`, '')}</strong>
           </div>
           <div>
