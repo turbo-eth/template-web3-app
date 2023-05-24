@@ -54,7 +54,7 @@ export function PoolTogetherFormWithdraw() {
       <Form.Root onSubmit={handleSubmit}>
         <Form.Field name="amountWithdraw">
           <div className="flex justify-between align-baseline">
-            <Form.Label className="FormLabel mb-2">Amount </Form.Label>
+            <Form.Label className="mb-2">Amount </Form.Label>
             <Form.Label className="mb-2">
               <span className="ml-10 cursor-pointer hover:underline" onClick={() => setWithdrawAmount(userBalance)}>
                 {parseFloat(userBalance.toString()).toFixed(2)} USDC
