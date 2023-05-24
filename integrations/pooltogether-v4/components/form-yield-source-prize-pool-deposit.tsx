@@ -84,7 +84,6 @@ export function PoolTogetherFormDeposit() {
   }
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value != '' ? parseFloat(event.target.valueAsNumber.toFixed(decimals)) : undefined
-    console.log(value)
     setDepositAmount(value)
     setApprovalAmount(value != undefined ? BigNumber.from(value * POWER.toNumber()) : BigNumber.from(0))
   }
