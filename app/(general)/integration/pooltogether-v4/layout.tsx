@@ -11,7 +11,7 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 
 export default function PoolTogetherLayout({ children }: { children: ReactNode }) {
-  const classes = classNames('GeneralLayout', 'bg-gradient-dark flex flex-col pb-10 lg:pb-12')
+  const classes = 'bg-gradient-dark flex flex-col pb-10 lg:pb-12'
   const button = classNames(
     'bg-gradient-pooltogether flex max-w-fit text-xl font-bold items-center justify-center space-x-2 rounded-full px-5 py-2 text-white transition hover:scale-105'
   )
