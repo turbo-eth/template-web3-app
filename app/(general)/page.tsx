@@ -266,4 +266,14 @@ const features = [
       </div>
     ),
   },
+  {
+    title: turboIntegrations.livepeer.name,
+    description: turboIntegrations.livepeer.description,
+    href: turboIntegrations.livepeer.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <Image alt="Livepeer logo" src={turboIntegrations.livepeer.imgDark} width={100} height={100} />
+      </div>
+    ),
+  },
 ]

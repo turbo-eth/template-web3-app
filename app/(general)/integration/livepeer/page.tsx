@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 
-export default function LivePeerNav() {
+export default function LivepeerNav() {
   return (
     <div className="flex-center flex flex-1 flex-col items-center justify-center">
       <motion.div
@@ -28,19 +28,19 @@ export default function LivePeerNav() {
           },
         }}>
         <BranchColorMode>
-          <Image className="mx-auto rounded-full" alt="Disco logo" src={turboIntegrations.livePeer.imgDark} width={100} height={100} />
-          <Image className="mx-auto rounded-full" alt="Disco logo" src={turboIntegrations.livePeer.imgLight} width={100} height={100} />
+          <Image className="mx-auto rounded-full" alt="Disco logo" src={turboIntegrations.livepeer.imgDark} width={100} height={100} />
+          <Image className="mx-auto rounded-full" alt="Disco logo" src={turboIntegrations.livepeer.imgLight} width={100} height={100} />
         </BranchColorMode>
         <motion.h1
           className="text-gradient-sand my-8 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
           variants={FADE_DOWN_ANIMATION_VARIANTS}>
-          {turboIntegrations.livePeer.name}
+          {turboIntegrations.livepeer.name}
         </motion.h1>
         <motion.p className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-          <Balancer>{turboIntegrations.livePeer.description}</Balancer>
+          <Balancer>{turboIntegrations.livepeer.description}</Balancer>
         </motion.p>
         <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-          <LinkComponent isExternal href={turboIntegrations.livePeer.url}>
+          <LinkComponent isExternal href={turboIntegrations.livepeer.url}>
             <button className="btn btn-primary">Documentation</button>
           </LinkComponent>
           <motion.div className="my-4">
