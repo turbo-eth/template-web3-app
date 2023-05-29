@@ -78,5 +78,6 @@ export const turboIntegrations = {
     url: 'https://livepeer.org/',
     description: 'Livepeer is a video infrastructure protocol designed to power the new creator economy.',
     imgDark: '/integrations/livepeer-64-dark.svg',
+    imgLight: '/integrations/livepeer-64-dark.svg',
   },
 }
