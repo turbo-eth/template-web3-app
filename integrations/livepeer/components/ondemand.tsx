@@ -5,6 +5,8 @@ import { useDropzone } from 'react-dropzone'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Progress } from '@/components/ui/progress'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { cn } from '@/lib/utils'
 
 export const Asset = () => {
@@ -44,77 +46,97 @@ export const Asset = () => {
 
   const isLoading = useMemo(() => status === 'loading' || (asset?.[0] && asset[0].status?.phase !== 'ready'), [status, asset])
 
-  const progressFormatted = useMemo(
+  const progressText = useMemo(
     () =>
       progress?.[0].phase === 'failed'
         ? 'Failed to process video.'
         : progress?.[0].phase === 'waiting'
         ? 'Waiting...'
         : progress?.[0].phase === 'uploading'
-        ? `Uploading: ${Math.round(progress?.[0]?.progress * 100)}%`
+        ? `Uploading: `
         : progress?.[0].phase === 'processing'
-        ? `Processing: ${Math.round(progress?.[0].progress * 100)}%`
+        ? `Processing: `
         : null,
     [progress]
   )
+  const shouldShowProgressbar = progress?.[0] ? progress[0].phase === 'processing' || progress[0].phase === 'uploading' : false
+  const progressAsPercentage = progress?.[0]?.progress ? Math.round(progress[0].progress * 100) : 0
 
   return (
-    <div className="card w-full">
-      <div>
-        {!asset && (
-          <div
-            className={cn(
-              'transition-border flex flex-1 flex-col items-center rounded border-2 border-dashed border-[#eeeeee] bg-[#fafafa] p-4 text-[#bdbdbd] outline-none duration-150 ease-in-out',
-              isFocused && 'border-[#2196f3]',
-              isDragAccept && 'border-[#00e676]',
-              isDragReject && 'border-[#ff1744]'
+    <Tabs className="card flex w-full flex-col" defaultValue="upload-tab">
+      <TabsList>
+        <TabsTrigger value="upload-tab">Upload</TabsTrigger>
+        <TabsTrigger value="fetch-playbackId">Fetch from PlaybackId</TabsTrigger>
+      </TabsList>
+      <TabsContent value="upload-tab">
+        <div>
+          {!asset && (
+            <div
+              className={cn(
+                'transition-border flex flex-1 flex-col items-center rounded border-2 border-dashed border-[#eeeeee] bg-[#fafafa] p-4 text-[#bdbdbd] outline-none duration-150 ease-in-out',
+                isFocused && 'border-[#2196f3]',
+                isDragAccept && 'border-[#00e676]',
+                isDragReject && 'border-[#ff1744]'
+              )}
+              {...getRootProps()}>
+              <input {...getInputProps()} />
+              <p>Drag and drop or browse files</p>
+
+              {error?.message && <p>{error.message}</p>}
+            </div>
+          )}
+
+          {asset?.[0]?.playbackId && (
+            <div className="relative z-0 mt-4 flex h-80 w-full justify-items-center rounded border-4 p-2">
+              {' '}
+              <Player title={asset[0].name} playbackId={asset[0].playbackId} />{' '}
+            </div>
+          )}
+
+          <div className="flex flex-col justify-items-center">
+            {metrics?.metrics?.[0] && <p className="mt-2">Views: {metrics?.metrics?.[0]?.startViews}</p>}
+
+            {video ? <p className="mt-2">{video.name}</p> : <p className="mt-2">Select a video file to upload.</p>}
+
+            {progressText && (
+              <div className="mt-2 flex items-center">
+                <p className="mr-2">{progressText}</p>
+                {shouldShowProgressbar && <Progress value={progressAsPercentage}></Progress>}
+                {shouldShowProgressbar && <p className="ml-2 w-[50px]">{progressAsPercentage}%</p>}
+              </div>
             )}
-            {...getRootProps()}>
-            <input {...getInputProps()} />
-            <p>Drag and drop or browse files</p>
 
-            {error?.message && <p>{error.message}</p>}
+            {!asset?.[0].id && (
+              <Button
+                className="mt-2"
+                onClick={() => {
+                  createAsset?.()
+                }}
+                disabled={isLoading || !createAsset}>
+                Upload
+              </Button>
+            )}
           </div>
-        )}
-
-        {asset?.[0]?.playbackId && (
-          <div className="relative z-0 mt-4 flex h-80 w-full justify-items-center rounded border-4 p-2">
-            {' '}
-            <Player title={asset[0].name} playbackId={asset[0].playbackId} />{' '}
-          </div>
-        )}
-
+        </div>
+      </TabsContent>
+      <TabsContent value="fetch-playbackId">
         <div className="flex flex-col justify-items-center">
-          {metrics?.metrics?.[0] && <p className="mt-2">Views: {metrics?.metrics?.[0]?.startViews}</p>}
-
-          {video ? <p className="mt-2">{video.name}</p> : <p className="mt-2">Select a video file to upload.</p>}
-
-          {progressFormatted && <p className="mt-2">{progressFormatted}</p>}
-
-          {!asset?.[0].id && (
-            <Button
+          <label>
+            Enter playback Id
+            <Input
               className="mt-2"
-              onClick={() => {
-                createAsset?.()
-              }}
-              disabled={isLoading || !createAsset}>
-              Upload
-            </Button>
+              value={playbackId}
+              onChange={(e) => setPlaybackId(e.target.value)}
+              placeholder="PlaybackId from studio goes here"
+            />
+          </label>
+          {playbackId && (
+            <div className="relative z-0 mt-4 flex h-80 w-full justify-items-center rounded border-4 p-2">
+              <Player playbackId={playbackId} />
+            </div>
           )}
         </div>
-      </div>
-      <div className="my-5 text-center ">OR</div>
-      <div className="flex flex-col justify-items-center">
-        <label>
-          Enter playback Id
-          <Input className="mt-2" value={playbackId} onChange={(e) => setPlaybackId(e.target.value)} placeholder="PlaybackId from studio goes here" />
-        </label>
-        {playbackId && (
-          <div className="relative z-0 mt-4 flex h-80 w-full justify-items-center rounded border-4 p-2">
-            <Player playbackId={playbackId} />
-          </div>
-        )}
-      </div>
-    </div>
+      </TabsContent>
+    </Tabs>
   )
 }
