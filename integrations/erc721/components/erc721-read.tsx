@@ -24,9 +24,9 @@ export function Erc721Read() {
             <span className="font-medium">Contract Symbol:</span>
             <ERC721Symbol address={token as `0x${string}`} />
           </div>
-          <div className="flex flex-wrap items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between break-words">
             <span className="font-medium">Token Owner:</span>
-            <ERC721OwnerOf tokenId={tokenId || 1} address={token as `0x${string}`} />
+            <ERC721OwnerOf className="overflow-x-scroll" tokenId={tokenId || 1} address={token as `0x${string}`} />
           </div>
           <div className="flex flex-wrap items-center justify-between">
             <span className="font-medium">Total Supply:</span>
