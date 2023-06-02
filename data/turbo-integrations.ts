@@ -23,6 +23,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/erc20-icon.png',
     imgDark: '/integrations/erc20-icon.png',
   },
+  erc721: {
+    name: 'ERC721',
+    href: '/integration/erc721',
+    url: 'https://eips.ethereum.org/EIPS/eip-721',
+    description: 'ERC721 is a standard for non-fungible tokens on EVM chains',
+    imgLight: '/integrations/erc721-icon.png',
+    imgDark: '/integrations/erc721-icon.png',
+  },
   etherscan: {
     name: 'Etherscan',
     href: '/integration/etherscan',
