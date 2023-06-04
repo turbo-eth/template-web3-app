@@ -1,9 +1,3 @@
-import { useState } from 'react'
-
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Signer, ethers } from 'ethers'
-import { useForm } from 'react-hook-form'
-import { useSigner } from 'wagmi'
 import { z } from 'zod'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
@@ -12,36 +6,16 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
-import { erc20MintableByteCode } from '../abis/erc20-mintable-bytecode'
-import { erc20MintableABI } from '../erc20-wagmi'
-import { useTokenStorage } from '../hooks/use-token-storage'
+import { useDeploy } from '../hooks/use-deploy'
 import { deployControls } from '../utils/controls'
-import { deployFormSchema } from '../utils/formSchema'
+
+const deployFormSchema = z.object({
+  name: z.string().min(2).max(50),
+  symbol: z.string().min(2).max(10),
+})
 
 export function DeployERC20Contract() {
-  const [token, setToken] = useTokenStorage()
-
-  const { data: signer } = useSigner()
-
-  const [, setContractAddress] = useState<string | undefined>()
-
-  const form = useForm<z.infer<typeof deployFormSchema>>({
-    resolver: zodResolver(deployFormSchema),
-    defaultValues: {
-      name: '',
-      symbol: '',
-    },
-  })
-
-  const onSubmit = async (values: z.infer<typeof deployFormSchema>) => {
-    const factory = new ethers.ContractFactory(erc20MintableABI, erc20MintableByteCode, signer as Signer)
-    const contract = await factory.deploy(values?.name, values?.symbol)
-    const deployed = await contract.deployTransaction.wait()
-
-    form.reset()
-    setToken(deployed.contractAddress)
-    setContractAddress(deployed.contractAddress)
-  }
+  const { form, onSubmit, token } = useDeploy({ deployFormSchema })
 
   return (
     <>

@@ -1,8 +1,4 @@
-import { zodResolver } from '@hookform/resolvers/zod'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { utils } from 'ethers'
-import { useForm } from 'react-hook-form'
-import { useAccount } from 'wagmi'
 import { z } from 'zod'
 
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
@@ -12,35 +8,14 @@ import { FormDescription, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
 import ERC20EventMint from './erc20-event-mint'
-import { useErc20MintableMint } from '../erc20-wagmi'
-import { useTokenStorage } from '../hooks/use-token-storage'
+import { useWriteMint } from '../hooks/use-write-mint'
 import { writeMintControls } from '../utils/controls'
-import { writeMintFormSchema } from '../utils/formSchema'
 
+const writeMintFormSchema = z.object({
+  amount: z.string().min(1),
+})
 function ERC20ContractMintTokens() {
-  const [token] = useTokenStorage()
-  const { address } = useAccount()
-  // @ts-ignore
-  const mintAction = useErc20MintableMint({
-    address: token as `0x${string}`,
-  })
-
-  const form = useForm<z.infer<typeof writeMintFormSchema>>({
-    resolver: zodResolver(writeMintFormSchema),
-    defaultValues: {
-      amount: '',
-    },
-  })
-
-  const onSubmit = async (values: z.infer<typeof writeMintFormSchema>) => {
-    console.log('values', values)
-
-    // @ts-ignore
-    const tx = await mintAction.writeAsync({
-      recklesslySetUnpreparedArgs: [address as `0x${string}`, utils.parseEther(values.amount)],
-    })
-    form.reset()
-  }
+  const { form, onSubmit } = useWriteMint({ writeMintFormSchema })
 
   return (
     <>

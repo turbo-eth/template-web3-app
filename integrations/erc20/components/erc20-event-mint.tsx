@@ -2,7 +2,7 @@
 import { useState } from 'react'
 
 import { BigNumberish, constants, utils } from 'ethers'
-import { useContractEvent, useToken } from 'wagmi'
+import { useContractEvent } from 'wagmi'
 
 import { erc20ABI } from '../erc20-wagmi'
 import { useTokenStorage } from '../hooks/use-token-storage'
