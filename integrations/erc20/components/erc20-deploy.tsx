@@ -1,48 +1,78 @@
 import { useState } from 'react'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import { Signer, ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useSigner } from 'wagmi'
+import { z } from 'zod'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 
-import { erc20MintableABI } from '../abis/erc20-mintable-abi'
 import { erc20MintableByteCode } from '../abis/erc20-mintable-bytecode'
+import { erc20MintableABI } from '../erc20-wagmi'
 import { useTokenStorage } from '../hooks/use-token-storage'
+import { deployControls } from '../utils/controls'
+import { deployFormSchema } from '../utils/formSchema'
 
 export function DeployERC20Contract() {
   const [token, setToken] = useTokenStorage()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
+
   const { data: signer } = useSigner()
 
   const [, setContractAddress] = useState<string | undefined>()
-  const onSubmit = async (data: any) => {
-    // https://docs.ethers.org/v5/api/contract/example/#example-erc-20-contract--deploying-a-contract
+
+  const form = useForm<z.infer<typeof deployFormSchema>>({
+    resolver: zodResolver(deployFormSchema),
+    defaultValues: {
+      name: '',
+      symbol: '',
+    },
+  })
+
+  const onSubmit = async (values: z.infer<typeof deployFormSchema>) => {
     const factory = new ethers.ContractFactory(erc20MintableABI, erc20MintableByteCode, signer as Signer)
-    const contract = await factory.deploy(data.name, data.symbol)
+    const contract = await factory.deploy(values?.name, values?.symbol)
     const deployed = await contract.deployTransaction.wait()
 
+    form.reset()
     setToken(deployed.contractAddress)
     setContractAddress(deployed.contractAddress)
   }
 
   return (
     <>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <label>Name</label>
-        <input {...register('name')} className="input" />
-        <label>Symbol</label>
-        <input {...register('symbol')} className="input" />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <button type="submit" className="btn btn-emerald">
-          Deploy
-        </button>
-      </form>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          {deployControls.map((item) => {
+            return (
+              <FormField
+                key={item?.label}
+                control={form.control}
+                name={item?.formfieldName}
+                render={({ field }) => (
+                  <>
+                    <FormItem>
+                      <FormLabel>{item?.label}</FormLabel>
+                      <FormControl>
+                        <Input placeholder={item?.placeholder} {...field} />
+                      </FormControl>
+                      <FormDescription>{item?.description}</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  </>
+                )}
+              />
+            )
+          })}
+
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
+
       {!token ? null : (
         <div className="flex items-center justify-between pt-5 pb-2">
           <span className="font-semibold">Mint Contract Address:</span>

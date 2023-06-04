@@ -1,19 +1,31 @@
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { utils } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useSigner } from 'wagmi'
-import { useErc20Transfer } from '../erc20-wagmi'
-import { useTokenStorage } from '../hooks/use-token-storage'
+import { z } from 'zod'
+
+import { WalletConnect } from '@/components/blockchain/wallet-connect'
+import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormLabel, FormMessage } from '@/components/ui/form'
+import { FormDescription, FormItem } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 
 import ERC20EventTransfer from './erc20-event-transfer'
+import { useErc20Transfer } from '../erc20-wagmi'
+import { useTokenStorage } from '../hooks/use-token-storage'
+import { writeTransferControls } from '../utils/controls'
+import { writeTransferFormSchema } from '../utils/formSchema'
 
 export function ERC20ContractTransferTokens() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
+  const form = useForm<z.infer<typeof writeTransferFormSchema>>({
+    resolver: zodResolver(writeTransferFormSchema),
+    defaultValues: {
+      fromAddress: '',
+      toAddress: '',
+      amount: '',
+    },
+  })
   const { data: signer } = useSigner()
 
   const [token] = useTokenStorage()
@@ -22,25 +34,46 @@ export function ERC20ContractTransferTokens() {
     address: token,
   })
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (values: z.infer<typeof writeTransferFormSchema>) => {
+    console.log('ij', values)
+
     // @ts-ignore
     const tx = await mintAction.writeAsync({
-      recklesslySetUnpreparedArgs: [data.to, utils.parseEther(data.amount)],
+      recklesslySetUnpreparedArgs: [values?.toAddress as `0x${string}`, utils.parseEther(values.amount)],
     })
+
+    form.reset()
   }
 
   return (
     <>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <label>Amount</label>
-        <input placeholder="10" {...register('amount')} className="input" />
-        <label>To</label>
-        <input placeholder="kames.eth" {...register('to')} className="input" />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <button type="submit" className="btn btn-emerald">
-          Transfer
-        </button>
-      </form>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          {writeTransferControls.map((item) => {
+            return (
+              <FormField
+                key={item?.label}
+                control={form.control}
+                name={item?.formfieldName}
+                render={({ field }) => (
+                  <>
+                    <FormItem>
+                      <FormLabel>{item?.label}</FormLabel>
+                      <FormControl>
+                        <Input placeholder={item?.placeholder} {...field} />
+                      </FormControl>
+                      <FormDescription>{item?.description}</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  </>
+                )}
+              />
+            )
+          })}
+
+          <Button type="submit">Submit</Button>
+        </form>
+      </Form>
     </>
   )
 }
