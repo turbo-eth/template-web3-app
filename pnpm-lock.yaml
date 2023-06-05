@@ -114,13 +114,13 @@ dependencies:
     version: 4.26.1(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)
   '@turbo-eth/core-wagmi':
     specifier: 0.0.0-beta.6
-    version: 0.0.0-beta.6(@rainbow-me/rainbowkit@0.12.9)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12)
+    version: 0.0.0-beta.6(@rainbow-me/rainbowkit@0.12.9)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12)(zod@3.21.4)
   '@turbo-eth/erc20-wagmi':
     specifier: 0.0.0-beta.14
-    version: 0.0.0-beta.14(@rainbow-me/rainbowkit@0.12.9)(@tanstack/query-core@4.26.1)(@tanstack/react-query@4.26.1)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12)
+    version: 0.0.0-beta.14(@rainbow-me/rainbowkit@0.12.9)(@tanstack/query-core@4.26.1)(@tanstack/react-query@4.26.1)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12)(zod@3.21.4)
   '@turbo-eth/erc721-wagmi':
     specifier: 0.0.0-beta.7
-    version: 0.0.0-beta.7(@rainbow-me/rainbowkit@0.12.9)(@tanstack/query-core@4.26.1)(@tanstack/react-query@4.26.1)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12)
+    version: 0.0.0-beta.7(@rainbow-me/rainbowkit@0.12.9)(@tanstack/query-core@4.26.1)(@tanstack/react-query@4.26.1)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12)(zod@3.21.4)
   '@types/react-copy-to-clipboard':
     specifier: ^5.0.4
     version: 5.0.4
@@ -157,6 +157,9 @@ dependencies:
   framer-motion:
     specifier: ^8.4.3
     version: 8.5.5(react-dom@18.2.0)(react@18.2.0)
+  graphql:
+    specifier: ^16.6.0
+    version: 16.6.0
   iron-session:
     specifier: ^6.3.1
     version: 6.3.1(next@13.4.0)
@@ -196,6 +199,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-hook-form:
+    specifier: ^7.44.3
+    version: 7.44.3(react@18.2.0)
   react-icons:
     specifier: ^4.7.1
     version: 4.8.0(react@18.2.0)
@@ -243,7 +249,10 @@ dependencies:
     version: 2.9.1(react-dom@18.2.0)(react@18.2.0)
   wagmi:
     specifier: 0.12.12
-    version: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)
+    version: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4)
+  zod:
+    specifier: ^3.21.4
+    version: 3.21.4
 
 devDependencies:
   '@babel/core':
@@ -5268,7 +5277,7 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-remove-scroll: 2.5.4(@types/react@18.0.26)(react@18.2.0)
-      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)
+      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -6483,7 +6492,7 @@ packages:
   /@tsconfig/node16@1.0.3:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
 
-  /@turbo-eth/core-wagmi@0.0.0-beta.6(@rainbow-me/rainbowkit@0.12.9)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12):
+  /@turbo-eth/core-wagmi@0.0.0-beta.6(@rainbow-me/rainbowkit@0.12.9)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12)(zod@3.21.4):
     resolution: {integrity: sha512-XSQJzWaIl/53eaIfzvVxNZWVyNMRForB6a1iDEnHCrfZkfRv4ipoXVYaxPCLzZKZ926vgmZz+7r+A7Qugi6/sA==}
     engines: {node: '>=12'}
     hasBin: true
@@ -6501,8 +6510,8 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      viem: 0.1.13(typescript@4.9.4)
-      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)
+      viem: 0.1.13(typescript@4.9.4)(zod@3.21.4)
+      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4)
     transitivePeerDependencies:
       - bufferutil
       - typescript
@@ -6510,7 +6519,7 @@ packages:
       - zod
     dev: false
 
-  /@turbo-eth/erc20-wagmi@0.0.0-beta.14(@rainbow-me/rainbowkit@0.12.9)(@tanstack/query-core@4.26.1)(@tanstack/react-query@4.26.1)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12):
+  /@turbo-eth/erc20-wagmi@0.0.0-beta.14(@rainbow-me/rainbowkit@0.12.9)(@tanstack/query-core@4.26.1)(@tanstack/react-query@4.26.1)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12)(zod@3.21.4):
     resolution: {integrity: sha512-SlaMLV+lr03d3L09PNzNhBGwtrrNXAJ8TpzfSic+mWwuZtGDFC84IQuZ/CXbuMrq1b3FPqrm8UnCGhe/UcTTYQ==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -6531,8 +6540,8 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      viem: 0.1.13(typescript@4.9.4)
-      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)
+      viem: 0.1.13(typescript@4.9.4)(zod@3.21.4)
+      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4)
     transitivePeerDependencies:
       - bufferutil
       - typescript
@@ -6540,7 +6549,7 @@ packages:
       - zod
     dev: false
 
-  /@turbo-eth/erc721-wagmi@0.0.0-beta.7(@rainbow-me/rainbowkit@0.12.9)(@tanstack/query-core@4.26.1)(@tanstack/react-query@4.26.1)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12):
+  /@turbo-eth/erc721-wagmi@0.0.0-beta.7(@rainbow-me/rainbowkit@0.12.9)(@tanstack/query-core@4.26.1)(@tanstack/react-query@4.26.1)(ethers@5.7.2)(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.4)(wagmi@0.12.12)(zod@3.21.4):
     resolution: {integrity: sha512-qOvLKHHs6jn25xq4NyaOfeb31/EBMApsm3HKyHtxN9vFpsnpEeEXlgI4tvhu+5H745V967IyQWjSkha6tbcyCw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -6561,8 +6570,8 @@ packages:
       prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      viem: 0.1.13(typescript@4.9.4)
-      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)
+      viem: 0.1.13(typescript@4.9.4)(zod@3.21.4)
+      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4)
     transitivePeerDependencies:
       - bufferutil
       - typescript
@@ -7134,11 +7143,11 @@ packages:
       picocolors: 1.0.0
       prettier: 2.8.4
       typescript: 4.9.4
-      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)
+      wagmi: 0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4)
       zod: 3.21.4
     dev: false
 
-  /@wagmi/connectors@0.3.16(@wagmi/core@0.10.10)(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4):
+  /@wagmi/connectors@0.3.16(@wagmi/core@0.10.10)(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4):
     resolution: {integrity: sha512-WtiFyvai6IWbV7DhujjmtJF0m+FFQCiIDrtHsNf1xio0gBfpnO8rT9PZQQf0uxuLn0nLxqXqYMMwzPipUNaIcg==}
     peerDependencies:
       '@wagmi/core': '>=0.9.x'
@@ -7154,7 +7163,7 @@ packages:
       '@ledgerhq/connect-kit-loader': 1.0.2
       '@safe-global/safe-apps-provider': 0.15.2(encoding@0.1.13)
       '@safe-global/safe-apps-sdk': 7.10.1(encoding@0.1.13)
-      '@wagmi/core': 0.10.10(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4)
+      '@wagmi/core': 0.10.10(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4)
       '@walletconnect/ethereum-provider': 2.7.0(@web3modal/standalone@2.3.6)(encoding@0.1.13)
       '@walletconnect/legacy-provider': 2.0.0(encoding@0.1.13)
       '@web3modal/standalone': 2.3.6(react@18.2.0)
@@ -7174,7 +7183,7 @@ packages:
       - zod
     dev: false
 
-  /@wagmi/core@0.10.10(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4):
+  /@wagmi/core@0.10.10(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4):
     resolution: {integrity: sha512-oghQIASk+QfrRku2m36NJTZnj5gpJNqfID5G3kZlBReWr01iOFbGfTVcS6Pcu2X3rsR2lmky8Tu5DWLXdKeGZg==}
     peerDependencies:
       ethers: '>=5.5.1 <6'
@@ -7184,7 +7193,7 @@ packages:
         optional: true
     dependencies:
       '@wagmi/chains': 0.2.19(typescript@4.9.4)
-      '@wagmi/connectors': 0.3.16(@wagmi/core@0.10.10)(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4)
+      '@wagmi/connectors': 0.3.16(@wagmi/core@0.10.10)(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4)
       abitype: 0.3.0(typescript@4.9.4)(zod@3.21.4)
       ethers: 5.7.2
       eventemitter3: 4.0.7
@@ -7601,7 +7610,7 @@ packages:
       zod: 3.21.4
     dev: false
 
-  /abitype@0.7.1(typescript@4.9.4):
+  /abitype@0.7.1(typescript@4.9.4)(zod@3.21.4):
     resolution: {integrity: sha512-VBkRHTDZf9Myaek/dO3yMmOzB/y2s3Zo6nVU7yaw1G+TvCHAjwaJzNGN9yo4K5D8bU/VZXKP1EJpRhFr862PlQ==}
     peerDependencies:
       typescript: '>=4.9.4'
@@ -7611,6 +7620,7 @@ packages:
         optional: true
     dependencies:
       typescript: 4.9.4
+      zod: 3.21.4
     dev: false
 
   /abort-controller@3.0.0:
@@ -16657,6 +16667,15 @@ packages:
       scheduler: 0.23.0
     dev: false
 
+  /react-hook-form@7.44.3(react@18.2.0):
+    resolution: {integrity: sha512-/tHId6p2ViAka1wECMw8FEPn/oz/w226zehHrJyQ1oIzCBNMIJCaj6ZkQcv+MjDxYh9MWR7RQic7Qqwe4a5nkw==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-icons@4.8.0(react@18.2.0):
     resolution: {integrity: sha512-N6+kOLcihDiAnj5Czu637waJqSnwlMNROzVZMhfX68V/9bu9qHaMIJC4UdozWoOk57gahFCNHwVvWzm0MTzRjg==}
     peerDependencies:
@@ -19300,12 +19319,12 @@ packages:
       vfile-message: 3.1.4
     dev: false
 
-  /viem@0.1.13(typescript@4.9.4):
+  /viem@0.1.13(typescript@4.9.4)(zod@3.21.4):
     resolution: {integrity: sha512-ubtfRB7nHiCHI+0R3H1fWAv2Bd4ifKyaV4D2SYGJAmBaY3Pdqd147nIrD6577b3mIPXXAlVCcVAAgU1pd/dyRQ==}
     dependencies:
       '@noble/hashes': 1.2.0
       '@wagmi/chains': 0.2.13(typescript@4.9.4)
-      abitype: 0.7.1(typescript@4.9.4)
+      abitype: 0.7.1(typescript@4.9.4)(zod@3.21.4)
       idna-uts46-hx: 4.1.2
       isomorphic-ws: 5.0.0(ws@8.13.0)
       ws: 8.13.0(bufferutil@4.0.7)(utf-8-validate@5.0.10)
@@ -19324,7 +19343,7 @@ packages:
     resolution: {integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==}
     dev: false
 
-  /wagmi@0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4):
+  /wagmi@0.12.12(encoding@0.1.13)(ethers@5.7.2)(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4):
     resolution: {integrity: sha512-AEY4res9WCeAEbVv++tgdx6981lkdiAwfpLPj24mawMoocj2Cqr6j304lq7EJiEhnoiPqIwvbBzme3sAmUWYUA==}
     peerDependencies:
       ethers: '>=5.5.1 <6'
@@ -19337,7 +19356,7 @@ packages:
       '@tanstack/query-sync-storage-persister': 4.29.1
       '@tanstack/react-query': 4.29.3(react-dom@18.2.0)(react-native@0.71.0)(react@18.2.0)
       '@tanstack/react-query-persist-client': 4.29.3(@tanstack/react-query@4.29.3)
-      '@wagmi/core': 0.10.10(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4)
+      '@wagmi/core': 0.10.10(encoding@0.1.13)(ethers@5.7.2)(react@18.2.0)(typescript@4.9.4)(zod@3.21.4)
       abitype: 0.3.0(typescript@4.9.4)(zod@3.21.4)
       ethers: 5.7.2
       react: 18.2.0
