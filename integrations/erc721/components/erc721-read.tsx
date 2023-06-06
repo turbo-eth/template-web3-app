@@ -1,10 +1,12 @@
 import { useState } from 'react'
 
 import { ERC721Name, ERC721OwnerOf, ERC721Symbol, ERC721TokenUriDescription, ERC721TokenUriImage, ERC721TokenUriName, ERC721TotalSupply } from '../'
-import { useErc721TokenStorage } from '../hooks/use-erc721-token-storage'
 
-export function Erc721Read() {
-  const [token] = useErc721TokenStorage()
+interface Erc721ReadProps {
+  address: `0x${string}`
+}
+
+export function Erc721Read({ address }: Erc721ReadProps) {
   const [tokenId, setTokenId] = useState<number>()
 
   return (
@@ -12,25 +14,25 @@ export function Erc721Read() {
       <div className="flex flex-col justify-center gap-4">
         <label>Token ID</label>
         <input value={tokenId} type="number" onChange={(e) => setTokenId(e.target.valueAsNumber)} className="input" />
-        <ERC721TokenUriName className="mx-auto mt-4 text-lg font-medium" tokenId={tokenId || 1} address={token as `0x${string}`} />
-        <ERC721TokenUriImage className="mx-auto rounded-lg" height={200} width={200} tokenId={tokenId || 1} address={token as `0x${string}`} />
-        <ERC721TokenUriDescription className="mx-auto max-w-lg text-center" tokenId={tokenId || 1} address={token as `0x${string}`} />
+        <ERC721TokenUriName className="mx-auto mt-4 text-lg font-medium" tokenId={tokenId || 1} address={address} />
+        <ERC721TokenUriImage className="mx-auto rounded-lg" height={200} width={200} tokenId={tokenId || 1} address={address} />
+        <ERC721TokenUriDescription className="mx-auto max-w-lg text-center" tokenId={tokenId || 1} address={address} />
         <div className="mt-4 flex flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between">
             <span className="font-medium">Contract Name:</span>
-            <ERC721Name address={token as `0x${string}`} />
+            <ERC721Name address={address} />
           </div>
           <div className="flex flex-wrap items-center justify-between">
             <span className="font-medium">Contract Symbol:</span>
-            <ERC721Symbol address={token as `0x${string}`} />
+            <ERC721Symbol address={address} />
           </div>
           <div className="flex flex-wrap items-center justify-between break-words">
             <span className="font-medium">Token Owner:</span>
-            <ERC721OwnerOf className="overflow-x-scroll" tokenId={tokenId || 1} address={token as `0x${string}`} />
+            <ERC721OwnerOf className="overflow-x-scroll" tokenId={tokenId || 1} address={address} />
           </div>
           <div className="flex flex-wrap items-center justify-between">
             <span className="font-medium">Total Supply:</span>
-            <ERC721TotalSupply address={token as `0x${string}`} />
+            <ERC721TotalSupply address={address} />
           </div>
         </div>
         <hr className="my-4" />

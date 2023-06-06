@@ -7,10 +7,12 @@ import { useNetwork, useWaitForTransaction } from 'wagmi'
 import { LinkComponent } from '@/components/shared/link-component'
 
 import { useErc721SafeMint, usePrepareErc721SafeMint } from '../erc721-wagmi'
-import { useErc721TokenStorage } from '../hooks/use-erc721-token-storage'
 
-export function Erc721WriteMint() {
-  const [token] = useErc721TokenStorage()
+interface Erc721WriteMintProps {
+  address: `0x${string}`
+}
+
+export function Erc721WriteMint({ address }: Erc721WriteMintProps) {
   const [toAddress, setToAddress] = useState<string>('')
   const [tokenId, setTokenId] = useState<number>()
   const [tokenUri, setTokenUri] = useState<string>('')
@@ -26,7 +28,7 @@ export function Erc721WriteMint() {
     isError,
     isLoading: isLoadingPrepare,
   } = usePrepareErc721SafeMint({
-    address: token as `0x${string}`,
+    address,
     args: [debouncedToAddress as `0x${string}`, BigNumber.from(debouncedTokenId || 0), debouncedTokenUri],
   })
 

@@ -7,10 +7,12 @@ import { useNetwork, useWaitForTransaction } from 'wagmi'
 import { LinkComponent } from '@/components/shared/link-component'
 
 import { useErc721Approve, usePrepareErc721Approve } from '../erc721-wagmi'
-import { useErc721TokenStorage } from '../hooks/use-erc721-token-storage'
 
-export function Erc721WriteApprove() {
-  const [token] = useErc721TokenStorage()
+interface Erc721WriteApproveProps {
+  address: `0x${string}`
+}
+
+export function Erc721WriteApprove({ address }: Erc721WriteApproveProps) {
   const [toAddress, setToAddress] = useState<string>('')
   const [tokenId, setTokenId] = useState<number>()
   const debouncedToAddress = useDebounce(toAddress, 500)
@@ -24,7 +26,7 @@ export function Erc721WriteApprove() {
     isError,
     isLoading: isLoadingPrepare,
   } = usePrepareErc721Approve({
-    address: token as `0x${string}`,
+    address,
     args: [debouncedToAddress as `0x${string}`, BigNumber.from(debouncedTokenId || 0)],
   })
 

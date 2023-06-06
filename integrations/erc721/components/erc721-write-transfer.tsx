@@ -7,10 +7,12 @@ import { useAccount, useNetwork, useWaitForTransaction } from 'wagmi'
 import { LinkComponent } from '@/components/shared/link-component'
 
 import { useErc721SafeTransferFrom, usePrepareErc721SafeTransferFrom } from '../erc721-wagmi'
-import { useErc721TokenStorage } from '../hooks/use-erc721-token-storage'
 
-export function Erc721WriteTransfer() {
-  const [token] = useErc721TokenStorage()
+interface Erc721WriteTransferProps {
+  address: `0x${string}`
+}
+
+export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
   const [differentFromAddress, setDifferentFromAddress] = useState<boolean>(false)
   const [tokenId, setTokenId] = useState<number>()
   const [fromAddress, setFromAddress] = useState<string>('')
@@ -20,10 +22,10 @@ export function Erc721WriteTransfer() {
   const debouncedFromAddress = useDebounce(fromAddress, 500)
   const debouncedToAddress = useDebounce(toAddress, 500)
 
-  const { address } = useAccount()
+  const { address: accountAddress } = useAccount()
   const { chain } = useNetwork()
 
-  const transferFromAddress = differentFromAddress ? debouncedFromAddress : address
+  const transferFromAddress = differentFromAddress ? debouncedFromAddress : accountAddress
 
   const {
     config,
@@ -31,7 +33,7 @@ export function Erc721WriteTransfer() {
     isError,
     isLoading: isLoadingPrepare,
   } = usePrepareErc721SafeTransferFrom({
-    address: token as `0x${string}`,
+    address,
     args: [transferFromAddress as `0x${string}`, debouncedToAddress as `0x${string}`, BigNumber.from(debouncedTokenId || 0)],
   })
 
