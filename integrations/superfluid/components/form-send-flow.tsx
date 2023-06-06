@@ -3,26 +3,32 @@
 import { useState } from 'react'
 
 import { useForm } from 'react-hook-form'
+import { useSigner } from 'wagmi'
+
+import { useSuperFluidWithWagmiProvider } from '../hooks/use-superfluid-with-wagmi-provider'
 
 export default function App() {
-  const onSubmit = (data: any) => console.log(data)
-
-  /* useEffect(() => {
-    const setSF = async () => {
-      const sf = await Framework.create({
-        chainId: 1,
-        provider: provider, // this is the injected provider
-      })
-      console.log(sf)
-    }
-    setSF()
-  }, []) */
-
+  const signer = useSigner()
   const { register, handleSubmit } = useForm()
-  const [data, setData] = useState('')
+  const [formData, setData] = useState('')
+  const sf = useSuperFluidWithWagmiProvider()
+
+  const onSubmit = async (data: any) => {
+    //@ts-ignore
+    const daix = await sf?.loadSuperToken('USDCx')
+    //load the token you'd like to use like this
+    let flowOp = daix?.createFlow({
+      sender: '0xc0163e58648b247c143023cfb26c2baa42c9d9a9',
+      receiver: '0x1A6784925814a13334190Fd249ae0333B90b6443',
+      flowRate: '30000',
+    })
+
+    //@ts-ignore
+    await flowOp?.exec(signer?.data) // should have same address as `sender`
+  }
 
   return (
-    <form onSubmit={handleSubmit((data) => setData(JSON.stringify(data)))}>
+    <form onSubmit={handleSubmit((formData) => setData(JSON.stringify(formData)))}>
       <h1>Start Stream</h1>
       <input {...register('receiver')} placeholder="Receiver Address" />
       <select {...register('supertoken', { required: true })}>
@@ -31,8 +37,8 @@ export default function App() {
         <option value="B">Option B</option>
       </select>
       <input {...register('flowRate')} placeholder="Flow Rate / month" />
-      <p>{data}</p>
-      <input type="submit" />
+      <p>{formData}</p>
+      <button onClick={onSubmit}>Start Stream</button>
     </form>
   )
 }
