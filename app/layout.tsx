@@ -4,7 +4,6 @@ import '@/styles/periphery.css'
 import { Raleway } from '@next/font/google'
 import { Inter as FontSans } from '@next/font/google'
 import localFont from '@next/font/local'
-import { Metadata } from 'next'
 
 import RootProvider from '@/components/providers/root-provider'
 import { siteConfig } from '@/config/site'
@@ -12,9 +11,8 @@ import { env } from '@/env.mjs'
 import { cn } from '@/lib/utils'
 
 const url = env.SITE_URL || 'http://localhost:3000'
-const ogUrl = new URL(`${url}/api/og`)
 
-export const metadata: Metadata = {
+export const metadata = {
   title: `${siteConfig.name} - ${siteConfig.description}`,
   description: siteConfig.description,
   icons: {
@@ -24,7 +22,6 @@ export const metadata: Metadata = {
     title: siteConfig.name,
     description: siteConfig.description,
     url: url?.toString(),
-    images: [ogUrl.toString()],
     siteName: siteConfig.name,
     type: 'website',
   },
@@ -32,7 +29,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [ogUrl.toString()],
   },
 }
 
