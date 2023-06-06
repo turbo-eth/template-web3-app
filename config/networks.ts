@@ -21,6 +21,8 @@ import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { infuraProvider } from 'wagmi/providers/infura'
 import { publicProvider } from 'wagmi/providers/public'
 
+import { env } from '@/env.mjs'
+
 // @ts-ignore
 goerli.iconUrl = '/icons/NetworkEthereumTest.svg'
 // @ts-ignore
@@ -55,31 +57,31 @@ const CHAINS_SUPPORTED_BY_HARDHAT = [hardhat]
 const PROVIDERS = []
 const CHAINS = []
 
-if (process.env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
+if (env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
   CHAINS.push(...CHAINS_SUPPORTED_BY_ALCHEMY)
   PROVIDERS.push(
     alchemyProvider({
-      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
+      apiKey: env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     })
   )
 }
 
-if (process.env.NEXT_PUBLIC_INFURA_API_KEY) {
+if (env.NEXT_PUBLIC_INFURA_API_KEY) {
   CHAINS.push(...CHAINS_SUPPORTED_BY_INFURA)
   PROVIDERS.push(
     infuraProvider({
-      apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string,
+      apiKey: env.NEXT_PUBLIC_INFURA_API_KEY,
     })
   )
 }
 
-if (process.env.NEXT_PUBLIC_USE_HARDHAT_PROVIDER) {
+if (env.NEXT_PUBLIC_USE_HARDHAT_PROVIDER === 'true') {
   CHAINS.push(...CHAINS_SUPPORTED_BY_HARDHAT)
   PROVIDERS.push(publicProvider())
 }
 
 // Include public provider if no other providers are available.
-if (process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER || PROVIDERS.length === 0) {
+if (env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER === 'true' || PROVIDERS.length === 0) {
   CHAINS.push(...CHAINS_SUPPORTED_BY_PUBLIC_PROVIER)
   PROVIDERS.push(publicProvider())
 }

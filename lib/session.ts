@@ -2,6 +2,7 @@ import { IronSessionOptions } from 'iron-session'
 import { SiweMessage } from 'siwe'
 
 import { siteConfig } from '@/config/site'
+import { env } from '@/env.mjs'
 
 declare module 'iron-session' {
   // eslint-disable-next-line unused-imports/no-unused-vars
@@ -14,7 +15,7 @@ declare module 'iron-session' {
 
 // This is the secret used to encrypt the session cookie
 // It should be at least 32 characters long
-export const NEXTAUTH_SECRET = process.env.NEXTAUTH_SECRET
+export const NEXTAUTH_SECRET = env.NEXTAUTH_SECRET
 
 // The httpOnly cookie option is not working so we are using
 // a hack to remove the cookie from the browser
