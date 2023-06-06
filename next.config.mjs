@@ -12,7 +12,6 @@ const nextConfig = {
   swcMinify: true,
   env: {
     mode: process.env.NODE_ENV,
-    NEXT_PUBLIC_MODE: true,
   },
   experimental: {
     appDir: true,
