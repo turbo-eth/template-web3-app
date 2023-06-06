@@ -21,6 +21,8 @@ import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { infuraProvider } from 'wagmi/providers/infura'
 import { publicProvider } from 'wagmi/providers/public'
 
+import { env } from '@/env.mjs'
+
 // @ts-ignore
 goerli.iconUrl = '/icons/NetworkEthereumTest.svg'
 // @ts-ignore
@@ -42,25 +44,25 @@ export const CHAINS = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : 
 
 const PROVIDERS = []
 
-if (process.env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
+if (env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
   PROVIDERS.push(
     alchemyProvider({
-      apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
+      apiKey: env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
     })
   )
 }
 
-if (process.env.NEXT_PUBLIC_INFURA_API_KEY) {
+if (env.NEXT_PUBLIC_INFURA_API_KEY) {
   PROVIDERS.push(
     infuraProvider({
-      apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string,
+      apiKey: env.NEXT_PUBLIC_INFURA_API_KEY as string,
     })
   )
 }
 
 // Fallback to public provider
 // Only include public provider if no other providers are available.
-if (PROVIDERS.length === 0 || process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER) {
+if (PROVIDERS.length === 0 || env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER) {
   PROVIDERS.push(publicProvider())
 }
 

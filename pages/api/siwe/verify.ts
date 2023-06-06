@@ -1,10 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { SiweMessage } from 'siwe'
 
+import { env } from '@/env.mjs'
 import { prisma } from '@/lib/prisma'
 
 import { withSessionRoute } from '../../../lib/server'
-const admins = process.env.APP_ADMINS?.split(',') || []
+const admins = env.APP_ADMINS?.split(',') || []
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
