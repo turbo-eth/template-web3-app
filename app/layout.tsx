@@ -8,9 +8,10 @@ import { Metadata } from 'next'
 
 import RootProvider from '@/components/providers/root-provider'
 import { siteConfig } from '@/config/site'
+import { env } from '@/env.mjs'
 import { cn } from '@/lib/utils'
 
-const url = process.env.NEXTAUTH_URL || 'http://localhost:3000'
+const url = env.SITE_URL || 'http://localhost:3000'
 const ogUrl = new URL(`${url}/api/og`)
 
 export const metadata: Metadata = {

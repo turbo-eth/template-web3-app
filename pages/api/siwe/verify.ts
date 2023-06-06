@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { SiweMessage } from 'siwe'
 
+import { env } from '@/env.mjs'
 import { prisma } from '@/lib/prisma'
 
 import { withSessionRoute } from '../../../lib/server'
-const DATABASE_URL = process.env.DATABASE_URL
-const ADMINS = process.env.APP_ADMINS?.split(',') || []
+const DATABASE_URL = env.DATABASE_URL
+const ADMINS = env.APP_ADMINS?.split(',') || []
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
