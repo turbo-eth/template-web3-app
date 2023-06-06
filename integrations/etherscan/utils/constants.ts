@@ -1,3 +1,5 @@
+import { env } from '@/env.mjs'
+
 interface ChainIdToApi {
   [chainId: number]: string | undefined
 }
@@ -68,7 +70,7 @@ export const CHAIN_ID_API_URL_MAP: ChainIdToApi = {
   421613: ARBITRUM_MAINNET_API_URL,
 }
 
-const { ETHERSCAN_API_KEY, ETHERSCAN_API_KEY_OPTIMISM, ETHERSCAN_API_KEY_POLYGON, ETHERSCAN_API_KEY_ARBITRUM } = process.env
+const { ETHERSCAN_API_KEY, ETHERSCAN_API_KEY_OPTIMISM, ETHERSCAN_API_KEY_POLYGON, ETHERSCAN_API_KEY_ARBITRUM } = env
 
 export const CHAIN_ID_API_KEY_MAP: ChainIdToApi = {
   1: ETHERSCAN_API_KEY,

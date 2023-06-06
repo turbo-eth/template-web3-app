@@ -1,5 +1,7 @@
 import { ParsedEvent, ReconnectInterval, createParser } from 'eventsource-parser'
 
+import { env } from '@/env.mjs'
+
 import { ModelConfig } from './types'
 
 /**
@@ -12,7 +14,7 @@ import { ModelConfig } from './types'
  * @returns A readable stream of text data from OpenAI API.
  */
 export async function OpenAIStream(payload: ModelConfig, customApiKey?: string) {
-  const apiKey = customApiKey ?? process.env.OPENAI_API_KEY
+  const apiKey = customApiKey ?? env.OPENAI_API_KEY
 
   if (!apiKey) {
     throw new Error('No OpenAI API key provided')

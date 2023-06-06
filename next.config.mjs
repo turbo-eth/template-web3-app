@@ -1,3 +1,5 @@
+import './env.mjs'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -10,7 +12,6 @@ const nextConfig = {
   swcMinify: true,
   env: {
     mode: process.env.NODE_ENV,
-    NEXT_PUBLIC_MODE: true,
   },
   experimental: {
     appDir: true,
@@ -33,4 +34,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+export default nextConfig
