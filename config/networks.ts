@@ -62,7 +62,7 @@ if (env.NEXT_PUBLIC_INFURA_API_KEY) {
 
 // Fallback to public provider
 // Only include public provider if no other providers are available.
-if (PROVIDERS.length === 0 || env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER) {
+if (PROVIDERS.length === 0 || env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER === 'true') {
   PROVIDERS.push(publicProvider())
 }
 
