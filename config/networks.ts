@@ -75,13 +75,13 @@ if (env.NEXT_PUBLIC_INFURA_API_KEY) {
   )
 }
 
-if (env.NEXT_PUBLIC_USE_HARDHAT_PROVIDER) {
+if (env.NEXT_PUBLIC_USE_HARDHAT_PROVIDER === 'true') {
   CHAINS.push(...CHAINS_SUPPORTED_BY_HARDHAT)
   PROVIDERS.push(publicProvider())
 }
 
 // Include public provider if no other providers are available.
-if (env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER || PROVIDERS.length === 0) {
+if (env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER === 'true' || PROVIDERS.length === 0) {
   CHAINS.push(...CHAINS_SUPPORTED_BY_PUBLIC_PROVIER)
   PROVIDERS.push(publicProvider())
 }

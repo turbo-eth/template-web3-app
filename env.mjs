@@ -14,8 +14,8 @@ export const env = createEnv({
     SITE_URL: z.string().url().optional(),
   },
   client: {
-    NEXT_PUBLIC_USE_PUBLIC_PROVIDER: z.boolean().default(true),
-    NEXT_PUBLIC_USE_HARDHAT_PROVIDER: z.boolean().default(false),
+    NEXT_PUBLIC_USE_PUBLIC_PROVIDER: z.enum(['true', 'false']).default('true'),
+    NEXT_PUBLIC_USE_HARDHAT_PROVIDER: z.enum(['true', 'false']).default('false'),
     NEXT_PUBLIC_ALCHEMY_API_KEY: z.string().min(1).optional(),
     NEXT_PUBLIC_INFURA_API_KEY: z.string().min(1).optional(),
   },
