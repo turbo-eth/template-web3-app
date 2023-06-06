@@ -12,7 +12,6 @@ export const env = createEnv({
       .regex(/^(0x[a-fA-F0-9]{40}( *, *0x[a-fA-F0-9]{40})* *)*$/)
       .optional(),
     SITE_URL: z.string().url().optional(),
-    SITE_URL: z.string().url().optional(),
     DISCO_API_KEY: z.string().min(1).optional(),
     OPENAI_API_KEY: z.string().min(1).optional(),
     ETHERSCAN_API_KEY: z.string().min(1).optional(),
