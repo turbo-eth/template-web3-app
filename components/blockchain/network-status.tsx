@@ -25,10 +25,10 @@ export function NetworkStatus({ className }: any) {
       </span>
       {explorerUrl && (
         <LinkComponent href={explorerUrl} className="mx-3 text-2xs dark:hover:text-gray-200">
-          <>#{block.data}</>
+          <>#{block.data?.toString()}</>
         </LinkComponent>
       )}
-      {!explorerUrl && <span className="mx-3 text-2xs"># {block.data}</span>}
+      {!explorerUrl && <span className="mx-3 text-2xs"># {block.data?.toString()}</span>}
     </div>
   )
 }
