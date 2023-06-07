@@ -77,7 +77,6 @@
     "@turbo-eth/erc20-wagmi": "0.0.0-beta.14",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@vercel/analytics": "^0.1.6",
-    "@vercel/og": "^0.0.27",
     "@wagmi/chains": "^0.2.13",
     "@wagmi/cli": "^0.1.11",
     "add": "^2.0.6",
