@@ -7,7 +7,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: ['avatars.githubusercontent.com', 'images.unsplash.com'],
+    domains: ['avatars.githubusercontent.com', 'images.unsplash.com', 'cloudflare-ipfs.com'],
   },
   swcMinify: true,
   env: {

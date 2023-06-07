@@ -3,7 +3,6 @@
 // @ts-nocheck
 import { WalletAddress } from '@turbo-eth/core-wagmi'
 import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@turbo-eth/erc20-wagmi'
-import { ERC721TokenImage, ERC721TokenName } from '@turbo-eth/erc721-wagmi'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -17,6 +16,7 @@ import Card from '@/components/shared/card'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { DEPLOY_URL, siteConfig } from '@/config/site'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import { ERC721TokenUriImage, ERC721TokenUriName } from '@/integrations/erc721'
 import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
@@ -216,15 +216,16 @@ const features = [
     description: 'Read and Write to ERC721 smart contracts using minimal UI components.',
     demo: (
       <div className="text-center">
-        {/* @ts-ignore */}
-        <ERC721TokenName chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
-        <ERC721TokenImage
-          // @ts-ignore
+        <ERC721TokenUriName chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
+        <ERC721TokenUriImage
           tokenId={1}
+          chainId={1}
           address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'}
-          className=" mx-auto my-4 w-[90px] rounded-xl border-2 border-white shadow-md"
+          height={100}
+          width={100}
+          className="mx-auto my-4 rounded-xl border-2 border-white shadow-md"
         />
-        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc721/0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8/42`}>
+        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/integration/erc721`}>
           View Token Page
         </Link>
       </div>
