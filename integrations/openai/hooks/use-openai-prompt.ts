@@ -1,8 +1,29 @@
 import { useState } from 'react'
 
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+
+const openaiPromptSchema = z.object({
+  apiKey: z.string().min(2).max(90),
+  prompt: z.string().min(2).max(90),
+  result: z.string(),
+})
 export const useOpenAIPrompt = () => {
   const [response, setResponse] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
+
+  const form = useForm<z.infer<typeof openaiPromptSchema>>({
+    resolver: zodResolver(openaiPromptSchema),
+    defaultValues: {
+      apiKey: '',
+      prompt: '',
+      result: '',
+    },
+  })
+
+  const openAiKey = form.watch('apiKey')
+  const Prompt = form.watch('prompt')
 
   /**
    * Generate an AI response from a prompt using the OpenAI API
@@ -27,6 +48,8 @@ export const useOpenAIPrompt = () => {
       }),
     })
 
+    console.log('response', response)
+
     if (!response.ok) {
       setIsLoading(false)
       throw new Error(response.statusText)
@@ -50,9 +73,15 @@ export const useOpenAIPrompt = () => {
     setIsLoading(false)
   }
 
+  const onSubmit = (values: any) => {
+    generateAIResponse(values?.prompt, values?.apiKey)
+  }
+
   return {
     response,
     isLoading,
     generateAIResponse,
+    form,
+    onSubmit,
   }
 }

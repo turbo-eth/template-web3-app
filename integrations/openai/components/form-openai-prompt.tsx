@@ -4,15 +4,19 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import { FaCopy } from 'react-icons/fa'
 
 import { LinkComponent } from '@/components/shared/link-component'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { useToast } from '@/lib/hooks/use-toast'
 
 import { useOpenAIPrompt } from '../hooks/use-openai-prompt'
+import { openaiPromptControls } from '../utils/controls'
+import { getComponent } from '../utils/get-element-component'
 
 export function FormOpenAIPrompt() {
   const [prompt, setPrompt] = useState<string>('')
   const [apiKey, setApiKey] = useState<string>('')
   const { toast, dismiss } = useToast()
-  const { response, isLoading, generateAIResponse } = useOpenAIPrompt()
+  const { response, isLoading, generateAIResponse, form, onSubmit } = useOpenAIPrompt()
 
   const handleToast = ({ title, description }: { title: string; description: string }) => {
     toast({
@@ -40,7 +44,7 @@ export function FormOpenAIPrompt() {
 
   return (
     <div className="card w-full">
-      <form onSubmit={handleGenerateResponse} className="flex flex-col gap-4">
+      {/* <form onSubmit={handleGenerateResponse} className="flex flex-col gap-4">
         <label>
           OpenAI API Key
           <input
@@ -80,7 +84,56 @@ export function FormOpenAIPrompt() {
         <button className="btn btn-emerald disabled:opacity-50" type="submit" disabled={isLoading || !prompt}>
           {isLoading ? 'Generating...' : 'Generate'}
         </button>
-      </form>{' '}
+      </form>{' '} */}
+
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          {openaiPromptControls.map((item) => {
+            const Item = getComponent(item?.component)
+
+            return (
+              <FormField
+                key={item?.label}
+                control={form.control}
+                name={item?.formfieldName as 'apiKey' | 'prompt' | 'result'}
+                render={({ field }) => (
+                  <>
+                    <FormItem>
+                      <FormLabel>{item?.label}</FormLabel>
+                      <FormControl>
+                        <>
+                          <Item {...item?.attribute} placeholder={item?.placeholder} {...field} />
+                          {!!response && item?.formfieldName === 'result' && (
+                            <CopyToClipboard text={response}>
+                              <span
+                                onClick={() =>
+                                  handleToast({
+                                    title: 'AI response copied to clipboard',
+                                    description: 'You can now paste the response anywhere you want.',
+                                  })
+                                }
+                                className="flex-center absolute right-2 top-8 flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+                                <FaCopy className="text-neutral-600 dark:text-neutral-100" />
+                              </span>
+                            </CopyToClipboard>
+                          )}
+                        </>
+                      </FormControl>
+                      <FormDescription>{item?.description}</FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  </>
+                )}
+              />
+            )
+          })}
+
+          <Button className="w-full" type="submit">
+            {isLoading ? 'Generating...' : 'Generate'}
+          </Button>
+        </form>
+      </Form>
+
       <hr className="my-4" />
       <div className="flex items-center justify-between">
         <h3 className="text-center">OpenAI</h3>
