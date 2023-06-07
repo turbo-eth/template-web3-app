@@ -18,7 +18,6 @@ export function ERC20ContractTransferTokens() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {writeTransferControls.map((item) => {
             const Item = getComponent(item?.type)
-
             return (
               <FormField
                 key={item?.label}

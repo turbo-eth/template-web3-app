@@ -9,5 +9,5 @@ const getElement: { [key: string]: any } = {
 }
 
 export function getComponent(key: string): any {
-  return getElement[key]
+  return getElement[key] || Input
 }

@@ -22,9 +22,6 @@ export const useOpenAIPrompt = () => {
     },
   })
 
-  const openAiKey = form.watch('apiKey')
-  const Prompt = form.watch('prompt')
-
   /**
    * Generate an AI response from a prompt using the OpenAI API
    * It receives a stream of responses from the API and concatenates them into
@@ -47,8 +44,6 @@ export const useOpenAIPrompt = () => {
         apiKey,
       }),
     })
-
-    console.log('response', response)
 
     if (!response.ok) {
       setIsLoading(false)
@@ -74,6 +69,7 @@ export const useOpenAIPrompt = () => {
   }
 
   const onSubmit = (values: any) => {
+    console.log('values', values)
     generateAIResponse(values?.prompt, values?.apiKey)
   }
 

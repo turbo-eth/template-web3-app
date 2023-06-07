@@ -1,5 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 
+import { Button } from '@/components/ui/button'
+
 import { useSessionKeys } from '../hooks/use-session-keys'
 
 interface DeleteSessionKeyProps {
@@ -18,8 +20,8 @@ export function DeleteSessionKey({ selectedSessionKey, setSelectedSessionKey }: 
   }
 
   return (
-    <button disabled={!selectedSessionKey} className="btn btn-red disabled:opacity-50" onClick={handleDeleteSessionKey}>
+    <Button variant="destructive" disabled={!selectedSessionKey} className="btn btn-red disabled:opacity-50" onClick={handleDeleteSessionKey}>
       Delete Session Key
-    </button>
+    </Button>
   )
 }
