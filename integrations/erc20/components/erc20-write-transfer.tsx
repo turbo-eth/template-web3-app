@@ -1,35 +1,24 @@
-import { ethers } from 'ethers'
-import { z } from 'zod'
-
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormLabel, FormMessage } from '@/components/ui/form'
-import { FormDescription, FormItem } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { FormItem } from '@/components/ui/form'
 
 import ERC20EventTransfer from './erc20-event-transfer'
 import { useWriteTransfer } from '../hooks/use-write-transfer'
 import { writeTransferControls } from '../utils/controls'
-
-const writeTransferFormSchema = z.object({
-  amount: z.string().min(1),
-  fromAddress: z.string().refine((value) => ethers.utils.isAddress(value), {
-    message: 'Sender address is invalid. Please insure you have typed correctly.',
-  }),
-  toAddress: z.string().refine((value) => ethers.utils.isAddress(value), {
-    message: 'Reciever address is invalid. Please insure you have typed correctly.',
-  }),
-})
+import { getComponent } from '../utils/get-element-component'
 
 export function ERC20ContractTransferTokens() {
-  const { form, onSubmit } = useWriteTransfer({ writeTransferFormSchema })
+  const { form, onSubmit } = useWriteTransfer()
 
   return (
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {writeTransferControls.map((item) => {
+            const Item = getComponent(item?.type)
+
             return (
               <FormField
                 key={item?.label}
@@ -40,9 +29,8 @@ export function ERC20ContractTransferTokens() {
                     <FormItem>
                       <FormLabel>{item?.label}</FormLabel>
                       <FormControl>
-                        <Input placeholder={item?.placeholder} {...field} />
+                        <Item placeholder={item?.placeholder} {...field} />
                       </FormControl>
-                      <FormDescription>{item?.description}</FormDescription>
                       <FormMessage />
                     </FormItem>
                   </>
@@ -51,7 +39,9 @@ export function ERC20ContractTransferTokens() {
             )
           })}
 
-          <Button type="submit">Submit</Button>
+          <Button className="w-full" type="submit">
+            Transfer
+          </Button>
         </form>
       </Form>
     </>

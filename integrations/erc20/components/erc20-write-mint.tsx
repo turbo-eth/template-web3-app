@@ -1,27 +1,25 @@
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { z } from 'zod'
 
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormLabel, FormMessage } from '@/components/ui/form'
-import { FormDescription, FormItem } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { FormItem } from '@/components/ui/form'
 
 import ERC20EventMint from './erc20-event-mint'
 import { useWriteMint } from '../hooks/use-write-mint'
 import { writeMintControls } from '../utils/controls'
+import { getComponent } from '../utils/get-element-component'
 
-const writeMintFormSchema = z.object({
-  amount: z.string().min(1),
-})
 function ERC20ContractMintTokens() {
-  const { form, onSubmit } = useWriteMint({ writeMintFormSchema })
+  const { form, onSubmit } = useWriteMint()
 
   return (
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {writeMintControls.map((item) => {
+            const Item = getComponent(item?.type)
+
             return (
               <FormField
                 key={item?.label}
@@ -32,9 +30,8 @@ function ERC20ContractMintTokens() {
                     <FormItem>
                       <FormLabel>{item?.label}</FormLabel>
                       <FormControl>
-                        <Input placeholder={item?.placeholder} {...field} />
+                        <Item placeholder={item?.placeholder} {...field} />
                       </FormControl>
-                      <FormDescription>{item?.description}</FormDescription>
                       <FormMessage />
                     </FormItem>
                   </>
@@ -43,7 +40,9 @@ function ERC20ContractMintTokens() {
             )
           })}
 
-          <Button type="submit">Submit</Button>
+          <Button className="w-full" type="submit">
+            Mint
+          </Button>
         </form>
       </Form>
     </>

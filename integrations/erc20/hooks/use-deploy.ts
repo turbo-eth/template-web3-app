@@ -10,7 +10,12 @@ import { useTokenStorage } from './use-token-storage'
 import { erc20MintableByteCode } from '../abis/erc20-mintable-bytecode'
 import { erc20MintableABI } from '../erc20-wagmi'
 
-export const useDeploy = ({ deployFormSchema }) => {
+const deployFormSchema = z.object({
+  name: z.string().min(2).max(50),
+  symbol: z.string().min(2).max(10),
+})
+
+export const useDeploy = () => {
   const [, setContractAddress] = useState<string | undefined>()
   const [token, setToken] = useTokenStorage()
   const { data: signer } = useSigner()

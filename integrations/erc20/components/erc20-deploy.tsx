@@ -1,27 +1,21 @@
-import { z } from 'zod'
-
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 
 import { useDeploy } from '../hooks/use-deploy'
 import { deployControls } from '../utils/controls'
-
-const deployFormSchema = z.object({
-  name: z.string().min(2).max(50),
-  symbol: z.string().min(2).max(10),
-})
+import { getComponent } from '../utils/get-element-component'
 
 export function DeployERC20Contract() {
-  const { form, onSubmit, token } = useDeploy({ deployFormSchema })
+  const { form, onSubmit, token } = useDeploy()
 
   return (
     <>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           {deployControls.map((item) => {
+            const Item = getComponent(item?.type)
             return (
               <FormField
                 key={item?.label}
@@ -32,9 +26,8 @@ export function DeployERC20Contract() {
                     <FormItem>
                       <FormLabel>{item?.label}</FormLabel>
                       <FormControl>
-                        <Input placeholder={item?.placeholder} {...field} />
+                        <Item placeholder={item?.placeholder} {...field} />
                       </FormControl>
-                      <FormDescription>{item?.description}</FormDescription>
                       <FormMessage />
                     </FormItem>
                   </>
@@ -43,7 +36,9 @@ export function DeployERC20Contract() {
             )
           })}
 
-          <Button type="submit">Submit</Button>
+          <Button className="w-full" type="submit">
+            Deploy
+          </Button>
         </form>
       </Form>
 

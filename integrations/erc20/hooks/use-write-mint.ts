@@ -7,7 +7,11 @@ import { z } from 'zod'
 import { useTokenStorage } from './use-token-storage'
 import { useErc20MintableMint } from '../erc20-wagmi'
 
-export const useWriteMint = ({ writeMintFormSchema }) => {
+const writeMintFormSchema = z.object({
+  amount: z.string().min(1),
+})
+
+export const useWriteMint = () => {
   const { address } = useAccount()
   const form = useForm<z.infer<typeof writeMintFormSchema>>({
     resolver: zodResolver(writeMintFormSchema),
