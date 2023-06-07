@@ -1,7 +1,7 @@
 import { useQuery } from 'wagmi'
 
-import { discoGetCredentialsFromDID } from '@/integrations/disco/routes/get-credentials-from-did'
+import { appDiscoGetCredentialsFromDID } from '@/integrations/disco/routes/get-credentials-from-did/client'
 
 export const useDiscoGetCredentialsFromDID = (did?: string, queryKey?: any) => {
-  return useQuery(['discoCredentialsFromDID', did, queryKey], () => discoGetCredentialsFromDID(did))
+  return useQuery(['discoCredentialsFromDID', did, queryKey], () => appDiscoGetCredentialsFromDID(did))
 }
