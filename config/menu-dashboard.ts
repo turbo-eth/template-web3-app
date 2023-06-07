@@ -11,7 +11,11 @@ export const menuDashboard = [
     href: '/dashboard/account',
   },
   {
-    label: 'superfluid',
+    label: 'superfluid start stream',
     href: '/integrations/superfluid/start-flow',
+  },
+  {
+    label: 'superfluid downgrade supertoken',
+    href: '/integrations/superfluid/balance',
   },
 ]

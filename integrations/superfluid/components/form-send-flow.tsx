@@ -14,10 +14,9 @@ export default function App() {
   const sf = useSuperFluidWithWagmiProvider()
 
   const onSubmit = async (data: any) => {
-    //@ts-ignore
-    const daix = await sf?.loadSuperToken('USDCx')
+    const usdcx = await sf?.loadSuperToken('USDCx')
     //load the token you'd like to use like this
-    let flowOp = daix?.createFlow({
+    let flowOp = usdcx?.createFlow({
       sender: '0xc0163e58648b247c143023cfb26c2baa42c9d9a9',
       receiver: '0x1A6784925814a13334190Fd249ae0333B90b6443',
       flowRate: '30000',
