@@ -51,9 +51,9 @@ export default function PageIntegration() {
           <BranchIsWalletConnected>
             <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
               <ERC721Deploy />
+              <Erc721SetTokenStorage />
               {token && (
                 <>
-                  <Erc721SetTokenStorage />
                   <Erc721Read address={token} />
                   <Erc721WriteMint address={token} />
                   <Erc721WriteApprove address={token} />
