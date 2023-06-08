@@ -1,5 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
+import type { Address } from 'wagmi'
 
 import { SessionKeysDB } from '../database'
 
@@ -40,7 +41,7 @@ export const useSessionKeys = () => {
    * isValidSessionKey('0x12343') // false
    * isValidSessionKey('0x1234567890123456789012345678901234567890123456789012345678901234') // true
    * */
-  const isValidPrivateKey = (privateKey: `0x${string}`) => {
+  const isValidPrivateKey = (privateKey: Address) => {
     try {
       const account = privateKeyToAccount(privateKey)
       return { success: true, account }
@@ -58,7 +59,7 @@ export const useSessionKeys = () => {
    * @throws Error - If the session key is already saved
    * @throws Error - If the session key is not a valid private key
    *  */
-  const saveSessionKey = async ({ id, privateKey }: { id?: string; privateKey: `0x${string}` }) => {
+  const saveSessionKey = async ({ id, privateKey }: { id?: string; privateKey: Address }) => {
     const { address } = privateKeyToAccount(privateKey)
     const storedSessionKey = await getStoredSessionKey(address)
     const entryId = id ?? address

@@ -303,4 +303,4 @@ export const erc20MintableABI = [
     stateMutability: 'nonpayable',
     type: 'function',
   },
-]
+] as const

@@ -1,61 +1,81 @@
 import { useState } from 'react'
 
-import { Signer, ethers } from 'ethers'
-import { useForm } from 'react-hook-form'
-import { useSigner } from 'wagmi'
+import { FieldValues, useForm } from 'react-hook-form'
+import { usePublicClient, useWalletClient } from 'wagmi'
 
+import { BlockExplorerLink } from '@/components/blockchain/block-explorer-link'
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 
 import { erc20MintableABI } from '../abis/erc20-mintable-abi'
 import { erc20MintableByteCode } from '../abis/erc20-mintable-bytecode'
-import { useTokenStorage } from '../hooks/use-token-storage'
+import { useERC20TokenStorage } from '../hooks/use-erc20-token-storage'
 
 export function DeployERC20Contract() {
-  const [token, setToken] = useTokenStorage()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
-  const { data: signer } = useSigner()
+  const [token, setToken] = useERC20TokenStorage()
+  const [isSigning, setIsSigning] = useState<boolean>(false)
+  const [isWaitingTransaction, setIsWaitingTransaction] = useState<boolean>(false)
 
-  const [, setContractAddress] = useState<string | undefined>()
-  const onSubmit = async (data: any) => {
-    // https://docs.ethers.org/v5/api/contract/example/#example-erc-20-contract--deploying-a-contract
-    const factory = new ethers.ContractFactory(erc20MintableABI, erc20MintableByteCode, signer as Signer)
-    const contract = await factory.deploy(data.name, data.symbol)
-    const deployed = await contract.deployTransaction.wait()
+  const { register, handleSubmit, watch } = useForm()
+  const name = watch('name')
+  const symbol = watch('symbol')
 
-    setToken(deployed.contractAddress)
-    setContractAddress(deployed.contractAddress)
+  const publicClient = usePublicClient()
+  const { data: walletClient } = useWalletClient()
+
+  const onSubmit = async (data: FieldValues) => {
+    if (!walletClient) return
+    setIsSigning(true)
+
+    let hash: `0x${string}` | undefined
+
+    try {
+      hash = await walletClient.deployContract({
+        abi: erc20MintableABI,
+        bytecode: erc20MintableByteCode,
+        args: [data.name, data.symbol],
+      })
+    } catch (e) {
+      setIsSigning(false)
+      return
+    }
+
+    setIsSigning(false)
+    setIsWaitingTransaction(true)
+    try {
+      const receipt = await publicClient.waitForTransactionReceipt({ hash })
+      if (!receipt.contractAddress) return
+
+      setIsWaitingTransaction(false)
+      setToken(receipt.contractAddress)
+    } catch (e) {
+      setIsWaitingTransaction(false)
+    }
   }
 
   return (
-    <>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <label>Name</label>
-        <input {...register('name')} className="input" />
-        <label>Symbol</label>
-        <input {...register('symbol')} className="input" />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <button type="submit" className="btn btn-emerald">
-          Deploy
-        </button>
-      </form>
+    <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+      <label>Name</label>
+      <input {...register('name')} className="input" />
+      <label>Symbol</label>
+      <input {...register('symbol')} className="input" />
+      <ContractWriteButton write={Boolean(name && symbol)} isLoadingTx={isWaitingTransaction} isLoadingWrite={isSigning} loadingTxText="Deploying...">
+        Deploy
+      </ContractWriteButton>
       {!token ? null : (
-        <div className="flex items-center justify-between pt-5 pb-2">
+        <div className="flex max-w-full flex-wrap items-center justify-between break-words pt-5 pb-2">
           <span className="font-semibold">Mint Contract Address:</span>
-          <span className="">{token}</span>
+          <BlockExplorerLink address={token} />
         </div>
       )}
-    </>
+    </form>
   )
 }
 
 export function ERC20Deploy() {
   return (
-    <div className="w-full">
+    <div className="card w-full">
       <BranchIsWalletConnected>
         <div className="w-full">
           <DeployERC20Contract />

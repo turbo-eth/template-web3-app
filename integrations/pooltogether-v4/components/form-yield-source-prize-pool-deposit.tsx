@@ -1,10 +1,9 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import * as Form from '@radix-ui/react-form'
-import { useErc20Approve, useErc20Decimals } from '@turbo-eth/erc20-wagmi'
-import { BigNumber, ethers } from 'ethers'
 import { ExternalLinkIcon } from 'lucide-react'
 import { useDebounce } from 'usehooks-ts'
+import { parseUnits } from 'viem'
 import { useAccount, useWaitForTransaction } from 'wagmi'
 
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
@@ -14,10 +13,11 @@ import { usePoolTogetherPrizePoolDepositToAndDelegate } from '@/actions/pooltoge
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/utils/usdc-contract-list'
 import { Checkbox } from '@/components/ui/checkbox'
+import { useErc20Approve, useErc20Decimals } from '@/lib/blockchain'
 
 export function PoolTogetherFormDeposit() {
   const [isChecked, setIsChecked] = useState<boolean>(false)
-  const [approvalAmount, setApprovalAmount] = useState<BigNumber>(BigNumber.from(0))
+  const [approvalAmount, setApprovalAmount] = useState<bigint>(BigInt(0))
   const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
   const [isValidAmount, setValidAmount] = useState<boolean>(true)
 
@@ -26,25 +26,21 @@ export function PoolTogetherFormDeposit() {
   const usdcAddress = useLoadContractFromChainId(USDC_CONTRACT)
 
   const { data: decimals } = useErc20Decimals({ address: usdcAddress })
-  const POWER = decimals != undefined ? BigNumber.from(10).pow(decimals) : BigNumber.from(10).pow(6)
+  const POWER = decimals ?? 6
 
   const userBalance = useUserBalanceDeposit()
   const isApproved = useUsdcApproval(userBalance)
 
   const [depositAmount, setDepositAmount] = useState<number>()
-  const debouncedDepositAmount = useDebounce(BigNumber.from(depositAmount != undefined ? depositAmount * POWER.toNumber() : 0), 500)
+  const debouncedDepositAmount = useDebounce(depositAmount ? parseUnits(`${depositAmount}`, POWER) : BigInt(0), 500)
 
   const {
     data,
     write: depositToken,
     isSuccess: successDeposit,
   } = usePoolTogetherPrizePoolDepositToAndDelegate({
-    mode: 'recklesslyUnprepared',
     address: prizePoolAddress,
-    args: [address || '0x0', BigNumber.from(debouncedDepositAmount), address || '0x0'],
-    overrides: {
-      gasLimit: BigNumber.from(750000),
-    },
+    args: [address || '0x0', debouncedDepositAmount, address || '0x0'],
   })
 
   const { isLoading } = useWaitForTransaction({
@@ -52,12 +48,8 @@ export function PoolTogetherFormDeposit() {
   })
 
   const { data: approveData, write: approval } = useErc20Approve({
-    mode: 'recklesslyUnprepared',
     address: usdcAddress,
     args: [prizePoolAddress, approvalAmount],
-    overrides: {
-      gasLimit: BigNumber.from(750000),
-    },
   })
 
   const { isLoading: loadApprove, isSuccess: successApprove } = useWaitForTransaction({
@@ -65,7 +57,7 @@ export function PoolTogetherFormDeposit() {
   })
 
   useEffect(() => {
-    isChecked ? setApprovalAmount(ethers.constants.MaxInt256) : setApprovalAmount(BigNumber.from(debouncedDepositAmount))
+    isChecked ? setApprovalAmount(BigInt(2 ** 255 - 1)) : setApprovalAmount(debouncedDepositAmount)
   }, [isChecked])
 
   useEffect(() => {
@@ -77,7 +69,7 @@ export function PoolTogetherFormDeposit() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (depositAmount != undefined && depositAmount >= 2.0) {
+    if (depositAmount && depositAmount >= 2.0) {
       if (!isApproved) {
         approval?.()
       } else {
@@ -90,12 +82,12 @@ export function PoolTogetherFormDeposit() {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value != '' ? parseFloat(event.target.valueAsNumber.toFixed(decimals)) : undefined
     setDepositAmount(value)
-    setApprovalAmount(value != undefined ? BigNumber.from(value * POWER.toNumber()) : BigNumber.from(0))
+    setApprovalAmount(value != undefined ? parseUnits(`${value}`, POWER) : BigInt(0))
   }
 
   const handleAmount = () => {
     setDepositAmount(userBalance)
-    setApprovalAmount(BigNumber.from(userBalance * POWER.toNumber()))
+    setApprovalAmount(parseUnits(`${userBalance}`, POWER))
   }
 
   return (
@@ -137,13 +129,11 @@ export function PoolTogetherFormDeposit() {
         <div className="mt-4 flex justify-center space-x-5">
           <Form.Submit asChild>
             <button
-              disabled={prizePoolAddress == undefined && (isLoading || debouncedDepositAmount.eq(0))}
+              disabled={prizePoolAddress == undefined && (isLoading || !debouncedDepositAmount)}
               className={
-                debouncedDepositAmount.eq(0) || prizePoolAddress == undefined
-                  ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50'
-                  : 'btn btn-emerald btn-sm'
+                !debouncedDepositAmount || !prizePoolAddress ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50' : 'btn btn-emerald btn-sm'
               }>
-              {prizePoolAddress == undefined
+              {!prizePoolAddress
                 ? 'Please switch network'
                 : isApproved
                 ? isLoading

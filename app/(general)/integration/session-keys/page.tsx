@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import { motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
+import type { Address } from 'wagmi'
 
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
@@ -13,7 +14,7 @@ import { DeleteSessionKey } from '@/integrations/session-keys/components/delete-
 import { ListSessionKeys } from '@/integrations/session-keys/components/list-session-keys'
 
 export default function PageIntegration() {
-  const [selectedSessionKey, setSelectedSessionKey] = useState<`0x${string}`>()
+  const [selectedSessionKey, setSelectedSessionKey] = useState<Address>()
 
   return (
     <>

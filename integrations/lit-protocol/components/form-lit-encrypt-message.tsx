@@ -143,7 +143,7 @@ export function FormLitEncryptMessage() {
                     className="input h-40 dark:text-gray-600 dark:placeholder:text-neutral-400"
                     onChange={(e) => setMessageToEncrypt(e.target.value)}
                   />
-                  <button disabled={!isValid || isLoading} type="submit" className="btn btn-emerald mt-4 disabled:opacity-50">
+                  <button disabled={!isValid || isLoading} type="submit" className="btn btn-emerald mt-4">
                     {isLoading ? 'Loading...' : 'Encrypt'}
                   </button>
                 </form>

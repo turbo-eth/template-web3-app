@@ -1,9 +1,10 @@
 import Dexie, { Table } from 'dexie'
+import type { Address } from 'wagmi'
 
 export interface SessionKey {
   id: string
-  address: `0x${string}`
-  privateKey: `0x${string}`
+  address: Address
+  privateKey: Address
 }
 
 /**

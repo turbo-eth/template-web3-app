@@ -1,10 +1,12 @@
 import type { Dispatch, SetStateAction } from 'react'
 
+import type { Address } from 'wagmi'
+
 import { useSessionKeys } from '../hooks/use-session-keys'
 
 interface DeleteSessionKeyProps {
-  selectedSessionKey?: `0x${string}` | undefined
-  setSelectedSessionKey?: Dispatch<SetStateAction<`0x${string}` | undefined>>
+  selectedSessionKey?: Address | undefined
+  setSelectedSessionKey?: Dispatch<SetStateAction<Address | undefined>>
 }
 
 export function DeleteSessionKey({ selectedSessionKey, setSelectedSessionKey }: DeleteSessionKeyProps) {
@@ -18,7 +20,7 @@ export function DeleteSessionKey({ selectedSessionKey, setSelectedSessionKey }: 
   }
 
   return (
-    <button disabled={!selectedSessionKey} className="btn btn-red disabled:opacity-50" onClick={handleDeleteSessionKey}>
+    <button disabled={!selectedSessionKey} className="btn btn-red" onClick={handleDeleteSessionKey}>
       Delete Session Key
     </button>
   )

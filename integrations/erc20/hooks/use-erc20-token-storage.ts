@@ -11,7 +11,7 @@ let strAtom: WritableAtom<TokenType, SetStateAction<TokenType>>
 strAtom = atom<TokenType>(DEFAULT_VALUE)
 if (typeof window !== 'undefined') {
   strAtom = atom<TokenType>(
-    window?.localStorage.getItem('erc721-token') ? (JSON.parse(window?.localStorage?.getItem('erc721-token') || '') as Address) : DEFAULT_VALUE
+    window?.localStorage.getItem('erc20-token') ? (JSON.parse(window?.localStorage?.getItem('erc20-token') || '') as Address) : DEFAULT_VALUE
   )
 } else {
   strAtom = atom<TokenType>(DEFAULT_VALUE)
@@ -21,11 +21,11 @@ export const tokensWatching = atom(
   (get) => get(strAtom),
   (get, set, newStr: TokenType) => {
     set(strAtom, newStr)
-    localStorage.setItem('erc721-token', JSON.stringify(newStr))
+    localStorage.setItem('erc20-token', JSON.stringify(newStr))
   }
 )
 
-export const useErc721TokenStorage = () => {
+export const useERC20TokenStorage = () => {
   const [token, set] = useAtom(tokensWatching)
   const setToken = useCallback(
     (tokenNew: TokenType) => {

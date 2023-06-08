@@ -1,35 +1,34 @@
-import { FormEvent, useState } from 'react'
-
-import { BigNumber } from 'ethers'
+import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
-import { useNetwork, useWaitForTransaction } from 'wagmi'
+import { BaseError } from 'viem'
+import { Address, useWaitForTransaction } from 'wagmi'
 
-import { LinkComponent } from '@/components/shared/link-component'
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
+import { TransactionStatus } from '@/components/blockchain/transaction-status'
 
 import { useErc721SafeMint, usePrepareErc721SafeMint } from '../erc721-wagmi'
 
 interface Erc721WriteMintProps {
-  address: `0x${string}`
+  address: Address
 }
 
 export function Erc721WriteMint({ address }: Erc721WriteMintProps) {
-  const [toAddress, setToAddress] = useState<string>('')
-  const [tokenId, setTokenId] = useState<number>()
-  const [tokenUri, setTokenUri] = useState<string>('')
-  const debouncedToAddress = useDebounce(toAddress, 500)
-  const debouncedTokenId = useDebounce(tokenId, 500)
-  const debouncedTokenUri = useDebounce(tokenUri, 500)
+  const { register, watch, handleSubmit } = useForm()
 
-  const { chain } = useNetwork()
+  const watchToAddress: Address = watch('toAddress')
+  const watchTokenId: string = watch('tokenId')
+  const watchTokenUri: string = watch('tokenUri')
+  const debouncedToAddress = useDebounce(watchToAddress, 500)
+  const debouncedTokenId = useDebounce(watchTokenId, 500)
+  const debouncedTokenUri = useDebounce(watchTokenUri, 500)
 
-  const {
-    config,
-    error,
-    isError,
-    isLoading: isLoadingPrepare,
-  } = usePrepareErc721SafeMint({
+  const { config, error, isError } = usePrepareErc721SafeMint({
     address,
-    args: [debouncedToAddress as `0x${string}`, BigNumber.from(debouncedTokenId || 0), debouncedTokenUri],
+    args:
+      debouncedToAddress && debouncedTokenId && debouncedTokenUri
+        ? [debouncedToAddress, BigInt(debouncedTokenId || 0), debouncedTokenUri]
+        : undefined,
+    enabled: Boolean(debouncedToAddress && debouncedTokenId && debouncedTokenUri),
   })
 
   const { data, write, isLoading: isLoadingWrite } = useErc721SafeMint(config)
@@ -38,35 +37,23 @@ export function Erc721WriteMint({ address }: Erc721WriteMintProps) {
     hash: data?.hash,
   })
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const onSubmit = async () => {
     write?.()
   }
 
   return (
     <div className="card w-full">
-      <form className="flex flex-col gap-4" onSubmit={onSubmit}>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label>Address</label>
-        <input value={toAddress} onChange={(e) => setToAddress(e.target.value)} className="input" />
+        <input {...register('toAddress')} className="input" />
         <label>Token ID</label>
-        <input value={tokenId} type="number" onChange={(e) => setTokenId(e.target.valueAsNumber)} className="input" />
+        <input {...register('tokenId')} type="number" className="input" />
         <label>Token URI</label>
-        <input value={tokenUri} onChange={(e) => setTokenUri(e.target.value)} className="input" />
-        {isError && debouncedToAddress && debouncedTokenId && debouncedTokenUri && <span className="break-words text-red-500">{error?.message}</span>}
-        <button
-          type="submit"
-          disabled={isLoadingPrepare || isLoadingWrite || isLoadingTx || !write || !tokenUri || !tokenId}
-          className="btn btn-emerald disabled:opacity-60">
-          {isLoadingWrite ? 'Sign the transaction' : isLoadingTx ? 'Minting...' : 'Mint'}
-        </button>
-        {(isSuccess || isLoadingTx) && (
-          <div className="flex items-center justify-between pt-5 pb-2">
-            <span className="font-semibold">{isLoadingTx ? 'Minting  NFT' : 'Successfully minted NFT'}:</span>
-            <LinkComponent isExternal className="font-medium underline" href={`${chain?.blockExplorers?.default.url}/tx/${data?.hash}`}>
-              See in block explorer
-            </LinkComponent>
-          </div>
-        )}
+        <input {...register('tokenUri')} className="input" />
+        <ContractWriteButton type="submit" isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} write={!!write} loadingTxText="Minting...">
+          Mint
+        </ContractWriteButton>
+        <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC721 Mint</h3>

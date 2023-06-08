@@ -1,9 +1,9 @@
-import { useErc20BalanceOf, useErc20Decimals } from '@turbo-eth/erc20-wagmi'
-import { formatUnits } from 'ethers/lib/utils'
+import { formatUnits } from 'viem'
 import { useAccount, useNetwork } from 'wagmi'
 
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/utils/ticket-contract-list'
+import { useErc20BalanceOf, useErc20Decimals } from '@/lib/blockchain'
 
 export function useUserBalanceWithdraw() {
   const { address: accountAddress } = useAccount()
@@ -23,5 +23,5 @@ export function useUserBalanceWithdraw() {
     args: [accountAddress || '0x0'],
   })
 
-  return erc20Balance ? Number(formatUnits(erc20Balance.toBigInt(), decimals)) : 0
+  return erc20Balance ? Number(formatUnits(erc20Balance, decimals || 1)) : 0
 }

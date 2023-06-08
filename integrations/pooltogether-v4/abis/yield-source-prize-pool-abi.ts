@@ -1,4 +1,4 @@
-export const YIELD_SOURCE_PRIZE_POOL_ABI = [
+export const yieldSourcePrizePoolABI = [
   {
     inputs: [
       {

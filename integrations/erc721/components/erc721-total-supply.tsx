@@ -5,6 +5,7 @@ export function ERC721TotalSupply({ address, chainId, className, ...props }: ERC
   const { data } = useErc721TotalSupply({
     address,
     chainId,
+    watch: true,
   })
 
   return (

@@ -2,6 +2,7 @@ import { type Dispatch, type SetStateAction, useState } from 'react'
 
 import { AnimatePresence, motion } from 'framer-motion'
 import { BsCheck2 } from 'react-icons/bs'
+import type { Address } from 'wagmi'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -9,8 +10,8 @@ import { Input } from '@/components/ui/input'
 import { useSessionKeys } from '../hooks/use-session-keys'
 
 interface ListSessionKeysProps {
-  selectedSessionKey?: `0x${string}` | undefined
-  setSelectedSessionKey?: Dispatch<SetStateAction<`0x${string}` | undefined>>
+  selectedSessionKey?: Address | undefined
+  setSelectedSessionKey?: Dispatch<SetStateAction<Address | undefined>>
 }
 
 export function ListSessionKeys({ selectedSessionKey, setSelectedSessionKey }: ListSessionKeysProps = {}) {
@@ -19,7 +20,7 @@ export function ListSessionKeys({ selectedSessionKey, setSelectedSessionKey }: L
 
   const filteredSessionKeys = sessionKeys?.filter(({ address }) => address.toLowerCase().includes(search.toLowerCase()))
 
-  const handleSelectSessionKey = (address: `0x${string}`) => {
+  const handleSelectSessionKey = (address: Address) => {
     if (address === selectedSessionKey) {
       setSelectedSessionKey?.(undefined)
     } else {

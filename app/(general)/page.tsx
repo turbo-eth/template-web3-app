@@ -1,8 +1,6 @@
 'use client'
 
-// @ts-nocheck
 import { WalletAddress } from '@turbo-eth/core-wagmi'
-import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@turbo-eth/erc20-wagmi'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -16,6 +14,7 @@ import Card from '@/components/shared/card'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { DEPLOY_URL, siteConfig } from '@/config/site'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@/integrations/erc20/components/erc20-read'
 import { ERC721TokenUriImage, ERC721TokenUriName } from '@/integrations/erc721'
 import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'

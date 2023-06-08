@@ -7,13 +7,15 @@ import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-co
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { BranchTokenMinted } from '@/integrations/erc20/components/branch-token-minted'
 import { ERC20Deploy } from '@/integrations/erc20/components/erc20-deploy'
 import { ERC20Read } from '@/integrations/erc20/components/erc20-read'
+import { Erc20SetTokenStorage } from '@/integrations/erc20/components/erc20-set-token-storage'
 import { ERC20WriteMint } from '@/integrations/erc20/components/erc20-write-mint'
 import { ERC20WriteTransfer } from '@/integrations/erc20/components/erc20-write-transfer'
+import { useERC20TokenStorage } from '@/integrations/erc20/hooks/use-erc20-token-storage'
 
 export default function PageIntegration() {
+  const [token] = useERC20TokenStorage()
   return (
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center">
@@ -49,26 +51,16 @@ export default function PageIntegration() {
       <section className="w-full lg:mt-10">
         <div className="container w-full max-w-screen-lg">
           <BranchIsWalletConnected>
-            <div className="w-full">
-              <div className="card mb-10">
-                <ERC20Deploy />
-              </div>
-              <BranchTokenMinted>
+            <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
+              <ERC20Deploy />
+              <Erc20SetTokenStorage />
+              {token && (
                 <>
-                  <div className="flex flex-col gap-y-8">
-                    <div className="card">
-                      <ERC20Read />
-                    </div>
-                    <div className="card">
-                      <ERC20WriteMint />
-                    </div>
-                    <div className="card">
-                      <ERC20WriteTransfer />
-                    </div>
-                  </div>
+                  <ERC20Read address={token} />
+                  <ERC20WriteMint address={token} />
+                  <ERC20WriteTransfer address={token} />
                 </>
-                <></>
-              </BranchTokenMinted>
+              )}
             </div>
             <div className="flex-center flex">
               <WalletConnect />

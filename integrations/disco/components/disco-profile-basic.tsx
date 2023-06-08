@@ -2,13 +2,14 @@ import * as React from 'react'
 
 import classNames from 'clsx'
 import ReactMarkdown from 'react-markdown'
+import type { Address } from 'wagmi'
 
 import { useDiscoGetProfileFromAddress } from '@/integrations/disco/hooks/use-disco-get-profile-from-address'
 import { useUser } from '@/lib/hooks/use-user'
 
 interface DiscoProfileBasicProps {
   className?: string
-  address?: `0x${string}`
+  address?: Address
 }
 
 export const DiscoProfileBasic = ({ className, address }: DiscoProfileBasicProps) => {

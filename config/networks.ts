@@ -67,4 +67,4 @@ if (PROVIDERS.length === 0 || env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER === 'true') {
 }
 
 // @ts-ignore
-export const { chains, provider } = configureChains(CHAINS, [...PROVIDERS])
+export const { chains, publicClient, webSocketPublicClient } = configureChains(CHAINS, [...PROVIDERS])

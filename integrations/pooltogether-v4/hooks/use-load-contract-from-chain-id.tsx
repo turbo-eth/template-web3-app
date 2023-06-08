@@ -1,7 +1,8 @@
 import { useNetwork } from 'wagmi'
+import type { Address } from 'wagmi'
 
 interface ContractChainList {
-  [key: number]: `0x${string}`
+  [key: number]: Address
 }
 
 export const useLoadContractFromChainId = (list: ContractChainList) => {

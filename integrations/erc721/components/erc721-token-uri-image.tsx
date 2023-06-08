@@ -6,7 +6,7 @@ import { useERC721Metadata } from '../hooks/use-erc721-metadata'
 import { ERC721Props } from '../utils/types'
 
 interface ERC721TokenUriImageProps extends ERC721Props {
-  tokenId: number
+  tokenId: bigint
   height: number
   width: number
   alt?: string

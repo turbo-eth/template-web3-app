@@ -2,11 +2,11 @@ import { FormEvent, useEffect, useMemo, useState } from 'react'
 
 import { Address, isAddress } from 'viem'
 
-import { useErc721TokenStorage } from '../hooks/use-erc721-token-storage'
+import { useERC20TokenStorage } from '../hooks/use-erc20-token-storage'
 
-export function Erc721SetTokenStorage() {
-  const [token, setToken] = useErc721TokenStorage()
-  const [tokenAddress, setTokenAddress] = useState<Address>()
+export function Erc20SetTokenStorage() {
+  const [token, setToken] = useERC20TokenStorage()
+  const [tokenAddress, setTokenAddress] = useState(token)
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -24,13 +24,13 @@ export function Erc721SetTokenStorage() {
       <form className="flex flex-col gap-4" onSubmit={onSubmit}>
         <label>Selected Contract Address</label>
         <input value={tokenAddress} onChange={(e) => setTokenAddress(e.target.value as Address)} className="input" />
-        <button type="submit" disabled={!isValidAddress} className="btn btn-emerald disabled:opacity-60">
+        <button type="submit" disabled={!isValidAddress} className="btn btn-emerald">
           {'Select Contract Address'}
         </button>
         <hr className="my-4" />
         <div className="flex items-center justify-between">
-          <h3 className="text-center">Select ERC721 Contract</h3>
-          <p className="text-center text-sm text-gray-500">Select which NFT contract to interact with</p>
+          <h3 className="text-center">Select ERC20 Contract</h3>
+          <p className="text-center text-sm text-gray-500">Select which ERC20 contract to interact with</p>
         </div>
       </form>
     </div>

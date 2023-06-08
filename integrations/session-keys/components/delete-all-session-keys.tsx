@@ -6,7 +6,7 @@ export function DeleteAllSessionKeys() {
   const hasSessionKeys = sessionKeys && sessionKeys?.length > 0
 
   return (
-    <button disabled={!hasSessionKeys} className="btn btn-red disabled:opacity-50" onClick={deleteAllSessionKeys}>
+    <button disabled={!hasSessionKeys} className="btn btn-red" onClick={deleteAllSessionKeys}>
       Delete All Session Keys
     </button>
   )

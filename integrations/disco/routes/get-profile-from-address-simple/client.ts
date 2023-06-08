@@ -1,4 +1,6 @@
-export async function appDiscoGetProfileFromAddress(address?: `0x${string}`): Promise<any> {
+import type { Address } from 'wagmi'
+
+export async function appDiscoGetProfileFromAddress(address?: Address): Promise<any> {
   try {
     const res = await fetch(
       `/api/disco/profile-from-address?` +
