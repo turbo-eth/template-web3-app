@@ -17,7 +17,7 @@ export const ContractWriteButton = ({
   isLoadingTx,
   isLoadingWrite,
   write = true,
-  loadingWriteText = 'Sign the message in your wallet',
+  loadingWriteText = 'Sign the transaction in your wallet',
   loadingTxText = 'Writing...',
   ...props
 }: ContractWriteButtonProps) => {

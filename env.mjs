@@ -21,6 +21,7 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER: z.enum(['true', 'false']).default('true'),
+    NEXT_PUBLIC_PROD_NETWORKS_DEV: z.enum(['true', 'false']).default('false'),
     NEXT_PUBLIC_ALCHEMY_API_KEY: z.string().min(1).optional(),
     NEXT_PUBLIC_INFURA_API_KEY: z.string().min(1).optional(),
   },
@@ -31,6 +32,7 @@ export const env = createEnv({
     SITE_URL: process.env.SITE_URL,
     DISCO_API_KEY: process.env.DISCO_API_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    NEXT_PUBLIC_PROD_NETWORKS_DEV: process.env.NEXT_PUBLIC_PROD_NETWORKS_DEV,
     ETHERSCAN_API_KEY: process.env.ETHERSCAN_API_KEY,
     ETHERSCAN_API_KEY_OPTIMISM: process.env.ETHERSCAN_API_KEY_OPTIMISM,
     ETHERSCAN_API_KEY_ARBITRUM: process.env.ETHERSCAN_API_KEY_ARBITRUM,
