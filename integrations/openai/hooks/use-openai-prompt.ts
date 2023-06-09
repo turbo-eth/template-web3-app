@@ -4,23 +4,46 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { useToast } from '@/lib/hooks/use-toast'
+
 const openaiPromptSchema = z.object({
-  apiKey: z.string().min(2).max(90),
-  prompt: z.string().min(2).max(90),
-  result: z.string(),
+  apiKey: z.string().min(2).max(51),
+  prompt: z.string().min(2).max(300),
 })
 export const useOpenAIPrompt = () => {
   const [response, setResponse] = useState<string>('')
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const { toast, dismiss } = useToast()
 
   const form = useForm<z.infer<typeof openaiPromptSchema>>({
     resolver: zodResolver(openaiPromptSchema),
     defaultValues: {
       apiKey: '',
       prompt: '',
-      result: '',
     },
   })
+  const handleToast = ({ title, description }: { title: string; description: string }) => {
+    toast({
+      title,
+      description,
+    })
+
+    setTimeout(() => {
+      dismiss()
+    }, 4200)
+  }
+
+  const handleGenerateResponse = async (values: z.infer<typeof openaiPromptSchema>) => {
+    try {
+      await generateAIResponse(values?.prompt, values?.apiKey)
+      form.reset({ ...values, prompt: '' })
+    } catch (e) {
+      handleToast({
+        title: 'An Error Occurred',
+        description: 'An error occurred while generating the AI response. Please try again later.',
+      })
+    }
+  }
 
   /**
    * Generate an AI response from a prompt using the OpenAI API
@@ -68,16 +91,11 @@ export const useOpenAIPrompt = () => {
     setIsLoading(false)
   }
 
-  const onSubmit = (values: any) => {
-    console.log('values', values)
-    generateAIResponse(values?.prompt, values?.apiKey)
-  }
-
   return {
     response,
     isLoading,
-    generateAIResponse,
     form,
-    onSubmit,
+    handleGenerateResponse,
+    handleToast,
   }
 }

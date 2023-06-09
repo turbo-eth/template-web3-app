@@ -1,93 +1,23 @@
-import { useState } from 'react'
-
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { FaCopy } from 'react-icons/fa'
 
 import { LinkComponent } from '@/components/shared/link-component'
 import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { useToast } from '@/lib/hooks/use-toast'
+import { Form, FormControl, FormField, FormLabel, FormMessage } from '@/components/ui/form'
+import { FormDescription, FormItem } from '@/components/ui/form'
 
 import { useOpenAIPrompt } from '../hooks/use-openai-prompt'
 import { openaiPromptControls } from '../utils/controls'
 import { getComponent } from '../utils/get-element-component'
 
 export function FormOpenAIPrompt() {
-  const [prompt, setPrompt] = useState<string>('')
-  const [apiKey, setApiKey] = useState<string>('')
-  const { toast, dismiss } = useToast()
-  const { response, isLoading, generateAIResponse, form, onSubmit } = useOpenAIPrompt()
+  const { response, isLoading, handleGenerateResponse, form, handleToast } = useOpenAIPrompt()
 
-  const handleToast = ({ title, description }: { title: string; description: string }) => {
-    toast({
-      title,
-      description,
-    })
-
-    setTimeout(() => {
-      dismiss()
-    }, 4200)
-  }
-
-  const handleGenerateResponse = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
-    try {
-      await generateAIResponse(prompt, apiKey)
-    } catch (e) {
-      handleToast({
-        title: 'An Error Occurred',
-        description: 'An error occurred while generating the AI response. Please try again later.',
-      })
-    }
-  }
-
+  const { register } = form
   return (
     <div className="card w-full">
-      {/* <form onSubmit={handleGenerateResponse} className="flex flex-col gap-4">
-        <label>
-          OpenAI API Key
-          <input
-            required
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            type="password"
-            pattern="sk-[a-zA-Z0-9]{48}"
-            placeholder="sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-            className="input mt-2"
-          />
-        </label>
-        <label>
-          Prompt
-          <textarea className="input mt-2 h-40" value={prompt} onChange={(e) => setPrompt(e.target.value)} placeholder="Write your prompt" />
-        </label>
-        <div className="relative">
-          <label>
-            Response
-            <textarea readOnly className="input relative mt-2 h-60" placeholder="Your AI response will appear here" value={response} />
-          </label>
-          {response && (
-            <CopyToClipboard text={response}>
-              <span
-                onClick={() =>
-                  handleToast({
-                    title: 'AI response copied to clipboard',
-                    description: 'You can now paste the response anywhere you want.',
-                  })
-                }
-                className="flex-center absolute right-2 top-8 flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                <FaCopy className="text-neutral-600 dark:text-neutral-100" />
-              </span>
-            </CopyToClipboard>
-          )}
-        </div>
-        <button className="btn btn-emerald disabled:opacity-50" type="submit" disabled={isLoading || !prompt}>
-          {isLoading ? 'Generating...' : 'Generate'}
-        </button>
-      </form>{' '} */}
-
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={form.handleSubmit(handleGenerateResponse)} className="space-y-8">
           {openaiPromptControls.map((item) => {
             const Item = getComponent(item?.component)
 
@@ -95,30 +25,22 @@ export function FormOpenAIPrompt() {
               <FormField
                 key={item?.label}
                 control={form.control}
-                name={item?.formfieldName as 'apiKey' | 'prompt' | 'result'}
+                name={item?.formfieldName as 'apiKey' | 'prompt'}
                 render={({ field }) => (
                   <>
                     <FormItem>
                       <FormLabel>{item?.label}</FormLabel>
                       <FormControl>
-                        <>
-                          <Item {...item?.attribute} placeholder={item?.placeholder} {...field} />
-                          {!!response && item?.formfieldName === 'result' && (
-                            <CopyToClipboard text={response}>
-                              <span
-                                onClick={() =>
-                                  handleToast({
-                                    title: 'AI response copied to clipboard',
-                                    description: 'You can now paste the response anywhere you want.',
-                                  })
-                                }
-                                className="flex-center absolute right-2 top-8 flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                                <FaCopy className="text-neutral-600 dark:text-neutral-100" />
-                              </span>
-                            </CopyToClipboard>
-                          )}
-                        </>
+                        <div>
+                          <Item
+                            {...item?.attribute}
+                            placeholder={item?.placeholder}
+                            {...field}
+                            {...register(item?.formfieldName as 'apiKey' | 'prompt')}
+                          />
+                        </div>
                       </FormControl>
+
                       <FormDescription>{item?.description}</FormDescription>
                       <FormMessage />
                     </FormItem>
@@ -127,6 +49,26 @@ export function FormOpenAIPrompt() {
               />
             )
           })}
+
+          {true && (
+            <>
+              <div className="pb-10">
+                {response}
+                <CopyToClipboard text={response}>
+                  <span
+                    onClick={() =>
+                      handleToast({
+                        title: 'AI response copied to clipboard',
+                        description: 'You can now paste the response anywhere you want.',
+                      })
+                    }
+                    className="flex-center absolute right-72 mb-0 h-4 w-4 cursor-pointer rounded-md pt-6 pb-80 hover:text-gray-700">
+                    <FaCopy className=" dark:text-neutral-100" />
+                  </span>
+                </CopyToClipboard>
+              </div>
+            </>
+          )}
 
           <Button className="w-full" type="submit">
             {isLoading ? 'Generating...' : 'Generate'}

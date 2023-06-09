@@ -1,15 +1,34 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as LitJsSdk from '@lit-protocol/lit-node-client'
+import { ethers } from 'ethers'
+import { useForm } from 'react-hook-form'
 import { useAccount, useNetwork, useSignMessage } from 'wagmi'
+import { z } from 'zod'
 
 import { siweMessage } from '@/integrations/siwe/actions/siwe-message'
 
 import litClient from '../client'
 import { blobToString } from '../utils/data-types'
 
+const litSchema = z.object({
+  searchKey: z.string(),
+  singleAdd: z.string().refine((value) => ethers.utils.isAddress(value), {
+    message: 'Wallet address is invalid. Please insure you have typed correctly.',
+  }),
+  encryptMessage: z.string(),
+})
+
 export const useLitClient = () => {
   const { signMessageAsync } = useSignMessage()
   const { address } = useAccount()
   const { chain } = useNetwork()
+
+  const form = useForm<z.infer<typeof litSchema>>({
+    resolver: zodResolver(litSchema),
+    defaultValues: {
+      searchKey: '',
+    },
+  })
 
   /**
    * Get auth signature using siwe
@@ -130,5 +149,5 @@ export const useLitClient = () => {
     return { decryptedString }
   }
 
-  return { encryptMessage, decryptMessage }
+  return { encryptMessage, decryptMessage, form }
 }
