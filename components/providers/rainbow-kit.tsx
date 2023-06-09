@@ -5,9 +5,9 @@ import { ReactNode } from 'react'
 import { RainbowKitProvider, darkTheme, lightTheme } from '@rainbow-me/rainbowkit'
 import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import { coinbaseWallet, injectedWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
-import { WagmiConfig, createClient } from 'wagmi'
+import { WagmiConfig, createConfig } from 'wagmi'
 
-import { chains, provider } from '@/config/networks'
+import { chains, publicClient, webSocketPublicClient } from '@/config/networks'
 import { siteConfig } from '@/config/site'
 import { useColorMode } from '@/lib/state/color-mode'
 
@@ -29,16 +29,17 @@ const connectors = connectorsForWallets([
   },
 ])
 
-const wagmiClient = createClient({
+const wagmiConfig = createConfig({
   autoConnect: true,
   connectors,
-  provider,
+  publicClient,
+  webSocketPublicClient,
 })
 
 export function RainbowKit(props: Props) {
   const [colorMode] = useColorMode()
   return (
-    <WagmiConfig client={wagmiClient}>
+    <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains} theme={colorMode == 'dark' ? darkTheme() : lightTheme()}>
         {props.children}
       </RainbowKitProvider>
