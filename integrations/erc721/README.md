@@ -38,7 +38,7 @@ This integration includes read and write/deploy components. The read components 
 
 File Structure
 ```
-integrations/erc20
+integrations/erc721
 ├─ abis/
 │  ├─ erc721-abi.ts
 │  ├─ erc721-bytecode.ts
