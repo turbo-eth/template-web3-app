@@ -15,6 +15,10 @@ export const menuDashboard = [
     href: '/integrations/superfluid/start-flow',
   },
   {
+    label: 'superfluid stop stream',
+    href: '/integrations/superfluid/stop-flow',
+  },
+  {
     label: 'superfluid downgrade supertoken',
     href: '/integrations/superfluid/balance',
   },
