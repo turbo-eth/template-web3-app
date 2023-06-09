@@ -1,9 +1,9 @@
 import { FormEvent, useState } from 'react'
 
-import { ethers } from 'ethers'
-import { useNetwork, useSigner } from 'wagmi'
+import { usePublicClient, useWalletClient } from 'wagmi'
 
-import { LinkComponent } from '@/components/shared/link-component'
+import { BlockExplorerLink } from '@/components/blockchain/block-explorer-link'
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 
 import { erc721ABI } from '../abis/erc721-abi'
 import { erc721ByteCode } from '../abis/erc721-bytecode'
@@ -15,18 +15,22 @@ export function ERC721Deploy() {
   const [isWaitingTransaction, setIsWaitingTransaction] = useState<boolean>(false)
   const [name, setName] = useState<string>('')
   const [symbol, setSymbol] = useState<string>('')
-  const { data: signer } = useSigner()
-  const { chain } = useNetwork()
+
+  const publicClient = usePublicClient()
+  const { data: walletClient } = useWalletClient()
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!signer) return
+    if (!walletClient) return
     setIsSigning(true)
 
-    let contract: ethers.Contract
+    let hash: `0x${string}` | undefined
     try {
-      const factory = new ethers.ContractFactory(erc721ABI, erc721ByteCode, signer)
-      contract = await factory.deploy(name, symbol)
+      hash = await walletClient.deployContract({
+        abi: erc721ABI,
+        bytecode: erc721ByteCode,
+        args: [name, symbol],
+      })
     } catch (e) {
       setIsSigning(false)
       return
@@ -34,9 +38,11 @@ export function ERC721Deploy() {
     setIsSigning(false)
     setIsWaitingTransaction(true)
     try {
-      const deployed = await contract.deployTransaction.wait()
+      const receipt = await publicClient.waitForTransactionReceipt({ hash })
+      if (!receipt.contractAddress) return
+
       setIsWaitingTransaction(false)
-      setTokenStorage(deployed.contractAddress)
+      setTokenStorage(receipt.contractAddress)
     } catch (e) {
       setIsWaitingTransaction(false)
     }
@@ -49,19 +55,18 @@ export function ERC721Deploy() {
         <input value={name} onChange={(e) => setName(e.target.value)} className="input" />
         <label>Symbol</label>
         <input value={symbol} onChange={(e) => setSymbol(e.target.value)} className="input" />
-        <button disabled={!name || !symbol || isSigning || isWaitingTransaction} type="submit" className="btn btn-emerald disabled:opacity-60">
-          {isSigning ? 'Sign the transaction' : isWaitingTransaction ? 'Deploying...' : 'Deploy'}
-        </button>
+        <ContractWriteButton
+          write={Boolean(name && symbol)}
+          isLoadingTx={isWaitingTransaction}
+          isLoadingWrite={isSigning}
+          loadingTxText="Deploying...">
+          Deploy
+        </ContractWriteButton>
       </form>
       {(token || isWaitingTransaction) && (
         <div className="flex max-w-full flex-wrap items-center justify-between break-words pt-5 pb-2">
           <span className="font-semibold">{token ? 'Mint Contract Address' : 'Deploying contract'}:</span>
-          <LinkComponent
-            className="overflow-x-scroll font-medium underline"
-            isExternal
-            href={`${chain?.blockExplorers?.default.url}/address/${token}`}>
-            {token}
-          </LinkComponent>
+          <BlockExplorerLink address={token} />
         </div>
       )}
       <hr className="my-4" />

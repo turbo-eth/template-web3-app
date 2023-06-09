@@ -1,45 +1,43 @@
-// @ts-nocheck
-/* eslint-disable @next/next/no-img-element */
 import { useState } from 'react'
 
-import { BigNumberish, constants, utils } from 'ethers'
-import { useContractEvent } from 'wagmi'
+import { formatEther, zeroAddress } from 'viem'
+import type { Address } from 'wagmi'
 
-import { erc20ABI } from '../erc20-wagmi'
-import { useTokenStorage } from '../hooks/use-token-storage'
+import { useErc20TransferEvent } from '../erc20-wagmi'
+import { useERC20TokenStorage } from '../hooks/use-erc20-token-storage'
 
 export default function ERC20EventTransfer() {
-  const [token] = useTokenStorage()
+  const [token] = useERC20TokenStorage()
   const [event, setEvent] = useState<{
-    from: string
-    to: string
-    amount: BigNumberish
+    from: Address
+    to: Address
+    amount: bigint
   }>()
 
-  useContractEvent({
+  useErc20TransferEvent({
     address: token,
-    abi: erc20ABI,
-    eventName: 'Transfer',
-    listener(from, to, amount) {
-      if (from !== constants.AddressZero) {
+    listener(logs) {
+      const { args } = logs[0]
+      const { _from, _to, _value } = args
+      if (_from !== zeroAddress && _from && _to && _value) {
         setEvent({
-          from,
-          to,
-          amount,
+          from: _from,
+          to: _to,
+          amount: _value,
         })
       }
     },
   })
 
-  if (!token) return null
-  if (!event) return null
+  if (!token || !event) return null
+
   return (
     <div className="content py-6">
       {!event?.to ? null : (
         <>
           <p className="">From: {event?.from}</p>
           <p className="">To: {event?.to}</p>
-          <p className="">Amount: {utils.formatEther(event?.amount.toString() || '0')}</p>
+          <p className="">Amount: {event?.amount ? formatEther(event?.amount) : '0'}</p>
         </>
       )}
     </div>

@@ -2,10 +2,10 @@
 
 import React from 'react'
 
-import { ERC20Decimals, ERC20Name, ERC20Symbol, WalletERC20Balance } from '@turbo-eth/erc20-wagmi'
 import { motion } from 'framer-motion'
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
+import { ERC20Balance, ERC20Decimals, ERC20Name, ERC20Symbol } from '@/integrations/erc20/components/erc20-read'
 
 export default function ERC20({ params }: any) {
   const { address, chainId } = params
@@ -42,7 +42,7 @@ export default function ERC20({ params }: any) {
               </div>
               <hr className="my-3 dark:opacity-30" />
               <div className="mt-3">
-                <span className="mr-2 font-bold">Balance:</span> <WalletERC20Balance address={address} />
+                <span className="mr-2 font-bold">Balance:</span> <ERC20Balance address={address} />
               </div>
             </div>
           </motion.div>

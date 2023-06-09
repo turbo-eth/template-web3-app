@@ -77,7 +77,7 @@ export function FormOpenAIPrompt() {
             </CopyToClipboard>
           )}
         </div>
-        <button className="btn btn-emerald disabled:opacity-50" type="submit" disabled={isLoading || !prompt}>
+        <button className="btn btn-emerald" type="submit" disabled={isLoading || !prompt}>
           {isLoading ? 'Generating...' : 'Generate'}
         </button>
       </form>{' '}

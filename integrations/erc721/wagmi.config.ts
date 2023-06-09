@@ -4,7 +4,7 @@ import { react } from '@wagmi/cli/plugins'
 import { erc721ABI } from './abis/erc721-abi'
 
 export default defineConfig({
-  out: './erc721-wagmi.ts',
+  out: './integrations/erc721-wagmi.ts',
   contracts: [
     {
       name: 'erc721',

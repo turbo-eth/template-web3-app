@@ -39,8 +39,12 @@ celoAlfajores.iconUrl = '/icons/NetworkCeloTest.svg'
 export const ETH_CHAINS_TEST = [goerli, sepolia, polygonMumbai, celoAlfajores, hardhat]
 export const ETH_CHAINS_L2_TEST = [baseGoerli, optimismGoerli, arbitrumGoerli]
 export const ETH_CHAINS_PROD = [mainnet, optimism, arbitrum, polygon, celo, goerli, baseGoerli]
+export const ETH_CHAINS_DEV =
+  env.NEXT_PUBLIC_PROD_NETWORKS_DEV === 'true'
+    ? [...ETH_CHAINS_PROD, ...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST]
+    : [...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST]
 
-export const CHAINS = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : [...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST]
+export const CHAINS = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : ETH_CHAINS_DEV
 
 const PROVIDERS = []
 
@@ -67,4 +71,4 @@ if (PROVIDERS.length === 0 || env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER === 'true') {
 }
 
 // @ts-ignore
-export const { chains, provider } = configureChains(CHAINS, [...PROVIDERS])
+export const { chains, publicClient, webSocketPublicClient } = configureChains(CHAINS, [...PROVIDERS])

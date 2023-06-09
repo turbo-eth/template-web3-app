@@ -1,13 +1,14 @@
 import * as React from 'react'
 
 import classNames from 'clsx'
+import type { Address } from 'wagmi'
 
 import { useDiscoGetProfileFromAddress } from '@/integrations/disco/hooks/use-disco-get-profile-from-address'
 import { useUser } from '@/lib/hooks/use-user'
 
 interface DiscoProfileCredentialsProps {
   className?: string
-  address?: `0x${string}`
+  address?: Address
 }
 
 export const DiscoProfileCredentials = ({ className, address }: DiscoProfileCredentialsProps) => {

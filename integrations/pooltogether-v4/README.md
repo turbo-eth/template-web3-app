@@ -41,7 +41,7 @@ Users can choose the amount of approval if they have never interacted with the p
 integrations/pooltogether-v4
 ├─ abis/
 │  ├─ yield-source-prize-pool-abi.ts
-│  ├─ yield-source-prize-pool-bytecode.json
+│  ├─ yield-source-prize-pool-bytecode.ts
 ├─ components/
 │  ├─ form-yield-source-prize-pool-deposit.tsx
 │  ├─ form-yield-source-prize-pool-withdraw.tsx

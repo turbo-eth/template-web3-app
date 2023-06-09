@@ -17,6 +17,7 @@ const nextConfig = {
     appDir: true,
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }) => {
+    config.resolve.fallback = { fs: false, net: false, tls: false }
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,

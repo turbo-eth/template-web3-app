@@ -74,7 +74,7 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
               value={encryptedMessageId}
               onChange={(e) => setEncryptedMessageId(e.target.value)}
             />
-            <button disabled={isLoading || !isValid} type="submit" className="btn btn-emerald mt-4 disabled:opacity-50">
+            <button disabled={isLoading || !isValid} type="submit" className="btn btn-emerald mt-4">
               {isLoading ? 'Loading...' : 'Decrypt'}
             </button>
             <hr className="my-4" />

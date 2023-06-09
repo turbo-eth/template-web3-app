@@ -1,57 +1,65 @@
+import { useForm } from 'react-hook-form'
+import { useDebounce } from 'usehooks-ts'
+import { BaseError, parseEther } from 'viem'
+import { Address, useWaitForTransaction } from 'wagmi'
+
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
+import { TransactionStatus } from '@/components/blockchain/transaction-status'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
-import { utils } from 'ethers'
-import { useForm } from 'react-hook-form'
-import { useSigner } from 'wagmi'
-import { useErc20Transfer } from '../erc20-wagmi'
-import { useTokenStorage } from '../hooks/use-token-storage'
 
 import ERC20EventTransfer from './erc20-event-transfer'
+import { useErc20Transfer, usePrepareErc20Transfer } from '../erc20-wagmi'
 
-export function ERC20ContractTransferTokens() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
-  const { data: signer } = useSigner()
+interface ERC20WriteTransferProps {
+  address: Address
+}
 
-  const [token] = useTokenStorage()
-  // @ts-ignore
-  const mintAction = useErc20Transfer({
-    address: token,
+export function ERC20ContractTransferTokens({ address }: ERC20WriteTransferProps) {
+  const { register, watch, handleSubmit } = useForm()
+
+  const watchAmount: string = watch('amount')
+  const watchTo = watch('to')
+  const debouncedAmount = useDebounce(watchAmount, 500)
+  const debouncedTo = useDebounce(watchTo, 500)
+
+  const isValidAmount = Boolean(debouncedAmount && !isNaN(Number(debouncedAmount)))
+
+  const { config, error, isError } = usePrepareErc20Transfer({
+    address,
+    args: debouncedTo && isValidAmount ? [debouncedTo, parseEther(`${Number(debouncedAmount)}`)] : undefined,
+    enabled: Boolean(debouncedTo && isValidAmount),
   })
 
-  const onSubmit = async (data: any) => {
-    // @ts-ignore
-    const tx = await mintAction.writeAsync({
-      recklesslySetUnpreparedArgs: [data.to, utils.parseEther(data.amount)],
-    })
+  const { data, write, isLoading: isLoadingWrite } = useErc20Transfer(config)
+
+  const { isLoading: isLoadingTx, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+  })
+
+  const onSubmit = async () => {
+    write?.()
   }
 
   return (
-    <>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <label>Amount</label>
-        <input placeholder="10" {...register('amount')} className="input" />
-        <label>To</label>
-        <input placeholder="kames.eth" {...register('to')} className="input" />
-        {errors.exampleRequired && <span>This field is required</span>}
-        <button type="submit" className="btn btn-emerald">
-          Transfer
-        </button>
-      </form>
-    </>
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+      <label>Amount</label>
+      <input placeholder="10" {...register('amount')} className="input" />
+      <label>To</label>
+      <input placeholder="kames.eth" {...register('to')} className="input" />
+      <ContractWriteButton type="submit" isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} write={!!write} loadingTxText="Transferring...">
+        Transfer
+      </ContractWriteButton>
+      <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
+    </form>
   )
 }
 
-export function ERC20WriteTransfer() {
+export function ERC20WriteTransfer({ address }: ERC20WriteTransferProps) {
   return (
     <BranchIsWalletConnected>
-      <div className="w-full">
-        <h3 className="font-bold">Transfer</h3>
-        <hr className="my-2" />
-        <ERC20ContractTransferTokens />
+      <div className="card w-full">
+        <ERC20ContractTransferTokens address={address} />
         <ERC20EventTransfer />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
@@ -60,9 +68,7 @@ export function ERC20WriteTransfer() {
         </div>
       </div>
       <div className="flex items-center justify-center gap-10">
-        <>
-          <WalletConnect />
-        </>
+        <WalletConnect />
       </div>
     </BranchIsWalletConnected>
   )

@@ -1,9 +1,8 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 
 import * as Form from '@radix-ui/react-form'
-import { useErc20Decimals } from '@turbo-eth/erc20-wagmi'
-import { BigNumber } from 'ethers'
 import { useDebounce } from 'usehooks-ts'
+import { parseUnits } from 'viem'
 import { useAccount, useWaitForTransaction } from 'wagmi'
 
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
@@ -11,6 +10,7 @@ import { useUserBalanceWithdraw } from '@/actions/pooltogether-v4/hooks/use-user
 import { usePoolTogetherPrizePoolWithdrawFrom } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
 import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/utils/ticket-contract-list'
+import { useErc20Decimals } from '@/lib/blockchain'
 
 export function PoolTogetherFormWithdraw() {
   const { address } = useAccount()
@@ -19,21 +19,16 @@ export function PoolTogetherFormWithdraw() {
   const ticketAddress = useLoadContractFromChainId(TICKET_CONTRACT)
 
   const { data: decimals } = useErc20Decimals({ address: ticketAddress })
-  const POWER = decimals != undefined ? BigNumber.from(10).pow(decimals) : BigNumber.from(10).pow(6)
+
+  const POWER = decimals ?? 6
 
   const [withdrawAmount, setWithdrawAmount] = useState<number>()
-  const debouncedWithdrawAmount = useDebounce(
-    withdrawAmount != undefined ? BigNumber.from(withdrawAmount * POWER.toNumber()) : BigNumber.from(0),
-    500
-  )
+
+  const debouncedWithdrawAmount = useDebounce(withdrawAmount != undefined ? parseUnits(`${withdrawAmount}`, POWER) : BigInt(0), 500)
 
   const { data, write: withdrawToken } = usePoolTogetherPrizePoolWithdrawFrom({
-    mode: 'recklesslyUnprepared',
     address: prizePoolAddress,
     args: [address || '0x0', debouncedWithdrawAmount],
-    overrides: {
-      gasLimit: BigNumber.from(750000),
-    },
   })
 
   const { isLoading } = useWaitForTransaction({
@@ -79,9 +74,7 @@ export function PoolTogetherFormWithdraw() {
             <button
               disabled={prizePoolAddress == undefined && (!withdrawToken || isLoading)}
               className={
-                prizePoolAddress == undefined || debouncedWithdrawAmount.eq(0)
-                  ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50'
-                  : 'btn btn-emerald btn-sm'
+                !prizePoolAddress || !debouncedWithdrawAmount ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50' : 'btn btn-emerald btn-sm'
               }>
               {prizePoolAddress == undefined ? 'Please switch network' : isLoading ? 'Processing...' : 'Withdraw'}
             </button>

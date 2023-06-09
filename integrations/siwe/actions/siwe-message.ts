@@ -1,4 +1,5 @@
 import { SiweMessage } from 'siwe'
+import type { Address } from 'wagmi'
 import { SignMessageArgs } from 'wagmi/dist/actions'
 
 import { siteConfig } from '@/config/site'
@@ -6,7 +7,7 @@ import { siteConfig } from '@/config/site'
 interface SiweMessageOptions {
   address: string
   chainId: number
-  signMessageAsync: (args?: SignMessageArgs | undefined) => Promise<`0x${string}`>
+  signMessageAsync: (args?: SignMessageArgs | undefined) => Promise<Address>
 }
 
 /**

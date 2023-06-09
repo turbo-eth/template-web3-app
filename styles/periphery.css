@@ -1,6 +1,6 @@
 
 .btn {
-  @apply cursor-pointer font-semibold rounded-md shadow-md py-3 inline-block px-4 text-center focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-75 duration-200;
+  @apply cursor-pointer font-semibold rounded-md shadow-md py-3 inline-block px-4 text-center focus:outline-none focus:ring-2 disabled:opacity-60 focus:ring-indigo-400 focus:ring-opacity-75 duration-200;
 }
 
 .btn-xs {

@@ -61,8 +61,8 @@ export const turboIntegrations = {
     href: '/integration/lit-protocol/share',
     url: 'https://litprotocol.com/',
     description: 'Lit is distributed key management for encryption, signing, and compute.',
-    imgLight: '/integrations/lit-protocol.svg',
-    imgDark: '/integrations/lit-protocol.svg',
+    imgLight: '/integrations/lit-protocol.png',
+    imgDark: '/integrations/lit-protocol.png',
   },
   openai: {
     name: 'OpenAI',

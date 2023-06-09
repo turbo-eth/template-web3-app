@@ -14,6 +14,7 @@ integrations/erc20
 │  ├─ erc20-event-mint.tsx
 │  ├─ erc20-event-transfer.tsx
 │  ├─ erc20-read.tsx
+│  ├─ erc20-set-token-storage.tsx
 │  ├─ erc20-write-mint.tsx
 │  ├─ erc20-write-transfer.tsx
 ├─ hooks/
