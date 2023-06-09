@@ -237,8 +237,8 @@ const features = [
     demo: (
       <div className="flex items-center justify-center space-x-20">
         <BranchColorMode>
-          <Image alt="OpenAI logo" src={turboIntegrations.litProtocol.imgDark} width={100} height={100} />
-          <Image alt="OpenAI logo" src={turboIntegrations.litProtocol.imgLight} width={100} height={100} />
+          <Image alt="Lit Protocol logo" src={turboIntegrations.litProtocol.imgDark} width={100} height={100} />
+          <Image alt="Lit Protocol logo" src={turboIntegrations.litProtocol.imgLight} width={100} height={100} />
         </BranchColorMode>
       </div>
     ),
