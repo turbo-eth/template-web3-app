@@ -215,9 +215,9 @@ const features = [
     description: 'Read and Write to ERC721 smart contracts using minimal UI components.',
     demo: (
       <div className="text-center">
-        <ERC721TokenUriName chainId={1} tokenId={1} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
+        <ERC721TokenUriName chainId={1} tokenId={BigInt(1)} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
         <ERC721TokenUriImage
-          tokenId={1}
+          tokenId={BigInt(1)}
           chainId={1}
           address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'}
           height={100}
@@ -236,7 +236,10 @@ const features = [
     href: turboIntegrations.litProtocol.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <Image alt="Lit Protocol logo" src="/integrations/lit-protocol.svg" width={100} height={100} />
+        <BranchColorMode>
+          <Image alt="OpenAI logo" src={turboIntegrations.litProtocol.imgDark} width={100} height={100} />
+          <Image alt="OpenAI logo" src={turboIntegrations.litProtocol.imgLight} width={100} height={100} />
+        </BranchColorMode>
       </div>
     ),
   },
