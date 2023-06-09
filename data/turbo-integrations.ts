@@ -80,4 +80,12 @@ export const turboIntegrations = {
     imgLight: '/integrations/pooltogether.svg',
     imgDark: '/integrations/pooltogether.svg',
   },
+  starter: {
+    name: 'Starter Template',
+    href: '/integration/starter',
+    url: 'https://docs.turboeth.xyz/overview',
+    description: 'Use this template to get started building integrations with TurboETH.',
+    imgLight: '/logo-gradient.png',
+    imgDark: '/logo-dark.png',
+  },
 }
