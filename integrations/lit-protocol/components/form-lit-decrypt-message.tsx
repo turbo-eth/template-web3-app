@@ -1,12 +1,14 @@
 import { useState } from 'react'
 
-import { useForm } from 'react-hook-form'
+import { motion } from 'framer-motion'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { Button } from '@/components/ui/button'
 import { FormItem, FormLabel } from '@/components/ui/form'
 import { Form, FormControl, FormField, FormMessage } from '@/components/ui/form'
+import { Textarea } from '@/components/ui/textarea'
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { getComponent } from '@/integrations/erc20/utils/get-element-component'
 import { useToast } from '@/lib/hooks/use-toast'
 
@@ -18,20 +20,21 @@ interface FormLitDecryptMessageProps {
 }
 
 export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDecryptMessageProps) {
-  const [encryptedMessageId, setEncryptedMessageId] = useState<string>(initialEencryptedMessageId)
   const [decryptedMessage, setDecryptedMessage] = useState<string>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const { decryptMessage, form } = useLitClient()
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit, watch } = form
   const { toast, dismiss } = useToast()
+
+  const encryptedMessageId = watch('searchKey')
 
   const isValid = encryptedMessageId.length > 0
 
-  const onSubmit = async () => {
+  const onSubmit = async (values: any) => {
     if (!isValid) return
     setIsLoading(true)
-    const { decryptedString, error } = await decryptMessage(encryptedMessageId)
+    const { decryptedString, error } = await decryptMessage(values?.searchKey)
     setIsLoading(false)
 
     if (!error) {
@@ -63,7 +66,7 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
     return (
       <>
         <Form {...form}>
-          <form className="space-y-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             {litControls.map((item) => {
               const Item = getComponent(item?.component)
               return (
@@ -106,30 +109,8 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
             <h3 className="text-center">Encrypted message ID</h3>
             <p className="text-center text-sm text-gray-500">The ID of the encrypted message saved into a database.</p>
           </div>
-          {/* <motion.form
-            variants={FADE_DOWN_ANIMATION_VARIANTS}
-            initial="hidden"
-            animate="show"
-            className="card flex flex-col"
-            onSubmit={handleSubmit(onSubmit)}>
-            <label>ID:</label>
-            <input
-              className="input mt-4"
-              {...register('message')}
-              value={encryptedMessageId}
-              onChange={(e) => setEncryptedMessageId(e.target.value)}
-            />
-            <button disabled={isLoading || !isValid} type="submit" className="btn btn-emerald mt-4 disabled:opacity-50">
-              {isLoading ? 'Loading...' : 'Decrypt'}
-            </button>
-            <hr className="my-4" />
-            <div className="flex items-center justify-between">
-              <h3 className="text-center">Encrypted message ID</h3>
-              <p className="text-center text-sm text-gray-500">The ID of the encrypted message saved into a database.</p>
-            </div>
-          </motion.form> */}
 
-          {/* {decryptedMessage && (
+          {decryptedMessage && (
             <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} initial="hidden" animate="show" className="card my-8">
               <h4>Decrypted Message:</h4>
               <Textarea readOnly value={decryptedMessage} className="input mt-4 h-40 dark:text-gray-600 dark:placeholder:text-neutral-400" />
@@ -139,7 +120,7 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
                 <p className="text-center text-sm text-gray-500">Make sure to only share the decrypted message with trusted individuals.</p>
               </div>
             </motion.div>
-          )} */}
+          )}
         </div>
         <div className="flex items-center justify-center gap-10">
           <WalletConnect />

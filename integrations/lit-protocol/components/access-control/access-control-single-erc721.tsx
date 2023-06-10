@@ -1,86 +1,114 @@
-import { useState } from 'react'
-
+import { zodResolver } from '@hookform/resolvers/zod'
+import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
-import { isAddress } from 'viem'
+import { z } from 'zod'
 
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormLabel, FormMessage } from '@/components/ui/form'
+import { FormItem } from '@/components/ui/form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
 import { AccessControlProps } from './types'
 import { supportedChains } from '../../utils/config'
+import { SingleNFtControls } from '../../utils/controls'
+import { getComponent } from '../../utils/get-element-component'
+
+const litSingleERC721Schema = z.object({
+  chain: z.string(),
+  singleNftAdd: z.string().refine((value) => ethers.utils.isAddress(value), {
+    message: 'Wallet address is invalid. Please insure you have typed correctly.',
+  }),
+  tokenId: z.string(),
+})
 
 export function AccessControlSingleERC721({ setAccessControlConditions }: AccessControlProps) {
-  const [address, setAddress] = useState<string>('')
-  const [tokenId, setTokenId] = useState<number>()
-  const [chain, setChain] = useState<string>('ethereum')
+  const form = useForm<z.infer<typeof litSingleERC721Schema>>({
+    resolver: zodResolver(litSingleERC721Schema),
+    defaultValues: {
+      chain: '',
+      singleNftAdd: '',
+      tokenId: '',
+    },
+  })
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
-
-  const onSubmit = (data: any) => {
-    setAccessControlConditions(getAccessControlConditions(chain, data.address, data.tokenId))
+  const { register, handleSubmit, control } = form
+  const onSubmit = (data: z.infer<typeof litSingleERC721Schema>) => {
+    setAccessControlConditions(getAccessControlConditions(data.chain, data.singleNftAdd, data.tokenId))
   }
 
   return (
-    <div>
-      <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Chain:</label>
-          <Select {...register('chain')} value={chain} onValueChange={(value) => setChain(value)}>
-            <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
-              <SelectValue placeholder="Select a chain" />
-            </SelectTrigger>
-            <SelectContent className="bg-white dark:bg-white">
-              {supportedChains.map((chain) => (
-                <SelectItem key={chain} value={chain}>
-                  {chain}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="mt-4">
-          <label>ERC721 Contract Address:</label>
-          <input
-            className="input mt-4"
-            {...register('address', {
-              required: 'Contract address is required',
-              validate: {
-                isValidEthereumAddress: (value) => isAddress(value) || 'Invalid Contract address',
-              },
-            })}
-            placeholder="0x1234567890123456789012345678901234567890"
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          {errors.address && <p className="mt-1 text-sm text-red-500">{String(errors.address?.message)}</p>}
-        </div>
-        <div className="mt-4">
-          <label>Token ID:</label>
-          <input
-            className="input mt-4"
-            type="number"
-            placeholder="0"
-            min={0}
-            {...register('tokenId', {
-              required: 'Token ID is required',
-            })}
-            value={tokenId}
-            onChange={(e) => {
-              console.log(e.target.value)
-              setTokenId(Number(e.target.value))
+    <div className="mt-8">
+      <Form {...form}>
+        <form onSubmit={handleSubmit(onSubmit)} className=" space-y-8">
+          {SingleNFtControls.map((item) => {
+            const Item = getComponent(item?.component)
+            return (
+              <FormField
+                {...register(item?.formfieldName as 'singleNftAdd' | 'tokenId' | 'chain')}
+                key={item?.label}
+                control={control}
+                name={item?.formfieldName as 'singleNftAdd' | 'tokenId' | 'chain'}
+                render={({ field }) => (
+                  <>
+                    <FormItem>
+                      <FormLabel>{item?.label}</FormLabel>
+                      <FormControl>
+                        {item.component === 'select' ? (
+                          <Select onValueChange={field.onChange} defaultValue={field.value}>
+                            <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
+                              <SelectValue placeholder="Select a chain" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white dark:bg-white">
+                              {supportedChains.map((chain) => (
+                                <SelectItem key={chain} value={chain}>
+                                  {chain}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        ) : (
+                          <Item placeholder={item.placeholder} {...field} attribute={item?.attribute} />
+                        )}
+                        {/* {item.component === 'select' && (
+                          <Select {...register('chain')} value={chain} onValueChange={(value) => setChain(value)}>
+                            <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
+                              <SelectValue placeholder="Select a chain" />
+                            </SelectTrigger>
+                            <SelectContent className="bg-white dark:bg-white">
+                              {supportedChains.map((chain) => (
+                                <SelectItem key={chain} value={chain}>
+                                  {chain}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        )} */}
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  </>
+                )}
+              />
+            )
+          })}
+          <Button
+            onClick={() => {
+              console.log('elkncl')
             }}
-          />
-          {errors.tokenId && <p className="mt-1 text-sm text-red-500">{String(errors.tokenId?.message)}</p>}
-        </div>
-        <button className="btn btn-emerald mt-4" type="submit">
-          Save
-        </button>
-      </form>
+            className="w-full"
+            type="submit">
+            Save
+          </Button>
+          {/* <Button
+    className="w-full"
+    type="submit"
+    onClick={() => {
+      console.log('elkncl')
+    }}>
+    elvelknk
+  </Button> */}
+        </form>
+      </Form>
     </div>
   )
 }

@@ -52,7 +52,7 @@ export function FormOpenAIPrompt() {
 
           {true && (
             <>
-              <div className="pb-10">
+              <div className="pb-8">
                 {response}
                 <CopyToClipboard text={response}>
                   <span
@@ -62,7 +62,7 @@ export function FormOpenAIPrompt() {
                         description: 'You can now paste the response anywhere you want.',
                       })
                     }
-                    className="flex-center absolute right-72 mb-0 h-4 w-4 cursor-pointer rounded-md pt-6 pb-80 hover:text-gray-700">
+                    className="flex-center absolute right-72 h-4 w-4 cursor-pointer rounded-md pt-6 pb-60 hover:text-gray-700">
                     <FaCopy className=" dark:text-neutral-100" />
                   </span>
                 </CopyToClipboard>

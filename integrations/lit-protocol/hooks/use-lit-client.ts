@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as LitJsSdk from '@lit-protocol/lit-node-client'
-import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { useAccount, useNetwork, useSignMessage } from 'wagmi'
 import { z } from 'zod'
@@ -11,11 +10,8 @@ import litClient from '../client'
 import { blobToString } from '../utils/data-types'
 
 const litSchema = z.object({
-  searchKey: z.string(),
-  singleAdd: z.string().refine((value) => ethers.utils.isAddress(value), {
-    message: 'Wallet address is invalid. Please insure you have typed correctly.',
-  }),
   encryptMessage: z.string(),
+  searchKey: z.string(),
 })
 
 export const useLitClient = () => {
@@ -27,6 +23,7 @@ export const useLitClient = () => {
     resolver: zodResolver(litSchema),
     defaultValues: {
       searchKey: '',
+      encryptMessage: '',
     },
   })
 
@@ -87,6 +84,8 @@ export const useLitClient = () => {
       },
       body: JSON.stringify({ encryptedString: await blobToString(encryptedString), accessControlConditions, encryptedSymmetricKeyString }),
     }).then((res) => res.json())
+
+    console.log('litProtocolMessage', litProtocolMessage)
 
     return { id: litProtocolMessage.id, encryptedString, encryptedSymmetricKey: encryptedSymmetricKeyString }
   }
