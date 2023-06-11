@@ -23,7 +23,7 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
   const [decryptedMessage, setDecryptedMessage] = useState<string>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const { decryptMessage, form } = useLitClient()
+  const { decryptMessage, form, litSchema } = useLitClient()
   const { register, handleSubmit, watch } = form
   const { toast, dismiss } = useToast()
 
@@ -31,7 +31,7 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
 
   const isValid = encryptedMessageId.length > 0
 
-  const onSubmit = async (values: any) => {
+  const onSubmit = async (values: z.infer<typeof litSchema>) => {
     if (!isValid) return
     setIsLoading(true)
     const { decryptedString, error } = await decryptMessage(values?.searchKey)

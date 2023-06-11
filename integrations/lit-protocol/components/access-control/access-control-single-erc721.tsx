@@ -16,7 +16,7 @@ import { getComponent } from '../../utils/get-element-component'
 const litSingleERC721Schema = z.object({
   chain: z.string(),
   singleNftAdd: z.string().refine((value) => ethers.utils.isAddress(value), {
-    message: 'Wallet address is invalid. Please insure you have typed correctly.',
+    message: 'Address is invalid. Please insure you have typed correctly.',
   }),
   tokenId: z.string(),
 })
@@ -69,20 +69,6 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
                         ) : (
                           <Item placeholder={item.placeholder} {...field} attribute={item?.attribute} />
                         )}
-                        {/* {item.component === 'select' && (
-                          <Select {...register('chain')} value={chain} onValueChange={(value) => setChain(value)}>
-                            <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
-                              <SelectValue placeholder="Select a chain" />
-                            </SelectTrigger>
-                            <SelectContent className="bg-white dark:bg-white">
-                              {supportedChains.map((chain) => (
-                                <SelectItem key={chain} value={chain}>
-                                  {chain}
-                                </SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
-                        )} */}
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -91,22 +77,9 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
               />
             )
           })}
-          <Button
-            onClick={() => {
-              console.log('elkncl')
-            }}
-            className="w-full"
-            type="submit">
+          <Button className="w-full" type="submit">
             Save
           </Button>
-          {/* <Button
-    className="w-full"
-    type="submit"
-    onClick={() => {
-      console.log('elkncl')
-    }}>
-    elvelknk
-  </Button> */}
         </form>
       </Form>
     </div>

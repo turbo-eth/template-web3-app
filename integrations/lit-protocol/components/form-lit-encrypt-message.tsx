@@ -27,20 +27,17 @@ export function FormLitEncryptMessage() {
   const [accessControlType, setAccessControlType] = useState<string>()
 
   const { toast, dismiss } = useToast()
-  const { encryptMessage, form } = useLitClient()
+  const { encryptMessage, form, litSchema } = useLitClient()
   const { register, handleSubmit, watch } = form
 
   const messageToEncrypt = watch('encryptMessage')
 
   const isValid = messageToEncrypt && accessControlConditions.length > 0
-  console.log('is', encryptedMessageId)
 
-  const onSub = async (values: any) => {
-    console.log('ooooooooooo:', values)
+  const onSub = async (values: z.infer<typeof litSchema>) => {
     setIsLoading(true)
     try {
       const encryptedMessage = await encryptMessage(values.encryptMessage, accessControlConditions)
-      console.log('kfvkev', encryptedMessage)
       setEncryptedMessageId(encryptedMessage.id)
     } catch (e) {
       console.error(e)

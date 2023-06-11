@@ -85,8 +85,6 @@ export const useLitClient = () => {
       body: JSON.stringify({ encryptedString: await blobToString(encryptedString), accessControlConditions, encryptedSymmetricKeyString }),
     }).then((res) => res.json())
 
-    console.log('litProtocolMessage', litProtocolMessage)
-
     return { id: litProtocolMessage.id, encryptedString, encryptedSymmetricKey: encryptedSymmetricKeyString }
   }
 
@@ -148,5 +146,5 @@ export const useLitClient = () => {
     return { decryptedString }
   }
 
-  return { encryptMessage, decryptMessage, form }
+  return { encryptMessage, decryptMessage, form, litSchema }
 }

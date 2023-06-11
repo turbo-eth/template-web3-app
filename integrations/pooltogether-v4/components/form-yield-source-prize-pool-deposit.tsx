@@ -23,7 +23,7 @@ import { controls } from '../utils/controls'
 import { getComponent } from '../utils/get-element-component'
 
 const poolSchema = z.object({
-  deposit: z.string().min(1).max(100),
+  deposit: z.string().min(1).max(50),
   approve: z.boolean(),
 })
 
@@ -35,8 +35,6 @@ export function PoolTogetherFormDeposit() {
       approve: false,
     },
   })
-
-  // ---------
 
   const [approvalAmount, setApprovalAmount] = useState<BigNumber>(BigNumber.from(0))
   const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
@@ -55,8 +53,6 @@ export function PoolTogetherFormDeposit() {
   const [depositAmount, setDepositAmount] = useState<number>()
   const debouncedDepositAmount = useDebounce(BigNumber.from(depositAmount != undefined ? depositAmount * POWER.toNumber() : 0), 500)
 
-  // --------
-
   const { register, control, watch } = form
 
   const Component = getComponent(controls[1].component)
@@ -73,8 +69,6 @@ export function PoolTogetherFormDeposit() {
   }, [amount])
 
   const onSubmit = (values: any) => {
-    console.log('val', values)
-
     const { deposit } = values
 
     if (deposit != undefined && deposit >= 2.0) {
@@ -87,8 +81,6 @@ export function PoolTogetherFormDeposit() {
       setValidAmount(false)
     }
   }
-
-  console.log('debouncedDepositAmount::::', debouncedDepositAmount.toNumber())
 
   const {
     data,
@@ -120,31 +112,19 @@ export function PoolTogetherFormDeposit() {
     hash: approveData?.hash,
   })
 
-  console.log('isSuccess::', successApprove)
-
   useEffect(() => {
     isChecked ? setApprovalAmount(ethers.constants.MaxInt256) : setApprovalAmount(BigNumber.from(debouncedDepositAmount))
   }, [isChecked])
 
   useEffect(() => {
     if (successApprove || submitDeposit) {
-      console.log('jhohhoo', {
-        ok: debouncedDepositAmount.toNumber(),
-        mode: 'recklesslyUnprepared',
-        address: prizePoolAddress,
-        args: [address || '0x0', BigNumber.from(2), address || '0x0'],
-        overrides: {
-          gasLimit: BigNumber.from(750000),
-        },
-      })
       depositToken?.()
       setSubmitDeposit(false)
     }
   }, [successApprove, submitDeposit])
 
-  const handleChange = (values: any) => {
+  const handleChange = (amount: any) => {
     const value = amount != '' ? parseFloat(Number(amount).toFixed(decimals)) : undefined
-    console.log('val', value)
     value != undefined && value > userBalance ? setDepositAmount(userBalance) : setDepositAmount(value)
     setApprovalAmount(value != undefined ? BigNumber.from(value * POWER.toNumber()) : BigNumber.from(0))
   }
@@ -156,62 +136,6 @@ export function PoolTogetherFormDeposit() {
 
   return (
     <div className="card w-full">
-      {/* <Form.Root onSubmit={handleSubmit}>
-        <Form.Field name="amountDeposit">
-          <div className="flex justify-between align-baseline">
-            <Form.Label className="mb-2">
-              <span className="ml-10 cursor-pointer hover:underline" onClick={() => handleAmount()}>
-                {parseFloat(userBalance.toString()).toFixed(2)} USDC
-              </span>
-            </Form.Label>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="input"
-              onChange={handleChange}
-              value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
-              type="number"
-              min={0}
-              max={userBalance}
-              step={'any'}
-              required={true}
-            />
-          </Form.Control>
-        </Form.Field>
-        {!isValidAmount && (
-          <div className="relative mt-2 rounded border border-red-400 bg-red-100 py-1 text-center text-red-700" role="alert">
-            <strong className="font-semibold">Min. 2 USDC</strong>
-          </div>
-        )}
-        {!isApproved && (
-          <div className="mt-4 flex justify-center space-x-2">
-            <Checkbox onClick={() => setIsChecked(!isChecked)} />
-            <span className="font-semibold">Infinite Approval</span>
-          </div>
-        )}
-        <div className="mt-4 flex justify-center space-x-5">
-          <Form.Submit asChild>
-            <button
-              disabled={prizePoolAddress == undefined && (isLoading || debouncedDepositAmount.eq(0))}
-              className={
-                debouncedDepositAmount.eq(0) || prizePoolAddress == undefined
-                  ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50'
-                  : 'btn btn-emerald btn-sm'
-              }>
-              {prizePoolAddress == undefined
-                ? 'Please switch network'
-                : isApproved
-                ? isLoading
-                  ? 'Processing...'
-                  : 'Deposit'
-                : loadApprove
-                ? 'Processing...'
-                : 'Approve and Deposit'}
-            </button>
-          </Form.Submit>
-        </div>
-      </Form.Root> */}
-
       <span className="cursor-pointer pb-2 hover:underline" onClick={() => handleAmount()}>
         Balance: {parseFloat(userBalance.toString()).toFixed(2)} USDC
       </span>
@@ -240,11 +164,11 @@ export function PoolTogetherFormDeposit() {
                               {...register(item?.formfieldName as 'deposit' | 'approve')}
                               min={0}
                               max={userBalance}
+                              {...item?.attribute}
+                              value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
                             />
                           </>
                         </FormControl>
-
-                        {/* <FormDescription>{item?.description}</FormDescription> */}
                         <FormMessage />
                       </FormItem>
                     )}
@@ -281,7 +205,7 @@ export function PoolTogetherFormDeposit() {
 
           <Button
             disabled={prizePoolAddress == undefined && (isLoading || debouncedDepositAmount.eq(0))}
-            className={debouncedDepositAmount.eq(0) || prizePoolAddress == undefined ? 'btn  btn-sm w-full  opacity-50' : 'btn  btn-sm w-full'}
+            className={debouncedDepositAmount.eq(0) || prizePoolAddress == undefined ? 'btn  btn-sm w-full opacity-50' : 'btn  btn-sm w-full'}
             type="submit">
             {prizePoolAddress == undefined
               ? 'Please switch network'

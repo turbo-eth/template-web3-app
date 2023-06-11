@@ -12,7 +12,7 @@ import { getComponent } from '../../utils/get-element-component'
 
 const litSingleAddressSchema = z.object({
   singleAdd: z.string().refine((value) => ethers.utils.isAddress(value), {
-    message: 'Wallet address is invalid. Please insure you have typed correctly.',
+    message: 'Single address is invalid. Please insure you have typed correctly.',
   }),
 })
 
@@ -26,8 +26,7 @@ export function AccessControlSingleAddress({ setAccessControlConditions }: Acces
 
   const { register, handleSubmit } = form
 
-  const onSubmit = (values: any) => {
-    console.log('ok', values)
+  const onSubmit = (values: z.infer<typeof litSingleAddressSchema>) => {
     setAccessControlConditions(getAccessControlConditions(values?.singleAdd))
   }
 
@@ -57,12 +56,7 @@ export function AccessControlSingleAddress({ setAccessControlConditions }: Acces
               />
             )
           })}
-          <Button
-            onClick={() => {
-              console.log('elkncl')
-            }}
-            className="w-full"
-            type="submit">
+          <Button className="w-full" type="submit">
             Save
           </Button>
         </form>

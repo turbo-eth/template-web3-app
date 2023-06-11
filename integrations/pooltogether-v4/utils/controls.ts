@@ -5,7 +5,7 @@ export const controls = [
     label: 'Amount',
     placeholder: '',
 
-    // attribute: { pattern: 'sk-[a-zA-Z0-9]{48}', type: 'password', required: 'true' },
+    attribute: { type: 'number' },
   },
   {
     formfieldName: 'approve',
@@ -17,11 +17,11 @@ export const controls = [
 
 export const withDrawControls = [
   {
-    formfieldName: 'deposit',
+    formfieldName: 'withdraw',
     component: 'input',
     label: 'Amount',
     placeholder: '',
 
-    // attribute: { pattern: 'sk-[a-zA-Z0-9]{48}', type: 'password', required: 'true' },
+    attribute: { type: 'number' },
   },
 ]

@@ -16,7 +16,7 @@ const litGroupSchema = z.object({
   chain: z.string(),
   tokenType: z.string(),
   address: z.string().refine((value) => ethers.utils.isAddress(value), {
-    message: 'Wallet address is invalid. Please insure you have typed correctly.',
+    message: 'Address is invalid. Please insure you have typed correctly.',
   }),
   amount: z.string(),
   tokenId: z.string(),
@@ -40,15 +40,10 @@ export function AccessControlTokenGroup({ setAccessControlConditions }: AccessCo
 
   const tokenValue = watch('tokenType')
 
-  const onSubmit = (values: any) => {
+  const onSubmit = (values: z.infer<typeof litGroupSchema>) => {
     const { chain, tokenType, address, amount, tokenId, decimals } = values
-    console.log('okok', values)
 
-    console.log(
-      'getAccessControlConditions(chain, address, tokenType)',
-      getAccessControlConditions(chain, address, tokenType || '', amount, tokenId, decimals)
-    )
-    setAccessControlConditions(getAccessControlConditions(chain, address, tokenType || '', amount, tokenId, decimals))
+    setAccessControlConditions(getAccessControlConditions(chain, address, tokenType || '', amount, tokenId, Number(decimals)))
   }
 
   const Decimals = getComponent(GroupTokenControls[4].component)
