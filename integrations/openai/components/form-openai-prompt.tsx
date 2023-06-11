@@ -50,7 +50,7 @@ export function FormOpenAIPrompt() {
             )
           })}
 
-          {true && (
+          {!!response && (
             <>
               <div className="pb-8">
                 {response}
