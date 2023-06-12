@@ -12,10 +12,11 @@ export default function App() {
   const { register, handleSubmit } = useForm()
   const [formData, setData] = useState('')
   const sf = useSuperFluidWithWagmiProvider()
+  //Add zod to allow form validation
 
   const onSubmit = async (data: any) => {
     const usdcx = await sf?.loadSuperToken('USDCx')
-    //load the token you'd like to use like this
+    //Make these addresses dynamic, first should be users address. 2nd is receiver, flowrate
     let flowOp = usdcx?.createFlow({
       sender: '0xc0163e58648b247c143023cfb26c2baa42c9d9a9',
       receiver: '0x1A6784925814a13334190Fd249ae0333B90b6443',
@@ -26,6 +27,7 @@ export default function App() {
     await flowOp?.exec(signer?.data) // should have same address as `sender`
   }
 
+  //use React-form-hook to make this look good
   return (
     <form onSubmit={handleSubmit((formData) => setData(JSON.stringify(formData)))}>
       <h1>Start Stream</h1>

@@ -12,7 +12,9 @@ export default function App() {
   const { register, handleSubmit } = useForm()
   const [formData, setData] = useState('')
   const sf = useSuperFluidWithWagmiProvider()
+  //use zod to validate form inputs
 
+  //make this stuff dynamic, remove console logs and ts ignores if possible
   async function downgradeTokens(amount: string) {
     console.log(formData)
     //@ts-ignore
@@ -53,6 +55,7 @@ export default function App() {
     downgradeTokens(`10000000000`)
   }
 
+  //use react-hook-form for the form
   return (
     <form onSubmit={handleSubmit((formData) => setData(JSON.stringify(formData)))}>
       <h1>Downgrade Supertoken</h1>

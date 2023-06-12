@@ -22,6 +22,7 @@ export default function App() {
     const getStreams = async () => {
       console.log('got in 2', sf)
       return await sf?.query.listStreams({
+        //use wallet address of user, instead of hardcoded address and checksum so it's uppercase
         sender: '0xc0163E58648b247c143023CFB26C2BAA42C9d9A9',
       })
     }
@@ -39,14 +40,17 @@ export default function App() {
     const usdcx = await sf?.loadSuperToken(data.token.symbol)
 
     let flowOp = usdcx?.deleteFlow({
+      //use wallet address of user, instead of hardcoded address and checksum so it's uppercase
       sender: '0xc0163E58648b247c143023CFB26C2BAA42C9d9A9',
       receiver: data.receiver,
     })
+    //remove console logs
     console.log(data, flowOp, usdcx, signer?.data)
     //@ts-ignore
     await flowOp.exec(signer?.data) // should have same address as sender
   }
 
+  //Make this look good.
   return (
     <div>
       <h3 style={{ marginBottom: '1em' }}>Current Streams</h3>
