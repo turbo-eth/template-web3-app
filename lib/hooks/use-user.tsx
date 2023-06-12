@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
 
 export function useUser({ redirectTo = '', redirectIfFound = false } = {}) {
-  const { data: user, mutate: mutateUser } = useSWR<any>('/api/user')
+  const { data: user, mutate: mutateUser } = useSWR<any>('/api/app/user')
 
   const Router = useRouter()
 

@@ -8,7 +8,7 @@ export async function appDiscoGetCredentialsFromDID(did?: string): Promise<any> 
       },
     })
     return data
-  } catch (error: any) {
+  } catch (error) {
     throw error
   }
 }

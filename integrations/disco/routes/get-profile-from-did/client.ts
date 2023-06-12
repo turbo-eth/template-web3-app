@@ -9,7 +9,7 @@ export async function appDiscoGetProfileFromDID(address?: Address): Promise<any>
       },
     })
     return data
-  } catch (error: any) {
+  } catch (error) {
     throw error
   }
 }

@@ -2,7 +2,7 @@
 
 This React Hook integrates with the [OpenAI API](https://beta.openai.com/), allowing users to generate AI responses directly from their browser. The `useOpenAIPrompt` hook handles API calls and streaming responses from the OpenAI API, and the provided `FormOpenAIPrompt` component enables users to input their API key, a prompt, and displays the generated AI response. The integration accepts the API key either as an environment variable `OPENAI_API_KEY` or through an API key provided by the user as an argument to the `generateAIResponse` function from the `useOpenAIPrompt` hook.
 
-The integration also adds a new API endpoint `api/ai/ask` that makes a POST request on the OpenAI API using the   `OpenAIStream` helper.
+The integration also adds a new API endpoint `openai/ask` that makes a POST request on the OpenAI API using the   `OpenAIStream` helper.
 
 ## Features
 - Generates AI responses from the OpenAI API based on user-input prompts
