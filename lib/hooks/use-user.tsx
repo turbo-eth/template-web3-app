@@ -2,11 +2,19 @@
 
 import { useEffect } from 'react'
 
+import { useQuery } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import useSWR from 'swr'
+
+interface User {
+  isLoggedIn: boolean
+  address?: string
+  isAdmin?: boolean
+}
 
 export function useUser({ redirectTo = '', redirectIfFound = false } = {}) {
-  const { data: user, mutate: mutateUser } = useSWR<any>('/api/user')
+  const { data: user, refetch: mutateUser } = useQuery<User>(['user'], {
+    queryFn: () => fetch('/api/user').then((res) => res.json()),
+  })
 
   const Router = useRouter()
 
