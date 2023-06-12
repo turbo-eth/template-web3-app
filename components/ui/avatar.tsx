@@ -1,5 +1,3 @@
-'use client'
-
 import * as React from 'react'
 
 import * as AvatarPrimivite from '@radix-ui/react-avatar'

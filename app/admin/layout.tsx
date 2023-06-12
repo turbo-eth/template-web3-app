@@ -1,5 +1,3 @@
-'use client'
-
 import classNames from 'clsx'
 import Image from 'next/image'
 

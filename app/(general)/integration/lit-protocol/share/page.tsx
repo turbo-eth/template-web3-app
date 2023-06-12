@@ -1,5 +1,3 @@
-'use client'
-
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { FormLitEncryptMessage } from '@/integrations/lit-protocol/components/form-lit-encrypt-message'

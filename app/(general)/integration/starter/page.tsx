@@ -1,5 +1,3 @@
-'use client'
-
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 
 export default function PageIntegration() {

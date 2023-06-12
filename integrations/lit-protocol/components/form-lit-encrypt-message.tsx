@@ -1,3 +1,4 @@
+'use client'
 import { setTimeout } from 'timers'
 
 import { useState } from 'react'

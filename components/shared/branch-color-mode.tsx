@@ -1,3 +1,5 @@
+'use client'
+
 import { useColorMode } from '@/lib/state/color-mode'
 
 export function BranchColorMode({ children }: any) {

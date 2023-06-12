@@ -1,3 +1,5 @@
+'use client'
+
 import { WalletAddress } from '@turbo-eth/core-wagmi'
 import classNames from 'clsx'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
@@ -5,8 +7,8 @@ import { FaCopy } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
 import { useToast } from '@/lib/hooks/use-toast'

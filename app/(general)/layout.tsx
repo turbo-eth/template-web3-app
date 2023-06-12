@@ -1,4 +1,3 @@
-'use client'
 import classNames from 'clsx'
 
 import { NetworkStatus } from '@/components/blockchain/network-status'
