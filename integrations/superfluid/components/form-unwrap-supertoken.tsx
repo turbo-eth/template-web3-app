@@ -62,8 +62,8 @@ export default function App() {
       <input {...register('amount')} placeholder="Amount" />
       <select {...register('supertoken', { required: true })}>
         <option value="">Select...</option>
-        <option value="A">Option A</option>
-        <option value="B">Option B</option>
+        <option value="USDCx">USDCx</option>
+        <option value="DAIx">DAIx</option>
       </select>
       <div>
         <p>0.0</p>
