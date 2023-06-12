@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useEffect } from 'react'
 
 import { useTheme } from 'next-themes'
 
@@ -27,7 +27,7 @@ export function ThemeToggle() {
     setMode('system')
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     colorMode === 'system' ? setTheme('system') : colorMode === 'dark' ? setTheme('dark') : setTheme('light')
   }, [colorMode])
 

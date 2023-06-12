@@ -1,6 +1,6 @@
 'use client'
 
-import * as React from 'react'
+import { ReactNode } from 'react'
 
 import classNames from 'clsx'
 
@@ -10,7 +10,7 @@ import { useUser } from '@/lib/hooks/use-user'
 interface ButtonSIWELogoutProps {
   className?: string
   label?: string
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 export const ButtonSIWELogout = ({ className, label = 'Logout', children }: ButtonSIWELogoutProps) => {

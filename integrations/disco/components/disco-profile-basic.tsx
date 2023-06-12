@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import classNames from 'clsx'
 import ReactMarkdown from 'react-markdown'
 import type { Address } from 'wagmi'

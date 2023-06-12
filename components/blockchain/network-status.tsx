@@ -1,5 +1,4 @@
 'use client'
-import React from 'react'
 
 import classNames from 'clsx'
 import { useBlockNumber, useNetwork } from 'wagmi'

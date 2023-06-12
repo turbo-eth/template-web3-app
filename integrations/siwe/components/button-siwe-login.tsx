@@ -1,6 +1,6 @@
 'use client'
 
-import * as React from 'react'
+import { ReactNode } from 'react'
 
 import classNames from 'clsx'
 import { useAccount, useNetwork, useSignMessage } from 'wagmi'
@@ -11,7 +11,7 @@ import { useUser } from '@/lib/hooks/use-user'
 interface ButtonSIWELoginProps {
   className?: string
   label?: string
-  children?: React.ReactNode
+  children?: ReactNode
   styled?: boolean
   disabled?: boolean
 }

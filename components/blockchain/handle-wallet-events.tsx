@@ -1,7 +1,5 @@
 'use client'
 
-import * as React from 'react'
-
 import { useAccount } from 'wagmi'
 
 import { siweLogout } from '@/integrations/siwe/actions/siwe-logout'

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 
 import classNames from 'clsx'
 import { DateTime } from 'luxon'
@@ -9,8 +9,8 @@ interface TimeFromEpochProps {
 }
 
 export const TimeFromEpoch = ({ className, epoch }: TimeFromEpochProps) => {
-  const [timestamp, setTimestamp] = React.useState<any>()
-  React.useEffect(() => {
+  const [timestamp, setTimestamp] = useState<any>()
+  useEffect(() => {
     if (epoch) {
       setTimestamp(DateTime.fromSeconds(Number(epoch)).toLocaleString(DateTime.DATETIME_MED))
     }

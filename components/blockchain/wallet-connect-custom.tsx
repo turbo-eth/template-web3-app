@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
 interface WalletConnectCustomProps {

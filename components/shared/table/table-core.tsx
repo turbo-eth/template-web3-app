@@ -1,5 +1,4 @@
 // @ts-nocheck
-import React from 'react'
 
 import { TableInstance, useExpanded, usePagination, useSortBy, useTable } from 'react-table'
 

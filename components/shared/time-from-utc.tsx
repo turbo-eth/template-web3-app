@@ -1,4 +1,4 @@
-import * as React from 'react'
+import { useEffect, useState } from 'react'
 
 import classNames from 'clsx'
 import { DateTime } from 'luxon'
@@ -9,8 +9,8 @@ interface TimeFromUtcProps {
 }
 
 export const TimeFromUtc = ({ className, date }: TimeFromUtcProps) => {
-  const [timestamp, setTimestamp] = React.useState<any>()
-  React.useEffect(() => {
+  const [timestamp, setTimestamp] = useState<any>()
+  useEffect(() => {
     if (date) {
       setTimestamp(DateTime.fromISO(date).toLocaleString(DateTime.DATETIME_MED))
     }

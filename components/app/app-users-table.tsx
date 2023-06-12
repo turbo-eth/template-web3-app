@@ -1,4 +1,4 @@
-import React from 'react'
+import { useMemo } from 'react'
 
 import { Address } from '@turbo-eth/core-wagmi'
 
@@ -7,7 +7,7 @@ import { TimeFromUtc } from '../shared/time-from-utc'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 
 function AppUsersTable({ data, className }: any) {
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'Address',

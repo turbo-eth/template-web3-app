@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'

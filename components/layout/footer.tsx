@@ -1,5 +1,3 @@
-import React from 'react'
-
 import classNames from 'clsx'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 

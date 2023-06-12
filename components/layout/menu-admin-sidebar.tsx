@@ -1,5 +1,4 @@
 'use client'
-import * as React from 'react'
 
 import classNames from 'clsx'
 import Link from 'next/link'

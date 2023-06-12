@@ -4,7 +4,7 @@ It might be a good idea to move this to a separate package or remove it complete
 */
 
 // @ts-nocheck
-import React, { ReactElement, ReactNode } from 'react'
+import { ReactElement, ReactNode } from 'react'
 
 export function isClassComponent(component: unknown) {
   return typeof component === 'function' && !!component.prototype && component.prototype.isReactComponent

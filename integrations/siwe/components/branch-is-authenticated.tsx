@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { useUser } from '@/lib/hooks/use-user'
 
 interface BranchIsAuthenticatedProps {

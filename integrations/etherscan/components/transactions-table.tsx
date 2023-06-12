@@ -1,4 +1,4 @@
-import React from 'react'
+import { useMemo } from 'react'
 
 import { Address } from '@turbo-eth/core-wagmi'
 
@@ -31,7 +31,7 @@ import TimeFromEpoch from '../../../components/shared/time-from-epoch'
 */
 
 export function TransactionsTable({ data }: any) {
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'From',
