@@ -1,4 +1,3 @@
-/* eslint-disable unused-imports/no-unused-vars */
 interface BlockPagination {
   chainId?: number
   startblock?: number

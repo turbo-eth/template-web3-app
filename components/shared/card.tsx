@@ -1,4 +1,3 @@
-/* eslint-disable unused-imports/no-unused-vars */
 import { ReactNode } from 'react'
 
 import { motion } from 'framer-motion'
@@ -20,7 +19,7 @@ export default function Card({
   description: string
   demo: ReactNode
   large?: boolean
-  href: string
+  href?: string
 }) {
   return (
     <motion.div

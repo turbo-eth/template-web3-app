@@ -15,8 +15,7 @@ export const DiscoProfileBasic = ({ className, address }: DiscoProfileBasicProps
   const { data, isLoading, isError, error } = useDiscoGetProfileFromAddress(address, user)
   const classes = classNames(className, 'DiscoProfileBasic')
   if (isLoading) return <div className={classes}>Loading...</div>
-  // @ts-ignore
-  if (isError) return <div className={classes}>{error?.response?.data} </div>
+  if (isError) return <div className={classes}>{error instanceof Error ? error.message : String(error)}</div>
 
   return (
     <div className={classes}>

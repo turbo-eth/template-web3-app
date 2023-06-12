@@ -56,10 +56,7 @@ export const WalletConnectCustom = ({
                           overflow: 'hidden',
                           marginRight: 4,
                         }}>
-                        {chain.iconUrl && (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img alt={chain.name ?? 'Chain icon'} src={chain.iconUrl} style={{ width: 18, height: 18 }} />
-                        )}
+                        {chain.iconUrl && <img alt={chain.name ?? 'Chain icon'} src={chain.iconUrl} style={{ width: 18, height: 18 }} />}
                       </div>
                     )}
                     <span className="ml-1 text-lg lowercase">{chain.name}</span>

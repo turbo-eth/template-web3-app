@@ -3,12 +3,11 @@ import { ReactElement } from 'react'
 import classNames from 'clsx'
 
 interface ITablePagination {
-  canPreviousPage: Function
-  canNextPage: Function
+  canPreviousPage: boolean
+  canNextPage: boolean
   pageCount: number
   pageIndex: number
   pageSize: number
-  pageOptions: Function
   gotoPage: Function
   nextPage: Function
   previousPage: Function

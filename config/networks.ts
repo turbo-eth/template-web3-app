@@ -1,40 +1,52 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 // Networks
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+import { Chain, configureChains } from 'wagmi'
 import {
   arbitrum,
-  arbitrumGoerli,
-  baseGoerli,
-  celo,
-  celoAlfajores,
-  goerli,
+  arbitrumGoerli as arbitrumGoerliNoIcon,
+  baseGoerli as baseGoerliNoIcon,
+  celoAlfajores as celoAlfajoresNoIcon,
+  celo as celoNoIcon,
+  goerli as goerliNoIcon,
   hardhat,
   mainnet,
   optimism,
   optimismGoerli,
   polygon,
   polygonMumbai,
-  sepolia,
-} from '@wagmi/chains'
-import { configureChains } from 'wagmi'
+  sepolia as sepoliaNoIcon,
+} from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { infuraProvider } from 'wagmi/providers/infura'
 import { publicProvider } from 'wagmi/providers/public'
 
 import { env } from '@/env.mjs'
 
-// @ts-ignore
-goerli.iconUrl = '/icons/NetworkEthereumTest.svg'
-// @ts-ignore
-sepolia.iconUrl = '/icons/NetworkEthereumTest.svg'
-// @ts-ignore
-arbitrumGoerli.iconUrl = '/icons/NetworkArbitrumTest.svg'
-// @ts-ignore
-baseGoerli.iconUrl = '/icons/NetworkBaseTest.svg'
-// @ts-ignore
-celo.iconUrl = '/icons/NetworkCelo.svg'
-// @ts-ignore
-celoAlfajores.iconUrl = '/icons/NetworkCeloTest.svg'
+const goerli = {
+  ...goerliNoIcon,
+  iconUrl: '/icons/NetworkEthereumTest.svg',
+}
+const sepolia = {
+  ...sepoliaNoIcon,
+  iconUrl: '/icons/NetworkEthereumTest.svg',
+}
+const arbitrumGoerli = {
+  ...arbitrumGoerliNoIcon,
+  iconUrl: '/icons/NetworkArbitrumTest.svg',
+}
+const baseGoerli = {
+  ...baseGoerliNoIcon,
+  iconUrl: '/icons/NetworkBaseTest.svg',
+}
+const celo = {
+  ...celoNoIcon,
+  iconUrl: '/icons/NetworkCelo.svg',
+}
+const celoAlfajores = {
+  ...celoAlfajoresNoIcon,
+  iconUrl: '/icons/NetworkCeloTest.svg',
+}
 
 export const ETH_CHAINS_TEST = [goerli, sepolia, polygonMumbai, celoAlfajores, hardhat]
 export const ETH_CHAINS_L2_TEST = [baseGoerli, optimismGoerli, arbitrumGoerli]
@@ -44,22 +56,24 @@ export const ETH_CHAINS_DEV =
     ? [...ETH_CHAINS_PROD, ...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST]
     : [...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST]
 
-export const CHAINS = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : ETH_CHAINS_DEV
+export const CHAINS: Chain[] = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : ETH_CHAINS_DEV
 
 const PROVIDERS = []
 
 if (env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
+  if (!env.NEXT_PUBLIC_ALCHEMY_API_KEY) throw new Error('NEXT_PUBLIC_ALCHEMY_API_KEY is not defined')
   PROVIDERS.push(
     alchemyProvider({
-      apiKey: env.NEXT_PUBLIC_ALCHEMY_API_KEY as string,
+      apiKey: env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     })
   )
 }
 
 if (env.NEXT_PUBLIC_INFURA_API_KEY) {
+  if (!env.NEXT_PUBLIC_INFURA_API_KEY) throw new Error('NEXT_PUBLIC_INFURA_API_KEY is not defined')
   PROVIDERS.push(
     infuraProvider({
-      apiKey: env.NEXT_PUBLIC_INFURA_API_KEY as string,
+      apiKey: env.NEXT_PUBLIC_INFURA_API_KEY,
     })
   )
 }
@@ -70,5 +84,4 @@ if (PROVIDERS.length === 0 || env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER === 'true') {
   PROVIDERS.push(publicProvider())
 }
 
-// @ts-ignore
-export const { chains, publicClient, webSocketPublicClient } = configureChains(CHAINS, [...PROVIDERS])
+export const { chains, publicClient, webSocketPublicClient } = configureChains(CHAINS, PROVIDERS)

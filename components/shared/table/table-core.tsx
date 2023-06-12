@@ -1,6 +1,13 @@
-// @ts-nocheck
-
-import { TableInstance, useExpanded, usePagination, useSortBy, useTable } from 'react-table'
+import {
+  TableInstance,
+  UsePaginationInstanceProps,
+  UsePaginationState,
+  UseSortByInstanceProps,
+  useExpanded,
+  usePagination,
+  useSortBy,
+  useTable,
+} from 'react-table'
 
 import TableBody from './table-body'
 import TableHead from './table-head'
@@ -10,7 +17,6 @@ interface TableProps {
   className?: string
   data: Array<any>
   columns: Array<any>
-  rowExpanded?: any
 }
 
 interface TableInstanceProps extends TableInstance<object> {
@@ -27,7 +33,13 @@ interface TableInstanceProps extends TableInstance<object> {
   state: any
 }
 
-export function TableCore({ className, columns, data, rowExpanded }: TableProps) {
+export type TableInstanceWithHooks<T extends object> = TableInstance<T> &
+  UsePaginationInstanceProps<T> &
+  UseSortByInstanceProps<T> & {
+    state: UsePaginationState<T>
+  }
+
+export function TableCore({ className, columns, data }: TableProps) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -36,14 +48,13 @@ export function TableCore({ className, columns, data, rowExpanded }: TableProps)
     page,
     canPreviousPage,
     canNextPage,
-    pageOptions,
     pageCount,
     gotoPage,
     nextPage,
     previousPage,
     setPageSize,
     state: { pageIndex, pageSize },
-  }: TableInstanceProps = useTable(
+  } = useTable(
     {
       columns,
       data,
@@ -52,26 +63,19 @@ export function TableCore({ className, columns, data, rowExpanded }: TableProps)
     useSortBy,
     useExpanded,
     usePagination
-  )
+  ) as TableInstanceWithHooks<{}>
 
   // Render the UI for your table
   return (
     <div className={className}>
       <table className="w-full overflow-hidden " {...getTableProps()}>
         <TableHead defaultStyle headerGroups={headerGroups} className=" bg-white text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100" />
-        <TableBody
-          // className="text-neutral-700"
-          page={page}
-          prepareRow={prepareRow}
-          props={getTableBodyProps()}
-          rowExpanded={rowExpanded}
-        />
+        <TableBody page={page} prepareRow={prepareRow} props={getTableBodyProps()} />
       </table>
       <TablePagination
         pageSize={pageSize}
         pageCount={pageCount}
         pageIndex={pageIndex}
-        pageOptions={pageOptions}
         gotoPage={gotoPage}
         nextPage={nextPage}
         previousPage={previousPage}

@@ -1,13 +1,14 @@
 'use client'
 
+import { ReactNode } from 'react'
+
 import { useAccount } from 'wagmi'
 
 interface BranchIsWalletConnectedProps {
-  children?: React.ReactElement | Array<React.ReactElement>
+  children?: ReactNode
 }
 
-// @ts-ignore
-export function BranchIsWalletConnected({ children }: BranchIsWalletConnectedProps): React.ReactElement | null {
+export function BranchIsWalletConnected({ children }: BranchIsWalletConnectedProps) {
   const { address } = useAccount()
 
   if (!children) return <></>

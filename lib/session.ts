@@ -5,7 +5,6 @@ import { siteConfig } from '@/config/site'
 import { env } from '@/env.mjs'
 
 declare module 'iron-session' {
-  // eslint-disable-next-line unused-imports/no-unused-vars
   interface IronSessionData {
     nonce: string
     siwe: SiweMessage

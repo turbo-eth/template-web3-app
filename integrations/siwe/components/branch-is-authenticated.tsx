@@ -1,11 +1,12 @@
+import { ReactNode } from 'react'
+
 import { useUser } from '@/lib/hooks/use-user'
 
 interface BranchIsAuthenticatedProps {
-  children?: React.ReactElement | Array<React.ReactElement>
+  children?: ReactNode
 }
 
-// @ts-ignore
-export const BranchIsAuthenticated = ({ children }: BranchIsAuthenticatedProps): React.ReactElement | null => {
+export const BranchIsAuthenticated = ({ children }: BranchIsAuthenticatedProps) => {
   const { user } = useUser()
 
   if (!children) return <></>

@@ -88,7 +88,6 @@ export default function Home() {
                 },
               }}>
               {features.map(({ ...props }) => (
-                // @ts-ignore
                 <Card key={props.title} {...props} />
               ))}
             </motion.div>
@@ -124,7 +123,6 @@ const features = [
     description: 'Start your next Web3 project in ⚡ Turbo Mode with a deploy to [Vercel](https://vercel.com/) in one click.',
     demo: (
       <a target={'_blank'} href={DEPLOY_URL} rel="noreferrer">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="https://vercel.com/button" alt="Deploy with Vercel" width={120} />
       </a>
     ),

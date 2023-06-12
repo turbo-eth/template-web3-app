@@ -130,9 +130,6 @@ dependencies:
   '@vercel/analytics':
     specifier: ^0.1.6
     version: 0.1.11(react@18.2.0)
-  '@wagmi/chains':
-    specifier: ^0.2.13
-    version: 0.2.13(typescript@4.9.4)
   add:
     specifier: ^2.0.6
     version: 2.0.6
@@ -288,6 +285,9 @@ devDependencies:
   '@types/react-dom':
     specifier: 18.0.10
     version: 18.0.10
+  '@types/react-table':
+    specifier: ^7.7.14
+    version: 7.7.14
   '@wagmi/cli':
     specifier: ^1.1.0
     version: 1.1.0(typescript@4.9.4)(wagmi@1.1.0)
@@ -6413,6 +6413,12 @@ packages:
       '@types/react': 18.0.26
     dev: false
 
+  /@types/react-table@7.7.14:
+    resolution: {integrity: sha512-TYrv7onCiakaG1uAu/UpQ9FojNEt/4/ht87EgJQaEGFoWV606ZLWUZAcUHzMxgc3v1mywP1cDyz3qB4ho3hWOw==}
+    dependencies:
+      '@types/react': 18.0.26
+    dev: true
+
   /@types/react@18.0.26:
     resolution: {integrity: sha512-hCR3PJQsAIXyxhTNSiDFY//LhnMZWpNNr5etoCqx/iUfGc5gXWtQR2Phl908jVR6uPXacojQWTg4qRpkxTuGug==}
     dependencies:
@@ -6631,17 +6637,6 @@ packages:
       react: ^16.8||^17||^18
     dependencies:
       react: 18.2.0
-    dev: false
-
-  /@wagmi/chains@0.2.13(typescript@4.9.4):
-    resolution: {integrity: sha512-36b+eqYwkhSHVyauIWMa9EkgNf08VOEXUA+UETIfsaJrseSJSnH5j+N15CUGYs6lMEcD08w/In5VvKv/L4EF1w==}
-    peerDependencies:
-      typescript: '>=4.9.4'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-    dependencies:
-      typescript: 4.9.4
     dev: false
 
   /@wagmi/chains@0.2.21(typescript@4.9.4):
