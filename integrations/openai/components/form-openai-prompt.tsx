@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { FaCopy } from 'react-icons/fa'
@@ -25,7 +25,7 @@ export function FormOpenAIPrompt() {
     }, 4200)
   }
 
-  const handleGenerateResponse = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleGenerateResponse = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     try {

@@ -1,5 +1,7 @@
 'use client'
 
+import { ReactNode } from 'react'
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from 'next-themes'
 import { ModalProvider } from 'react-modal-hook'
@@ -13,7 +15,7 @@ import fetchJson from '@/lib/utils/fetch-json'
 
 const queryClient = new QueryClient()
 interface RootProviderProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function RootProvider({ children }: RootProviderProps) {

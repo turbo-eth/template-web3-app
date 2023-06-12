@@ -1,8 +1,9 @@
 'use client'
+import { ReactElement } from 'react'
 
 import { useMediaQuery } from 'react-responsive'
 interface ResponsiveMobileAndDesktopProps {
-  children?: React.ReactElement | Array<React.ReactElement>
+  children?: ReactElement | Array<ReactElement>
 }
 
 export const ResponsiveMobileAndDesktop = ({ children }: ResponsiveMobileAndDesktopProps) => {

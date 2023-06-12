@@ -1,4 +1,6 @@
 'use client'
+import { ReactNode } from 'react'
+
 import classNames from 'clsx'
 import { motion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
@@ -9,7 +11,7 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 
 interface LayoutIntegrationProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const sharePath = '/integration/lit-protocol/share'
