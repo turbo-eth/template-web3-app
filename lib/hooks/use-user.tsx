@@ -13,7 +13,7 @@ interface User {
 
 export function useUser({ redirectTo = '', redirectIfFound = false } = {}) {
   const { data: user, refetch: mutateUser } = useQuery<User>(['user'], {
-    queryFn: () => fetch('/api/user').then((res) => res.json()),
+    queryFn: () => fetch('/api/app/user').then((res) => res.json()),
   })
 
   const Router = useRouter()
