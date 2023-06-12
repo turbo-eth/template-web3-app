@@ -16,7 +16,7 @@ export const useOpenAIPrompt = () => {
     setResponse('')
     setIsLoading(true)
 
-    const response = await fetch('/api/ai/ask', {
+    const response = await fetch('/api/openai/ask', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
