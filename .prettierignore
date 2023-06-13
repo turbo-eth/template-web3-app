@@ -4,5 +4,6 @@
 .next/**
 .husky/**
 .vscode/**
+.github/**
 
 pnpm-lock.yaml

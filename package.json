@@ -15,8 +15,9 @@
     "start": "next start",
     "lint": "eslint '**/*.{ts,tsx}'",
     "lint-fix": "eslint '**/*.{ts,tsx}' --fix",
-    "prettier": "prettier . --list-different",
-    "prettier-fix": "prettier . --write",
+    "format": "prettier . --list-different",
+    "format-fix": "prettier . --write",
+    "run-ci": "concurrently -c \"auto\" -p \"name\" -n \"format,lint\" \"pnpm format\"  \"pnpm lint\"  ",
     "prepare": "husky install ; prisma generate ; wagmi generate"
   },
   "husky": {
@@ -123,6 +124,7 @@
     "@typescript-eslint/parser": "^5.59.11",
     "@wagmi/cli": "^1.1.0",
     "autoprefixer": "^10.4.13",
+    "concurrently": "^8.2.0",
     "eslint": "8.30.0",
     "eslint-config-next": "13.4.0",
     "eslint-config-prettier": "^8.5.0",
