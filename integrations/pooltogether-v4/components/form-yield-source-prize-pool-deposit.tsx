@@ -35,8 +35,6 @@ export function PoolTogetherFormDeposit() {
     },
   })
 
-  // ---
-
   const [approvalAmount, setApprovalAmount] = useState<bigint>(BigInt(0))
   const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
   const [isValidAmount, setValidAmount] = useState<boolean>(true)
