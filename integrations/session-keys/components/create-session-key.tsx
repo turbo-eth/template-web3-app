@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button'
+
 import { useSessionKeys } from '../hooks/use-session-keys'
 
 export function CreateSessionKey() {
@@ -10,9 +12,5 @@ export function CreateSessionKey() {
     await createSessionKey()
   }
 
-  return (
-    <button className="btn btn-emerald" onClick={handleCreateSessionKey}>
-      Create Session Key
-    </button>
-  )
+  return <Button onClick={handleCreateSessionKey}>Create Session Key</Button>
 }

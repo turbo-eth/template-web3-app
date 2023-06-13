@@ -1,10 +1,20 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { useForm } from 'react-hook-form'
+import { isAddress } from 'viem'
 import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
 import type { Address } from 'wagmi'
+import { z } from 'zod'
 
 import { SessionKeysDB } from '../database'
 
 export const db = new SessionKeysDB()
+
+const sessionSchema = z.object({
+  searchKey: z.string().refine((value) => isAddress(value), {
+    message: 'Address is invalid. Please insure you have typed correctly.',
+  }),
+})
 
 /**
  * React hook to get session keys from IndexedDB
@@ -15,6 +25,18 @@ export const db = new SessionKeysDB()
  * @returns getSessionAccount - Function to get a viem account from a session key in IndexedDB
  */
 export const useSessionKeys = () => {
+  /**
+   * Creates a form using the useForm hook from React Hook Form.
+   * The form is bound to the sessionSchema Zod schema.
+   * The default value for the searchKey field is an empty string.
+   */
+
+  const form = useForm<z.infer<typeof sessionSchema>>({
+    resolver: zodResolver(sessionSchema),
+    defaultValues: {
+      searchKey: '',
+    },
+  })
   /**
    * Array of session keys from IndexedDB using Dexie's live query.
    * Any changes to the session keys on indexedDB will be reflected in the sessionKeys array automatically.
@@ -133,5 +155,16 @@ export const useSessionKeys = () => {
     return isValidPrivateKey(storedSessionKey.privateKey).account
   }
 
-  return { sessionKeys, createSessionKey, deleteSessionKey, deleteAllSessionKeys, getSessionAccount }
+  return { sessionKeys, createSessionKey, deleteSessionKey, deleteAllSessionKeys, getSessionAccount, form }
 }
+// function zodResolver(
+//   sessionSchema: z.ZodObject<
+//     { searchKey: z.ZodEffects<z.ZodString, string, string> },
+//     'strip',
+//     z.ZodTypeAny,
+//     { searchKey: string },
+//     { searchKey: string }
+//   >
+// ): import('react-hook-form').Resolver<{ searchKey: string }, any> | undefined {
+//   throw new Error('Function not implemented.')
+// }
