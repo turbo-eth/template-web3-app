@@ -1,3 +1,5 @@
+import { HTMLAttributes } from 'react'
+
 import Image from 'next/image'
 
 import {
@@ -84,12 +86,19 @@ export function NavigationMenuGeneral() {
   )
 }
 
-const ListItem = ({ className, name, imgLight, imgDark, children, ...props }: any) => {
+interface ListItemProps extends HTMLAttributes<HTMLElement> {
+  href: string
+  name: string
+  imgLight: string
+  imgDark: string
+}
+
+const ListItem = ({ className, href, name, imgLight, imgDark, children, ...props }: ListItemProps) => {
   return (
     <li key={name}>
       <NavigationMenuLink asChild>
         <LinkComponent
-          href={props.href as string}
+          href={href}
           className={cn(
             'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700',
             className

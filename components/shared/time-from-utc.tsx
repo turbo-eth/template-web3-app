@@ -9,7 +9,7 @@ interface TimeFromUtcProps {
 }
 
 export const TimeFromUtc = ({ className, date }: TimeFromUtcProps) => {
-  const [timestamp, setTimestamp] = useState<any>()
+  const [timestamp, setTimestamp] = useState<string>()
   useEffect(() => {
     if (date) {
       setTimestamp(DateTime.fromISO(date).toLocaleString(DateTime.DATETIME_MED))

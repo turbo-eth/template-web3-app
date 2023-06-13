@@ -11,7 +11,7 @@
 }
 
 .text-gradient {
-  @apply bg-clip-text text-transparent; 
+  @apply bg-clip-text text-transparent;
 }
 
 .text-gradient-primary {

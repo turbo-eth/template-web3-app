@@ -1,6 +1,8 @@
 import '@/styles/app.css'
 import '@/styles/gradient.css'
 import '@/styles/periphery.css'
+import { ReactNode } from 'react'
+
 import { Raleway } from '@next/font/google'
 import { Inter as FontSans } from '@next/font/google'
 import localFont from '@next/font/local'
@@ -48,7 +50,7 @@ const fontSans = FontSans({
   variable: '--font-sans',
 })
 
-export default function RootLayout({ children }: any) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <html lang="en" className={`${sfPro.variable} ${raleway.variable}`} suppressHydrationWarning>

@@ -4,7 +4,6 @@
 
 This React Hook provides developers with a streamlined way to deposit or withdraw funds from [PoolTogether](https://pooltogether.com/) on Ethereum, Polygon and Optimism chains.
 
-
 ## Features
 
 - Deposit on PoolTogether V4
@@ -13,6 +12,7 @@ This React Hook provides developers with a streamlined way to deposit or withdra
 ---
 
 ## Components
+
 `PoolTogetherFormWithdraw`
 A React component that renders a form to withdraw from PoolTogether.
 
@@ -25,18 +25,17 @@ Users can choose the amount of approval if they have never interacted with the p
 ---
 
 ## Hooks
-`useLoadContractFromChainId` :  Return used contracts from the current network
 
-`useUsdcApproval` :  Return true if a user's USDC allowance is sufficient, false otherwise.
+`useLoadContractFromChainId` : Return used contracts from the current network
 
-`useUserBalanceDeposit` :  Return of the user's balance for the depositable token
+`useUsdcApproval` : Return true if a user's USDC allowance is sufficient, false otherwise.
 
-`useUserBalanceWithdraw` :  Return of the user's balance for the withdrawable token
+`useUserBalanceDeposit` : Return of the user's balance for the depositable token
 
-
-
+`useUserBalanceWithdraw` : Return of the user's balance for the withdrawable token
 
 ## File Structure
+
 ```
 integrations/pooltogether-v4
 ├─ abis/
@@ -54,5 +53,7 @@ integrations/pooltogether-v4
 │  ├─ prize-pool-contract-list.ts
 │  ├─ ticket-contract-list.ts
 │  ├─ usdc-contract-list.ts
+├─ generated/
+│  ├─ pooltogether-v4-wagmi.ts
 ├─ README.md
 ```

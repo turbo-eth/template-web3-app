@@ -3,7 +3,7 @@ import { useAccount, useNetwork } from 'wagmi'
 
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/utils/ticket-contract-list'
-import { useErc20BalanceOf, useErc20Decimals } from '@/lib/blockchain'
+import { useErc20BalanceOf, useErc20Decimals } from '@/lib/generated/blockchain'
 
 export function useUserBalanceWithdraw() {
   const { address: accountAddress } = useAccount()

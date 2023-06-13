@@ -18,19 +18,17 @@ interface RootProviderProps {
 
 export default function RootProvider({ children }: RootProviderProps) {
   const isMounted = useIsMounted()
-  return (
-    isMounted && (
-      <ThemeProvider>
-        <QueryClientProvider client={queryClient}>
-          <RWBProvider>
-            <ModalProvider>
-              <RainbowKit>
-                <HandleWalletEvents>{children}</HandleWalletEvents>
-              </RainbowKit>
-            </ModalProvider>
-          </RWBProvider>
-        </QueryClientProvider>
-      </ThemeProvider>
-    )
-  )
+  return isMounted ? (
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <RWBProvider>
+          <ModalProvider>
+            <RainbowKit>
+              <HandleWalletEvents>{children}</HandleWalletEvents>
+            </RainbowKit>
+          </ModalProvider>
+        </RWBProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
+  ) : null
 }

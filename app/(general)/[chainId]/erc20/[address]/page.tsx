@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { ERC20Balance, ERC20Decimals, ERC20Name, ERC20Symbol } from '@/integrations/erc20/components/erc20-read'
 
-export default function ERC20({ params }: any) {
+export default function ERC20({ params }: { params: { address: string; chainId: string } }) {
   const { address, chainId } = params
   return (
     <>

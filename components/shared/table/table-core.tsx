@@ -19,20 +19,6 @@ interface TableProps {
   columns: Array<any>
 }
 
-interface TableInstanceProps extends TableInstance<object> {
-  page?: number
-  canPreviousPage?: boolean
-  canNextPage?: boolean
-  pageCount?: number
-  gotoPage?: Function
-  nextPage?: Function
-  previousPage?: Function
-  setPageSize?: Function
-  pageSize?: number
-  pageOptions?: Array<number>
-  state: any
-}
-
 export type TableInstanceWithHooks<T extends object> = TableInstance<T> &
   UsePaginationInstanceProps<T> &
   UseSortByInstanceProps<T> & {
@@ -63,7 +49,7 @@ export function TableCore({ className, columns, data }: TableProps) {
     useSortBy,
     useExpanded,
     usePagination
-  ) as TableInstanceWithHooks<{}>
+  ) as TableInstanceWithHooks<object>
 
   // Render the UI for your table
   return (

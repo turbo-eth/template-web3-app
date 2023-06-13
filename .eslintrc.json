@@ -8,8 +8,15 @@
     // Configuration for TypeScript files
     {
       "files": ["**/*.ts", "**/*.tsx"],
-      "plugins": ["unused-imports", "tailwindcss", "simple-import-sort"],
-      "extends": ["plugin:tailwindcss/recommended", "next/core-web-vitals", "plugin:prettier/recommended"],
+      "plugins": ["unused-imports", "tailwindcss", "simple-import-sort", "@typescript-eslint"],
+      "extends": [
+        "plugin:tailwindcss/recommended",
+        "next/core-web-vitals",
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "parser": "@typescript-eslint/parser",
       "parserOptions": {
         "project": "./tsconfig.json"
       },
@@ -32,6 +39,7 @@
         "import/prefer-default-export": "off", // Named export is easier to refactor automatically
         "unused-imports/no-unused-vars": "off",
         "unused-imports/no-unused-imports-ts": "error",
+        "@typescript-eslint/require-await": "off",
         "tailwindcss/classnames-order": [
           "warn",
           {

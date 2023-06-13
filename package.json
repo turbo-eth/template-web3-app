@@ -14,7 +14,9 @@
     "export": "next export",
     "start": "next start",
     "lint": "next lint --fix",
-    "prettier": "prettier './src' --write",
+    "lint-check": "next lint",
+    "prettier": "prettier . --write",
+    "prettier-check": "prettier . --list-different",
     "prepare": "husky install ; prisma generate ; wagmi generate"
   },
   "husky": {
@@ -117,6 +119,8 @@
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/react-dom": "18.0.10",
     "@types/react-table": "^7.7.14",
+    "@typescript-eslint/eslint-plugin": "^5.59.11",
+    "@typescript-eslint/parser": "^5.59.11",
     "@wagmi/cli": "^1.1.0",
     "autoprefixer": "^10.4.13",
     "eslint": "8.30.0",

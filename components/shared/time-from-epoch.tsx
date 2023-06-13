@@ -9,7 +9,7 @@ interface TimeFromEpochProps {
 }
 
 export const TimeFromEpoch = ({ className, epoch }: TimeFromEpochProps) => {
-  const [timestamp, setTimestamp] = useState<any>()
+  const [timestamp, setTimestamp] = useState<string>()
   useEffect(() => {
     if (epoch) {
       setTimestamp(DateTime.fromSeconds(Number(epoch)).toLocaleString(DateTime.DATETIME_MED))

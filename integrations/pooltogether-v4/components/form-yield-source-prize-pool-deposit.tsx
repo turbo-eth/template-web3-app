@@ -9,11 +9,11 @@ import { useAccount, useWaitForTransaction } from 'wagmi'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { useUsdcApproval } from '@/actions/pooltogether-v4/hooks/use-usdc-approval'
 import { useUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/use-user-balance-deposit'
-import { usePoolTogetherPrizePoolDepositToAndDelegate } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
+import { usePoolTogetherPrizePoolDepositToAndDelegate } from '@/integrations/pooltogether-v4/generated/pooltogether-v4-wagmi'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/utils/usdc-contract-list'
 import { Checkbox } from '@/components/ui/checkbox'
-import { useErc20Approve, useErc20Decimals } from '@/lib/blockchain'
+import { useErc20Approve, useErc20Decimals } from '@/lib/generated/blockchain'
 
 export function PoolTogetherFormDeposit() {
   const [isChecked, setIsChecked] = useState<boolean>(false)

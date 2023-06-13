@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 import classNames from 'clsx'
 import Image from 'next/image'
 
@@ -11,7 +13,7 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { ResponsiveMobileAndDesktop } from '@/components/shared/responsive-mobile-and-desktop'
 import { siteConfig } from '@/config/site'
 
-export default function AdminLayout({ children }: any) {
+export default function AdminLayout({ children }: { children: ReactNode }) {
   const classes = classNames('AdminLayout', 'bg-gradient-dark h-screen lg:grid lg:grid-cols-12')
   return (
     <>

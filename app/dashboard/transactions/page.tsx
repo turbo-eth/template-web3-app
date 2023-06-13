@@ -2,10 +2,10 @@
 
 import { useNetwork } from 'wagmi'
 
-import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { TransactionsTable } from '@/integrations/etherscan/components/transactions-table'
 import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
+import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { useUser } from '@/lib/hooks/use-user'
 

@@ -6,7 +6,7 @@ import { Address, useAccount, useWaitForTransaction } from 'wagmi'
 import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { TransactionStatus } from '@/components/blockchain/transaction-status'
 
-import { useErc721SafeTransferFrom, usePrepareErc721SafeTransferFrom } from '../erc721-wagmi'
+import { useErc721SafeTransferFrom, usePrepareErc721SafeTransferFrom } from '../generated/erc721-wagmi'
 
 interface Erc721WriteTransferProps {
   address: Address

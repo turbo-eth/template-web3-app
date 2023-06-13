@@ -1,4 +1,5 @@
 'use client'
+import { HTMLAttributes, ReactNode } from 'react'
 
 import classNames from 'clsx'
 import Link from 'next/link'
@@ -26,7 +27,13 @@ export const MenuAdminSidebar = ({ className }: MenuAdminSidebarProps) => {
   )
 }
 
-const Item = ({ children, href, currentPath }: any) => {
+interface ItemProps extends HTMLAttributes<HTMLElement> {
+  children: ReactNode
+  href: string
+  currentPath: string | null
+}
+
+const Item = ({ children, href, currentPath }: ItemProps) => {
   const cx = classNames('menu-item my-2', 'MenuAdminSidebar', {
     active: currentPath === href,
   })

@@ -1,12 +1,12 @@
-import classNames from 'clsx'
+import { HTMLAttributes } from 'react'
 
-interface ITableBody {
-  className?: any
-  style?: any
-  role?: any
+import classNames from 'clsx'
+import { TableBodyProps } from 'react-table'
+
+interface ITableBody extends HTMLAttributes<HTMLElement> {
   page: Array<any>
-  props: any
   prepareRow: any
+  props: TableBodyProps
 }
 
 /**

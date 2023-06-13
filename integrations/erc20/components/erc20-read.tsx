@@ -4,7 +4,7 @@ import { Address, useAccount } from 'wagmi'
 
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 
-import { useErc20BalanceOf, useErc20Decimals, useErc20Name, useErc20Symbol, useErc20TotalSupply } from '../erc20-wagmi'
+import { useErc20BalanceOf, useErc20Decimals, useErc20Name, useErc20Symbol, useErc20TotalSupply } from '../generated/erc20-wagmi'
 
 export function ERC20Image({ address }: { address?: Address; className?: string }) {
   return (

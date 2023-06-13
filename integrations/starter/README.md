@@ -16,7 +16,6 @@ Below are the steps to create a new integration.
 
 5. Update the OG image configuration of your integration page in the `opengraph-image.tsx` file. Do this by replacing the argument of the `IntegrationOgImage` function with the object key of your integration used in the previous step.
 
-
 ## Understanding the Starter template
 
 Each component of the Starter TurboETH template is designed to help streamline your development process:
@@ -35,9 +34,9 @@ Each component of the Starter TurboETH template is designed to help streamline y
 
 - **wagmi.config.ts**: This file should hold the wagmi-cli configuration for your integration, which includes settings like compiler version and optimization.
 
-- **README.md**: Here, you should document your integration. Explain its purpose, its use, and any important information a new developer or user should know. 
+- **README.md**: Here, you should document your integration. Explain its purpose, its use, and any important information a new developer or user should know.
 
-Each of these elements plays a crucial role in making your integration functional and accessible. 
+Each of these elements plays a crucial role in making your integration functional and accessible.
 
 ## File Structure
 

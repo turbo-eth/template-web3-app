@@ -10,12 +10,12 @@ interface HandleWalletEventsProps {
   children: ReactNode
 }
 
-export const HandleWalletEvents = ({ className, children }: HandleWalletEventsProps) => {
+export const HandleWalletEvents = ({ children }: HandleWalletEventsProps) => {
   const { mutateUser } = useUser()
   useAccount({
     async onDisconnect() {
       await siweLogout()
-      mutateUser()
+      await mutateUser()
     },
   })
   return <>{children}</>

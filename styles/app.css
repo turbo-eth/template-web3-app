@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -34,7 +33,7 @@ body {
   @apply px-10;
 }
 
-.content h3, {
+.content h3 {
   @apply mt-5 mb-2;
 }
 .content p {
@@ -58,7 +57,7 @@ body {
 }
 
 .user-dropdown-menu-item {
-  @apply relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-neutral-800
+  @apply relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-neutral-800;
 }
 
 .bg-card {
@@ -87,25 +86,25 @@ body {
   height: 22px;
 }
 .lds-dual-ring:after {
-  content: " ";
+  content: ' ';
   display: block;
   width: 18px;
   height: 18px;
   margin-top: 4px;
   border-radius: 50%;
   animation: lds-dual-ring 1.2s linear infinite;
-  border: 6px solid #FFF;
-  border-color: #FFF transparent #FFF transparent;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
 }
 
-[data-theme="light"] .colormode .lds-dual-ring:after {
+[data-theme='light'] .colormode .lds-dual-ring:after {
   border: 6px solid #3e3e3e !important;
   border-color: #3e3e3e transparent #3e3e3e transparent !important;
 }
 
-[data-theme="dark"] .colormode .lds-dual-ring:after {
-  border: 6px solid #FFF !important;
-  border-color: #FFF transparent #FFF transparent !important;
+[data-theme='dark'] .colormode .lds-dual-ring:after {
+  border: 6px solid #fff !important;
+  border-color: #fff transparent #fff transparent !important;
 }
 
 @keyframes lds-dual-ring {

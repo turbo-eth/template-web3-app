@@ -8,10 +8,10 @@ interface ITablePagination {
   pageCount: number
   pageIndex: number
   pageSize: number
-  gotoPage: Function
-  nextPage: Function
-  previousPage: Function
-  setPageSize: Function
+  gotoPage: (updater: number | ((pageIndex: number) => number)) => void
+  nextPage: () => void
+  previousPage: () => void
+  setPageSize: (pageSize: number) => void
 }
 
 /**

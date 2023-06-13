@@ -1,16 +1,12 @@
 import axios from 'axios'
 
-export async function getAppUsers(): Promise<
-  | {
-      users?: Array<any>
-    }
-  | undefined
-  | void
-> {
+import type { Users } from '@/app/api/app/users/route'
+
+export async function getAppUsers() {
   try {
-    const { data } = await axios.get('/api/app/users')
+    const { data }: { data: Users } = await axios.get('/api/app/users')
     return data
-  } catch (error: any) {
+  } catch (error) {
     throw error
   }
 }

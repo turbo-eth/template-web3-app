@@ -1,29 +1,37 @@
 import { useMemo } from 'react'
 
-import { Address } from '@turbo-eth/core-wagmi'
+import { Address as AddressComponent } from '@turbo-eth/core-wagmi'
+import { Address } from 'wagmi'
+
+import type { Users } from '@/app/api/app/users/route'
 
 import TableCore from '../shared/table/table-core'
 import { TimeFromUtc } from '../shared/time-from-utc'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 
-function AppUsersTable({ data, className }: any) {
+interface AppUsersTableProps {
+  data: Users | undefined
+  className?: string
+}
+
+function AppUsersTable({ data, className }: AppUsersTableProps) {
   const columns = useMemo(
     () => [
       {
         Header: 'Address',
         accessor: 'address',
-        Cell: (props: any) => <Address address={props.value} truncate className="text-sm font-medium" />,
+        Cell: ({ value }: { value: Address }) => <AddressComponent address={value} truncate className="text-sm font-medium" />,
       },
       {
         Header: 'Created',
         accessor: 'createdAt',
-        Cell: (props: any) => <TimeFromUtc date={props.value || 0} />,
+        Cell: ({ value }: { value: string }) => <TimeFromUtc date={value || '0'} />,
       },
       {
         Header: () => null,
         id: 'actions',
         accessor: 'id',
-        Cell: (props: any) => (
+        Cell: () => (
           <div className="flex items-center justify-end gap-2">
             <Popover>
               <PopoverTrigger>

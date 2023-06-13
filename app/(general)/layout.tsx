@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 import classNames from 'clsx'
 
 import { NetworkStatus } from '@/components/blockchain/network-status'
@@ -6,7 +8,7 @@ import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { Toaster } from '@/components/ui/toaster'
 
-export default function GeneralLayout({ children }: any) {
+export default function GeneralLayout({ children }: { children: ReactNode }) {
   const classes = classNames('GeneralLayout', 'bg-gradient-dark min-h-[100vh] flex flex-col pb-10 lg:pb-12')
   return (
     <>

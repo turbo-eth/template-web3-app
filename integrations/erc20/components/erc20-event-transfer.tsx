@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { formatEther, zeroAddress } from 'viem'
 import type { Address } from 'wagmi'
 
-import { useErc20TransferEvent } from '../erc20-wagmi'
+import { useErc20TransferEvent } from '../generated/erc20-wagmi'
 import { useERC20TokenStorage } from '../hooks/use-erc20-token-storage'
 
 export default function ERC20EventTransfer() {

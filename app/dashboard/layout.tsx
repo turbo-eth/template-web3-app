@@ -1,3 +1,5 @@
+import { ReactNode } from 'react'
+
 import classNames from 'clsx'
 import Image from 'next/image'
 
@@ -12,7 +14,7 @@ import { ResponsiveMobileAndDesktop } from '@/components/shared/responsive-mobil
 import { Toaster } from '@/components/ui/toaster'
 import { siteConfig } from '@/config/site'
 
-export default function DashboardLayout({ children }: any) {
+export default function DashboardLayout({ children }: { children: ReactNode }) {
   const classes = classNames('DashboardLayout', 'bg-gradient-dark h-screen flex flex-col lg:grid lg:grid-cols-12')
   return (
     <>

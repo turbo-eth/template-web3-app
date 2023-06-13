@@ -2,20 +2,14 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
-import { useNetwork } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchColorMode } from '@/components/shared/branch-color-mode'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
 
 export default function PageIntegration() {
-  const { chain } = useNetwork()
-  const { isLoading, data } = useEtherscanAccountTransactions({
-    chainId: chain?.id || 1,
-  })
   return (
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center text-center">

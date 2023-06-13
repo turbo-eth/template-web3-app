@@ -12,17 +12,17 @@ export function ThemeToggle() {
   const { setTheme } = useTheme()
   const [colorMode, toggleMode, setMode] = useColorMode()
 
-  const handleSetLightTheme = (_e: any) => {
+  const handleSetLightTheme = () => {
     setTheme('light')
     setMode('light')
   }
 
-  const handleSetDarkTheme = (_e: any) => {
+  const handleSetDarkTheme = () => {
     setTheme('dark')
     setMode('dark')
   }
 
-  const handleSetSystemTheme = (_e: any) => {
+  const handleSetSystemTheme = () => {
     setTheme('system')
     setMode('system')
   }
