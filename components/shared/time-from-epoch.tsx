@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import classNames from 'clsx'
 import { DateTime } from 'luxon'
 
 interface TimeFromEpochProps {
@@ -15,8 +14,7 @@ export const TimeFromEpoch = ({ className, epoch }: TimeFromEpochProps) => {
       setTimestamp(DateTime.fromSeconds(Number(epoch)).toLocaleString(DateTime.DATETIME_MED))
     }
   }, [])
-  const containerClassName = classNames(className, 'TimeFromEpoch')
-  return <span className={containerClassName}>{timestamp}</span>
+  return <span className={className}>{timestamp}</span>
 }
 
 export default TimeFromEpoch

@@ -1,9 +1,10 @@
 'use client'
 import { ReactNode } from 'react'
 
-import classNames from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+
+import { cn } from '@/lib/utils'
 
 interface LinkComponentProps {
   href: string
@@ -15,7 +16,7 @@ interface LinkComponentProps {
 
 export function LinkComponent({ href, children, isExternal, className, target = '_blank' }: LinkComponentProps) {
   const pathname = usePathname()
-  const classes = classNames(className, 'LinkComponent', {
+  const classes = cn(className, {
     active: pathname === href,
   })
   const isExternalEnabed = href.match(/^([a-z0-9]*:|.{0})\/\/.*$/) || isExternal

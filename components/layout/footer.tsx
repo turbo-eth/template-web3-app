@@ -1,7 +1,7 @@
-import classNames from 'clsx'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
 
 import { LinkComponent } from '../shared/link-component'
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function Footer(props: Props) {
-  const classes = classNames(props.className, 'Footer', 'px-4 py-6 flex flex-col justify-center items-center')
+  const classes = cn(props.className, 'px-4 py-6 flex flex-col justify-center items-center')
 
   return (
     <footer className={classes}>

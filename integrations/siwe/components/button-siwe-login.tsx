@@ -2,11 +2,11 @@
 
 import { ReactNode } from 'react'
 
-import classNames from 'clsx'
 import { useAccount, useNetwork, useSignMessage } from 'wagmi'
 
 import { siweLogin } from '@/integrations/siwe/actions/siwe-login'
 import { useUser } from '@/lib/hooks/use-user'
+import { cn } from '@/lib/utils'
 
 interface ButtonSIWELoginProps {
   className?: string
@@ -30,8 +30,8 @@ export const ButtonSIWELogin = ({ className, label = 'Sign-In With Ethereum', di
       console.error(error)
     }
   }
-  const classes = classNames('ButtonSIWELogin', 'relative', className)
-  const labelClasses = classNames('ButtonSIWELogin__label', {
+  const classes = cn('relative', className)
+  const labelClasses = cn({
     'opacity-0': isLoading,
   })
 

@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 
-import classNames from 'clsx'
 import Image from 'next/image'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
@@ -14,10 +13,9 @@ import { ResponsiveMobileAndDesktop } from '@/components/shared/responsive-mobil
 import { siteConfig } from '@/config/site'
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
-  const classes = classNames('AdminLayout', 'bg-gradient-dark h-screen lg:grid lg:grid-cols-12')
   return (
     <>
-      <div className={classes}>
+      <div className="bg-gradient-dark h-screen lg:grid lg:grid-cols-12">
         <div className="col-span-12 flex flex-col bg-slate-50 shadow-md dark:bg-slate-800 lg:col-span-2 lg:pb-8">
           <ResponsiveMobileAndDesktop>
             <>

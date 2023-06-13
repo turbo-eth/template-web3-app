@@ -1,6 +1,5 @@
 import { HTMLAttributes } from 'react'
 
-import classNames from 'clsx'
 import ReactMarkdown from 'react-markdown'
 import type { Address } from 'wagmi'
 
@@ -15,12 +14,11 @@ interface DiscoProfileBasicProps {
 export const DiscoProfileBasic = ({ className, address }: DiscoProfileBasicProps) => {
   const { user } = useUser()
   const { data, isLoading, isError, error } = useDiscoGetProfileFromAddress(address, user)
-  const classes = classNames(className, 'DiscoProfileBasic')
-  if (isLoading) return <div className={classes}>Loading...</div>
-  if (isError) return <div className={classes}>{error instanceof Error ? error.message : String(error)}</div>
+  if (isLoading) return <div className={className}>Loading...</div>
+  if (isError) return <div className={className}>{error instanceof Error ? error.message : String(error)}</div>
 
   return (
-    <div className={classes}>
+    <div className={className}>
       <div className="flex gap-2">
         <div className="w-full max-w-[320px]">
           <img src={data?.profile?.avatar} className="h-auto w-64 rounded-lg border-4 shadow-xl" alt="Profile Avatar" />

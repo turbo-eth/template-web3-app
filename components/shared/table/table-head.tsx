@@ -1,4 +1,4 @@
-import classNames from 'clsx'
+import { cn } from '@/lib/utils'
 
 interface ITableHead {
   className?: string
@@ -7,7 +7,7 @@ interface ITableHead {
 }
 
 export const TableHead = ({ className, headerGroups, defaultStyle }: ITableHead) => {
-  const styleBase = classNames(className, {
+  const styleBase = cn(className, {
     'rounded-xl shadow-sm border-b-2 border-blue-300 pb-5 h-20 z-10': defaultStyle,
   })
   return (

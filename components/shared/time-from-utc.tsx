@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import classNames from 'clsx'
 import { DateTime } from 'luxon'
 
 interface TimeFromUtcProps {
@@ -15,6 +14,5 @@ export const TimeFromUtc = ({ className, date }: TimeFromUtcProps) => {
       setTimestamp(DateTime.fromISO(date).toLocaleString(DateTime.DATETIME_MED))
     }
   }, [])
-  const containerClassName = classNames(className, 'TimeFromUtc')
-  return <span className={containerClassName}>{timestamp}</span>
+  return <span className={className}>{timestamp}</span>
 }

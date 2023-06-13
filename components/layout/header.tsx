@@ -1,10 +1,10 @@
 'use client'
 
-import classNames from 'clsx'
 import Image from 'next/image'
 
 import { siteConfig } from '@/config/site'
 import useScroll from '@/lib/hooks/use-scroll'
+import { cn } from '@/lib/utils'
 
 import { NavigationMenuGeneral } from './navigation-menu-general'
 import { UserDropdown } from './user-dropdown'
@@ -20,9 +20,8 @@ interface Props {
 
 export function Header(props: Props) {
   const scrolled = useScroll(50)
-  const classes = classNames(
+  const classes = cn(
     props.className,
-    'Header',
     'fixed top-0 w-full',
     'px-6 lg:px-10 py-3 mb-8 flex items-center',
     {

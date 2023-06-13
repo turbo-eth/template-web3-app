@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 
-import classNames from 'clsx'
 import Image from 'next/image'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
@@ -15,10 +14,9 @@ import { Toaster } from '@/components/ui/toaster'
 import { siteConfig } from '@/config/site'
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  const classes = classNames('DashboardLayout', 'bg-gradient-dark h-screen flex flex-col lg:grid lg:grid-cols-12')
   return (
     <>
-      <div className={classes}>
+      <div className="bg-gradient-dark flex h-screen flex-col lg:grid lg:grid-cols-12">
         <div className="col-span-12 flex flex-col bg-slate-50 shadow-md dark:bg-slate-800 lg:col-span-2 lg:pb-8">
           <ResponsiveMobileAndDesktop>
             <>

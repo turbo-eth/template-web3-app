@@ -1,4 +1,3 @@
-import classNames from 'clsx'
 import type { Address } from 'wagmi'
 
 import { useDiscoGetProfileFromAddress } from '@/integrations/disco/hooks/use-disco-get-profile-from-address'
@@ -14,12 +13,11 @@ interface DiscoProfileCredentialsProps {
 export const DiscoProfileCredentials = ({ className, address }: DiscoProfileCredentialsProps) => {
   const { user } = useUser()
   const { data, isLoading, isError } = useDiscoGetProfileFromAddress(address, user)
-  const classes = classNames(className, 'DiscoProfileCredentials')
 
-  if (isLoading) return <div className={classes}>Loading...</div>
-  if (isError) return <div className={classes}>No profile found. </div>
+  if (isLoading) return <div className={className}>Loading...</div>
+  if (isError) return <div className={className}>No profile found. </div>
   return (
-    <div className={classes}>
+    <div className={className}>
       <div className="container mt-10 grid grid-cols-12 gap-10">
         {data?.creds?.map((credential: Credential) => {
           return (

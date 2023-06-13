@@ -1,7 +1,7 @@
-import classNames from 'clsx'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 import { siteConfig } from '@/config/site'
+import { cn } from '@/lib/utils'
 
 import { LinkComponent } from '../shared/link-component'
 
@@ -10,7 +10,7 @@ interface DashboardFooterProps {
 }
 
 export function DashboardFooter({ className }: DashboardFooterProps) {
-  const classes = classNames(className, 'Footer', 'flex flex-col justify-center')
+  const classes = cn(className, 'flex flex-col justify-center')
 
   return (
     <footer className={classes}>

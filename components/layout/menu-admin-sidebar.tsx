@@ -1,17 +1,17 @@
 'use client'
 import { HTMLAttributes, ReactNode } from 'react'
 
-import classNames from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { menuAdmin } from '@/config/menu-admin'
+import { cn } from '@/lib/utils'
 
 interface MenuAdminSidebarProps {
   className?: string
 }
 export const MenuAdminSidebar = ({ className }: MenuAdminSidebarProps) => {
-  const cx = classNames(className, 'flex flex-col gap-1', 'MenuAdminSidebar')
+  const cx = cn(className, 'flex flex-col gap-1')
 
   const pathname = usePathname()
   return (
@@ -34,7 +34,7 @@ interface ItemProps extends HTMLAttributes<HTMLElement> {
 }
 
 const Item = ({ children, href, currentPath }: ItemProps) => {
-  const cx = classNames('menu-item my-2', 'MenuAdminSidebar', {
+  const cx = cn('menu-item my-2', {
     active: currentPath === href,
   })
 

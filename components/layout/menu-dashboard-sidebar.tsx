@@ -2,17 +2,17 @@
 
 import { HTMLAttributes, ReactNode } from 'react'
 
-import classNames from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { menuDashboard } from '@/config/menu-dashboard'
+import { cn } from '@/lib/utils'
 
 interface MenuDashboardSidebarProps {
   className?: string
 }
 export const MenuDashboardSidebar = ({ className }: MenuDashboardSidebarProps) => {
-  const cx = classNames(className, 'flex flex-col gap-1', 'MenuDashboardSidebar')
+  const cx = cn(className, 'flex flex-col gap-1')
 
   const pathname = usePathname()
   return (
@@ -35,7 +35,7 @@ interface ItemProps extends HTMLAttributes<HTMLElement> {
 }
 
 const Item = ({ children, href, currentPath, ...props }: ItemProps) => {
-  const cx = classNames('menu-item my-2', 'MenuDashboardSidebar', {
+  const cx = cn('menu-item my-2', {
     active: currentPath === href,
   })
 

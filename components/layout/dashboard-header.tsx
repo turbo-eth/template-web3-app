@@ -1,7 +1,6 @@
 'use client'
 
 import { WalletAddress } from '@turbo-eth/core-wagmi'
-import classNames from 'clsx'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { FaCopy } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
@@ -12,6 +11,7 @@ import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
 import { useToast } from '@/lib/hooks/use-toast'
+import { cn } from '@/lib/utils'
 
 import { ThemeToggle } from '../shared/theme-toggle'
 
@@ -20,7 +20,7 @@ interface Props {
 }
 
 export function DashboardHeader(props: Props) {
-  const classes = classNames(props.className, 'Header', 'px-6 lg:px-10 py-3 flex items-center w-full')
+  const classes = cn(props.className, 'px-6 lg:px-10 py-3 flex items-center w-full')
   const { address } = useAccount()
   const { toast, dismiss } = useToast()
 

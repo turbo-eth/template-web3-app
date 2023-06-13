@@ -2,8 +2,6 @@
 
 import { ReactNode } from 'react'
 
-import classNames from 'clsx'
-
 import { siweLogout } from '@/integrations/siwe/actions/siwe-logout'
 import { useUser } from '@/lib/hooks/use-user'
 
@@ -20,9 +18,8 @@ export const ButtonSIWELogout = ({ className, label = 'Logout', children }: Butt
     await mutateUser()
   }
 
-  const classes = classNames('ButtonSIWELogout', className)
   return (
-    <button onClick={handleLogout} className={classes}>
+    <button onClick={handleLogout} className={className}>
       {children || label}
     </button>
   )
