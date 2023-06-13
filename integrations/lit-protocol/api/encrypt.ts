@@ -1,8 +1,16 @@
+import { z } from 'zod'
+
 import { prisma } from '@/lib/prisma'
+
+const encryptSchema = z.object({
+  encryptedString: z.string(),
+  accessControlConditions: z.array(z.any()),
+  encryptedSymmetricKeyString: z.string(),
+})
 
 export async function POST(req: Request) {
   try {
-    const { encryptedString, accessControlConditions, encryptedSymmetricKeyString } = await req.json()
+    const { encryptedString, accessControlConditions, encryptedSymmetricKeyString } = encryptSchema.parse(await req.json())
 
     if (!encryptedString || !accessControlConditions || !encryptedSymmetricKeyString) {
       return new Response(JSON.stringify({ ok: false, error: 'Invalid parameters' }), {

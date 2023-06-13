@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import getChainIdApiUrl from './get-chain-id-api-url'
 
-export function getEtherscanClient(chainId: number, timeout: number = 5000, apiKey?: string) {
+export function getEtherscanClient(chainId: number, timeout = 5000, apiKey?: string) {
   const instance = axios.create({
     baseURL: getChainIdApiUrl(chainId),
     timeout: timeout,

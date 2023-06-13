@@ -1,8 +1,25 @@
 import { ParsedEvent, ReconnectInterval, createParser } from 'eventsource-parser'
+import { z } from 'zod'
 
 import { env } from '@/env.mjs'
 
 import { ModelConfig } from './types'
+
+const readableStreamSchema = z.object({
+  id: z.string(),
+  object: z.string(),
+  created: z.number(),
+  model: z.string(),
+  choices: z.array(
+    z.object({
+      delta: z.object({
+        content: z.string().optional(),
+      }),
+      index: z.number(),
+      finish_reason: z.string().nullable(),
+    })
+  ),
+})
 
 /**
  * OpenAI API model configuration.
@@ -48,7 +65,7 @@ export async function OpenAIStream(payload: ModelConfig, customApiKey?: string) 
             return
           }
           try {
-            const json = JSON.parse(data)
+            const json = readableStreamSchema.parse(JSON.parse(data))
             const text = json.choices[0].delta?.content || ''
             if (counter < 2 && (text.match(/\n/) || []).length) {
               return
@@ -66,9 +83,11 @@ export async function OpenAIStream(payload: ModelConfig, customApiKey?: string) 
       // this ensures we properly read chunks & invoke an event for each SSE event stream
       const parser = createParser(onParse)
 
-      // https://web.dev/streams/#asynchronous-iteration
-      for await (const chunk of res.body as any) {
-        parser.feed(decoder.decode(chunk))
+      if (res.body) {
+        // https://web.dev/streams/#asynchronous-iteration
+        for await (const chunk of res.body as unknown as BufferSource[]) {
+          parser.feed(decoder.decode(chunk))
+        }
       }
     },
   })

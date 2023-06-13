@@ -3,6 +3,7 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
+import { cn } from '@/lib/utils'
 
 interface BranchButtonLoginOrAccountProps {
   className?: string
@@ -20,7 +21,7 @@ export const BranchButtonLoginOrAccount = ({ classNameButtonLogin, classNameButt
             <span className="">Account</span>
           </LinkComponent>
         </div>
-        <ButtonSIWELogin className={'colormode'} />
+        <ButtonSIWELogin className={cn('colormode', classNameButtonLogin)} />
       </BranchIsAuthenticated>
       <></>
     </BranchIsWalletConnected>

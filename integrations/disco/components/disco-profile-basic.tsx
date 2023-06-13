@@ -1,3 +1,5 @@
+import { HTMLAttributes } from 'react'
+
 import classNames from 'clsx'
 import ReactMarkdown from 'react-markdown'
 import type { Address } from 'wagmi'
@@ -25,14 +27,14 @@ export const DiscoProfileBasic = ({ className, address }: DiscoProfileBasicProps
         </div>
         <div className="col-span-8">
           {data?.profile?.name && (
-            <div className="text-3xl font-bold text-neutral-900 dark:text-white">{data?.linkages && data?.linkages[data?.profile?.name]?.id}</div>
+            <div className="text-3xl font-bold text-neutral-900 dark:text-white">{data?.linkages && data?.linkages?.[data?.profile?.name].id}</div>
           )}
           {data?.did && <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400">{data?.did}</div>}
           {data?.profile?.bio && (
             <div className="mt-10 text-neutral-900 dark:text-white">
               <ReactMarkdown
                 components={{
-                  a: ({ node, ...props }: any) => (
+                  a: ({ ...props }: HTMLAttributes<HTMLElement>) => (
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
@@ -41,7 +43,7 @@ export const DiscoProfileBasic = ({ className, address }: DiscoProfileBasicProps
                     />
                   ),
 
-                  code: ({ node, ...props }: any) => (
+                  code: ({ ...props }: HTMLAttributes<HTMLElement>) => (
                     <code {...props} className="rounded-sm bg-gray-100 px-1 py-0.5 font-mono font-medium text-gray-800" />
                   ),
                 }}>

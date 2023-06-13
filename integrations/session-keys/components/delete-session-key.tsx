@@ -12,10 +12,10 @@ interface DeleteSessionKeyProps {
 export function DeleteSessionKey({ selectedSessionKey, setSelectedSessionKey }: DeleteSessionKeyProps) {
   const { deleteSessionKey } = useSessionKeys()
 
-  const handleDeleteSessionKey = () => {
+  const handleDeleteSessionKey = async () => {
     if (selectedSessionKey) {
       setSelectedSessionKey?.(undefined)
-      deleteSessionKey(selectedSessionKey)
+      await deleteSessionKey(selectedSessionKey)
     }
   }
 

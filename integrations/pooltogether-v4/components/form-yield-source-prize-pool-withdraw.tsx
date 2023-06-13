@@ -7,9 +7,9 @@ import { useAccount, useWaitForTransaction } from 'wagmi'
 
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { useUserBalanceWithdraw } from '@/actions/pooltogether-v4/hooks/use-user-balance-withdraw'
-import { usePoolTogetherPrizePoolWithdrawFrom } from '@/integrations/pooltogether-v4/generated/pooltogether-v4-wagmi'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
 import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/utils/ticket-contract-list'
+import { usePoolTogetherPrizePoolWithdrawFrom } from '@/integrations/pooltogether-v4/generated/pooltogether-v4-wagmi'
 import { useErc20Decimals } from '@/lib/generated/blockchain'
 
 export function PoolTogetherFormWithdraw() {

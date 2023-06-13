@@ -1,10 +1,12 @@
 import * as LitJsSdk from '@lit-protocol/lit-node-client'
+import { LitProtocolMessage } from '@prisma/client'
 import { useAccount, useNetwork, useSignMessage } from 'wagmi'
 
 import { siweMessage } from '@/integrations/siwe/actions/siwe-message'
 
 import litClient from '../client'
 import { blobToString } from '../utils/data-types'
+import { AccessControlConditions } from '../utils/types'
 
 export const useLitClient = () => {
   const { signMessageAsync } = useSignMessage()
@@ -36,7 +38,7 @@ export const useLitClient = () => {
    * @throws Error if the wallet is not connected
    * @throws Error if the message cannot be encrypted
    */
-  const encryptMessage = async (messageToEncrypt: string, accessControlConditions: any) => {
+  const encryptMessage = async (messageToEncrypt: string, accessControlConditions: AccessControlConditions) => {
     if (!address || !chain?.id) throw new Error('Wallet not connected')
     await litClient.connect()
 
@@ -49,7 +51,7 @@ export const useLitClient = () => {
     // Save symmetric key and access control conditions to Lit Protocol
     // This will return an encrypted symmetric key in Uint8Array format
     const encryptedSymmetricKey = await litClient.saveEncryptionKey({
-      accessControlConditions,
+      accessControlConditions: accessControlConditions as any,
       symmetricKey,
       authSig,
       chain: 'ethereum',
@@ -61,13 +63,15 @@ export const useLitClient = () => {
     if (typeof encryptedSymmetricKeyString !== 'string') throw new Error('Encrypted symmetric key is not a string')
 
     // Store encrypted message, encrypted symmetric key and access control conditions into the database
-    const litProtocolMessage = await fetch('/api/lit-protocol/encrypt', {
+    const litProtocolMessage: LitProtocolMessage = await fetch('/api/lit-protocol/encrypt', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ encryptedString: await blobToString(encryptedString), accessControlConditions, encryptedSymmetricKeyString }),
     }).then((res) => res.json())
+
+    if (!litProtocolMessage) throw new Error('Could not save message to database')
 
     return { id: litProtocolMessage.id, encryptedString, encryptedSymmetricKey: encryptedSymmetricKeyString }
   }
@@ -88,7 +92,7 @@ export const useLitClient = () => {
       encryptedString: string
       metadata: {
         encryptedSymmetricKey: string
-        accessControlConditions: any[]
+        accessControlConditions: AccessControlConditions[]
       }
     }
 
@@ -109,7 +113,7 @@ export const useLitClient = () => {
       // Retrieve the symmetric encryption key from the LIT nodes.
       // This will only work if the access control conditions are met
       _symmetricKey = await litClient.getEncryptionKey({
-        accessControlConditions: metadata.accessControlConditions,
+        accessControlConditions: metadata.accessControlConditions as any,
         toDecrypt: metadata.encryptedSymmetricKey,
         chain: 'ethereum',
         authSig,

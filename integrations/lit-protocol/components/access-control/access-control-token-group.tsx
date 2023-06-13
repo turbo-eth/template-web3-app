@@ -8,6 +8,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { AccessControlProps } from './types'
 import { supportedChains } from '../../utils/config'
 
+interface FormSchema {
+  chain: string
+  tokenType: string
+  address: string
+  tokenAmount: string
+  tokenId: string
+  tokenDecimals: string
+}
+
 export function AccessControlTokenGroup({ setAccessControlConditions }: AccessControlProps) {
   const [address, setAddress] = useState<string>('')
   const [tokenAmount, setTokenAmount] = useState<number>(0)
@@ -20,9 +29,9 @@ export function AccessControlTokenGroup({ setAccessControlConditions }: AccessCo
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm<FormSchema>()
 
-  const onSubmit = ({ address, tokenId, tokenAmount }: any) => {
+  const onSubmit = ({ address, tokenId, tokenAmount }: FormSchema) => {
     setAccessControlConditions(getAccessControlConditions(chain, address, tokenType || '', tokenAmount, tokenId, tokenDecimals))
   }
 

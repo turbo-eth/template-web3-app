@@ -17,7 +17,7 @@ export const ButtonSIWELogout = ({ className, label = 'Logout', children }: Butt
   const { mutateUser } = useUser()
   const handleLogout = async () => {
     await siweLogout()
-    mutateUser()
+    await mutateUser()
   }
 
   const classes = classNames('ButtonSIWELogout', className)

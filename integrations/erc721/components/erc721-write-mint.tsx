@@ -12,12 +12,18 @@ interface Erc721WriteMintProps {
   address: Address
 }
 
-export function Erc721WriteMint({ address }: Erc721WriteMintProps) {
-  const { register, watch, handleSubmit } = useForm()
+interface FormSchema {
+  toAddress: Address
+  tokenId: string
+  tokenUri: string
+}
 
-  const watchToAddress: Address = watch('toAddress')
-  const watchTokenId: string = watch('tokenId')
-  const watchTokenUri: string = watch('tokenUri')
+export function Erc721WriteMint({ address }: Erc721WriteMintProps) {
+  const { register, watch, handleSubmit } = useForm<FormSchema>()
+
+  const watchToAddress = watch('toAddress')
+  const watchTokenId = watch('tokenId')
+  const watchTokenUri = watch('tokenUri')
   const debouncedToAddress = useDebounce(watchToAddress, 500)
   const debouncedTokenId = useDebounce(watchTokenId, 500)
   const debouncedTokenUri = useDebounce(watchTokenUri, 500)
@@ -37,7 +43,7 @@ export function Erc721WriteMint({ address }: Erc721WriteMintProps) {
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 

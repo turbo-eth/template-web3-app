@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 
-import { Address } from '@turbo-eth/core-wagmi'
+import { Address as AddressComponent } from '@turbo-eth/core-wagmi'
+import type { Address } from 'wagmi'
 
 import TableCore from '../../../components/shared/table/table-core'
 import TimeFromEpoch from '../../../components/shared/time-from-epoch'
@@ -36,17 +37,17 @@ export function TransactionsTable({ data }: any) {
       {
         Header: 'From',
         accessor: 'from',
-        Cell: (props: any) => <Address address={props.value} truncate className="text-sm font-medium" />,
+        Cell: ({ value }: { value: Address }) => <AddressComponent address={value} truncate className="text-sm font-medium" />,
       },
       {
         Header: 'To',
         accessor: 'to',
-        Cell: (props: any) => <Address address={props.value} truncate className="text-sm font-medium" />,
+        Cell: ({ value }: { value: Address }) => <AddressComponent address={value} truncate className="text-sm font-medium" />,
       },
       {
         Header: 'Created',
         accessor: 'timeStamp',
-        Cell: (props: any) => <TimeFromEpoch epoch={props.value || 0} />,
+        Cell: ({ value }: { value: string | number }) => <TimeFromEpoch epoch={value || 0} />,
       },
       {
         Header: 'Sent',

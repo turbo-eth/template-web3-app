@@ -13,10 +13,10 @@
     "build": "next build",
     "export": "next export",
     "start": "next start",
-    "lint": "next lint --fix",
-    "lint-check": "next lint",
-    "prettier": "prettier . --write",
-    "prettier-check": "prettier . --list-different",
+    "lint": "eslint '**/*.{ts,tsx}'",
+    "lint-fix": "eslint '**/*.{ts,tsx}' --fix",
+    "prettier": "prettier . --list-different",
+    "prettier-fix": "prettier . --write",
     "prepare": "husky install ; prisma generate ; wagmi generate"
   },
   "husky": {

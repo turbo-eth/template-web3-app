@@ -1,4 +1,6 @@
-function handleEtherscanResponse(response: any) {
+import { EtherscanApiTransactionsResponse } from './types'
+
+function handleEtherscanResponse(response: EtherscanApiTransactionsResponse) {
   if (response.status === '1') {
     return response.result
   }

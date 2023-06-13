@@ -23,8 +23,9 @@ export const ButtonSIWELogin = ({ className, label = 'Sign-In With Ethereum', di
 
   const handleCreateMessage = async () => {
     try {
+      if (!address || !chain?.id) return
       await siweLogin({ address, chainId: chain?.id, signMessageAsync })
-      mutateUser()
+      await mutateUser()
     } catch (error) {
       console.error(error)
     }
@@ -36,7 +37,7 @@ export const ButtonSIWELogin = ({ className, label = 'Sign-In With Ethereum', di
 
   return (
     <button type="button" disabled={disabled} onClick={handleCreateMessage} className={classes}>
-      {isLoading && <span className="lds-dual-ring light absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}
+      {isLoading && <span className="lds-dual-ring absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}
       <span className={labelClasses}>{children || label || 'Logout'}</span>
     </button>
   )

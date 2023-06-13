@@ -18,21 +18,26 @@ import { useToast } from '@/lib/hooks/use-toast'
 
 import { AccessControlSingleAddress, AccessControlSingleERC721, AccessControlTokenGroup } from './access-control'
 import { useLitClient } from '../hooks/use-lit-client'
+import { AccessControlConditions } from '../utils/types'
+
+interface FormSchema {
+  message: string
+}
 
 export function FormLitEncryptMessage() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [messageToEncrypt, setMessageToEncrypt] = useState<string>()
   const [encryptedMessageId, setEncryptedMessageId] = useState<string>()
-  const [accessControlConditions, setAccessControlConditions] = useState<any[]>([])
+  const [accessControlConditions, setAccessControlConditions] = useState<AccessControlConditions>([])
   const [accessControlType, setAccessControlType] = useState<string>()
 
   const { toast, dismiss } = useToast()
   const { encryptMessage } = useLitClient()
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm<FormSchema>()
 
   const isValid = messageToEncrypt && accessControlConditions.length > 0
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: { message: string }) => {
     setIsLoading(true)
     try {
       const encryptedMessage = await encryptMessage(data.message, accessControlConditions)

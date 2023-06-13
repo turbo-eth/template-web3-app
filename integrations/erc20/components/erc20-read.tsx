@@ -6,7 +6,7 @@ import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-co
 
 import { useErc20BalanceOf, useErc20Decimals, useErc20Name, useErc20Symbol, useErc20TotalSupply } from '../generated/erc20-wagmi'
 
-export function ERC20Image({ address }: { address?: Address; className?: string }) {
+export function ERC20Image({ address }: { address: Address; className?: string }) {
   return (
     <img
       alt={`Token ${address} icon`}

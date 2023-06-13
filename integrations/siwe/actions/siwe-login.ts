@@ -1,6 +1,15 @@
+import { Address } from 'wagmi'
+import { SignMessageArgs } from 'wagmi/dist/actions'
+
 import { siweMessage } from './siwe-message'
 
-export const siweLogin = async ({ address, chainId, signMessageAsync }: any) => {
+interface SiweLoginProps {
+  address: Address
+  chainId: number
+  signMessageAsync: (args?: SignMessageArgs | undefined) => Promise<Address>
+}
+
+export const siweLogin = async ({ address, chainId, signMessageAsync }: SiweLoginProps) => {
   // 1. Create and sign SIWE message
   const { message, signature } = await siweMessage({ address, chainId, signMessageAsync })
 

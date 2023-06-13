@@ -13,7 +13,7 @@ export async function GET(req: Request) {
     }
 
     const { searchParams } = new URL(req.url)
-    let chainId = searchParams.get('chainId')
+    const chainId = searchParams.get('chainId')
     if (!chainId) {
       return new Response('Missing chainId', { status: 400 })
     }

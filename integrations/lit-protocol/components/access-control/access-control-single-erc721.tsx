@@ -4,10 +4,15 @@ import { useForm } from 'react-hook-form'
 import { isAddress } from 'viem'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
 import { AccessControlProps } from './types'
 import { supportedChains } from '../../utils/config'
+
+interface FormSchema {
+  address: string
+  tokenId: string
+  chain: string
+}
 
 export function AccessControlSingleERC721({ setAccessControlConditions }: AccessControlProps) {
   const [address, setAddress] = useState<string>('')
@@ -18,9 +23,9 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm<FormSchema>()
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormSchema) => {
     setAccessControlConditions(getAccessControlConditions(chain, data.address, data.tokenId))
   }
 

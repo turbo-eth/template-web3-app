@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-export async function appDiscoGetCredentialsFromDID(did?: string): Promise<any> {
+export async function appDiscoGetCredentialsFromDID(did?: string) {
   try {
-    const { data } = await axios.get(`/api/disco/profile-from-address`, {
+    const { data }: { data: Credential[] } = await axios.get(`/api/disco/credentials-from-did`, {
       params: {
         did: did,
       },

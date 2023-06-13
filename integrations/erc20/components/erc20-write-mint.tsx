@@ -36,7 +36,7 @@ function ERC20ContractMintTokens({ address }: ERC20WriteMintProps) {
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 

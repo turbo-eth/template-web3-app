@@ -12,11 +12,7 @@ export function useUserBalanceWithdraw() {
   const address = useLoadContractFromChainId(TICKET_CONTRACT)
   const { data: decimals } = useErc20Decimals({ address })
 
-  const {
-    data: erc20Balance,
-    isError,
-    isLoading,
-  } = useErc20BalanceOf({
+  const { data: erc20Balance } = useErc20BalanceOf({
     chainId: chain?.id,
     address,
     watch: true,
