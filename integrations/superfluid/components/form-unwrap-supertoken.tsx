@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 import { useSuperFluidWithWagmiProvider } from '../hooks/use-superfluid-with-wagmi-provider'
+import { getWeiAmount } from '../utils/getPerSecondFlowRate'
 
 const formSchema = z.object({
   token: z.string({
@@ -35,14 +36,14 @@ export default function App() {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values)
+    const weiAmount = getWeiAmount(values.amount)
 
     if (!sf || !signer?.data) return
     const supertoken = await sf.loadSuperToken(values.token)
 
     //@ts-ignore
     const downgradeOperation = supertoken?.downgrade({
-      amount: values.amount,
+      amount: weiAmount,
     })
 
     await downgradeOperation?.exec(signer?.data)

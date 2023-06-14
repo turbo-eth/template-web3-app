@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { useSigner } from 'wagmi'
+import { useAccount, useSigner } from 'wagmi'
 import * as z from 'zod'
 
 import { Button } from '@/components/ui/button'
@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 import { useSuperFluidWithWagmiProvider } from '../hooks/use-superfluid-with-wagmi-provider'
+import { getPerSecondFlowRate } from '../utils/getPerSecondFlowRate'
 
 const formSchema = z.object({
   receiver: z.string().min(42).max(42),
@@ -22,6 +23,8 @@ const formSchema = z.object({
 
 export default function App() {
   const signer = useSigner()
+  const account = useAccount()
+
   const sf = useSuperFluidWithWagmiProvider()
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
@@ -39,13 +42,15 @@ export default function App() {
     // ✅ This will be type-safe and validated.
     console.log(values)
 
+    const weiAmount = getPerSecondFlowRate(values.amount)
+    console.log(weiAmount, 'weiAmount')
     if (!sf || !signer?.data) return
     const supertoken = await sf.loadSuperToken(values.token)
 
     let flowOp = supertoken?.createFlow({
-      sender: '0xc0163e58648b247c143023cfb26c2baa42c9d9a9',
+      sender: account.address,
       receiver: values.receiver,
-      flowRate: values.amount,
+      flowRate: weiAmount,
     })
 
     await flowOp?.exec(signer?.data)
