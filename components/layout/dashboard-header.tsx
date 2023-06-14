@@ -1,5 +1,7 @@
 'use client'
 
+import { HTMLAttributes } from 'react'
+
 import { WalletAddress } from '@turbo-eth/core-wagmi'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { FaCopy } from 'react-icons/fa'
@@ -15,12 +17,8 @@ import { cn } from '@/lib/utils'
 
 import { ThemeToggle } from '../shared/theme-toggle'
 
-interface Props {
-  className?: string
-}
-
-export function DashboardHeader(props: Props) {
-  const classes = cn(props.className, 'px-6 lg:px-10 py-3 flex items-center w-full')
+export function DashboardHeader({ className, ...props }: HTMLAttributes<HTMLElement>) {
+  const classes = cn(className, 'px-6 lg:px-10 py-3 flex items-center w-full')
   const { address } = useAccount()
   const { toast, dismiss } = useToast()
 
@@ -36,7 +34,7 @@ export function DashboardHeader(props: Props) {
   }
 
   return (
-    <header className={classes}>
+    <header className={classes} {...props}>
       <div className="flex flex-1 ">
         <span className="flex items-center gap-2">
           <WalletAddress truncate isLink className="tag tag-primary hover:shadow-sm" />

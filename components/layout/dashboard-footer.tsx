@@ -1,3 +1,5 @@
+import { HTMLAttributes } from 'react'
+
 import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 import { siteConfig } from '@/config/site'
@@ -5,15 +7,11 @@ import { cn } from '@/lib/utils'
 
 import { LinkComponent } from '../shared/link-component'
 
-interface DashboardFooterProps {
-  className?: string
-}
-
-export function DashboardFooter({ className }: DashboardFooterProps) {
+export function DashboardFooter({ className, ...props }: HTMLAttributes<HTMLElement>) {
   const classes = cn(className, 'flex flex-col justify-center')
 
   return (
-    <footer className={classes}>
+    <footer className={classes} {...props}>
       <h3 className="text-sm font-semibold">{siteConfig.title}</h3>
       <a className="link my-2 text-xs" target={'_blank'} href="https://districtlabs.com/" rel="noreferrer">
         Built by District Labs

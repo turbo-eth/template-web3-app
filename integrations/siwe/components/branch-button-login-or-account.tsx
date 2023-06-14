@@ -6,7 +6,6 @@ import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-log
 import { cn } from '@/lib/utils'
 
 interface BranchButtonLoginOrAccountProps {
-  className?: string
   classNameButtonLogin?: string
   classNameButtonLogout?: string
 }

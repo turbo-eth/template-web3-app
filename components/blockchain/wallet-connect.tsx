@@ -1,12 +1,10 @@
+import { HtmlHTMLAttributes } from 'react'
+
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
-interface WalletConnectProps {
-  className?: string
-}
-
-export const WalletConnect = ({ className }: WalletConnectProps) => {
+export const WalletConnect = ({ className, ...props }: HtmlHTMLAttributes<HTMLSpanElement>) => {
   return (
-    <span className={className}>
+    <span className={className} {...props}>
       <ConnectButton
         showBalance={false}
         accountStatus={{

@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { HTMLAttributes, useMemo } from 'react'
 
 import { Address as AddressComponent } from '@turbo-eth/core-wagmi'
 import { Address } from 'wagmi'
@@ -9,12 +9,11 @@ import TableCore from '../shared/table/table-core'
 import { TimeFromUtc } from '../shared/time-from-utc'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 
-interface AppUsersTableProps {
+interface AppUsersTableProps extends HTMLAttributes<HTMLElement> {
   data: Users | undefined
-  className?: string
 }
 
-function AppUsersTable({ data, className }: AppUsersTableProps) {
+function AppUsersTable({ data, className, ...props }: AppUsersTableProps) {
   const columns = useMemo(
     () => [
       {
@@ -46,7 +45,7 @@ function AppUsersTable({ data, className }: AppUsersTableProps) {
     []
   )
   if (!data) return null
-  return <TableCore columns={columns} data={data} className={className} />
+  return <TableCore columns={columns} data={data} className={className} {...props} />
 }
 
 export default AppUsersTable

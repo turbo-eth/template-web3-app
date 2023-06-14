@@ -8,10 +8,7 @@ import { usePathname } from 'next/navigation'
 import { menuDashboard } from '@/config/menu-dashboard'
 import { cn } from '@/lib/utils'
 
-interface MenuDashboardSidebarProps {
-  className?: string
-}
-export const MenuDashboardSidebar = ({ className }: MenuDashboardSidebarProps) => {
+export const MenuDashboardSidebar = ({ className }: HTMLAttributes<HTMLElement>) => {
   const cx = cn(className, 'flex flex-col gap-1')
 
   const pathname = usePathname()

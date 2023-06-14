@@ -1,20 +1,19 @@
 'use client'
-import { ReactNode } from 'react'
+
+import { HTMLAttributes } from 'react'
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { cn } from '@/lib/utils'
 
-interface LinkComponentProps {
+interface LinkComponentProps extends HTMLAttributes<HTMLAnchorElement> {
   href: string
-  children: ReactNode
   isExternal?: boolean
-  className?: string
   target?: string
 }
 
-export function LinkComponent({ href, children, isExternal, className, target = '_blank' }: LinkComponentProps) {
+export function LinkComponent({ href, children, isExternal, className, target = '_blank', ...props }: LinkComponentProps) {
   const pathname = usePathname()
   const classes = cn(className, {
     active: pathname === href,
@@ -23,14 +22,14 @@ export function LinkComponent({ href, children, isExternal, className, target = 
 
   if (isExternalEnabed) {
     return (
-      <a className={classes} href={href} rel="noopener noreferrer" target={target}>
+      <a className={classes} href={href} rel="noopener noreferrer" target={target} {...props}>
         {children}
       </a>
     )
   }
 
   return (
-    <Link className={classes} href={href}>
+    <Link className={classes} href={href} {...props}>
       {children}
     </Link>
   )

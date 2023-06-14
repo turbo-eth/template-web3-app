@@ -1,5 +1,7 @@
 'use client'
 
+import { HTMLAttributes } from 'react'
+
 import Image from 'next/image'
 
 import { siteConfig } from '@/config/site'
@@ -14,14 +16,10 @@ import { LinkComponent } from '../shared/link-component'
 import { ResponsiveMobileAndDesktop } from '../shared/responsive-mobile-and-desktop'
 import { ThemeToggle } from '../shared/theme-toggle'
 
-interface Props {
-  className?: string
-}
-
-export function Header(props: Props) {
+export function Header({ className, ...props }: HTMLAttributes<HTMLElement>) {
   const scrolled = useScroll(50)
   const classes = cn(
-    props.className,
+    className,
     'fixed top-0 w-full',
     'px-6 lg:px-10 py-3 mb-8 flex items-center',
     {
@@ -30,7 +28,7 @@ export function Header(props: Props) {
     'z-30 transition-all'
   )
   return (
-    <header className={classes}>
+    <header className={classes} {...props}>
       <ResponsiveMobileAndDesktop>
         <>
           <div className="flex w-full justify-between p-4">

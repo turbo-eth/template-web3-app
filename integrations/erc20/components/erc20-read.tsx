@@ -1,3 +1,5 @@
+import { HTMLAttributes } from 'react'
+
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { formatUnits } from 'viem'
 import { Address, useAccount } from 'wagmi'
@@ -6,33 +8,50 @@ import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-co
 
 import { useErc20BalanceOf, useErc20Decimals, useErc20Name, useErc20Symbol, useErc20TotalSupply } from '../generated/erc20-wagmi'
 
-export function ERC20Image({ address }: { address: Address; className?: string }) {
+interface ERC20Props extends HTMLAttributes<HTMLElement> {
+  address: Address
+}
+
+interface ERC20ChainIdProps extends ERC20Props {
+  chainId?: number
+}
+
+export function ERC20Image({ address, ...props }: ERC20Props) {
   return (
     <img
       alt={`Token ${address} icon`}
       className="mx-auto h-12 w-12 rounded-full border-2 border-white shadow-md"
       src={`https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/${address}/logo.png`}
+      {...props}
     />
   )
 }
 
-export function ERC20Name({ address, chainId, className }: { address?: Address; chainId?: number; className?: string }) {
+export function ERC20Name({ address, chainId, className, ...props }: ERC20ChainIdProps) {
   const { data } = useErc20Name({
     address,
     chainId,
   })
-  return <span className={className}>{data}</span>
+  return (
+    <span className={className} {...props}>
+      {data}
+    </span>
+  )
 }
 
-export function ERC20Symbol({ address, chainId, className }: { address?: Address; chainId?: number; className?: string }) {
+export function ERC20Symbol({ address, chainId, className, ...props }: ERC20ChainIdProps) {
   const { data } = useErc20Symbol({
     address,
     chainId,
   })
-  return <span className={className}>{data}</span>
+  return (
+    <span className={className} {...props}>
+      {data}
+    </span>
+  )
 }
 
-export function ERC20TotalSupply({ address, chainId, className }: { address?: Address; chainId?: number; className?: string }) {
+export function ERC20TotalSupply({ address, chainId, className, ...props }: ERC20ChainIdProps) {
   const { data: decimals } = useErc20Decimals({
     address,
     chainId,
@@ -42,19 +61,27 @@ export function ERC20TotalSupply({ address, chainId, className }: { address?: Ad
     address,
     chainId,
   })
-  return <span className={className}>{formatUnits(data || BigInt(0), decimals || 1)}</span>
+  return (
+    <span className={className} {...props}>
+      {formatUnits(data || BigInt(0), decimals || 1)}
+    </span>
+  )
 }
 
 // @TODO: Add Decimals to Display
-export function ERC20Decimals({ address, chainId, className }: { address?: Address; chainId?: number; className?: string }) {
+export function ERC20Decimals({ address, chainId, className, ...props }: ERC20ChainIdProps) {
   const { data } = useErc20Decimals({
     address,
     chainId,
   })
-  return <span className={className}>{data}</span>
+  return (
+    <span className={className} {...props}>
+      {data}
+    </span>
+  )
 }
 
-export function ERC20Balance({ address, chainId, className }: { address?: Address; chainId?: number; className?: string }) {
+export function ERC20Balance({ address, chainId, className, ...props }: ERC20ChainIdProps) {
   const { address: accountAddress } = useAccount()
   const { data: decimals } = useErc20Decimals({
     address,
@@ -69,17 +96,18 @@ export function ERC20Balance({ address, chainId, className }: { address?: Addres
 
   if (!data || !decimals) return null
 
-  return <span className={className}> {formatUnits(data, decimals)}</span>
+  return (
+    <span className={className} {...props}>
+      {' '}
+      {formatUnits(data, decimals)}
+    </span>
+  )
 }
 
-interface ERC20ReadProps {
-  address: Address
-}
-
-export function ERC20Read({ address }: ERC20ReadProps) {
+export function ERC20Read({ address, ...props }: ERC20Props) {
   return (
     <BranchIsWalletConnected>
-      <div className="card w-full">
+      <div className="card w-full" {...props}>
         <div className="flex items-center justify-center space-x-6">
           <div className="text-center">
             <span className="text-3xl">

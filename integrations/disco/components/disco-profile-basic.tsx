@@ -6,19 +6,18 @@ import type { Address } from 'wagmi'
 import { useDiscoGetProfileFromAddress } from '@/integrations/disco/hooks/use-disco-get-profile-from-address'
 import { useUser } from '@/lib/hooks/use-user'
 
-interface DiscoProfileBasicProps {
-  className?: string
+interface DiscoProfileBasicProps extends HTMLAttributes<HTMLDivElement> {
   address?: Address
 }
 
-export const DiscoProfileBasic = ({ className, address }: DiscoProfileBasicProps) => {
+export const DiscoProfileBasic = ({ className, address, ...props }: DiscoProfileBasicProps) => {
   const { user } = useUser()
   const { data, isLoading, isError, error } = useDiscoGetProfileFromAddress(address, user)
   if (isLoading) return <div className={className}>Loading...</div>
   if (isError) return <div className={className}>{error instanceof Error ? error.message : String(error)}</div>
 
   return (
-    <div className={className}>
+    <div className={className} {...props}>
       <div className="flex gap-2">
         <div className="w-full max-w-[320px]">
           <img src={data?.profile?.avatar} className="h-auto w-64 rounded-lg border-4 shadow-xl" alt="Profile Avatar" />

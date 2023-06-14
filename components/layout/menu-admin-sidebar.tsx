@@ -7,15 +7,12 @@ import { usePathname } from 'next/navigation'
 import { menuAdmin } from '@/config/menu-admin'
 import { cn } from '@/lib/utils'
 
-interface MenuAdminSidebarProps {
-  className?: string
-}
-export const MenuAdminSidebar = ({ className }: MenuAdminSidebarProps) => {
+export const MenuAdminSidebar = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
   const cx = cn(className, 'flex flex-col gap-1')
 
   const pathname = usePathname()
   return (
-    <div className={cx}>
+    <div className={cx} {...props}>
       {menuAdmin.map((item) => {
         return (
           <Item key={item.href} currentPath={pathname} className="menu-item my-2" href={item.href}>

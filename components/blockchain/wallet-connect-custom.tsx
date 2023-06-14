@@ -1,7 +1,8 @@
+import { HTMLAttributes } from 'react'
+
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 
-interface WalletConnectCustomProps {
-  className?: string
+interface WalletConnectCustomProps extends HTMLAttributes<HTMLDivElement> {
   classNameConnect?: string
   classNameConnected?: string
   classNameWrongNetwork?: string
@@ -16,6 +17,7 @@ export const WalletConnectCustom = ({
   classNameWrongNetwork = 'btn btn-red w-full',
   labelConnect = 'Connect Wallet',
   labelWrongNetwork = 'Wrong Network',
+  ...props
 }: WalletConnectCustomProps) => {
   return (
     <ConnectButton.Custom>
@@ -23,7 +25,7 @@ export const WalletConnectCustom = ({
         const connected = account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
 
         return (
-          <div className={className}>
+          <div className={className} {...props}>
             {(() => {
               if (!connected) {
                 return (
