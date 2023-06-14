@@ -13,14 +13,14 @@ export default function App() {
   const [formData, setData] = useState('')
   const sf = useSuperFluidWithWagmiProvider()
   //use zod to validate form inputs
-
   //make this stuff dynamic, remove console logs and ts ignores if possible
   async function downgradeTokens(amount: string) {
     console.log(formData)
+    if (!sf) return
     //@ts-ignore
-    const superSigner = sf?.createSigner({ signer: signer })
+    const superSigner = sf.createSigner({ signer: signer })
 
-    const usdcx = await sf?.loadSuperToken('USDCx')
+    const usdcx = await sf.loadSuperToken('USDCx')
 
     try {
       //@ts-ignore

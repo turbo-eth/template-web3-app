@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@hookform/resolvers':
+    specifier: ^3.1.1
+    version: 3.1.1(react-hook-form@7.44.3)
   '@next/bundle-analyzer':
     specifier: ^13.1.1
     version: 13.2.4
@@ -3609,6 +3612,14 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: false
 
+  /@hookform/resolvers@3.1.1(react-hook-form@7.44.3):
+    resolution: {integrity: sha512-tS16bAUkqjITNSvbJuO1x7MXbn7Oe8ZziDTJdA9mMvsoYthnOOiznOTGBYwbdlYBgU+tgpI/BtTU3paRbCuSlg==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.44.3(react@18.2.0)
+    dev: false
+
   /@humanwhocodes/config-array@0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
     engines: {node: '>=10.10.0'}
@@ -6018,7 +6029,7 @@ packages:
     peerDependencies:
       '@truffle/contract': ^4.0.0
     dependencies:
-      '@superfluid-finance/metadata': github.com/superfluid-finance/metadata/6c1790f2e221d1c922805f4248be15719df1ccb1
+      '@superfluid-finance/metadata': github.com/superfluid-finance/metadata/c09548c2642b256af6b35dc84d3e566c672fd2dc
       '@truffle/contract': 4.6.18(encoding@0.1.13)
       auto-bind: 4.0.0
       node-fetch: 2.6.9(encoding@0.1.13)
@@ -6035,7 +6046,7 @@ packages:
     dependencies:
       '@nomiclabs/hardhat-ethers': 2.2.3(ethers@5.7.2)(hardhat@2.14.1)
       '@superfluid-finance/ethereum-contracts': 1.6.0(@openzeppelin/test-helpers@0.5.16)(encoding@0.1.13)
-      '@superfluid-finance/metadata': github.com/superfluid-finance/metadata/6c1790f2e221d1c922805f4248be15719df1ccb1
+      '@superfluid-finance/metadata': github.com/superfluid-finance/metadata/c09548c2642b256af6b35dc84d3e566c672fd2dc
       browserify: 17.0.0
       ethers: 5.7.2
       graphql: 16.6.0
@@ -20395,8 +20406,8 @@ packages:
       use-sync-external-store: 1.2.0(react@18.2.0)
     dev: false
 
-  github.com/superfluid-finance/metadata/6c1790f2e221d1c922805f4248be15719df1ccb1:
-    resolution: {tarball: https://codeload.github.com/superfluid-finance/metadata/tar.gz/6c1790f2e221d1c922805f4248be15719df1ccb1}
+  github.com/superfluid-finance/metadata/c09548c2642b256af6b35dc84d3e566c672fd2dc:
+    resolution: {tarball: https://codeload.github.com/superfluid-finance/metadata/tar.gz/c09548c2642b256af6b35dc84d3e566c672fd2dc}
     name: '@superfluid-finance/metadata'
     version: 1.1.6
     dev: false

@@ -1,45 +1,111 @@
 'use client'
 
-import { useState } from 'react'
-
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useSigner } from 'wagmi'
+import * as z from 'zod'
+
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 import { useSuperFluidWithWagmiProvider } from '../hooks/use-superfluid-with-wagmi-provider'
 
+const formSchema = z.object({
+  receiver: z.string().min(42).max(42),
+  token: z.string({
+    required_error: 'Please select a Supertoken to stream',
+  }),
+  amount: z.string(),
+})
+
 export default function App() {
   const signer = useSigner()
-  const { register, handleSubmit } = useForm()
-  const [formData, setData] = useState('')
   const sf = useSuperFluidWithWagmiProvider()
-  //Add zod to allow form validation
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      receiver: '',
+      token: '',
+      amount: '',
+    },
+  })
 
-  const onSubmit = async (data: any) => {
-    const usdcx = await sf?.loadSuperToken('USDCx')
-    //Make these addresses dynamic, first should be users address. 2nd is receiver, flowrate
-    let flowOp = usdcx?.createFlow({
+  // 2. Define a submit handler.
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values)
+
+    if (!sf || !signer?.data) return
+    const supertoken = await sf.loadSuperToken(values.token)
+
+    let flowOp = supertoken?.createFlow({
       sender: '0xc0163e58648b247c143023cfb26c2baa42c9d9a9',
-      receiver: '0x1A6784925814a13334190Fd249ae0333B90b6443',
-      flowRate: '30000',
+      receiver: values.receiver,
+      flowRate: values.amount,
     })
 
-    //@ts-ignore
-    await flowOp?.exec(signer?.data) // should have same address as `sender`
+    await flowOp?.exec(signer?.data)
   }
 
-  //use React-form-hook to make this look good
   return (
-    <form onSubmit={handleSubmit((formData) => setData(JSON.stringify(formData)))}>
-      <h1>Start Stream</h1>
-      <input {...register('receiver')} placeholder="Receiver Address" />
-      <select {...register('supertoken', { required: true })}>
-        <option value="">Select...</option>
-        <option value="USDCx">USDCx</option>
-        <option value="DAIx">DAIx</option>
-      </select>
-      <input {...register('flowRate')} placeholder="Flow Rate / month" />
-      <p>{formData}</p>
-      <button onClick={onSubmit}>Start Stream</button>
-    </form>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="receiver"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Receiver</FormLabel>
+              <FormControl>
+                <Input placeholder="ethereum address here" {...field} />
+              </FormControl>
+              <FormDescription> This is the receivers valid EVM address. </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="token"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Supertoken</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a Supertoken to stream" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="USDCx">USDCx</SelectItem>
+                  <SelectItem value="DAIx">DAIx</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormDescription>Select a Supertoken to stream.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="amount"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Amount (Monthly)</FormLabel>
+              <FormControl>
+                <Input placeholder="100 / month" {...field} />
+              </FormControl>
+              <FormDescription> Amount to stream to receiver, monthly. </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
   )
 }
