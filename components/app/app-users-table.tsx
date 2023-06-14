@@ -1,9 +1,9 @@
 import { HTMLAttributes, useMemo } from 'react'
 
-import { Address as AddressComponent } from '@turbo-eth/core-wagmi'
 import { Address } from 'wagmi'
 
 import type { Users } from '@/app/api/app/users/route'
+import { Address as AddressComponent } from '@/components/blockchain/address'
 
 import TableCore from '../shared/table/table-core'
 import { TimeFromUtc } from '../shared/time-from-utc'

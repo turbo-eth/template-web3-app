@@ -2,11 +2,11 @@
 
 import { HTMLAttributes } from 'react'
 
-import { WalletAddress } from '@turbo-eth/core-wagmi'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { FaCopy } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
 
+import { WalletAddress } from '@/components/blockchain/wallet-address'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'

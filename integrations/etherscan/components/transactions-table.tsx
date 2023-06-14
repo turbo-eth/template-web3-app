@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 
-import { Address as AddressComponent } from '@turbo-eth/core-wagmi'
 import type { Address } from 'wagmi'
+
+import { Address as AddressComponent } from '@/components/blockchain/address'
 
 import TableCore from '../../../components/shared/table/table-core'
 import TimeFromEpoch from '../../../components/shared/time-from-epoch'

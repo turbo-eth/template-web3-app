@@ -1,12 +1,12 @@
 'use client'
 
-import { WalletAddress } from '@turbo-eth/core-wagmi'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import Balancer from 'react-wrap-balancer'
 
+import { WalletAddress } from '@/components/blockchain/wallet-address'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import Card from '@/components/shared/card'
 import { IsDarkTheme } from '@/components/shared/is-dark-theme'
@@ -104,16 +104,15 @@ export default function Home() {
 const features = [
   {
     title: 'Web3 Components for the power developer',
-    description:
-      'Pre-built Web3 components, powered by WAGMI [Core WAGMI](https://github.com/turbo-eth/core-wagmi), [ERC20 WAGMI](https://github.com/turbo-eth/erc20-wagmi), and [ERC721 WAGMI](https://github.com/turbo-eth/erc721-wagmi)',
+    description: 'Pre-built Web3 components, powered by WAGMI',
     large: true,
     demo: (
       <div className="mx-auto  justify-between">
         <IsWalletConnected>
           <div className="flex flex-col gap-5 lg:flex-row lg:gap-5 lg:pt-10">
             <div className=" block text-center">
-              <WalletAddress truncate styled isLink />
-              <span className="mt-4 block font-mono text-xs font-semibold">&lt;WalletAddress isLink truncate styled /&gt;</span>
+              <WalletAddress truncate isLink />
+              <span className="mt-4 block font-mono text-xs font-semibold">&lt;WalletAddress isLink truncate /&gt;</span>
             </div>
           </div>
         </IsWalletConnected>

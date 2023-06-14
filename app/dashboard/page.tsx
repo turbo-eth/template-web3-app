@@ -1,8 +1,10 @@
 'use client'
 
-import { WalletAddress, WalletBalance, WalletEnsName } from '@turbo-eth/core-wagmi'
 import { motion } from 'framer-motion'
 
+import { WalletAddress } from '@/components/blockchain/wallet-address'
+import { WalletBalance } from '@/components/blockchain/wallet-balance'
+import { WalletEnsName } from '@/components/blockchain/wallet-ens-name'
 import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
 import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
