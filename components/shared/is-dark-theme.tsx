@@ -11,7 +11,7 @@ interface IsDarkThemeProps {
 export const IsDarkTheme = ({ children }: IsDarkThemeProps) => {
   const [colorMode] = useColorMode()
 
-  if (colorMode === 'dark') return <>{children}</>
+  if (colorMode !== 'light') return <>{children}</>
 
   return null
 }
