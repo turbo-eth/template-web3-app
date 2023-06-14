@@ -37,12 +37,11 @@ File Structure
 ```
 integrations/erc20
 ├─ abis/
-│  ├─ erc20ABI.ts
-│  ├─ erc20ByteCode.ts
-│  ├─ erc20MintableABI.ts
-│  ├─ erc20erc20MintableByteCode.ts
+│  ├─ erc20-abi.ts
+│  ├─ erc20-bytecode.ts
+│  ├─ erc20-mintable-abi.ts
+│  ├─ erc20-mintable-bytecode.ts
 ├─ components/
-│  ├─ branch-token-minted.tsx
 │  ├─ erc20-deploy.tsx
 │  ├─ erc20-event-mint.tsx
 │  ├─ erc20-event-transfer.tsx
@@ -51,7 +50,7 @@ integrations/erc20
 │  ├─ erc20-write-mint.tsx
 │  ├─ erc20-write-transfer.tsx
 ├─ hooks/
-│  ├─ use-token-storage.ts
+│  ├─ use-erc20-token-storage.ts
 ├─ generated/
 │  ├─ erc20-wagmi.ts
 ├─ wagmi.config.ts

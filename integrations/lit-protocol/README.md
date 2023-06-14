@@ -35,11 +35,16 @@ Decrypt a message using the Lit Protocol given the database ID. Returns a Promis
 
 ```
 integrations/lit-protocol
+├─ api/
+│  ├─ [id].tsx
+│  ├─ encrypt.tsx
 ├─ components/
 │  ├─ access-control/
-│  │  │─ access-control-single-address.tsx
-│  │  │─ access-control-single-erc721.tsx
-│  │  │─ access-control-token-group.tsx
+│  │  ├─ access-control-single-address.tsx
+│  │  ├─ access-control-single-erc721.tsx
+│  │  ├─ access-control-token-group.tsx
+│  │  ├─ index.ts
+│  │  ├─ types.ts
 │  ├─ form-lit-decrypt-message.tsx
 │  ├─ form-lit-encrypt-message.tsx
 ├─ hooks/
@@ -47,6 +52,7 @@ integrations/lit-protocol
 ├─ utils/
 │  ├─ config.ts
 │  ├─ data-types.ts
+│  ├─ types.ts
 ├─ client.ts
 ├─ README.md
 ```

@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 import { env } from '@/env.mjs'
 
-import { ModelConfig } from './types'
+import { ModelConfig } from './utils/types'
 
 const readableStreamSchema = z.object({
   id: z.string(),

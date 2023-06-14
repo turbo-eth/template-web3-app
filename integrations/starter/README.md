@@ -43,17 +43,20 @@ Each of these elements plays a crucial role in making your integration functiona
 ```
 integrations/starter
 ├─ abis/
-│  ├─ **/*.ts
-├─ components/
-│  ├─ **/*.ts
-├─ hooks/
-│  ├─ **/*.ts
+│  ├─ starter-abi.ts
 ├─ client/
-│  ├─ **/*.ts
-├─ starter-wagmi.ts
+│  ├─ index.ts
+├─ components/
+│  ├─ starter-header.tsx
+├─ generated/
+│  ├─ starter-wagmi.ts
+├─ hooks/
+│  ├─ use-starter.ts
+├─ utils/
+│  ├─ types.ts
 ├─ index.ts
-├─ wagmi.config.ts
 ├─ README.md
+├─ wagmi.config.ts
 ```
 
 By using this template, you'll create well-organized and understandable integrations that are easy for you and others to navigate. Happy coding!

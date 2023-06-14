@@ -55,6 +55,7 @@ integrations/erc721
 │  ├─ erc721-name.tsx
 │  ├─ erc721-owner-of.tsx
 │  ├─ erc721-read.tsx
+│  ├─ erc721-set-token-storage.tsx
 │  ├─ erc721-symbol.tsx
 │  ├─ erc721-token-uri-description.tsx
 │  ├─ erc721-token-uri-image.tsx
@@ -63,11 +64,13 @@ integrations/erc721
 │  ├─ erc721-write-approve.tsx
 │  ├─ erc721-write-mint.tsx
 │  ├─ erc721-write-transfer.tsx
+├─ generated/
+│  ├─ erc721-wagmi.ts
 ├─ hooks/
 │  ├─ use-erc721-metadata.ts
 │  ├─ use-erc721-token-storage.ts
-├─ generated/
-│  ├─ erc721-wagmi.ts
+├─ utils/
+│  ├─ types.ts
 ├─ index.ts
 ├─ wagmi.config.ts
 ├─ README.md

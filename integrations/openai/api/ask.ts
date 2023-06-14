@@ -1,5 +1,5 @@
 import { OpenAIStream } from '@/integrations/openai/openai-stream'
-import { ModelConfig } from '@/integrations/openai/types'
+import { ModelConfig } from '@/integrations/openai/utils/types'
 
 export async function POST(req: Request) {
   const { prompt, apiKey } = (await req.json()) as {

@@ -59,6 +59,9 @@ integrations/etherscan
 │  ├─ etherscan-account-transactions/
 │  │  ├─ client.ts
 │  │  ├─ index.ts
+├─ api/
+│  ├─ account/
+│  │  ├─ transactions.ts
 ├─ components/
 │  ├─ transactions-table.tsx
 ├─ hooks/
@@ -76,6 +79,7 @@ integrations/etherscan
 │  ├─ is-valid-chain-id-mapping.ts
 │  ├─ is-valid-transaction-hash.ts
 │  ├─ query-etherscan-client.ts
+│  ├─ types.ts
 ├─ etherscan.d.ts
 ├─ README.md
 ```

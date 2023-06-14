@@ -37,10 +37,14 @@ OPENAI_API_KEY=<your_openai_api_key>
 
 ```
 integrations/openai
+├─ api/
+│  ├─ ask.ts
 ├─ components/
 │  ├─ form-openai-prompt.tsx
 ├─ hooks/
 │  ├─ use-openai-prompt.ts
+├─ utils/
+│  ├─ types.ts
 ├─ openai-stream.ts
 ├─ types.ts
 ├─ README.md

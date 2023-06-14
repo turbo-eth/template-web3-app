@@ -44,6 +44,8 @@ integrations/pooltogether-v4
 ├─ components/
 │  ├─ form-yield-source-prize-pool-deposit.tsx
 │  ├─ form-yield-source-prize-pool-withdraw.tsx
+├─ generated/
+│  ├─ pooltogether-v4-wagmi.ts
 ├─ hooks/
 │  ├─ use-load-contract-from-chain-id.tsx
 │  ├─ use-usdc-approval.tsx
@@ -53,7 +55,6 @@ integrations/pooltogether-v4
 │  ├─ prize-pool-contract-list.ts
 │  ├─ ticket-contract-list.ts
 │  ├─ usdc-contract-list.ts
-├─ generated/
-│  ├─ pooltogether-v4-wagmi.ts
 ├─ README.md
+├─ wagmi.config.ts
 ```
