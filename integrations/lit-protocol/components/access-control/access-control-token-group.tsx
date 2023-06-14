@@ -1,144 +1,144 @@
-import { useState } from 'react'
-
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { isAddress } from 'viem'
+import { z } from 'zod'
 
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormLabel, FormMessage } from '@/components/ui/form'
+import { FormItem } from '@/components/ui/form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 import { AccessControlProps } from './types'
-import { supportedChains } from '../../utils/config'
+import { GroupTokenControls } from '../../utils/controls'
+import { getComponent } from '../../utils/get-element-component'
+
+const litGroupSchema = z.object({
+  chain: z.string(),
+  tokenType: z.string(),
+  address: z.string().refine((value) => isAddress(value), {
+    message: 'Address is invalid. Please insure you have typed correctly.',
+  }),
+  amount: z.string(),
+  tokenId: z.string(),
+  decimals: z.string(),
+})
 
 export function AccessControlTokenGroup({ setAccessControlConditions }: AccessControlProps) {
-  const [address, setAddress] = useState<string>('')
-  const [tokenAmount, setTokenAmount] = useState<number>(0)
-  const [tokenType, setTokenType] = useState<string>()
-  const [tokenDecimals, setTokenDecimals] = useState<number>(18)
-  const [tokenId, setTokenId] = useState<number>(0)
-  const [chain, setChain] = useState<string>('ethereum')
+  const form = useForm<z.infer<typeof litGroupSchema>>({
+    resolver: zodResolver(litGroupSchema),
+    defaultValues: {
+      chain: 'ethereum',
+      tokenType: 'erc20',
+      address: '',
+      amount: '',
+      tokenId: '',
+      decimals: '18',
+    },
+  })
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm()
+  const { register, handleSubmit, control, watch } = form
 
-  const onSubmit = ({ address, tokenId, tokenAmount }: any) => {
-    setAccessControlConditions(getAccessControlConditions(chain, address, tokenType || '', tokenAmount, tokenId, tokenDecimals))
+  const tokenValue = watch('tokenType')
+
+  const onSubmit = (values: z.infer<typeof litGroupSchema>) => {
+    const { chain, tokenType, address, amount, tokenId, decimals } = values
+
+    setAccessControlConditions(getAccessControlConditions(chain, address, tokenType || '', amount, tokenId, Number(decimals)))
   }
+
+  const Decimals = getComponent(GroupTokenControls[4].component)
+  const TokenId = getComponent(GroupTokenControls[5].component)
 
   return (
     <div>
-      <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Chain:</label>
-          <Select {...register('chain')} value={chain} onValueChange={(value) => setChain(value)}>
-            <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
-              <SelectValue placeholder="Select a chain" />
-            </SelectTrigger>
-            <SelectContent className="bg-white dark:bg-white">
-              {supportedChains.map((chain) => (
-                <SelectItem key={chain} value={chain}>
-                  {chain}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-        <div className="mt-4">
-          <label>Token Type:</label>
-          <Select
-            {...register('tokenType', {
-              validate: {
-                isValidEthereumAddress: () => !!tokenType || 'Token type is required',
-              },
+      <div className="mt-8">
+        <Form {...form}>
+          <form onSubmit={handleSubmit(onSubmit)} className=" space-y-8">
+            {GroupTokenControls.map((item, index) => {
+              const Item = getComponent(item?.component)
+              return (
+                <FormField
+                  {...register(item?.formfieldName as 'address' | 'tokenType' | 'tokenId' | 'chain')}
+                  key={item?.label}
+                  control={control}
+                  name={item?.formfieldName as 'address' | 'tokenType' | 'tokenId' | 'chain'}
+                  render={({ field }) => (
+                    <>
+                      <FormItem>
+                        {index < 4 ? (
+                          <>
+                            <FormLabel>{item?.label}</FormLabel>
+                            <FormControl>
+                              {item.component === 'select' ? (
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                  <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
+                                    <SelectValue placeholder="Select a chain" />
+                                  </SelectTrigger>
+                                  <SelectContent className="bg-white dark:bg-white">
+                                    {item?.options?.map((chain) => (
+                                      <SelectItem key={chain} value={chain}>
+                                        {chain}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                              ) : (
+                                <Item placeholder={item.placeholder} {...field} attribute={item?.attribute} />
+                              )}
+                            </FormControl>
+                          </>
+                        ) : null}
+                        <FormMessage />
+                      </FormItem>
+                    </>
+                  )}
+                />
+              )
             })}
-            value={tokenType}
-            onValueChange={(value) => setTokenType(value)}>
-            <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
-              <SelectValue placeholder="Select a token type" />
-            </SelectTrigger>
-            <SelectContent className="bg-white dark:bg-white">
-              <SelectItem value="ERC20">ERC20</SelectItem>
-              <SelectItem value="ERC721">ERC721</SelectItem>
-              <SelectItem value="ERC1155">ERC1155</SelectItem>
-            </SelectContent>
-          </Select>
-          {errors.tokenType && <p className="mt-1 text-sm text-red-500">{String(errors.tokenType?.message)}</p>}
-        </div>
-        <div className="mt-4">
-          <label>Contract Address:</label>
-          <input
-            className="input mt-4"
-            {...register('address', {
-              required: 'Contract address is required',
-              validate: {
-                isValidEthereumAddress: (value) => isAddress(value) || 'Invalid Contract address',
-              },
-            })}
-            placeholder="0x1234567890123456789012345678901234567890"
-            type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          {errors.address && <p className="mt-1 text-sm text-red-500">{String(errors.address?.message)}</p>}
-        </div>
-        <div className="mt-4">
-          <label>Token Amount:</label>
-          <input
-            className="input mt-4"
-            type="number"
-            {...register('tokenAmount', {
-              required: 'Token amount is required',
-              validate: (value) => Number(value) > 0 || 'Token amount must be greater than 0',
-            })}
-            value={tokenAmount}
-            onChange={(e) => {
-              console.log(e.target.value)
-              setTokenAmount(Number(e.target.value))
-            }}
-          />
-          {errors.tokenAmount && <p className="mt-1 text-sm text-red-500">{String(errors.tokenAmount?.message)}</p>}
-        </div>
-        {tokenType === 'ERC1155' && (
-          <div className="mt-4">
-            <label>Token ID:</label>
-            <input
-              className="input mt-4"
-              type="number"
-              {...register('tokenId', {
-                required: 'Token ID is required',
-                validate: (value) => Number(value) >= 0 || 'Token ID must be positive',
-              })}
-              value={tokenId}
-              onChange={(e) => {
-                setTokenId(Math.floor(Number(e.target.value)))
-              }}
-            />
-            {errors.tokenId && <p className="mt-1 text-sm text-red-500">{String(errors.tokenId?.message)}</p>}
-          </div>
-        )}
-        {tokenType === 'ERC20' && (
-          <div className="mt-4">
-            <label>ERC20 Decimals:</label>
-            <input
-              className="input mt-4"
-              type="number"
-              {...register('tokenDecimals', {
-                required: 'ERC20 Decimals is required',
-                validate: (value) => Number(value) > 0 || 'Token decimals must be positive',
-              })}
-              value={tokenDecimals}
-              onChange={(e) => {
-                setTokenDecimals(Math.floor(Number(e.target.value)))
-              }}
-            />
-            {errors.tokenDecimals && <p className="mt-1 text-sm text-red-500">{String(errors.tokenDecimals?.message)}</p>}
-          </div>
-        )}
-        <button className="btn btn-emerald mt-4" type="submit">
-          Save
-        </button>
-      </form>
+
+            {tokenValue === 'erc1155' && (
+              <div className="mt-4">
+                <FormField
+                  key="tokenId"
+                  control={control}
+                  name="tokenId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Token Id:</FormLabel>
+                      <FormControl>
+                        <Decimals placeholder="0" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            )}
+
+            {tokenValue === 'erc20' && (
+              <div className="mt-4">
+                <FormField
+                  key="decimals"
+                  control={control}
+                  name="decimals"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Decimals:</FormLabel>
+                      <FormControl>
+                        <TokenId placeholder="0" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+            )}
+            <Button className="w-full" type="submit">
+              Save
+            </Button>
+          </form>
+        </Form>
+      </div>
     </div>
   )
 }

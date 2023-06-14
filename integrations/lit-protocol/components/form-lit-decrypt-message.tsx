@@ -1,35 +1,77 @@
 import { useState } from 'react'
 
 import { motion } from 'framer-motion'
-import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Textarea } from '@/components/ui/textarea'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { useToast } from '@/lib/hooks/use-toast'
 
 import { useLitClient } from '../hooks/use-lit-client'
+import { litControls } from '../utils/controls'
+import { getComponent } from '../utils/get-element-component'
 
 interface FormLitDecryptMessageProps {
   initialEencryptedMessageId: string
 }
 
 export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDecryptMessageProps) {
-  const [encryptedMessageId, setEncryptedMessageId] = useState<string>(initialEencryptedMessageId)
   const [decryptedMessage, setDecryptedMessage] = useState<string>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const { decryptMessage } = useLitClient()
-  const { register, handleSubmit } = useForm()
+  const { decryptMessage, form, litSchema } = useLitClient()
+  const { register, handleSubmit, watch } = form
+
   const { toast, dismiss } = useToast()
+
+  const encryptedMessageId = watch('searchKey')
 
   const isValid = encryptedMessageId.length > 0
 
-  const onSubmit = async () => {
+  const FormComponent = () => {
+    return (
+      <>
+        <Form {...form}>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+            {litControls.map((item) => {
+              const Item = getComponent(item?.component)
+              return (
+                <FormField
+                  key={item?.placeholder}
+                  control={form.control}
+                  name={item?.formfieldName as 'searchKey'}
+                  render={({ field }) => (
+                    <>
+                      <FormItem>
+                        <FormLabel>{item?.label}</FormLabel>
+                        <FormControl>
+                          <Item {...item?.attribute} placeholder={item?.placeholder} {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    </>
+                  )}
+                />
+              )
+            })}
+
+            <Button disabled={isLoading || !isValid} type="submit" className="btn btn-emerald mt-4">
+              {isLoading ? 'Loading...' : 'Decrypt'}
+            </Button>
+          </form>
+        </Form>
+      </>
+    )
+  }
+
+  const onSubmit = async (values: z.infer<typeof litSchema>) => {
     if (!isValid) return
     setIsLoading(true)
-    const { decryptedString, error } = await decryptMessage(encryptedMessageId)
+    const { decryptedString, error } = await decryptMessage(values?.searchKey)
     setIsLoading(false)
 
     if (!error) {

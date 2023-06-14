@@ -1,15 +1,31 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import * as LitJsSdk from '@lit-protocol/lit-node-client'
+import { useForm } from 'react-hook-form'
 import { useAccount, useNetwork, useSignMessage } from 'wagmi'
+import { z } from 'zod'
 
 import { siweMessage } from '@/integrations/siwe/actions/siwe-message'
 
 import litClient from '../client'
 import { blobToString } from '../utils/data-types'
 
+const litSchema = z.object({
+  encryptMessage: z.string(),
+  searchKey: z.string(),
+})
+
 export const useLitClient = () => {
   const { signMessageAsync } = useSignMessage()
   const { address } = useAccount()
   const { chain } = useNetwork()
+
+  const form = useForm<z.infer<typeof litSchema>>({
+    resolver: zodResolver(litSchema),
+    defaultValues: {
+      searchKey: '',
+      encryptMessage: '',
+    },
+  })
 
   /**
    * Get auth signature using siwe
@@ -130,5 +146,5 @@ export const useLitClient = () => {
     return { decryptedString }
   }
 
-  return { encryptMessage, decryptMessage }
+  return { encryptMessage, decryptMessage, form, litSchema }
 }
