@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 
-import { useForm } from 'react-hook-form'
 import { useSigner } from 'wagmi'
 
 import { useSuperFluidWithWagmiProvider } from '../hooks/use-superfluid-with-wagmi-provider'
@@ -11,8 +10,6 @@ type Paging = { take: number; skip?: number; lastId?: string }
 
 export default function App() {
   const signer = useSigner()
-  const { register, handleSubmit } = useForm()
-  const [formData, setData] = useState('')
   const sf = useSuperFluidWithWagmiProvider()
   const [streams, setStreams] = useState<any[]>()
 

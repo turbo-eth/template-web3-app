@@ -1,76 +1,94 @@
 'use client'
 
-import { useState } from 'react'
-
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { useSigner } from 'wagmi'
+import * as z from 'zod'
+
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 import { useSuperFluidWithWagmiProvider } from '../hooks/use-superfluid-with-wagmi-provider'
 
+const formSchema = z.object({
+  token: z.string({
+    required_error: 'Please select a Supertoken to stream',
+  }),
+  amount: z.string(),
+})
+
 export default function App() {
   const signer = useSigner()
-  const { register, handleSubmit } = useForm()
-  const [formData, setData] = useState('')
   const sf = useSuperFluidWithWagmiProvider()
-  //use zod to validate form inputs
-  //make this stuff dynamic, remove console logs and ts ignores if possible
-  async function downgradeTokens(amount: string) {
-    console.log(formData)
-    if (!sf) return
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      token: '',
+      amount: '',
+    },
+  })
+
+  // 2. Define a submit handler.
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values)
+
+    if (!sf || !signer?.data) return
+    const supertoken = await sf.loadSuperToken(values.token)
+
     //@ts-ignore
-    const superSigner = sf.createSigner({ signer: signer })
+    const downgradeOperation = supertoken?.downgrade({
+      amount: values.amount,
+    })
 
-    const usdcx = await sf.loadSuperToken('USDCx')
-
-    try {
-      //@ts-ignore
-      const downgradeOperation = usdcx?.downgrade({
-        amount: amount,
-      })
-
-      console.log('downgrading...', usdcx, downgradeOperation)
-      await downgradeOperation.exec(signer?.data)
-      console.log(
-        `Congrats - you've just downgraded your tokens
-           Network: Goerli
-           Super Token: DAIx
-           Amount: ${amount}         
-        `
-      )
-
-      console.log(
-        `Congrats - you've just downgraded
-      `
-      )
-    } catch (error) {
-      console.log(
-        amount,
-        "Hmmm, your transaction threw an error. Make sure that this stream does not already exist, and that you've entered a valid Ethereum address!"
-      )
-      console.error(error)
-    }
+    await downgradeOperation?.exec(signer?.data)
   }
 
-  const onSubmit = async (data: any) => {
-    downgradeTokens(`10000000000`)
-  }
-
-  //use react-hook-form for the form
   return (
-    <form onSubmit={handleSubmit((formData) => setData(JSON.stringify(formData)))}>
-      <h1>Downgrade Supertoken</h1>
-      <input {...register('amount')} placeholder="Amount" />
-      <select {...register('supertoken', { required: true })}>
-        <option value="">Select...</option>
-        <option value="USDCx">USDCx</option>
-        <option value="DAIx">DAIx</option>
-      </select>
-      <div>
-        <p>0.0</p>
-        <div>Token Name</div>
-      </div>
-      <p>{formData}</p>
-      <button onClick={onSubmit}>Downgrade</button>
-    </form>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="token"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Supertoken</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a Supertoken to stream" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="USDCx">USDCx</SelectItem>
+                  <SelectItem value="DAIx">DAIx</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormDescription>Select a Supertoken to stream.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="amount"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Amount (Monthly)</FormLabel>
+              <FormControl>
+                <Input placeholder="100 / month" {...field} />
+              </FormControl>
+              <FormDescription> Amount to stream to receiver, monthly. </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
   )
 }
