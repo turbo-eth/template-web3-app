@@ -6,7 +6,8 @@ import { Address, useAccount, useWaitForTransaction } from 'wagmi'
 
 import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { TransactionStatus } from '@/components/blockchain/transaction-status'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 
 import ERC20EventMint from './erc20-event-mint'
 import { useErc20MintableMint, usePrepareErc20MintableMint } from '../generated/erc20-wagmi'
@@ -54,19 +55,23 @@ function ERC20ContractMintTokens({ address }: ERC20WriteMintProps) {
 
 export function ERC20WriteMint({ address }: ERC20WriteMintProps) {
   return (
-    <BranchIsWalletConnected>
-      <div className="card w-full">
-        <ERC20ContractMintTokens address={address} />
-        <ERC20EventMint />
-        <hr className="my-4" />
-        <div className="flex items-center justify-between">
-          <h3 className="text-center">ERC20 Mint</h3>
-          <p className="text-center text-sm text-gray-500">Mint tokens to yourself</p>
+    <>
+      <IsWalletConnected>
+        <div className="card w-full">
+          <ERC20ContractMintTokens address={address} />
+          <ERC20EventMint />
+          <hr className="my-4" />
+          <div className="flex items-center justify-between">
+            <h3 className="text-center">ERC20 Mint</h3>
+            <p className="text-center text-sm text-gray-500">Mint tokens to yourself</p>
+          </div>
         </div>
-      </div>
-      <div className="flex items-center justify-center gap-10">
-        <ConnectButton />
-      </div>
-    </BranchIsWalletConnected>
+      </IsWalletConnected>
+      <IsWalletDisconnected>
+        <div className="flex items-center justify-center gap-10">
+          <ConnectButton />
+        </div>
+      </IsWalletDisconnected>
+    </>
   )
 }

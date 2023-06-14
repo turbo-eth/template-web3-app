@@ -8,13 +8,15 @@ import { FaCopy } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
-import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
+import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
+import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 import { useToast } from '@/lib/hooks/use-toast'
 import { cn } from '@/lib/utils'
 
+import { IsWalletConnected } from '../shared/is-wallet-connected'
+import { IsWalletDisconnected } from '../shared/is-wallet-disconnected'
 import { ThemeToggle } from '../shared/theme-toggle'
 
 export function DashboardHeader({ className, ...props }: HTMLAttributes<HTMLElement>) {
@@ -39,7 +41,7 @@ export function DashboardHeader({ className, ...props }: HTMLAttributes<HTMLElem
         <span className="flex items-center gap-2">
           <WalletAddress truncate isLink className="tag tag-primary hover:shadow-sm" />
           <span className="">
-            <BranchIsWalletConnected>
+            <IsWalletConnected>
               <span onClick={handleToast} className="">
                 <CopyToClipboard text={address as string}>
                   <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
@@ -47,19 +49,23 @@ export function DashboardHeader({ className, ...props }: HTMLAttributes<HTMLElem
                   </span>
                 </CopyToClipboard>
               </span>
-            </BranchIsWalletConnected>
+            </IsWalletConnected>
           </span>
         </span>
       </div>
 
       <div className="flex items-center gap-4">
-        <BranchIsWalletConnected>
-          <BranchIsAuthenticated>
+        <IsWalletConnected>
+          <IsSignedIn>
             <ButtonSIWELogout className="menu-item" />
+          </IsSignedIn>
+          <IsSignedOut>
             <ButtonSIWELogin className=" menu-item colormode" />
-          </BranchIsAuthenticated>
+          </IsSignedOut>
+        </IsWalletConnected>
+        <IsWalletDisconnected>
           <WalletConnect />
-        </BranchIsWalletConnected>
+        </IsWalletDisconnected>
         <ThemeToggle />
       </div>
     </header>

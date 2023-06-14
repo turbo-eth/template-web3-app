@@ -5,15 +5,18 @@ import Balancer from 'react-wrap-balancer'
 import { useNetwork } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsDarkTheme } from '@/components/shared/is-dark-theme'
+import { IsLightTheme } from '@/components/shared/is-light-theme'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 import TransactionsTable from '@/integrations/etherscan/components/transactions-table'
 import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
-import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
+import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
+import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 
 export default function PageIntegration() {
   const { chain } = useNetwork()
@@ -37,10 +40,12 @@ export default function PageIntegration() {
               },
             },
           }}>
-          <BranchColorMode>
+          <IsLightTheme>
             <Image className="mx-auto" alt="Etherscan logo" src={turboIntegrations.etherscan.imgDark} width={100} height={100} />
+          </IsLightTheme>
+          <IsDarkTheme>
             <Image className="mx-auto" alt="Etherscan logo" src={turboIntegrations.etherscan.imgLight} width={100} height={100} />
-          </BranchColorMode>
+          </IsDarkTheme>
           <motion.h1
             className="text-gradient-sand text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
             variants={FADE_DOWN_ANIMATION_VARIANTS}>
@@ -57,8 +62,8 @@ export default function PageIntegration() {
         </motion.div>
 
         <div className="container mx-auto mt-10  max-w-screen-xl gap-6 text-center">
-          <BranchIsWalletConnected>
-            <BranchIsAuthenticated>
+          <IsWalletConnected>
+            <IsSignedIn>
               <div className="w-full">
                 {!isLoading && (
                   <div className="card">
@@ -66,17 +71,19 @@ export default function PageIntegration() {
                   </div>
                 )}
               </div>
-              <>
-                <div className="">
-                  <ButtonSIWELogin className="btn btn-emerald" label="Sign-In With Ethereum" />
-                  <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-200">
-                    Accessing the Etherscan API requires authenticating with an Ethereum Account.
-                  </p>
-                </div>
-              </>
-            </BranchIsAuthenticated>
+            </IsSignedIn>
+            <IsSignedOut>
+              <div className="">
+                <ButtonSIWELogin className="btn btn-emerald" label="Sign-In With Ethereum" />
+                <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-200">
+                  Accessing the Etherscan API requires authenticating with an Ethereum Account.
+                </p>
+              </div>
+            </IsSignedOut>
+          </IsWalletConnected>
+          <IsWalletDisconnected>
             <WalletConnect className="mx-auto inline-block" />
-          </BranchIsWalletConnected>
+          </IsWalletDisconnected>
         </div>
       </div>
     </>

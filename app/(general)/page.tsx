@@ -8,17 +8,20 @@ import { FaGithub } from 'react-icons/fa'
 import Balancer from 'react-wrap-balancer'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchColorMode } from '@/components/shared/branch-color-mode'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import Card from '@/components/shared/card'
+import { IsDarkTheme } from '@/components/shared/is-dark-theme'
+import { IsLightTheme } from '@/components/shared/is-light-theme'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { DEPLOY_URL, siteConfig } from '@/config/site'
 import { turboIntegrations } from '@/data/turbo-integrations'
 import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@/integrations/erc20/components/erc20-read'
 import { ERC721TokenUriImage, ERC721TokenUriName } from '@/integrations/erc721'
-import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
+import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
+import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 
 export default function Home() {
   return (
@@ -106,15 +109,17 @@ const features = [
     large: true,
     demo: (
       <div className="mx-auto  justify-between">
-        <BranchIsWalletConnected>
+        <IsWalletConnected>
           <div className="flex flex-col gap-5 lg:flex-row lg:gap-5 lg:pt-10">
             <div className=" block text-center">
               <WalletAddress truncate styled isLink />
               <span className="mt-4 block font-mono text-xs font-semibold">&lt;WalletAddress isLink truncate styled /&gt;</span>
             </div>
           </div>
+        </IsWalletConnected>
+        <IsWalletDisconnected>
           <WalletConnect className="mx-auto inline-block" />
-        </BranchIsWalletConnected>
+        </IsWalletDisconnected>
       </div>
     ),
   },
@@ -153,10 +158,12 @@ const features = [
     href: turboIntegrations.etherscan.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <BranchColorMode>
+        <IsLightTheme>
           <Image alt="Etherscan logo" src="/integrations/etherscan-dark.svg" width={100} height={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
           <Image alt="Etherscan logo" src="/integrations/etherscan-light.svg" width={100} height={100} />
-        </BranchColorMode>
+        </IsDarkTheme>
       </div>
     ),
   },
@@ -175,13 +182,17 @@ const features = [
     description: 'Authenticate using an Ethereum Account',
     demo: (
       <div className="text-center text-gray-800">
-        <BranchIsWalletConnected>
-          <BranchIsAuthenticated>
+        <IsWalletConnected>
+          <IsSignedIn>
             <ButtonSIWELogout className="btn btn-blue btn-lg " />
+          </IsSignedIn>
+          <IsSignedOut>
             <ButtonSIWELogin className="btn btn-emerald" label="Sign-In With Ethereum" />
-          </BranchIsAuthenticated>
+          </IsSignedOut>
+        </IsWalletConnected>
+        <IsWalletDisconnected>
           <WalletConnect />
-        </BranchIsWalletConnected>
+        </IsWalletDisconnected>
       </div>
     ),
   },
@@ -234,10 +245,12 @@ const features = [
     href: turboIntegrations.litProtocol.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <BranchColorMode>
+        <IsLightTheme>
           <Image alt="Lit Protocol logo" src={turboIntegrations.litProtocol.imgDark} width={100} height={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
           <Image alt="Lit Protocol logo" src={turboIntegrations.litProtocol.imgLight} width={100} height={100} />
-        </BranchColorMode>
+        </IsDarkTheme>
       </div>
     ),
   },
@@ -247,10 +260,12 @@ const features = [
     href: turboIntegrations.openai.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <BranchColorMode>
+        <IsLightTheme>
           <Image alt="OpenAI logo" src={turboIntegrations.openai.imgDark} width={100} height={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
           <Image alt="OpenAI logo" src={turboIntegrations.openai.imgLight} width={100} height={100} />
-        </BranchColorMode>
+        </IsDarkTheme>
       </div>
     ),
   },
@@ -260,10 +275,12 @@ const features = [
     href: turboIntegrations.pooltogether_v4.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <BranchColorMode>
+        <IsLightTheme>
           <Image alt="PoolTogether logo" src={turboIntegrations.pooltogether_v4.imgDark} width={100} height={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
           <Image alt="PoolTogether logo" src={turboIntegrations.pooltogether_v4.imgLight} width={100} height={100} />
-        </BranchColorMode>
+        </IsDarkTheme>
       </div>
     ),
   },

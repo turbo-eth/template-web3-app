@@ -9,7 +9,8 @@ import { useForm } from 'react-hook-form'
 import { FaCopy } from 'react-icons/fa'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
@@ -61,7 +62,7 @@ export function FormLitEncryptMessage() {
 
   return (
     <div className="w-full">
-      <BranchIsWalletConnected>
+      <IsWalletConnected>
         <div className="w-full">
           {encryptedMessageId ? (
             <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} initial="hidden" animate="show" className="card my-8 mx-auto max-w-fit">
@@ -162,10 +163,12 @@ export function FormLitEncryptMessage() {
             </>
           )}
         </div>
+      </IsWalletConnected>
+      <IsWalletDisconnected>
         <div className="flex items-center justify-center gap-10">
           <WalletConnect />
         </div>
-      </BranchIsWalletConnected>
+      </IsWalletDisconnected>
     </div>
   )
 }

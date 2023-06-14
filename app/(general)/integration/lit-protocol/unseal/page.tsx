@@ -3,7 +3,8 @@
 import { useSearchParams } from 'next/navigation'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { FormLitDecryptMessage } from '@/integrations/lit-protocol/components/form-lit-decrypt-message'
 
 export default function PageIntegration() {
@@ -14,12 +15,14 @@ export default function PageIntegration() {
   return (
     <section className="w-full lg:mt-10">
       <div className="container w-full max-w-screen-lg">
-        <BranchIsWalletConnected>
+        <IsWalletConnected>
           <FormLitDecryptMessage initialEencryptedMessageId={id} />
+        </IsWalletConnected>
+        <IsWalletDisconnected>
           <div className="flex-center flex">
             <WalletConnect />
           </div>
-        </BranchIsWalletConnected>
+        </IsWalletDisconnected>
       </div>
     </section>
   )

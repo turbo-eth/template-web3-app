@@ -2,11 +2,13 @@ import { useEffect } from 'react'
 
 import { useTheme } from 'next-themes'
 
-import { BranchColorMode } from '@/components/shared/branch-color-mode'
 import { Icons } from '@/components/shared/icons'
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { useColorMode } from '@/lib/state/color-mode'
+
+import { IsDarkTheme } from './is-dark-theme'
+import { IsLightTheme } from './is-light-theme'
 
 export function ThemeToggle() {
   const { setTheme } = useTheme()
@@ -35,10 +37,12 @@ export function ThemeToggle() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm">
-          <BranchColorMode>
+          <IsLightTheme>
             <Icons.sun className="hover:text-slate-900" />
+          </IsLightTheme>
+          <IsDarkTheme>
             <Icons.moon className="hover:text-slate-900 dark:text-white dark:hover:text-slate-100" />
-          </BranchColorMode>
+          </IsDarkTheme>
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>

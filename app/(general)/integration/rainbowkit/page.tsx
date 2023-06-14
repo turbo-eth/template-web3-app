@@ -4,7 +4,8 @@ import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchColorMode } from '@/components/shared/branch-color-mode'
+import { IsDarkTheme } from '@/components/shared/is-dark-theme'
+import { IsLightTheme } from '@/components/shared/is-light-theme'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
@@ -27,10 +28,12 @@ export default function PageIntegration() {
               },
             },
           }}>
-          <BranchColorMode>
+          <IsLightTheme>
             <Image className="mx-auto" alt="Rainbow logo" src={turboIntegrations.rainbowkit.imgDark} width={100} height={100} />
+          </IsLightTheme>
+          <IsDarkTheme>
             <Image className="mx-auto" alt="Rainbow logo" src={turboIntegrations.rainbowkit.imgLight} width={100} height={100} />
-          </BranchColorMode>
+          </IsDarkTheme>
           <motion.h1
             className="text-gradient-sand my-8 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
             variants={FADE_DOWN_ANIMATION_VARIANTS}>

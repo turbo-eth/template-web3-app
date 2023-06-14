@@ -14,7 +14,8 @@ import {
 import { turboIntegrations } from '@/data/turbo-integrations'
 import { cn } from '@/lib/utils'
 
-import { BranchColorMode } from '../shared/branch-color-mode'
+import { IsDarkTheme } from '../shared/is-dark-theme'
+import { IsLightTheme } from '../shared/is-light-theme'
 import { LinkComponent } from '../shared/link-component'
 
 export function NavigationMenuGeneral() {
@@ -104,10 +105,12 @@ const ListItem = ({ className, href, name, imgLight, imgDark, children, ...props
             className
           )}
           {...props}>
-          <BranchColorMode>
+          <IsLightTheme>
             <Image className="mb-3 h-7 w-7 rounded-full" alt="Etherscan logo" src={imgDark} width={100} height={100} />
+          </IsLightTheme>
+          <IsDarkTheme>
             <Image className="mb-3 h-7 w-7 rounded-full" alt="Etherscan logo" src={imgLight} width={100} height={100} />
-          </BranchColorMode>
+          </IsDarkTheme>
           <div className="text-sm font-medium leading-none">{name}</div>
           <p className="text-sm leading-snug text-slate-500 line-clamp-2 dark:text-slate-400">{children}</p>
         </LinkComponent>

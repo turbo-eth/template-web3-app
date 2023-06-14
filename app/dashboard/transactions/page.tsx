@@ -2,11 +2,13 @@
 
 import { useNetwork } from 'wagmi'
 
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { TransactionsTable } from '@/integrations/etherscan/components/transactions-table'
 import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
-import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
+import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
+import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 import { useUser } from '@/lib/hooks/use-user'
 
 export default function PageDashboardTransactions() {
@@ -14,21 +16,22 @@ export default function PageDashboardTransactions() {
     <section className="p-10">
       <div className="flex items-center justify-between">
         <h3 className="text-4xl font-normal">Transactions</h3>
-        <BranchIsWalletConnected>
-          <BranchIsAuthenticated>
-            <></>
+        <IsWalletConnected>
+          <IsSignedOut>
             <div className="flex items-center gap-x-5 text-center">
               <span className="text-sm text-gray-600 dark:text-gray-100">Login to access the TurboETH free API</span>
               <ButtonSIWELogin className="btn btn-emerald" />
             </div>
-          </BranchIsAuthenticated>
+          </IsSignedOut>
+        </IsWalletConnected>
+        <IsWalletDisconnected>
           <span className="">Connect wallet and login to access page</span>
-        </BranchIsWalletConnected>
+        </IsWalletDisconnected>
       </div>
       <hr className="my-5 opacity-50" />
-      <BranchIsAuthenticated>
+      <IsSignedIn>
         <Table />
-      </BranchIsAuthenticated>
+      </IsSignedIn>
     </section>
   )
 }

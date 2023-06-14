@@ -6,7 +6,8 @@ import { Address, useWaitForTransaction } from 'wagmi'
 import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { TransactionStatus } from '@/components/blockchain/transaction-status'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 
 import ERC20EventTransfer from './erc20-event-transfer'
 import { useErc20Transfer, usePrepareErc20Transfer } from '../generated/erc20-wagmi'
@@ -57,19 +58,23 @@ export function ERC20ContractTransferTokens({ address }: ERC20WriteTransferProps
 
 export function ERC20WriteTransfer({ address }: ERC20WriteTransferProps) {
   return (
-    <BranchIsWalletConnected>
-      <div className="card w-full">
-        <ERC20ContractTransferTokens address={address} />
-        <ERC20EventTransfer />
-        <hr className="my-4" />
-        <div className="flex items-center justify-between">
-          <h3 className="text-center">ERC20 Transfer</h3>
-          <p className="text-center text-sm text-gray-500">Transer tokens to a friend... or enemy.</p>
+    <>
+      <IsWalletConnected>
+        <div className="card w-full">
+          <ERC20ContractTransferTokens address={address} />
+          <ERC20EventTransfer />
+          <hr className="my-4" />
+          <div className="flex items-center justify-between">
+            <h3 className="text-center">ERC20 Transfer</h3>
+            <p className="text-center text-sm text-gray-500">Transer tokens to a friend... or enemy.</p>
+          </div>
         </div>
-      </div>
-      <div className="flex items-center justify-center gap-10">
-        <WalletConnect />
-      </div>
-    </BranchIsWalletConnected>
+      </IsWalletConnected>
+      <IsWalletDisconnected>
+        <div className="flex items-center justify-center gap-10">
+          <WalletConnect />
+        </div>
+      </IsWalletDisconnected>
+    </>
   )
 }

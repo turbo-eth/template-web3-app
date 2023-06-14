@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { Textarea } from '@/components/ui/textarea'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { useToast } from '@/lib/hooks/use-toast'
@@ -59,7 +60,7 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
 
   return (
     <div className="w-full">
-      <BranchIsWalletConnected>
+      <IsWalletConnected>
         <div className="w-full">
           <motion.form
             variants={FADE_DOWN_ANIMATION_VARIANTS}
@@ -95,10 +96,12 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
             </motion.div>
           )}
         </div>
+      </IsWalletConnected>
+      <IsWalletDisconnected>
         <div className="flex items-center justify-center gap-10">
           <WalletConnect />
         </div>
-      </BranchIsWalletConnected>
+      </IsWalletDisconnected>
     </div>
   )
 }

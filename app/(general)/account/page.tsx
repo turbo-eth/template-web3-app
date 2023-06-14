@@ -2,7 +2,8 @@
 import { WalletAddress, WalletBalance, WalletNonce } from '@turbo-eth/core-wagmi'
 import { motion } from 'framer-motion'
 
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
 export default function PageDashboardAccount() {
@@ -15,7 +16,7 @@ export default function PageDashboardAccount() {
         whileInView="show"
         animate="show"
         viewport={{ once: true }}>
-        <BranchIsWalletConnected>
+        <IsWalletConnected>
           <div className="card w-[420px]">
             <h3 className="text-2xl font-normal">Account</h3>
             <hr className="my-3 dark:opacity-30" />
@@ -30,8 +31,10 @@ export default function PageDashboardAccount() {
             </div>
             <hr className="my-3 dark:opacity-30" />
           </div>
+        </IsWalletConnected>
+        <IsWalletDisconnected>
           <h3 className="text-lg font-normal">Connect Wallet to view your personalized dashboard.</h3>
-        </BranchIsWalletConnected>
+        </IsWalletDisconnected>
       </motion.div>
     </>
   )

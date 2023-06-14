@@ -24,7 +24,7 @@ export const DiscoProfileBasic = ({ className, address, ...props }: DiscoProfile
         </div>
         <div className="col-span-8">
           {data?.profile?.name && (
-            <div className="text-3xl font-bold text-neutral-900 dark:text-white">{data?.linkages && data?.linkages?.[data?.profile?.name].id}</div>
+            <div className="text-3xl font-bold text-neutral-900 dark:text-white">{data?.linkages && data?.linkages?.[data?.profile?.name]?.id}</div>
           )}
           {data?.did && <div className="text-xl font-medium text-neutral-600 dark:text-neutral-400">{data?.did}</div>}
           {data?.profile?.bio && (

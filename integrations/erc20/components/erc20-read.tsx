@@ -4,7 +4,8 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { formatUnits } from 'viem'
 import { Address, useAccount } from 'wagmi'
 
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 
 import { useErc20BalanceOf, useErc20Decimals, useErc20Name, useErc20Symbol, useErc20TotalSupply } from '../generated/erc20-wagmi'
 
@@ -106,37 +107,41 @@ export function ERC20Balance({ address, chainId, className, ...props }: ERC20Cha
 
 export function ERC20Read({ address, ...props }: ERC20Props) {
   return (
-    <BranchIsWalletConnected>
-      <div className="card w-full" {...props}>
-        <div className="flex items-center justify-center space-x-6">
-          <div className="text-center">
-            <span className="text-3xl">
-              <ERC20Name address={address} />
-              <span className="ml-2">
-                (
-                <ERC20Symbol address={address} />)
+    <>
+      <IsWalletConnected>
+        <div className="card w-full" {...props}>
+          <div className="flex items-center justify-center space-x-6">
+            <div className="text-center">
+              <span className="text-3xl">
+                <ERC20Name address={address} />
+                <span className="ml-2">
+                  (
+                  <ERC20Symbol address={address} />)
+                </span>
               </span>
-            </span>
-            <div className="my-4 flex items-center justify-center gap-4">
-              <span className="font-medium">
-                Decimals <ERC20Decimals address={address} />
-              </span>
-              <span className="">|</span>
-              <span className="font-medium">
-                Total Supply <ERC20TotalSupply address={address} />
-              </span>
+              <div className="my-4 flex items-center justify-center gap-4">
+                <span className="font-medium">
+                  Decimals <ERC20Decimals address={address} />
+                </span>
+                <span className="">|</span>
+                <span className="font-medium">
+                  Total Supply <ERC20TotalSupply address={address} />
+                </span>
+              </div>
             </div>
           </div>
+          <hr className="my-4" />
+          <div className="flex items-center justify-between">
+            <h3 className="text-center">ERC20 Read</h3>
+            <p className="text-center text-sm text-gray-500">Read core ERC20 token storage values</p>
+          </div>
         </div>
-        <hr className="my-4" />
-        <div className="flex items-center justify-between">
-          <h3 className="text-center">ERC20 Read</h3>
-          <p className="text-center text-sm text-gray-500">Read core ERC20 token storage values</p>
+      </IsWalletConnected>
+      <IsWalletDisconnected>
+        <div className="flex items-center justify-center gap-10">
+          <ConnectButton />
         </div>
-      </div>
-      <div className="flex items-center justify-center gap-10">
-        <ConnectButton />
-      </div>
-    </BranchIsWalletConnected>
+      </IsWalletDisconnected>
+    </>
   )
 }

@@ -5,8 +5,9 @@ import Link from 'next/link'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { FADE_IN_ANIMATION_SETTINGS } from '@/config/design'
+import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
+import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 
-import { BranchIsAuthenticated } from '../../integrations/siwe/components/branch-is-authenticated'
 import { ButtonSIWELogin } from '../../integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '../../integrations/siwe/components/button-siwe-logout'
 
@@ -33,16 +34,18 @@ export function UserDropdown() {
               <DatabaseIcon className="h-4 w-4" />
               <p className="text-sm">Admin</p>
             </Link>
-            <BranchIsAuthenticated>
+            <IsSignedIn>
               <ButtonSIWELogout className="user-dropdown-menu-item flex">
                 <LogOutIcon className="h-4 w-4" />
                 <span className="text-sm">Logout</span>
               </ButtonSIWELogout>
+            </IsSignedIn>
+            <IsSignedOut>
               <ButtonSIWELogin className="user-dropdown-menu-item flex">
                 <LogOutIcon className="inline-block h-4 w-4" />
                 <span className="ml-2 text-sm">Login</span>
               </ButtonSIWELogin>
-            </BranchIsAuthenticated>
+            </IsSignedOut>
           </div>
         </PopoverContent>
       </Popover>
