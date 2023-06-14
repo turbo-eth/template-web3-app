@@ -31,5 +31,5 @@ const RenderUserTable = () => {
   const { user } = useUser()
   const { isLoading, isError, data } = useGetAppUsers(user)
   if (isError) return <div className="py-6 text-center">Unauthorized Access</div>
-  return <div>{!isLoading && <AppUsersTable data={data} className="w-full flex-1" />}</div>
+  return <div>{!isLoading && <AppUsersTable data={data?.users} className="w-full flex-1" />}</div>
 }
