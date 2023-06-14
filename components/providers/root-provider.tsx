@@ -4,7 +4,6 @@ import { ReactNode } from 'react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ThemeProvider } from 'next-themes'
-import { ModalProvider } from 'react-modal-hook'
 import { Provider as RWBProvider } from 'react-wrap-balancer'
 
 import HandleWalletEvents from '@/components/blockchain/handle-wallet-events'
@@ -22,11 +21,9 @@ export default function RootProvider({ children }: RootProviderProps) {
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
         <RWBProvider>
-          <ModalProvider>
-            <RainbowKit>
-              <HandleWalletEvents>{children}</HandleWalletEvents>
-            </RainbowKit>
-          </ModalProvider>
+          <RainbowKit>
+            <HandleWalletEvents>{children}</HandleWalletEvents>
+          </RainbowKit>
         </RWBProvider>
       </QueryClientProvider>
     </ThemeProvider>

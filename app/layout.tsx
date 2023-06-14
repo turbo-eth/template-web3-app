@@ -3,9 +3,9 @@ import '@/styles/gradient.css'
 import '@/styles/periphery.css'
 import { ReactNode } from 'react'
 
-import { Raleway } from '@next/font/google'
-import { Inter as FontSans } from '@next/font/google'
-import localFont from '@next/font/local'
+import { Raleway } from 'next/font/google'
+import { Inter as FontSans } from 'next/font/google'
+import localFont from 'next/font/local'
 
 import RootProvider from '@/components/providers/root-provider'
 import { siteConfig } from '@/config/site'
