@@ -22,7 +22,7 @@ export function DeleteSessionKey({ selectedSessionKey, setSelectedSessionKey }: 
   }
 
   return (
-    <Button disabled={!selectedSessionKey} className="btn btn-red" onClick={handleDeleteSessionKey}>
+    <Button disabled={!selectedSessionKey} className="btn btn-red dark:bg-red-700 dark:text-red-50" onClick={handleDeleteSessionKey}>
       Delete Session Key
     </Button>
   )
