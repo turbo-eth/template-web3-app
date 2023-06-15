@@ -1,4 +1,3 @@
-import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
 import { BaseError, parseEther } from 'viem'
 import { Address, useWaitForTransaction } from 'wagmi'
@@ -7,21 +6,27 @@ import { ContractWriteButton } from '@/components/blockchain/contract-write-butt
 import { TransactionStatus } from '@/components/blockchain/transaction-status'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 
 import ERC20EventTransfer from './erc20-event-transfer'
 import { useErc20Transfer, usePrepareErc20Transfer } from '../erc20-wagmi'
+import { useWriteTransfer } from '../hooks/use-write-transfer'
+import { writeTransferControls } from '../utils/controls'
+import { getComponent } from '../utils/get-element-component'
 
 interface ERC20WriteTransferProps {
   address: Address
 }
 
 export function ERC20ContractTransferTokens({ address }: ERC20WriteTransferProps) {
-  const { register, watch, handleSubmit } = useForm()
+  const { form } = useWriteTransfer()
+  const { watch, handleSubmit, reset } = form
 
   const watchAmount: string = watch('amount')
   const watchTo = watch('to')
   const debouncedAmount = useDebounce(watchAmount, 500)
   const debouncedTo = useDebounce(watchTo, 500)
+  console.log('dd', debouncedTo)
 
   const isValidAmount = Boolean(debouncedAmount && !isNaN(Number(debouncedAmount)))
 
@@ -39,19 +44,49 @@ export function ERC20ContractTransferTokens({ address }: ERC20WriteTransferProps
 
   const onSubmit = async () => {
     write?.()
+    reset()
   }
 
   return (
-    <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-      <label>Amount</label>
-      <input placeholder="10" {...register('amount')} className="input" />
-      <label>To</label>
-      <input placeholder="kames.eth" {...register('to')} className="input" />
-      <ContractWriteButton type="submit" isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} write={!!write} loadingTxText="Transferring...">
-        Transfer
-      </ContractWriteButton>
-      <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
-    </form>
+    <>
+      <Form {...form}>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+          {writeTransferControls.map((item) => {
+            const Item = getComponent(item?.type)
+            return (
+              <FormField
+                key={item?.label}
+                control={form.control}
+                name={item?.formfieldName}
+                render={({ field }) => (
+                  <>
+                    <FormItem>
+                      <FormLabel>{item?.label}</FormLabel>
+                      <FormControl>
+                        <Item placeholder={item?.placeholder} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  </>
+                )}
+              />
+            )
+          })}
+
+          <ContractWriteButton
+            type="submit"
+            isLoadingTx={isLoadingTx}
+            isLoadingWrite={isLoadingWrite}
+            write={!!write}
+            loadingTxText="Transferring...">
+            Transfer
+          </ContractWriteButton>
+        </form>
+      </Form>
+      <div className="mt-4">
+        <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
+      </div>
+    </>
   )
 }
 

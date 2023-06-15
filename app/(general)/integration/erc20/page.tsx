@@ -13,7 +13,6 @@ import { Erc20SetTokenStorage } from '@/integrations/erc20/components/erc20-set-
 import { ERC20WriteMint } from '@/integrations/erc20/components/erc20-write-mint'
 import { ERC20WriteTransfer } from '@/integrations/erc20/components/erc20-write-transfer'
 import { useERC20TokenStorage } from '@/integrations/erc20/hooks/use-erc20-token-storage'
-
 export default function PageIntegration() {
   const [token] = useERC20TokenStorage()
   return (

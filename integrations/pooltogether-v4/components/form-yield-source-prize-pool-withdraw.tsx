@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-// import * as Form from '@radix-ui/react-form'
 import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
 import { parseUnits } from 'viem'
@@ -64,54 +63,9 @@ export function PoolTogetherFormWithdraw() {
   const { isLoading } = useWaitForTransaction({
     hash: data?.hash,
   })
-  // const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-  //   withdrawToken?.()
-  // }
-
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const value = event.target.value != '' ? parseFloat(event.target.valueAsNumber.toFixed(decimals)) : undefined
-  //   setWithdrawAmount(value)
-  // }
 
   return (
     <>
-      {/* <Form.Root onSubmit={handleSubmit}>
-        <Form.Field name="amountWithdraw">
-          <div className="flex justify-between align-baseline">
-            <Form.Label className="mb-2">Amount </Form.Label>
-            <Form.Label className="mb-2">
-              <span className="ml-10 cursor-pointer hover:underline" onClick={() => setWithdrawAmount(userBalance)}>
-                {parseFloat(userBalance.toString()).toFixed(2)} USDC
-              </span>
-            </Form.Label>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="input"
-              value={withdrawAmount != undefined && withdrawAmount > userBalance ? userBalance : withdrawAmount}
-              onChange={handleChange}
-              type="number"
-              min={0}
-              max={userBalance}
-              step={'any'}
-              required={true}
-            />
-          </Form.Control>
-        </Form.Field>
-        <Form.Submit asChild>
-          <div className="mt-4 flex justify-center">
-            <button
-              disabled={prizePoolAddress == undefined && (!withdrawToken || isLoading)}
-              className={
-                !prizePoolAddress || !debouncedWithdrawAmount ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50' : 'btn btn-emerald btn-sm'
-              }>
-              {prizePoolAddress == undefined ? 'Please switch network' : isLoading ? 'Processing...' : 'Withdraw'}
-            </button>
-          </div>
-        </Form.Submit>
-      </Form.Root> */}
-
       <div className="w-full">
         <span className="cursor-pointer hover:underline" onClick={() => setWithdrawAmount(userBalance)}>
           Balance: {parseFloat(userBalance.toString()).toFixed(2)} USDC
@@ -154,11 +108,7 @@ export function PoolTogetherFormWithdraw() {
 
             <Button
               disabled={prizePoolAddress == undefined && (!withdrawToken || isLoading)}
-              className={
-                !prizePoolAddress || !debouncedWithdrawAmount
-                  ? 'btn btn-emerald btn-sm w-full cursor-not-allowed opacity-50'
-                  : 'btn btn-emerald btn-sm w-full'
-              }>
+              className={!prizePoolAddress || !debouncedWithdrawAmount ? 'btn  btn-sm w-full cursor-not-allowed opacity-50' : 'btn btn-sm w-full'}>
               {prizePoolAddress == undefined ? 'Please switch network' : isLoading ? 'Processing...' : 'Withdraw'}
             </Button>
           </form>

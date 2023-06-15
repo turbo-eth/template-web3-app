@@ -5,7 +5,7 @@ export const litControls = [
     formfieldName: 'searchKey',
     label: 'ID:',
     component: 'input',
-    placeholder: 'Search addresses...',
+    placeholder: 'The ID of the encrypted message saved into a database',
 
     attribute: { type: 'text' },
   },
@@ -98,7 +98,7 @@ export const litEncryptControls = [
     formfieldName: 'encryptMessage',
     label: 'Message:',
     component: 'textArea',
-    placeholder: '0x1234567890123456789012345678901234567890',
+    placeholder: 'Type Message...',
 
     attribute: { type: 'text' },
   },

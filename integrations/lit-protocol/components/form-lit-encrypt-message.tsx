@@ -4,12 +4,13 @@ import { useState } from 'react'
 
 import { motion } from 'framer-motion'
 import CopyToClipboard from 'react-copy-to-clipboard'
-import { useForm } from 'react-hook-form'
 import { FaCopy } from 'react-icons/fa'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { LinkComponent } from '@/components/shared/link-component'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
@@ -17,29 +18,33 @@ import { useToast } from '@/lib/hooks/use-toast'
 
 import { AccessControlSingleAddress, AccessControlSingleERC721, AccessControlTokenGroup } from './access-control'
 import { useLitClient } from '../hooks/use-lit-client'
-
+import { litEncryptControls } from '../utils/controls'
+import { getComponent } from '../utils/get-element-component'
 export function FormLitEncryptMessage() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [messageToEncrypt, setMessageToEncrypt] = useState<string>()
   const [encryptedMessageId, setEncryptedMessageId] = useState<string>()
   const [accessControlConditions, setAccessControlConditions] = useState<any[]>([])
   const [accessControlType, setAccessControlType] = useState<string>()
 
   const { toast, dismiss } = useToast()
-  const { encryptMessage } = useLitClient()
-  const { register, handleSubmit } = useForm()
+  const { encryptMessage, form, litSchema } = useLitClient()
+  const { register, handleSubmit, watch } = form
+
+  const messageToEncrypt = watch('encryptMessage')
 
   const isValid = messageToEncrypt && accessControlConditions.length > 0
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (values: z.infer<typeof litSchema>) => {
     setIsLoading(true)
     try {
-      const encryptedMessage = await encryptMessage(data.message, accessControlConditions)
+      const encryptedMessage = await encryptMessage(values.encryptMessage, accessControlConditions)
       setEncryptedMessageId(encryptedMessage.id)
     } catch (e) {
       console.error(e)
     }
+
     setIsLoading(false)
+    form.reset()
   }
 
   const handleToast = () => {
@@ -135,18 +140,36 @@ export function FormLitEncryptMessage() {
                 </motion.div>
               )}
               <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} initial="hidden" animate="show" className="card my-8">
-                <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
-                  <label className="mb-4">Message:</label>
-                  <Textarea
-                    {...register('message')}
-                    value={messageToEncrypt}
-                    className="input h-40 dark:text-gray-600 dark:placeholder:text-neutral-400"
-                    onChange={(e) => setMessageToEncrypt(e.target.value)}
-                  />
-                  <button disabled={!isValid || isLoading} type="submit" className="btn btn-emerald mt-4">
-                    {isLoading ? 'Loading...' : 'Encrypt'}
-                  </button>
-                </form>
+                <Form {...form}>
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                    {litEncryptControls.map((item) => {
+                      const Item = getComponent(item?.component)
+                      return (
+                        <FormField
+                          {...register('encryptMessage')}
+                          key={item?.label}
+                          control={form.control}
+                          name={item?.formfieldName as 'encryptMessage'}
+                          render={({ field }) => (
+                            <>
+                              <FormItem>
+                                <FormLabel>{item?.label}</FormLabel>
+                                <FormControl>
+                                  <Item attribute={item?.attribute} placeholder={item?.placeholder} {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            </>
+                          )}
+                        />
+                      )
+                    })}
+
+                    <Button disabled={!isValid || isLoading} className="w-full" type="submit">
+                      {isLoading ? 'Loading...' : 'Encrypt'}
+                    </Button>
+                  </form>
+                </Form>
                 <hr className="my-4" />
                 <div className="flex items-center justify-between">
                   <h3 className="text-center">Message Encryption</h3>

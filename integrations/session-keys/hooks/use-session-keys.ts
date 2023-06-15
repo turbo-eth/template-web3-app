@@ -157,14 +157,3 @@ export const useSessionKeys = () => {
 
   return { sessionKeys, createSessionKey, deleteSessionKey, deleteAllSessionKeys, getSessionAccount, form }
 }
-// function zodResolver(
-//   sessionSchema: z.ZodObject<
-//     { searchKey: z.ZodEffects<z.ZodString, string, string> },
-//     'strip',
-//     z.ZodTypeAny,
-//     { searchKey: string },
-//     { searchKey: string }
-//   >
-// ): import('react-hook-form').Resolver<{ searchKey: string }, any> | undefined {
-//   throw new Error('Function not implemented.')
-// }

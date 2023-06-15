@@ -1,23 +1,32 @@
 import { useState } from 'react'
 
-import { FieldValues, useForm } from 'react-hook-form'
+import { FieldValues } from 'react-hook-form'
 import { usePublicClient, useWalletClient } from 'wagmi'
 
 import { BlockExplorerLink } from '@/components/blockchain/block-explorer-link'
 import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 
 import { erc20MintableABI } from '../abis/erc20-mintable-abi'
 import { erc20MintableByteCode } from '../abis/erc20-mintable-bytecode'
-import { useERC20TokenStorage } from '../hooks/use-erc20-token-storage'
+import { useDeploy } from '../hooks/use-deploy'
+import { deployControls } from '../utils/controls'
+import { getComponent } from '../utils/get-element-component'
 
 export function DeployERC20Contract() {
-  const [token, setToken] = useERC20TokenStorage()
+  const {
+    form,
+    // onSubmit,
+    token = '',
+    setToken = () => {},
+  } = useDeploy()
+
   const [isSigning, setIsSigning] = useState<boolean>(false)
   const [isWaitingTransaction, setIsWaitingTransaction] = useState<boolean>(false)
 
-  const { register, handleSubmit, watch } = useForm()
+  const { reset, handleSubmit, watch } = form
   const name = watch('name')
   const symbol = watch('symbol')
 
@@ -52,24 +61,51 @@ export function DeployERC20Contract() {
     } catch (e) {
       setIsWaitingTransaction(false)
     }
+    reset()
   }
 
   return (
-    <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-      <label>Name</label>
-      <input {...register('name')} className="input" />
-      <label>Symbol</label>
-      <input {...register('symbol')} className="input" />
-      <ContractWriteButton write={Boolean(name && symbol)} isLoadingTx={isWaitingTransaction} isLoadingWrite={isSigning} loadingTxText="Deploying...">
-        Deploy
-      </ContractWriteButton>
+    <>
+      <Form {...form}>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+          {deployControls.map((item) => {
+            const Item = getComponent(item?.type)
+            return (
+              <FormField
+                key={item?.label}
+                control={form.control}
+                name={item?.formfieldName}
+                render={({ field }) => (
+                  <>
+                    <FormItem>
+                      <FormLabel>{item?.label}</FormLabel>
+                      <FormControl>
+                        <Item placeholder={item?.placeholder} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  </>
+                )}
+              />
+            )
+          })}
+
+          <ContractWriteButton
+            write={Boolean(name && symbol)}
+            isLoadingTx={isWaitingTransaction}
+            isLoadingWrite={isSigning}
+            loadingTxText="Deploying...">
+            Deploy
+          </ContractWriteButton>
+        </form>
+      </Form>
       {!token ? null : (
         <div className="flex max-w-full flex-wrap items-center justify-between break-words pt-5 pb-2">
           <span className="font-semibold">Mint Contract Address:</span>
           <BlockExplorerLink address={token} />
         </div>
       )}
-    </form>
+    </>
   )
 }
 

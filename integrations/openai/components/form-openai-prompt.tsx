@@ -70,7 +70,7 @@ export function FormOpenAIPrompt() {
             </>
           )}
 
-          <Button className="btn btn-emerald w-full" type="submit" disabled={isLoading || !prompt}>
+          <Button className="btn w-full" type="submit" disabled={isLoading || !prompt}>
             {isLoading ? 'Generating...' : 'Generate'}
           </Button>
         </form>

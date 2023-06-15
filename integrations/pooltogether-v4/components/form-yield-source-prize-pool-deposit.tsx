@@ -114,24 +114,6 @@ export function PoolTogetherFormDeposit() {
     }
   }, [successApprove, submitDeposit])
 
-  // const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-  //   event.preventDefault()
-  //   if (depositAmount && depositAmount >= 2.0) {
-  //     if (!isApproved) {
-  //       approval?.()
-  //     } else {
-  //       setSubmitDeposit(true)
-  //     }
-  //   } else {
-  //     setValidAmount(false)
-  //   }
-  // }
-  // const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   const value = event.target.value != '' ? parseFloat(event.target.valueAsNumber.toFixed(decimals)) : undefined
-  //   setDepositAmount(value)
-  //   setApprovalAmount(value != undefined ? parseUnits(`${value}`, POWER) : BigInt(0))
-  // }
-
   const handleChange = (amount: any) => {
     const value = amount != '' ? parseFloat(Number(amount).toFixed(decimals)) : undefined
     value != undefined && value > userBalance ? setDepositAmount(userBalance) : setDepositAmount(value)
@@ -144,64 +126,7 @@ export function PoolTogetherFormDeposit() {
   }
 
   return (
-    <div className="flex-col">
-      {/* <Form.Root onSubmit={handleSubmit}>
-        <Form.Field name="amountDeposit">
-          <div className="flex justify-between align-baseline">
-            <Form.Label className="mb-2 font-semibold">Amount</Form.Label>
-            <Form.Label className="mb-2">
-              <span className="ml-10 cursor-pointer hover:underline" onClick={() => handleAmount()}>
-                {parseFloat(userBalance.toString()).toFixed(2)} USDC
-              </span>
-            </Form.Label>
-          </div>
-          <Form.Control asChild>
-            <input
-              className="input"
-              onChange={handleChange}
-              value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
-              type="number"
-              min={0}
-              max={userBalance}
-              step={'any'}
-              required={true}
-            />
-          </Form.Control>
-        </Form.Field>
-        {!isValidAmount && (
-          <div className="relative mt-2 rounded border border-red-400 bg-red-100 py-1 text-center text-red-700" role="alert">
-            <strong className="font-semibold">Min. 2 USDC</strong>
-          </div>
-        )}
-        {!isApproved && (
-          <div className="mt-4 flex justify-center space-x-2">
-            <Checkbox onClick={() => setIsChecked(!isChecked)} />
-            <span className="font-semibold">Infinite Approval</span>
-          </div>
-        )}
-        <div className="mt-4 flex justify-center space-x-5">
-          <Form.Submit asChild>
-            <button
-              disabled={prizePoolAddress == undefined && (isLoading || !debouncedDepositAmount)}
-              className={
-                !debouncedDepositAmount || !prizePoolAddress ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50' : 'btn btn-emerald btn-sm'
-              }
-              
-              >
-              {!prizePoolAddress
-                ? 'Please switch network'
-                : isApproved
-                ? isLoading
-                  ? 'Processing...'
-                  : 'Deposit'
-                : loadApprove
-                ? 'Processing...'
-                : 'Approve and Deposit'}
-            </button>
-          </Form.Submit>
-        </div>
-      </Form.Root> */}
-
+    <div className="w-full">
       <span className="cursor-pointer pb-2 hover:underline" onClick={() => handleAmount()}>
         Balance: {parseFloat(userBalance.toString()).toFixed(2)} USDC
       </span>
@@ -271,9 +196,7 @@ export function PoolTogetherFormDeposit() {
 
           <Button
             disabled={prizePoolAddress == undefined && (isLoading || !debouncedDepositAmount)}
-            className={
-              !debouncedDepositAmount || !prizePoolAddress ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50' : 'btn btn-emerald btn-sm'
-            }>
+            className={!debouncedDepositAmount || !prizePoolAddress ? 'btn btn-sm w-full cursor-not-allowed opacity-50' : 'btn btn-sm w-full'}>
             {!prizePoolAddress
               ? 'Please switch network'
               : isApproved

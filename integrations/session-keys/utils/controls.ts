@@ -2,7 +2,7 @@ export const sessionControls = [
   {
     formfieldName: 'searchKey',
     component: 'input',
-    placeholder: 'Search addresses...',
+    placeholder: 'Search sessions.....',
 
     attribute: { type: 'text' },
   },

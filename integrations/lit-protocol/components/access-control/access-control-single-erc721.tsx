@@ -35,21 +35,6 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
     setAccessControlConditions(getAccessControlConditions(data.chain, data.singleNftAdd, data.tokenId))
   }
 
-  // ---
-  // const [address, setAddress] = useState<string>('')
-  // const [tokenId, setTokenId] = useState<number>()
-  // const [chain, setChain] = useState<string>('ethereum')
-
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm()
-
-  // const onSubmit = (data: any) => {
-  //   setAccessControlConditions(getAccessControlConditions(chain, data.address, data.tokenId))
-  // }
-
   return (
     <div className="mt-8">
       <Form {...form}>

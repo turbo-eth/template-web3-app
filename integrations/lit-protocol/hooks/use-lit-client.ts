@@ -22,8 +22,8 @@ export const useLitClient = () => {
   const form = useForm<z.infer<typeof litSchema>>({
     resolver: zodResolver(litSchema),
     defaultValues: {
-      searchKey: '',
       encryptMessage: '',
+      searchKey: '',
     },
   })
 

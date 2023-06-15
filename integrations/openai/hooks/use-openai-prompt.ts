@@ -8,7 +8,7 @@ import { useToast } from '@/lib/hooks/use-toast'
 
 const openaiPromptSchema = z.object({
   apiKey: z.string().min(2).max(51),
-  prompt: z.string().min(2).max(300),
+  prompt: z.string().min(2).max(100000),
 })
 export const useOpenAIPrompt = () => {
   const [response, setResponse] = useState<string>('')
