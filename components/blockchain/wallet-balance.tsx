@@ -14,8 +14,6 @@ export const WalletBalance = ({ className, decimals = 4, ...props }: WalletBalan
     address,
   })
 
-  console.log('balance', balance)
-
   if (!address || !balance) return null
 
   return (
