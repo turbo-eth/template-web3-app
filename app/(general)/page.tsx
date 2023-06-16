@@ -211,7 +211,7 @@ const features = [
         <p className="">
           Decimals <ERC20Decimals address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} chainId={1} />
         </p>
-        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc20/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}>
+        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`integration/erc20`}>
           View Token Page
         </Link>
       </div>

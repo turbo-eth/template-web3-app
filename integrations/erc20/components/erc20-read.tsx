@@ -1,3 +1,5 @@
+'use client'
+
 import { HTMLAttributes } from 'react'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit'
@@ -6,6 +8,7 @@ import { Address, useAccount } from 'wagmi'
 
 import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
 import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
+import { cn } from '@/lib/utils'
 
 import { useErc20BalanceOf, useErc20Decimals, useErc20Name, useErc20Symbol, useErc20TotalSupply } from '../generated/erc20-wagmi'
 
@@ -64,7 +67,7 @@ export function ERC20TotalSupply({ address, chainId, className, ...props }: ERC2
   })
   return (
     <span className={className} {...props}>
-      {formatUnits(data || BigInt(0), decimals || 1)}
+      {Number(formatUnits(data || BigInt(0), decimals || 1)).toLocaleString()}
     </span>
   )
 }
@@ -100,33 +103,53 @@ export function ERC20Balance({ address, chainId, className, ...props }: ERC20Cha
   return (
     <span className={className} {...props}>
       {' '}
-      {formatUnits(data, decimals)}
+      {Number(formatUnits(data, decimals)).toLocaleString()}
     </span>
   )
 }
 
-export function ERC20Read({ address, ...props }: ERC20Props) {
+interface ERC20ReadProps extends ERC20ChainIdProps {
+  showImage?: boolean
+  showBalance?: boolean
+  showTotalSupply?: boolean
+}
+
+export function ERC20Read({ className, address, chainId, showImage, showBalance, showTotalSupply, ...props }: ERC20ReadProps) {
   return (
     <>
       <IsWalletConnected>
-        <div className="card w-full" {...props}>
+        <div className={cn('card w-full', className)} {...props}>
           <div className="flex items-center justify-center space-x-6">
             <div className="text-center">
               <span className="text-3xl">
+                {showImage && <ERC20Image address={address} className="mx-auto h-12 w-12 rounded-full border-2 border-white shadow-md" />}
                 <ERC20Name address={address} />
                 <span className="ml-2">
                   (
-                  <ERC20Symbol address={address} />)
+                  <ERC20Symbol address={address} chainId={chainId} />)
                 </span>
               </span>
               <div className="my-4 flex items-center justify-center gap-4">
-                <span className="font-medium">
-                  Decimals <ERC20Decimals address={address} />
+                <span>
+                  <span className="font-medium">Decimals</span> <ERC20Decimals address={address} chainId={chainId} />
                 </span>
-                <span className="">|</span>
-                <span className="font-medium">
-                  Total Supply <ERC20TotalSupply address={address} />
-                </span>
+                {showTotalSupply && (
+                  <>
+                    <span className="">|</span>
+                    <span>
+                      <span className="font-medium">Total Supply</span> <ERC20TotalSupply address={address} chainId={chainId} />
+                    </span>
+                  </>
+                )}
+                {showBalance && (
+                  <>
+                    <span className="">|</span>
+                    <span>
+                      <span className="font-medium">Balance</span>
+                      <ERC20Balance address={address} />
+                    </span>
+                  </>
+                )}
               </div>
             </div>
           </div>
