@@ -152,6 +152,15 @@ const features = [
     ),
   },
   {
+    title: 'Rainbowkit',
+    description: 'The best way to connect a wallet. Designed for everyone. Built for developers.',
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <Image alt="Rainbow logo" src="/integrations/rainbowkit.svg" width={100} height={100} />
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.etherscan.name,
     description: turboIntegrations.etherscan.description,
     href: turboIntegrations.etherscan.href,
@@ -163,16 +172,6 @@ const features = [
         <IsDarkTheme>
           <Image alt="Etherscan logo" src="/integrations/etherscan-light.svg" width={100} height={100} />
         </IsDarkTheme>
-      </div>
-    ),
-  },
-  {
-    title: turboIntegrations.rainbowkit.name,
-    description: turboIntegrations.rainbowkit.description,
-    href: turboIntegrations.rainbowkit.href,
-    demo: (
-      <div className="flex items-center justify-center space-x-20">
-        <Image alt="Rainbow logo" src="/integrations/rainbowkit.svg" width={100} height={100} />
       </div>
     ),
   },
