@@ -11,11 +11,6 @@ import { chains, publicClient, webSocketPublicClient } from '@/config/networks'
 import { siteConfig } from '@/config/site'
 import { useColorMode } from '@/lib/state/color-mode'
 
-interface Props {
-  children: ReactNode
-  autoConnect?: boolean
-}
-
 const connectors = connectorsForWallets([
   {
     groupName: 'Recommended',
@@ -36,12 +31,12 @@ const wagmiConfig = createConfig({
   webSocketPublicClient,
 })
 
-export function RainbowKit(props: Props) {
+export function RainbowKit({ children }: { children: ReactNode }) {
   const [colorMode] = useColorMode()
   return (
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider chains={chains} theme={colorMode == 'dark' ? darkTheme() : lightTheme()}>
-        {props.children}
+        {children}
       </RainbowKitProvider>
     </WagmiConfig>
   )

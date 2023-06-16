@@ -1,5 +1,5 @@
 'use client'
-import { HTMLAttributes, ReactNode } from 'react'
+import { HTMLAttributes } from 'react'
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -25,7 +25,6 @@ export const MenuAdminSidebar = ({ className, ...props }: HTMLAttributes<HTMLDiv
 }
 
 interface ItemProps extends HTMLAttributes<HTMLElement> {
-  children: ReactNode
   href: string
   currentPath: string | null
 }
