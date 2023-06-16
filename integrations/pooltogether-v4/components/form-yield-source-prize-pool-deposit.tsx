@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import * as Form from '@radix-ui/react-form'
-import { ExternalLinkIcon } from 'lucide-react'
+import { LuExternalLink } from 'react-icons/lu'
 import { useDebounce } from 'usehooks-ts'
 import { parseUnits } from 'viem'
 import { useAccount, useWaitForTransaction } from 'wagmi'
@@ -151,7 +151,7 @@ export function PoolTogetherFormDeposit() {
           Manage your account on&nbsp; <br />
           <a target={'_blank'} href="https://app.pooltogether.com/" className="flex items-center text-xl">
             <span className="text-gradient-pooltogether">PoolTogether</span>
-            <ExternalLinkIcon size="16" className="text-gradient-pooltogether-link ml-1" />
+            <LuExternalLink size="16" className="text-gradient-pooltogether-link ml-1" />
           </a>
         </div>
       )}

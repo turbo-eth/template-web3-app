@@ -38,10 +38,10 @@ export function ThemeToggle() {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm">
           <IsLightTheme>
-            <Icons.sun className="hover:text-slate-900" />
+            <Icons.sun className="h-6 w-6 hover:text-slate-900" />
           </IsLightTheme>
           <IsDarkTheme>
-            <Icons.moon className="hover:text-slate-900 dark:text-white dark:hover:text-slate-100" />
+            <Icons.moon className="h-6 w-6 hover:text-slate-900 dark:text-white dark:hover:text-slate-100" />
           </IsDarkTheme>
           <span className="sr-only">Toggle theme</span>
         </Button>

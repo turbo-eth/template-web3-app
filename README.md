@@ -72,7 +72,7 @@ pnpm build
 - [TailwindCSS](https://tailwindcss.com) – Utility-first CSS framework for rapid UI development
 - [Radix](https://www.radix-ui.com/) – Primitives like modal, popover, etc. to build a stellar user experience
 - [Framer Motion](https://www.framer.com/motion/) – Motion library for React to animate components with ease
-- [Lucide](https://lucide.dev/docs/lucide-react) – Beautifully simple, pixel-perfect icons
+- [React Icons](https://react-icons.github.io/react-icons) – Beautifully simple, pixel-perfect icons
 
 The [ui.shadcn.com](https://ui.shadcn.com) components are included in the `/components/shared/ui` folder.
 

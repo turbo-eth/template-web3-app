@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import * as SelectPrimitive from '@radix-ui/react-select'
-import { Check, ChevronDown } from 'lucide-react'
+import { LuCheck, LuChevronDown } from 'react-icons/lu'
 
 import { cn } from '@/lib/utils'
 
@@ -21,7 +21,7 @@ const SelectTrigger = forwardRef<ElementRef<typeof SelectPrimitive.Trigger>, Com
       )}
       {...props}>
       {children}
-      <ChevronDown className="h-4 w-4 opacity-50" />
+      <LuChevronDown className="h-4 w-4 opacity-50" />
     </SelectPrimitive.Trigger>
   )
 )
@@ -66,7 +66,7 @@ const SelectItem = forwardRef<ElementRef<typeof SelectPrimitive.Item>, Component
       {...props}>
       <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
         <SelectPrimitive.ItemIndicator>
-          <Check className="h-4 w-4" />
+          <LuCheck className="h-4 w-4" />
         </SelectPrimitive.ItemIndicator>
       </span>
 
