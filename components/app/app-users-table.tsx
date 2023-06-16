@@ -19,7 +19,7 @@ function AppUsersTable({ data, className, ...props }: AppUsersTableProps) {
       {
         Header: 'Address',
         accessor: 'address',
-        Cell: ({ value }: { value: Address }) => <AddressComponent address={value} truncate className="text-sm font-medium" />,
+        Cell: ({ value }: { value: Address }) => <AddressComponent truncate address={value} className="text-sm font-medium" />,
       },
       {
         Header: 'Created',
@@ -45,7 +45,7 @@ function AppUsersTable({ data, className, ...props }: AppUsersTableProps) {
     []
   )
   if (!data) return null
-  return <TableCore columns={columns} data={data} className={className} {...props} />
+  return <TableCore className={className} columns={columns} data={data} {...props} />
 }
 
 export default AppUsersTable

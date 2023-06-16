@@ -48,10 +48,10 @@ export function ERC20ContractTransferTokens({ address }: ERC20WriteTransferProps
       <input placeholder="10" {...register('amount')} className="input" />
       <label>To</label>
       <input placeholder="kames.eth" {...register('to')} className="input" />
-      <ContractWriteButton type="submit" isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} write={!!write} loadingTxText="Transferring...">
+      <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Transferring..." type="submit" write={!!write}>
         Transfer
       </ContractWriteButton>
-      <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
+      <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
     </form>
   )
 }

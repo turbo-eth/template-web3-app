@@ -105,13 +105,13 @@ export function PoolTogetherFormDeposit() {
           <Form.Control asChild>
             <input
               className="input"
-              onChange={handleChange}
-              value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
-              type="number"
-              min={0}
               max={userBalance}
-              step={'any'}
+              min={0}
               required={true}
+              step={'any'}
+              type="number"
+              value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
+              onChange={handleChange}
             />
           </Form.Control>
         </Form.Field>
@@ -149,9 +149,9 @@ export function PoolTogetherFormDeposit() {
       {successDeposit && (
         <div className="mt-4 space-x-2 rounded border p-3 text-center text-xs font-semibold">
           Manage your account on&nbsp; <br />
-          <a target={'_blank'} href="https://app.pooltogether.com/" className="flex items-center text-xl">
+          <a className="flex items-center text-xl" href="https://app.pooltogether.com/" target={'_blank'}>
             <span className="text-gradient-pooltogether">PoolTogether</span>
-            <LuExternalLink size="16" className="text-gradient-pooltogether-link ml-1" />
+            <LuExternalLink className="text-gradient-pooltogether-link ml-1" size="16" />
           </a>
         </div>
       )}

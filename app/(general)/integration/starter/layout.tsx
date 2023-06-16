@@ -18,11 +18,11 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
     <>
       <div className="flex-center flex-col items-center justify-center text-center">
         <motion.div
+          animate="show"
           className="max-w-3xl px-5 text-center xl:px-0"
           initial="hidden"
-          whileInView="show"
-          animate="show"
           viewport={{ once: true }}
+          whileInView="show"
           variants={{
             hidden: {},
             show: {
@@ -32,10 +32,10 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
             },
           }}>
           <IsLightTheme>
-            <Image className="mx-auto" alt="Starter logo" src={integrationData.imgDark} width={100} height={100} />
+            <Image alt="Starter logo" className="mx-auto" height={100} src={integrationData.imgDark} width={100} />
           </IsLightTheme>
           <IsDarkTheme>
-            <Image className="mx-auto" alt="Starter logo" src={integrationData.imgLight} width={100} height={100} />
+            <Image alt="Starter logo" className="mx-auto" height={100} src={integrationData.imgLight} width={100} />
           </IsDarkTheme>
           <motion.h1
             className="text-gradient-sand my-8 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"

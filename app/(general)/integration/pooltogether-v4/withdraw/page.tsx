@@ -11,12 +11,12 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 export default function PoolTogetherWithdraw() {
   return (
     <motion.div
-      className="flex-center flex h-full w-full"
-      variants={FADE_DOWN_ANIMATION_VARIANTS}
-      initial="hidden"
-      whileInView="show"
       animate="show"
-      viewport={{ once: true }}>
+      className="flex-center flex h-full w-full"
+      initial="hidden"
+      variants={FADE_DOWN_ANIMATION_VARIANTS}
+      viewport={{ once: true }}
+      whileInView="show">
       <IsWalletConnected>
         <PoolTogetherFormWithdraw />
       </IsWalletConnected>

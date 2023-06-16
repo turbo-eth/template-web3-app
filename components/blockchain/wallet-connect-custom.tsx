@@ -30,7 +30,7 @@ export const WalletConnectCustom = ({
               if (!connected) {
                 return (
                   <>
-                    <button className={classNameConnect} onClick={openConnectModal} type="button">
+                    <button className={classNameConnect} type="button" onClick={openConnectModal}>
                       {labelConnect}
                     </button>
                   </>
@@ -39,7 +39,7 @@ export const WalletConnectCustom = ({
 
               if (chain.unsupported) {
                 return (
-                  <button className={classNameWrongNetwork} onClick={openChainModal} type="button">
+                  <button className={classNameWrongNetwork} type="button" onClick={openChainModal}>
                     {labelWrongNetwork}
                   </button>
                 )
@@ -47,7 +47,7 @@ export const WalletConnectCustom = ({
 
               return (
                 <div className="">
-                  <button className={classNameConnected} onClick={openChainModal} style={{ display: 'flex', alignItems: 'center' }} type="button">
+                  <button className={classNameConnected} style={{ display: 'flex', alignItems: 'center' }} type="button" onClick={openChainModal}>
                     {chain.hasIcon && (
                       <div
                         style={{

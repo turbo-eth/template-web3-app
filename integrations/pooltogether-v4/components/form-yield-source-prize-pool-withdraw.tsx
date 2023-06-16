@@ -59,13 +59,13 @@ export function PoolTogetherFormWithdraw() {
           <Form.Control asChild>
             <input
               className="input"
+              max={userBalance}
+              min={0}
+              required={true}
+              step={'any'}
+              type="number"
               value={withdrawAmount != undefined && withdrawAmount > userBalance ? userBalance : withdrawAmount}
               onChange={handleChange}
-              type="number"
-              min={0}
-              max={userBalance}
-              step={'any'}
-              required={true}
             />
           </Form.Control>
         </Form.Field>

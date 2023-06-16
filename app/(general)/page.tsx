@@ -29,11 +29,11 @@ export default function Home() {
       <div className="relative flex flex-1">
         <div className="flex-center flex h-full flex-1 flex-col items-center justify-center text-center">
           <motion.div
+            animate="show"
             className="max-w-3xl px-5 xl:px-0"
             initial="hidden"
-            whileInView="show"
-            animate="show"
             viewport={{ once: true }}
+            whileInView="show"
             variants={{
               hidden: {},
               show: {
@@ -42,7 +42,7 @@ export default function Home() {
                 },
               },
             }}>
-            <img src="/logo-fill.png" alt="Turbo ETH" className="mx-auto mb-10 h-20 w-20" />
+            <img alt="Turbo ETH" className="mx-auto mb-10 h-20 w-20" src="/logo-fill.png" />
             <motion.h1
               className="bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm dark:from-stone-100 dark:to-yellow-200 md:text-8xl md:leading-[6rem]"
               variants={FADE_DOWN_ANIMATION_VARIANTS}>
@@ -55,18 +55,18 @@ export default function Home() {
               <a
                 className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
                 href={DEPLOY_URL}
-                target="_blank"
-                rel="noopener noreferrer">
-                <svg className="h-4 w-4 group-hover:text-black" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 4L20 20H4L12 4Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                rel="noopener noreferrer"
+                target="_blank">
+                <svg className="h-4 w-4 group-hover:text-black" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 4L20 20H4L12 4Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                 </svg>
                 <p>Deploy to Vercel</p>
               </a>
               <a
                 className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
                 href="https://github.com/turbo-eth/template-web3-app"
-                target="_blank"
-                rel="noopener noreferrer">
+                rel="noopener noreferrer"
+                target="_blank">
                 <FaGithub />
                 <p>Star on GitHub</p>
               </a>
@@ -76,11 +76,11 @@ export default function Home() {
 
           <div className="mt-10">
             <motion.div
+              animate="show"
               className="my-10 grid w-full max-w-screen-2xl grid-cols-1 gap-5 px-5 md:grid-cols-3 xl:px-0"
               initial="hidden"
-              whileInView="show"
-              animate="show"
               viewport={{ once: true }}
+              whileInView="show"
               variants={{
                 hidden: {},
                 show: {
@@ -111,7 +111,7 @@ const features = [
         <IsWalletConnected>
           <div className="flex flex-col gap-5 lg:flex-row lg:gap-5 lg:pt-10">
             <div className=" block text-center">
-              <WalletAddress truncate isLink />
+              <WalletAddress isLink truncate />
               <span className="mt-4 block font-mono text-xs font-semibold">&lt;WalletAddress isLink truncate /&gt;</span>
             </div>
           </div>
@@ -126,8 +126,8 @@ const features = [
     title: 'One-click Deploy',
     description: 'Start your next Web3 project in ⚡ Turbo Mode with a deploy to [Vercel](https://vercel.com/) in one click.',
     demo: (
-      <a target={'_blank'} href={DEPLOY_URL} rel="noreferrer">
-        <img src="https://vercel.com/button" alt="Deploy with Vercel" width={120} />
+      <a href={DEPLOY_URL} rel="noreferrer" target={'_blank'}>
+        <img alt="Deploy with Vercel" src="https://vercel.com/button" width={120} />
       </a>
     ),
   },
@@ -137,7 +137,7 @@ const features = [
     href: turboIntegrations.disco.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <Image alt="Disco logo" src="/integrations/disco.jpeg" className="rounded-full" width={100} height={100} />
+        <Image alt="Disco logo" className="rounded-full" height={100} src="/integrations/disco.jpeg" width={100} />
       </div>
     ),
   },
@@ -147,7 +147,7 @@ const features = [
     href: turboIntegrations.siwe.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <Image alt="Prisma logo" src="/integrations/siwe.svg" width={80} height={80} />
+        <Image alt="Prisma logo" height={80} src="/integrations/siwe.svg" width={80} />
       </div>
     ),
   },
@@ -156,7 +156,7 @@ const features = [
     description: 'The best way to connect a wallet. Designed for everyone. Built for developers.',
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <Image alt="Rainbow logo" src="/integrations/rainbowkit.svg" width={100} height={100} />
+        <Image alt="Rainbow logo" height={100} src="/integrations/rainbowkit.svg" width={100} />
       </div>
     ),
   },
@@ -167,10 +167,10 @@ const features = [
     demo: (
       <div className="flex items-center justify-center space-x-20">
         <IsLightTheme>
-          <Image alt="Etherscan logo" src="/integrations/etherscan-dark.svg" width={100} height={100} />
+          <Image alt="Etherscan logo" height={100} src="/integrations/etherscan-dark.svg" width={100} />
         </IsLightTheme>
         <IsDarkTheme>
-          <Image alt="Etherscan logo" src="/integrations/etherscan-light.svg" width={100} height={100} />
+          <Image alt="Etherscan logo" height={100} src="/integrations/etherscan-light.svg" width={100} />
         </IsDarkTheme>
       </div>
     ),
@@ -205,11 +205,11 @@ const features = [
           src={`https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png`}
         />
         <h3 className="mt-4 text-2xl font-normal">
-          <ERC20Name chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} /> (
-          <ERC20Symbol className="" chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} />)
+          <ERC20Name address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} chainId={1} /> (
+          <ERC20Symbol address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} chainId={1} className="" />)
         </h3>
         <p className="">
-          Decimals <ERC20Decimals chainId={1} address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} />
+          Decimals <ERC20Decimals address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} chainId={1} />
         </p>
         <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/1/erc20/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}>
           View Token Page
@@ -222,14 +222,14 @@ const features = [
     description: 'Read and Write to ERC721 smart contracts using minimal UI components.',
     demo: (
       <div className="text-center">
-        <ERC721TokenUriName chainId={1} tokenId={BigInt(1)} address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} />
+        <ERC721TokenUriName address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'} chainId={1} tokenId={BigInt(1)} />
         <ERC721TokenUriImage
-          tokenId={BigInt(1)}
-          chainId={1}
           address={'0xbcc664b1e6848caba2eb2f3de6e21f81b9276dd8'}
-          height={100}
-          width={100}
+          chainId={1}
           className="mx-auto my-4 rounded-xl border-2 border-white shadow-md"
+          height={100}
+          tokenId={BigInt(1)}
+          width={100}
         />
         <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/integration/erc721`}>
           View Token Page
@@ -244,10 +244,10 @@ const features = [
     demo: (
       <div className="flex items-center justify-center space-x-20">
         <IsLightTheme>
-          <Image alt="Lit Protocol logo" src={turboIntegrations.litProtocol.imgDark} width={100} height={100} />
+          <Image alt="Lit Protocol logo" height={100} src={turboIntegrations.litProtocol.imgDark} width={100} />
         </IsLightTheme>
         <IsDarkTheme>
-          <Image alt="Lit Protocol logo" src={turboIntegrations.litProtocol.imgLight} width={100} height={100} />
+          <Image alt="Lit Protocol logo" height={100} src={turboIntegrations.litProtocol.imgLight} width={100} />
         </IsDarkTheme>
       </div>
     ),
@@ -259,10 +259,10 @@ const features = [
     demo: (
       <div className="flex items-center justify-center space-x-20">
         <IsLightTheme>
-          <Image alt="OpenAI logo" src={turboIntegrations.openai.imgDark} width={100} height={100} />
+          <Image alt="OpenAI logo" height={100} src={turboIntegrations.openai.imgDark} width={100} />
         </IsLightTheme>
         <IsDarkTheme>
-          <Image alt="OpenAI logo" src={turboIntegrations.openai.imgLight} width={100} height={100} />
+          <Image alt="OpenAI logo" height={100} src={turboIntegrations.openai.imgLight} width={100} />
         </IsDarkTheme>
       </div>
     ),
@@ -274,10 +274,10 @@ const features = [
     demo: (
       <div className="flex items-center justify-center space-x-20">
         <IsLightTheme>
-          <Image alt="PoolTogether logo" src={turboIntegrations.pooltogether_v4.imgDark} width={100} height={100} />
+          <Image alt="PoolTogether logo" height={100} src={turboIntegrations.pooltogether_v4.imgDark} width={100} />
         </IsLightTheme>
         <IsDarkTheme>
-          <Image alt="PoolTogether logo" src={turboIntegrations.pooltogether_v4.imgLight} width={100} height={100} />
+          <Image alt="PoolTogether logo" height={100} src={turboIntegrations.pooltogether_v4.imgLight} width={100} />
         </IsDarkTheme>
       </div>
     ),

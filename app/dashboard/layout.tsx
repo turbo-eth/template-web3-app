@@ -22,12 +22,12 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         <div className="col-span-12 flex flex-col bg-slate-50 shadow-md dark:bg-slate-800 lg:col-span-2 lg:pb-8">
           <IsMobile>
             <div className="flex p-4">
-              <LinkComponent href="/" className="flex flex-1 items-center ">
+              <LinkComponent className="flex flex-1 items-center " href="/">
                 <IsLightTheme>
-                  <Image alt="Logo" src="/logo-dark.png" width={32} height={32} />
+                  <Image alt="Logo" height={32} src="/logo-dark.png" width={32} />
                 </IsLightTheme>
                 <IsDarkTheme>
-                  <Image alt="Logo" src="/logo-white.png" width={32} height={32} />
+                  <Image alt="Logo" height={32} src="/logo-white.png" width={32} />
                 </IsDarkTheme>
               </LinkComponent>
               <div className="">
@@ -39,10 +39,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             <div className="flex p-4 py-6">
               <LinkComponent className="flex items-center" href="/">
                 <IsLightTheme>
-                  <Image alt="Logo" src="/logo-dark.png" width={32} height={32} />
+                  <Image alt="Logo" height={32} src="/logo-dark.png" width={32} />
                 </IsLightTheme>
                 <IsDarkTheme>
-                  <Image alt="Logo" src="/logo-white.png" width={32} height={32} />
+                  <Image alt="Logo" height={32} src="/logo-white.png" width={32} />
                 </IsDarkTheme>
                 <h1 className="text-gradient-sand ml-2 text-2xl font-bold">{siteConfig.name}</h1>
               </LinkComponent>
@@ -52,7 +52,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             </div>
             <div className="px-8">
               <WalletConnect />
-              <LinkComponent href="/admin" className="link my-2 mt-8 inline-block text-xs">
+              <LinkComponent className="link my-2 mt-8 inline-block text-xs" href="/admin">
                 Admin
               </LinkComponent>
             </div>

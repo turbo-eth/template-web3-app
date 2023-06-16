@@ -106,10 +106,10 @@ const ListItem = ({ className, href, name, imgLight, imgDark, children, ...props
           )}
           {...props}>
           <IsLightTheme>
-            <Image className="mb-3 h-7 w-7 rounded-full" alt="Etherscan logo" src={imgDark} width={100} height={100} />
+            <Image alt="Etherscan logo" className="mb-3 h-7 w-7 rounded-full" height={100} src={imgDark} width={100} />
           </IsLightTheme>
           <IsDarkTheme>
-            <Image className="mb-3 h-7 w-7 rounded-full" alt="Etherscan logo" src={imgLight} width={100} height={100} />
+            <Image alt="Etherscan logo" className="mb-3 h-7 w-7 rounded-full" height={100} src={imgLight} width={100} />
           </IsDarkTheme>
           <div className="text-sm font-medium leading-none">{name}</div>
           <p className="text-sm leading-snug text-slate-500 line-clamp-2 dark:text-slate-400">{children}</p>

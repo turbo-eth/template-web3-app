@@ -12,12 +12,12 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 export default function PageDashboard() {
   return (
     <motion.div
-      className="flex-center flex h-full w-full"
-      variants={FADE_DOWN_ANIMATION_VARIANTS}
-      initial="hidden"
-      whileInView="show"
       animate="show"
-      viewport={{ once: true }}>
+      className="flex-center flex h-full w-full"
+      initial="hidden"
+      variants={FADE_DOWN_ANIMATION_VARIANTS}
+      viewport={{ once: true }}
+      whileInView="show">
       <IsWalletConnected>
         <div className="flex-center col-span-12 flex flex-col lg:col-span-9">
           <div className="text-center">
@@ -30,7 +30,7 @@ export default function PageDashboard() {
               <WalletAddress className="mt-5 block text-xl font-light" />
               <div className="mt-4">
                 <span className="font-primary text-3xl font-light">
-                  Balance: <WalletBalance decimals={7} className="" /> ETH
+                  Balance: <WalletBalance className="" decimals={7} /> ETH
                 </span>
               </div>
             </span>

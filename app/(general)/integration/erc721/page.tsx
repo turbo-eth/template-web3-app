@@ -19,11 +19,11 @@ export default function PageIntegration() {
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center">
         <motion.div
+          animate="show"
           className="max-w-screen-xl px-5 text-center xl:px-0"
           initial="hidden"
-          whileInView="show"
-          animate="show"
           viewport={{ once: true }}
+          whileInView="show"
           variants={{
             hidden: {},
             show: {

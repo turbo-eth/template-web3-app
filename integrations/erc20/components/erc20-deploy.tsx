@@ -61,7 +61,7 @@ export function DeployERC20Contract() {
       <input {...register('name')} className="input" />
       <label>Symbol</label>
       <input {...register('symbol')} className="input" />
-      <ContractWriteButton write={Boolean(name && symbol)} isLoadingTx={isWaitingTransaction} isLoadingWrite={isSigning} loadingTxText="Deploying...">
+      <ContractWriteButton isLoadingTx={isWaitingTransaction} isLoadingWrite={isSigning} loadingTxText="Deploying..." write={Boolean(name && symbol)}>
         Deploy
       </ContractWriteButton>
       {!token ? null : (

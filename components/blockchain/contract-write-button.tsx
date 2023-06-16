@@ -22,7 +22,7 @@ export const ContractWriteButton = ({
   ...props
 }: ContractWriteButtonProps) => {
   return (
-    <button disabled={!write || isLoadingWrite || isLoadingTx} className={cn('btn btn-emerald', className)} {...props}>
+    <button className={cn('btn btn-emerald', className)} disabled={!write || isLoadingWrite || isLoadingTx} {...props}>
       {isLoadingWrite ? loadingWriteText : isLoadingTx ? loadingTxText : children}
     </button>
   )

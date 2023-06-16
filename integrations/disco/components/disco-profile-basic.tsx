@@ -20,7 +20,7 @@ export const DiscoProfileBasic = ({ className, address, ...props }: DiscoProfile
     <div className={className} {...props}>
       <div className="flex gap-2">
         <div className="w-full max-w-[320px]">
-          <img src={data?.profile?.avatar} className="h-auto w-64 rounded-lg border-4 shadow-xl" alt="Profile Avatar" />
+          <img alt="Profile Avatar" className="h-auto w-64 rounded-lg border-4 shadow-xl" src={data?.profile?.avatar} />
         </div>
         <div className="col-span-8">
           {data?.profile?.name && (
@@ -33,8 +33,8 @@ export const DiscoProfileBasic = ({ className, address, ...props }: DiscoProfile
                 components={{
                   a: ({ ...props }: HTMLAttributes<HTMLElement>) => (
                     <a
-                      target="_blank"
                       rel="noopener noreferrer"
+                      target="_blank"
                       {...props}
                       className="font-medium text-gray-800 underline transition-colors dark:text-blue-200"
                     />

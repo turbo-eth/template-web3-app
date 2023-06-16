@@ -17,7 +17,7 @@ export const Address = ({ address, className, truncate, isLink, ...props }: Addr
 
   if (isLink && blockExplorerUrl) {
     return (
-      <LinkComponent className={className} href={`${blockExplorerUrl}/address/${address}`} isExternal {...props}>
+      <LinkComponent isExternal className={className} href={`${blockExplorerUrl}/address/${address}`} {...props}>
         {formattedAddress}
       </LinkComponent>
     )

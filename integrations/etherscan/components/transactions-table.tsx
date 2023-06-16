@@ -38,12 +38,12 @@ export function TransactionsTable({ data }: any) {
       {
         Header: 'From',
         accessor: 'from',
-        Cell: ({ value }: { value: Address }) => <AddressComponent address={value} truncate className="text-sm font-medium" />,
+        Cell: ({ value }: { value: Address }) => <AddressComponent truncate address={value} className="text-sm font-medium" />,
       },
       {
         Header: 'To',
         accessor: 'to',
-        Cell: ({ value }: { value: Address }) => <AddressComponent address={value} truncate className="text-sm font-medium" />,
+        Cell: ({ value }: { value: Address }) => <AddressComponent truncate address={value} className="text-sm font-medium" />,
       },
       {
         Header: 'Created',
@@ -58,7 +58,7 @@ export function TransactionsTable({ data }: any) {
     []
   )
   if (!data) return null
-  return <TableCore columns={columns} data={data} className="w-full overflow-hidden rounded-xl" />
+  return <TableCore className="w-full overflow-hidden rounded-xl" columns={columns} data={data} />
 }
 
 export default TransactionsTable

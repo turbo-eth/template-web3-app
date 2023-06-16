@@ -19,7 +19,7 @@ export const BlockExplorerLink = ({ address, children, className, showExplorerNa
   return (
     <span className={cn('overflow-x-auto font-medium underline', className)} {...props}>
       {blockExplorer && (
-        <a href={`${blockExplorer.url}/${type}/${address}`} target="_blank" rel="noreferrer">
+        <a href={`${blockExplorer.url}/${type}/${address}`} rel="noreferrer" target="_blank">
           {showExplorerName ? blockExplorer.name : children ?? address}
         </a>
       )}

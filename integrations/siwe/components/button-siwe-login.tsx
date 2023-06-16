@@ -33,7 +33,7 @@ export const ButtonSIWELogin = ({ className, label = 'Sign-In With Ethereum', di
   })
 
   return (
-    <button type="button" disabled={disabled} onClick={handleCreateMessage} className={classes} {...props}>
+    <button className={classes} disabled={disabled} type="button" onClick={handleCreateMessage} {...props}>
       {isLoading && <span className="lds-dual-ring absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />}
       <span className={labelClasses}>{children || label || 'Logout'}</span>
     </button>

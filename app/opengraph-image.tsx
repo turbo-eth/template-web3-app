@@ -28,7 +28,7 @@ export default async function Image() {
           backgroundColor: 'white',
           backgroundImage: 'linear-gradient(to bottom right, #FFF 25%, #FFF0CA 75%)',
         }}>
-        <img src={new URL('../public/logo-fill.png', import.meta.url).toString()} alt="TurboETH Logo" tw="w-20 h-20 mb-4 opacity-95" />
+        <img alt="TurboETH Logo" src={new URL('../public/logo-fill.png', import.meta.url).toString()} tw="w-20 h-20 mb-4 opacity-95" />
         <h1
           style={{
             fontSize: '100px',

@@ -45,10 +45,10 @@ function ERC20ContractMintTokens({ address }: ERC20WriteMintProps) {
     <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
       <label>Amount</label>
       <input className="input" placeholder="1000" {...register('amount')} />
-      <ContractWriteButton type="submit" isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} write={!!write} loadingTxText="Minting...">
+      <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Minting..." type="submit" write={!!write}>
         Mint
       </ContractWriteButton>
-      <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
+      <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
     </form>
   )
 }

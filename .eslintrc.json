@@ -33,6 +33,16 @@
     "@typescript-eslint/require-await": "off",
     "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
+    "react/jsx-sort-props": [
+      "error",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "ignoreCase": true,
+        "reservedFirst": true,
+        "multiline": "last"
+      }
+    ],
     "tailwindcss/classnames-order": [
       "warn",
       {

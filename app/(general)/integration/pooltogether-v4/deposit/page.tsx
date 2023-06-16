@@ -12,12 +12,12 @@ export default function PoolTogetherDeposit() {
   return (
     <>
       <motion.div
-        className="flex h-full w-full"
-        variants={FADE_DOWN_ANIMATION_VARIANTS}
-        initial="hidden"
-        whileInView="show"
         animate="show"
-        viewport={{ once: true }}>
+        className="flex h-full w-full"
+        initial="hidden"
+        variants={FADE_DOWN_ANIMATION_VARIANTS}
+        viewport={{ once: true }}
+        whileInView="show">
         <IsWalletConnected>
           <PoolTogetherFormDeposit />
         </IsWalletConnected>

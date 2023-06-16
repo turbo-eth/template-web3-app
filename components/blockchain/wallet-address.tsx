@@ -13,5 +13,5 @@ export const WalletAddress = ({ className, truncate, isLink, ...props }: WalletA
 
   if (!address) return null
 
-  return <Address address={address} className={className} truncate={truncate} isLink={isLink} {...props} />
+  return <Address address={address} className={className} isLink={isLink} truncate={truncate} {...props} />
 }

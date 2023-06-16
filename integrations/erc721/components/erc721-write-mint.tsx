@@ -53,13 +53,13 @@ export function Erc721WriteMint({ address }: Erc721WriteMintProps) {
         <label>Address</label>
         <input {...register('toAddress')} className="input" />
         <label>Token ID</label>
-        <input {...register('tokenId')} type="number" className="input" />
+        <input {...register('tokenId')} className="input" type="number" />
         <label>Token URI</label>
         <input {...register('tokenUri')} className="input" />
-        <ContractWriteButton type="submit" isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} write={!!write} loadingTxText="Minting...">
+        <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Minting..." type="submit" write={!!write}>
           Mint
         </ContractWriteButton>
-        <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
+        <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC721 Mint</h3>

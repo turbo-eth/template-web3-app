@@ -39,10 +39,10 @@ export function DashboardHeader({ className, ...props }: HTMLAttributes<HTMLElem
     <header className={classes} {...props}>
       <div className="flex flex-1 ">
         <span className="flex items-center gap-2">
-          <WalletAddress truncate isLink className="tag tag-primary hover:shadow-sm" />
+          <WalletAddress isLink truncate className="tag tag-primary hover:shadow-sm" />
           <span className="">
             <IsWalletConnected>
-              <span onClick={handleToast} className="">
+              <span className="" onClick={handleToast}>
                 <CopyToClipboard text={address as string}>
                   <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
                     <FaCopy className=" text-neutral-600 dark:text-neutral-100" />

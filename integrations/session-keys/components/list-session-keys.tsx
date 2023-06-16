@@ -31,31 +31,31 @@ export function ListSessionKeys({ selectedSessionKey, setSelectedSessionKey }: L
   return (
     <div className="min-w-[540px]">
       <h2 className="mb-4 text-xl font-bold">Session Keys:</h2>
-      <Input type="text" placeholder="Search addresses..." value={search} onChange={(e) => setSearch(e.target.value)} />
+      <Input placeholder="Search addresses..." type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
       <AnimatePresence>
         {filteredSessionKeys?.map(({ address }) => (
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
+            key={address}
             animate={{
               opacity: 1,
               y: 0,
             }}
-            transition={{
-              duration: 0.25,
-              delay: 0.15,
-            }}
             exit={{
               opacity: 0,
             }}
-            key={address}>
+            initial={{
+              opacity: 0,
+              y: 20,
+            }}
+            transition={{
+              duration: 0.25,
+              delay: 0.15,
+            }}>
             <Button
-              variant="subtle"
-              onClick={() => handleSelectSessionKey(address)}
+              key={address}
               className="my-3 flex w-full items-center py-2 text-lg"
-              key={address}>
+              variant="subtle"
+              onClick={() => handleSelectSessionKey(address)}>
               {address === selectedSessionKey && <BsCheck2 className="mr-2 text-2xl" />}
               <span>{address}</span>
             </Button>

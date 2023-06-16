@@ -20,11 +20,11 @@ export default function PageIntegration() {
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center">
         <motion.div
+          animate="show"
           className="max-w-screen-xl px-5 text-center xl:px-0"
           initial="hidden"
-          whileInView="show"
-          animate="show"
           viewport={{ once: true }}
+          whileInView="show"
           variants={{
             hidden: {},
             show: {
@@ -52,7 +52,7 @@ export default function PageIntegration() {
         <div className="mx-auto max-w-fit">
           <div className="mb-10 flex justify-between gap-4">
             <CreateSessionKey />
-            <DeleteSessionKey setSelectedSessionKey={setSelectedSessionKey} selectedSessionKey={selectedSessionKey} />
+            <DeleteSessionKey selectedSessionKey={selectedSessionKey} setSelectedSessionKey={setSelectedSessionKey} />
             <DeleteAllSessionKeys />
           </div>
           <div className="mx-auto max-w-lg">

@@ -27,11 +27,11 @@ export default function PageIntegration() {
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center text-center">
         <motion.div
+          animate="show"
           className="max-w-3xl px-5 text-center xl:px-0"
           initial="hidden"
-          whileInView="show"
-          animate="show"
           viewport={{ once: true }}
+          whileInView="show"
           variants={{
             hidden: {},
             show: {
@@ -41,10 +41,10 @@ export default function PageIntegration() {
             },
           }}>
           <IsLightTheme>
-            <Image className="mx-auto" alt="Etherscan logo" src={turboIntegrations.etherscan.imgDark} width={100} height={100} />
+            <Image alt="Etherscan logo" className="mx-auto" height={100} src={turboIntegrations.etherscan.imgDark} width={100} />
           </IsLightTheme>
           <IsDarkTheme>
-            <Image className="mx-auto" alt="Etherscan logo" src={turboIntegrations.etherscan.imgLight} width={100} height={100} />
+            <Image alt="Etherscan logo" className="mx-auto" height={100} src={turboIntegrations.etherscan.imgLight} width={100} />
           </IsDarkTheme>
           <motion.h1
             className="text-gradient-sand text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
@@ -67,7 +67,7 @@ export default function PageIntegration() {
               <div className="w-full">
                 {!isLoading && (
                   <div className="card">
-                    <TransactionsTable data={data?.transactions} className="w-full" />
+                    <TransactionsTable className="w-full" data={data?.transactions} />
                   </div>
                 )}
               </div>

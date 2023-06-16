@@ -32,9 +32,9 @@ export function IntegrationOgImage(integration: keyof typeof turboIntegrations) 
             backgroundImage: 'linear-gradient(to bottom right, #FFF 25%, #FFF0CA 75%)',
           }}>
           <img
-            style={{ borderRadius: '9999px' }}
-            src={new URL(integrationData.imgDark, url).toString()}
             alt="TurboETH Logo"
+            src={new URL(integrationData.imgDark, url).toString()}
+            style={{ borderRadius: '9999px' }}
             tw="w-32 h-32 mb-2 opacity-95"
           />
           <h1

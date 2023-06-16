@@ -11,11 +11,11 @@ export default function ERC20({ params }: { params: { address: string; chainId: 
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center text-center">
         <motion.div
+          animate="show"
           className="max-w-3xl px-5 xl:px-0"
           initial="hidden"
-          whileInView="show"
-          animate="show"
           viewport={{ once: true }}
+          whileInView="show"
           variants={{
             hidden: {},
             show: {
@@ -24,7 +24,7 @@ export default function ERC20({ params }: { params: { address: string; chainId: 
               },
             },
           }}>
-          <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} className="flex-center flex h-full flex-1 flex-col items-center justify-center ">
+          <motion.div className="flex-center flex h-full flex-1 flex-col items-center justify-center " variants={FADE_DOWN_ANIMATION_VARIANTS}>
             <div className="card w-[420px] ">
               <img
                 alt={`Token ${address} icon`}
@@ -32,8 +32,8 @@ export default function ERC20({ params }: { params: { address: string; chainId: 
                 src={`https://raw.githubusercontent.com/Uniswap/assets/master/blockchains/ethereum/assets/${address}/logo.png`}
               />
               <h3 className="mt-4 text-2xl font-normal">
-                <ERC20Name chainId={Number(chainId)} address={address} /> (
-                <ERC20Symbol className="" chainId={Number(chainId)} address={address} />)
+                <ERC20Name address={address} chainId={Number(chainId)} /> (
+                <ERC20Symbol address={address} chainId={Number(chainId)} className="" />)
               </h3>
               <div className="mt-3">
                 <span className="mr-2 font-bold">Decimals:</span> <ERC20Decimals address={address} />

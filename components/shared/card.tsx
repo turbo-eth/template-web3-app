@@ -23,10 +23,10 @@ export default function Card({
 }) {
   return (
     <motion.div
+      variants={FADE_UP_ANIMATION_VARIANTS}
       className={`relative col-span-1  overflow-hidden rounded-xl border border-gray-200 bg-white px-4 shadow-md dark:border-gray-800 dark:bg-neutral-800 dark:text-white ${
         large ? 'md:col-span-2' : ''
-      }`}
-      variants={FADE_UP_ANIMATION_VARIANTS}>
+      }`}>
       <div className="flex h-60 items-center justify-center">{demo}</div>
       <div className="mx-auto max-w-xl text-center">
         <h2 className="mb-3 bg-gradient-to-br from-black to-stone-500 bg-clip-text text-xl font-bold text-transparent dark:from-stone-100 dark:to-emerald-200 md:text-3xl md:font-normal">
@@ -38,8 +38,8 @@ export default function Card({
               components={{
                 a: ({ ...props }) => (
                   <a
-                    target="_blank"
                     rel="noopener noreferrer"
+                    target="_blank"
                     {...props}
                     className="font-medium text-gray-800 underline transition-colors dark:text-blue-200"
                   />

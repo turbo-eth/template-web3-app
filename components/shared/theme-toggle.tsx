@@ -36,7 +36,7 @@ export function ThemeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="sm">
+        <Button size="sm" variant="ghost">
           <IsLightTheme>
             <Icons.sun className="h-6 w-6 hover:text-slate-900" />
           </IsLightTheme>
@@ -46,7 +46,7 @@ export function ThemeToggle() {
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" forceMount>
+      <DropdownMenuContent forceMount align="end">
         <DropdownMenuItem onClick={handleSetLightTheme}>
           <Icons.sun className="mr-2 h-4 w-4" />
           <span>Light</span>

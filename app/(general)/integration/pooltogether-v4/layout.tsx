@@ -19,11 +19,11 @@ export default function PoolTogetherLayout({ children }: { children: ReactNode }
         <div className="relative flex flex-1">
           <div className="flex-center flex h-full flex-1 flex-col items-center justify-center text-center">
             <motion.div
+              animate="show"
               className="max-w-3xl px-5 xl:px-0"
               initial="hidden"
-              whileInView="show"
-              animate="show"
               viewport={{ once: true }}
+              whileInView="show"
               variants={{
                 hidden: {},
                 show: {
@@ -32,7 +32,7 @@ export default function PoolTogetherLayout({ children }: { children: ReactNode }
                   },
                 },
               }}>
-              <Image alt="PoolTogether Icon" className="mx-auto mb-5" src={turboIntegrations.pooltogether_v4.imgDark} width={100} height={100} />
+              <Image alt="PoolTogether Icon" className="mx-auto mb-5" height={100} src={turboIntegrations.pooltogether_v4.imgDark} width={100} />
               <motion.h1
                 className="text-gradient-pooltogether pb-5 text-center text-2xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
                 variants={FADE_DOWN_ANIMATION_VARIANTS}>

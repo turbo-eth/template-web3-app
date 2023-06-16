@@ -26,7 +26,7 @@ export function NetworkStatus({ className, ...props }: NetworkStatusProps) {
         <span className="px-1">{network.chain?.name ?? 'Ethereum'}</span>
       </span>
       {explorerUrl && (
-        <LinkComponent href={explorerUrl} className="mx-3 text-2xs dark:hover:text-gray-200">
+        <LinkComponent className="mx-3 text-2xs dark:hover:text-gray-200" href={explorerUrl}>
           <>#{block.data?.toString()}</>
         </LinkComponent>
       )}

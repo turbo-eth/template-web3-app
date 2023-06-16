@@ -18,5 +18,5 @@ export function ERC721TokenUriImage({ address, chainId, className, tokenId, heig
 
   if (!metadata.data?.image) return null
 
-  return <Image alt={alt ?? 'ERC721 image'} className={className} src={metadata.data?.image} height={height} width={width} />
+  return <Image alt={alt ?? 'ERC721 image'} className={className} height={height} src={metadata.data?.image} width={width} />
 }

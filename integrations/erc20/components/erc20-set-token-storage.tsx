@@ -23,8 +23,8 @@ export function Erc20SetTokenStorage() {
     <div className="card w-full">
       <form className="flex flex-col gap-4" onSubmit={onSubmit}>
         <label>Selected Contract Address</label>
-        <input value={tokenAddress} onChange={(e) => setTokenAddress(e.target.value as Address)} className="input" />
-        <button type="submit" disabled={!isValidAddress} className="btn btn-emerald">
+        <input className="input" value={tokenAddress} onChange={(e) => setTokenAddress(e.target.value as Address)} />
+        <button className="btn btn-emerald" disabled={!isValidAddress} type="submit">
           {'Select Contract Address'}
         </button>
         <hr className="my-4" />

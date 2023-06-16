@@ -16,7 +16,7 @@ export const MenuDashboardSidebar = ({ className }: HTMLAttributes<HTMLElement>)
     <div className={cx}>
       {menuDashboard.map((item) => {
         return (
-          <Item key={item.href} currentPath={pathname} className="menu-item my-2" href={item.href}>
+          <Item key={item.href} className="menu-item my-2" currentPath={pathname} href={item.href}>
             <span className="text-lg">{item.label}</span>
           </Item>
         )

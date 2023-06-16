@@ -53,7 +53,7 @@ const fontSans = FontSans({
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <html lang="en" className={`${sfPro.variable} ${raleway.variable}`} suppressHydrationWarning>
+      <html suppressHydrationWarning className={`${sfPro.variable} ${raleway.variable}`} lang="en">
         <body className={cn('min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50', fontSans.variable)}>
           <RootProvider>{children}</RootProvider>
         </body>

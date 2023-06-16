@@ -68,9 +68,9 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
           <label>Token ID:</label>
           <input
             className="input mt-4"
-            type="number"
-            placeholder="0"
             min={0}
+            placeholder="0"
+            type="number"
             {...register('tokenId', {
               required: 'Token ID is required',
             })}
