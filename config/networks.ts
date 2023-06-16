@@ -48,7 +48,7 @@ const celoAlfajores = {
   iconUrl: '/icons/NetworkCeloTest.svg',
 }
 
-export const ETH_CHAINS_TEST = [goerli, sepolia, polygonMumbai, celoAlfajores, hardhat]
+export const ETH_CHAINS_TEST = [mainnet, goerli, sepolia, polygonMumbai, celoAlfajores, hardhat]
 export const ETH_CHAINS_L2_TEST = [baseGoerli, optimismGoerli, arbitrumGoerli]
 export const ETH_CHAINS_PROD = [mainnet, optimism, arbitrum, polygon, celo, goerli, baseGoerli]
 export const ETH_CHAINS_DEV =
