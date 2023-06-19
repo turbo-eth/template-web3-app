@@ -10,7 +10,7 @@ import { FormLitDecryptMessage } from '@/integrations/lit-protocol/components/fo
 export default function PageIntegration() {
   const searchParams = useSearchParams()
 
-  const id = searchParams.get('id') || ''
+  const id = searchParams?.get('id') || ''
 
   return (
     <section className="w-full lg:mt-10">

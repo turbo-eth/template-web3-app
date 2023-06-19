@@ -12,11 +12,11 @@ export const size = {
 
 export const contentType = 'image/png'
 
-const sfPro = fetch(new URL('../../../assets/fonts/SF-Pro-Display-Medium.otf', import.meta.url)).then((res) => res.arrayBuffer())
 const url = env.SITE_URL || 'http://localhost:3000'
 
 export function IntegrationOgImage(integration: keyof typeof turboIntegrations) {
   const integrationData = turboIntegrations[integration]
+
   return async function Image() {
     return new ImageResponse(
       (
@@ -69,7 +69,7 @@ export function IntegrationOgImage(integration: keyof typeof turboIntegrations) 
         fonts: [
           {
             name: 'SF Pro',
-            data: await sfPro,
+            data: await fetch(new URL('../../../assets/fonts/SF-Pro-Display-Medium.otf', import.meta.url)).then((res) => res.arrayBuffer()),
           },
         ],
       }

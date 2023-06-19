@@ -3,13 +3,9 @@ import './env.mjs'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  typescript: {
-    ignoreBuildErrors: true,
-  },
   images: {
     domains: ['avatars.githubusercontent.com', 'images.unsplash.com', 'cloudflare-ipfs.com'],
   },
-  swcMinify: true,
   env: {
     mode: process.env.NODE_ENV,
   },

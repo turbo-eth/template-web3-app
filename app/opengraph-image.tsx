@@ -12,8 +12,6 @@ export const size = {
 
 export const contentType = 'image/png'
 
-const sfPro = fetch(new URL('../assets/fonts/SF-Pro-Display-Medium.otf', import.meta.url)).then((res) => res.arrayBuffer())
-
 export default async function Image() {
   return new ImageResponse(
     (
@@ -60,7 +58,7 @@ export default async function Image() {
       fonts: [
         {
           name: 'SF Pro',
-          data: await sfPro,
+          data: await fetch(new URL('../assets/fonts/SF-Pro-Display-Medium.otf', import.meta.url)).then((res) => res.arrayBuffer()),
         },
       ],
     }

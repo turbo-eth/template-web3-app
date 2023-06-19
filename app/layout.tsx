@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils'
 const url = env.SITE_URL || 'http://localhost:3000'
 
 export const metadata = {
+  metadataBase: new URL(url),
   title: `${siteConfig.name} - ${siteConfig.description}`,
   description: siteConfig.description,
   icons: {
