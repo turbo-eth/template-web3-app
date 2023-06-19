@@ -1,6 +1,5 @@
 'use client'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
@@ -62,9 +61,11 @@ export default function PageIntegration() {
                     <span className="mb-4 text-lg">
                       Access the token page where you can update the url parameters to select which ERC20 token to view
                     </span>
-                    <Link className="btn btn-emerald btn-sm font-bold" href={`/integration/erc20/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}>
+                    <LinkComponent
+                      className="btn btn-emerald btn-sm font-bold"
+                      href={`/integration/erc20/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}>
                       View Token Page
-                    </Link>
+                    </LinkComponent>
                   </div>
                   <ERC20Read address={token} />
                   <ERC20WriteMint address={token} />

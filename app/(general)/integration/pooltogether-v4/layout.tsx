@@ -3,9 +3,9 @@ import { ReactNode } from 'react'
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import Balancer from 'react-wrap-balancer'
 
+import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 
@@ -42,12 +42,12 @@ export default function PoolTogetherLayout({ children }: { children: ReactNode }
                 <Balancer className="text-xl font-semibold">Start interacting with PoolTogether today</Balancer>
               </motion.p>
               <motion.div className="mx-auto mt-6 flex items-center justify-center space-x-8" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-                <Link href="/integration/pooltogether-v4/deposit">
+                <LinkComponent href="/integration/pooltogether-v4/deposit">
                   <p className={button}>Deposit</p>
-                </Link>
-                <Link href="/integration/pooltogether-v4/withdraw">
+                </LinkComponent>
+                <LinkComponent href="/integration/pooltogether-v4/withdraw">
                   <p className={button}>Withdraw</p>
-                </Link>
+                </LinkComponent>
               </motion.div>
             </motion.div>
           </div>

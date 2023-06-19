@@ -1,11 +1,12 @@
 'use client'
 import { HTMLAttributes } from 'react'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { menuAdmin } from '@/config/menu-admin'
 import { cn } from '@/lib/utils'
+
+import { LinkComponent } from '../shared/link-component'
 
 export const MenuAdminSidebar = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
   const cx = cn(className, 'flex flex-col gap-1')
@@ -35,8 +36,8 @@ const Item = ({ children, href, currentPath }: ItemProps) => {
   })
 
   return (
-    <Link className={cx} href={href}>
+    <LinkComponent className={cx} href={href}>
       {children}
-    </Link>
+    </LinkComponent>
   )
 }

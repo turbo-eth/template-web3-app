@@ -18,9 +18,9 @@ export function LinkComponent({ href, children, isExternal, className, target = 
   const classes = cn(className, {
     active: pathname === href,
   })
-  const isExternalEnabed = href.match(/^([a-z0-9]*:|.{0})\/\/.*$/) || isExternal
+  const isExternalEnabled = href.match(/^([a-z0-9]*:|.{0})\/\/.*$/) || isExternal
 
-  if (isExternalEnabed) {
+  if (isExternalEnabled) {
     return (
       <a className={classes} href={href} rel="noopener noreferrer" target={target} {...props}>
         {children}

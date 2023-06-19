@@ -1,6 +1,5 @@
 'use client'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { LuBinary, LuDatabase, LuLayoutDashboard, LuLogOut } from 'react-icons/lu'
 
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
@@ -10,6 +9,7 @@ import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 
 import { ButtonSIWELogin } from '../../integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '../../integrations/siwe/components/button-siwe-logout'
+import { LinkComponent } from '../shared/link-component'
 
 export function UserDropdown() {
   return (
@@ -22,18 +22,18 @@ export function UserDropdown() {
         </PopoverTrigger>
         <PopoverContent>
           <div className="w-full rounded-md p-2 ">
-            <Link className="user-dropdown-menu-item" href="/">
+            <LinkComponent className="user-dropdown-menu-item" href="/">
               <LuBinary className="h-4 w-4" />
               <p className="text-sm">Site</p>
-            </Link>
-            <Link className="user-dropdown-menu-item " href="/dashboard">
+            </LinkComponent>
+            <LinkComponent className="user-dropdown-menu-item " href="/dashboard">
               <LuLayoutDashboard className="h-4 w-4" />
               <p className="text-sm">Dashboard</p>
-            </Link>
-            <Link className="user-dropdown-menu-item " href="/admin">
+            </LinkComponent>
+            <LinkComponent className="user-dropdown-menu-item " href="/admin">
               <LuDatabase className="h-4 w-4" />
               <p className="text-sm">Admin</p>
-            </Link>
+            </LinkComponent>
             <IsSignedIn>
               <ButtonSIWELogout className="user-dropdown-menu-item flex">
                 <LuLogOut className="h-4 w-4" />

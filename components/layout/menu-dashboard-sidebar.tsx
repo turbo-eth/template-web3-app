@@ -2,11 +2,12 @@
 
 import { HTMLAttributes } from 'react'
 
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { menuDashboard } from '@/config/menu-dashboard'
 import { cn } from '@/lib/utils'
+
+import { LinkComponent } from '../shared/link-component'
 
 export const MenuDashboardSidebar = ({ className }: HTMLAttributes<HTMLElement>) => {
   const cx = cn(className, 'flex flex-col gap-1')
@@ -36,8 +37,8 @@ const Item = ({ children, href, currentPath, ...props }: ItemProps) => {
   })
 
   return (
-    <Link className={cx} href={href} {...props}>
+    <LinkComponent className={cx} href={href} {...props}>
       {children}
-    </Link>
+    </LinkComponent>
   )
 }

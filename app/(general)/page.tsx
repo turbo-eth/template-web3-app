@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
 import { FaGithub } from 'react-icons/fa'
 import Balancer from 'react-wrap-balancer'
 
@@ -13,6 +12,7 @@ import { IsDarkTheme } from '@/components/shared/is-dark-theme'
 import { IsLightTheme } from '@/components/shared/is-light-theme'
 import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
 import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
+import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { DEPLOY_URL, siteConfig } from '@/config/site'
 import { turboIntegrations } from '@/data/turbo-integrations'
@@ -211,9 +211,9 @@ const features = [
         <p className="">
           Decimals <ERC20Decimals address={'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48' as '0x${string}'} chainId={1} />
         </p>
-        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`integration/erc20`}>
+        <LinkComponent className="btn btn-light btn-sm mt-4 font-bold" href={`integration/erc20`}>
           View Token Page
-        </Link>
+        </LinkComponent>
       </div>
     ),
   },
@@ -231,9 +231,9 @@ const features = [
           tokenId={BigInt(1)}
           width={100}
         />
-        <Link className="btn btn-light btn-sm mt-4 font-bold" href={`/integration/erc721`}>
+        <LinkComponent className="btn btn-light btn-sm mt-4 font-bold" href={`/integration/erc721`}>
           View Token Page
-        </Link>
+        </LinkComponent>
       </div>
     ),
   },
