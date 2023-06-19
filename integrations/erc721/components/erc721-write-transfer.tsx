@@ -84,14 +84,6 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
           <Button className="w-full" type="submit" disabled={!write || isLoadingWrite || isLoadingTx}>
             {isLoadingWrite ? 'Sign the transaction in your wallet' : isLoadingTx ? 'Transferring...' : 'Transfer'}
           </Button>
-          {/* <ContractWriteButton
-            type="submit"
-            isLoadingTx={isLoadingTx}
-            isLoadingWrite={isLoadingWrite}
-            write={!!write}
-            loadingTxText="Transferring...">
-            Transfer
-          </ContractWriteButton> */}
           <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
           <hr className="my-4" />
           <div className="flex items-center justify-between">
