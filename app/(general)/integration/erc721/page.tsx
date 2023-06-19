@@ -3,7 +3,8 @@ import { motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
@@ -18,11 +19,11 @@ export default function PageIntegration() {
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center">
         <motion.div
+          animate="show"
           className="max-w-screen-xl px-5 text-center xl:px-0"
           initial="hidden"
-          whileInView="show"
-          animate="show"
           viewport={{ once: true }}
+          whileInView="show"
           variants={{
             hidden: {},
             show: {
@@ -48,7 +49,7 @@ export default function PageIntegration() {
       </div>
       <section className="w-full lg:mt-10">
         <div className="container flex w-full flex-col items-center">
-          <BranchIsWalletConnected>
+          <IsWalletConnected>
             <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
               <ERC721Deploy />
               <Erc721SetTokenStorage />
@@ -61,8 +62,10 @@ export default function PageIntegration() {
                 </>
               )}
             </div>
+          </IsWalletConnected>
+          <IsWalletDisconnected>
             <WalletConnect />
-          </BranchIsWalletConnected>
+          </IsWalletDisconnected>
         </div>
       </section>
     </>

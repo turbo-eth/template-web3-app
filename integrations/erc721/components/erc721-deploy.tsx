@@ -52,14 +52,14 @@ export function ERC721Deploy() {
     <div className="card w-full">
       <form className="flex flex-col gap-4" onSubmit={onSubmit}>
         <label>Name</label>
-        <input value={name} onChange={(e) => setName(e.target.value)} className="input" />
+        <input className="input" value={name} onChange={(e) => setName(e.target.value)} />
         <label>Symbol</label>
-        <input value={symbol} onChange={(e) => setSymbol(e.target.value)} className="input" />
+        <input className="input" value={symbol} onChange={(e) => setSymbol(e.target.value)} />
         <ContractWriteButton
-          write={Boolean(name && symbol)}
           isLoadingTx={isWaitingTransaction}
           isLoadingWrite={isSigning}
-          loadingTxText="Deploying...">
+          loadingTxText="Deploying..."
+          write={Boolean(name && symbol)}>
           Deploy
         </ContractWriteButton>
       </form>

@@ -6,7 +6,7 @@ import { Address, useAccount, useWaitForTransaction } from 'wagmi'
 import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { TransactionStatus } from '@/components/blockchain/transaction-status'
 
-import { useErc721SafeTransferFrom, usePrepareErc721SafeTransferFrom } from '../erc721-wagmi'
+import { useErc721SafeTransferFrom, usePrepareErc721SafeTransferFrom } from '../generated/erc721-wagmi'
 
 interface Erc721WriteTransferProps {
   address: Address
@@ -50,7 +50,7 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
         <div className="flex items-center justify-between text-sm">
           <label>Use different from address</label>
           <div className="h-6 w-6">
-            <input {...register('differentFromAddress')} type="checkbox" className="input" />
+            <input {...register('differentFromAddress')} className="input" type="checkbox" />
           </div>
         </div>
         {watchDifferentFromAddress && (
@@ -63,10 +63,10 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
         <input {...register('toAddress')} className="input" />
         <label>Token ID</label>
         <input type="number" {...register('tokenId')} className="input" />
-        <ContractWriteButton type="submit" isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} write={!!write} loadingTxText="Transferring...">
+        <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Transferring..." type="submit" write={!!write}>
           Transfer
         </ContractWriteButton>
-        <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
+        <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC721 Transfer</h3>

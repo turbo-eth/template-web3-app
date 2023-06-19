@@ -1,6 +1,8 @@
 import { discoClient } from '@/integrations/disco/disco-client'
 
-export async function discoGetProfileFromDID(did: string): Promise<any> {
-  const { data } = await discoClient.get(`/profile/${did}`)
+import { Profile } from '../../utils/types'
+
+export async function discoGetProfileFromDID(did: string) {
+  const { data }: { data: Profile } = await discoClient.get(`/profile/${did}`)
   return data
 }

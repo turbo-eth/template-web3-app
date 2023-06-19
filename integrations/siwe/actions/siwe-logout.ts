@@ -4,8 +4,8 @@ export async function siweLogout(): Promise<boolean> {
   try {
     await axios.get('/api/siwe/logout')
     return true
-  } catch (error: any) {
-    if (error instanceof AxiosError == true) {
+  } catch (error) {
+    if (error instanceof AxiosError === true) {
       return false
     }
     throw new Error(`Unexpected Error`)

@@ -7,14 +7,6 @@ export const turboIntegrations = {
     imgLight: '/integrations/siwe.svg',
     imgDark: '/integrations/siwe.svg',
   },
-  rainbowkit: {
-    name: 'Rainbowkit',
-    href: '/integration/rainbowkit',
-    url: 'https://rainbowkit.com',
-    description: 'The best way to connect a wallet. Designed for everyone. Built for developers.',
-    imgLight: '/integrations/rainbowkit.svg',
-    imgDark: '/integrations/rainbowkit.svg',
-  },
   erc20: {
     name: 'ERC20',
     href: '/integration/erc20',

@@ -6,7 +6,8 @@ import { usePublicClient, useWalletClient } from 'wagmi'
 import { BlockExplorerLink } from '@/components/blockchain/block-explorer-link'
 import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 
 import { erc20MintableABI } from '../abis/erc20-mintable-abi'
 import { erc20MintableByteCode } from '../abis/erc20-mintable-bytecode'
@@ -60,7 +61,7 @@ export function DeployERC20Contract() {
       <input {...register('name')} className="input" />
       <label>Symbol</label>
       <input {...register('symbol')} className="input" />
-      <ContractWriteButton write={Boolean(name && symbol)} isLoadingTx={isWaitingTransaction} isLoadingWrite={isSigning} loadingTxText="Deploying...">
+      <ContractWriteButton isLoadingTx={isWaitingTransaction} isLoadingWrite={isSigning} loadingTxText="Deploying..." write={Boolean(name && symbol)}>
         Deploy
       </ContractWriteButton>
       {!token ? null : (
@@ -76,7 +77,7 @@ export function DeployERC20Contract() {
 export function ERC20Deploy() {
   return (
     <div className="card w-full">
-      <BranchIsWalletConnected>
+      <IsWalletConnected>
         <div className="w-full">
           <DeployERC20Contract />
           <hr className="my-4" />
@@ -85,12 +86,12 @@ export function ERC20Deploy() {
             <p className="text-center text-sm text-gray-500">Deploy a new mintable ERC20 token to any blockchain</p>
           </div>
         </div>
+      </IsWalletConnected>
+      <IsWalletDisconnected>
         <div className="flex items-center justify-center gap-10">
-          <>
-            <WalletConnect />
-          </>
+          <WalletConnect />
         </div>
-      </BranchIsWalletConnected>
+      </IsWalletDisconnected>
     </div>
   )
 }

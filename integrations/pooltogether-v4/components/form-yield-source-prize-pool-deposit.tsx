@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 import * as Form from '@radix-ui/react-form'
-import { ExternalLinkIcon } from 'lucide-react'
+import { LuExternalLink } from 'react-icons/lu'
 import { useDebounce } from 'usehooks-ts'
 import { parseUnits } from 'viem'
 import { useAccount, useWaitForTransaction } from 'wagmi'
@@ -9,11 +9,11 @@ import { useAccount, useWaitForTransaction } from 'wagmi'
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { useUsdcApproval } from '@/actions/pooltogether-v4/hooks/use-usdc-approval'
 import { useUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/use-user-balance-deposit'
-import { usePoolTogetherPrizePoolDepositToAndDelegate } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/utils/usdc-contract-list'
 import { Checkbox } from '@/components/ui/checkbox'
-import { useErc20Approve, useErc20Decimals } from '@/lib/blockchain'
+import { usePoolTogetherPrizePoolDepositToAndDelegate } from '@/integrations/pooltogether-v4/generated/pooltogether-v4-wagmi'
+import { useErc20Approve, useErc20Decimals } from '@/lib/generated/blockchain'
 
 export function PoolTogetherFormDeposit() {
   const [isChecked, setIsChecked] = useState<boolean>(false)
@@ -105,13 +105,13 @@ export function PoolTogetherFormDeposit() {
           <Form.Control asChild>
             <input
               className="input"
-              onChange={handleChange}
-              value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
-              type="number"
-              min={0}
               max={userBalance}
-              step={'any'}
+              min={0}
               required={true}
+              step={'any'}
+              type="number"
+              value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
+              onChange={handleChange}
             />
           </Form.Control>
         </Form.Field>
@@ -149,9 +149,9 @@ export function PoolTogetherFormDeposit() {
       {successDeposit && (
         <div className="mt-4 space-x-2 rounded border p-3 text-center text-xs font-semibold">
           Manage your account on&nbsp; <br />
-          <a target={'_blank'} href="https://app.pooltogether.com/" className="flex items-center text-xl">
+          <a className="flex items-center text-xl" href="https://app.pooltogether.com/" target={'_blank'}>
             <span className="text-gradient-pooltogether">PoolTogether</span>
-            <ExternalLinkIcon size="16" className="text-gradient-pooltogether-link ml-1" />
+            <LuExternalLink className="text-gradient-pooltogether-link ml-1" size="16" />
           </a>
         </div>
       )}

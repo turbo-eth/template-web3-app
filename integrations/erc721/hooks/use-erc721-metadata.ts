@@ -1,6 +1,6 @@
 import { useQuery } from 'wagmi'
 
-import { useErc721TokenUri } from '../erc721-wagmi'
+import { useErc721TokenUri } from '../generated/erc721-wagmi'
 import { ERC721Props } from '../utils/types'
 
 interface useERC721MetadataProps extends Pick<ERC721Props, 'address' | 'chainId'> {

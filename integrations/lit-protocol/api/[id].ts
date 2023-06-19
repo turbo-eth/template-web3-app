@@ -5,7 +5,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
     const id = params.id
     const message = await prisma.litProtocolMessage.findFirst({
       where: {
-        id: id as string,
+        id: id,
       },
     })
 

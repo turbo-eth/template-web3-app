@@ -1,17 +1,17 @@
-import classNames from 'clsx'
+import { cn } from '@/lib/utils'
+import { HTMLAttributes } from 'react'
 
-interface ITableHead {
-  className?: string
+interface ITableHead extends HTMLAttributes<HTMLTableSectionElement> {
   headerGroups: any
   defaultStyle: boolean
 }
 
-export const TableHead = ({ className, headerGroups, defaultStyle }: ITableHead) => {
-  const styleBase = classNames(className, {
+export const TableHead = ({ className, headerGroups, defaultStyle, ...props }: ITableHead) => {
+  const styleBase = cn(className, {
     'rounded-xl shadow-sm border-b-2 border-blue-300 pb-5 h-20 z-10': defaultStyle,
   })
   return (
-    <thead className={styleBase}>
+    <thead className={styleBase} {...props}>
       {headerGroups.map((headerGroup: any, ihg: any) => (
         <tr key={ihg} className="mt-3" {...headerGroup.getHeaderGroupProps()}>
           {headerGroup.headers.map((column: any, idx: number) => (

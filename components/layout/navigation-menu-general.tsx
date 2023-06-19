@@ -1,6 +1,4 @@
-'use client'
-
-import * as React from 'react'
+import { HTMLAttributes } from 'react'
 
 import Image from 'next/image'
 
@@ -16,7 +14,8 @@ import {
 import { turboIntegrations } from '@/data/turbo-integrations'
 import { cn } from '@/lib/utils'
 
-import { BranchColorMode } from '../shared/branch-color-mode'
+import { IsDarkTheme } from '../shared/is-dark-theme'
+import { IsLightTheme } from '../shared/is-light-theme'
 import { LinkComponent } from '../shared/link-component'
 
 export function NavigationMenuGeneral() {
@@ -88,21 +87,30 @@ export function NavigationMenuGeneral() {
   )
 }
 
-const ListItem = ({ className, name, imgLight, imgDark, children, ...props }: any) => {
+interface ListItemProps extends HTMLAttributes<HTMLElement> {
+  href: string
+  name: string
+  imgLight: string
+  imgDark: string
+}
+
+const ListItem = ({ className, href, name, imgLight, imgDark, children, ...props }: ListItemProps) => {
   return (
     <li key={name}>
       <NavigationMenuLink asChild>
         <LinkComponent
-          href={props.href as string}
+          href={href}
           className={cn(
             'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700',
             className
           )}
           {...props}>
-          <BranchColorMode>
-            <Image className="mb-3 h-7 w-7 rounded-full" alt="Etherscan logo" src={imgDark} width={100} height={100} />
-            <Image className="mb-3 h-7 w-7 rounded-full" alt="Etherscan logo" src={imgLight} width={100} height={100} />
-          </BranchColorMode>
+          <IsLightTheme>
+            <Image alt="Etherscan logo" className="mb-3 h-7 w-7 rounded-full" height={100} src={imgDark} width={100} />
+          </IsLightTheme>
+          <IsDarkTheme>
+            <Image alt="Etherscan logo" className="mb-3 h-7 w-7 rounded-full" height={100} src={imgLight} width={100} />
+          </IsDarkTheme>
           <div className="text-sm font-medium leading-none">{name}</div>
           <p className="text-sm leading-snug text-slate-500 line-clamp-2 dark:text-slate-400">{children}</p>
         </LinkComponent>

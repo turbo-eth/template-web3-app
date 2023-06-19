@@ -1,24 +1,23 @@
 'use client'
-import * as React from 'react'
 
-import classNames from 'clsx'
-import Link from 'next/link'
+import { HTMLAttributes } from 'react'
+
 import { usePathname } from 'next/navigation'
 
 import { menuDashboard } from '@/config/menu-dashboard'
+import { cn } from '@/lib/utils'
 
-interface MenuDashboardSidebarProps {
-  className?: string
-}
-export const MenuDashboardSidebar = ({ className }: MenuDashboardSidebarProps) => {
-  const cx = classNames(className, 'flex flex-col gap-1', 'MenuDashboardSidebar')
+import { LinkComponent } from '../shared/link-component'
+
+export const MenuDashboardSidebar = ({ className }: HTMLAttributes<HTMLElement>) => {
+  const cx = cn(className, 'flex flex-col gap-1')
 
   const pathname = usePathname()
   return (
     <div className={cx}>
       {menuDashboard.map((item) => {
         return (
-          <Item key={item.href} currentPath={pathname} className="menu-item my-2" href={item.href}>
+          <Item key={item.href} className="menu-item my-2" currentPath={pathname} href={item.href}>
             <span className="text-lg">{item.label}</span>
           </Item>
         )
@@ -27,14 +26,19 @@ export const MenuDashboardSidebar = ({ className }: MenuDashboardSidebarProps) =
   )
 }
 
-const Item = ({ children, href, currentPath }: any) => {
-  const cx = classNames('menu-item my-2', 'MenuDashboardSidebar', {
+interface ItemProps extends HTMLAttributes<HTMLElement> {
+  href: string
+  currentPath: string | null
+}
+
+const Item = ({ children, href, currentPath, ...props }: ItemProps) => {
+  const cx = cn('menu-item my-2', {
     active: currentPath === href,
   })
 
   return (
-    <Link className={cx} href={href}>
+    <LinkComponent className={cx} href={href} {...props}>
       {children}
-    </Link>
+    </LinkComponent>
   )
 }

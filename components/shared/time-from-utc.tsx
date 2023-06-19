@@ -1,20 +1,21 @@
-import * as React from 'react'
+import { HTMLAttributes, useEffect, useState } from 'react'
 
-import classNames from 'clsx'
 import { DateTime } from 'luxon'
 
-interface TimeFromUtcProps {
-  className?: string
+interface TimeFromUtcProps extends HTMLAttributes<HTMLSpanElement> {
   date: string
 }
 
-export const TimeFromUtc = ({ className, date }: TimeFromUtcProps) => {
-  const [timestamp, setTimestamp] = React.useState<any>()
-  React.useEffect(() => {
+export const TimeFromUtc = ({ className, date, ...props }: TimeFromUtcProps) => {
+  const [timestamp, setTimestamp] = useState<string>()
+  useEffect(() => {
     if (date) {
       setTimestamp(DateTime.fromISO(date).toLocaleString(DateTime.DATETIME_MED))
     }
   }, [])
-  const containerClassName = classNames(className, 'TimeFromUtc')
-  return <span className={containerClassName}>{timestamp}</span>
+  return (
+    <span className={className} {...props}>
+      {timestamp}
+    </span>
+  )
 }

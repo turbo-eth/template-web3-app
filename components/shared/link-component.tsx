@@ -1,35 +1,35 @@
 'use client'
-import React, { ReactNode } from 'react'
 
-import classNames from 'clsx'
+import { HTMLAttributes } from 'react'
+
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-interface LinkComponentProps {
+import { cn } from '@/lib/utils'
+
+interface LinkComponentProps extends HTMLAttributes<HTMLAnchorElement> {
   href: string
-  children: ReactNode
   isExternal?: boolean
-  className?: string
   target?: string
 }
 
-export function LinkComponent({ href, children, isExternal, className, target = '_blank' }: LinkComponentProps) {
+export function LinkComponent({ href, children, isExternal, className, target = '_blank', ...props }: LinkComponentProps) {
   const pathname = usePathname()
-  const classes = classNames(className, 'LinkComponent', {
+  const classes = cn(className, {
     active: pathname === href,
   })
-  const isExternalEnabed = href.match(/^([a-z0-9]*:|.{0})\/\/.*$/) || isExternal
+  const isExternalEnabled = href.match(/^([a-z0-9]*:|.{0})\/\/.*$/) || isExternal
 
-  if (isExternalEnabed) {
+  if (isExternalEnabled) {
     return (
-      <a className={classes} href={href} rel="noopener noreferrer" target={target}>
+      <a className={classes} href={href} rel="noopener noreferrer" target={target} {...props}>
         {children}
       </a>
     )
   }
 
   return (
-    <Link className={classes} href={href}>
+    <Link className={classes} href={href} {...props}>
       {children}
     </Link>
   )

@@ -17,10 +17,10 @@ export function Erc721Read({ address }: Erc721ReadProps) {
     <div className="card w-full">
       <div className="flex flex-col justify-center gap-4">
         <label>Token ID</label>
-        <input value={tokenId} type="number" onChange={(e) => setTokenId(e.target.valueAsNumber)} className="input" />
-        <ERC721TokenUriName className="mx-auto mt-4 text-lg font-medium" tokenId={bigIntTokenId} address={address} />
-        <ERC721TokenUriImage className="mx-auto rounded-lg" height={200} width={200} tokenId={bigIntTokenId} address={address} />
-        <ERC721TokenUriDescription className="mx-auto max-w-lg text-center" tokenId={bigIntTokenId} address={address} />
+        <input className="input" type="number" value={tokenId} onChange={(e) => setTokenId(e.target.valueAsNumber)} />
+        <ERC721TokenUriName address={address} className="mx-auto mt-4 text-lg font-medium" tokenId={bigIntTokenId} />
+        <ERC721TokenUriImage address={address} className="mx-auto rounded-lg" height={200} tokenId={bigIntTokenId} width={200} />
+        <ERC721TokenUriDescription address={address} className="mx-auto max-w-lg text-center" tokenId={bigIntTokenId} />
         <div className="mt-4 flex flex-col gap-3">
           <div className="flex flex-wrap items-center justify-between">
             <span className="font-medium">Contract Name:</span>
@@ -32,7 +32,7 @@ export function Erc721Read({ address }: Erc721ReadProps) {
           </div>
           <div className="flex flex-wrap items-center justify-between break-words">
             <span className="font-medium">Token Owner:</span>
-            <ERC721OwnerOf className="overflow-x-scroll" tokenId={BigInt(tokenId || 1)} address={address} />
+            <ERC721OwnerOf address={address} className="overflow-x-scroll" tokenId={BigInt(tokenId || 1)} />
           </div>
           <div className="flex flex-wrap items-center justify-between">
             <span className="font-medium">Total Supply:</span>

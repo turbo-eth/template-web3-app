@@ -3,6 +3,8 @@ import { getIronSession } from 'iron-session'
 import { prisma } from '@/lib/prisma'
 import { SERVER_SESSION_SETTINGS } from '@/lib/session'
 
+export type Users = Awaited<ReturnType<typeof prisma.user.findMany>>
+
 export async function GET(req: Request) {
   try {
     const res = new Response()

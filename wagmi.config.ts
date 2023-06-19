@@ -3,7 +3,7 @@ import { react } from '@wagmi/cli/plugins'
 import { erc20ABI } from 'wagmi'
 
 export default defineConfig({
-  out: 'lib/blockchain.ts',
+  out: 'lib/generated/blockchain.ts',
   contracts: [
     {
       name: 'erc20',

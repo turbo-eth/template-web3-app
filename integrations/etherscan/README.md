@@ -18,7 +18,7 @@ Fetches transaction history of an Ethereum account through the Etherscan API.
 
 **Parameters:**
 
-- `params: BlockPagination` - pagination options to be passed to the API call. 
+- `params: BlockPagination` - pagination options to be passed to the API call.
 
 #### `etherscanAccountTransactions(chainId: number | string, address: string, config: BlockPagination)`
 
@@ -29,7 +29,6 @@ Fetches transaction history of an Ethereum account through the Etherscan API by 
 - `chainId: number | string` - Ethereum network chain ID.
 - `address: string` - Ethereum address to fetch transactions for.
 - `config: BlockPagination` - Pagination and sorting options for transactions.
-
 
 ### Components
 
@@ -52,14 +51,17 @@ A React hook that fetches and returns transaction history for a given Ethereum a
 - `params: BlockPagination` - Pagination options.
 - `queryKey: any` - A unique key for this particular data fetch. This is used by React Query for caching and other features.
 
-
 ## File Structure
+
 ```
 integrations/etherscan
 ├─ actions/
 │  ├─ etherscan-account-transactions/
 │  │  ├─ client.ts
 │  │  ├─ index.ts
+├─ api/
+│  ├─ account/
+│  │  ├─ transactions.ts
 ├─ components/
 │  ├─ transactions-table.tsx
 ├─ hooks/
@@ -77,6 +79,7 @@ integrations/etherscan
 │  ├─ is-valid-chain-id-mapping.ts
 │  ├─ is-valid-transaction-hash.ts
 │  ├─ query-etherscan-client.ts
+│  ├─ types.ts
 ├─ etherscan.d.ts
 ├─ README.md
 ```

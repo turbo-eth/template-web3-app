@@ -86,7 +86,7 @@ export const CHAIN_ID_API_KEY_MAP: ChainIdToApi = {
   421613: ETHERSCAN_API_KEY_ARBITRUM,
 }
 
-export const CHAIN_ID_SERVICE_MAP: ChainIdToApi = {
+export const CHAIN_ID_SERVICE_MAP = {
   1: 'etherscan',
   2: 'etherscan',
   4: 'etherscan',
@@ -102,4 +102,4 @@ export const CHAIN_ID_SERVICE_MAP: ChainIdToApi = {
 
 export const VALID_SERVICE_PROVIDERS = ['etherscan', 'polygonscan', 'arbiscan']
 export const VALID_CHAIN_IDS = Object.keys(CHAIN_ID_API_URL_MAP).map((key) => parseInt(key))
-export const VALID_API_URLS = Object.values(CHAIN_ID_API_URL_MAP).map((key) => key)
+export const VALID_API_URLS = Object.values(CHAIN_ID_API_URL_MAP).map((key: string) => key)

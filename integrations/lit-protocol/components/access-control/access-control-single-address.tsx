@@ -5,6 +5,10 @@ import { isAddress } from 'viem'
 
 import { AccessControlProps } from './types'
 
+interface FormSchema {
+  address: string
+}
+
 export function AccessControlSingleAddress({ setAccessControlConditions }: AccessControlProps) {
   const [address, setAddress] = useState<string>('')
 
@@ -12,13 +16,13 @@ export function AccessControlSingleAddress({ setAccessControlConditions }: Acces
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm<FormSchema>()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value)
   }
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FormSchema) => {
     setAccessControlConditions(getAccessControlConditions(data.address))
   }
 

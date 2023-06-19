@@ -1,6 +1,4 @@
-'use client'
-
-import * as React from 'react'
+import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 
 import * as TabsPrimivite from '@radix-ui/react-tabs'
 
@@ -8,7 +6,7 @@ import { cn } from '@/lib/utils'
 
 const Tabs = TabsPrimivite.Root
 
-const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimivite.List>, React.ComponentPropsWithoutRef<typeof TabsPrimivite.List>>(
+const TabsList = forwardRef<ElementRef<typeof TabsPrimivite.List>, ComponentPropsWithoutRef<typeof TabsPrimivite.List>>(
   ({ className, ...props }, ref) => (
     <TabsPrimivite.List
       ref={ref}
@@ -19,7 +17,7 @@ const TabsList = React.forwardRef<React.ElementRef<typeof TabsPrimivite.List>, R
 )
 TabsList.displayName = TabsPrimivite.List.displayName
 
-const TabsTrigger = React.forwardRef<React.ElementRef<typeof TabsPrimivite.Trigger>, React.ComponentPropsWithoutRef<typeof TabsPrimivite.Trigger>>(
+const TabsTrigger = forwardRef<ElementRef<typeof TabsPrimivite.Trigger>, ComponentPropsWithoutRef<typeof TabsPrimivite.Trigger>>(
   ({ className, ...props }, ref) => (
     <TabsPrimivite.Trigger
       className={cn(
@@ -33,7 +31,7 @@ const TabsTrigger = React.forwardRef<React.ElementRef<typeof TabsPrimivite.Trigg
 )
 TabsTrigger.displayName = TabsPrimivite.Trigger.displayName
 
-const TabsContent = React.forwardRef<React.ElementRef<typeof TabsPrimivite.Content>, React.ComponentPropsWithoutRef<typeof TabsPrimivite.Content>>(
+const TabsContent = forwardRef<ElementRef<typeof TabsPrimivite.Content>, ComponentPropsWithoutRef<typeof TabsPrimivite.Content>>(
   ({ className, ...props }, ref) => (
     <TabsPrimivite.Content className={cn('mt-2 rounded-md border border-slate-200 p-6 dark:border-slate-700', className)} {...props} ref={ref} />
   )

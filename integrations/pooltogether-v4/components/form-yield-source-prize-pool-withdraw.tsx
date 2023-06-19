@@ -7,10 +7,10 @@ import { useAccount, useWaitForTransaction } from 'wagmi'
 
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
 import { useUserBalanceWithdraw } from '@/actions/pooltogether-v4/hooks/use-user-balance-withdraw'
-import { usePoolTogetherPrizePoolWithdrawFrom } from '@/actions/pooltogether-v4/pooltogether-v4-wagmi'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
 import { TICKET_CONTRACT } from '@/actions/pooltogether-v4/utils/ticket-contract-list'
-import { useErc20Decimals } from '@/lib/blockchain'
+import { usePoolTogetherPrizePoolWithdrawFrom } from '@/integrations/pooltogether-v4/generated/pooltogether-v4-wagmi'
+import { useErc20Decimals } from '@/lib/generated/blockchain'
 
 export function PoolTogetherFormWithdraw() {
   const { address } = useAccount()
@@ -59,13 +59,13 @@ export function PoolTogetherFormWithdraw() {
           <Form.Control asChild>
             <input
               className="input"
+              max={userBalance}
+              min={0}
+              required={true}
+              step={'any'}
+              type="number"
               value={withdrawAmount != undefined && withdrawAmount > userBalance ? userBalance : withdrawAmount}
               onChange={handleChange}
-              type="number"
-              min={0}
-              max={userBalance}
-              step={'any'}
-              required={true}
             />
           </Form.Control>
         </Form.Field>

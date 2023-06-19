@@ -5,7 +5,7 @@ import { erc20ABI } from './abis/erc20-abi'
 import { erc20MintableABI } from './abis/erc20-mintable-abi'
 
 export default defineConfig({
-  out: './integrations/erc20-wagmi.ts',
+  out: './integrations/erc20/generated/erc20-wagmi.ts',
   contracts: [
     {
       name: 'erc20',

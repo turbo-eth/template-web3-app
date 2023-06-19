@@ -27,8 +27,11 @@ Creates a SIWE message to be signed by the user's Ethereum wallet, and returns t
 `BranchButtonLoginOrAccount()`
 Renders either a login or logout button and a link to the user's account depending on whether the user is authenticated or not.
 
-`BranchIsAuthenticated()`
-A React component that conditionally renders its children based on the user's authentication status.
+`IsSignedInd()`
+A React component that conditionally renders its children if the user is signed in.
+
+`IsSignedOut()`
+A React component that conditionally renders its children if the user is signed out.
 
 `ButtonSIWELogin()`
 A button that initiates the SIWE login process when clicked.
@@ -44,10 +47,16 @@ integrations/siwe
 │  ├─ siwe-login.ts
 │  ├─ siwe-logout.ts
 │  ├─ siwe-message.ts
+├─ api/
+│  ├─ index.ts
+│  ├─ logout.ts
+│  ├─ nonce.ts
+│  ├─ verify.ts
 ├─ components/
 │  ├─ branch-button-login-or-account.tsx
-│  ├─ branch-is-authenticated.tsx
 │  ├─ button-siwe-login.tsx
 │  ├─ button-siwe-logout.tsx
+│  ├─ is-signed-in.tsx
+│  ├─ is-signed-out.tsx
 ├─ README.md
 ```

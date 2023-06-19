@@ -4,7 +4,8 @@ import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { Textarea } from '@/components/ui/textarea'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { useToast } from '@/lib/hooks/use-toast'
@@ -59,13 +60,13 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
 
   return (
     <div className="w-full">
-      <BranchIsWalletConnected>
+      <IsWalletConnected>
         <div className="w-full">
           <motion.form
-            variants={FADE_DOWN_ANIMATION_VARIANTS}
-            initial="hidden"
             animate="show"
             className="card flex flex-col"
+            initial="hidden"
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
             onSubmit={handleSubmit(onSubmit)}>
             <label>ID:</label>
             <input
@@ -74,7 +75,7 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
               value={encryptedMessageId}
               onChange={(e) => setEncryptedMessageId(e.target.value)}
             />
-            <button disabled={isLoading || !isValid} type="submit" className="btn btn-emerald mt-4">
+            <button className="btn btn-emerald mt-4" disabled={isLoading || !isValid} type="submit">
               {isLoading ? 'Loading...' : 'Decrypt'}
             </button>
             <hr className="my-4" />
@@ -84,9 +85,9 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
             </div>
           </motion.form>
           {decryptedMessage && (
-            <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} initial="hidden" animate="show" className="card my-8">
+            <motion.div animate="show" className="card my-8" initial="hidden" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <h4>Decrypted Message:</h4>
-              <Textarea readOnly value={decryptedMessage} className="input mt-4 h-40 dark:text-gray-600 dark:placeholder:text-neutral-400" />
+              <Textarea readOnly className="input mt-4 h-40 dark:text-gray-600 dark:placeholder:text-neutral-400" value={decryptedMessage} />
               <hr className="my-4" />
               <div className="flex items-center justify-between">
                 <h3 className="text-center">Decrypted Message</h3>
@@ -95,10 +96,12 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
             </motion.div>
           )}
         </div>
+      </IsWalletConnected>
+      <IsWalletDisconnected>
         <div className="flex items-center justify-center gap-10">
           <WalletConnect />
         </div>
-      </BranchIsWalletConnected>
+      </IsWalletDisconnected>
     </div>
   )
 }

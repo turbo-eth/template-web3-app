@@ -1,24 +1,26 @@
-import { WalletAddress } from '@turbo-eth/core-wagmi'
-import classNames from 'clsx'
+'use client'
+
+import { HTMLAttributes } from 'react'
+
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { FaCopy } from 'react-icons/fa'
 import { useAccount } from 'wagmi'
 
+import { WalletAddress } from '@/components/blockchain/wallet-address'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
+import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
+import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 import { useToast } from '@/lib/hooks/use-toast'
+import { cn } from '@/lib/utils'
 
+import { IsWalletConnected } from '../shared/is-wallet-connected'
+import { IsWalletDisconnected } from '../shared/is-wallet-disconnected'
 import { ThemeToggle } from '../shared/theme-toggle'
 
-interface Props {
-  className?: string
-}
-
-export function DashboardHeader(props: Props) {
-  const classes = classNames(props.className, 'Header', 'px-6 lg:px-10 py-3 flex items-center w-full')
+export function DashboardHeader({ className, ...props }: HTMLAttributes<HTMLElement>) {
+  const classes = cn(className, 'px-6 lg:px-10 py-3 flex items-center w-full')
   const { address } = useAccount()
   const { toast, dismiss } = useToast()
 
@@ -34,32 +36,36 @@ export function DashboardHeader(props: Props) {
   }
 
   return (
-    <header className={classes}>
+    <header className={classes} {...props}>
       <div className="flex flex-1 ">
         <span className="flex items-center gap-2">
-          <WalletAddress truncate isLink className="tag tag-primary hover:shadow-sm" />
+          <WalletAddress isLink truncate className="tag tag-primary hover:shadow-sm" />
           <span className="">
-            <BranchIsWalletConnected>
-              <span onClick={handleToast} className="">
+            <IsWalletConnected>
+              <span className="" onClick={handleToast}>
                 <CopyToClipboard text={address as string}>
                   <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
                     <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
                   </span>
                 </CopyToClipboard>
               </span>
-            </BranchIsWalletConnected>
+            </IsWalletConnected>
           </span>
         </span>
       </div>
 
       <div className="flex items-center gap-4">
-        <BranchIsWalletConnected>
-          <BranchIsAuthenticated>
+        <IsWalletConnected>
+          <IsSignedIn>
             <ButtonSIWELogout className="menu-item" />
+          </IsSignedIn>
+          <IsSignedOut>
             <ButtonSIWELogin className=" menu-item colormode" />
-          </BranchIsAuthenticated>
+          </IsSignedOut>
+        </IsWalletConnected>
+        <IsWalletDisconnected>
           <WalletConnect />
-        </BranchIsWalletConnected>
+        </IsWalletDisconnected>
         <ThemeToggle />
       </div>
     </header>

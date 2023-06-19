@@ -1,28 +1,23 @@
 'use client'
 
-import * as React from 'react'
-
-import classNames from 'clsx'
+import { HTMLAttributes } from 'react'
 
 import { siweLogout } from '@/integrations/siwe/actions/siwe-logout'
 import { useUser } from '@/lib/hooks/use-user'
 
-interface ButtonSIWELogoutProps {
-  className?: string
+interface ButtonSIWELogoutProps extends HTMLAttributes<HTMLButtonElement> {
   label?: string
-  children?: React.ReactNode
 }
 
-export const ButtonSIWELogout = ({ className, label = 'Logout', children }: ButtonSIWELogoutProps) => {
+export const ButtonSIWELogout = ({ className, label = 'Logout', children, ...props }: ButtonSIWELogoutProps) => {
   const { mutateUser } = useUser()
   const handleLogout = async () => {
     await siweLogout()
-    mutateUser()
+    await mutateUser()
   }
 
-  const classes = classNames('ButtonSIWELogout', className)
   return (
-    <button onClick={handleLogout} className={classes}>
+    <button className={className} onClick={handleLogout} {...props}>
       {children || label}
     </button>
   )

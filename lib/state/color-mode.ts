@@ -17,6 +17,6 @@ export const colorMode = atom(
 
 export const useColorMode = () => {
   const [mode, setMode] = useAtom(colorMode)
-  const toggleMode: Function = () => setMode(mode === 'light' ? 'dark' : 'light')
+  const toggleMode = () => setMode(mode === 'light' ? 'dark' : 'light')
   return [mode, toggleMode, setMode] as const
 }

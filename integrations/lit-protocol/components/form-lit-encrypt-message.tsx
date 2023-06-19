@@ -1,3 +1,4 @@
+'use client'
 import { setTimeout } from 'timers'
 
 import { useState } from 'react'
@@ -8,7 +9,8 @@ import { useForm } from 'react-hook-form'
 import { FaCopy } from 'react-icons/fa'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
@@ -17,21 +19,26 @@ import { useToast } from '@/lib/hooks/use-toast'
 
 import { AccessControlSingleAddress, AccessControlSingleERC721, AccessControlTokenGroup } from './access-control'
 import { useLitClient } from '../hooks/use-lit-client'
+import { AccessControlConditions } from '../utils/types'
+
+interface FormSchema {
+  message: string
+}
 
 export function FormLitEncryptMessage() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [messageToEncrypt, setMessageToEncrypt] = useState<string>()
   const [encryptedMessageId, setEncryptedMessageId] = useState<string>()
-  const [accessControlConditions, setAccessControlConditions] = useState<any[]>([])
+  const [accessControlConditions, setAccessControlConditions] = useState<AccessControlConditions>([])
   const [accessControlType, setAccessControlType] = useState<string>()
 
   const { toast, dismiss } = useToast()
   const { encryptMessage } = useLitClient()
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm<FormSchema>()
 
   const isValid = messageToEncrypt && accessControlConditions.length > 0
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: { message: string }) => {
     setIsLoading(true)
     try {
       const encryptedMessage = await encryptMessage(data.message, accessControlConditions)
@@ -55,15 +62,15 @@ export function FormLitEncryptMessage() {
 
   return (
     <div className="w-full">
-      <BranchIsWalletConnected>
+      <IsWalletConnected>
         <div className="w-full">
           {encryptedMessageId ? (
-            <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} initial="hidden" animate="show" className="card my-8 mx-auto max-w-fit">
+            <motion.div animate="show" className="card my-8 mx-auto max-w-fit" initial="hidden" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <h4 className="mb-4">Share:</h4>
               <CopyToClipboard text={`${origin}/integration/lit-protocol/unseal?id=${encryptedMessageId}`}>
                 <span
-                  onClick={handleToast}
-                  className="flex max-w-fit cursor-pointer items-center justify-between gap-2 rounded-lg bg-neutral-100 px-4 py-2 hover:bg-neutral-200 dark:bg-neutral-800">
+                  className="flex max-w-fit cursor-pointer items-center justify-between gap-2 rounded-lg bg-neutral-100 px-4 py-2 hover:bg-neutral-200 dark:bg-neutral-800"
+                  onClick={handleToast}>
                   <p>{`${origin}/integration/lit-protocol/unseal?id=${encryptedMessageId}`}</p>
                   <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
                     <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
@@ -73,7 +80,7 @@ export function FormLitEncryptMessage() {
             </motion.div>
           ) : (
             <>
-              <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} initial="hidden" animate="show" className="card my-8">
+              <motion.div animate="show" className="card my-8" initial="hidden" variants={FADE_DOWN_ANIMATION_VARIANTS}>
                 <label>Select Access Control Conditions:</label>
                 <Select value={accessControlType} onValueChange={setAccessControlType}>
                   <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
@@ -116,11 +123,11 @@ export function FormLitEncryptMessage() {
                 </div>
               </motion.div>
               {accessControlConditions.length > 0 && (
-                <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} initial="hidden" animate="show" className="card my-8">
+                <motion.div animate="show" className="card my-8" initial="hidden" variants={FADE_DOWN_ANIMATION_VARIANTS}>
                   <h4 className="mb-4">Selected Access Control Conditions:</h4>
                   <Textarea
-                    value={JSON.stringify(accessControlConditions, null, 2)}
                     className="input h-80 dark:text-gray-600 dark:placeholder:text-neutral-400"
+                    value={JSON.stringify(accessControlConditions, null, 2)}
                   />
                   <hr className="my-4" />
                   <div className="flex items-center justify-between">
@@ -134,16 +141,16 @@ export function FormLitEncryptMessage() {
                   </div>
                 </motion.div>
               )}
-              <motion.div variants={FADE_DOWN_ANIMATION_VARIANTS} initial="hidden" animate="show" className="card my-8">
+              <motion.div animate="show" className="card my-8" initial="hidden" variants={FADE_DOWN_ANIMATION_VARIANTS}>
                 <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                   <label className="mb-4">Message:</label>
                   <Textarea
                     {...register('message')}
-                    value={messageToEncrypt}
                     className="input h-40 dark:text-gray-600 dark:placeholder:text-neutral-400"
+                    value={messageToEncrypt}
                     onChange={(e) => setMessageToEncrypt(e.target.value)}
                   />
-                  <button disabled={!isValid || isLoading} type="submit" className="btn btn-emerald mt-4">
+                  <button className="btn btn-emerald mt-4" disabled={!isValid || isLoading} type="submit">
                     {isLoading ? 'Loading...' : 'Encrypt'}
                   </button>
                 </form>
@@ -156,10 +163,12 @@ export function FormLitEncryptMessage() {
             </>
           )}
         </div>
+      </IsWalletConnected>
+      <IsWalletDisconnected>
         <div className="flex items-center justify-center gap-10">
           <WalletConnect />
         </div>
-      </BranchIsWalletConnected>
+      </IsWalletDisconnected>
     </div>
   )
 }

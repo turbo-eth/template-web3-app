@@ -21,7 +21,7 @@ export const TransactionStatus = ({ className, error, isError, isLoadingTx, isSu
         {(isLoadingTx || isSuccess) && (
           <>
             {isLoadingTx ? 'Processing transaction...' : 'Success!'}
-            <BlockExplorerLink address={hash} type="tx" showExplorerName />
+            <BlockExplorerLink showExplorerName address={hash} type="tx" />
           </>
         )}
       </div>

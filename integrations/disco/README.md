@@ -12,9 +12,9 @@ Welcome to the "Disco" TurboETH Integration! This integration is a system design
 
 ### Routes
 
-- `route-credentials-from-did.ts`: Fetches the credentials associated with a specific DID from the Disco API.
-- `route-disco-profile-from-address.ts`: Fetches the profile associated with a specific Ethereum address from the Disco API.
-- `route-disco-profile-from-did.ts`: Fetches the profile associated with a specific DID from the Disco API.
+- `credentials-from-did.ts`: Fetches the credentials associated with a specific DID from the Disco API.
+- `profile-from-address.ts`: Fetches the profile associated with a specific Ethereum address from the Disco API.
+- `profile-from-did.ts`: Fetches the profile associated with a specific DID from the Disco API.
 
 ## Components
 
@@ -41,9 +41,9 @@ Routes define the client-side requests to fetch data from the Disco API.
 ```
 integrations/disco
 ├─ api/
-│  ├─ route-credentials-from-did.ts
-│  ├─ route-disco-profile-from-address.ts
-│  ├─ route-disco-profile-from-did.ts
+│  ├─ credentials-from-did.ts
+│  ├─ profile-from-address.ts
+│  ├─ profile-from-did.ts
 ├─ components/
 │  ├─ disco-profile-basic.tsx
 │  ├─ disco-profile-credentials.tsx
@@ -64,6 +64,8 @@ integrations/disco
 │  ├─ get-profile-from-did/
 │  │  ├─ client.ts
 │  │  ├─ index.ts
+├─ utils/
+│  ├─ types.ts
 ├─ disco-client.ts
 ├─ README.md
 ```

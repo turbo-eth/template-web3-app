@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction } from 'react'
 
+import { AccessControlConditions } from '../../utils/types'
+
 export interface AccessControlProps {
-  accessControlConditions: any
-  setAccessControlConditions: Dispatch<SetStateAction<any>>
+  accessControlConditions: AccessControlConditions
+  setAccessControlConditions: Dispatch<SetStateAction<AccessControlConditions>>
 }

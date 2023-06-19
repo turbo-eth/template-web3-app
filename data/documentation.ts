@@ -23,12 +23,4 @@ export const turboIntegrations = {
     imgLight: '/integrations/etherscan-light.svg',
     imgDark: '/integrations/etherscan-dark.svg',
   },
-  rainbowkit: {
-    name: 'Rainbowkit',
-    href: 'https://docs.turboeth.xyz/integration/rainbowkit',
-    url: 'https://rainbowkit.com',
-    description: 'The best way to connect a wallet. Designed for everyone. Built for developers.',
-    imgLight: '/integrations/rainbowkit.svg',
-    imgDark: '/integrations/rainbowkit.svg',
-  },
 }

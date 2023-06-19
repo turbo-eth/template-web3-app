@@ -3,7 +3,8 @@ import { motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
@@ -20,11 +21,11 @@ export default function PageIntegration() {
     <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center">
         <motion.div
+          animate="show"
           className="max-w-screen-xl px-5 text-center xl:px-0"
           initial="hidden"
-          whileInView="show"
-          animate="show"
           viewport={{ once: true }}
+          whileInView="show"
           variants={{
             hidden: {},
             show: {
@@ -50,22 +51,34 @@ export default function PageIntegration() {
       </div>
       <section className="w-full lg:mt-10">
         <div className="container w-full max-w-screen-lg">
-          <BranchIsWalletConnected>
+          <IsWalletConnected>
             <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
               <ERC20Deploy />
               <Erc20SetTokenStorage />
               {token && (
                 <>
+                  <div className="card flex flex-col">
+                    <span className="mb-4 text-lg">
+                      Access the token page where you can update the url parameters to select which ERC20 token to view
+                    </span>
+                    <LinkComponent
+                      className="btn btn-emerald btn-sm font-bold"
+                      href={`/integration/erc20/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}>
+                      View Token Page
+                    </LinkComponent>
+                  </div>
                   <ERC20Read address={token} />
                   <ERC20WriteMint address={token} />
                   <ERC20WriteTransfer address={token} />
                 </>
               )}
             </div>
+          </IsWalletConnected>
+          <IsWalletDisconnected>
             <div className="flex-center flex">
               <WalletConnect />
             </div>
-          </BranchIsWalletConnected>
+          </IsWalletDisconnected>
         </div>
       </section>
     </>

@@ -1,18 +1,15 @@
 import { ReactElement } from 'react'
 
-import classNames from 'clsx'
-
 interface ITablePagination {
-  canPreviousPage: Function
-  canNextPage: Function
+  canPreviousPage: boolean
+  canNextPage: boolean
   pageCount: number
   pageIndex: number
   pageSize: number
-  pageOptions: Function
-  gotoPage: Function
-  nextPage: Function
-  previousPage: Function
-  setPageSize: Function
+  gotoPage: (updater: number | ((pageIndex: number) => number)) => void
+  nextPage: () => void
+  previousPage: () => void
+  setPageSize: (pageSize: number) => void
 }
 
 /**
@@ -30,12 +27,8 @@ export const TablePagination = ({
   pageSize,
   setPageSize,
 }: ITablePagination): ReactElement => {
-  const styleBase = classNames(
-    'pagination flex justify-between items-center bg-white text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 shadow-sm px-3 py-5 rounded-b-lg'
-  )
-
   return (
-    <div className={styleBase}>
+    <div className="flex justify-between items-center bg-white text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 shadow-sm px-3 py-5 rounded-b-lg">
       <div className="">
         <button className="tag tag-smoke" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {'<<'}

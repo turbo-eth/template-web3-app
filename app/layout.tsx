@@ -1,9 +1,11 @@
 import '@/styles/app.css'
 import '@/styles/gradient.css'
 import '@/styles/periphery.css'
-import { Raleway } from '@next/font/google'
-import { Inter as FontSans } from '@next/font/google'
-import localFont from '@next/font/local'
+import { ReactNode } from 'react'
+
+import { Raleway } from 'next/font/google'
+import { Inter as FontSans } from 'next/font/google'
+import localFont from 'next/font/local'
 
 import RootProvider from '@/components/providers/root-provider'
 import { siteConfig } from '@/config/site'
@@ -13,6 +15,7 @@ import { cn } from '@/lib/utils'
 const url = env.SITE_URL || 'http://localhost:3000'
 
 export const metadata = {
+  metadataBase: new URL(url),
   title: `${siteConfig.name} - ${siteConfig.description}`,
   description: siteConfig.description,
   icons: {
@@ -48,10 +51,10 @@ const fontSans = FontSans({
   variable: '--font-sans',
 })
 
-export default function RootLayout({ children }: any) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <html lang="en" className={`${sfPro.variable} ${raleway.variable}`} suppressHydrationWarning>
+      <html suppressHydrationWarning className={`${sfPro.variable} ${raleway.variable}`} lang="en">
         <body className={cn('min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50', fontSans.variable)}>
           <RootProvider>{children}</RootProvider>
         </body>

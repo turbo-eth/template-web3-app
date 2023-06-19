@@ -1,6 +1,8 @@
-import React from 'react'
+import { useMemo } from 'react'
 
-import { Address } from '@turbo-eth/core-wagmi'
+import type { Address } from 'wagmi'
+
+import { Address as AddressComponent } from '@/components/blockchain/address'
 
 import TableCore from '../../../components/shared/table/table-core'
 import TimeFromEpoch from '../../../components/shared/time-from-epoch'
@@ -31,22 +33,22 @@ import TimeFromEpoch from '../../../components/shared/time-from-epoch'
 */
 
 export function TransactionsTable({ data }: any) {
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
       {
         Header: 'From',
         accessor: 'from',
-        Cell: (props: any) => <Address address={props.value} truncate className="text-sm font-medium" />,
+        Cell: ({ value }: { value: Address }) => <AddressComponent truncate address={value} className="text-sm font-medium" />,
       },
       {
         Header: 'To',
         accessor: 'to',
-        Cell: (props: any) => <Address address={props.value} truncate className="text-sm font-medium" />,
+        Cell: ({ value }: { value: Address }) => <AddressComponent truncate address={value} className="text-sm font-medium" />,
       },
       {
         Header: 'Created',
         accessor: 'timeStamp',
-        Cell: (props: any) => <TimeFromEpoch epoch={props.value || 0} />,
+        Cell: ({ value }: { value: string | number }) => <TimeFromEpoch epoch={value || 0} />,
       },
       {
         Header: 'Sent',
@@ -56,7 +58,7 @@ export function TransactionsTable({ data }: any) {
     []
   )
   if (!data) return null
-  return <TableCore columns={columns} data={data} className="w-full overflow-hidden rounded-xl" />
+  return <TableCore className="w-full overflow-hidden rounded-xl" columns={columns} data={data} />
 }
 
 export default TransactionsTable
