@@ -16,12 +16,7 @@ import { deployControls } from '../utils/controls'
 import { getComponent } from '../utils/get-element-component'
 
 export function DeployERC20Contract() {
-  const {
-    form,
-    // onSubmit,
-    token = '',
-    setToken = () => {},
-  } = useDeploy()
+  const { form, token = '', setToken = () => {} } = useDeploy()
 
   const [isSigning, setIsSigning] = useState<boolean>(false)
   const [isWaitingTransaction, setIsWaitingTransaction] = useState<boolean>(false)

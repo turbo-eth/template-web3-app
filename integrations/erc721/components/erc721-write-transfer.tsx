@@ -1,24 +1,29 @@
-import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
-import { BaseError } from 'viem'
+import { BaseError, getAddress } from 'viem'
 import { Address, useAccount, useWaitForTransaction } from 'wagmi'
 
-import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { TransactionStatus } from '@/components/blockchain/transaction-status'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 
 import { useErc721SafeTransferFrom, usePrepareErc721SafeTransferFrom } from '../erc721-wagmi'
+import { useTransfer } from '../hooks/use-erc721-transfer'
+import { writeTransferControls, writeTransferFromControls } from '../utils/controls'
+import { getComponent } from '../utils/get-element-component'
 
 interface Erc721WriteTransferProps {
   address: Address
 }
 
 export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
-  const { register, watch, handleSubmit } = useForm()
+  const { form } = useTransfer()
 
-  const watchDifferentFromAddress: boolean = watch('differentFromAddress')
+  const { register, watch, handleSubmit, reset } = form
+
+  const watchDifferentFromAddress: boolean = watch('differentFromAddress' || '0x0000000000000000000000000000000000000000')
   const watchTokenId: string = watch('tokenId')
-  const watchFromAddress: Address = watch('fromAddress')
-  const watchToAddress: Address = watch('toAddress')
+  const watchFromAddress: Address = getAddress(watch('fromAddress') || '0x0000000000000000000000000000000000000000')
+  const watchToAddress: Address = getAddress(watch('toAddress') || '0x0000000000000000000000000000000000000000')
   const debouncedTokenId = useDebounce(watchTokenId, 500)
   const debouncedFromAddress = useDebounce(watchFromAddress, 500)
   const debouncedToAddress = useDebounce(watchToAddress, 500)
@@ -41,38 +46,60 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
   })
 
   const onSubmit = async () => {
-    write?.()
+    await write?.()
   }
 
   return (
     <div className="card w-full">
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex items-center justify-between text-sm">
-          <label>Use different from address</label>
-          <div className="h-6 w-6">
-            <input {...register('differentFromAddress')} type="checkbox" className="input" />
+      <Form {...form}>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+          <div className="mb-4 flex items-center justify-between text-sm">
+            <label>Use different from address</label>
+            <div className="h-6 w-6">
+              <input {...register('differentFromAddress')} type="checkbox" className="input" />
+            </div>
           </div>
-        </div>
-        {watchDifferentFromAddress && (
-          <>
-            <label>From Address</label>
-            <input {...register('fromAddress')} className="input" />
-          </>
-        )}
-        <label>To Address</label>
-        <input {...register('toAddress')} className="input" />
-        <label>Token ID</label>
-        <input type="number" {...register('tokenId')} className="input" />
-        <ContractWriteButton type="submit" isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} write={!!write} loadingTxText="Transferring...">
-          Transfer
-        </ContractWriteButton>
-        <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
-        <hr className="my-4" />
-        <div className="flex items-center justify-between">
-          <h3 className="text-center">ERC721 Transfer</h3>
-          <p className="text-center text-sm text-gray-500">Transfer NFTs to any address</p>
-        </div>
-      </form>
+          {(!watchDifferentFromAddress ? writeTransferControls : writeTransferFromControls).map((item) => {
+            const Item = getComponent(item?.type)
+
+            return (
+              <FormField
+                key={item?.label}
+                control={form.control}
+                name={item?.formfieldName}
+                render={({ field }) => (
+                  <>
+                    <FormItem>
+                      <FormLabel>{item?.label}</FormLabel>
+                      <FormControl>
+                        <Item placeholder={item?.placeholder} {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  </>
+                )}
+              />
+            )
+          })}
+          <Button className="w-full" type="submit" disabled={!write || isLoadingWrite || isLoadingTx}>
+            {isLoadingWrite ? 'Sign the transaction in your wallet' : isLoadingTx ? 'Transferring...' : 'Transfer'}
+          </Button>
+          {/* <ContractWriteButton
+            type="submit"
+            isLoadingTx={isLoadingTx}
+            isLoadingWrite={isLoadingWrite}
+            write={!!write}
+            loadingTxText="Transferring...">
+            Transfer
+          </ContractWriteButton> */}
+          <TransactionStatus isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} error={error as BaseError} hash={data?.hash} />
+          <hr className="my-4" />
+          <div className="flex items-center justify-between">
+            <h3 className="text-center">ERC721 Transfer</h3>
+            <p className="text-center text-sm text-gray-500">Transfer NFTs to any address</p>
+          </div>
+        </form>
+      </Form>
     </div>
   )
 }

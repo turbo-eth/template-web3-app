@@ -26,7 +26,6 @@ export function ERC20ContractTransferTokens({ address }: ERC20WriteTransferProps
   const watchTo = watch('to')
   const debouncedAmount = useDebounce(watchAmount, 500)
   const debouncedTo = useDebounce(watchTo, 500)
-  console.log('dd', debouncedTo)
 
   const isValidAmount = Boolean(debouncedAmount && !isNaN(Number(debouncedAmount)))
 
