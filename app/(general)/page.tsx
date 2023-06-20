@@ -238,6 +238,21 @@ const features = [
     ),
   },
   {
+    title: turboIntegrations.sessionKeys.name,
+    description: turboIntegrations.sessionKeys.description,
+    href: turboIntegrations.sessionKeys.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Session keys logo" height={100} src={turboIntegrations.sessionKeys.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Session keys logo" height={100} src={turboIntegrations.sessionKeys.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.litProtocol.name,
     description: turboIntegrations.litProtocol.description,
     href: turboIntegrations.litProtocol.href,
@@ -278,6 +293,21 @@ const features = [
         </IsLightTheme>
         <IsDarkTheme>
           <Image alt="PoolTogether logo" height={100} src={turboIntegrations.pooltogether_v4.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
+    title: turboIntegrations.starter.name,
+    description: turboIntegrations.starter.description,
+    href: turboIntegrations.starter.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Starter logo" height={100} src={turboIntegrations.starter.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Starter logo" height={100} src={turboIntegrations.starter.imgLight} width={100} />
         </IsDarkTheme>
       </div>
     ),
