@@ -44,7 +44,7 @@ export const turboIntegrations = {
     href: '/integration/session-keys',
     // TODO: Update url to the session keys section of Turbo ETH docs once it's finished
     url: 'https://viem.sh/',
-    description: 'Session Keys are a simple way to use short lived private keys to sign transactions and give temporary smart contract permissions.',
+    description: 'Short-lived private keys enable transaction signing and the granting of temporary smart contract permissions.',
     imgLight: '/integrations/session-keys.png',
     imgDark: '/integrations/session-keys.png',
   },
