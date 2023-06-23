@@ -20,15 +20,13 @@ export function Footer(props: Props) {
       <a className="link my-2 text-xs" target={'_blank'} href="https://districtlabs.com/" rel="noreferrer">
         Built by District Labs
       </a>
-      <div className="mt-2 flex items-center">
+      <div className="mt-2 flex items-center space-x-2">
         <LinkComponent href={`${siteConfig.links.github}`}>
           <FaGithub />
         </LinkComponent>
-        <div className="mx-2" />
         <LinkComponent href={`${siteConfig.links.twitter}`}>
           <FaTwitter />
         </LinkComponent>
-        <div className="mx-2" />
         <LinkComponent href={`${siteConfig.links.discord}`}>
           <FaDiscord />
         </LinkComponent>

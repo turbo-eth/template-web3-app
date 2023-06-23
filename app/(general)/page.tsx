@@ -1,11 +1,12 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { FaGithub } from 'react-icons/fa'
+import { FaDiscord, FaGithub } from 'react-icons/fa'
 import Balancer from 'react-wrap-balancer'
 
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
+import { siteConfig } from '@/config/site'
 
 export default function Home() {
   return (
@@ -35,9 +36,9 @@ export default function Home() {
             <motion.p className="mt-6 text-center text-gray-500 dark:text-gray-200 md:text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <Balancer className="text-xl font-semibold">Start building next generation Web3 apps today</Balancer>
             </motion.p>
-            <motion.div className="mx-auto mt-6 flex items-center justify-center space-x-5" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <motion.div className="mx-auto mt-6 flex flex-wrap items-center justify-center gap-y-3 space-x-4" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <a
-                className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
+                className="flex max-w-fit items-center justify-center rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
                 href={'https://docs.turboeth.xyz/'}
                 target="_blank"
                 rel="noopener noreferrer">
@@ -45,12 +46,20 @@ export default function Home() {
                 <span className="font-bold">TurboETH Documentation</span>
               </a>
               <a
-                className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
-                href="https://github.com/turbo-eth/template-web3-app"
+                className="flex max-w-fit items-center justify-center rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
+                href={siteConfig.links.github}
                 target="_blank"
                 rel="noopener noreferrer">
                 <FaGithub />
                 <p>Star on GitHub</p>
+              </a>
+              <a
+                className="flex max-w-fit items-center justify-center rounded-full border border-indigo-400 bg-indigo-500 px-5 py-2 text-sm text-white shadow-md transition-colors hover:border-indigo-600"
+                href={siteConfig.links.discord}
+                target="_blank"
+                rel="noopener noreferrer">
+                <FaDiscord />
+                <p>Join us on Discord</p>
               </a>
             </motion.div>
             <motion.p className="mt-6 text-center text-sm" variants={FADE_DOWN_ANIMATION_VARIANTS}>
