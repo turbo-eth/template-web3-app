@@ -1,7 +1,7 @@
 import React from 'react'
 
 import classNames from 'clsx'
-import { FaGithub, FaTwitter } from 'react-icons/fa'
+import { FaDiscord, FaGithub, FaTwitter } from 'react-icons/fa'
 
 import { siteConfig } from '@/config/site'
 
@@ -27,6 +27,10 @@ export function Footer(props: Props) {
         <div className="mx-2" />
         <LinkComponent href={`${siteConfig.links.twitter}`}>
           <FaTwitter />
+        </LinkComponent>
+        <div className="mx-2" />
+        <LinkComponent href={`${siteConfig.links.discord}`}>
+          <FaDiscord />
         </LinkComponent>
       </div>
     </footer>
