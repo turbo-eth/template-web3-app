@@ -25,7 +25,7 @@ export const siteConfig: SiteConfig = {
   previewImg: `${SITE_CANONICAL}/preview.png`,
   localeDefault: 'en',
   links: {
-    discord: 'https://discord.gg/NcjWrrsy',
+    discord: 'https://discord.gg/U4jy7Xfh76',
     github: 'https://github.com/turbo-eth',
     twitter: 'https://twitter.com/district_labs',
   },
