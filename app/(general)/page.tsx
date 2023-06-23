@@ -38,7 +38,7 @@ export default function Home() {
             </motion.p>
             <motion.div className="mx-auto mt-6 flex flex-wrap items-center justify-center gap-y-3 space-x-4" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <a
-                className="flex max-w-fit items-center justify-center rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
+                className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
                 href={'https://docs.turboeth.xyz/'}
                 target="_blank"
                 rel="noopener noreferrer">
@@ -46,7 +46,7 @@ export default function Home() {
                 <span className="font-bold">TurboETH Documentation</span>
               </a>
               <a
-                className="flex max-w-fit items-center justify-center rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
+                className="flex max-w-fit items-center justify-center space-x-2  rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
                 href={siteConfig.links.github}
                 target="_blank"
                 rel="noopener noreferrer">
@@ -54,7 +54,7 @@ export default function Home() {
                 <p>Star on GitHub</p>
               </a>
               <a
-                className="flex max-w-fit items-center justify-center rounded-full border border-indigo-400 bg-indigo-500 px-5 py-2 text-sm text-white shadow-md transition-colors hover:border-indigo-600"
+                className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-indigo-400 bg-indigo-500 px-5 py-2 text-sm text-white shadow-md transition-colors hover:border-indigo-600"
                 href={siteConfig.links.discord}
                 target="_blank"
                 rel="noopener noreferrer">
