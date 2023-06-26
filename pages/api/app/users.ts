@@ -1,7 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
+import { env } from '@/env.mjs'
 import { prisma } from '@/lib/prisma'
 import { withSessionRoute } from '@/lib/server'
+
+export type Users = Awaited<ReturnType<typeof prisma.user.findMany>>
 
 export default withSessionRoute(async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
@@ -10,7 +13,11 @@ export default withSessionRoute(async function handler(req: NextApiRequest, res:
       if (!isAdmin) {
         return res.status(401).send('Unauthorized')
       }
-      const users = await prisma.user.findMany()
+
+      let users: Users = []
+      if (env.DATABASE_URL) {
+        users = await prisma.user.findMany()
+      }
       return res.send({ users, object: 'Users' })
     } catch (error: any) {
       console.log(error)
