@@ -19,7 +19,7 @@ export async function GET(req: Request) {
     if (env.DATABASE_URL) {
       users = await prisma.user.findMany()
     }
-    return new Response(JSON.stringify({ users: users, object: 'Users' }))
+    return new Response(JSON.stringify({ users, object: 'Users' }))
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
     return new Response(errorMessage, { status: 500 })
