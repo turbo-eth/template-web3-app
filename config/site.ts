@@ -9,6 +9,7 @@ interface SiteConfig {
   previewImg: string
   localeDefault: string
   links: {
+    discord: string
     twitter: string
     github: string
   }
@@ -24,6 +25,7 @@ export const siteConfig: SiteConfig = {
   previewImg: `${SITE_CANONICAL}/preview.png`,
   localeDefault: 'en',
   links: {
+    discord: 'https://discord.gg/U4jy7Xfh76',
     twitter: 'https://twitter.com/district_labs',
     github: 'https://github.com/turbo-eth',
   },
