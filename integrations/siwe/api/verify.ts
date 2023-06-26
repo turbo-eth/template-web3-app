@@ -36,16 +36,19 @@ export async function POST(req: Request) {
       session.isAdmin = true
     }
     await session.save()
-    await prisma.user.upsert({
-      where: { id: fields.address },
-      update: {
-        address: fields.address,
-      },
-      create: {
-        id: fields.address,
-        address: fields.address,
-      },
-    })
+
+    if (env.DATABASE_URL) {
+      await prisma.user.upsert({
+        where: { id: fields.address },
+        update: {
+          address: fields.address,
+        },
+        create: {
+          id: fields.address,
+          address: fields.address,
+        },
+      })
+    }
 
     return res
   } catch (e) {

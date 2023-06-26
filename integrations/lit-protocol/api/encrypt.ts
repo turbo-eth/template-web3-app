@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { env } from '@/env.mjs'
 import { prisma } from '@/lib/prisma'
 
 const encryptSchema = z.object({
@@ -10,6 +11,8 @@ const encryptSchema = z.object({
 
 export async function POST(req: Request) {
   try {
+    if (!env.DATABASE_URL) throw new Error('DATABASE_URL not set')
+
     const { encryptedString, accessControlConditions, encryptedSymmetricKeyString } = encryptSchema.parse(await req.json())
 
     if (!encryptedString || !accessControlConditions || !encryptedSymmetricKeyString) {
