@@ -4,9 +4,13 @@
 import {
   arbitrum,
   arbitrumGoerli,
+  avalanche,
+  avalancheFuji,
   baseGoerli,
   celo,
   celoAlfajores,
+  gnosis,
+  gnosisChiado,
   goerli,
   hardhat,
   mainnet,
@@ -24,6 +28,14 @@ import { publicProvider } from 'wagmi/providers/public'
 import { env } from '@/env.mjs'
 
 // @ts-ignore
+avalanche.iconUrl = '/icons/NetworkAvalanche.svg'
+// @ts-ignore
+avalancheFuji.iconUrl = '/icons/NetworkAvalanche.svg'
+// @ts-ignore
+gnosis.iconUrl = '/icons/NetworkGnosis.svg'
+// @ts-ignore
+gnosisChiado.iconUrl = '/icons/NetworkGnosis.svg'
+// @ts-ignore
 goerli.iconUrl = '/icons/NetworkEthereumTest.svg'
 // @ts-ignore
 sepolia.iconUrl = '/icons/NetworkEthereumTest.svg'
@@ -39,10 +51,14 @@ celoAlfajores.iconUrl = '/icons/NetworkCeloTest.svg'
 const CHAINS_SUPPORTED_BY_ALCHEMY = [mainnet, goerli, sepolia] // TODO add other chains supported by Alchemy
 const CHAINS_SUPPORTED_BY_INFURA = [mainnet, goerli, sepolia] // TODO add other chains supported by Infura
 const CHAINS_SUPPORTED_BY_PUBLIC_PROVIER = [
+  avalanche,
+  avalancheFuji,
   arbitrum,
   arbitrumGoerli,
   baseGoerli,
   goerli,
+  gnosis,
+  gnosisChiado,
   mainnet,
   optimism,
   optimismGoerli,
