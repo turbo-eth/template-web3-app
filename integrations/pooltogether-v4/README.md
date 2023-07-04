@@ -47,11 +47,10 @@ integrations/pooltogether-v4
 ├─ generated/
 │  ├─ pooltogether-v4-wagmi.ts
 ├─ hooks/
-│  ├─ use-load-contract-from-chain-id.tsx
-│  ├─ use-usdc-approval.tsx
-│  ├─ use-user-balance-deposit.tsx
-│  ├─ use-user-balance-withdraw.tsx
+│  ├─ use-load-contract-from-chain-id.ts
+│  ├─ use-user-balance.ts
 ├─ utils/
+│  ├─ constants.ts
 │  ├─ prize-pool-contract-list.ts
 │  ├─ ticket-contract-list.ts
 │  ├─ usdc-contract-list.ts
