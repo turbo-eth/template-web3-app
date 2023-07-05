@@ -7,6 +7,7 @@ export async function GET(req: Request) {
   try {
     const res = new Response()
     const session = await getIronSession(req, res, SERVER_SESSION_SETTINGS)
+    console.log('session::', session)
     const address = session.siwe?.address
     if (!address) {
       return new Response('Unauthorized', { status: 401 })

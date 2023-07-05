@@ -12,6 +12,7 @@ import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import DiscoIssueCredentialsButton from '@/integrations/disco/components/disco-issue-credentials-button'
 import { DiscoProfileBasic } from '@/integrations/disco/components/disco-profile-basic'
 import { DiscoProfileCredentials } from '@/integrations/disco/components/disco-profile-credentials'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
@@ -73,6 +74,8 @@ export default function PageIntegration() {
                   <hr className="my-4" />
                   <DiscoProfileCredentials address={address} />
                 </div>
+
+                <DiscoIssueCredentialsButton />
               </section>
             </div>
           </IsSignedIn>

@@ -79,3 +79,5 @@ export interface Profile {
   creds: Credential[]
   isDiscoOrg: boolean
 }
+
+export interface IssuedCredentials {}

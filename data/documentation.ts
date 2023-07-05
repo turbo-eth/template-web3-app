@@ -15,6 +15,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/disco.jpeg',
     imgDark: '/integrations/disco.jpeg',
   },
+  discoProgrammaticIssuance: {
+    name: 'Disco Programatic Issuance',
+    href: 'https://docs.turboeth.xyz/integration/disco',
+    url: 'https://docs.disco.xyz/v2/for-organizations/issuing-credentials/manual-issuance',
+    description: 'Disco is identity simplified. Giving the tools to consent to how information is shared and with whom.',
+    imgLight: '/integrations/disco.jpeg',
+    imgDark: '/integrations/disco.jpeg',
+  },
   etherscan: {
     name: 'Etherscan',
     href: 'https://docs.turboeth.xyz/integration/etherscan',
