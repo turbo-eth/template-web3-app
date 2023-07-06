@@ -27,14 +27,15 @@ Renders simple card with channel information and interactive subscribe button
 `Chat`
 Renders native Push Protocol support chat window on bottom-right corner of the screen
 
-
 ---
 
 ## Hooks
-This integration has two types of hooks for accessing and modifying data on PUSH. We can split them as query and action hooks. 
+
+This integration has two types of hooks for accessing and modifying data on PUSH. We can split them as query and action hooks.
 They have standard rule of implementation, for example:
 
 Retrieve channel data hook.
+
 ```tsx
 const { data, isLoading, error, refetch } = useNotifications({
   user: address as string,
@@ -44,17 +45,18 @@ const { data, isLoading, error, refetch } = useNotifications({
 ```
 
 Subscribe to a channel hook
+
 ```tsx
 const { data, isLoading, error, action: subscribe } = useSubscribeOrUnsubscribeToChannel({ action: 'subscribe' })
 ```
 
 Send notification hook
+
 ```tsx
 const { data, isLoading, error, action: sendNotification } = useSendNotification()
 
 sendNotification({..args})
 ```
-
 
 ### Hooks for retrieving data
 
@@ -81,8 +83,11 @@ sendNotification({..args})
 Additionally, if you don't want to depend on state variables returned from the hooks above, you may add `Lazy` at the end of any hook, and it'll return fresh function for fetching the resource. For Example:
 
 ```tsx
-const [getChannel] = useChannelLazy();
-getChannel({...args}).then().catch() //
+const [getChannel] = useChannelLazy()
+
+getChannel({ ...args })
+  .then()
+  .catch() //
 ```
 
 ## File Structure
@@ -113,3 +118,4 @@ integrations/push
 ├── README.md
 └── utils
     └── types.ts
+```
