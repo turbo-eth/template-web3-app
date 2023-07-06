@@ -37,3 +37,7 @@
 .text-gradient-pooltogether-link {
   @apply text-purple-800 dark:text-purple-500;
 }
+
+.bg-gradient-connext {
+  @apply bg-gradient-to-r from-purple-800 to-indigo-800 dark:from-purple-600 dark:to-indigo-500;
+}
