@@ -48,6 +48,13 @@ Subscribe to a channel hook
 const { data, isLoading, error, action: subscribe } = useSubscribeOrUnsubscribeToChannel({ action: 'subscribe' })
 ```
 
+Send notification hook
+```tsx
+const { data, isLoading, error, action: sendNotification } = useSendNotification()
+
+sendNotification({..args})
+```
+
 
 ### Hooks for retrieving data
 
