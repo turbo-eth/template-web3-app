@@ -72,6 +72,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/pooltogether.svg',
     imgDark: '/integrations/pooltogether.svg',
   },
+  push_protocol: {
+    name: 'Push Protocol',
+    href: '/integration/push-protocol',
+    url: 'https://push.org/',
+    description: 'Push Protocol is a web3 communication network, enabling cross-chain notifications and messaging for dapps, wallets, and services.',
+    imgLight: '/integrations/push.svg',
+    imgDark: '/integrations/push.svg',
+  },
   starter: {
     name: 'Starter Template',
     href: '/integration/starter',
