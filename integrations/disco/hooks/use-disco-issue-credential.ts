@@ -3,7 +3,6 @@ import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-// did:3:kjzl6cwe1jw14bc98o7vzobvgpjy8nq3gouzguc2zvzz901nixa99h8ru7gvye5
 import { appDiscoPostCredentialIssue } from '../routes/post-credential-issue/client'
 
 // !! use mutation hook to be used
@@ -30,23 +29,23 @@ export const useDiscoIssueCredential = () => {
     },
     {
       onSuccess: (response) => {
-        //alert('kjbcjkek')
-        console.log('res', response)
+        alert('kjbcjkek')
+        // console.log('res', response)
         // Do something with the response data
       },
     }
   )
 
   const discoSchema = z.object({
-    eventDate: z.coerce.date(),
+    eventDate: z.date(),
     eventName: z.string(),
     place: z.string(),
     projectName: z.string(),
     sourceCodeUrl: z.string(),
     teamName: z.string(),
     usageLink: z.string(),
-    // expDate: z.coerce.date(),
-    id: z.string(),
+    expDate: z.coerce.date(),
+    recipientDid: z.string(),
   })
 
   const form = useForm<z.infer<typeof discoSchema>>({
@@ -59,8 +58,8 @@ export const useDiscoIssueCredential = () => {
       sourceCodeUrl: '',
       teamName: '',
       usageLink: '',
-      // expDate: new Date('2023-07-04'),
-      id: '',
+      expDate: new Date('2023-07-04'),
+      recipientDid: '',
     },
   })
 
@@ -74,13 +73,13 @@ export const useDiscoIssueCredential = () => {
         sourceCodeUrl: values.sourceCodeUrl,
         teamName: values.teamName,
         usageLink: values.usageLink,
-        // expDate: values.expDate,
-        id: values.id,
+        expDate: values.expDate,
+        recipientDid: values.recipientDid,
       })
 
       //console.log('hehe', data)
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
 
     // mutation.mutate(values)
