@@ -1,18 +1,19 @@
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 
-import { ApiCall, useDiscoIssueCredential } from '../hooks/use-disco-issue-credential'
+import { useDiscoIssueCredential } from '../hooks/use-disco-issue-credential'
 import { discoControls } from '../utils/controls'
 import { getComponent } from '../utils/get-element-component'
 
 const FormCredentialIssuanceProofOfHack = () => {
-  const { form, onSubmit } = useDiscoIssueCredential()
-  const { data, isLoading, isError } = ApiCall()
+  const { form, onSubmit, mutation } = useDiscoIssueCredential()
+  // const { data, isLoading, isError } = ApiCall()
+  // const { isLoading, isError, isSuccess, error, data } = mutation
 
   const { watch, handleSubmit, register } = form
 
-  const date = watch('eventDate')
-  // console.log('data::', data)
+  // const date = watch('eventDate')
+  //console.log('data:::::', mutation.isSuccess)
   return (
     <div className="card w-full">
       <>

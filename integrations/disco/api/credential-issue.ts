@@ -9,15 +9,20 @@ export async function POST(req: Request) {
     const res = new Response()
     const session = await getIronSession(req, res, SERVER_SESSION_SETTINGS)
 
-    const info = await postCredentialIssue()
-    console.log('info:::', res)
+    const ff = await req.json()
+    console.log('req', ff)
+
+    const info = await postCredentialIssue(ff)
+    // console.log('sess', session)
+    // console.log('info:::', res)
     // console.log('session details:', session)
 
     if (info) {
       return new Response(JSON.stringify(info), { status: 200, headers: { 'Content-Type': 'application/json' } })
     }
   } catch (error) {
-    console.log('error', error)
-    return new Response('error', { status: 532 })
+    // console.log('error', error)
+    // alert('errir:::', error)
+    return new Response(error, { status: 539 })
   }
 }

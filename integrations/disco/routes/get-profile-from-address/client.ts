@@ -10,7 +10,7 @@ export async function appDiscoGetProfileFromAddress(address?: Address) {
         address: address,
       },
     })
-    console.log('data', data)
+    // console.log('data', data)
     return data
   } catch (error) {
     throw error

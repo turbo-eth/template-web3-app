@@ -61,7 +61,7 @@ export const discoControls = [
     attribute: { type: 'date', name: 'expDate' },
   },
   {
-    formfieldName: 'recipientDid',
+    formfieldName: 'id',
     component: 'input',
     label: 'Recipient DID',
     placeholder: 'Place Recipient DID here',
