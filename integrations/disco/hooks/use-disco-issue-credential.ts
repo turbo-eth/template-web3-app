@@ -5,60 +5,56 @@ import { z } from 'zod'
 
 import { appDiscoPostCredentialIssue } from '../routes/post-credential-issue/client'
 
-// !! use mutation hook to be used
-
-// export const ApiCall = () => {
-//   return useQuery(['discoIssueCredential'], async () => appDiscoPostCredentialIssue())
-// }
-
 export const useDiscoIssueCredential = () => {
   const mutation = useMutation(
     async (v) => {
       const res = await appDiscoPostCredentialIssue(v)
 
-      //console.log('v:', v)
-      // if (response.ok) {
-      //   return await response.json()
-      // } else {
-      //   // throw new Error(response.statusText)
-      //   console.log('error haha')
-      // }
-
       return res
-      //console.log('res:::', res)
     },
     {
       onSuccess: (response) => {
-        alert('kjbcjkek')
-        // console.log('res', response)
-        // Do something with the response data
+        alert('Sucessful')
       },
     }
   )
 
   const discoSchema = z.object({
-    eventDate: z.date(),
+    eventDate: z.string().transform((value) => {
+      const date = new Date(value)
+      if (isNaN(date.getTime())) {
+        throw new Error('Invalid date format')
+      }
+      return date.toISOString().split('T')[0]
+    }),
+
     eventName: z.string(),
     place: z.string(),
     projectName: z.string(),
     sourceCodeUrl: z.string(),
     teamName: z.string(),
     usageLink: z.string(),
-    expDate: z.coerce.date(),
+    expDate: z.string().transform((value) => {
+      const date = new Date(value)
+      if (isNaN(date.getTime())) {
+        throw new Error('Invalid date format')
+      }
+      return date.toISOString().split('T')[0]
+    }),
     recipientDid: z.string(),
   })
 
   const form = useForm<z.infer<typeof discoSchema>>({
     resolver: zodResolver(discoSchema),
     defaultValues: {
-      eventDate: new Date('2023-07-04'),
+      eventDate: 'YYYY-MM-DD',
       eventName: '',
       place: '',
       projectName: '',
       sourceCodeUrl: '',
       teamName: '',
       usageLink: '',
-      expDate: new Date('2023-07-04'),
+      expDate: 'YYYY-MM-DD',
       recipientDid: '',
     },
   })
@@ -76,14 +72,7 @@ export const useDiscoIssueCredential = () => {
         expDate: values.expDate,
         recipientDid: values.recipientDid,
       })
-
-      //console.log('hehe', data)
-    } catch (error) {
-      // console.log(error)
-    }
-
-    // mutation.mutate(values)
-    //console.log('handle', values)
+    } catch (error) {}
   }
 
   return {

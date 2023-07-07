@@ -1,18 +1,8 @@
 export const discoControls = [
-  // {
-  //   formfieldName: 'apiKey',
-  //   component: 'input',
-  //   label: 'OpenAI API Key',
-  //   placeholder: 'sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
-  //   description: 'OpenAI API Key is needed here',
-
-  //   attribute: { pattern: 'sk-[a-zA-Z0-9]{48}', type: 'password', required: 'true' },
-  // },
   {
     formfieldName: 'eventDate',
     component: 'input',
     label: 'Event Date',
-    // placeholder: 'Place Event Date here',
     attribute: { type: 'date', required: 'true', name: 'eventDate' },
   },
   {
@@ -57,7 +47,6 @@ export const discoControls = [
     formfieldName: 'expDate',
     component: 'input',
     label: 'Expiration Date',
-    // placeholder: 'Place Event Date here',
     attribute: { type: 'date', name: 'expDate' },
   },
   {

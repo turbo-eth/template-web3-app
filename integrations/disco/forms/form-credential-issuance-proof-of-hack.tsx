@@ -7,13 +7,12 @@ import { getComponent } from '../utils/get-element-component'
 
 const FormCredentialIssuanceProofOfHack = () => {
   const { form, onSubmit, mutation } = useDiscoIssueCredential()
-  // const { data, isLoading, isError } = ApiCall()
-  // const { isLoading, isError, isSuccess, error, data } = mutation
+
+  const { isLoading, isError, isSuccess, error, data } = mutation
 
   const { watch, handleSubmit, register } = form
+  s
 
-  // const date = watch('eventDate')
-  //console.log('data:::::', mutation.isSuccess)
   return (
     <div className="card w-full">
       <>
@@ -28,18 +27,12 @@ const FormCredentialIssuanceProofOfHack = () => {
                   control={form.control}
                   name={item?.formfieldName as 'eventDate'}
                   render={({ field }) => {
-                    // console.log('item::', field)
                     return (
                       <>
                         <FormItem>
                           <FormLabel>{item?.label}</FormLabel>
                           <FormControl>
-                            <Item
-                              {...item?.attribute}
-                              // onClick={() => console.log('kjwbcjkw')}
-                              {...field}
-                              {...register(item?.formfieldName as 'eventDate')}
-                            />
+                            <Item {...item?.attribute} {...field} {...register(item?.formfieldName as 'eventDate')} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -53,6 +46,8 @@ const FormCredentialIssuanceProofOfHack = () => {
             <Button className="btn btn-emerald w-full">Issue</Button>
           </form>
         </Form>
+
+        <div>{isSuccess}</div>
       </>
     </div>
   )
