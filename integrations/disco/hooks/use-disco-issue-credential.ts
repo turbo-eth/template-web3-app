@@ -1,18 +1,36 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
-import { Address } from 'wagmi'
 import { z } from 'zod'
 
-import { appDiscoGetProfileFromAddress } from '../routes/get-profile-from-address/client'
+import { appDiscoPostCredentialIssue } from '../routes/post-credential-issue/client'
 
-export const ApiCall = (address?: Address, queryKey?: any) => {
-  return useQuery(['discoProfileFromAddress', address, queryKey], async () => appDiscoGetProfileFromAddress(address))
+// !! use mutation hook to be used
+
+export const ApiCall = () => {
+  return useQuery(['discoIssueCredential'], async () => appDiscoPostCredentialIssue())
 }
+
 export const useDiscoIssueCredential = () => {
+  const mutation = useMutation(async () => {
+    const response = await appDiscoPostCredentialIssue()
+
+    // if (response.ok) {
+    //   return await response.json()
+    // } else {
+    //   throw new Error(response.statusText)
+    // }
+
+    console.log('res:::', response)
+
+    // return {
+    //   data,
+    //   isLoading,
+    //   error,
+    // }
+  })
+
   const discoSchema = z.object({
-    // apiKey: z.string().min(2).max(51),
-    // prompt: z.string().min(2).max(100000),
     eventDate: z.coerce.date(),
     eventName: z.string(),
     place: z.string(),
@@ -40,13 +58,14 @@ export const useDiscoIssueCredential = () => {
   })
 
   const onSubmit = async (values: any) => {
+    mutation.mutate()
     console.log('handle', values)
   }
 
   return {
-    credential,
     discoSchema,
     form,
     onSubmit,
+    mutation,
   }
 }

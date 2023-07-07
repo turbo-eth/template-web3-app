@@ -1,11 +1,14 @@
 import { discoClient } from '@/integrations/disco/disco-client'
 
-import { Credential } from '../../utils/types'
+import { IssuedCredentials } from '../../utils/types'
 
-export async function postCredentialIssue(did?: string) {
-  if (!did) {
-    return null
-  }
-  const { data }: { data: Credential[] } = await discoClient.get(`/profile/${did}/credentials`)
+const raw = {
+  schemaUrl: 'https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/GMCredential/1-0-0.json',
+  subjectData: {},
+  recipientDID: 'did:3:kjzl6cwe1jw147pkworv5ff70zkwjne15b4ww4xwyof4cdgvgsw8xl1srg287wj',
+}
+export async function postCredentialIssue() {
+  const { data }: { data: IssuedCredentials } = await discoClient.post(`/credential`, raw)
+  // console.log('post:::', data)
   return data
 }
