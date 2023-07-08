@@ -4,12 +4,11 @@ This React Hook integrates with [Connext](https://connext.network/), enabling us
 
 ## Features
 
-- Bridge ERC20 tokens across multiple chains
+- Bridge ERC20 tokens across multiple chains easily with the `useXcall` hook
 - Get latest connext transfers with the `useLatestTransfers` hook
+- Helper hooks like `approve-if-needed`
 
 ## API
-
-(Existing API documentation...)
 
 ### `GET /api/connext/approve-if-needed`
 
@@ -246,6 +245,7 @@ const { request, isLoading } = useApproveIfNeeded({
   assetAddress: '0x...', 
   amount: ethers.utils.parseUnits('10', 'ether')
 });
+```
 
 ### `useEstimatedRelayerFee({ isMainnet, originDomain, destinationDomain })`
 
