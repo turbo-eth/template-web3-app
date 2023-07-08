@@ -88,6 +88,8 @@ export const useDiscoIssueCredential = () => {
         expDate: values.expDate,
         recipientDid: values.recipientDid,
       })
+
+      form.reset()
     } catch (error) {
       console.log(error)
     }

@@ -7,10 +7,14 @@ import Balancer from 'react-wrap-balancer'
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { IsDarkTheme } from '@/components/shared/is-dark-theme'
 import { IsLightTheme } from '@/components/shared/is-light-theme'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
 import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/documentation'
 import DiscoIssueCredentials from '@/integrations/disco/components/disco-issue-credentials'
+import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
+import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
+import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 
 export default function DiscoIssue() {
   return (
@@ -44,15 +48,22 @@ export default function DiscoIssue() {
         <motion.p className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
           <Balancer>{turboIntegrations.discoProgrammaticIssuance.description}</Balancer>
         </motion.p>
-        {/* <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-          <LinkComponent isExternal href={turboIntegrations.discoProgrammaticIssuance.url}>
-            <button className="btn btn-primary">Documentation</button>
-          </LinkComponent>
-        </motion.div> */}
       </motion.div>
       <hr className="my-5" />
 
-      <DiscoIssueCredentials />
+      <IsWalletConnected>
+        <IsSignedIn>
+          <DiscoIssueCredentials />
+        </IsSignedIn>
+        <IsSignedOut>
+          <div className="text-center">
+            <ButtonSIWELogin className="btn btn-emerald" label="Sign-In With Ethereum" />
+            <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-200">
+              Accessing the Disco API requires authenticating with an Ethereum Account.
+            </p>
+          </div>
+        </IsSignedOut>
+      </IsWalletConnected>
 
       <IsWalletDisconnected>
         <WalletConnect className="mx-auto inline-block" />
