@@ -6,12 +6,15 @@ import { discoControls } from '../utils/controls'
 import { getComponent } from '../utils/get-element-component'
 
 const FormCredentialIssuanceProofOfHack = () => {
-  const { form, onSubmit, mutation } = useDiscoIssueCredential()
+  const { form, onSubmit, mutation, handleToast } = useDiscoIssueCredential()
 
-  const { isLoading, isError, isSuccess, error, data } = mutation
+  const { isLoading, isError, isSuccess } = mutation
 
-  const { watch, handleSubmit, register } = form
-  s
+  const { handleSubmit, register } = form
+
+  if (isError) {
+    handleToast('Error Found', 'Please check again')
+  }
 
   return (
     <div className="card w-full">
@@ -43,11 +46,11 @@ const FormCredentialIssuanceProofOfHack = () => {
               )
             })}
 
-            <Button className="btn btn-emerald w-full">Issue</Button>
+            <Button className="btn btn-emerald w-full dark:bg-green-600 dark:text-white" disabled={isLoading}>
+              Issue
+            </Button>
           </form>
         </Form>
-
-        <div>{isSuccess}</div>
       </>
     </div>
   )

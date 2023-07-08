@@ -1,11 +1,27 @@
+import { setTimeout } from 'timers'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { useToast } from '@/lib/hooks/use-toast'
+
 import { appDiscoPostCredentialIssue } from '../routes/post-credential-issue/client'
 
 export const useDiscoIssueCredential = () => {
+  const { toast, dismiss } = useToast()
+
+  const handleToast = (title: string, description: string) => {
+    toast({
+      title: title,
+      description: description,
+    })
+
+    setTimeout(() => {
+      dismiss()
+    }, 4200)
+  }
   const mutation = useMutation(
     async (v) => {
       const res = await appDiscoPostCredentialIssue(v)
@@ -14,7 +30,7 @@ export const useDiscoIssueCredential = () => {
     },
     {
       onSuccess: (response) => {
-        alert('Sucessful')
+        handleToast('Sucessful Creation', 'Your Proof of Hack Credentials are created')
       },
     }
   )
@@ -61,7 +77,7 @@ export const useDiscoIssueCredential = () => {
 
   const onSubmit = async (values: z.infer<typeof discoSchema>) => {
     try {
-      const data = await mutation.mutateAsync({
+      await mutation.mutateAsync({
         eventDate: values.eventDate,
         eventName: values.eventName,
         place: values.place,
@@ -72,7 +88,9 @@ export const useDiscoIssueCredential = () => {
         expDate: values.expDate,
         recipientDid: values.recipientDid,
       })
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return {
@@ -80,5 +98,6 @@ export const useDiscoIssueCredential = () => {
     form,
     onSubmit,
     mutation,
+    handleToast,
   }
 }

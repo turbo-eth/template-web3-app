@@ -2,14 +2,15 @@ import { postCredentialIssue } from '../routes/post-credential-issue'
 
 export async function POST(req: Request) {
   try {
-    const ff = await req.json()
+    const prunedResponse = await req.json()
 
-    const info = await postCredentialIssue(ff)
+    const info = await postCredentialIssue(prunedResponse)
 
     if (info) {
       return new Response(JSON.stringify(info), { status: 200, headers: { 'Content-Type': 'application/json' } })
     }
-  } catch (error) {
-    throw new Error('Error Found', error)
+  } catch (e) {
+    const errorMessage = e instanceof Error ? e.message : String(e)
+    return new Response(errorMessage, { status: 500 })
   }
 }

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import axios from 'axios'
 
 import { IssuedCredentials } from '../../utils/types'

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { discoClient } from '@/integrations/disco/disco-client'
 
 import { IssuedCredentials } from '../../utils/types'
