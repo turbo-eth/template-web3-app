@@ -4,6 +4,9 @@ export async function POST(req: Request) {
   try {
     const prunedResponse = await req.json()
 
+    if (!prunedResponse.recipientDID) {
+      return new Response('recipientDID not found', { status: 400 })
+    }
     const info = await postCredentialIssue(prunedResponse)
 
     if (info) {
