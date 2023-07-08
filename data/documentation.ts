@@ -16,10 +16,10 @@ export const turboIntegrations = {
     imgDark: '/integrations/disco.jpeg',
   },
   discoProgrammaticIssuance: {
-    name: 'Disco Programatic Issuance',
+    name: 'Disco Programmatic Issuance',
     href: 'https://docs.turboeth.xyz/integration/disco',
     url: 'https://docs.disco.xyz/v2/for-organizations/issuing-credentials/manual-issuance',
-    description: 'Disco is identity simplified. Giving the tools to consent to how information is shared and with whom.',
+    description: 'Welcome to pilot beta of our Programmatic Issuance for Partners, we are so excited to deliver this feature for you all. ',
     imgLight: '/integrations/disco.jpeg',
     imgDark: '/integrations/disco.jpeg',
   },
