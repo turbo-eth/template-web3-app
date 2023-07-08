@@ -56,7 +56,7 @@ export const testnetAssets = [
   },
   {
     id: 'eth',
-    symbol: 'ETH',
+    symbol: 'WETH',
     name: 'Ethereum',
     image: '/integrations/connext/logos/assets/eth.png',
     allow_paying_gas: true,

@@ -9,7 +9,7 @@ export const testnetChains = [
       {
         chainId: '0x5',
         chainName: 'Ethereum Goerli',
-        rpcUrls: ['https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161', 'https://rpc.ankr.com/eth_goerli'],
+        rpcUrls: ['https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161', 'https://ethereum-goerli.publicnode.com	'],
         nativeCurrency: {
           name: 'Ethereum',
           symbol: 'ETH',
@@ -18,6 +18,7 @@ export const testnetChains = [
         blockExplorerUrls: ['https://goerli.etherscan.io'],
       },
     ],
+    rpc_urls: ['https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161', 'https://ethereum-goerli.publicnode.com	'],
     explorer: {
       name: 'Etherscan',
       url: 'https://goerli.etherscan.io',
@@ -57,6 +58,11 @@ export const testnetChains = [
         blockExplorerUrls: ['https://mumbai.polygonscan.com'],
       },
     ],
+    rpc_urls: [
+      'https://polygon-mumbai.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
+      'https://matic-mumbai.chainstacklabs.com',
+      'https://rpc.ankr.com/polygon_mumbai',
+    ],
     explorer: {
       name: 'Polygonscan',
       url: 'https://mumbai.polygonscan.com',
@@ -91,6 +97,7 @@ export const testnetChains = [
         blockExplorerUrls: ['https://goerli-optimism.etherscan.io'],
       },
     ],
+    rpc_urls: ['https://optimism-goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161', 'https://rpc.ankr.com/optimism_testnet'],
     explorer: {
       name: 'Etherscan',
       url: 'https://goerli-optimism.etherscan.io',
@@ -125,6 +132,7 @@ export const testnetChains = [
         blockExplorerUrls: ['https://goerli.arbiscan.io'],
       },
     ],
+    rpc_urls: ['https://goerli-rollup.arbitrum.io/rpc'],
     explorer: {
       name: 'Arbiscan',
       url: 'https://goerli.arbiscan.io',
@@ -159,6 +167,7 @@ export const testnetChains = [
         blockExplorerUrls: ['https://explorer.goerli.linea.build'],
       },
     ],
+    rpc_urls: ['https://rpc.goerli.linea.build'],
     explorer: {
       name: 'BlockScout',
       url: 'https://explorer.goerli.linea.build',
@@ -193,6 +202,7 @@ export const testnetChains = [
         blockExplorerUrls: ['https://goerli.explorer.zksync.io'],
       },
     ],
+    rpc_urls: ['https://zksync2-testnet.zksync.dev'],
     explorer: {
       name: 'zkSync',
       url: 'https://goerli.explorer.zksync.io',

@@ -255,7 +255,7 @@ export const mainnetAssets = [
   },
   {
     id: 'eth',
-    symbol: 'ETH',
+    symbol: 'WETH',
     name: 'Ethereum',
     image: '/integrations/connext/logos/assets/eth.png',
     contracts: [

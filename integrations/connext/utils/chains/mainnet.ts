@@ -54,6 +54,7 @@ export const mainnetChains = [
         blockExplorerUrls: ['https://bscscan.com'],
       },
     ],
+    rpc_urls: ['https://rpc.ankr.com/bsc'],
     explorer: {
       name: 'BscScan',
       url: 'https://bscscan.com',
@@ -211,6 +212,7 @@ export const mainnetChains = [
         blockExplorerUrls: ['https://gnosisscan.io'],
       },
     ],
+    rpc_urls: ['https://gnosis.blockpi.network/v1/rpc/public'],
     explorer: {
       name: 'Gnosisscan',
       url: 'https://gnosisscan.io',

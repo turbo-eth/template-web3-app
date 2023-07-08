@@ -5,14 +5,11 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 
-import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 
 export default function ConnextTogetherLayout({ children }: { children: ReactNode }) {
   const classes = 'bg-gradient-dark flex flex-col pb-10 lg:pb-12'
-  const button =
-    'bg-gradient-connext flex max-w-fit text-xl font-bold items-center justify-center space-x-2 rounded-full px-5 py-2 text-white transition hover:scale-105'
   return (
     <>
       <div className={classes}>
@@ -45,7 +42,7 @@ export default function ConnextTogetherLayout({ children }: { children: ReactNod
           </div>
         </div>
       </div>
-      <main className="flex-center flex flex-1 flex-col md:px-10">{children}</main>
+      <main className="w-full">{children}</main>
     </>
   )
 }
