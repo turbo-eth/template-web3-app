@@ -1,7 +1,7 @@
 import * as PushAPI from '@pushprotocol/restapi'
+import { useQuery } from '@tanstack/react-query'
 import { z } from 'zod'
 
-import { usePushQuery } from './use-push-query'
 import { Channel, UseChannelProps } from '../utils/types'
 
 const fetchChannel = async (props: UseChannelProps) => {
@@ -34,19 +34,9 @@ const fetchChannel = async (props: UseChannelProps) => {
 }
 
 export const useChannel = (props: UseChannelProps) => {
-  return usePushQuery(
-    {
-      fetcher: async () => {
-        const result = await fetchChannel(props)
-        if (!result) throw new Error('Channel not found') // Push sdk doesn't throw errors :(
-
-        return result
-      },
-    },
-    [props.channel, props.env]
-  )
-}
-
-export const useChannelLazy = () => {
-  return [fetchChannel]
+  return useQuery(['channel', props.channel, props.env], {
+    queryFn: () => fetchChannel(props),
+    refetchOnWindowFocus: false,
+    enabled: !!props.channel && !!props.env,
+  })
 }

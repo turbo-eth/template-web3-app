@@ -1,6 +1,6 @@
 import * as PushAPI from '@pushprotocol/restapi'
+import { useQuery } from '@tanstack/react-query'
 
-import { usePushQuery } from './use-push-query'
 import { UseChatsProps } from '../utils/types'
 
 const fetchChats = async (props: UseChatsProps) => {
@@ -8,14 +8,8 @@ const fetchChats = async (props: UseChatsProps) => {
 }
 
 export const useChats = (props: UseChatsProps) => {
-  return usePushQuery(
-    {
-      fetcher: () => fetchChats(props),
-    },
-    [props.account, props.env, props.page, props.limit, props.pgpPrivateKey, props.toDecrypt]
-  )
-}
-
-export const useChatsLazy = () => {
-  return [fetchChats]
+  return useQuery(['chats', props.account, props.env, props.page, props.limit, props.pgpPrivateKey, props.toDecrypt], {
+    queryFn: () => fetchChats(props),
+    refetchOnWindowFocus: false,
+  })
 }

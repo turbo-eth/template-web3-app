@@ -16,3 +16,8 @@ export type ChannelCardProps = {
   channelAddress: string
   env: ENV
 }
+
+export type SubscribeButtonProps = {
+  channelAddress: string
+  env: ENV
+}

@@ -1,6 +1,6 @@
 import * as PushAPI from '@pushprotocol/restapi'
+import { useQuery } from '@tanstack/react-query'
 
-import { usePushQuery } from './use-push-query'
 import { UseUserSubscriptionProps, UserSubscription } from '../utils/types'
 
 const fetchUserSubscriptions = async (props: UseUserSubscriptionProps) => {
@@ -8,14 +8,8 @@ const fetchUserSubscriptions = async (props: UseUserSubscriptionProps) => {
 }
 
 export const useUserSubscriptions = (props: UseUserSubscriptionProps) => {
-  return usePushQuery(
-    {
-      fetcher: () => fetchUserSubscriptions(props),
-    },
-    [props.env, props.user]
-  )
-}
-
-export const useUserSubscriptionsLazy = () => {
-  return [fetchUserSubscriptions]
+  return useQuery(['user-subscriptions', props.env, props.user], {
+    queryFn: () => fetchUserSubscriptions(props),
+    refetchOnWindowFocus: false,
+  })
 }

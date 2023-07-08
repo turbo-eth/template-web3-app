@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+
 import { motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
 import { useAccount } from 'wagmi'
@@ -8,6 +10,7 @@ import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
 import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { LinkComponent } from '@/components/shared/link-component'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 import { ChannelCard, ENV, NotificationFeed, useNotifications } from '@/integrations/push-protocol'
@@ -26,6 +29,9 @@ export default function PageIntegration() {
     env: ENV.STAGING,
     spam: true,
   })
+
+  const [channelAddress, setChannelAddress] = useState('0x74415Bc4C4Bf4Baecc2DD372426F0a1D016Fa924')
+  const [env, setEnv] = useState(ENV.STAGING)
 
   return (
     <>
@@ -73,20 +79,47 @@ export default function PageIntegration() {
                   spamNotifications={spamNotifications}
                   spamNotificationsIsLoading={spamIsLoading}
                 />
+                <hr className="my-4" />
+                <div className="flex items-center justify-between">
+                  <h3 className="text-center">Inbox&Spam</h3>
+                  <p className="text-center text-sm text-gray-500">Check inbox&spam notifications on Push</p>
+                </div>
               </div>
             </div>
             <div className="mb-3 w-full">
               <div className="card">
-                <div className="flex space-x-4">
-                  <div className="w-1/3">
-                    <ChannelCard channelAddress={'0x2AEcb6DeE3652dA1dD6b54D5fd4f7D8F43DaEb78'} env={ENV.STAGING} />
+                <div className="mb-4 flex space-x-4">
+                  <div className="grow">
+                    <input
+                      className="input"
+                      defaultValue={channelAddress}
+                      placeholder="Enter Channel Address"
+                      onChange={(e) => setChannelAddress(e.target.value)}
+                    />
                   </div>
-                  <div className="w-1/3">
-                    <ChannelCard channelAddress={'0x9601f08b9EcB981D273B72e7f33964Cb98f977fe'} env={ENV.STAGING} />
+                  <div className="w-56">
+                    <Select value={env} onValueChange={(value) => setEnv(value as ENV)}>
+                      <SelectTrigger className="input text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
+                        <SelectValue placeholder={env === ENV.STAGING ? 'Goerli' : 'Mainnet'}>
+                          {env === ENV.STAGING ? 'Goerli' : 'Mainnet'}
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent className="bg-white dark:bg-white">
+                        <SelectItem value={ENV.STAGING}>Goerli</SelectItem>
+                        <SelectItem value={ENV.PROD}>Mainnet</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
-                  <div className="w-1/3">
-                    <ChannelCard channelAddress={'0x74415Bc4C4Bf4Baecc2DD372426F0a1D016Fa924'} env={ENV.STAGING} />
+                </div>
+                <div className="flex w-full flex-col space-y-4  lg:flex-row lg:space-y-0 lg:space-x-4">
+                  <div className="grow">
+                    <ChannelCard channelAddress={channelAddress} env={env} />
                   </div>
+                </div>
+                <hr className="my-4" />
+                <div className="flex items-center justify-between">
+                  <h3 className="text-center">Channel Preview</h3>
+                  <p className="text-center text-sm text-gray-500">Preview and subscribe channel</p>
                 </div>
               </div>
             </div>

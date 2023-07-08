@@ -1,6 +1,6 @@
 import * as PushAPI from '@pushprotocol/restapi'
+import { useQuery } from '@tanstack/react-query'
 
-import { usePushQuery } from './use-push-query'
 import { Channel, UseSearchChannelProps } from '../utils/types'
 
 const searchChannels = async (props: UseSearchChannelProps) => {
@@ -8,14 +8,8 @@ const searchChannels = async (props: UseSearchChannelProps) => {
 }
 
 export const useSearchChannels = (props: UseSearchChannelProps) => {
-  return usePushQuery(
-    {
-      fetcher: () => searchChannels(props),
-    },
-    [props.query, props.env, props.page, props.limit]
-  )
-}
-
-export const useSearchChannelsLazy = () => {
-  return [searchChannels]
+  return useQuery(['search-channels', props.query, props.env, props.page, props.limit], {
+    queryFn: () => searchChannels(props),
+    refetchOnWindowFocus: false,
+  })
 }

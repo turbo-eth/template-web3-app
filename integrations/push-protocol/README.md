@@ -30,11 +30,7 @@ Renders native Push Protocol support chat window on bottom-right corner of the s
 ---
 
 ## Hooks
-
-This integration has two types of hooks for accessing and modifying data on PUSH. We can split them as query and action hooks.
-They have standard rule of implementation, for example:
-
-Retrieve channel data hook.
+These hooks are just push protocol specific wrappers for `react-query`. So it utilizes all the features `react-query` has.
 
 ```tsx
 const { data, isLoading, error, refetch } = useNotifications({
@@ -47,18 +43,18 @@ const { data, isLoading, error, refetch } = useNotifications({
 Subscribe to a channel hook
 
 ```tsx
-const { data, isLoading, error, action: subscribe } = useSubscribeOrUnsubscribeToChannel({ action: 'subscribe' })
+const { data, isLoading, error, mutateAsync: subscribe } = useSubscribe()
 ```
 
 Send notification hook
 
 ```tsx
-const { data, isLoading, error, action: sendNotification } = useSendNotification()
+const { data, isLoading, error, mutateAsync: sendNotification } = useSendNotification()
 
-sendNotification({..args})
+await sendNotification({..args})
 ```
 
-### Hooks for retrieving data
+### Query Hooks
 
 `useChannel` : Returns Push channel based on parameters
 
@@ -70,25 +66,15 @@ sendNotification({..args})
 
 `useUserSubscriptions` : Returns user channel subscriptions based on parameters
 
-### Action Hooks
+### Mutation Hooks
 
-`useSendNotifications` : Returns Push notifications based on parameters
+`useSendNotifications` : Returns mutation for sending notifications
 
-`useSubscribeOrUnsubscribeToChannel` : Returns Push notifications based on parameters
+`useSubscribe` : Returns mutation for subscribe action
 
-`createUser` : Returns Push channel based on parameters
+`useUnsubscribe` : Returns mutation for unsubscribe action
 
-### Lazy hooks
-
-Additionally, if you don't want to depend on state variables returned from the hooks above, you may add `Lazy` at the end of any hook, and it'll return fresh function for fetching the resource. For Example:
-
-```tsx
-const [getChannel] = useChannelLazy()
-
-getChannel({ ...args })
-  .then()
-  .catch() //
-```
+`createUser` : Returns mutation for creating user
 
 ## File Structure
 
@@ -101,6 +87,7 @@ integrations/push
 │   ├── loadable.tsx
 │   ├── notification-feed.tsx
 │   ├── notification-item.tsx
+│   ├── subscribe-button.tsx
 │   └── types.ts
 ├── hooks
 │   ├── index.ts
@@ -108,14 +95,14 @@ integrations/push
 │   ├── use-chats.ts
 │   ├── use-create-user.ts
 │   ├── use-notifications.ts
-│   ├── use-push-action.ts
-│   ├── use-push-query.ts
 │   ├── use-search-channels.ts
 │   ├── use-send-notifications.ts
 │   ├── use-subscribe-channel.ts
+│   ├── use-unsubscribe-channel.ts
 │   └── use-user-subscriptions.ts
 ├── index.ts
 ├── README.md
 └── utils
+    ├── helpers.ts
     └── types.ts
 ```

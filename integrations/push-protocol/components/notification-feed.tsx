@@ -15,7 +15,7 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
           <TabsTrigger value="spam">Spam</TabsTrigger>
         </TabsList>
       </div>
-      <TabsContent className="border-none" value="inbox">
+      <TabsContent className="border-none px-0" value="inbox">
         <Loadable isLoading={notificationsIsLoading}>
           {notifications?.length == 0 && <>You currently have no notifications, try subscribing to some channels.</>}
           {notifications?.map((notification, i) => {
@@ -36,7 +36,7 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
           })}
         </Loadable>
       </TabsContent>
-      <TabsContent className="border-none" value="spam">
+      <TabsContent className="border-none px-0" value="spam">
         <Loadable isLoading={spamNotificationsIsLoading}>
           {spamNotifications?.length == 0 && <>You currently have no notifications, try subscribing to some channels.</>}
           {spamNotifications?.map((notification, i) => {
