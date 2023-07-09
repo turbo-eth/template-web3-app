@@ -8,7 +8,6 @@ export async function discoGetProfileFromAddress(address?: string) {
       return null
     }
     const { data }: { data: Profile } = await discoClient.get(`/profile/address/${address}`)
-
     return data
   } catch (error) {
     throw error

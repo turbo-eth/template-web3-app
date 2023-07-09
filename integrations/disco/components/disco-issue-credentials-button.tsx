@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { LinkComponent } from '@/components/shared/link-component'
 
 export default function DiscoIssueCredentialsButton() {
