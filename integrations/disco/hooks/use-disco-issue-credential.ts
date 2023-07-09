@@ -22,18 +22,11 @@ export const useDiscoIssueCredential = () => {
       dismiss()
     }, 4200)
   }
-  const mutation = useMutation(
-    async (v) => {
-      const res = await appDiscoPostCredentialIssue(v)
+  const mutation = useMutation(async (vars) => {
+    const res = await appDiscoPostCredentialIssue(vars)
 
-      return res
-    },
-    {
-      onSuccess: (response) => {
-        handleToast('Sucessful Creation', 'Your Proof of Hack Credentials are created')
-      },
-    }
-  )
+    return res
+  })
 
   const discoSchema = z.object({
     eventDate: z.string().transform((value) => {
