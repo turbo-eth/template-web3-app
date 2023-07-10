@@ -306,6 +306,21 @@ const features = [
     ),
   },
   {
+    title: turboIntegrations.livepeer.name,
+    description: turboIntegrations.livepeer.description,
+    href: turboIntegrations.livepeer.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Livepeer logo" height={100} src={turboIntegrations.livepeer.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Livepeer logo" height={100} src={turboIntegrations.livepeer.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.starter.name,
     description: turboIntegrations.starter.description,
     href: turboIntegrations.starter.href,
