@@ -1,5 +1,3 @@
-import { ethers } from 'ethers'
-
 import { clients } from '../client'
 
 export async function GET(req: Request) {
@@ -37,8 +35,6 @@ export async function GET(req: Request) {
       environment === 'mainnet'
         ? await mainnetSdk.sdkBase.calculateAmountReceived(originDomain, destinationDomain, originTokenAddress, amount, false, true)
         : await testnetSdk.sdkBase.calculateAmountReceived(originDomain, destinationDomain, originTokenAddress, amount, false, true)
-
-    console.log(ethers.utils.formatUnits(amountReceived, 'wei'))
 
     return new Response(JSON.stringify({ amount: amountReceived.toString(), isFastPath }), {
       status: 200,

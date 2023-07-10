@@ -2,11 +2,11 @@
 
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 
-import { ethers } from 'ethers'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { MdOutlineSwapHoriz } from 'react-icons/md'
 import { RxCross2 } from 'react-icons/rx'
+import { formatUnits } from 'viem'
 import { useAccount, useBalance, useNetwork, useSendTransaction, useSwitchNetwork } from 'wagmi'
 
 import WalletConnectCustom from '@/components/blockchain/wallet-connect-custom'
@@ -483,8 +483,8 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
               value={
                 isFetchingEstimatedAmount && amount
                   ? 'Loading'
-                  : ethers.utils.formatUnits(
-                      estimatedAmount,
+                  : formatUnits(
+                      BigInt(estimatedAmount),
                       getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18
                     )
               }
