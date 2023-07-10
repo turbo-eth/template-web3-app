@@ -13,6 +13,7 @@ import WalletConnectCustom from '@/components/blockchain/wallet-connect-custom'
 import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
 import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import Spinner from '@/components/ui/spinner'
 import { Switch } from '@/components/ui/switch'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
@@ -221,7 +222,7 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
         </button>
       )
     }
-    if ((!xcallRequest || xcallLoading || isApproveCheckLoading || !amount || txLoading) && isInOriginChain()) {
+    if ((!xcallRequest || xcallLoading || isApproveCheckLoading || !amount || txLoading || approveTxLoading) && isInOriginChain()) {
       return (
         <button disabled className="mt-5 w-full cursor-not-allowed rounded bg-slate-100 p-4 text-gray-400 dark:bg-slate-800 dark:text-white">
           {getButtonContent()}
@@ -470,31 +471,16 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
                 </SelectContent>
               </Select>
             </div>
-            <input
-              disabled
-              className="3xl:text-2xl w-36 rounded  border-0 bg-transparent py-1.5 text-right font-semibold focus:ring-0 sm:w-48 sm:text-lg"
-              placeholder="0.00"
-              type="text"
-              value={
-                isFetchingEstimatedAmount && amount
-                  ? 'Loading'
-                  : formatUnits(
-                      BigInt(estimatedAmount),
-                      getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18
-                    )
-              }
-              onChange={(e) => {
-                const regex = /^[0-9.,\b]+$/
-                let value = e.target.value
-                if (value === '' || regex.test(value)) {
-                  if (value.startsWith('.') || value.startsWith(',')) {
-                    value = `0${value}`
-                  }
-                  value = value.replace(',', '.')
-                  setAmount(value)
-                }
-              }}
-            />
+            <div className="mr-3">
+              {isFetchingEstimatedAmount && amount ? (
+                <Spinner className="justify-end" />
+              ) : (
+                formatUnits(
+                  BigInt(estimatedAmount),
+                  getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18
+                )
+              )}
+            </div>
           </div>
           <div className="mt-5 rounded border border-slate-200 py-2 dark:border-gray-700">
             <div className="my-2 flex items-center justify-between">
