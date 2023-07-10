@@ -24,13 +24,8 @@ import { useSupportedTransfer } from '../hooks/use-supported-transfer'
 import { useXcall } from '../hooks/use-xcall'
 import { mainnetAssets, testnetAssets } from '../utils/assets'
 import { mainnetChains, testnetChains } from '../utils/chains'
+import { arbitrumDomainId, arbitrumGoerliId, optimismDomainId, optimismGoerliDomainId } from '../utils/constants'
 import { Asset } from '../utils/types'
-
-const optimismDomainId = '1869640809'
-const arbitrumDomainId = '1634886255'
-
-const optimismGoerliDomainId = '1735356532'
-const arbitrumGoerliId = '1734439522'
 
 interface FormConnextXTransferProps {
   isMainnet: boolean
