@@ -9,10 +9,9 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 
 export default function ConnextTogetherLayout({ children }: { children: ReactNode }) {
-  const classes = 'bg-gradient-dark flex flex-col pb-10 lg:pb-12'
   return (
     <>
-      <div className={classes}>
+      <div className="flex flex-col pb-10 lg:pb-12">
         <div className="relative flex flex-1">
           <div className="flex-center flex h-full flex-1 flex-col items-center justify-center text-center">
             <motion.div
