@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 
+import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 
@@ -34,9 +35,14 @@ export default function ConnextLayout({ children }: { children: ReactNode }) {
                 variants={FADE_DOWN_ANIMATION_VARIANTS}>
                 Connext
               </motion.h1>
-              <motion.p className="mt-6 text-center text-gray-500 dark:text-gray-200 md:text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+              <motion.p className=" mb-8 text-center text-gray-500 dark:text-gray-200 md:text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
                 <Balancer className="text-xl font-semibold">Bridge assets directly from your app</Balancer>
               </motion.p>
+              <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+                <LinkComponent isExternal href={turboIntegrations.connext.url}>
+                  <button className="btn btn-primary">Documentation</button>
+                </LinkComponent>
+              </motion.div>
             </motion.div>
           </div>
         </div>
