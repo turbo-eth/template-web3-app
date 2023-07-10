@@ -120,7 +120,7 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
 
   const transfers = useLatestTransfers(isMainnet)
 
-  const { isLoading: txLoading, isSuccess: txSuccess, reset: txReset, sendTransaction, data } = useSendTransaction(xcallRequest)
+  const { isLoading: txLoading, isSuccess: txSuccess, reset: txReset, sendTransaction } = useSendTransaction(xcallRequest)
   const {
     isLoading: approveTxLoading,
     isSuccess: approveTxSuccess,
@@ -211,7 +211,7 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
   }
 
   const getButton = () => {
-    if ((!amount && isInOriginChain()) || ((!xcallRequest || xcallLoading) && isInOriginChain()) || isApproveCheckLoading) {
+    if ((!xcallRequest || xcallLoading || isApproveCheckLoading || !amount || txLoading) && isInOriginChain()) {
       return (
         <button
           disabled
