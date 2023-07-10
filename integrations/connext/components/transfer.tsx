@@ -5,6 +5,8 @@ import { HiOutlineCheckCircle } from 'react-icons/hi'
 import { IoWarning } from 'react-icons/io5'
 import { TiArrowRight } from 'react-icons/ti'
 
+import { LinkComponent } from '@/components/shared/link-component'
+
 import { mainnetAssets, testnetAssets } from '../utils/assets'
 import { mainnetChains, testnetChains } from '../utils/chains'
 import { Asset, Chain, Transfer } from '../utils/types'
@@ -122,12 +124,9 @@ export function Transfer({ isMainnet, transfer }: TransferProps) {
             </div>
           </div>
           <div className="flex flex-col items-center">
-            <a
-              href={`https://${isMainnet ? 'connextscan.io' : 'testnet.connextscan.io'}/tx/${transfer.transfer_id}`}
-              rel="noopener noreferrer"
-              target="_blank">
+            <LinkComponent href={`https://${isMainnet ? 'connextscan.io' : 'testnet.connextscan.io'}/tx/${transfer.transfer_id}`} target="_blank">
               {getStatusIcon(transfer.status || '', transfer.error_status || '')}
-            </a>
+            </LinkComponent>
           </div>
           <div className="flex flex-col items-end space-y-1.5">
             <span className="3xl:text-xl text-sm">
@@ -152,14 +151,13 @@ export function Transfer({ isMainnet, transfer }: TransferProps) {
           </div>
         </div>
         <div className="mt-1 -mb-2 flex items-center justify-end">
-          <a
+          <LinkComponent
             className="3xl:text-xl -mr-1 flex items-center space-x-0 text-xs font-medium text-blue-500 dark:text-blue-500"
             href={`https://${isMainnet ? 'connextscan.io' : 'testnet.connextscan.io'}/tx/${transfer.transfer_id}`}
-            rel="noopener noreferrer"
             target="_blank">
             <span>See more on explorer</span>
             <TiArrowRight className="3xl:w-5 3xl:h-5 mt-0.5 -rotate-45" size={16} />
-          </a>
+          </LinkComponent>
         </div>
       </div>
     </div>

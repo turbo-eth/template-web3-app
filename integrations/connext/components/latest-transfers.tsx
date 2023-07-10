@@ -5,6 +5,8 @@ import { BiChevronDown, BiChevronUp } from 'react-icons/bi'
 import { TiArrowRight } from 'react-icons/ti'
 import { useAccount } from 'wagmi'
 
+import { LinkComponent } from '@/components/shared/link-component'
+
 import { Transfer } from './transfer'
 import { useLatestTransfers } from '../hooks/use-latest-transfers'
 
@@ -39,14 +41,13 @@ export function LatestTransfers({ isMainnet }: LatestTransfersProps) {
         <>
           <div className="3xl:gap-8 mx-auto grid max-w-xl gap-4 sm:grid-cols-1 lg:grid-cols-1">{transfersComponent()}</div>
           {address && transfers.length > 3 && (
-            <a
+            <LinkComponent
               className="3xl:text-2xl mt-2.5 flex items-center justify-center text-blue-500 dark:text-slate-200"
               href={`https://connextscan.io//address/${address}`}
-              rel="noopener noreferrer"
               target="_blank">
               <span className="font-medium">See more</span>
               <TiArrowRight className="3xl:w-6 3xl:h-6 mt-0.5 -rotate-45" size={18} />
-            </a>
+            </LinkComponent>
           )}
         </>
       )}
