@@ -1,4 +1,2 @@
-import { mainnetAssets } from './mainnet'
-import { testnetAssets } from './testnet'
-
-export { mainnetAssets, testnetAssets }
+export { mainnetAssets } from './mainnet'
+export { testnetAssets } from './testnet'

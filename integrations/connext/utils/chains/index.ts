@@ -1,4 +1,2 @@
-import { mainnetChains } from './mainnet'
-import { testnetChains } from './testnet'
-
-export { mainnetChains, testnetChains }
+export { mainnetChains } from './mainnet'
+export { testnetChains } from './testnet'
