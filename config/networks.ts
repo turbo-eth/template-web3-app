@@ -81,7 +81,7 @@ export const ETH_CHAINS_DEV =
 
 export const CHAINS: Chain[] = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : ETH_CHAINS_DEV
 
-const PROVIDERS = [publicProvider()]
+const PROVIDERS = []
 
 if (env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
   if (!env.NEXT_PUBLIC_ALCHEMY_API_KEY) throw new Error('NEXT_PUBLIC_ALCHEMY_API_KEY is not defined')
