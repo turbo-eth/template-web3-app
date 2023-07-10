@@ -8,7 +8,7 @@ import Balancer from 'react-wrap-balancer'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 
-export default function ConnextTogetherLayout({ children }: { children: ReactNode }) {
+export default function ConnextLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <div className="flex flex-col pb-10 lg:pb-12">
