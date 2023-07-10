@@ -211,12 +211,24 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
   }
 
   const getButton = () => {
-    if ((!xcallRequest || xcallLoading || isApproveCheckLoading || !amount || txLoading) && isInOriginChain()) {
+    if (
+      isInOriginChain() &&
+      originBalance?.value &&
+      BigInt(
+        Number(amount) * 10 ** (getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18)
+      ) > originBalance?.value
+    ) {
       return (
         <button
           disabled
-          className="mt-5 w-full cursor-not-allowed rounded bg-slate-100 p-4 text-gray-400 dark:bg-slate-800 dark:text-white"
-          onClick={buttonAction}>
+          className="3xl:text-xl mt-3 flex w-full items-center justify-start rounded bg-red-400 p-4 text-sm font-medium text-white dark:bg-red-500">
+          Insufficient balance :(
+        </button>
+      )
+    }
+    if ((!xcallRequest || xcallLoading || isApproveCheckLoading || !amount || txLoading) && isInOriginChain()) {
+      return (
+        <button disabled className="mt-5 w-full cursor-not-allowed rounded bg-slate-100 p-4 text-gray-400 dark:bg-slate-800 dark:text-white">
           {getButtonContent()}
         </button>
       )
