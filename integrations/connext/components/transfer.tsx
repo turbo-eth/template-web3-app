@@ -15,8 +15,7 @@ type TransferProps = {
 }
 
 function formatTimestamp(timestamp: number): string {
-  // eslint-disable-next-line
-  const formattedTimestamp: string = moment(timestamp * 1000).format('MMM D, YYYY h:mm:ss A')
+  const formattedTimestamp = moment(timestamp * 1000).format('MMM D, YYYY h:mm:ss A')
   return formattedTimestamp
 }
 
