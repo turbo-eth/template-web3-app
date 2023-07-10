@@ -296,7 +296,7 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
   ) : (
     <motion.div
       animate="show"
-      className="card my-8 mx-auto max-w-fit dark:bg-gray-800"
+      className="card my-8 mx-4 max-w-fit dark:bg-gray-800 sm:mx-auto"
       initial="hidden"
       style={{ boxShadow: `${`${getChain(originChain)?.color ?? 'ffffff'}33`} 0px 16px 128px 64px` }}
       variants={FADE_DOWN_ANIMATION_VARIANTS}>
