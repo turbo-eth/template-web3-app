@@ -31,18 +31,16 @@ export const useXcall = ({ isMainnet, origin, destination, to, asset, amount, re
   useEffect(() => {
     const getXcall = async () => {
       setIsLoading(true)
-      const { data } = await axios.get<AxiosResponseData>(`/api/connext/xcall`, {
-        params: {
-          environment: isMainnet ? 'mainnet' : 'testnet',
-          origin,
-          destination,
-          to,
-          asset,
-          amount,
-          signer: address,
-          relayerFee,
-          slippage: '300',
-        },
+      const { data } = await axios.post<AxiosResponseData>(`/api/connext/xcall`, {
+        environment: isMainnet ? 'mainnet' : 'testnet',
+        origin,
+        destination,
+        to,
+        asset,
+        amount,
+        signer: address,
+        relayerFee,
+        slippage: '300',
       })
 
       setIsLoading(false)

@@ -1,1 +1,1 @@
-export { GET } from '@/integrations/connext/api/xcall'
+export { POST } from '@/integrations/connext/api/xcall'

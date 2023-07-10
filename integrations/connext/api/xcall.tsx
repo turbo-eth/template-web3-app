@@ -1,52 +1,61 @@
 import { clients } from '../client'
 
-export async function GET(req: Request) {
+interface Body {
+  origin: string
+  destination: string
+  to: string
+  asset: string
+  amount: string
+  relayerFee: string
+  slippage: string
+  signer: string
+  environment: string
+}
+
+export async function POST(req: Request) {
   try {
-    const { searchParams } = new URL(req.url)
+    if (req.method !== 'POST') {
+      return new Response('Invalid request method', { status: 405 })
+    }
 
-    const origin = searchParams.get('origin')
+    const body: Body = await req.json()
+
+    const { origin, destination, to, asset, amount, relayerFee, slippage, signer, environment } = body
+
     if (!origin) {
-      return new Response('Missing origin domain query parameter', { status: 400 })
+      return new Response('Missing origin in request body', { status: 400 })
     }
 
-    const destination = searchParams.get('destination')
     if (!destination) {
-      return new Response('Missing destination query parameter', { status: 400 })
+      return new Response('Missing destination in request body', { status: 400 })
     }
 
-    const to = searchParams.get('to')
     if (!to) {
-      return new Response('Missing to query parameter', { status: 400 })
+      return new Response('Missing to in request body', { status: 400 })
     }
 
-    const asset = searchParams.get('asset')
     if (!asset) {
-      return new Response('Missing asset query parameter', { status: 400 })
+      return new Response('Missing asset in request body', { status: 400 })
     }
 
-    const amount = searchParams.get('amount')
     if (!amount) {
-      return new Response('Missing amount query parameter', { status: 400 })
+      return new Response('Missing amount in request body', { status: 400 })
     }
 
-    const relayerFee = searchParams.get('relayerFee')
     if (!relayerFee) {
-      return new Response('Missing relayerFee query parameter', { status: 400 })
+      return new Response('Missing relayerFee in request body', { status: 400 })
     }
 
-    const slippage = searchParams.get('slippage')
     if (!slippage) {
-      return new Response('Missing slippage query parameter', { status: 400 })
+      return new Response('Missing slippage in request body', { status: 400 })
     }
 
-    const signer = searchParams.get('signer')
     if (!signer) {
-      return new Response('Missing signer query parameter', { status: 400 })
+      return new Response('Missing signer in request body', { status: 400 })
     }
 
-    const environment = searchParams.get('environment')
     if (!environment || !['mainnet', 'testnet'].includes(environment)) {
-      return new Response('Missing valid environment query parameter', { status: 400 })
+      return new Response('Missing valid environment in request body', { status: 400 })
     }
 
     const { mainnetSdk, testnetSdk } = await clients(signer)

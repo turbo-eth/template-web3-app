@@ -28,14 +28,12 @@ export const useApproveIfNeeded = ({ isMainnet, originDomain, assetAddress, amou
   useEffect(() => {
     const getApproveIfNeeded = async () => {
       setIsLoading(true)
-      const { data } = await axios.get<AxiosResponseData>(`/api/connext/approve-if-needed`, {
-        params: {
-          environment: isMainnet ? 'mainnet' : 'testnet',
-          originDomain,
-          assetAddress,
-          amount,
-          signer: address,
-        },
+      const { data } = await axios.post<AxiosResponseData>(`/api/connext/approve-if-needed`, {
+        environment: isMainnet ? 'mainnet' : 'testnet',
+        originDomain,
+        assetAddress,
+        amount,
+        signer: address,
       })
       setIsLoading(false)
       setRequest(data.txRequest)
