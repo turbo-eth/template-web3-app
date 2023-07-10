@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { TransactionRequest } from 'viem'
 import { useAccount } from 'wagmi'
@@ -21,25 +20,23 @@ interface IUseApproveIfNeeded {
 }
 
 export const useApproveIfNeeded = ({ isMainnet, originDomain, assetAddress, amount }: ApproveIfNeededArgs): IUseApproveIfNeeded => {
-  const [request, setRequest] = useState<TransactionRequest>()
-  const [isLoading, setIsLoading] = useState(false)
   const { address } = useAccount()
 
-  useEffect(() => {
-    const getApproveIfNeeded = async () => {
-      setIsLoading(true)
-      const { data } = await axios.post<AxiosResponseData>(`/api/connext/approve-if-needed`, {
-        environment: isMainnet ? 'mainnet' : 'testnet',
-        originDomain,
-        assetAddress,
-        amount,
-        signer: address,
-      })
-      setIsLoading(false)
-      setRequest(data.txRequest)
-    }
-    if (originDomain && assetAddress && amount) getApproveIfNeeded().catch((e) => console.error(e))
-  }, [isMainnet, originDomain, assetAddress, amount])
+  const fetchData = async () => {
+    const { data } = await axios.post<AxiosResponseData>(`/api/connext/approve-if-needed`, {
+      environment: isMainnet ? 'mainnet' : 'testnet',
+      originDomain,
+      assetAddress,
+      amount,
+      signer: address,
+    })
+
+    return data.txRequest
+  }
+
+  const { data: request, isLoading } = useQuery(['approveIfNeeded', { isMainnet, originDomain, assetAddress, amount }], fetchData, {
+    enabled: !!originDomain && !!assetAddress && !!amount, // only fetch if all params are truthy
+  })
 
   return { request, isLoading }
 }

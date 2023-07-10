@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 interface EstimatedRelayerFeeArgs {
@@ -13,39 +12,20 @@ interface AxiosResponseData {
 }
 
 export const useEstimatedRelayerFee = ({ isMainnet, originDomain, destinationDomain }: EstimatedRelayerFeeArgs) => {
-  const [estimatedRelayerFee, setEstimatedRelayerFee] = useState('0')
+  const fetchData = async () => {
+    const { data } = await axios.get<AxiosResponseData>(`/api/connext/estimated-relayer-fee`, {
+      params: {
+        environment: isMainnet ? 'mainnet' : 'testnet',
+        originDomain,
+        destinationDomain,
+      },
+    })
+    return data
+  }
 
-  useEffect(() => {
-    let timerId: NodeJS.Timeout | undefined
+  const { data: { relayerFee } = {} } = useQuery(['estimatedRelayerFee', { isMainnet, originDomain, destinationDomain }], fetchData, {
+    enabled: !!originDomain && !!destinationDomain, // only fetch if both params are truthy
+  })
 
-    const getEstimatedAmount = async () => {
-      const { data } = await axios.get<AxiosResponseData>(`/api/connext/estimated-relayer-fee`, {
-        params: {
-          environment: isMainnet ? 'mainnet' : 'testnet',
-          originDomain,
-          destinationDomain,
-        },
-      })
-
-      setEstimatedRelayerFee(data.relayerFee)
-    }
-
-    if (originDomain && destinationDomain) {
-      if (timerId) {
-        clearTimeout(timerId)
-      }
-
-      timerId = setTimeout(() => {
-        getEstimatedAmount().catch((e) => console.error(e))
-      }, 3000)
-    }
-
-    return () => {
-      if (timerId) {
-        clearTimeout(timerId)
-      }
-    }
-  }, [originDomain, destinationDomain])
-
-  return estimatedRelayerFee
+  return relayerFee || '0'
 }

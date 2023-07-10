@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react'
-
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { TransactionRequest } from 'viem'
 import { useAccount } from 'wagmi'
@@ -24,14 +23,12 @@ interface IXCall {
 }
 
 export const useXcall = ({ isMainnet, origin, destination, to, asset, amount, relayerFee }: XCallArgs): IXCall => {
-  const [request, setRequest] = useState<TransactionRequest>()
-  const [isLoading, setIsLoading] = useState(false)
   const { address } = useAccount()
 
-  useEffect(() => {
-    const getXcall = async () => {
-      setIsLoading(true)
-      const { data } = await axios.post<AxiosResponseData>(`/api/connext/xcall`, {
+  const { data, isLoading } = useQuery<TransactionRequest, Error>(
+    ['xcall', isMainnet, origin, destination, to, asset, amount, relayerFee, address],
+    async () => {
+      const response = await axios.post<AxiosResponseData>(`/api/connext/xcall`, {
         environment: isMainnet ? 'mainnet' : 'testnet',
         origin,
         destination,
@@ -43,12 +40,12 @@ export const useXcall = ({ isMainnet, origin, destination, to, asset, amount, re
         slippage: '300',
       })
 
-      setIsLoading(false)
-      setRequest(data.txRequest)
+      return response.data.txRequest
+    },
+    {
+      enabled: !!origin && !!destination && !!to && !!asset && !!amount && relayerFee !== '0',
     }
+  )
 
-    if (origin && destination && to && asset && amount && relayerFee !== '0') getXcall().catch((e) => console.error(e))
-  }, [origin, destination, to, asset, amount, relayerFee])
-
-  return { request, isLoading }
+  return { request: data, isLoading }
 }

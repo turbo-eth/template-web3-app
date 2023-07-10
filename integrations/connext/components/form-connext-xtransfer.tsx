@@ -83,7 +83,7 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
     originTokenAddress: getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.contract_address,
     amount: BigInt(
       Number(amount) * 10 ** (getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18)
-    ),
+    ).toString(),
   })
 
   const estimatedRelayerFee = useEstimatedRelayerFee({

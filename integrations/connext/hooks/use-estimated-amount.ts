@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react'
-
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { BigNumberish } from 'ethers'
 
 interface EstimatedAmountArgs {
   isMainnet: boolean
   originDomain: string | undefined
   destinationDomain: string | undefined
   originTokenAddress: string | undefined
-  amount: BigNumberish | undefined
+  amount: string | undefined
 }
 
 interface AxiosResponseData {
@@ -17,46 +15,26 @@ interface AxiosResponseData {
 }
 
 export const useEstimatedAmount = ({ isMainnet, originDomain, destinationDomain, originTokenAddress, amount }: EstimatedAmountArgs) => {
-  const [estimatedAmount, setEstimatedAmount] = useState('0')
-  const [isFastPath, setIsFastPath] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const fetchData = async () => {
+    const { data } = await axios.get<AxiosResponseData>(`/api/connext/estimated-amount`, {
+      params: {
+        environment: isMainnet ? 'mainnet' : 'testnet',
+        originDomain,
+        destinationDomain,
+        originTokenAddress,
+        amount,
+      },
+    })
+    return data
+  }
 
-  useEffect(() => {
-    setIsLoading(true)
-    let timerId: NodeJS.Timeout | undefined
-
-    const getEstimatedAmount = async () => {
-      const { data } = await axios.get<AxiosResponseData>(`/api/connext/estimated-amount`, {
-        params: {
-          environment: isMainnet ? 'mainnet' : 'testnet',
-          originDomain,
-          destinationDomain,
-          originTokenAddress,
-          amount,
-        },
-      })
-
-      setEstimatedAmount(data.amount)
-      setIsFastPath(data.isFastPath)
-      setIsLoading(false)
+  const { data: { amount: estimatedAmount, isFastPath } = {}, isLoading } = useQuery(
+    ['estimatedAmount', { isMainnet, originDomain, destinationDomain, originTokenAddress, amount }],
+    fetchData,
+    {
+      enabled: !!originDomain && !!destinationDomain && !!originTokenAddress && !!amount, // only fetch if all params are truthy
     }
+  )
 
-    if (originDomain && destinationDomain && originTokenAddress && amount) {
-      if (timerId) {
-        clearTimeout(timerId)
-      }
-
-      timerId = setTimeout(() => {
-        getEstimatedAmount().catch((e) => console.error(e))
-      }, 3000)
-    }
-
-    return () => {
-      if (timerId) {
-        clearTimeout(timerId)
-      }
-    }
-  }, [originDomain, destinationDomain, originTokenAddress, amount])
-
-  return { estimatedAmount, isFastPath, isLoading }
+  return { estimatedAmount: estimatedAmount || '0', isFastPath: isFastPath || false, isLoading }
 }
