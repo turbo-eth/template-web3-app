@@ -8,21 +8,18 @@ import {
   avalancheFuji as avalancheFujiNoIcon,
   avalanche as avalancheNoIcon,
   baseGoerli as baseGoerliNoIcon,
-  bsc,
   celoAlfajores as celoAlfajoresNoIcon,
   celo as celoNoIcon,
   gnosisChiado as gnosisChiadoNoIcon,
   gnosis as gnosisNoIcon,
   goerli as goerliNoIcon,
   hardhat,
-  lineaTestnet,
   mainnet,
   optimism,
   optimismGoerli,
   polygon,
   polygonMumbai,
   sepolia as sepoliaNoIcon,
-  zkSyncTestnet,
 } from 'wagmi/chains'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { infuraProvider } from 'wagmi/providers/infura'
@@ -71,9 +68,9 @@ const gnosisChiado = {
   iconUrl: '/icons/NetworkGnosis.svg',
 }
 
-export const ETH_CHAINS_TEST = [mainnet, goerli, sepolia, polygonMumbai, celoAlfajores, gnosisChiado, avalancheFuji, hardhat, lineaTestnet]
-export const ETH_CHAINS_L2_TEST = [baseGoerli, optimismGoerli, arbitrumGoerli, zkSyncTestnet]
-export const ETH_CHAINS_PROD = [mainnet, optimism, arbitrum, polygon, celo, gnosis, avalanche, goerli, baseGoerli, bsc]
+export const ETH_CHAINS_TEST = [mainnet, goerli, sepolia, polygonMumbai, celoAlfajores, gnosisChiado, avalancheFuji, hardhat]
+export const ETH_CHAINS_L2_TEST = [baseGoerli, optimismGoerli, arbitrumGoerli]
+export const ETH_CHAINS_PROD = [mainnet, optimism, arbitrum, polygon, celo, gnosis, avalanche, goerli, baseGoerli]
 export const ETH_CHAINS_DEV =
   env.NEXT_PUBLIC_PROD_NETWORKS_DEV === 'true'
     ? [...ETH_CHAINS_PROD, ...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST]
