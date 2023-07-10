@@ -1,4 +1,3 @@
-import moment from 'moment'
 import Image from 'next/image'
 import { BsInfoCircle } from 'react-icons/bs'
 import { HiOutlineCheckCircle } from 'react-icons/hi'
@@ -9,48 +8,12 @@ import { LinkComponent } from '@/components/shared/link-component'
 
 import { mainnetAssets, testnetAssets } from '../utils/assets'
 import { mainnetChains, testnetChains } from '../utils/chains'
-import { Asset, Chain, Transfer } from '../utils/types'
+import { Transfer } from '../utils/types'
+import { calculateAmount, findAsset, findChain, findDecimals, formatTimestamp } from '../utils/utils'
 
 type TransferProps = {
   isMainnet: boolean
   transfer: Transfer
-}
-
-function formatTimestamp(timestamp: number): string {
-  const formattedTimestamp = moment(timestamp * 1000).format('MMM D, YYYY h:mm:ss A')
-  return formattedTimestamp
-}
-
-function findChain(chains: Chain[], domainId: string): Chain | undefined {
-  return chains.find((chain) => chain.domain_id === domainId)
-}
-
-function findAsset(assets: Asset[], transactingAsset: string): Asset | undefined {
-  return assets.find((asset) =>
-    asset.contracts.some((contract) => {
-      const contractAddress = contract.contract_address?.toLowerCase()
-      const nextContractAddress = contract.next_asset?.contract_address?.toLowerCase()
-      return contractAddress === transactingAsset?.toLowerCase() || nextContractAddress === transactingAsset?.toLowerCase()
-    })
-  )
-}
-
-function findDecimals(asset: Asset, transactingAsset: string): number | undefined {
-  const contract = asset?.contracts.find((contract) => {
-    const contractAddress = contract.contract_address?.toLowerCase()
-    const nextContractAddress = contract.next_asset?.contract_address?.toLowerCase()
-    return contractAddress === transactingAsset?.toLowerCase() || nextContractAddress === transactingAsset?.toLowerCase()
-  })
-
-  return contract?.decimals ?? contract?.next_asset?.decimals
-}
-
-function calculateAmount(amount: string, decimals: number): string {
-  const amountBigInt = BigInt(amount)
-  const divisor = BigInt(10) ** BigInt(decimals)
-  const result = Number(amountBigInt) / Number(divisor)
-  const formattedResult = result.toFixed(2)
-  return formattedResult === '0.00' ? '0.00' : formattedResult
 }
 
 function getStatusIcon(status: string, error_status: string) {
