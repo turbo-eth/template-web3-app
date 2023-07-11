@@ -72,7 +72,7 @@ export function UploadFile() {
 
   useEffect(() => {
     if (asset?.[0]) {
-      route.push(`/integration/livepeer/video/${asset[0].id}`)
+      route.push(`/integration/livepeer/vod/${asset[0].id}`)
     }
   }, [asset])
 
