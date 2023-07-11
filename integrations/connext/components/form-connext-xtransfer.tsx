@@ -222,7 +222,7 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
         </button>
       )
     }
-    if ((!xcallRequest || xcallLoading || isApproveCheckLoading || !amount || txLoading || approveTxLoading) && isInOriginChain()) {
+    if ((!xcallRequest || xcallLoading || isApproveCheckLoading || !amount || txLoading || approveTxLoading || amount === '0') && isInOriginChain()) {
       return (
         <button disabled className="mt-5 w-full cursor-not-allowed rounded bg-slate-100 p-4 text-gray-400 dark:bg-slate-800 dark:text-white">
           {getButtonContent()}
