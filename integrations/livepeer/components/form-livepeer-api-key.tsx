@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 
@@ -18,6 +18,7 @@ export function FormLivepeerApiKey() {
   const { checkLivepeerApiKey } = useCheckLivepeerApiKey()
   const { toast, dismiss } = useToast()
   const [, setLivepeerApiKey] = useLivepeerApiKey()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const watchApiKey = watch('apiKey')
 
@@ -47,17 +48,20 @@ export function FormLivepeerApiKey() {
   }
 
   async function onSubmit(FieldValues: livepeerForm) {
+    setIsLoading(true)
     if (FieldValues.apiKey) {
       try {
         await checkLivepeerApiKey(FieldValues.apiKey)
       } catch (e) {
         if (e instanceof NotFoundError || e instanceof PermissionError) {
           setLivepeerApiKey(FieldValues.apiKey)
+          setIsLoading(false)
         } else {
           handleToast({
             title: 'Invalid API Key',
             description: 'Please enter a valid Livepeer API Key',
           })
+          setIsLoading(false)
         }
       }
     }
@@ -67,8 +71,8 @@ export function FormLivepeerApiKey() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Livepeer API Key</label>
         <input required className="input mt-4" {...register('apiKey')} placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" />
-        <button className="btn btn-emerald mt-4 w-full" disabled={!watchApiKey} type="submit">
-          Submit
+        <button className="btn btn-emerald mt-4 w-full" disabled={!watchApiKey || isLoading} type="submit">
+          {isLoading ? 'Loading...' : 'Submit'}
         </button>
       </form>
     </div>

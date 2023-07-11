@@ -20,17 +20,26 @@ export default function PageIntegration() {
     <div className="card">
       {!isLivepeerApiKeySet && <FormLivepeerApiKey />}
       <LinkComponent href={newStreamObsPath}>
-        <button className="btn btn-emerald mt-4 w-full" disabled={!isLivepeerApiKeySet} onClick={() => setIsLoadingNewStreamObs(true)}>
+        <button
+          className="btn btn-emerald mt-4 w-full"
+          disabled={!isLivepeerApiKeySet || isLoadingNewStreamObs}
+          onClick={() => setIsLoadingNewStreamObs(true)}>
           {isLoadingNewStreamObs ? 'Loading...' : 'Create a new OBS livestream'}
         </button>
       </LinkComponent>
       <LinkComponent href={newStreamBrowserPath}>
-        <button className="btn btn-emerald mt-4 w-full" disabled={!isLivepeerApiKeySet} onClick={() => setIsLoadingNewStreamBrowser(true)}>
+        <button
+          className="btn btn-emerald mt-4 w-full"
+          disabled={!isLivepeerApiKeySet || isLoadingNewStreamBrowser}
+          onClick={() => setIsLoadingNewStreamBrowser(true)}>
           {isLoadingNewStreamBrowser ? 'Loading...' : 'Create a new Browser livestream'}
         </button>
       </LinkComponent>
       <LinkComponent href={watchStreamPath}>
-        <button className="btn btn-emerald mt-4 w-full" disabled={!isLivepeerApiKeySet} onClick={() => setIsLoadingExistingStream(true)}>
+        <button
+          className="btn btn-emerald mt-4 w-full"
+          disabled={!isLivepeerApiKeySet || isLoadingExistingStream}
+          onClick={() => setIsLoadingExistingStream(true)}>
           {isLoadingExistingStream ? 'Loading...' : 'Watch an existing livestream'}
         </button>
       </LinkComponent>

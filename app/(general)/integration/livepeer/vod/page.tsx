@@ -17,12 +17,18 @@ export default function PageIntegration() {
     <div className="card">
       {!isLivepeerApiKeySet && <FormLivepeerApiKey />}
       <LinkComponent href={newVodPath}>
-        <button className="btn btn-emerald mt-4 w-full" disabled={!isLivepeerApiKeySet} onClick={() => setIsLoadingNewVideo(true)}>
+        <button
+          className="btn btn-emerald mt-4 w-full"
+          disabled={!isLivepeerApiKeySet || isLoadingNewVideo}
+          onClick={() => setIsLoadingNewVideo(true)}>
           {isLoadingNewVideo ? 'Loading...' : 'Upload a new video'}
         </button>
       </LinkComponent>
       <LinkComponent href={watchVodPath}>
-        <button className="btn btn-emerald mt-4 w-full" disabled={!isLivepeerApiKeySet} onClick={() => setIsLoadingExistingVideo(true)}>
+        <button
+          className="btn btn-emerald mt-4 w-full"
+          disabled={!isLivepeerApiKeySet || isLoadingExistingVideo}
+          onClick={() => setIsLoadingExistingVideo(true)}>
           {isLoadingExistingVideo ? 'Loading...' : 'Watch an existing video'}
         </button>
       </LinkComponent>
