@@ -6,10 +6,10 @@ import { TiArrowRight } from 'react-icons/ti'
 
 import { LinkComponent } from '@/components/shared/link-component'
 
+import { calculateAmount, findAsset, findChain, findDecimals, formatTimestamp } from '../utils'
 import { mainnetAssets, testnetAssets } from '../utils/assets'
 import { mainnetChains, testnetChains } from '../utils/chains'
 import { Transfer } from '../utils/types'
-import { calculateAmount, findAsset, findChain, findDecimals, formatTimestamp } from '../utils/utils'
 
 type TransferProps = {
   isMainnet: boolean
