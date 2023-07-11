@@ -29,6 +29,10 @@ export async function GET(req: Request) {
       return new Response('Missing valid environment query parameter', { status: 400 })
     }
 
+    if (amount === '0') {
+      return new Response(JSON.stringify({ amount, isFastPath: false }))
+    }
+
     const { mainnetSdk, testnetSdk } = await clients()
 
     const { amountReceived, isFastPath } =
