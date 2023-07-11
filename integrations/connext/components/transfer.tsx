@@ -28,7 +28,7 @@ function getStatusIcon(status: string, error_status: string) {
       </div>
     )
   } else if (pending) {
-    return <BsInfoCircle className="3xl:w-10 3xl:h-10 text-blue-500 dark:text-blue-400" size={32} />
+    return <BsInfoCircle className="3xl:w-10 3xl:h-10 text-blue-500 dark:text-blue-400" size={26} />
   }
 
   return <HiOutlineCheckCircle className="3xl:w-10 3xl:h-10 text-green-500 dark:text-green-400" size={32} />
