@@ -209,10 +209,9 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
   const getButton = () => {
     if (
       isInOriginChain() &&
-      originBalance?.value &&
       BigInt(
         Number(amount) * 10 ** (getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18)
-      ) > originBalance?.value
+      ) > (originBalance?.value ?? 0)
     ) {
       return (
         <button
