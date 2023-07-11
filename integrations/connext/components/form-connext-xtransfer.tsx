@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { MdOutlineSwapHoriz } from 'react-icons/md'
 import { RxCross2 } from 'react-icons/rx'
-import { formatUnits } from 'viem'
+import { formatUnits, parseUnits } from 'viem'
 import { useAccount, useBalance, useNetwork, useSendTransaction, useSwitchNetwork } from 'wagmi'
 
 import WalletConnectCustom from '@/components/blockchain/wallet-connect-custom'
@@ -81,8 +81,9 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
     originDomain: getChain(originChain)?.domain_id,
     destinationDomain: getChain(destinationChain)?.domain_id,
     originTokenAddress: getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.contract_address,
-    amount: BigInt(
-      Number(amount) * 10 ** (getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18)
+    amount: parseUnits(
+      `${Number(amount)}`,
+      getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18
     ).toString(),
   })
 
@@ -96,8 +97,9 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
     isMainnet,
     originDomain: getChain(originChain)?.domain_id,
     assetAddress: getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.contract_address,
-    amount: BigInt(
-      Number(amount) * 10 ** (getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18)
+    amount: parseUnits(
+      `${Number(amount)}`,
+      getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18
     ).toString(),
   })
 
@@ -108,9 +110,9 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
     asset: getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.contract_address,
     to: address,
     relayerFee: estimatedRelayerFee,
-    amount: (
-      Number(amount) *
-      10 ** (getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18)
+    amount: parseUnits(
+      `${Number(amount)}`,
+      getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18
     ).toString(),
   })
 
@@ -209,8 +211,9 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
   const getButton = () => {
     if (
       isInOriginChain() &&
-      BigInt(
-        Number(amount) * 10 ** (getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18)
+      parseUnits(
+        `${Number(amount)}`,
+        getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18
       ) > (originBalance?.value ?? 0)
     ) {
       return (
