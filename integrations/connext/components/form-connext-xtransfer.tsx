@@ -59,11 +59,13 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
     address,
     token: getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.contract_address as `0x${string}`,
     chainId: getChain(originChain)?.chain_id ?? 1,
+    watch: true,
   })
   const { data: destinationBalance } = useBalance({
     address,
     token: getAsset()?.contracts.find((contract) => contract.chain_id === getChain(destinationChain)?.chain_id)?.contract_address as `0x${string}`,
     chainId: getChain(destinationChain)?.chain_id ?? 1,
+    watch: true,
   })
 
   const transferSupported = useSupportedTransfer({
