@@ -246,12 +246,13 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
 
   function formatNumber(numberStr: string): string {
     const number = parseFloat(numberStr)
+    const decimals = getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18
 
     if (isNaN(number) || number === 0) {
       return '0.00'
     }
 
-    const formattedNumber = number.toFixed(20)
+    const formattedNumber = number.toFixed(decimals + 6)
 
     const [integerPart, decimalPart] = formattedNumber.split('.')
 
@@ -259,10 +260,7 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
       return `${integerPart}.${decimalPart.slice(0, 2)}`
     }
 
-    return formattedNumber.slice(
-      0,
-      -(getAsset()?.contracts.find((contract) => contract.chain_id === getChain(originChain)?.chain_id)?.decimals ?? 18)
-    )
+    return formattedNumber.slice(0, -decimals)
   }
 
   useEffect(() => {
