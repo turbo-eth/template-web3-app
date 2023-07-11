@@ -181,7 +181,7 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
 
     if (approveTxLoading) {
       return (
-        <div className="flex items-center justify-center" onClick={sendTx}>
+        <div className="flex items-center justify-center">
           <span>Approve contract...</span>
         </div>
       )
@@ -189,7 +189,7 @@ export function FormConnextXTransfer({ isMainnet, setIsMainnet }: FormConnextXTr
 
     if (txLoading || txSuccess) {
       return (
-        <div className="flex items-center justify-center" onClick={sendTx}>
+        <div className="flex items-center justify-center">
           <span>{txLoading ? 'Confirm transaction...' : 'Processing...'}</span>
         </div>
       )
