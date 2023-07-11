@@ -23,7 +23,8 @@ export const useEstimatedRelayerFee = ({ isMainnet, originDomain, destinationDom
     return data
   }
 
-  const { data: { relayerFee } = {} } = useQuery(['estimatedRelayerFee', { isMainnet, originDomain, destinationDomain }], fetchData, {
+  const { data: { relayerFee } = {} } = useQuery(['estimatedRelayerFee', isMainnet, originDomain, destinationDomain], {
+    queryFn: fetchData,
     enabled: !!originDomain && !!destinationDomain, // only fetch if both params are truthy
   })
 

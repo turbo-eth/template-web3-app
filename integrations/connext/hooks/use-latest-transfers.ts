@@ -21,7 +21,8 @@ export const useLatestTransfers = (isMainnet: boolean) => {
     return data.transfers
   }
 
-  const { data: transfers = [] } = useQuery(['latestTransfers', { isMainnet, address }], fetchTransfers, {
+  const { data: transfers = [] } = useQuery(['latestTransfers', isMainnet, address], {
+    queryFn: fetchTransfers,
     refetchInterval: 10000, // Refetch data every 10 seconds
   })
 

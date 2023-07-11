@@ -29,9 +29,9 @@ export const useEstimatedAmount = ({ isMainnet, originDomain, destinationDomain,
   }
 
   const { data: { amount: estimatedAmount, isFastPath } = {}, isLoading } = useQuery(
-    ['estimatedAmount', { isMainnet, originDomain, destinationDomain, originTokenAddress, amount }],
-    fetchData,
+    ['estimatedAmount', isMainnet, originDomain, destinationDomain, originTokenAddress, amount],
     {
+      queryFn: fetchData,
       enabled: !!originDomain && !!destinationDomain && !!originTokenAddress && !!amount, // only fetch if all params are truthy
     }
   )
