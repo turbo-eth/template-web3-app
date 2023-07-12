@@ -79,6 +79,7 @@ Initiates a cross-chain transfer.
 - Returns a 500 status code with a message if there's an internal server error.
 
 ## Hooks
+
 ### `useSupportedTransfer({ originChainId, destinationChainId, assetDataContracts })`
 
 Hook to check whether a given asset transfer between two chains is supported. It takes an object argument with the following properties:
@@ -97,11 +98,11 @@ The function returns `false` if any of the parameters are `undefined` or if the 
 **Example:**
 
 ```javascript
-const isSupported = useSupportedTransfer({ 
-  originChainId: 1, 
-  destinationChainId: 42, 
-  assetDataContracts: contractData 
-});
+const isSupported = useSupportedTransfer({
+  originChainId: 1,
+  destinationChainId: 42,
+  assetDataContracts: contractData,
+})
 ```
 
 ### `useLatestTransfers(isMainnet)`
@@ -129,7 +130,7 @@ The hook returns an array of the latest transfers. Each transfer object adheres 
 **Example:**
 
 ```javascript
-const transfers = useLatestTransfers(true); // You might want to use a state variable for this c:
+const transfers = useLatestTransfers(true) // You might want to use a state variable for this c:
 ```
 
 ### `useEstimatedAmount({ isMainnet, originDomain, destinationDomain, originTokenAddress, amount })`
@@ -166,12 +167,12 @@ An object with the following properties:
 
 ```javascript
 const { estimatedAmount, isFastPath, isLoading } = useEstimatedAmount({
-  isMainnet: true, 
-  originDomain: '1634886255', 
-  destinationDomain: '6778479', 
-  originTokenAddress: '0x...', 
-  amount: ethers.utils.parseUnits('10', 'ether')
-});
+  isMainnet: true,
+  originDomain: '1634886255',
+  destinationDomain: '6778479',
+  originTokenAddress: '0x...',
+  amount: ethers.utils.parseUnits('10', 'ether'),
+})
 ```
 
 ### `useEstimatedRelayerFee({ isMainnet, originDomain, destinationDomain })`
@@ -202,15 +203,15 @@ The hook returns a string representing the estimated relayer fee.
 
 ```javascript
 const estimatedRelayerFee = useEstimatedRelayerFee({
-  isMainnet: true, 
-  originDomain: '16778479', 
-  destinationDomain: '1634886255', 
-});
+  isMainnet: true,
+  originDomain: '16778479',
+  destinationDomain: '1634886255',
+})
 ```
 
 ### `useApproveIfNeeded({ isMainnet, originDomain, assetAddress, amount })`
 
-Initiates an approval transaction if it's needed for a bridging transaction. 
+Initiates an approval transaction if it's needed for a bridging transaction.
 
 **Parameters:**
 
@@ -240,11 +241,11 @@ An object with the following properties:
 
 ```javascript
 const { request, isLoading } = useApproveIfNeeded({
-  isMainnet: true, 
-  originDomain: '1634886255', 
-  assetAddress: '0x...', 
-  amount: ethers.utils.parseUnits('10', 'ether')
-});
+  isMainnet: true,
+  originDomain: '1634886255',
+  assetAddress: '0x...',
+  amount: ethers.utils.parseUnits('10', 'ether'),
+})
 ```
 
 ### `useEstimatedRelayerFee({ isMainnet, originDomain, destinationDomain })`
@@ -275,10 +276,10 @@ The hook returns a string representing the estimated relayer fee.
 
 ```javascript
 const estimatedRelayerFee = useEstimatedRelayerFee({
-  isMainnet: true, 
-  originDomain: '16778479', 
-  destinationDomain: '1634886255', 
-});
+  isMainnet: true,
+  originDomain: '16778479',
+  destinationDomain: '1634886255',
+})
 ```
 
 ### `useXcall({ isMainnet, origin, destination, to, asset, amount, relayerFee })`
@@ -323,7 +324,7 @@ const { isLoading, error, result } = useXcall({
   asset: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
   amount: '1.5',
   relayerFee: '0.01',
-});
+})
 ```
 
 ## File Structure
