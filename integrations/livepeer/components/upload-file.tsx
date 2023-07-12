@@ -70,11 +70,9 @@ export function UploadFile() {
     [progress]
   )
 
-  useEffect(() => {
-    if (asset?.[0]) {
-      route.push(`/integration/livepeer/vod/${asset[0].id}`)
-    }
-  }, [asset])
+  if (asset?.[0]) {
+    route.push(`/integration/livepeer/vod/${asset[0].id}`)
+  }
 
   return (
     <div>
