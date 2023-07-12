@@ -21,7 +21,7 @@ This integration with the [Livepeer API](https://livepeer.org/) offers a user-fr
 `useCheckLivepeerApiKey`
 A custom React hook that checks if the provided API Key is valid for use on Livepeer API. It includes the following properties and methods:
 
-- `checkLivepeerApiKey(apiKey)`: A method that tries to delete a hypotetical livestream and according to it's errors definies if the provided API Key is valid for Livepeer API (errors that mean the API key is valid are 403 and 404)
+- `checkLivepeerApiKey(apiKey)`: A method that tries to delete a hypothetical livestream and according to its errors defines if the provided API Key is valid for Livepeer API (errors that mean the API key is valid are 403 and 404)
 
 `useLivepeerApiKey`
 A custom React hook that provides state regarding Livepeer API Key. It includes the following properties and methods:
