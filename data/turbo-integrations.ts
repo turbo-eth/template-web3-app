@@ -72,6 +72,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/pooltogether.svg',
     imgDark: '/integrations/pooltogether.svg',
   },
+  connext: {
+    name: 'Connext',
+    href: '/integration/connext',
+    url: 'https://docs.connext.network/',
+    description: 'Connext is a modular protocol for securely passing funds and data between chains.',
+    imgLight: '/integrations/connext.png',
+    imgDark: '/integrations/connext.png',
+  },
   starter: {
     name: 'Starter Template',
     href: '/integration/starter',
