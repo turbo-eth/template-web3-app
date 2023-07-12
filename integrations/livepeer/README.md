@@ -27,7 +27,7 @@ A custom React hook that checks if the provided API Key is valid for use on Live
 A custom React hook that provides state regarding Livepeer API Key. It includes the following properties and methods:
 
 - `useLivepeerApiKey`: A method that provides the current state of a custom API Key set by the client 
-- `useIsLivepeerApiKeySet`: A method that checks if the Livepeer API Key is set by the client or the server and returns true if one of the cases are defined and false if netheir is.
+- `useIsLivepeerApiKeySet`: A method that checks if the Livepeer API Key is set by the client or the server and returns true if one of the cases is defined and false if neither is.
 
 
 ## Components
