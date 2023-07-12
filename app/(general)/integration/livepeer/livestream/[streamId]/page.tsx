@@ -26,12 +26,12 @@ export default function Page({ params }: { params: { streamId: string } }) {
         ) : (
           <>
             <h1 className="text-center">We are sorry, but your livestream was not found &#128531; {/* &#128531; = 😓 */}</h1>
-            <h1>
+            <h2>
               Please try again{' '}
               <LinkComponent href={watchStreamPath}>
                 <span className="underline underline-offset-2">here</span>
               </LinkComponent>
-            </h1>
+            </h2>
           </>
         )}
       </div>
