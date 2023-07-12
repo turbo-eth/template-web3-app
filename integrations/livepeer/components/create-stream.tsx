@@ -31,7 +31,7 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
   const { toast, dismiss } = useToast()
 
   const OBS_URL = 'https://obsproject.com/'
-  const BASE_URL = process.env.NODE_ENV === 'production' ? 'https://www.turboeth.xyz' : 'http://localhost:3000'
+  const BASE_URL = process.env.NODE_ENV === 'production' && env.SITE_URL ? env.SITE_URL : 'http://localhost:3000'
   const APP_URL = `${BASE_URL}/integration/livepeer/livestream/`
 
   const isLoading = useMemo(() => status === 'loading', [status])
