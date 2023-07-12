@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 
 import { useCreateAsset } from '@livepeer/react'
 import { useRouter } from 'next/navigation'
