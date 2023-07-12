@@ -9,7 +9,7 @@ import { Spinner } from '@/integrations/livepeer/components/spinner'
 import { useIsLivepeerApiKeySet } from '@/integrations/livepeer/hooks/use-livepeer-api-key'
 
 export default function Page({ params }: { params: { assetId: string } }) {
-  const watchVideoPath = '/integration/livepeer/video'
+  const watchVideoPath = '/integration/livepeer/vod'
 
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
 
