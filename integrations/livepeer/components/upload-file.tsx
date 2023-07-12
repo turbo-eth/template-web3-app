@@ -13,8 +13,8 @@ import { FormLivepeerApiKey } from './form-livepeer-api-key'
 import { useIsLivepeerApiKeySet } from '../hooks/use-livepeer-api-key'
 
 export function UploadFile() {
-  const route = useRouter()
   const [video, setVideo] = useState<File | undefined>()
+  const route = useRouter()
   const {
     mutate: createAsset,
     data: asset,
