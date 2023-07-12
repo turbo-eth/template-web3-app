@@ -47,7 +47,7 @@ A React component that renders a form to collect the user's Livepeer stream ID. 
 `PlayerComponent`
 This is a React component that uses Livepeer's player to play a stream, file, or an IPFS URL. The type of player and the source of the content is determined by the props provided.
 
-If type is PlayerType.IPFS_URL, then an ipfsUrl must be provided and playbackId should not exist. In contrast, if type is PlayerType.FILE or PlayerType.STREAM, a playbackId must be provided and ipfsUrl should not exist.
+If the type is PlayerType.IPFS_URL, then an ipfsUrl must be provided and playbackId should not exist. In contrast, if the type is PlayerType.FILE or PlayerType.STREAM, a playbackId must be provided and ipfsUrl should not exist.
 
 The player also includes controls that autohide after 3000 milliseconds. The poster attribute is an optional image that is displayed before the video starts playing, and autoPlay determines whether the video should start playing as soon as it is ready.
 
