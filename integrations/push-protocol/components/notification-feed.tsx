@@ -1,6 +1,8 @@
 import { chainNameType } from '@pushprotocol/uiweb'
+import { motion } from 'framer-motion'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
 import { Loadable } from './loadable'
 import { Notification } from './notification-item'
@@ -17,44 +19,74 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
       </div>
       <TabsContent className="border-none px-0" value="inbox">
         <Loadable isLoading={notificationsIsLoading}>
-          {notifications?.length == 0 && <>You currently have no notifications, try subscribing to some channels.</>}
-          {notifications?.map((notification, i) => {
-            return (
-              <Notification
-                key={`spam-${i}`}
-                app={notification.payload.data.app}
-                chainName={notification.source as chainNameType}
-                cta={notification.payload.data.acta}
-                icon={notification.payload.data.icon}
-                image={notification.payload.data.aimg}
-                notificationBody={notification.payload.notification.body}
-                notificationTitle={notification.payload.notification.title}
-                theme={'light'}
-                url={notification.payload.data.url}
-              />
-            )
-          })}
+          <motion.div
+            animate="show"
+            initial="hidden"
+            viewport={{ once: true }}
+            whileInView="show"
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.15,
+                },
+              },
+            }}>
+            {notifications?.length == 0 && <>You currently have no notifications, try subscribing to some channels.</>}
+            {notifications?.map((notification, i) => {
+              return (
+                <motion.div key={`inbox-${i}`} variants={FADE_DOWN_ANIMATION_VARIANTS}>
+                  <Notification
+                    app={notification.payload.data.app}
+                    chainName={notification.source as chainNameType}
+                    cta={notification.payload.data.acta}
+                    icon={notification.payload.data.icon}
+                    image={notification.payload.data.aimg}
+                    notificationBody={notification.payload.notification.body}
+                    notificationTitle={notification.payload.notification.title}
+                    theme={'light'}
+                    url={notification.payload.data.url}
+                  />
+                </motion.div>
+              )
+            })}
+          </motion.div>
         </Loadable>
       </TabsContent>
       <TabsContent className="border-none px-0" value="spam">
         <Loadable isLoading={spamNotificationsIsLoading}>
-          {spamNotifications?.length == 0 && <>You currently have no notifications, try subscribing to some channels.</>}
-          {spamNotifications?.map((notification, i) => {
-            return (
-              <Notification
-                key={`spam-${i}`}
-                app={notification.payload.data.app}
-                chainName={notification.source as chainNameType}
-                cta={notification.payload.data.acta}
-                icon={notification.payload.data.icon}
-                image={notification.payload.data.aimg}
-                notificationBody={notification.payload.notification.body}
-                notificationTitle={notification.payload.notification.title}
-                theme={'light'}
-                url={notification.payload.data.url}
-              />
-            )
-          })}
+          <motion.div
+            animate="show"
+            initial="hidden"
+            viewport={{ once: true }}
+            whileInView="show"
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.15,
+                },
+              },
+            }}>
+            {spamNotifications?.length == 0 && <>You currently have no spam notifications</>}
+            {spamNotifications?.map((notification, i) => {
+              return (
+                <motion.div key={`spam-${i}`} variants={FADE_DOWN_ANIMATION_VARIANTS}>
+                  <Notification
+                    app={notification.payload.data.app}
+                    chainName={notification.source as chainNameType}
+                    cta={notification.payload.data.acta}
+                    icon={notification.payload.data.icon}
+                    image={notification.payload.data.aimg}
+                    notificationBody={notification.payload.notification.body}
+                    notificationTitle={notification.payload.notification.title}
+                    theme={'light'}
+                    url={notification.payload.data.url}
+                  />
+                </motion.div>
+              )
+            })}
+          </motion.div>
         </Loadable>
       </TabsContent>
     </Tabs>

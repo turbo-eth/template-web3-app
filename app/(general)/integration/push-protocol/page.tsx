@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 
+import '@/integrations/push-protocol/styles/index.css'
+import { ApiNotificationType, SignerType } from '@pushprotocol/restapi'
 import { motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
 import { useAccount } from 'wagmi'
@@ -13,10 +15,14 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { ChannelCard, ENV, NotificationFeed, useNotifications } from '@/integrations/push-protocol'
+import { ChannelCard, Chat, ENV, NotificationFeed, getMockedNotification, useNotifications } from '@/integrations/push-protocol'
+import { useEthersSigner } from '@/lib/hooks/web3/use-ethers-signer'
 
 export default function PageIntegration() {
   const { address } = useAccount()
+  const signer = useEthersSigner()
+
+  const [mockedNotifications, setMockedNotifications] = useState<ApiNotificationType[]>([])
 
   const { data: notifications, isLoading: notificationsIsLoading } = useNotifications({
     user: address as string,
@@ -32,6 +38,14 @@ export default function PageIntegration() {
 
   const [channelAddress, setChannelAddress] = useState('0x74415Bc4C4Bf4Baecc2DD372426F0a1D016Fa924')
   const [env, setEnv] = useState(ENV.STAGING)
+
+  // Shows mock notificatins in inbox after subscribing if there is no notifications to show.
+  const handleSubscribe = () => {
+    if ([...(notifications || []), ...mockedNotifications].length > 0) return
+
+    const mockedNotification: ApiNotificationType = getMockedNotification({ env })
+    setMockedNotifications([...mockedNotifications, mockedNotification])
+  }
 
   return (
     <>
@@ -74,21 +88,21 @@ export default function PageIntegration() {
             <div className="mb-3 w-full">
               <div className="card flex flex-col">
                 <NotificationFeed
-                  notifications={notifications}
+                  notifications={[...(notifications || []), ...mockedNotifications]}
                   notificationsIsLoading={notificationsIsLoading}
                   spamNotifications={spamNotifications}
                   spamNotificationsIsLoading={spamIsLoading}
                 />
                 <hr className="my-4" />
                 <div className="flex items-center justify-between">
-                  <h3 className="text-center">Inbox&Spam</h3>
+                  <h3 className="text-center">Notifications</h3>
                   <p className="text-center text-sm text-gray-500">Check inbox&spam notifications on Push</p>
                 </div>
               </div>
             </div>
             <div className="mb-3 w-full">
               <div className="card">
-                <div className="mb-4 flex space-x-4">
+                <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                   <div className="grow">
                     <input
                       className="input"
@@ -97,7 +111,7 @@ export default function PageIntegration() {
                       onChange={(e) => setChannelAddress(e.target.value)}
                     />
                   </div>
-                  <div className="w-56">
+                  <div className="w-full md:w-56">
                     <Select value={env} onValueChange={(value) => setEnv(value as ENV)}>
                       <SelectTrigger className="input text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
                         <SelectValue placeholder={env === ENV.STAGING ? 'Goerli' : 'Mainnet'}>
@@ -113,13 +127,24 @@ export default function PageIntegration() {
                 </div>
                 <div className="flex w-full flex-col space-y-4  lg:flex-row lg:space-y-0 lg:space-x-4">
                   <div className="grow">
-                    <ChannelCard channelAddress={channelAddress} env={env} />
+                    <ChannelCard channelAddress={channelAddress} env={env} onSubscribe={() => handleSubscribe()} />
                   </div>
                 </div>
                 <hr className="my-4" />
                 <div className="flex items-center justify-between">
                   <h3 className="text-center">Channel Preview</h3>
                   <p className="text-center text-sm text-gray-500">Preview and subscribe channel</p>
+                </div>
+              </div>
+            </div>
+            <div className="mb-3 w-full">
+              <div className="card">
+                <Chat account={address as string} signer={signer as SignerType} supportAddress={'0x74415Bc4C4Bf4Baecc2DD372426F0a1D016Fa924'} />
+
+                <hr className="my-4" />
+                <div className="flex items-center justify-between">
+                  <h3 className="text-center">Chat</h3>
+                  <p className="text-center text-sm text-gray-500">Chat with anyone</p>
                 </div>
               </div>
             </div>

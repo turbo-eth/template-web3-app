@@ -16,7 +16,7 @@ const fetchChannel = async (props: UseChannelProps) => {
     processed: z.number(),
     attempts: z.number(),
     alias_address: z.string().nullable().optional(),
-    alias_verification_event: z.null(),
+    alias_verification_event: z.string().nullable().optional(),
     is_alias_verified: z.number(),
     alias_blockchain_id: z.string().nullable().optional(),
     activation_status: z.number(),
@@ -37,6 +37,5 @@ export const useChannel = (props: UseChannelProps) => {
   return useQuery(['channel', props.channel, props.env], {
     queryFn: () => fetchChannel(props),
     refetchOnWindowFocus: false,
-    enabled: !!props.channel && !!props.env,
   })
 }

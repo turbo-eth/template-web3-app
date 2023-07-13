@@ -12,12 +12,17 @@ export type NotificationFeedProps = {
   spamNotificationsIsLoading: boolean
 }
 
+export type ChannelSubscribeCallbacks = {
+  onSubscribe?: () => void
+  onUnsubscribe?: () => void
+}
+
 export type ChannelCardProps = {
   channelAddress: string
   env: ENV
-}
+} & ChannelSubscribeCallbacks
 
 export type SubscribeButtonProps = {
   channelAddress: string
   env: ENV
-}
+} & ChannelSubscribeCallbacks

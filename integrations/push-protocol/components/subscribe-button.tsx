@@ -31,8 +31,6 @@ export function SubscribeButton(props: SubscribeButtonProps) {
     env,
   })
 
-  console.log(userIsSubscribed)
-
   useEffect(() => {
     if (!address || !userSubscriptions) {
       setUserIsSubscribed(false)
@@ -57,7 +55,9 @@ export function SubscribeButton(props: SubscribeButtonProps) {
     }
 
     return (userIsSubscribed ? unsubscribe(args) : subscribe(args)).then(() => {
-      setUserIsSubscribed(!userIsSubscribed)
+      const isSubscribed = !userIsSubscribed
+      setUserIsSubscribed(isSubscribed)
+      isSubscribed ? props.onSubscribe?.() : props.onUnsubscribe?.()
     })
   }
 
@@ -72,7 +72,7 @@ export function SubscribeButton(props: SubscribeButtonProps) {
           </button>
         ) : (
           <button
-            className="rounded-md border-2 border-pink-600 bg-pink-600 px-3 py-1 text-sm font-semibold text-inherit shadow focus:outline-none md:py-2 md:px-3"
+            className="rounded-md border-2 border-pink-600 bg-pink-600 px-3 py-1 text-sm font-semibold text-white shadow focus:outline-none md:py-2 md:px-3"
             onClick={() => toggleSubscribe()}>
             Subscribe
           </button>

@@ -1,0 +1,5 @@
+div[class^="chat__Container-sc"] {
+  position: unset;
+  margin-left: auto;
+  margin-right: auto;
+}
