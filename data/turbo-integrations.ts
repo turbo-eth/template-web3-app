@@ -72,6 +72,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/pooltogether.svg',
     imgDark: '/integrations/pooltogether.svg',
   },
+    lens_protocol: {
+    name: 'Lens Protocol',
+    href: '/integration/lens-protocol',
+    url: 'https://www.lens.xyz/',
+    description: 'Lens Protocol is the social layer for web3',
+    imgLight: '/integrations/pooltogether.svg',
+    imgDark: '/integrations/pooltogether.svg',
+  },
   starter: {
     name: 'Starter Template',
     href: '/integration/starter',
