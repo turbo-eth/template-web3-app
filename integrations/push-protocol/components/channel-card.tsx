@@ -44,17 +44,19 @@ export function ChannelCard(props: ChannelCardProps) {
             <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xl">{channel.name}</p>
             <p className="hidden text-xs md:block">{strLimit(channel.info, 100)}</p>
             <div className="mt-auto">
-              <div className="flex items-end space-x-2">
+              <div className="mt-2 flex flex-col items-start space-y-2 md:flex-row md:items-end md:space-y-0 md:space-x-2">
                 <SubscribeButton channelAddress={channelAddress} env={env} onSubscribe={onSubscribe} onUnsubscribe={onUnsubscribe} />
-                <div className="flex space-x-1 rounded-full bg-pink-200 px-2 py-1 text-xs text-pink-600">
-                  <HiUser />
-                  <div>{channel.subscriber_count}</div>
+                <div className="flex space-x-2">
+                  <div className="flex space-x-1 rounded-full bg-pink-200 px-2 py-1 text-xs text-pink-600">
+                    <HiUser />
+                    <div>{channel.subscriber_count}</div>
+                  </div>
+                  <CopyToClipboard text={channel.channel} onCopy={() => setCopied(true)}>
+                    <button className="rounded-full bg-slate-200 px-2 py-1 text-xs text-gray-700">
+                      {copied ? <>Copied!</> : <>{truncateAddress(channel.channel)}</>}
+                    </button>
+                  </CopyToClipboard>
                 </div>
-                <CopyToClipboard text={channel.channel} onCopy={() => setCopied(true)}>
-                  <button className="rounded-full bg-slate-200 px-2 py-1 text-xs">
-                    {copied ? <>Copied!</> : <>{truncateAddress(channel.channel)}</>}
-                  </button>
-                </CopyToClipboard>
               </div>
             </div>
           </div>
