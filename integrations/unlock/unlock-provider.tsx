@@ -1,12 +1,11 @@
 import { ethers } from 'ethers'
+import { networks } from '@unlock-protocol/networks'
+import { useNetwork } from 'wagmi'
 
-// TODO: update this to change based on network
+export default function UnlockProvider() {
+  const { chain } = useNetwork()
 
-const networks = {
-  5: {
-    unlockAddress: '0x627118a4fB747016911e5cDA82e2E77C531e8206', // Smart contracts docs include all addresses on all networks
-    provider: 'https://rpc.unlock-protocol.com/5',
-  },
+  const provider = new ethers.providers.JsonRpcProvider(networks[chain.id].provider)
+
+  return { provider }
 }
-
-export const provider = new ethers.providers.JsonRpcProvider(networks[5].provider)
