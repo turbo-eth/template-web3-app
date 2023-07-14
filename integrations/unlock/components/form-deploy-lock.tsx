@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 
+import { useUnlock } from '../hooks/use-unlock'
 
 const lockInterface = new ethers.utils.Interface(PublicLockV13.abi)
 
@@ -31,43 +32,29 @@ export default function FormDeployLock() {
   const [unlimitedKeys, setUnlimitedKeys] = useState<boolean>(false)
   const [unlimitedDuration, setUnlimitedDuration] = useState<boolean>(false)
 
-  useEffect(() => {
-    const prepareCalldata = async () => {
-      setCalldata(
-        lockInterface.encodeFunctionData('initialize(address,uint256,address,uint256,uint256,string)', [
-          creator,
-          unlimitedDuration ? ethers.constants.MaxUint256 : duration * 60 * 60 * 24, // duration in days
-          ethers.constants.AddressZero, // token address defaults to ETH
-          ethers.utils.parseUnits(keyPrice, 18), // key price in ETH
-          unlimitedKeys ? ethers.constants.MaxUint256 : maxKeys,
-          lockName,
-        ])
-      )
-    }
-    prepareCalldata()
-  }, [creator, duration, keyPrice, maxKeys, lockName, unlimitedDuration, unlimitedKeys])
+  const { deployLock } = useUnlock()
 
-  const { config } = usePrepareContractWrite({
-    address: '0x627118a4fB747016911e5cDA82e2E77C531e8206', // goerli unlock contract
-    abi: UnlockV12.abi,
-    functionName: 'createUpgradeableLockAtVersion',
-    args: [calldata, 12], // version 12
-  })
-  const { data, isLoading, isSuccess, write } = useContractWrite(config)
+  function handleDeploy() {
+    deployLock(duration, keyPrice, maxKeys, lockName)
+      .then((r) => console.log(r))
+      .catch((e) => console.log(e))
+  }
 
-  const handleUnlimitedKeys = (e: boolean) => {
+  function handleUnlimitedKeys(e: boolean) {
     setUnlimitedKeys(e)
     if (e == true) {
       setLastMaxKeys(maxKeys)
+      setMaxKeys(0) // 0 for unlimited
     } else {
       setMaxKeys(lastMaxKeys)
     }
   }
 
-  const handleUnlimitedDuration = (e: boolean) => {
+  function handleUnlimitedDuration(e: boolean) {
     setUnlimitedDuration(e)
     if (e == true) {
-      setLastDuration(duration)
+      setLastDuration(duration) 
+      setDuration(0) // 0 for unlimited
     } else {
       setDuration(lastDuration)
     }
@@ -105,9 +92,14 @@ export default function FormDeployLock() {
         <p>Key Price</p>
         <Input placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
       </div>
+
+      <Button onClick={() => handleDeploy()}>Deploy Lock</Button>
+      {/*
+
       <Button onClick={() => write?.()}>Deploy Lock</Button>
       {isLoading && <p>Deploying Lock...</p>}
       {isSuccess && <p>Lock Deployed!</p>}
+      */}
     </div>
   )
 }

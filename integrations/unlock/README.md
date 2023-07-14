@@ -1,10 +1,20 @@
 Developer Tasks:
 
-In-Progress
+Done
+
+  Create Deploy Lock Form Component - @integration/unlock/components/form-deploy-lock.tsx
+
+
+
+Not-Needed
 
   Create Provider - @integration/unlock/unlock-provider.tsx
 
-  Create Deploy Lock Form Component - @integration/unlock/components/form-deploy-lock.tsx
+
+
+In-Progress
+
+
 
 To-Do
 
