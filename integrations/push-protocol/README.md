@@ -24,6 +24,10 @@ Renders single notification item
 `ChannelCard`
 Renders simple card with channel information and interactive subscribe button
 
+`ChannelSearch`
+Renders channel search inputs along channel cards for search results
+
+
 `Chat`
 Renders native Push Protocol support chat window on bottom-right corner of the screen
 
@@ -82,6 +86,7 @@ await sendNotification({..args})
 integrations/push
 ├── components
 │   ├── channel-card.tsx
+│   ├── channel-search.tsx
 │   ├── chat.tsx
 │   ├── index.ts
 │   ├── loadable.tsx

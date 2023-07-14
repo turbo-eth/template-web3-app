@@ -31,6 +31,7 @@ export function ChannelCard(props: ChannelCardProps) {
     setTimeout(() => setCopied(false), 3000)
   }, [copied])
 
+  if (!channelAddress) return <>No Channel Address Specified...</>
   if (error) return <>Error loading channel...</>
 
   return (
