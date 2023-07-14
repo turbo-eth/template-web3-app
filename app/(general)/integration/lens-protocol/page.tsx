@@ -40,61 +40,57 @@ const lensConfig: LensConfig = {
 }
 export default function PageIntegration() {
   return (
-    <WagmiConfig config={config}>
-      <RainbowKitProvider chains={chains}>
-        <LensProvider config={lensConfig}>
-          <div className="flex-center flex flex-1 flex-col items-center justify-center">
-            <motion.div
-              animate="show"
-              className="max-w-screen-xl px-5 text-center xl:px-0"
-              initial="hidden"
-              viewport={{ once: true }}
-              whileInView="show"
-              variants={{
-                hidden: {},
-                show: {
-                  transition: {
-                    staggerChildren: 0.15,
-                  },
-                },
-              }}>
-              <motion.h1
-                className="text-gradient-sand my-4 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
-                variants={FADE_DOWN_ANIMATION_VARIANTS}>
-                {turboIntegrations.lens_protocol.name}
-              </motion.h1>
-              <motion.p className="my-4 text-lg" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-                <Balancer>{turboIntegrations.lens_protocol.description}</Balancer>
-              </motion.p>
-              <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-                <LinkComponent isExternal href={turboIntegrations.lens_protocol.url}>
-                  <button className="btn btn-primary">Documentation</button>
-                </LinkComponent>
-              </motion.div>
-            </motion.div>
-          </div>
-          <section className="container w-full  max-w-screen-lg lg:mt-5">
-            <LoginButton />
-            <WhenLoggedInWithProfile>
-              {({ profile }) => (
-                <>
-                  <div className="max-w-sm m-auto rounded-xl bg-gradient-to-r from-indigo-300 to-purple-400 py-4 overflow-hidden shadow-lg flex flex-col items-center border-transparent">
-                    {profile && profile.picture?.__typename === 'MediaSet' && (
-                      <img width="200" height="200" alt={profile.handle} className="rounded-full" src={profile.picture.original.url} />
-                    )}{' '}
-                    <div className="px-6 py-4 text-center">
-                      <div className="font-bold text-xl mb-2">{profile.handle}</div>
-                      <p className=" text-base">{profile.name}</p>
-                      <p className=" text-base">{profile.bio}</p>
-                    </div>
-                  </div>
-                  {profile && <Publications profile={profile} />}
-                </>
-              )}
-            </WhenLoggedInWithProfile>{' '}
-          </section>
-        </LensProvider>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <LensProvider config={lensConfig}>
+      <div className="flex-center flex flex-1 flex-col items-center justify-center">
+        <motion.div
+          animate="show"
+          className="max-w-screen-xl px-5 text-center xl:px-0"
+          initial="hidden"
+          viewport={{ once: true }}
+          whileInView="show"
+          variants={{
+            hidden: {},
+            show: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}>
+          <motion.h1
+            className="text-gradient-sand my-4 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
+            variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            {turboIntegrations.lens_protocol.name}
+          </motion.h1>
+          <motion.p className="my-4 text-lg" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <Balancer>{turboIntegrations.lens_protocol.description}</Balancer>
+          </motion.p>
+          <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <LinkComponent isExternal href={turboIntegrations.lens_protocol.url}>
+              <button className="btn btn-primary">Documentation</button>
+            </LinkComponent>
+          </motion.div>
+        </motion.div>
+      </div>
+      <section className="container w-full  max-w-screen-lg lg:mt-5">
+        <LoginButton />
+        <WhenLoggedInWithProfile>
+          {({ profile }) => (
+            <>
+              <div className="max-w-sm m-auto rounded-xl bg-gradient-to-r from-indigo-300 to-purple-400 py-4 overflow-hidden shadow-lg flex flex-col items-center border-transparent">
+                {profile && profile.picture?.__typename === 'MediaSet' && (
+                  <img width="200" height="200" alt={profile.handle} className="rounded-full" src={profile.picture.original.url} />
+                )}{' '}
+                <div className="px-6 py-4 text-center">
+                  <div className="font-bold text-xl mb-2">{profile.handle}</div>
+                  <p className=" text-base">{profile.name}</p>
+                  <p className=" text-base">{profile.bio}</p>
+                </div>
+              </div>
+              {profile && <Publications profile={profile} />}
+            </>
+          )}
+        </WhenLoggedInWithProfile>{' '}
+      </section>
+    </LensProvider>
   )
 }
