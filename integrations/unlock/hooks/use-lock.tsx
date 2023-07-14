@@ -1,8 +1,9 @@
-import { useNetwork, useAccount, useContractWrite, usePrepareContractWrite } from 'wagmi'
-import { networks } from '@unlock-protocol/networks'
-import { UnlockV12, PublicLockV13 } from '@unlock-protocol/contracts'
-import { ethers } from 'ethers'
 import { useState } from 'react'
+
+import { PublicLockV13, UnlockV12 } from '@unlock-protocol/contracts'
+import { networks } from '@unlock-protocol/networks'
+import { ethers } from 'ethers'
+import { useAccount, useContractWrite, useNetwork, usePrepareContractWrite } from 'wagmi'
 
 export function useUnlock() {
   // eslint-disable-neeNetwork()
@@ -15,6 +16,7 @@ export function useUnlock() {
   if (!networkConfig) throw new Error('Unsupported Chain')
 
   console.log(networkConfig)
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const unlockAddress = networkConfig.unlockAddress
 
   const lockInterface = new ethers.utils.Interface(PublicLockV13.abi)

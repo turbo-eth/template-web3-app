@@ -1,28 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-
-import { UnlockV12, PublicLockV13 } from '@unlock-protocol/contracts'
-import { ethers } from 'ethers'
-
-import {
-  useAccount, 
-  useContractWrite,
-  usePrepareContractWrite
-} from 'wagmi'
+import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 
-import { useUnlock } from '../hooks/use-unlock'
-
-const lockInterface = new ethers.utils.Interface(PublicLockV13.abi)
+import { useUnlock } from '../hooks/use-lock'
 
 export default function FormDeployLock() {
-  const { address: creator } = useAccount()
-
-  const [calldata, setCalldata] = useState<string>('')
   const [lockName, setLockName] = useState<string>('test lock')
   const [maxKeys, setMaxKeys] = useState<number>(10)
   const [lastMaxKeys, setLastMaxKeys] = useState<number>(0) // NOTE: used to store the last max keys before unlimited keys
@@ -53,7 +39,7 @@ export default function FormDeployLock() {
   function handleUnlimitedDuration(e: boolean) {
     setUnlimitedDuration(e)
     if (e == true) {
-      setLastDuration(duration) 
+      setLastDuration(duration)
       setDuration(0) // 0 for unlimited
     } else {
       setDuration(lastDuration)
