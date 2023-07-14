@@ -5,6 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
 import { Loadable } from './loadable'
+// import { NotificationPush as Notification } from './notification-item'
 import { Notification } from './notification-item'
 import { NotificationFeedProps } from './types'
 
@@ -17,7 +18,7 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
           <TabsTrigger value="spam">Spam</TabsTrigger>
         </TabsList>
       </div>
-      <TabsContent className="border-none px-0" value="inbox">
+      <TabsContent className="h-96 overflow-y-scroll border-none px-0" value="inbox">
         <Loadable isLoading={notificationsIsLoading}>
           <motion.div
             animate="show"
@@ -42,8 +43,8 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
                     cta={notification.payload.data.acta}
                     icon={notification.payload.data.icon}
                     image={notification.payload.data.aimg}
-                    notificationBody={notification.payload.notification.body}
-                    notificationTitle={notification.payload.notification.title}
+                    notificationBody={notification.payload.data.amsg}
+                    notificationTitle={notification.payload.data.asub}
                     theme={'light'}
                     url={notification.payload.data.url}
                   />
@@ -53,7 +54,7 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
           </motion.div>
         </Loadable>
       </TabsContent>
-      <TabsContent className="border-none px-0" value="spam">
+      <TabsContent className="h-96 overflow-y-scroll border-none px-0" value="spam">
         <Loadable isLoading={spamNotificationsIsLoading}>
           <motion.div
             animate="show"
@@ -78,8 +79,8 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
                     cta={notification.payload.data.acta}
                     icon={notification.payload.data.icon}
                     image={notification.payload.data.aimg}
-                    notificationBody={notification.payload.notification.body}
-                    notificationTitle={notification.payload.notification.title}
+                    notificationBody={notification.payload.data.amsg}
+                    notificationTitle={notification.payload.data.asub}
                     theme={'light'}
                     url={notification.payload.data.url}
                   />

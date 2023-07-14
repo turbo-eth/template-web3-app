@@ -26,3 +26,8 @@ export type SubscribeButtonProps = {
   channelAddress: string
   env: ENV
 } & ChannelSubscribeCallbacks
+
+export type NotificationBellProps = {
+  env: ENV
+  mockedNotifications?: ApiNotificationType[]
+}

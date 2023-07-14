@@ -15,7 +15,8 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { ChannelCard, ChannelSearch, Chat, ENV, NotificationFeed, getMockedNotification, useNotifications } from '@/integrations/push-protocol'
+import { ChannelCard, ChannelSearch, Chat, ENV, getMockedNotification } from '@/integrations/push-protocol'
+import { NotificationBell } from '@/integrations/push-protocol/components/notification-bell'
 import { useEthersSigner } from '@/lib/hooks/web3/use-ethers-signer'
 
 export default function PageIntegration() {
@@ -24,27 +25,13 @@ export default function PageIntegration() {
 
   const [mockedNotifications, setMockedNotifications] = useState<ApiNotificationType[]>([])
 
-  const { data: notifications, isLoading: notificationsIsLoading } = useNotifications({
-    user: address as string,
-    env: ENV.STAGING,
-    spam: false,
-  })
-
-  const { data: spamNotifications, isLoading: spamIsLoading } = useNotifications({
-    user: address as string,
-    env: ENV.STAGING,
-    spam: true,
-  })
-
   const [channelAddress, setChannelAddress] = useState('0x74415Bc4C4Bf4Baecc2DD372426F0a1D016Fa924')
   const [env, setEnv] = useState(ENV.STAGING)
 
   // Shows mock notificatins in inbox after subscribing if there is no notifications to show.
   const handleSubscribe = () => {
-    if ([...(notifications || []), ...mockedNotifications].length > 0) return
-
     const mockedNotification: ApiNotificationType = getMockedNotification({ env })
-    setMockedNotifications([...mockedNotifications, mockedNotification])
+    setMockedNotifications([mockedNotification])
   }
 
   return (
@@ -85,19 +72,9 @@ export default function PageIntegration() {
             <WalletConnect />
           </IsWalletDisconnected>
           <IsWalletConnected>
-            <div className="mb-3 w-full">
-              <div className="card flex flex-col">
-                <NotificationFeed
-                  notifications={[...(notifications || []), ...mockedNotifications]}
-                  notificationsIsLoading={notificationsIsLoading}
-                  spamNotifications={spamNotifications}
-                  spamNotificationsIsLoading={spamIsLoading}
-                />
-                <hr className="my-4" />
-                <div className="flex items-center justify-between">
-                  <h3 className="text-center">Notifications</h3>
-                  <p className="text-center text-sm text-gray-500">Check inbox&spam notifications on Push</p>
-                </div>
+            <div className="mb-5 flex w-full">
+              <div className="mx-auto">
+                <NotificationBell env={ENV.STAGING} mockedNotifications={mockedNotifications} />
               </div>
             </div>
             <div className="mb-3 w-full">

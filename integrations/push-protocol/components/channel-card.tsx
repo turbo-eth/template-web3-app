@@ -7,11 +7,7 @@ import { Loadable } from './loadable'
 import { SubscribeButton } from './subscribe-button'
 import { ChannelCardProps } from './types'
 import { useChannel } from '../hooks'
-import { truncateAddress } from '../utils/helpers'
-
-function strLimit(text: string, count: number) {
-  return text.slice(0, count) + (text.length > count ? '...' : '')
-}
+import { strLimit, truncateAddress } from '../utils/helpers'
 
 export function ChannelCard(props: ChannelCardProps) {
   const { env, channelAddress, onSubscribe, onUnsubscribe } = props

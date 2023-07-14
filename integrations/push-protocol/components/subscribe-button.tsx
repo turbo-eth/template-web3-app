@@ -54,7 +54,9 @@ export function SubscribeButton(props: SubscribeButtonProps) {
       env: props.env,
     }
 
-    return (userIsSubscribed ? unsubscribe(args) : subscribe(args)).then(() => {
+    return (userIsSubscribed ? unsubscribe(args) : subscribe(args)).then((res) => {
+      if (res.status === 'error') return
+
       const isSubscribed = !userIsSubscribed
       setUserIsSubscribed(isSubscribed)
       isSubscribed ? props.onSubscribe?.() : props.onUnsubscribe?.()

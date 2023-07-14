@@ -19,12 +19,14 @@ export const getMockedNotification = ({ env }: { env: ENV }): ApiNotificationTyp
         icon: '',
         aimg: 'https://staging.push.org/push.svg',
         url: 'https://staging.push.org',
-      },
-      notification: {
-        body: 'This is an example notification received on PUSH!',
-        title: 'Hello from PUSH!',
+        amsg: 'This is an example notification received on PUSH!',
+        asub: 'Hello from PUSH!',
       },
     },
     source: env === ENV.STAGING ? 'ETH_TEST_GOERLI' : 'ETH_TEST_MAINNET',
   } as ApiNotificationType
+}
+
+export const strLimit = (text: string, count: number) => {
+  return text.slice(0, count) + (text.length > count ? '...' : '')
 }
