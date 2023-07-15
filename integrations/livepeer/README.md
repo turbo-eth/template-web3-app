@@ -21,7 +21,10 @@ This integration with the [Livepeer API](https://livepeer.org/) offers a user-fr
 `useCheckLivepeerApiKey`
 A custom React hook that checks if the provided API Key is valid for use on Livepeer API. It includes the following properties and methods:
 
-- `checkLivepeerApiKey(apiKey)`: A method that tries to delete a hypothetical livestream and according to its errors defines if the provided API Key is valid for Livepeer API (errors that mean the API key is valid are 403 and 404)
+- `checkLivepeerApiKey(apiKey)`: A method that tries to delete a hypothetical livestream and according to its errors defines if the provided API Key is valid for Livepeer API.
+  - error with status 404 `NotFoundError` means that the API key is valid and has Full API access
+  - error with status403 `PermissionError` means that the API key is valid but doesn't have Full API access
+  - error with the message 'Failed to fetch' `FailedToFetchError` means that the API key is not valid, it can be an error to fetch or the valid API Key doesn't have CORS access
 
 `useLivepeerApiKey`
 A custom React hook that provides state regarding Livepeer API Key. It includes the following properties and methods:
@@ -34,6 +37,9 @@ A custom React hook that provides state regarding Livepeer API Key. It includes 
 
 `CreateStream`
 A React component that sets up a livestream. The user is prompted to provide a name for the stream and upon creation with useCreateStream hook, instructions are given on how to setup the stream using OBS or Browser. The component also handles copying the streaming details to the clipboard for easy configuration. In case the user does not have an API key set for Livepeer, a form is rendered to collect the key.
+
+`DialogStopStream`
+A React component that displays a dialog to confirm if the user wants to end the Broser Livestream. Once the user confirms, the Broadcast component is unmounted as the route is set to `/integration/livepeer/livestream/`
 
 `FormLivepeerApiKey`
 A React component that displays a form to collect the user's Livepeer API key. Once the form is submitted, the key is validated and saved if it is correct. The user is alerted if the key is invalid or if there are any other errors. If no key is set, a persistent notification prompts the user to set the key.
@@ -79,6 +85,7 @@ integrations/livepeer
 │  ├─ default_poster.png
 ├─ components
 │  ├─ create-stream.tsx
+│  ├─ dialog-stop-stream.tsx
 │  ├─ form-livepeer-api-key.tsx
 │  ├─ form-livepeer-asset.tsx
 │  ├─ form-livepeer-stream.tsx
