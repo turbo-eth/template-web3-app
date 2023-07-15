@@ -10,6 +10,12 @@ export class NotFoundError extends Error {
   }
 }
 
+export class FailedToFetchError extends Error {
+  constructor() {
+    super("Couldn't fetch data from Livepeer API.")
+  }
+}
+
 export const useCheckLivepeerApiKey = () => {
   const deleteStream = async (apiKey: string, streamId: string) => {
     const res = await fetch(`https://livepeer.studio/api/stream/${streamId}`, {
@@ -37,6 +43,8 @@ export const useCheckLivepeerApiKey = () => {
       const error = e as Error & { status?: number }
       if (e instanceof PermissionError || e instanceof NotFoundError) {
         throw e
+      } else if (error.message === 'Failed to fetch') {
+        throw new FailedToFetchError()
       } else {
         throw new Error(`${error.message}`)
       }

@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react'
 
 import { useForm } from 'react-hook-form'
+import { BiInfoCircle } from 'react-icons/bi'
 
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { useToast } from '@/lib/hooks/use-toast'
 
-import { NotFoundError, PermissionError, useCheckLivepeerApiKey } from '../hooks/use-check-livepeer-api-key'
+import { FailedToFetchError, NotFoundError, PermissionError, useCheckLivepeerApiKey } from '../hooks/use-check-livepeer-api-key'
 import { useIsLivepeerApiKeySet, useLivepeerApiKey } from '../hooks/use-livepeer-api-key'
 
 interface livepeerForm {
@@ -21,6 +23,7 @@ export function FormLivepeerApiKey() {
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const watchApiKey = watch('apiKey')
+  const ApiKeyTooltip = 'Livepeer API Key has to have CORS access to the current domain'
 
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
   useEffect(() => {
@@ -56,6 +59,12 @@ export function FormLivepeerApiKey() {
         if (e instanceof NotFoundError || e instanceof PermissionError) {
           setLivepeerApiKey(FieldValues.apiKey)
           setIsLoading(false)
+        } else if (e instanceof FailedToFetchError) {
+          handleToast({
+            title: 'Failed to fetch',
+            description: 'Please check if you API Key has CORS access',
+          })
+          setIsLoading(false)
         } else {
           handleToast({
             title: 'Invalid API Key',
@@ -69,7 +78,15 @@ export function FormLivepeerApiKey() {
   return (
     <div className="w-full">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Livepeer API Key</label>
+        <div className="flex items-center gap-x-2">
+          <label>Livepeer API Key</label>
+          <Tooltip>
+            <TooltipTrigger>
+              <BiInfoCircle />
+            </TooltipTrigger>
+            <TooltipContent>{ApiKeyTooltip}</TooltipContent>
+          </Tooltip>
+        </div>
         <input required className="input mt-4" {...register('apiKey')} placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" />
         <button className="btn btn-emerald mt-4 w-full" disabled={!watchApiKey || isLoading} type="submit">
           {isLoading ? 'Loading...' : 'Submit'}
