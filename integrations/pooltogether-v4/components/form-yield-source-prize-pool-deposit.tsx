@@ -1,160 +1,163 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
-
 import * as Form from '@radix-ui/react-form'
+import { motion } from 'framer-motion'
+import { useForm } from 'react-hook-form'
 import { LuExternalLink } from 'react-icons/lu'
 import { useDebounce } from 'usehooks-ts'
-import { parseUnits } from 'viem'
-import { useAccount, useWaitForTransaction } from 'wagmi'
+import { type BaseError, formatUnits, parseUnits } from 'viem'
+import { useAccount, useSwitchNetwork, useWaitForTransaction } from 'wagmi'
 
 import { useLoadContractFromChainId } from '@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id'
-import { useUsdcApproval } from '@/actions/pooltogether-v4/hooks/use-usdc-approval'
-import { useUserBalanceDeposit } from '@/actions/pooltogether-v4/hooks/use-user-balance-deposit'
 import { PRIZE_POOL_CONTRACT } from '@/actions/pooltogether-v4/utils/prize-pool-contract-list'
 import { USDC_CONTRACT } from '@/actions/pooltogether-v4/utils/usdc-contract-list'
-import { Checkbox } from '@/components/ui/checkbox'
-import { usePoolTogetherPrizePoolDepositToAndDelegate } from '@/integrations/pooltogether-v4/generated/pooltogether-v4-wagmi'
-import { useErc20Approve, useErc20Decimals } from '@/lib/generated/blockchain'
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
+import { TransactionStatus } from '@/components/blockchain/transaction-status'
+import { LinkComponent } from '@/components/shared/link-component'
+import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
+import {
+  usePoolTogetherPrizePoolDepositToAndDelegate,
+  usePreparePoolTogetherPrizePoolDepositToAndDelegate,
+} from '@/integrations/pooltogether-v4/generated/pooltogether-v4-wagmi'
+import { useUserBalance } from '@/integrations/pooltogether-v4/hooks/use-user-balance'
+import { useErc20Allowance, useErc20Approve, useErc20Decimals } from '@/lib/generated/blockchain'
+
+import { MINIMUM_DEPOSIT_AMOUNT } from '../utils/constants'
+
+interface FormSchema {
+  depositAmount: string
+}
 
 export function PoolTogetherFormDeposit() {
-  const [isChecked, setIsChecked] = useState<boolean>(false)
-  const [approvalAmount, setApprovalAmount] = useState<bigint>(BigInt(0))
-  const [submitDeposit, setSubmitDeposit] = useState<boolean>(false)
-  const [isValidAmount, setValidAmount] = useState<boolean>(true)
-
+  const { register, watch, handleSubmit, setValue } = useForm<FormSchema>()
   const { address } = useAccount()
+  const { switchNetwork } = useSwitchNetwork()
   const prizePoolAddress = useLoadContractFromChainId(PRIZE_POOL_CONTRACT)
   const usdcAddress = useLoadContractFromChainId(USDC_CONTRACT)
 
+  const userBalance = useUserBalance({ type: 'deposit' })
   const { data: decimals } = useErc20Decimals({ address: usdcAddress })
-  const POWER = decimals ?? 6
+  const { data: allowance } = useErc20Allowance({
+    address: usdcAddress,
+    args: address && prizePoolAddress ? [address, prizePoolAddress] : undefined,
+    enabled: Boolean(address && prizePoolAddress),
+    watch: true,
+  })
 
-  const userBalance = useUserBalanceDeposit()
-  const isApproved = useUsdcApproval(userBalance)
+  const debouncedDepositAmount = useDebounce(watch('depositAmount'), 500)
+  const bigIntDepositAmount = isNaN(Number(debouncedDepositAmount)) ? BigInt(0) : parseUnits(`${Number(debouncedDepositAmount)}`, decimals || 6)
 
-  const [depositAmount, setDepositAmount] = useState<number>()
-  const debouncedDepositAmount = useDebounce(depositAmount ? parseUnits(`${depositAmount}`, POWER) : BigInt(0), 500)
+  const isValidContractCall = address && !isNaN(Number(debouncedDepositAmount)) && Number(debouncedDepositAmount) >= MINIMUM_DEPOSIT_AMOUNT
+
+  const { config, error, isError, refetch } = usePreparePoolTogetherPrizePoolDepositToAndDelegate({
+    address: prizePoolAddress,
+    args: isValidContractCall ? [address, bigIntDepositAmount, address] : undefined,
+    enabled: Boolean(isValidContractCall),
+  })
+
+  const { data, write, isLoading: isLoadingWrite } = usePoolTogetherPrizePoolDepositToAndDelegate(config)
+
+  const { isLoading: isLoadingTx, isSuccess } = useWaitForTransaction({
+    hash: data?.hash,
+    onSuccess: async () => setValue('depositAmount', ''),
+  })
 
   const {
-    data,
-    write: depositToken,
-    isSuccess: successDeposit,
-  } = usePoolTogetherPrizePoolDepositToAndDelegate({
-    address: prizePoolAddress,
-    args: [address || '0x0', debouncedDepositAmount, address || '0x0'],
-  })
-
-  const { isLoading } = useWaitForTransaction({
-    hash: data?.hash,
-  })
-
-  const { data: approveData, write: approval } = useErc20Approve({
+    data: approveData,
+    write: writeApproval,
+    isLoading: isLoadingWriteApprove,
+  } = useErc20Approve({
     address: usdcAddress,
-    args: [prizePoolAddress, approvalAmount],
+    args: isValidContractCall ? [prizePoolAddress, bigIntDepositAmount] : undefined,
   })
 
-  const { isLoading: loadApprove, isSuccess: successApprove } = useWaitForTransaction({
+  const { isLoading: isLoadingTxApprove } = useWaitForTransaction({
     hash: approveData?.hash,
+    onSuccess: async () => refetch(),
   })
 
-  useEffect(() => {
-    isChecked ? setApprovalAmount(BigInt(2 ** 255 - 1)) : setApprovalAmount(debouncedDepositAmount)
-  }, [isChecked])
+  const isApproved = allowance ? allowance >= bigIntDepositAmount : false
 
-  useEffect(() => {
-    if (successApprove || submitDeposit) {
-      depositToken?.()
-      setSubmitDeposit(false)
-    }
-  }, [successApprove, submitDeposit])
-
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    if (depositAmount && depositAmount >= 2.0) {
-      if (!isApproved) {
-        approval?.()
-      } else {
-        setSubmitDeposit(true)
-      }
+  const onSubmit = () => {
+    if (isApproved) {
+      write?.()
     } else {
-      setValidAmount(false)
+      writeApproval?.()
     }
   }
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value != '' ? parseFloat(event.target.valueAsNumber.toFixed(decimals)) : undefined
-    setDepositAmount(value)
-    setApprovalAmount(value != undefined ? parseUnits(`${value}`, POWER) : BigInt(0))
-  }
 
-  const handleAmount = () => {
-    setDepositAmount(userBalance)
-    setApprovalAmount(parseUnits(`${userBalance}`, POWER))
+  if (!prizePoolAddress) {
+    return (
+      <div className="flex w-full flex-col justify-center">
+        <button className="btn btn-red mx-auto text-center font-semibold" onClick={() => switchNetwork?.(1)}>
+          Switch Network
+        </button>
+      </div>
+    )
   }
 
   return (
-    <div className="flex-col">
-      <Form.Root onSubmit={handleSubmit}>
+    <motion.div animate="show" className="card w-full" initial="hidden" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+      <Form.Root onSubmit={handleSubmit(onSubmit)}>
         <Form.Field name="amountDeposit">
           <div className="flex justify-between align-baseline">
             <Form.Label className="mb-2 font-semibold">Amount</Form.Label>
             <Form.Label className="mb-2">
-              <span className="ml-10 cursor-pointer hover:underline" onClick={() => handleAmount()}>
-                {parseFloat(userBalance.toString()).toFixed(2)} USDC
+              <span
+                className="ml-10 cursor-pointer hover:underline"
+                onClick={() => setValue('depositAmount', formatUnits(userBalance, decimals || 1))}>
+                {Number(formatUnits(userBalance, decimals || 1)).toFixed(2)} USDC
               </span>
             </Form.Label>
           </div>
           <Form.Control asChild>
-            <input
-              className="input"
-              max={userBalance}
-              min={0}
-              required={true}
-              step={'any'}
-              type="number"
-              value={depositAmount != undefined && depositAmount > userBalance ? userBalance : depositAmount}
-              onChange={handleChange}
-            />
+            <input className="input" {...register('depositAmount')} />
           </Form.Control>
         </Form.Field>
-        {!isValidAmount && (
-          <div className="relative mt-2 rounded border border-red-400 bg-red-100 py-1 text-center text-red-700" role="alert">
-            <strong className="font-semibold">Min. 2 USDC</strong>
+        {!isNaN(Number(debouncedDepositAmount)) && Number(debouncedDepositAmount) > 0 && Number(debouncedDepositAmount) < MINIMUM_DEPOSIT_AMOUNT && (
+          <div
+            className="relative mt-2 cursor-pointer rounded border border-red-400 bg-red-100 py-1 text-center text-red-700"
+            role="alert"
+            onClick={() => {
+              setValue('depositAmount', '2')
+            }}>
+            <strong className="cursor-pointer font-semibold">Min. 2 USDC</strong>
           </div>
         )}
-        {!isApproved && (
-          <div className="mt-4 flex justify-center space-x-2">
-            <Checkbox onClick={() => setIsChecked(!isChecked)} />
-            <span className="font-semibold">Infinite Approval</span>
-          </div>
-        )}
-        <div className="mt-4 flex justify-center space-x-5">
-          <Form.Submit asChild>
-            <button
-              disabled={prizePoolAddress == undefined && (isLoading || !debouncedDepositAmount)}
-              className={
-                !debouncedDepositAmount || !prizePoolAddress ? 'btn btn-emerald btn-sm cursor-not-allowed opacity-50' : 'btn btn-emerald btn-sm'
+        <div className="mt-6 mb-4 flex justify-center space-x-5">
+          <Form.Submit asChild className="w-full">
+            <ContractWriteButton
+              isLoadingTx={isApproved ? isLoadingTx : isLoadingTxApprove}
+              isLoadingWrite={isApproved ? isLoadingWrite : isLoadingWriteApprove}
+              loadingTxText={isApproved ? 'Depositing...' : 'Approving...'}
+              write={
+                isApproved
+                  ? !!write && Boolean(isValidContractCall) && bigIntDepositAmount <= userBalance
+                  : !!writeApproval && Boolean(isValidContractCall) && bigIntDepositAmount <= userBalance
               }>
-              {!prizePoolAddress
-                ? 'Please switch network'
-                : isApproved
-                ? isLoading
-                  ? 'Processing...'
-                  : 'Deposit'
-                : loadApprove
-                ? 'Processing...'
-                : 'Approve and Deposit'}
-            </button>
+              {isApproved ? 'Deposit' : 'Approve'}
+            </ContractWriteButton>
           </Form.Submit>
         </div>
+        <TransactionStatus
+          error={error as BaseError}
+          hash={data?.hash}
+          isError={Boolean(isApproved && isError && isValidContractCall)}
+          isLoadingTx={isLoadingTx}
+          isSuccess={isSuccess}
+        />
       </Form.Root>
-      {successDeposit && (
-        <div className="mt-4 space-x-2 rounded border p-3 text-center text-xs font-semibold">
-          Manage your account on&nbsp; <br />
-          <a className="flex items-center text-xl" href="https://app.pooltogether.com/" target={'_blank'}>
-            <span className="text-gradient-pooltogether">PoolTogether</span>
-            <LuExternalLink className="text-gradient-pooltogether-link ml-1" size="16" />
-          </a>
+      {isSuccess && (
+        <div className="my-6 text-center text-sm font-semibold">
+          <span>Manage your account on</span>
+          <LinkComponent isExternal className="mx-auto mt-1 flex w-fit items-center text-xl" href="https://app.pooltogether.com/">
+            <span>PoolTogether</span> <LuExternalLink className="ml-1" size="16" />
+          </LinkComponent>
         </div>
       )}
-    </div>
+      <hr className="my-4" />
+      <div className="flex items-center justify-between">
+        <h3 className="text-center">Deposit</h3>
+        <p className="text-center text-sm text-gray-500">Start saving today</p>
+      </div>
+    </motion.div>
   )
 }

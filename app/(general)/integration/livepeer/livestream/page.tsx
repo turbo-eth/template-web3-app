@@ -11,7 +11,6 @@ const newStreamBrowserPath = '/integration/livepeer/livestream/new/browser'
 const watchStreamPath = '/integration/livepeer/livestream/watch'
 
 export default function PageIntegration() {
-
   const [isLoadingNewStreamObs, setIsLoadingNewStreamObs] = useState<boolean>(false)
   const [isLoadingNewStreamBrowser, setIsLoadingNewStreamBrowser] = useState<boolean>(false)
   const [isLoadingExistingStream, setIsLoadingExistingStream] = useState<boolean>(false)

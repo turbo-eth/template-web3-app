@@ -66,7 +66,7 @@ export const turboIntegrations = {
   },
   pooltogether_v4: {
     name: 'PoolTogether',
-    href: '/integration/pooltogether-v4',
+    href: '/integration/pooltogether-v4/deposit',
     url: 'https://pooltogether.com/',
     description: 'PoolTogether is a prize savings protocol, enable you to win by saving.',
     imgLight: '/integrations/pooltogether.svg',
@@ -79,6 +79,14 @@ export const turboIntegrations = {
     description: 'Livepeer is a decentralized video streaming network.',
     imgLight: '/integrations/livepeer.svg',
     imgDark: '/integrations/livepeer.svg',
+  },
+  connext: {
+    name: 'Connext',
+    href: '/integration/connext',
+    url: 'https://docs.connext.network/',
+    description: 'Connext is a modular protocol for securely passing funds and data between chains.',
+    imgLight: '/integrations/connext.png',
+    imgDark: '/integrations/connext.png',
   },
   starter: {
     name: 'Starter Template',
