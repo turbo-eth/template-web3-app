@@ -1,6 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import React from 'react'
 
 import { useCreateStream } from '@livepeer/react'
 import { Broadcast } from '@livepeer/react'
@@ -8,8 +9,10 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useForm } from 'react-hook-form'
 import { FaCopy } from 'react-icons/fa'
 
+import { env } from '@/env.mjs'
 import { useToast } from '@/lib/hooks/use-toast'
 
+import { DialogStopStream } from './dialog-stop-stream'
 import { FormLivepeerApiKey } from './form-livepeer-api-key'
 import { PlayerComponent, PlayerType } from './player'
 import { useIsLivepeerApiKeySet } from '../hooks/use-livepeer-api-key'
@@ -210,6 +213,7 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
                   <span>Share Livestream</span>
                 </span>
               </CopyToClipboard>
+              <DialogStopStream />
             </div>
           )}
         </div>
