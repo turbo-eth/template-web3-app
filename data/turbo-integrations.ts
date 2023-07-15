@@ -80,6 +80,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/connext.png',
     imgDark: '/integrations/connext.png',
   },
+  aave: {
+    name: 'Aave',
+    href: '/integration/aave',
+    url: 'https://docs.aave.com/hub/',
+    description: 'Aave is a decentralized non-custodial liquidity protocol.',
+    imgLight: '/integrations/aave.png',
+    imgDark: '/integrations/aave.png',
+  },
   starter: {
     name: 'Starter Template',
     href: '/integration/starter',

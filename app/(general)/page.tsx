@@ -312,10 +312,25 @@ const features = [
     demo: (
       <div className="flex items-center justify-center space-x-20">
         <IsLightTheme>
-          <Image alt="PoolTogether logo" height={100} src={turboIntegrations.connext.imgDark} width={100} />
+          <Image alt="Connext logo" height={100} src={turboIntegrations.connext.imgDark} width={100} />
         </IsLightTheme>
         <IsDarkTheme>
-          <Image alt="PoolTogether logo" height={100} src={turboIntegrations.connext.imgLight} width={100} />
+          <Image alt="Connext logo" height={100} src={turboIntegrations.connext.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
+    title: turboIntegrations.aave.name,
+    description: turboIntegrations.aave.description,
+    href: turboIntegrations.aave.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Aave logo" height={100} src={turboIntegrations.aave.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Aave logo" height={100} src={turboIntegrations.aave.imgLight} width={100} />
         </IsDarkTheme>
       </div>
     ),
