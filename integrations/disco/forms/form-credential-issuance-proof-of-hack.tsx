@@ -14,40 +14,38 @@ const FormCredentialIssuanceProofOfHack = () => {
 
   return (
     <div className="card w-full">
-      <>
-        <Form {...form}>
-          <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
-            {discoControls.map((item) => {
-              const Item = getComponent(item?.component)
+      <Form {...form}>
+        <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
+          {discoControls.map((item) => {
+            const Item = getComponent(item?.component)
 
-              return (
-                <FormField
-                  key={item?.label}
-                  control={form.control}
-                  name={item?.formfieldName as 'eventDate'}
-                  render={({ field }) => {
-                    return (
-                      <>
-                        <FormItem>
-                          <FormLabel>{item?.label}</FormLabel>
-                          <FormControl>
-                            <Item {...item?.attribute} {...field} {...register(item?.formfieldName as 'eventDate')} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      </>
-                    )
-                  }}
-                />
-              )
-            })}
+            return (
+              <FormField
+                key={item?.label}
+                control={form.control}
+                name={item?.formfieldName as 'eventDate'}
+                render={({ field }) => {
+                  return (
+                    <>
+                      <FormItem>
+                        <FormLabel>{item?.label}</FormLabel>
+                        <FormControl>
+                          <Item {...item?.attribute} {...field} {...register(item?.formfieldName as 'eventDate')} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    </>
+                  )
+                }}
+              />
+            )
+          })}
 
-            <Button className="btn btn-emerald w-full dark:bg-green-600 dark:text-white" disabled={isLoading}>
-              Issue
-            </Button>
-          </form>
-        </Form>
-      </>
+          <Button className="btn btn-emerald w-full dark:bg-green-600 dark:text-white" disabled={isLoading}>
+            Issue
+          </Button>
+        </form>
+      </Form>
     </div>
   )
 }

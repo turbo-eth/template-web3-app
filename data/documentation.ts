@@ -19,7 +19,7 @@ export const turboIntegrations = {
     name: 'Disco Programmatic Issuance',
     href: 'https://docs.turboeth.xyz/integration/disco',
     url: 'https://docs.disco.xyz/v2/for-organizations/issuing-credentials/manual-issuance',
-    description: 'Welcome to pilot beta of our Programmatic Issuance for Partners, we are so excited to deliver this feature for you all. ',
+    description: 'Welcome to the pilot beta of our Programmatic Issuance for Partners. We are excited to deliver this feature to you.',
     imgLight: '/integrations/disco.jpeg',
     imgDark: '/integrations/disco.jpeg',
   },

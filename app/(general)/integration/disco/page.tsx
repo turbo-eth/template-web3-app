@@ -74,7 +74,6 @@ export default function PageIntegration() {
                   <hr className="my-4" />
                   <DiscoProfileCredentials address={address} />
                 </div>
-
                 <DiscoIssueCredentialsButton />
               </section>
             </div>
