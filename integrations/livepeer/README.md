@@ -23,7 +23,7 @@ A custom React hook that checks if the provided API Key is valid for use on Live
 
 - `checkLivepeerApiKey(apiKey)`: A method that tries to delete a hypothetical livestream and according to its errors defines if the provided API Key is valid for Livepeer API.
   - error with status 404 `NotFoundError` means that the API key is valid and has Full API access
-  - error with status403 `PermissionError` means that the API key is valid but doesn't have Full API access
+  - error with status 403 `PermissionError` means that the API key is valid but doesn't have Full API access
   - error with the message 'Failed to fetch' `FailedToFetchError` means that the API key is not valid, it can be an error to fetch or the valid API Key doesn't have CORS access
 
 `useLivepeerApiKey`
