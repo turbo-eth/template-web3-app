@@ -306,6 +306,21 @@ const features = [
     ),
   },
   {
+    title: turboIntegrations.connext.name,
+    description: turboIntegrations.connext.description,
+    href: turboIntegrations.connext.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="PoolTogether logo" height={100} src={turboIntegrations.connext.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="PoolTogether logo" height={100} src={turboIntegrations.connext.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.starter.name,
     description: turboIntegrations.starter.description,
     href: turboIntegrations.starter.href,

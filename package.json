@@ -37,6 +37,8 @@
   },
   "packageManager": "pnpm@7.1.8",
   "dependencies": {
+    "@connext/nxtp-utils": "^2.0.3",
+    "@connext/sdk": "2.0.4-alpha.2",
     "@lit-protocol/lit-node-client": "2.1.161",
     "@prisma/client": "^4.8.1",
     "@radix-ui/react-accordion": "^1.1.0",
@@ -81,6 +83,7 @@
     "iron-session": "^6.3.1",
     "jotai": "^1.13.0",
     "luxon": "^3.2.1",
+    "moment": "^2.29.4",
     "next": "13.4.0",
     "next-themes": "^0.2.1",
     "react": "^18.2.0",
