@@ -8,6 +8,7 @@ export default function DiscoIssueCredentials() {
 
   if (isLoading) return <div>Loading...</div>
   if (isError) return <div>Some Issues found!</div>
+
   return (
     <div className="card w-full">
       <div className="w-full">

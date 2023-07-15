@@ -1,31 +1,15 @@
-import { setTimeout } from 'timers'
-
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useToast } from '@/lib/hooks/use-toast'
-
 import { appDiscoPostCredentialIssue } from '../routes/post-credential-issue/client'
 
 export const useDiscoIssueCredential = () => {
-  const { toast, dismiss } = useToast()
-
-  const handleToast = (title: string, description: string) => {
-    toast({
-      title: title,
-      description: description,
-    })
-
-    setTimeout(() => {
-      dismiss()
-    }, 4200)
-  }
-  const mutation = useMutation(async (vars) => {
-    const res = await appDiscoPostCredentialIssue(vars)
-
-    return res
+  const mutation = useMutation({
+    mutationFn: (vars) => {
+      return appDiscoPostCredentialIssue(vars)
+    },
   })
 
   const discoSchema = z.object({
@@ -93,6 +77,5 @@ export const useDiscoIssueCredential = () => {
     form,
     onSubmit,
     mutation,
-    handleToast,
   }
 }

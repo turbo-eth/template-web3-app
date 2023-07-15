@@ -133,3 +133,19 @@ export interface IssuedCredentials {
     }
   }
 }
+
+export interface IssueEntity {
+  schemaUrl: string
+  subjectData: {
+    eventDate: string
+    eventName: string
+    place: string
+    projectName: string
+    sourceCodeUrl: string
+    teamName: string
+    usageLink: string
+    expDate: string
+    recipientDid: string
+  }
+  recipientDID: string
+}
