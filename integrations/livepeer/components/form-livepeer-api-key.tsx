@@ -16,11 +16,11 @@ interface livepeerForm {
 }
 
 export function FormLivepeerApiKey() {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const { register, handleSubmit, watch } = useForm<livepeerForm>()
   const { checkLivepeerApiKey } = useCheckLivepeerApiKey()
   const { toast, dismiss } = useToast()
   const [, setLivepeerApiKey] = useLivepeerApiKey()
-  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const watchApiKey = watch('apiKey')
   const ApiKeyTooltip = 'Livepeer API Key has to have CORS access to the current domain'
@@ -52,26 +52,25 @@ export function FormLivepeerApiKey() {
 
   async function onSubmit(FieldValues: livepeerForm) {
     setIsLoading(true)
-    if (FieldValues.apiKey) {
-      try {
-        await checkLivepeerApiKey(FieldValues.apiKey)
-      } catch (e) {
-        if (e instanceof NotFoundError || e instanceof PermissionError) {
-          setLivepeerApiKey(FieldValues.apiKey)
-          setIsLoading(false)
-        } else if (e instanceof FailedToFetchError) {
-          handleToast({
-            title: 'Failed to fetch',
-            description: 'Please check if you API Key has CORS access',
-          })
-          setIsLoading(false)
-        } else {
-          handleToast({
-            title: 'Invalid API Key',
-            description: 'Please enter a valid Livepeer API Key',
-          })
-          setIsLoading(false)
-        }
+    if (!FieldValues.apiKey) return
+    try {
+      await checkLivepeerApiKey(FieldValues.apiKey)
+    } catch (e) {
+      if (e instanceof NotFoundError || e instanceof PermissionError) {
+        setLivepeerApiKey(FieldValues.apiKey)
+        setIsLoading(false)
+      } else if (e instanceof FailedToFetchError) {
+        handleToast({
+          title: 'Failed to fetch',
+          description: 'Please check if you API Key has CORS access',
+        })
+        setIsLoading(false)
+      } else {
+        handleToast({
+          title: 'Invalid API Key',
+          description: 'Please enter a valid Livepeer API Key',
+        })
+        setIsLoading(false)
       }
     }
   }

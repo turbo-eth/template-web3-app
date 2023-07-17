@@ -8,9 +8,9 @@ import { PlayerComponent, PlayerType } from '@/integrations/livepeer/components/
 import { Spinner } from '@/integrations/livepeer/components/spinner'
 import { useIsLivepeerApiKeySet } from '@/integrations/livepeer/hooks/use-livepeer-api-key'
 
-export default function Page({ params }: { params: { assetId: string } }) {
-  const watchVideoPath = '/integration/livepeer/vod'
+const watchVideoPath = '/integration/livepeer/vod'
 
+export default function Page({ params }: { params: { assetId: string } }) {
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
 
   const { data: asset, error } = useAsset({

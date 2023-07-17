@@ -8,9 +8,9 @@ import { PlayerComponent, PlayerType } from '@/integrations/livepeer/components/
 import { Spinner } from '@/integrations/livepeer/components/spinner'
 import { useIsLivepeerApiKeySet } from '@/integrations/livepeer/hooks/use-livepeer-api-key'
 
-export default function Page({ params }: { params: { streamId: string } }) {
-  const watchStreamPath = '/integration/livepeer/livestream/watch'
+const watchStreamPath = '/integration/livepeer/livestream/watch'
 
+export default function Page({ params }: { params: { streamId: string } }) {
   const { data: stream, error } = useStream({
     streamId: params.streamId,
   })
