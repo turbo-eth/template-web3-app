@@ -1,7 +1,6 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import React from 'react'
 
 import { useCreateStream } from '@livepeer/react'
 import { Broadcast } from '@livepeer/react'
@@ -34,7 +33,7 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
   const { toast, dismiss } = useToast()
 
   const OBS_URL = 'https://obsproject.com/'
-  const BASE_URL = process.env.NODE_ENV === 'production' && env.SITE_URL ? env.SITE_URL : 'http://localhost:3000'
+  const BASE_URL = process.env.NODE_ENV === 'production' && env.NEXT_PUBLIC_SITE_URL ? env.NEXT_PUBLIC_SITE_URL : 'http://localhost:3000'
   const APP_URL = `${BASE_URL}/integration/livepeer/livestream/`
 
   const isLoading = useMemo(() => status === 'loading', [status])
