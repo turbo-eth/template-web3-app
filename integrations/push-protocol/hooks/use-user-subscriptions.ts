@@ -3,13 +3,13 @@ import { useQuery } from '@tanstack/react-query'
 
 import { UseUserSubscriptionProps, UserSubscription } from '../utils/types'
 
-const fetchUserSubscriptions = async (props: UseUserSubscriptionProps) => {
-  return (await PushAPI.user.getSubscriptions(props)) as UserSubscription[]
+const fetchUserSubscriptions = async ({ env, user }: UseUserSubscriptionProps) => {
+  return (await PushAPI.user.getSubscriptions({ env, user })) as UserSubscription[]
 }
 
-export const useUserSubscriptions = (props: UseUserSubscriptionProps) => {
-  return useQuery(['user-subscriptions', props.env, props.user], {
-    queryFn: () => fetchUserSubscriptions(props),
+export const useUserSubscriptions = ({ env, user }: UseUserSubscriptionProps) => {
+  return useQuery(['user-subscriptions', env, user], {
+    queryFn: () => fetchUserSubscriptions({ env, user }),
     refetchOnWindowFocus: false,
   })
 }

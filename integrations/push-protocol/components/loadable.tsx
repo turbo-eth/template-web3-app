@@ -1,13 +1,5 @@
 import { PropsWithChildren } from 'react'
 
-import { ImSpinner2 } from 'react-icons/im'
-
-export function Loadable(props: PropsWithChildren<{ isLoading: boolean }>) {
-  return props.isLoading ? (
-    <>
-      <ImSpinner2 className="animate-spin" size={20} />
-    </>
-  ) : (
-    <>{props.children}</>
-  )
+export function Loadable({ isLoading, children }: PropsWithChildren<{ isLoading: boolean }>) {
+  return isLoading ? <div className="h-20 w-full animate-pulse rounded-lg bg-slate-400/70"></div> : <>{children}</>
 }

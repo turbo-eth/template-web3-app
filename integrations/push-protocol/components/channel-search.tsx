@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ENV } from '@/integrations/push-protocol'
 
+import { useSearchChannels } from '../hooks'
 import { ChannelCard } from './channel-card'
 import { Loadable } from './loadable'
-import { useSearchChannels } from '../hooks'
 
 export function ChannelSearch() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -44,7 +44,7 @@ export function ChannelSearch() {
       </div>
       <div>
         <Loadable isLoading={isLoading}>
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-6">
             {channels?.slice(0, 5).map((channel) => (
               <ChannelCard key={`channel-${channel.channel}`} channelAddress={channel.channel} env={searchEnv} />
             ))}

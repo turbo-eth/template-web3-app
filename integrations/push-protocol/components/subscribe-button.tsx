@@ -1,18 +1,26 @@
 import { useEffect, useState } from 'react'
 
 import { SubscribeOptionsType } from '@pushprotocol/restapi/src/lib/channels'
+import { ImSpinner2 } from 'react-icons/im'
 import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
 
 import { useEthersSigner } from '@/lib/hooks/web3/use-ethers-signer'
 
-import { Loadable } from './loadable'
-import { SubscribeButtonProps } from './types'
+import { ENV } from '..'
 import { useSubscribe, useUserSubscriptions } from '../hooks'
 import { useUnsubscribe } from '../hooks/use-unsubscribe-channel'
 import { pushEnvToChainId } from '../utils/helpers'
 
-export function SubscribeButton(props: SubscribeButtonProps) {
-  const { channelAddress, env } = props
+export type SubscribeButtonProps = {
+  channelAddress: string
+  env: ENV
+  onSubscribe?: () => void
+  onUnsubscribe?: () => void
+}
+
+export function SubscribeButton({ channelAddress, env, onSubscribe, onUnsubscribe }: SubscribeButtonProps) {
+  const [userIsSubscribed, setUserIsSubscribed] = useState(false)
+
   const channelChainId = pushEnvToChainId(env)
 
   const { address } = useAccount()
@@ -24,7 +32,6 @@ export function SubscribeButton(props: SubscribeButtonProps) {
 
   const { isLoading: subLoading, mutateAsync: subscribe } = useSubscribe()
   const { isLoading: unsubLoading, mutateAsync: unsubscribe } = useUnsubscribe()
-  const [userIsSubscribed, setUserIsSubscribed] = useState(false)
 
   const { data: userSubscriptions, isLoading: userSubsIsLoading } = useUserSubscriptions({
     user: address as string,
@@ -51,7 +58,7 @@ export function SubscribeButton(props: SubscribeButtonProps) {
       signer,
       userAddress: address,
       channelAddress: channelAddress,
-      env: props.env,
+      env: env,
     }
 
     return (userIsSubscribed ? unsubscribe(args) : subscribe(args)).then((res) => {
@@ -59,27 +66,25 @@ export function SubscribeButton(props: SubscribeButtonProps) {
 
       const isSubscribed = !userIsSubscribed
       setUserIsSubscribed(isSubscribed)
-      isSubscribed ? props.onSubscribe?.() : props.onUnsubscribe?.()
+      isSubscribed ? onSubscribe?.() : onUnsubscribe?.()
     })
   }
 
-  return (
-    <>
-      <Loadable isLoading={userSubsIsLoading || subLoading || unsubLoading}>
-        {userIsSubscribed ? (
-          <button
-            className="rounded-md border-2 border-pink-600 px-3 py-1 text-sm font-semibold text-inherit shadow focus:outline-none md:py-2 md:px-3"
-            onClick={() => toggleSubscribe()}>
-            Unsubscribe
-          </button>
-        ) : (
-          <button
-            className="rounded-md border-2 border-pink-600 bg-pink-600 px-3 py-1 text-sm font-semibold text-white shadow focus:outline-none md:py-2 md:px-3"
-            onClick={() => toggleSubscribe()}>
-            Subscribe
-          </button>
-        )}
-      </Loadable>
-    </>
+  const buttonIsLoading = userSubsIsLoading || subLoading || unsubLoading
+
+  return userIsSubscribed ? (
+    <button
+      className="rounded-md border-2 border-pink-600 px-3 py-1 text-sm font-semibold text-inherit shadow focus:outline-none md:py-2 md:px-3"
+      disabled={buttonIsLoading}
+      onClick={() => toggleSubscribe()}>
+      {buttonIsLoading ? <ImSpinner2 className="animate-spin" size={20} /> : 'Unsubscribe'}
+    </button>
+  ) : (
+    <button
+      className="rounded-md border-2 border-pink-600 bg-pink-600 px-3 py-1 text-sm font-semibold text-white shadow focus:outline-none md:py-2 md:px-3"
+      disabled={buttonIsLoading}
+      onClick={() => toggleSubscribe()}>
+      {buttonIsLoading ? <ImSpinner2 className="animate-spin" size={20} /> : 'Subscribe'}
+    </button>
   )
 }

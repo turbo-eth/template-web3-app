@@ -7,9 +7,9 @@ const fetchChats = async (props: UseChatsProps) => {
   return await PushAPI.chat.chats(props)
 }
 
-export const useChats = (props: UseChatsProps) => {
-  return useQuery(['chats', props.account, props.env, props.page, props.limit, props.pgpPrivateKey, props.toDecrypt], {
-    queryFn: () => fetchChats(props),
+export const useChats = ({ account, env, page, limit, pgpPrivateKey, toDecrypt }: UseChatsProps) => {
+  return useQuery(['chats', account, env, page, limit, pgpPrivateKey, toDecrypt], {
+    queryFn: () => fetchChats({ account, env, page, limit, pgpPrivateKey, toDecrypt }),
     refetchOnWindowFocus: false,
   })
 }

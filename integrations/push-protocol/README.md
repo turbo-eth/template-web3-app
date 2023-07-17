@@ -2,7 +2,7 @@
 
 [Push Protocol](https://push.org/) is a web3 communication network, enabling cross-chain notifications and messaging for dapps, wallets, and services.
 
-This integrations provides useful hooks and components from main Push Protocol features.
+This integration provides useful hooks and components from the main Push Protocol features.
 
 ## Features
 
@@ -22,19 +22,19 @@ Renders inbox and spam notifications
 Renders single notification item
 
 `ChannelCard`
-Renders simple card with channel information and interactive subscribe button
+Renders simple card with channel information and an interactive subscribe button
 
 `ChannelSearch`
 Renders channel search inputs along channel cards for search results
 
-
 `Chat`
-Renders native Push Protocol support chat window on bottom-right corner of the screen
+Renders native Push Protocol support chat window on the bottom-right corner of the screen
 
 ---
 
 ## Hooks
-These hooks are just push protocol specific wrappers for `react-query`. So it utilizes all the features `react-query` has.
+
+These hooks are just push protocol-specific wrappers for `react-query`. So it utilizes all the features `react-query` has.
 
 ```tsx
 const { data, isLoading, error, refetch } = useNotifications({
@@ -78,7 +78,7 @@ await sendNotification({..args})
 
 `useUnsubscribe` : Returns mutation for unsubscribe action
 
-`createUser` : Returns mutation for creating user
+`useCreateUser` : Returns mutation for creating user
 
 ## File Structure
 
@@ -90,10 +90,10 @@ integrations/push
 │   ├── chat.tsx
 │   ├── index.ts
 │   ├── loadable.tsx
+│   ├── notification-bell.tsx
 │   ├── notification-feed.tsx
 │   ├── notification-item.tsx
-│   ├── subscribe-button.tsx
-│   └── types.ts
+│   └── subscribe-button.tsx
 ├── hooks
 │   ├── index.ts
 │   ├── use-channel.ts
@@ -105,9 +105,12 @@ integrations/push
 │   ├── use-subscribe-channel.ts
 │   ├── use-unsubscribe-channel.ts
 │   └── use-user-subscriptions.ts
-├── index.ts
-├── README.md
+├── styles
+│   └── index.css
 └── utils
+    ├── constants.ts
     ├── helpers.ts
     └── types.ts
+├── index.ts
+└── README.md
 ```

@@ -3,13 +3,13 @@ import { useQuery } from '@tanstack/react-query'
 
 import { Channel, UseSearchChannelProps } from '../utils/types'
 
-const searchChannels = async (props: UseSearchChannelProps) => {
-  return (await PushAPI.channels.search(props)) as Channel[]
+const searchChannels = async ({ query, env, page, limit }: UseSearchChannelProps) => {
+  return (await PushAPI.channels.search({ query, env, page, limit })) as Channel[]
 }
 
-export const useSearchChannels = (props: UseSearchChannelProps) => {
-  return useQuery(['search-channels', props.query, props.env, props.page, props.limit], {
-    queryFn: () => searchChannels(props),
+export const useSearchChannels = ({ query, env, page, limit }: UseSearchChannelProps) => {
+  return useQuery(['search-channels', query, env, page, limit], {
+    queryFn: () => searchChannels({ query, env, page, limit }),
     refetchOnWindowFocus: false,
   })
 }

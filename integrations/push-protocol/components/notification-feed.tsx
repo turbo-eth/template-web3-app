@@ -1,3 +1,4 @@
+import { ApiNotificationType } from '@pushprotocol/restapi'
 import { chainNameType } from '@pushprotocol/uiweb'
 import { motion } from 'framer-motion'
 
@@ -5,9 +6,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
 import { Loadable } from './loadable'
-// import { NotificationPush as Notification } from './notification-item'
-import { Notification } from './notification-item'
-import { NotificationFeedProps } from './types'
+import { NotificationItem } from './notification-item'
+
+export type NotificationFeedProps = {
+  notifications?: ApiNotificationType[]
+  spamNotifications?: ApiNotificationType[]
+  notificationsIsLoading: boolean
+  spamNotificationsIsLoading: boolean
+}
 
 export function NotificationFeed({ notifications, spamNotifications, notificationsIsLoading, spamNotificationsIsLoading }: NotificationFeedProps) {
   return (
@@ -37,7 +43,7 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
             {notifications?.map((notification, i) => {
               return (
                 <motion.div key={`inbox-${i}`} variants={FADE_DOWN_ANIMATION_VARIANTS}>
-                  <Notification
+                  <NotificationItem
                     app={notification.payload.data.app}
                     chainName={notification.source as chainNameType}
                     cta={notification.payload.data.acta}
@@ -73,7 +79,7 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
             {spamNotifications?.map((notification, i) => {
               return (
                 <motion.div key={`spam-${i}`} variants={FADE_DOWN_ANIMATION_VARIANTS}>
-                  <Notification
+                  <NotificationItem
                     app={notification.payload.data.app}
                     chainName={notification.source as chainNameType}
                     cta={notification.payload.data.acta}

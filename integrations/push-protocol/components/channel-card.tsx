@@ -1,16 +1,25 @@
 import { useEffect, useState } from 'react'
 
+import Image from 'next/image'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { HiUser } from 'react-icons/hi'
 
-import { Loadable } from './loadable'
-import { SubscribeButton } from './subscribe-button'
-import { ChannelCardProps } from './types'
+import { ENV } from '..'
 import { useChannel } from '../hooks'
 import { strLimit, truncateAddress } from '../utils/helpers'
+import { Loadable } from './loadable'
+import { SubscribeButton } from './subscribe-button'
 
-export function ChannelCard(props: ChannelCardProps) {
-  const { env, channelAddress, onSubscribe, onUnsubscribe } = props
+export type ChannelCardProps = {
+  channelAddress: string
+  env: ENV
+  onSubscribe?: () => void
+  onUnsubscribe?: () => void
+}
+
+export function ChannelCard({ env, channelAddress, onSubscribe, onUnsubscribe }: ChannelCardProps) {
+  const [copied, setCopied] = useState(false)
+
   const {
     data: channel,
     isLoading: channelIsLoading,
@@ -19,8 +28,6 @@ export function ChannelCard(props: ChannelCardProps) {
     channel: channelAddress,
     env: env,
   })
-
-  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
     if (!copied) return
@@ -34,8 +41,8 @@ export function ChannelCard(props: ChannelCardProps) {
     <Loadable isLoading={channelIsLoading}>
       {channel && (
         <div className="flex w-full space-x-4">
-          <div className="flex flex-col">
-            <img alt={channel.name} className="w-24 md:w-32" src={channel.icon} />
+          <div className="flex flex-col relative">
+            <Image alt={channel.name} className="w-24 md:w-32 rounded-xl" height={100} src={channel.icon} width={100} />
           </div>
           <div className="flex grow flex-col">
             <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xl">{channel.name}</p>

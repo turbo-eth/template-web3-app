@@ -2,11 +2,9 @@
 
 import { useState } from 'react'
 
-import '@/integrations/push-protocol/styles/index.css'
-import { ApiNotificationType, SignerType } from '@pushprotocol/restapi'
+import { ApiNotificationType } from '@pushprotocol/restapi'
 import { motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
-import { useAccount } from 'wagmi'
 
 import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
@@ -15,22 +13,19 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { ChannelCard, ChannelSearch, Chat, ENV, getMockedNotification } from '@/integrations/push-protocol'
+import { ChannelCard, ChannelSearch, ENV, getMockedNotification } from '@/integrations/push-protocol'
 import { NotificationBell } from '@/integrations/push-protocol/components/notification-bell'
-import { useEthersSigner } from '@/lib/hooks/web3/use-ethers-signer'
+import { PUSH_CHANNEL_ADDRESS } from '@/integrations/push-protocol/utils/constants'
 
 export default function PageIntegration() {
-  const { address } = useAccount()
-  const signer = useEthersSigner()
-
   const [mockedNotifications, setMockedNotifications] = useState<ApiNotificationType[]>([])
 
-  const [channelAddress, setChannelAddress] = useState('0x74415Bc4C4Bf4Baecc2DD372426F0a1D016Fa924')
+  const [channelAddress, setChannelAddress] = useState(PUSH_CHANNEL_ADDRESS)
   const [env, setEnv] = useState(ENV.STAGING)
 
   // Shows mock notificatins in inbox after subscribing if there is no notifications to show.
   const handleSubscribe = () => {
-    const mockedNotification: ApiNotificationType = getMockedNotification({ env })
+    const mockedNotification = getMockedNotification({ env })
     setMockedNotifications([mockedNotification])
   }
 
@@ -123,17 +118,6 @@ export default function PageIntegration() {
                 <div className="flex items-center justify-between">
                   <h3 className="text-center">Search Channels</h3>
                   <p className="text-center text-sm text-gray-500">Search for PUSH channels</p>
-                </div>
-              </div>
-            </div>
-            <div className="mb-3 w-full">
-              <div className="card">
-                <Chat account={address as string} signer={signer as SignerType} supportAddress={'0x74415Bc4C4Bf4Baecc2DD372426F0a1D016Fa924'} />
-
-                <hr className="my-4" />
-                <div className="flex items-center justify-between">
-                  <h3 className="text-center">Support Chat</h3>
-                  <p className="text-center text-sm text-gray-500">Chat with specified wallet</p>
                 </div>
               </div>
             </div>
