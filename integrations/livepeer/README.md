@@ -34,6 +34,9 @@ A custom React hook that provides state regarding Livepeer API Key. It includes 
 
 ## Components
 
+`ButtonShare`
+A React component that facilitates sharing a specific asset, such as a livestream, video, or IPFS URL. It provides a button that, when clicked, copies the corresponding URL to the clipboard for easy sharing.
+
 `CreateStream`
 A React component that sets up a livestream. The user is prompted to provide a name for the stream and upon creation with useCreateStream hook, instructions are given on how to setup the stream using OBS or Browser. The component also handles copying the streaming details to the clipboard for easy configuration. In case the user does not have an API key set for Livepeer, a form is rendered to collect the key.
 

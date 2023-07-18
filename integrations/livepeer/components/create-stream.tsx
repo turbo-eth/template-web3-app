@@ -8,9 +8,9 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 import { useForm } from 'react-hook-form'
 import { FaCopy } from 'react-icons/fa'
 
-import { env } from '@/env.mjs'
 import { useToast } from '@/lib/hooks/use-toast'
 
+import { ButtonShare } from './button-share'
 import { DialogStopStream } from './dialog-stop-stream'
 import { FormLivepeerApiKey } from './form-livepeer-api-key'
 import { PlayerComponent, PlayerType } from './player'
@@ -25,16 +25,15 @@ enum StreamOrigin {
   BROWSER = 'BROWSER',
 }
 
+const OBS_URL = 'https://obsproject.com/'
+const streamPath = '/integration/livepeer/livestream/'
+
 export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof typeof StreamOrigin }) => {
   const [streamName, setStreamName] = useState<string>('')
   const { register, handleSubmit } = useForm<createStreamForm>()
   const { mutate: createStream, data: streamData, status } = useCreateStream(streamName ? { name: streamName } : null)
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
   const { toast, dismiss } = useToast()
-
-  const OBS_URL = 'https://obsproject.com/'
-  const BASE_URL = process.env.NODE_ENV === 'production' && env.NEXT_PUBLIC_SITE_URL ? env.NEXT_PUBLIC_SITE_URL : 'http://localhost:3000'
-  const APP_URL = `${BASE_URL}/integration/livepeer/livestream/`
 
   const isLoading = useMemo(() => status === 'loading', [status])
 
@@ -163,22 +162,7 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
                       </CopyToClipboard>
                     </div>
                   </div>
-                  <div>
-                    <div className="flex items-center gap-x-2">
-                      <CopyToClipboard text={`${APP_URL}${streamData.id}`}>
-                        <span
-                          className="btn btn-emerald mt-4 flex w-full cursor-pointer rounded-md"
-                          onClick={() => {
-                            handleToast({
-                              title: 'Copied to clipboard!',
-                              description: 'You can now paste the Stream URL',
-                            })
-                          }}>
-                          <span>Share Livestream</span>
-                        </span>
-                      </CopyToClipboard>
-                    </div>
-                  </div>
+                  <ButtonShare href={streamPath + streamData.id} PlayerType={PlayerType.STREAM} />
                 </div>
               </div>
               <div className="mt-4">
@@ -200,18 +184,7 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
                   radii: { containerBorderRadius: '16px' },
                 }}
               />
-              <CopyToClipboard text={`${APP_URL}${streamData.id}`}>
-                <span
-                  className="btn btn-emerald mt-4 flex w-full cursor-pointer rounded-md"
-                  onClick={() => {
-                    handleToast({
-                      title: 'Copied to clipboard!',
-                      description: 'You can now paste the Stream URL',
-                    })
-                  }}>
-                  <span>Share Livestream</span>
-                </span>
-              </CopyToClipboard>
+              <ButtonShare href={streamPath + streamData.id} PlayerType={PlayerType.STREAM} />
               <DialogStopStream />
             </div>
           )}

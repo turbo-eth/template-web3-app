@@ -3,15 +3,19 @@
 import { useAsset } from '@livepeer/react'
 
 import { LinkComponent } from '@/components/shared/link-component'
+import { ButtonShare } from '@/integrations/livepeer/components/button-share'
 import { FormLivepeerApiKey } from '@/integrations/livepeer/components/form-livepeer-api-key'
 import { PlayerComponent, PlayerType } from '@/integrations/livepeer/components/player'
 import { Spinner } from '@/integrations/livepeer/components/spinner'
 import { useIsLivepeerApiKeySet } from '@/integrations/livepeer/hooks/use-livepeer-api-key'
 
-const watchVideoPath = '/integration/livepeer/vod'
+const watchVideoPath = '/integration/livepeer/vod/watch/'
+const videoPath = '/integration/livepeer/vod/'
 
 export default function Page({ params }: { params: { assetId: string } }) {
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
+
+  const SHARE_HREF = videoPath + params.assetId
 
   const { data: asset, error } = useAsset({
     assetId: params.assetId,
@@ -21,7 +25,7 @@ export default function Page({ params }: { params: { assetId: string } }) {
     return (
       <div className="mt-20 flex w-full flex-col items-center justify-center">
         {!isLivepeerApiKeySet ? (
-          <div className="card">
+          <div className="card w-full">
             <FormLivepeerApiKey />
           </div>
         ) : (
@@ -47,5 +51,10 @@ export default function Page({ params }: { params: { assetId: string } }) {
       </div>
     )
 
-  return <PlayerComponent containerBorderRadius="16px" playbackId={asset.playbackId} title={asset.name} type={PlayerType.FILE} />
+  return (
+    <>
+      <PlayerComponent containerBorderRadius="16px" playbackId={asset.playbackId} title={asset.name} type={PlayerType.FILE} />
+      <ButtonShare href={SHARE_HREF} PlayerType={PlayerType.FILE} />
+    </>
+  )
 }

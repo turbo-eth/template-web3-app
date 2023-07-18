@@ -3,24 +3,29 @@
 import { useStream } from '@livepeer/react'
 
 import { LinkComponent } from '@/components/shared/link-component'
+import { ButtonShare } from '@/integrations/livepeer/components/button-share'
 import { FormLivepeerApiKey } from '@/integrations/livepeer/components/form-livepeer-api-key'
 import { PlayerComponent, PlayerType } from '@/integrations/livepeer/components/player'
 import { Spinner } from '@/integrations/livepeer/components/spinner'
 import { useIsLivepeerApiKeySet } from '@/integrations/livepeer/hooks/use-livepeer-api-key'
 
-const watchStreamPath = '/integration/livepeer/livestream/watch'
+const watchStreamPath = '/integration/livepeer/livestream/watch/'
+const streamPath = '/integration/livepeer/livestream/'
 
 export default function Page({ params }: { params: { streamId: string } }) {
+  const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
+
+  const SHARE_HREF = streamPath + params.streamId
+
   const { data: stream, error } = useStream({
     streamId: params.streamId,
   })
-  const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
 
   if (error) {
     return (
       <div className="mt-20 flex w-full flex-col items-center justify-center">
         {!isLivepeerApiKeySet ? (
-          <div className="card">
+          <div className="card w-full">
             <FormLivepeerApiKey />
           </div>
         ) : (
@@ -45,5 +50,10 @@ export default function Page({ params }: { params: { streamId: string } }) {
       </div>
     )
 
-  return <PlayerComponent autoPlay={true} containerBorderRadius="16px" playbackId={stream.playbackId} title={stream.name} type={PlayerType.STREAM} />
+  return (
+    <>
+      <PlayerComponent autoPlay={true} containerBorderRadius="16px" playbackId={stream.playbackId} title={stream.name} type={PlayerType.STREAM} />
+      <ButtonShare href={SHARE_HREF} PlayerType={PlayerType.STREAM} />
+    </>
+  )
 }
