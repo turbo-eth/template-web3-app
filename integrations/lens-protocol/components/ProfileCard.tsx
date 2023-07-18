@@ -6,7 +6,7 @@ type ProfileCardProps = {
 
 export function ProfileCard({ profile }: ProfileCardProps) {
   return (
-    <div className="max-w-sm m-auto rounded-xl bg-gradient-to-r mb-5 from-indigo-300 to-purple-400 py-4 overflow-hidden shadow-lg flex flex-col items-center border-transparent">
+    <div className="max-w-sm m-auto p-6 rounded-xl bg-gradient-to-r mb-5 from-indigo-300 to-purple-400 py-4 overflow-hidden shadow-lg flex flex-col items-center border-transparent">
       {profile && profile.picture?.__typename === 'MediaSet' && (
         <img alt={profile.handle} className="rounded-full" height="200" src={profile.picture.original.url} width="200" />
       )}{' '}

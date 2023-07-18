@@ -2,45 +2,17 @@
 
 import { motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
-import { LensConfig, LensProvider, production } from '@lens-protocol/react-web'
-import { bindings as wagmiBindings } from '@lens-protocol/wagmi'
 import { LinkComponent } from '@/components/shared/link-component'
-import { connectorsForWallets } from '@rainbow-me/rainbowkit'
-import { injectedWallet, metaMaskWallet, rainbowWallet, walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
 import { LoginButton } from '@/integrations/lens-protocol/components/LoginButton'
 import { WhenLoggedInWithProfile } from '@/integrations/lens-protocol/components/WhenLoggedInWithProfile'
-import { configureChains, createConfig } from 'wagmi'
-import { polygonMumbai, polygon } from 'wagmi/chains'
-import { publicProvider } from 'wagmi/providers/public'
 import { LensSection } from '@/integrations/lens-protocol/components/LensSection'
-const { publicClient, chains } = configureChains([polygonMumbai, polygon], [publicProvider()])
-const connectors = connectorsForWallets([
-  {
-    groupName: 'Recommended',
-    wallets: [
-      injectedWallet({ chains, shimDisconnect: true }),
-      metaMaskWallet({ chains, shimDisconnect: true }),
-      rainbowWallet({ chains }),
-      // coinbaseWallet({ appName: APP_NAME, chains }),
-      walletConnectWallet({ chains }),
-    ],
-  },
-])
-const config = createConfig({
-  autoConnect: true,
-  publicClient,
-  connectors,
-})
+import withLensProvider from '@/integrations/lens-protocol/Layout'
 
-const lensConfig: LensConfig = {
-  bindings: wagmiBindings(),
-  environment: production,
-}
-export default function PageIntegration() {
+function PageIntegration() {
   return (
-    <LensProvider config={lensConfig}>
+    <>
       <div className="flex-center flex flex-1 flex-col items-center justify-center">
         <motion.div
           animate="show"
@@ -75,6 +47,8 @@ export default function PageIntegration() {
         <LoginButton />
         <WhenLoggedInWithProfile>{({ profile }) => <LensSection profile={profile} />}</WhenLoggedInWithProfile>{' '}
       </section>
-    </LensProvider>
+    </>
   )
 }
+
+export default withLensProvider(PageIntegration)
