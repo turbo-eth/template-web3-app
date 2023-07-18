@@ -11,8 +11,6 @@ const assetOnDescription = {
 }
 
 export function ButtonShare({ href, PlayerType }: { href: string; PlayerType: PlayerType }) {
-  const BASE_URL = process.env.NODE_ENV === 'production' && env.NEXT_PUBLIC_SITE_URL ? env.NEXT_PUBLIC_SITE_URL : 'http://localhost:3000'
-  const APP_URL = `${BASE_URL}${href}`
   const description = `You can now paste the ${assetOnDescription[PlayerType]} URL`
 
   const { toast, dismiss } = useToast()
