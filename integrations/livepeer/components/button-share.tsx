@@ -26,7 +26,7 @@ export function ButtonShare({ href, PlayerType }: { href: string; PlayerType: Pl
     }, 4200)
   }
   return (
-    <CopyToClipboard text={APP_URL}>
+    <CopyToClipboard text={href}>
       <span
         className="btn btn-emerald mt-4 flex w-full cursor-pointer rounded-md"
         onClick={() => {
