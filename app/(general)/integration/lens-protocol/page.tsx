@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Balancer from 'react-wrap-balancer'
-import { LensConfig, LensProvider, sources, development, appId } from '@lens-protocol/react-web'
+import { LensConfig, LensProvider, sources, development, appId, production } from '@lens-protocol/react-web'
 import { bindings as wagmiBindings } from '@lens-protocol/wagmi'
 import { LinkComponent } from '@/components/shared/link-component'
 import { connectorsForWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
@@ -14,7 +14,7 @@ import { WhenLoggedInWithProfile } from '@/integrations/lens-protocol/components
 import { configureChains, createConfig, WagmiConfig } from 'wagmi'
 import { polygonMumbai, polygon } from 'wagmi/chains'
 import { publicProvider } from 'wagmi/providers/public'
-import Publications from '@/integrations/lens-protocol/components/Publications'
+import { LensSection } from '@/integrations/lens-protocol/components/LensSection'
 const { publicClient, chains } = configureChains([polygonMumbai, polygon], [publicProvider()])
 const connectors = connectorsForWallets([
   {
@@ -36,7 +36,7 @@ const config = createConfig({
 
 const lensConfig: LensConfig = {
   bindings: wagmiBindings(),
-  environment: development,
+  environment: production,
 }
 export default function PageIntegration() {
   return (
@@ -73,23 +73,7 @@ export default function PageIntegration() {
       </div>
       <section className="container w-full  max-w-screen-lg lg:mt-5">
         <LoginButton />
-        <WhenLoggedInWithProfile>
-          {({ profile }) => (
-            <>
-              <div className="max-w-sm m-auto rounded-xl bg-gradient-to-r from-indigo-300 to-purple-400 py-4 overflow-hidden shadow-lg flex flex-col items-center border-transparent">
-                {profile && profile.picture?.__typename === 'MediaSet' && (
-                  <img width="200" height="200" alt={profile.handle} className="rounded-full" src={profile.picture.original.url} />
-                )}{' '}
-                <div className="px-6 py-4 text-center">
-                  <div className="font-bold text-xl mb-2">{profile.handle}</div>
-                  <p className=" text-base">{profile.name}</p>
-                  <p className=" text-base">{profile.bio}</p>
-                </div>
-              </div>
-              {profile && <Publications profile={profile} />}
-            </>
-          )}
-        </WhenLoggedInWithProfile>{' '}
+        <WhenLoggedInWithProfile>{({ profile }) => <LensSection profile={profile} />}</WhenLoggedInWithProfile>{' '}
       </section>
     </LensProvider>
   )
