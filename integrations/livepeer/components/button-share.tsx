@@ -1,5 +1,3 @@
-import { env } from 'process'
-
 import CopyToClipboard from 'react-copy-to-clipboard'
 
 import { useToast } from '@/lib/hooks/use-toast'
