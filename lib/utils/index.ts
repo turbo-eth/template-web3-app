@@ -31,10 +31,10 @@ export function trimFormattedBalance(balance: string | undefined, decimals = 4) 
   return `${integer}.${trimmedDecimal}`
 }
 
-export   const convertIpfsUrl = (ipfsUrl: string) => {
-    const ipfsProtocol = 'ipfs://'
-    if (ipfsUrl.startsWith(ipfsProtocol)) {
-      return 'https://cloudflare-ipfs.com/ipfs/' + ipfsUrl.slice(ipfsProtocol.length)
-    }
-    return ipfsUrl
+export const convertIpfsUrl = (ipfsUrl: string) => {
+  const ipfsProtocol = 'ipfs://'
+  if (ipfsUrl.startsWith(ipfsProtocol)) {
+    return 'https://cloudflare-ipfs.com/ipfs/' + ipfsUrl.slice(ipfsProtocol.length)
   }
+  return ipfsUrl
+}

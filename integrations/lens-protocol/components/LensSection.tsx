@@ -1,4 +1,4 @@
-import { Comment, Profile } from '@lens-protocol/react-web'
+import { Profile } from '@lens-protocol/react-web'
 import Publications from './Publications'
 import { ProfileCard } from './ProfileCard'
 import { ProfilePublicationRevenue } from './ProfilePublicationRevenue'

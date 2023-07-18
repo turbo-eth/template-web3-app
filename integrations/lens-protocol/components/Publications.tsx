@@ -1,9 +1,6 @@
-import { convertIpfsUrl } from '@/lib/utils'
 import { usePublications, Profile } from '@lens-protocol/react-web'
 import { FC } from 'react'
 import { Publication } from './Publication'
-
-// function Publications({ profile }: { profile: Profile }) {
 
 interface Props {
   profile: Profile
@@ -25,7 +22,7 @@ const ProfilePicture: FC<Props> = ({ profile }) => {
     <>
       <h1 className="text-4xl font-bold text-center text-blue-600 my-4">My Publications: </h1>
       {publications?.map((pub: any, index: number) => (
-        <Publication publication={pub} />
+        <Publication key={index} publication={pub} />
       ))}
     </>
   )

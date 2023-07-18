@@ -72,7 +72,7 @@ export const turboIntegrations = {
     imgLight: '/integrations/pooltogether.svg',
     imgDark: '/integrations/pooltogether.svg',
   },
-    lens_protocol: {
+  lens_protocol: {
     name: 'Lens Protocol',
     href: '/integration/lens-protocol',
     url: 'https://www.lens.xyz/',

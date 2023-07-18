@@ -1,7 +1,6 @@
 import { Profile, useExploreProfiles } from '@lens-protocol/react-web'
 import Link from 'next/link'
 import { convertIpfsUrl } from '@/lib/utils'
-import { Key, ReactElement, JSXElementConstructor, ReactFragment, ReactPortal } from 'react'
 import AppearAnimation from './AppearAnimation'
 
 const Explore = () => {
@@ -24,9 +23,9 @@ const Explore = () => {
           {exploreProfiles?.map((profile: Profile) => (
             <Link
               key={profile.id}
-              href={`/integration/lens-protocol/profile/${profile.handle}`}
               passHref
-              className="border rounded-lg p-1.5 flex items-center bg-wagmi-black border-wagmi-gray">
+              className="border rounded-lg p-1.5 flex items-center bg-wagmi-black border-wagmi-gray"
+              href={`/integration/lens-protocol/profile/${profile.handle}`}>
               <AppearAnimation className="card h-[200px] ">
                 <div className="card-header mx-4 -mt-6">
                   {/* <img src={profile.picture.original.url} alt={profile.name ?? profile.handle} /> */}

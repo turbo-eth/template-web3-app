@@ -1,4 +1,4 @@
-import { Comment, Profile } from '@lens-protocol/react-web'
+import { Comment } from '@lens-protocol/react-web'
 
 type CommentProps = {
   comment: Comment

@@ -44,13 +44,13 @@ export function LoginButton({ handle }: { handle?: string }) {
     <>
       {profile ? (
         <div className="flex items-center justify-center mb-4">
-          <button className="btn btn-primary" onClick={onLogoutClick} disabled={isLogoutPending}>
+          <button className="btn btn-primary" disabled={isLogoutPending} onClick={onLogoutClick}>
             <strong>Log out</strong>
           </button>
         </div>
       ) : (
         <div className="flex justify-center mb-4">
-          <button className="btn btn-primary" onClick={onLoginClick} disabled={isLoginPending}>
+          <button className="btn btn-primary" disabled={isLoginPending} onClick={onLoginClick}>
             <strong>Log in</strong>
           </button>
         </div>

@@ -17,12 +17,12 @@ function ProfileSwitcher() {
           <li key={profile.id} className="list-none">
             <button
               disabled={isPending || activeProfile?.id === profile.id}
-              onClick={() => {
-                switchActiveProfile(profile.id)
-              }}
               className={`px-4 py-2 rounded text-white font-semibold ${
                 isPending || activeProfile?.id === profile.id ? 'cursor-not-allowed bg-gray-300' : 'bg-blue-500 hover:bg-blue-600'
-              }`}>
+              }`}
+              onClick={() => {
+                switchActiveProfile(profile.id)
+              }}>
               {profile.handle}
             </button>
           </li>

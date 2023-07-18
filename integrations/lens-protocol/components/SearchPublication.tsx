@@ -1,7 +1,5 @@
-import { useSearchProfiles, useSearchPublications } from '@lens-protocol/react-web'
+import { useSearchPublications } from '@lens-protocol/react-web'
 import React, { ChangeEvent, useState } from 'react'
-import { ProfileCard } from './ProfileCard'
-import Link from 'next/link'
 import { Publication } from './Publication'
 
 type SearchResultsProps = {
@@ -23,11 +21,11 @@ function SearchResults({ query }: SearchResultsProps) {
   }
   return (
     <div>
-      {data?.map((publication) => (
+      {data?.map((publication, idx) => (
         // <Link key={profile.id} href={`/integration/lens-protocol/profile/${profile.handle}`} passHref>
         //   <ProfileCard key={profile.id} profile={profile} />
         // </Link>
-        <Publication publication={publication} />
+        <Publication key={idx} publication={publication} />
       ))}
     </div>
   )
@@ -49,12 +47,12 @@ const SearchPublication = () => {
       <h1 className="text-4xl font-bold text-center text-blue-600 my-4">Search Publications</h1>
       <div className="my-5 flex items-center justify-center bg-gray-200 p-4 rounded-lg">
         <input
-          onChange={handleChange}
           className="flex-grow mr-4 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          onChange={handleChange}
         />
         <button
-          onClick={handleSubmit}
-          className="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-none transition-all duration-200">
+          className="py-2 px-4 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-lg hover:shadow-none transition-all duration-200"
+          onClick={handleSubmit}>
           Search
         </button>
       </div>

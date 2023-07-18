@@ -11,7 +11,7 @@ export function LogoutButton() {
 
   return (
     <div className="flex justify-center my-4">
-      <button className="btn btn-primary" onClick={onLogoutClick} disabled={isLogoutPending}>
+      <button className="btn btn-primary" disabled={isLogoutPending} onClick={onLogoutClick}>
         <strong>Log out</strong>
       </button>
     </div>

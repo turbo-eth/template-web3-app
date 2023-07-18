@@ -1,6 +1,6 @@
 'use client'
 
-import { PublicationId, useComments, usePublication } from '@lens-protocol/react-web'
+import { PublicationId, useComments } from '@lens-protocol/react-web'
 import { Comment } from './Comment'
 interface PublicationSectionProps {
   publicationId: PublicationId
@@ -25,7 +25,7 @@ export default function CommentSection({ publicationId }: PublicationSectionProp
         <>
           <h1 className="text-4xl font-bold text-center text-blue-600 my-4">Comments</h1>
           {comments?.map((comment: any, index: number) => (
-            <Comment comment={comment} />
+            <Comment key={index} comment={comment} />
           ))}
         </>
       ) : (

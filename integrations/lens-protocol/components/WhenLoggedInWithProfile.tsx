@@ -26,17 +26,17 @@ export function WhenLoggedInWithProfile({ children }: WhenLoggedInWithProfilePro
     return (
       <div className="flex flex-col items-center">
         <img
+          alt="Logo"
           className="w-16 h-16 rounded-full mb-2"
           height={64}
-          width={64}
           src={`https://static-assets.lenster.xyz/images/brands/lens.png`}
-          alt="Logo"
+          width={64}
         />
         <div className="text-xl font-bold text-white">Claim your Lens profile 🌿</div>
         <div className="space-y-1">
           <div className="my-3">
             Visit{' '}
-            <a className="font-bold" href="https://claim.lens.xyz" target="_blank" rel="noreferrer noopener">
+            <a className="font-bold" href="https://claim.lens.xyz" rel="noreferrer noopener" target="_blank">
               claiming site
             </a>{' '}
             to claim your profile now 🏃‍♂️
