@@ -2,12 +2,13 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 
 import { useDiscoIssueCredential } from '../hooks/use-disco-issue-credential'
+import { useDiscoIssueForm } from '../hooks/use-disco-issue-form'
 import { discoControls } from '../utils/controls'
 import { getComponent } from '../utils/get-element-component'
 
 const FormCredentialIssuanceProofOfHack = () => {
-  const { form, onSubmit, mutation } = useDiscoIssueCredential()
-
+  const { mutation } = useDiscoIssueCredential()
+  const { onSubmit, form } = useDiscoIssueForm()
   const { isLoading } = mutation
 
   const { handleSubmit, register } = form

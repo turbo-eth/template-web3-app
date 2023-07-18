@@ -1,8 +1,8 @@
 import { discoClient } from '@/integrations/disco/disco-client'
 
-import { IssuedCredentials } from '../../utils/types'
+import { IssueEntity, IssuedCredentials } from '../../utils/types'
 
-export async function postCredentialIssue(val: { recipientDid: any; subjectData: any }) {
+export async function postCredentialIssue(val: IssueEntity) {
   const payload = {
     schemaUrl: 'https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/ProofOfHackCredential/1-0-0.json',
     subjectData: { ...val?.subjectData },

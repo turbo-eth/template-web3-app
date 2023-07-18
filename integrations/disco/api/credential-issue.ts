@@ -1,19 +1,45 @@
 import { getIronSession } from 'iron-session'
+import { z } from 'zod'
 
 import { SERVER_SESSION_SETTINGS } from '@/lib/session'
 
 import { postCredentialIssue } from '../routes/post-credential-issue'
 
+const discoSchema = z.object({
+  schemaUrl: z.string(),
+  subjectData: z.object({
+    eventDate: z.string().transform((value) => {
+      const date = new Date(value)
+      if (isNaN(date.getTime())) {
+        throw new Error('Invalid date format')
+      }
+      return date.toISOString().split('T')[0]
+    }),
+    eventName: z.string(),
+    place: z.string(),
+    projectName: z.string(),
+    sourceCodeUrl: z.string(),
+    teamName: z.string(),
+    usageLink: z.string(),
+    expDate: z.string().transform((value) => {
+      const date = new Date(value)
+      if (isNaN(date.getTime())) {
+        throw new Error('Invalid date format')
+      }
+      return date.toISOString().split('T')[0]
+    }),
+    recipientDid: z.string(),
+  }),
+  recipientDID: z.string(),
+})
+
 export async function POST(req: Request) {
   try {
     const res = new Response()
-    const prunedReq = await req.json()
-
+    const prunedReq = discoSchema.parse(await req.json())
     const session = await getIronSession(req, res, SERVER_SESSION_SETTINGS)
 
-    const isAdmin = session?.siwe?.isAdmin || false
-
-    if (!isAdmin) {
+    if (!session?.isAdmin) {
       return new Response('Unauthorized', { status: 401 })
     }
 
