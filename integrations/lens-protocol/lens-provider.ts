@@ -1,7 +1,3 @@
-
-
-
-
 import { LensConfig, production } from '@lens-protocol/react-web'
 import { connectorsForWallets } from '@rainbow-me/rainbowkit'
 import { bindings as wagmiBindings } from '@lens-protocol/wagmi'

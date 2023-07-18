@@ -1,4 +1,4 @@
-import { ProfileId, useProfilePublicationRevenue } from '@lens-protocol/react-web'
+import { ProfileId, PublicationRevenue, useProfilePublicationRevenue } from '@lens-protocol/react-web'
 
 type ProfileCardProps = {
   profileId: ProfileId
@@ -21,13 +21,13 @@ export function ProfilePublicationRevenue({ profileId }: ProfileCardProps) {
     <div className="space-y-4">
       <h1 className="text-4xl font-bold text-center text-blue-600 my-4">Publications Revenue</h1>
 
-      {profilePublicationRevenue?.map((publicationRevenue: any, idx) => (
+      {profilePublicationRevenue?.map((publicationRevenue: PublicationRevenue, idx) => (
         <article key={idx} className="bg-white shadow-lg rounded-lg overflow-hidden p-6 space-y-2">
-          <p className="text-gray-700">{publicationRevenue?.publication.metadata.content ?? ''}</p>
-
+          {/* eslint-disable-next-line */}
+          <p className="text-gray-700">{publicationRevenue.publication.metadata.content}</p>
           <p className="text-sm text-gray-500">{`Currency: ${publicationRevenue?.revenue?.totalAmount?.asset?.name}`}</p>
           <p className="text-sm text-gray-500">{`Symbol: ${publicationRevenue?.revenue?.totalAmount?.asset?.symbol}`}</p>
-          <p className="text-sm text-gray-500">{`Amount: ${publicationRevenue?.revenue?.totalAmount?.value}`}</p>
+          <p className="text-sm text-gray-500">{`Amount: ${publicationRevenue?.revenue?.totalAmount.toFixed(2)}`}</p>
         </article>
       ))}
     </div>

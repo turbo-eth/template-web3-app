@@ -1,8 +1,8 @@
 import { convertIpfsUrl } from '@/lib/utils'
-import { Profile } from '@lens-protocol/react-web'
+import { ContentPublication, Profile } from '@lens-protocol/react-web'
 
 type PublicationProps = {
-  publication: any
+  publication: ContentPublication
 }
 
 export function Publication({ publication }: PublicationProps) {
@@ -15,9 +15,10 @@ export function Publication({ publication }: PublicationProps) {
         <div className="p-4">
           <p className="text-gray-800">{publication?.metadata.content}</p>
         </div>
-        {publication.metadata?.media[0]?.original && ['image/jpeg', 'image/png'].includes(publication.metadata?.media[0]?.original.mimeType) && (
-          <img className="object-cover w-full h-48 rounded-b-lg" src={convertIpfsUrl(publication.metadata.media[0].original.url)} />
-        )}
+        {publication.metadata?.media[0]?.original &&
+          ['image/jpeg', 'image/png'].includes(publication.metadata?.media[0]?.original.mimeType ?? '') && (
+            <img className="object-cover w-full h-48 rounded-b-lg" src={convertIpfsUrl(publication.metadata.media[0].original.url)} />
+          )}
       </div>
     </>
   )

@@ -21,6 +21,7 @@ function ProfileSwitcher() {
                 isPending || activeProfile?.id === profile.id ? 'cursor-not-allowed bg-gray-300' : 'bg-blue-500 hover:bg-blue-600'
               }`}
               onClick={() => {
+                /* eslint-disable-next-line */
                 switchActiveProfile(profile.id)
               }}>
               {profile.handle}
