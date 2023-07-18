@@ -61,7 +61,7 @@ If containerBorderRadius is provided, it changes the border-radius of the player
 The title of the video can be set using the title attribute. If autoPlay is true, the video will start playing as soon as it is ready.
 
 `Spinner`
-This is a simple React functional component that renders a loading spinner SVG. It's typically used to indicate that the application is in the process of loading some data or executing an operation. 
+This is a simple React functional component that renders a loading spinner SVG. It's typically used to indicate that the application is in the process of loading some data or executing an operation.
 
 `UploadFile`
 This React component is designed for uploading a video file to the Livepeer service. Initially, it checks if the Livepeer API key is set. If not, it prompts for it using FormLivepeerApiKey.
