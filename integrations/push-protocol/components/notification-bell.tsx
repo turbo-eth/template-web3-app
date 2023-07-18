@@ -54,10 +54,6 @@ export function NotificationBell(props: NotificationBellProps) {
             spamNotificationsIsLoading={spamIsLoading}
           />
         </div>
-        {/* <Popover.Close aria-label="Close" className="absolute top-2 right-2">
-            <IoIosClose />
-          </Popover.Close>
-          <Popover.Arrow /> */}
       </PopoverContent>
     </Popover>
   )

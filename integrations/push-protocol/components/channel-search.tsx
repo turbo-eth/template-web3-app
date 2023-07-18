@@ -26,7 +26,7 @@ export function ChannelSearch() {
     <>
       <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
         <div className="grow">
-          <input className="input" placeholder="Search by Name or 0xc869" onChange={(e) => setSearchQuery(e.target.value)} />
+          <input className="input" placeholder="Search by Name or Address" onChange={(e) => setSearchQuery(e.target.value)} />
         </div>
         <div className="w-full md:w-56">
           <Select value={searchEnv} onValueChange={(value) => setSearchEnv(value as ENV)}>

@@ -105,8 +105,6 @@ integrations/push
 │   ├── use-subscribe-channel.ts
 │   ├── use-unsubscribe-channel.ts
 │   └── use-user-subscriptions.ts
-├── styles
-│   └── index.css
 └── utils
     ├── constants.ts
     ├── helpers.ts
