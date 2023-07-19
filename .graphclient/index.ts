@@ -1514,15 +1514,17 @@ export function getBuiltGraphSDK<TGlobalContext = any, TOperationContext = any>(
   const sdkRequester$ = getBuiltGraphClient().then(({ sdkRequesterFactory }) => sdkRequesterFactory(globalContext));
   return getSdk<TOperationContext, TGlobalContext>((...args) => sdkRequester$.then(sdkRequester => sdkRequester(...args)));
 }
-export type UserLocksQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type UserLocksQueryQueryVariables = Exact<{
+  user: Scalars['Bytes'];
+}>;
 
 
 export type UserLocksQueryQuery = { locks: Array<Pick<Lock, 'id' | 'address' | 'name'>> };
 
 
 export const UserLocksQueryDocument = gql`
-    query UserLocksQuery {
-  locks(where: {lockManagers: ["0x6c3b7fFCeC38F3a995a714991Ffcd7Ea5f37a56B"]}) {
+    query UserLocksQuery($user: Bytes!) {
+  locks(where: {lockManagers: [$user]}) {
     id
     address
     name
@@ -1534,7 +1536,7 @@ export const UserLocksQueryDocument = gql`
 export type Requester<C = {}, E = unknown> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
-    UserLocksQuery(variables?: UserLocksQueryQueryVariables, options?: C): Promise<UserLocksQueryQuery> {
+    UserLocksQuery(variables: UserLocksQueryQueryVariables, options?: C): Promise<UserLocksQueryQuery> {
       return requester<UserLocksQueryQuery, UserLocksQueryQueryVariables>(UserLocksQueryDocument, variables, options) as Promise<UserLocksQueryQuery>;
     }
   };

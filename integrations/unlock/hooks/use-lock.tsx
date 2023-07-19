@@ -15,7 +15,6 @@ export function useUnlock() {
   const networkConfig = networks[chain.id]
   if (!networkConfig) throw new Error('Unsupported Chain')
 
-  console.log(networkConfig)
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const unlockAddress = networkConfig.unlockAddress
 

@@ -1,7 +1,7 @@
-query UserLocksQuery {
+query UserLocksQuery($user: Bytes!) {
   locks(where: 
     {lockManagers: 
-      ["0x6c3b7fFCeC38F3a995a714991Ffcd7Ea5f37a56B"]
+      [$user]
     }
   ) {
     id
