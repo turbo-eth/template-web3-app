@@ -1,0 +1,10 @@
+query UserKeysQuery($user: Bytes!){
+  keys(where: {owner: $user}) {
+    id
+    lock {
+      id
+    }
+    tokenId
+    owner
+  }
+}

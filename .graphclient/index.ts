@@ -1471,6 +1471,18 @@ const merger = new(BareMerger as any)({
     get documents() {
       return [
       {
+        document: LockStatsQueryDocument,
+        get rawSDL() {
+          return printWithCache(LockStatsQueryDocument);
+        },
+        location: 'LockStatsQueryDocument.graphql'
+      },{
+        document: UserKeysQueryDocument,
+        get rawSDL() {
+          return printWithCache(UserKeysQueryDocument);
+        },
+        location: 'UserKeysQueryDocument.graphql'
+      },{
         document: UserLocksQueryDocument,
         get rawSDL() {
           return printWithCache(UserLocksQueryDocument);
@@ -1514,6 +1526,23 @@ export function getBuiltGraphSDK<TGlobalContext = any, TOperationContext = any>(
   const sdkRequester$ = getBuiltGraphClient().then(({ sdkRequesterFactory }) => sdkRequesterFactory(globalContext));
   return getSdk<TOperationContext, TGlobalContext>((...args) => sdkRequester$.then(sdkRequester => sdkRequester(...args)));
 }
+export type LockStatsQueryQueryVariables = Exact<{
+  lockId: Scalars['ID'];
+}>;
+
+
+export type LockStatsQueryQuery = { locks: Array<Pick<Lock, 'id' | 'address' | 'name' | 'symbol' | 'totalKeys' | 'expirationDuration' | 'price'>> };
+
+export type UserKeysQueryQueryVariables = Exact<{
+  user: Scalars['Bytes'];
+}>;
+
+
+export type UserKeysQueryQuery = { keys: Array<(
+    Pick<Key, 'id' | 'tokenId' | 'owner'>
+    & { lock: Pick<Lock, 'id'> }
+  )> };
+
 export type UserLocksQueryQueryVariables = Exact<{
   user: Scalars['Bytes'];
 }>;
@@ -1522,6 +1551,31 @@ export type UserLocksQueryQueryVariables = Exact<{
 export type UserLocksQueryQuery = { locks: Array<Pick<Lock, 'id' | 'address' | 'name'>> };
 
 
+export const LockStatsQueryDocument = gql`
+    query LockStatsQuery($lockId: ID!) {
+  locks(where: {id: $lockId}) {
+    id
+    address
+    name
+    symbol
+    totalKeys
+    expirationDuration
+    price
+  }
+}
+    ` as unknown as DocumentNode<LockStatsQueryQuery, LockStatsQueryQueryVariables>;
+export const UserKeysQueryDocument = gql`
+    query UserKeysQuery($user: Bytes!) {
+  keys(where: {owner: $user}) {
+    id
+    lock {
+      id
+    }
+    tokenId
+    owner
+  }
+}
+    ` as unknown as DocumentNode<UserKeysQueryQuery, UserKeysQueryQueryVariables>;
 export const UserLocksQueryDocument = gql`
     query UserLocksQuery($user: Bytes!) {
   locks(where: {lockManagers: [$user]}) {
@@ -1533,9 +1587,17 @@ export const UserLocksQueryDocument = gql`
     ` as unknown as DocumentNode<UserLocksQueryQuery, UserLocksQueryQueryVariables>;
 
 
+
+
 export type Requester<C = {}, E = unknown> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R> | AsyncIterable<R>
 export function getSdk<C, E>(requester: Requester<C, E>) {
   return {
+    LockStatsQuery(variables: LockStatsQueryQueryVariables, options?: C): Promise<LockStatsQueryQuery> {
+      return requester<LockStatsQueryQuery, LockStatsQueryQueryVariables>(LockStatsQueryDocument, variables, options) as Promise<LockStatsQueryQuery>;
+    },
+    UserKeysQuery(variables: UserKeysQueryQueryVariables, options?: C): Promise<UserKeysQueryQuery> {
+      return requester<UserKeysQueryQuery, UserKeysQueryQueryVariables>(UserKeysQueryDocument, variables, options) as Promise<UserKeysQueryQuery>;
+    },
     UserLocksQuery(variables: UserLocksQueryQueryVariables, options?: C): Promise<UserLocksQueryQuery> {
       return requester<UserLocksQueryQuery, UserLocksQueryQueryVariables>(UserLocksQueryDocument, variables, options) as Promise<UserLocksQueryQuery>;
     }

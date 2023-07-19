@@ -1,0 +1,11 @@
+query LockStatsQuery($lockId: ID!) {
+  locks(where: {id: $lockId}) {
+    id
+    address
+    name
+    symbol
+    totalKeys
+  	expirationDuration
+    price
+  }
+}

@@ -6,3 +6,5 @@ sources:
 
 documents: 
   - ./integrations/unlock/queries/user-locks-query.graphql
+  - ./integrations/unlock/queries/lock-stats-query.graphql
+  - ./integrations/unlock/queries/user-keys-query.graphql
