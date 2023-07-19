@@ -11,7 +11,10 @@ export function useGetWalletTransactionsVerbose({ chain, address, enabled }: Get
   return useQuery(['get-wallet-transactions-verbose', chain, address], {
     queryFn: async () => {
       const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactionsVerbose?chain=${chain}&address=${address}&format=result`)
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetWalletTransactionsVerboseResponse>
     },
@@ -23,7 +26,10 @@ export function useGetWalletTransactionsVerboseRaw({ chain, address, enabled }: 
   return useQuery(['get-wallet-transactions-verbose-raw', chain, address], {
     queryFn: async () => {
       const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactionsVerbose?chain=${chain}&address=${address}&format=raw`)
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetWalletTransactionsVerboseJSONResponse>
     },

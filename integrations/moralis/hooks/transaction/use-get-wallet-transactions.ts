@@ -11,7 +11,10 @@ export function useGetWalletTransactions({ chain, address, enabled }: GetWalletT
   return useQuery(['get-wallet-transactions', chain, address], {
     queryFn: async (): Promise<GetWalletTransactionsResponse | undefined> => {
       const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactions?chain=${chain}&address=${address}&format=result`)
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetWalletTransactionsResponse>
     },
@@ -23,7 +26,10 @@ export function useGetWalletTransactionsRaw({ chain, address, enabled }: GetWall
   return useQuery(['get-wallet-transactions-raw', chain, address], {
     queryFn: async () => {
       const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactions?chain=${chain}&address=${address}&format=raw`)
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetWalletTransactionsJSONResponse>
     },

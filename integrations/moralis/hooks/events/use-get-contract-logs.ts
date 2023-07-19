@@ -20,7 +20,10 @@ export function useGetContractLogs({ chain, address, enabled }: GetContractLogsA
           },
         }),
       })
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetContractLogsResponse>
     },
@@ -41,7 +44,10 @@ export function useGetContractLogsRaw({ chain, address, enabled }: GetContractLo
           },
         }),
       })
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetContractLogsJSONResponse>
     },

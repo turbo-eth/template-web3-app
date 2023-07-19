@@ -25,7 +25,10 @@ export function useGetContractEvents({ chain, address, topic, abi, enabled }: Ge
           },
         }),
       })
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetContractEventsResponse>
     },
@@ -48,7 +51,10 @@ export function useGetContractEventsRaw({ chain, address, topic, abi, enabled }:
           },
         }),
       })
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetContractEventsJSONResponse>
     },

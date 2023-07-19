@@ -13,7 +13,10 @@ export function useGetTransactionVerbose({ chain, transactionHash, enabled }: Ge
       const res = await fetch(
         `/integration/moralis/api/transaction/getTransactionVerbose?chain=${chain}&transactionHash=${transactionHash}&format=result`
       )
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetTransactionVerboseResponse>
     },
@@ -27,7 +30,10 @@ export function useGetTransactionVerboseRaw({ chain, transactionHash, enabled }:
       const res = await fetch(
         `/integration/moralis/api/transaction/getTransactionVerbose?chain=${chain}&transactionHash=${transactionHash}&format=raw`
       )
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetTransactionVerboseJSONResponse>
     },

@@ -11,7 +11,10 @@ export function useGetTransaction({ chain, transactionHash, enabled }: GetTransa
   return useQuery(['get-transaction', chain, transactionHash], {
     queryFn: async () => {
       const res = await fetch(`/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=result`)
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetTransactionResponse>
     },
@@ -23,7 +26,10 @@ export function useGetTransactionRaw({ chain, transactionHash, enabled }: GetTra
   return useQuery(['get-transaction-raw', chain, transactionHash], {
     queryFn: async () => {
       const res = await fetch(`/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=raw`)
-      if (!res.ok) throw new Error(res.statusText)
+      if (!res.ok) {
+        const testRes = await res.text()
+        throw new Error(testRes)
+      }
 
       return res.json() as Promise<GetTransactionJSONResponse>
     },
