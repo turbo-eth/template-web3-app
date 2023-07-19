@@ -48,8 +48,8 @@ export default function PageIntegration() {
           <Balancer>{turboIntegrations.siwe.description}</Balancer>
         </motion.p>
         <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-          <LinkComponent isExternal href={turboIntegrations.siwe.url}>
-            <button className="btn btn-primary">Documentation</button>
+          <LinkComponent isExternal className="btn btn-primary" href={turboIntegrations.siwe.url}>
+            Documentation
           </LinkComponent>
         </motion.div>
       </motion.div>

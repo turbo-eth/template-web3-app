@@ -43,8 +43,8 @@ export default function PageIntegration() {
             <Balancer>{turboIntegrations.erc20.description}</Balancer>
           </motion.p>
           <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent isExternal href={turboIntegrations.erc20.url}>
-              <button className="btn btn-primary">Documentation</button>
+            <LinkComponent isExternal className="btn btn-primary" href={turboIntegrations.erc20.url}>
+              Documentation
             </LinkComponent>
           </motion.div>
         </motion.div>

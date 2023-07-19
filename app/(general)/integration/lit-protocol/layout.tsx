@@ -45,16 +45,16 @@ export default function LayoutIntegration({ children }: LayoutIntegrationProps) 
             <Balancer>{turboIntegrations.litProtocol.description}</Balancer>
           </motion.p>
           <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent isExternal href={turboIntegrations.litProtocol.url}>
-              <button className="btn btn-primary">Documentation</button>
+            <LinkComponent isExternal className="btn btn-primary" href={turboIntegrations.litProtocol.url}>
+              Documentation
             </LinkComponent>
           </motion.div>
           <motion.div className="mt-8 flex justify-center gap-14 text-2xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent href={sharePath}>
-              <button className={cn('btn hover:opacity-75', pathname === unsealPath && 'opacity-50')}>Share</button>
+            <LinkComponent className={cn('btn hover:opacity-75', pathname === unsealPath && 'opacity-50')} href={sharePath}>
+              Share
             </LinkComponent>
-            <LinkComponent href={unsealPath}>
-              <button className={cn('btn hover:opacity-75', pathname === sharePath && 'opacity-50')}>Unseal</button>
+            <LinkComponent className={cn('btn hover:opacity-75', pathname === sharePath && 'opacity-50')} href={unsealPath}>
+              Unseal
             </LinkComponent>
           </motion.div>
         </motion.div>
