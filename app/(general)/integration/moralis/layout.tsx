@@ -52,16 +52,16 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
             <Balancer>{integrationData.description}</Balancer>
           </motion.p>
           <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent href={integrationData.url}>
-              <button className="btn btn-primary">Documentation</button>
+            <LinkComponent className="btn btn-primary" href={integrationData.url}>
+              Documentation
             </LinkComponent>
           </motion.div>
           <motion.div className="mt-8 flex flex-wrap justify-center gap-x-14 gap-y-4 text-2xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent href={transactionPath}>
-              <button className={cn('btn hover:opacity-75', pathname === eventsPath && 'opacity-50')}>Transaction API</button>
+            <LinkComponent className={cn('btn hover:opacity-75', pathname === eventsPath && 'opacity-50')} href={transactionPath}>
+              Transaction API
             </LinkComponent>
-            <LinkComponent href={eventsPath}>
-              <button className={cn('btn hover:opacity-75', pathname === transactionPath && 'opacity-50')}>Events API</button>
+            <LinkComponent className={cn('btn hover:opacity-75', pathname === transactionPath && 'opacity-50')} href={eventsPath}>
+              Events API
             </LinkComponent>
           </motion.div>
         </motion.div>
