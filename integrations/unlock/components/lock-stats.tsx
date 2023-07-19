@@ -1,5 +1,8 @@
 'use client'
 
+// TODO: make this look better
+// TODO: convert duration to days, and price to ether/matic
+
 import { useEffect, useState } from 'react'
 import { useAccount } from 'wagmi'
 
