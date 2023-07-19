@@ -1,8 +1,11 @@
 'use client'
 
+import { useState } from 'react'
+
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { FaDiscord, FaGithub } from 'react-icons/fa'
+import CopyToClipboard from 'react-copy-to-clipboard'
+import { FaCheck, FaCopy, FaDiscord, FaGithub } from 'react-icons/fa'
 import Balancer from 'react-wrap-balancer'
 
 import { WalletAddress } from '@/components/blockchain/wallet-address'
@@ -24,6 +27,8 @@ import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
 import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 
 export default function Home() {
+  const [copied, setCopied] = useState(false)
+
   return (
     <>
       <div className="relative flex flex-1">
@@ -52,36 +57,30 @@ export default function Home() {
               <Balancer className="text-xl font-semibold">{siteConfig.description}</Balancer>
             </motion.p>
             <motion.div className="mx-auto mt-6 flex flex-wrap items-center justify-center gap-y-3 space-x-4" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-              <a
-                className="group flex max-w-fit items-center justify-center space-x-2 rounded-full border border-black bg-black px-5 py-2 text-sm text-white transition-colors hover:bg-white hover:text-black"
-                href={DEPLOY_URL}
-                rel="noopener noreferrer"
-                target="_blank">
-                <svg className="h-4 w-4 group-hover:text-black" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 4L20 20H4L12 4Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
-                </svg>
-                <p>Deploy to Vercel</p>
-              </a>
-              <a
+              <LinkComponent
                 className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 text-sm text-gray-600 shadow-md transition-colors hover:border-gray-800"
-                href={siteConfig.links.github}
-                rel="noopener noreferrer"
-                target="_blank">
+                href={siteConfig.links.github}>
                 <FaGithub />
                 <p>Star on GitHub</p>
-              </a>
-              <a
+              </LinkComponent>
+              <LinkComponent
                 className="flex max-w-fit items-center justify-center space-x-2 rounded-full border border-indigo-400 bg-indigo-500 px-5 py-2 text-sm text-white shadow-md transition-colors hover:border-indigo-600"
-                href={siteConfig.links.discord}
-                rel="noopener noreferrer"
-                target="_blank">
+                href={siteConfig.links.discord}>
                 <FaDiscord />
                 <p>Join us on Discord</p>
-              </a>
+              </LinkComponent>
             </motion.div>
-            <span className="tag mt-6">⚡️TurboETH is in active development.</span>
+            <CopyToClipboard text="pnpm create turbo-eth@latest" onCopy={() => setCopied(true)}>
+              <motion.div
+                className="group mx-auto mt-8 flex max-w-fit cursor-pointer items-center justify-between gap-x-2 rounded-xl border border-gray-200 bg-white py-4 px-3 text-sm font-medium shadow-md transition-colors dark:border-gray-800 dark:bg-neutral-800 dark:text-white hover:dark:border-gray-600/70 hover:dark:bg-neutral-700/70 md:px-6 md:text-lg"
+                variants={FADE_DOWN_ANIMATION_VARIANTS}>
+                <pre>pnpm create turbo-eth@latest</pre>
+                <span className="flex-center flex h-4 w-4 cursor-pointer rounded-md text-neutral-600 dark:text-neutral-100 md:h-7 md:w-7">
+                  {copied ? <FaCheck /> : <FaCopy />}
+                </span>
+              </motion.div>
+            </CopyToClipboard>
           </motion.div>
-
           <div className="mt-10">
             <motion.div
               animate="show"
