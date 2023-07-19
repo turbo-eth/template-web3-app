@@ -24,13 +24,12 @@ export default function UserLocks() {
     <div>
       {userLocks ? (
         <div>
-          <p>locks found</p>
           {userLocks.locks.map((lock) => (
-            <LockPreview key={lock.address} lockName={lock.name} />
+            <LockPreview key={lock.address} lockId={lock.id} lockName={lock.name} />
           ))}
         </div>
       ) : (
-        <p>No Locks</p>
+        <p>No Locks Found</p>
       )}
     </div>
   )
