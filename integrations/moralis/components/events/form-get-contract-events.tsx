@@ -72,7 +72,7 @@ export function FormGetContractEvents() {
         <input {...register('topic')} className="input" />
         <label>ABI</label>
         <textarea {...register('abi')} className="input h-72" />
-        <>{error && <span className="text-red-500">Error: {error instanceof Error ? error.message : String(error)}</span>}</>
+        <>{error && <span className="text-red-500">{String(error)}</span>}</>
         <button className="btn btn-emerald mt-4" disabled={isFetching || !chain || !address || !topic || !abi} type="submit">
           {isFetching ? 'Loading...' : 'Submit'}
         </button>

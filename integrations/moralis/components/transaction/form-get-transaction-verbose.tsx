@@ -39,7 +39,7 @@ export function FormGetTransactionVerbose() {
         <input {...register('chain')} className="input" />
         <label>Transaction Hash</label>
         <input {...register('transactionHash')} className="input" />
-        <>{error && <span className="text-red-500">Error: {error instanceof Error ? error.message : String(error)}</span>}</>
+        <>{error && <span className="text-red-500">{String(error)}</span>}</>
         <button className="btn btn-emerald mt-4" disabled={isFetching || !chain || !transactionHash} type="submit">
           {isFetching ? 'Loading...' : 'Submit'}
         </button>
