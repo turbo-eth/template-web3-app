@@ -1,48 +1,57 @@
 import type { GetContractEventsJSONResponse, GetContractEventsResponse } from '@moralisweb3/common-evm-utils'
 import { useQuery } from '@tanstack/react-query'
 
-import type { GetContractEvents } from '@/integrations/moralis/utils/types'
+interface GetContractEventsArgs {
+  chain: string
+  address: string
+  topic: string
+  abi: any
+  enabled?: boolean
+}
 
-export function useGetContractEvents(args: GetContractEvents['args']) {
-  return useQuery(['get-contract-events'], {
+export function useGetContractEvents({ chain, address, topic, abi, enabled }: GetContractEventsArgs) {
+  console
+  return useQuery(['get-contract-events', chain, address, topic, abi], {
     queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/events/getContractEvents`, {
-          method: 'POST',
-          body: JSON.stringify({
-            format: 'result',
-            args,
-          }),
-        })
-        if (!res.ok) throw new Error('Error fetching events')
+      const res = await fetch(`/integration/moralis/api/events/getContractEvents`, {
+        method: 'POST',
+        body: JSON.stringify({
+          format: 'result',
+          args: {
+            chain,
+            address,
+            topic,
+            abi: typeof abi === 'string' ? JSON.parse(abi) : abi,
+          },
+        }),
+      })
+      if (!res.ok) throw new Error(res.statusText)
 
-        return res.json() as Promise<GetContractEventsResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+      return res.json() as Promise<GetContractEventsResponse>
     },
+    enabled,
   })
 }
 
-export function useGetContractEventsRaw(args: GetContractEvents['args']) {
-  return useQuery(['get-contract-events-raw'], {
+export function useGetContractEventsRaw({ chain, address, topic, abi, enabled }: GetContractEventsArgs) {
+  return useQuery(['get-contract-events-raw', chain, address, topic, abi], {
     queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/events/getContractEvents`, {
-          method: 'POST',
-          body: JSON.stringify({
-            format: 'raw',
-            args,
-          }),
-        })
-        if (!res.ok) throw new Error('Error fetching events')
+      const res = await fetch(`/integration/moralis/api/events/getContractEvents`, {
+        method: 'POST',
+        body: JSON.stringify({
+          format: 'raw',
+          args: {
+            chain,
+            address,
+            topic,
+            abi: typeof abi === 'string' ? JSON.parse(abi) : abi,
+          },
+        }),
+      })
+      if (!res.ok) throw new Error(res.statusText)
 
-        return res.json() as Promise<GetContractEventsJSONResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+      return res.json() as Promise<GetContractEventsJSONResponse>
     },
+    enabled,
   })
 }

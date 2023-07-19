@@ -1,34 +1,32 @@
 import type { GetWalletTransactionsVerboseJSONResponse, GetWalletTransactionsVerboseResponse } from '@moralisweb3/common-evm-utils'
 import { useQuery } from '@tanstack/react-query'
 
-export function useGetWalletTransactionsVerbose({ chain, address }: { chain: string; address: string }) {
-  return useQuery(['get-wallet-transactions-verbose'], {
-    queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactionsVerbose?chain=${chain}&address=${address}&format=result`)
-        if (!res.ok) throw new Error('Error fetching transaction')
+interface GetWalletTransactionsVerbose {
+  chain: string
+  address: string
+  enabled?: boolean
+}
 
-        return res.json() as Promise<GetWalletTransactionsVerboseResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+export function useGetWalletTransactionsVerbose({ chain, address, enabled }: GetWalletTransactionsVerbose) {
+  return useQuery(['get-wallet-transactions-verbose', chain, address], {
+    queryFn: async () => {
+      const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactionsVerbose?chain=${chain}&address=${address}&format=result`)
+      if (!res.ok) throw new Error(res.statusText)
+
+      return res.json() as Promise<GetWalletTransactionsVerboseResponse>
     },
+    enabled,
   })
 }
 
-export function useGetWalletTransactionsVerboseRaw({ chain, address }: { chain: string; address: string }) {
-  return useQuery(['get-wallet-transactions-verbose-raw'], {
+export function useGetWalletTransactionsVerboseRaw({ chain, address, enabled }: GetWalletTransactionsVerbose) {
+  return useQuery(['get-wallet-transactions-verbose-raw', chain, address], {
     queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactionsVerbose?chain=${chain}&address=${address}&format=raw`)
-        if (!res.ok) throw new Error('Error fetching transaction')
+      const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactionsVerbose?chain=${chain}&address=${address}&format=raw`)
+      if (!res.ok) throw new Error(res.statusText)
 
-        return res.json() as Promise<GetWalletTransactionsVerboseJSONResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+      return res.json() as Promise<GetWalletTransactionsVerboseJSONResponse>
     },
+    enabled,
   })
 }

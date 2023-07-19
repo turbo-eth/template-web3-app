@@ -14,6 +14,8 @@ export const transactionAPIMethodsSchema = z.union([
   z.literal('getWalletTransactionsVerbose'),
 ])
 
+export type TransactionAPIMethods = z.infer<typeof transactionAPIMethodsSchema>
+
 // Events API
 export const eventsAPIMethodsSchema = z.union([z.literal('getContractLogs'), z.literal('getContractEvents')])
 

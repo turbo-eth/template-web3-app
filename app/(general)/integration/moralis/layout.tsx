@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import Balancer from 'react-wrap-balancer'
 
 import { IsDarkTheme } from '@/components/shared/is-dark-theme'
@@ -10,10 +11,15 @@ import { IsLightTheme } from '@/components/shared/is-light-theme'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import { cn } from '@/lib/utils'
 
 const integrationData = turboIntegrations.moralis
 
+const eventsPath = '/integration/moralis/events'
+const transactionPath = '/integration/moralis/transaction'
+
 export default function LayoutIntegration({ children }: { children: ReactNode }) {
+  const pathname = usePathname()
   return (
     <>
       <div className="flex-center flex-col items-center justify-center text-center">
@@ -50,9 +56,17 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
               <button className="btn btn-primary">Documentation</button>
             </LinkComponent>
           </motion.div>
+          <motion.div className="mt-8 flex flex-wrap justify-center gap-x-14 gap-y-4 text-2xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <LinkComponent href={transactionPath}>
+              <button className={cn('btn hover:opacity-75', pathname === eventsPath && 'opacity-50')}>Transaction API</button>
+            </LinkComponent>
+            <LinkComponent href={eventsPath}>
+              <button className={cn('btn hover:opacity-75', pathname === transactionPath && 'opacity-50')}>Events API</button>
+            </LinkComponent>
+          </motion.div>
         </motion.div>
       </div>
-      <section>{children}</section>
+      {children}
     </>
   )
 }

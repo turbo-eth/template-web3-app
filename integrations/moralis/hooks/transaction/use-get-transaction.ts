@@ -1,34 +1,32 @@
 import type { GetTransactionJSONResponse, GetTransactionResponse } from '@moralisweb3/common-evm-utils'
 import { useQuery } from '@tanstack/react-query'
 
-export function useGetTransaction({ chain, transactionHash }: { chain: string; transactionHash: string }) {
-  return useQuery(['get-transaction'], {
-    queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=result`)
-        if (!res.ok) throw new Error('Error fetching transaction')
+interface GetTransactionArgs {
+  chain: string
+  transactionHash: string
+  enabled?: boolean
+}
 
-        return res.json() as Promise<GetTransactionResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+export function useGetTransaction({ chain, transactionHash, enabled }: GetTransactionArgs) {
+  return useQuery(['get-transaction', chain, transactionHash], {
+    queryFn: async () => {
+      const res = await fetch(`/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=result`)
+      if (!res.ok) throw new Error(res.statusText)
+
+      return res.json() as Promise<GetTransactionResponse>
     },
+    enabled,
   })
 }
 
-export function useGetTransactionRaw({ chain, transactionHash }: { chain: string; transactionHash: string }) {
-  return useQuery(['get-transaction-raw'], {
+export function useGetTransactionRaw({ chain, transactionHash, enabled }: GetTransactionArgs) {
+  return useQuery(['get-transaction-raw', chain, transactionHash], {
     queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=raw`)
-        if (!res.ok) throw new Error('Error fetching transaction')
+      const res = await fetch(`/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=raw`)
+      if (!res.ok) throw new Error(res.statusText)
 
-        return res.json() as Promise<GetTransactionJSONResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+      return res.json() as Promise<GetTransactionJSONResponse>
     },
+    enabled,
   })
 }

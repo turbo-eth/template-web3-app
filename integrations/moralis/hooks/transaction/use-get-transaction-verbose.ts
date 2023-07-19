@@ -1,38 +1,36 @@
 import type { GetTransactionVerboseJSONResponse, GetTransactionVerboseResponse } from '@moralisweb3/common-evm-utils'
 import { useQuery } from '@tanstack/react-query'
 
-export function useGetTransactionVerbose({ chain, transactionHash }: { chain: string; transactionHash: string }) {
-  return useQuery(['get-transaction-verbose'], {
-    queryFn: async () => {
-      try {
-        const res = await fetch(
-          `/integration/moralis/api/transaction/getTransactionVerbose?chain=${chain}&transactionHash=${transactionHash}&format=result`
-        )
-        if (!res.ok) throw new Error('Error fetching transaction')
+interface GetTransactionVerboseArgs {
+  chain: string
+  transactionHash: string
+  enabled?: boolean
+}
 
-        return res.json() as Promise<GetTransactionVerboseResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+export function useGetTransactionVerbose({ chain, transactionHash, enabled }: GetTransactionVerboseArgs) {
+  return useQuery(['get-transaction-verbose', chain, transactionHash], {
+    queryFn: async () => {
+      const res = await fetch(
+        `/integration/moralis/api/transaction/getTransactionVerbose?chain=${chain}&transactionHash=${transactionHash}&format=result`
+      )
+      if (!res.ok) throw new Error(res.statusText)
+
+      return res.json() as Promise<GetTransactionVerboseResponse>
     },
+    enabled,
   })
 }
 
-export function useGetTransactionVerboseRaw({ chain, transactionHash }: { chain: string; transactionHash: string }) {
-  return useQuery(['get-transaction-verbose-raw'], {
+export function useGetTransactionVerboseRaw({ chain, transactionHash, enabled }: GetTransactionVerboseArgs) {
+  return useQuery(['get-transaction-verbose-raw', chain, transactionHash], {
     queryFn: async () => {
-      try {
-        const res = await fetch(
-          `/integration/moralis/api/transaction/getTransactionVerbose?chain=${chain}&transactionHash=${transactionHash}&format=raw`
-        )
-        if (!res.ok) throw new Error('Error fetching transaction')
+      const res = await fetch(
+        `/integration/moralis/api/transaction/getTransactionVerbose?chain=${chain}&transactionHash=${transactionHash}&format=raw`
+      )
+      if (!res.ok) throw new Error(res.statusText)
 
-        return res.json() as Promise<GetTransactionVerboseJSONResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+      return res.json() as Promise<GetTransactionVerboseJSONResponse>
     },
+    enabled,
   })
 }

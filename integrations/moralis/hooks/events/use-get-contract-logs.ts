@@ -1,48 +1,50 @@
 import type { GetContractLogsJSONResponse, GetContractLogsResponse } from '@moralisweb3/common-evm-utils'
 import { useQuery } from '@tanstack/react-query'
 
-import type { GetContractLogs } from '@/integrations/moralis/utils/types'
+interface GetContractLogsArgs {
+  chain: string
+  address: string
+  enabled?: boolean
+}
 
-export function useGetContractLogs(args: GetContractLogs['args']) {
-  return useQuery(['get-contract-logs'], {
+export function useGetContractLogs({ chain, address, enabled }: GetContractLogsArgs) {
+  return useQuery(['get-contract-logs', chain, address], {
     queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/events/getContractLogs`, {
-          method: 'POST',
-          body: JSON.stringify({
-            format: 'result',
-            args,
-          }),
-        })
-        if (!res.ok) throw new Error('Error fetching logs')
+      const res = await fetch(`/integration/moralis/api/events/getContractLogs`, {
+        method: 'POST',
+        body: JSON.stringify({
+          format: 'result',
+          args: {
+            chain,
+            address,
+          },
+        }),
+      })
+      if (!res.ok) throw new Error(res.statusText)
 
-        return res.json() as Promise<GetContractLogsResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+      return res.json() as Promise<GetContractLogsResponse>
     },
+    enabled,
   })
 }
 
-export function useGetContractLogsRaw(args: GetContractLogs['args']) {
-  return useQuery(['get-contract-logs-raw'], {
+export function useGetContractLogsRaw({ chain, address, enabled }: GetContractLogsArgs) {
+  return useQuery(['get-contract-logs-raw', chain, address], {
     queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/events/getContractLogs`, {
-          method: 'POST',
-          body: JSON.stringify({
-            format: 'raw',
-            args,
-          }),
-        })
-        if (!res.ok) throw new Error('Error fetching logs')
+      const res = await fetch(`/integration/moralis/api/events/getContractLogs`, {
+        method: 'POST',
+        body: JSON.stringify({
+          format: 'raw',
+          args: {
+            chain,
+            address,
+          },
+        }),
+      })
+      if (!res.ok) throw new Error(res.statusText)
 
-        return res.json() as Promise<GetContractLogsJSONResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+      return res.json() as Promise<GetContractLogsJSONResponse>
     },
+    enabled,
   })
 }

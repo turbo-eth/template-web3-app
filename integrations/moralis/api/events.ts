@@ -47,6 +47,6 @@ export async function POST(
     return new Response(JSON.stringify(response), { status: 200, headers: { 'Content-Type': 'application/json' } })
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : String(e)
-    return new Response(errorMessage, { status: 500 })
+    return new Response(errorMessage, { status: 500, statusText: errorMessage })
   }
 }

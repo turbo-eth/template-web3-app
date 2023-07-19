@@ -1,34 +1,32 @@
 import type { GetWalletTransactionsJSONResponse, GetWalletTransactionsResponse } from '@moralisweb3/common-evm-utils'
 import { useQuery } from '@tanstack/react-query'
 
-export function useGetWalletTransactions({ chain, address }: { chain: string; address: string }) {
-  return useQuery(['get-wallet-transactions'], {
-    queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactions?chain=${chain}&address=${address}&format=result`)
-        if (!res.ok) throw new Error('Error fetching transaction')
+interface GetWalletTransactionsArgs {
+  chain: string
+  address: string
+  enabled?: boolean
+}
 
-        return res.json() as Promise<GetWalletTransactionsResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+export function useGetWalletTransactions({ chain, address, enabled }: GetWalletTransactionsArgs) {
+  return useQuery(['get-wallet-transactions', chain, address], {
+    queryFn: async (): Promise<GetWalletTransactionsResponse | undefined> => {
+      const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactions?chain=${chain}&address=${address}&format=result`)
+      if (!res.ok) throw new Error(res.statusText)
+
+      return res.json() as Promise<GetWalletTransactionsResponse>
     },
+    enabled,
   })
 }
 
-export function useGetWalletTransactionsRaw({ chain, address }: { chain: string; address: string }) {
-  return useQuery(['get-wallet-transactions-raw'], {
+export function useGetWalletTransactionsRaw({ chain, address, enabled }: GetWalletTransactionsArgs) {
+  return useQuery(['get-wallet-transactions-raw', chain, address], {
     queryFn: async () => {
-      try {
-        const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactions?chain=${chain}&address=${address}&format=raw`)
-        if (!res.ok) throw new Error('Error fetching transaction')
+      const res = await fetch(`/integration/moralis/api/transaction/getWalletTransactions?chain=${chain}&address=${address}&format=raw`)
+      if (!res.ok) throw new Error(res.statusText)
 
-        return res.json() as Promise<GetWalletTransactionsJSONResponse>
-      } catch (e) {
-        const errorMessage = e instanceof Error ? e.message : String(e)
-        console.error(errorMessage)
-      }
+      return res.json() as Promise<GetWalletTransactionsJSONResponse>
     },
+    enabled,
   })
 }

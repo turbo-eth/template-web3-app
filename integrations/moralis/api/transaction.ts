@@ -51,6 +51,6 @@ export async function GET(
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : String(e)
     console.error(errorMessage)
-    return new Response(errorMessage, { status: 500 })
+    return new Response(errorMessage, { status: 500, statusText: errorMessage })
   }
 }
