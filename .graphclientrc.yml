@@ -1,0 +1,8 @@
+sources:
+  - name: unlock-mumbai
+    handler: 
+      graphql: 
+        endpoint: https://api.thegraph.com/subgraphs/name/unlock-protocol/mumbai-v2
+
+documents: 
+  - ./integrations/unlock/queries/user-locks-query.graphql
