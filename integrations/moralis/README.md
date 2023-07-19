@@ -1,62 +1,96 @@
-# Starter TurboETH Integration
+# Moralis - TurboETH Integration
 
-Welcome to the Starter TurboETH Integration! This folder serves as a blueprint for creating new integrations in TurboETH. If you're looking to contribute a new integration, simply copy this directory, and also the starter page located at `app/integration/starter`, to begin your development.
+This integration adds the [Moralis](https://moralis.io/) Web3 APIs to TurboETH. It currently supports the [Transaction API](https://moralis.io/api/transaction/) and [Events API](https://moralis.io/api/events/). Built on top of the [`moralis`](https://www.npmjs.com/package/moralis) SDK, this integration provides a suite or api routes, React hooks and components, enabling developers to build Web3 apps fed with multi-chain web3 data.
 
-## Creating a new integration
+## Features
 
-Below are the steps to create a new integration.
+### Transaction API
 
-1. Copy the integration folder template from `/integrations/starter` and add your integration code, adhering to the file structure patterns evident in this folder.
+- [Get transaction by hash](https://docs.moralis.io/web3-data-api/evm/reference/get-transaction) - Get the contents of a transaction by the given transaction hash.
+- [Get decoded transaction by hash](https://docs.moralis.io/web3-data-api/evm/reference/get-decoded-transaction) - Get the contents of a transaction by the given transaction hash.
+- [Get native transactions by wallet](https://docs.moralis.io/web3-data-api/evm/reference/get-wallet-transactions) - Get native transactions ordered by block number in descending order.
+- [Get decoded transactions by wallet](https://docs.moralis.io/web3-data-api/evm/reference/get-decoded-wallet-transaction) - Get native transactions and logs ordered by block number in descending order.
+- [Get internal transactions by transaction hash](https://docs.moralis.io/web3-data-api/evm/reference/get-internal-transactions) - Get the contents of a internal transaction by transaction hash.
 
-2. Duplicate the integration page from `/app/(general)/integration/starter` and populate it with your integration pages' code.
+### Events API
 
-3. Locate any API endpoints associated with your integration in the `/api` folder within the page folder of your integration. An example API endpoint can be found at `/app/(general)/integration/starter/api/hello-world/route.ts`. These API endpoints should follow the new [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) patterns of Next.js 13.
+- [Get logs by contract](https://docs.moralis.io/web3-data-api/evm/reference/get-contract-logs) - Get the logs for a contract.
+- [Get events by contract](https://docs.moralis.io/web3-data-api/evm/reference/get-contract-events) - Get events for a contract ordered by block number in descending order.
 
-4. Enter the data related to your integration in `/data/turbo-integrations.ts`. Here, add a new object with the name, description, image, and URL of your integration.
+## API Routes
 
-5. Update the OG image configuration of your integration page in the `opengraph-image.tsx` file. Do this by replacing the argument of the `IntegrationOgImage` function with the object key of your integration used in the previous step.
+### Transaction API
 
-## Understanding the Starter template
+- `api/transactions`: Route handler that accepts a dynamic route for the method, the method is used in the moralis SDK `Moralis.EvmApi.transaction[method]`.
+  Supported methods:
+- `getInternalTransactions`
+- `getTransactionVerbose`
+- `getTransaction`
+- `getWalletTransactionsVerbose`
+- `getWalletTransactions`
 
-Each component of the Starter TurboETH template is designed to help streamline your development process:
+### Events API
 
-- **abis/**: Put your contract's ABI here. Each ABI should be in its own TypeScript file.
+- `api/events`: Route handler that accepts a dynamic route for the method, the method is used in the moralis SDK `Moralis.EvmApi.events[method]`.
+  Supported methods:
+- `getContractLogs`
+- `getContractEvents`
 
-- **client/**: Any client initialization for your chosen module or SDK should be placed here.
+## Hooks
 
-- **components/**: This is the home for your React components. 'Read' components, which display data from a contract, and 'write' components, that send transactions, should all be placed here.
+### Transaction API
 
-- **hooks/**: Place your custom React hooks in this folder. These hooks are intended to manage state updates and encapsulate the logic for interacting with Ethereum contracts.
+- `useGetInternalTransactions`: wrapper around the `getInternalTransactions` SDK method. It also provides a raw option with JSON formatted parameters.
+- `useGetTransactionVerbose`: wrapper around the `getTransactionVerbose` SDK method. It also provides a raw option with JSON formatted parameters.
+- `useGetTransaction`: wrapper around the `getTransaction` SDK method. It also provides a raw option with JSON formatted parameters.
+- `useGetWalletTransactionsVerbose`: wrapper around the `getWalletTransactionsVerbose` SDK method. It also provides a raw option with JSON formatted parameters.
+- `useGetWalletTransactions`: wrapper around the `getWalletTransactions` SDK method. It also provides a raw option with JSON formatted parameters.
 
-- **starter-wagmi.ts**: This is a generated file from [wagmi-cli](https://wagmi.sh/cli/getting-started). It includes hooks for your contracts .
+### Event API
 
-- **index.ts**: Consider this as the entry point for your integration. It should export all the hooks, components, and utility functions that your integration provides.
+- `useGetContractLogs`: wrapper around the `getContractLogs` SDK method. It also provides a raw option with JSON formatted parameters.
+- `useGetContractEvents`: wrapper around the `getContractEvents` SDK method. It also provides a raw option with JSON formatted parameters.
 
-- **wagmi.config.ts**: This file should hold the wagmi-cli configuration for your integration, which includes settings like compiler version and optimization.
+## Components
 
-- **README.md**: Here, you should document your integration. Explain its purpose, its use, and any important information a new developer or user should know.
-
-Each of these elements plays a crucial role in making your integration functional and accessible.
+The integration provides a form component for
+each hook as an example of usage.
 
 ## File Structure
 
 ```
-integrations/starter
-├─ abis/
-│  ├─ starter-abi.ts
+integrations/moralis
+├─ api/
+│  ├─ events.ts
+│  ├─ transaction.ts
 ├─ client/
 │  ├─ index.ts
 ├─ components/
-│  ├─ starter-header.tsx
-├─ generated/
-│  ├─ starter-wagmi.ts
+│  ├─ events/
+│  │  ├─ form-get-contract-events.tsx
+│  │  ├─ form-get-contract-logs.tsx
+│  ├─ transaction/
+│  │  ├─ form-get-internal-transactions.tsx
+│  │  ├─ form-get-transaction-verbose.tsx
+│  │  ├─ form-get-transaction.tsx
+│  │  ├─ form-get-wallet-transactions-verbose.tsx
+│  │  ├─ form-get-wallet-transactions.tsx
+│  ├─ output-data.tsx
 ├─ hooks/
-│  ├─ use-starter.ts
+│  ├─ events/
+│  │  ├─ index.ts
+│  │  ├─ use-get-contract-events.ts
+│  │  ├─ use-get-contract-logs.ts
+│  ├─ transaction/
+│  │  ├─ index.ts
+│  │  ├─ use-get-internal-transactions.ts
+│  │  ├─ use-get-transaction-verbose.ts
+│  │  ├─ use-get-transaction.ts
+│  │  ├─ use-get-wallet-transactions-verbose.ts
+│  │  ├─ use-get-wallet-transactions.ts
 ├─ utils/
 │  ├─ types.ts
 ├─ index.ts
 ├─ README.md
-├─ wagmi.config.ts
-```
 
-By using this template, you'll create well-organized and understandable integrations that are easy for you and others to navigate. Happy coding!
+```
