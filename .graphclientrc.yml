@@ -2,7 +2,7 @@ sources:
   - name: unlock
     handler: 
       graphql: 
-        endpoint: https://api.thegraph.com/subgraphs/name/unlock-protocol/mumbai-v2
+        endpoint: 'https://api.thegraph.com/subgraphs/name/unlock-protocol/{context.network:goerli-v2}'
 
 documents: 
   - ./integrations/unlock/queries/user-locks-query.graphql

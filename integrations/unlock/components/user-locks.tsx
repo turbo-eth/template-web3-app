@@ -5,10 +5,13 @@ import { useEffect, useState } from 'react'
 import { UserLocksQueryQuery } from '@/.graphclient'
 import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
 import LockPreview from './lock-preview'
+import { useAccount, useNetwork } from 'wagmi'
 
 export default function UserLocks() {
   const [userLocks, setUserLocks] = useState<UserLocksQueryQuery>()
   const { getUserLocks } = useUnlockSubgraph()
+  const { address } = useAccount()
+  const { chain } = useNetwork()
 
   useEffect(() => {
     async function fetchUserLocks() {
@@ -16,11 +19,11 @@ export default function UserLocks() {
       setUserLocks(locks)
     }
     fetchUserLocks()
-  }, [UserLocks])
+  }, [address, chain])
 
   return (
     <div>
-      {userLocks ? (
+      {userLocks && userLocks?.locks.length > 0 ? (
         <div>
           {userLocks.locks.map((lock) => (
             <LockPreview key={lock.address} lockId={lock.id} lockName={lock.name} />

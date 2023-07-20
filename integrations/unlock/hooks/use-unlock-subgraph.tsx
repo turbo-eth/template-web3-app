@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react'
 import { UserKeysQueryDocument, UserLocksQueryDocument, execute } from '@/.graphclient'
 
 const endpoints = {
-  80001: {
-    subgraphUrl: 'https://api.thegraph.com/subgraphs/name/unlock-protocol/mumbai-v2',
-  },
+  1: 'mainnet-v2',
+  5: 'goerli-v2',
+  80001: 'mumbai-v2',
 }
 
 export default function useUnlockSubgraph() {
@@ -22,22 +22,20 @@ export default function useUnlockSubgraph() {
   if (!networkConfig) throw new Error('Unsupported Chain')
 
   async function getUserKeys() {
+    console.log('getting user keys')
+    console.log(endpoints[chain.id].subgraphUrl)
+
     const variables = { user: address }
-    const result = await execute(UserKeysQueryDocument, variables, {
-      config: {
-        endpoint: endpoints[chain.id].subgraphUrl,
-      },
-    })
+    const result = await execute(UserKeysQueryDocument, variables, { network: endpoints[chain?.id] })
     return result?.data
   }
 
   async function getUserLocks() {
+    console.log('getting user locks')
+    console.log(endpoints[chain.id].subgraphUrl)
+
     const variables = { user: address }
-    const result = await execute(UserLocksQueryDocument, variables, {
-      config: {
-        endpoint: endpoints[chain.id].subgraphUrl,
-      },
-    })
+    const result = await execute(UserLocksQueryDocument, variables, { network: endpoints[chain?.id] })
     return result?.data
   }
 

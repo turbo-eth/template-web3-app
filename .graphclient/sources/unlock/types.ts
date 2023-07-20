@@ -1099,6 +1099,6 @@ export type _SubgraphErrorPolicy_ =
 
   export type Context = {
       ["unlock"]: { Query: QuerySdk, Mutation: MutationSdk, Subscription: SubscriptionSdk },
-      
+      ["network"]: Scalars['ID']
     };
 }

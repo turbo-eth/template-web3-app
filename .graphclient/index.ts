@@ -1437,7 +1437,7 @@ const unlockTransforms = [];
 const additionalTypeDefs = [] as any[];
 const unlockHandler = new GraphqlHandler({
               name: "unlock",
-              config: {"endpoint":"https://api.thegraph.com/subgraphs/name/unlock-protocol/mumbai-v2"},
+              config: {"endpoint":"https://api.thegraph.com/subgraphs/name/unlock-protocol/{context.network:goerli-v2}"},
               baseDir,
               cache,
               pubsub,
