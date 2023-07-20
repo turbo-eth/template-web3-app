@@ -20,8 +20,8 @@ import { getMesh, ExecuteMeshFn, SubscribeMeshFn, MeshContext as BaseMeshContext
 import { MeshStore, FsStoreStorageAdapter } from '@graphql-mesh/store';
 import { path as pathModule } from '@graphql-mesh/cross-helpers';
 import { ImportFn } from '@graphql-mesh/types';
-import type { UnlockMumbaiTypes } from './sources/unlock-mumbai/types';
-import * as importedModule$0 from "./sources/unlock-mumbai/introspectionSchema";
+import type { UnlockTypes } from './sources/unlock/types';
+import * as importedModule$0 from "./sources/unlock/introspectionSchema";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -1391,7 +1391,7 @@ export type DirectiveResolvers<ContextType = MeshContext> = ResolversObject<{
   derivedFrom?: derivedFromDirectiveResolver<any, any, ContextType>;
 }>;
 
-export type MeshContext = UnlockMumbaiTypes.Context & BaseMeshContext;
+export type MeshContext = UnlockTypes.Context & BaseMeshContext;
 
 
 import { fileURLToPath } from '@graphql-mesh/utils';
@@ -1400,7 +1400,7 @@ const baseDir = pathModule.join(pathModule.dirname(fileURLToPath(import.meta.url
 const importFn: ImportFn = <T>(moduleId: string) => {
   const relativeModuleId = (pathModule.isAbsolute(moduleId) ? pathModule.relative(baseDir, moduleId) : moduleId).split('\\').join('/').replace(baseDir + '/', '');
   switch(relativeModuleId) {
-    case ".graphclient/sources/unlock-mumbai/introspectionSchema":
+    case ".graphclient/sources/unlock/introspectionSchema":
       return Promise.resolve(importedModule$0) as T;
     
     default:
@@ -1433,22 +1433,22 @@ const cache = new (MeshCache as any)({
 const sources: MeshResolvedSource[] = [];
 const transforms: MeshTransform[] = [];
 const additionalEnvelopPlugins: MeshPlugin<any>[] = [];
-const unlockMumbaiTransforms = [];
+const unlockTransforms = [];
 const additionalTypeDefs = [] as any[];
-const unlockMumbaiHandler = new GraphqlHandler({
-              name: "unlock-mumbai",
+const unlockHandler = new GraphqlHandler({
+              name: "unlock",
               config: {"endpoint":"https://api.thegraph.com/subgraphs/name/unlock-protocol/mumbai-v2"},
               baseDir,
               cache,
               pubsub,
-              store: sourcesStore.child("unlock-mumbai"),
-              logger: logger.child("unlock-mumbai"),
+              store: sourcesStore.child("unlock"),
+              logger: logger.child("unlock"),
               importFn,
             });
 sources[0] = {
-          name: 'unlock-mumbai',
-          handler: unlockMumbaiHandler,
-          transforms: unlockMumbaiTransforms
+          name: 'unlock',
+          handler: unlockHandler,
+          transforms: unlockTransforms
         }
 const additionalResolvers = [] as any[]
 const merger = new(BareMerger as any)({

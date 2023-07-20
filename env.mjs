@@ -18,7 +18,6 @@ export const env = createEnv({
     ETHERSCAN_API_KEY_OPTIMISM: z.string().min(1).optional(),
     ETHERSCAN_API_KEY_ARBITRUM: z.string().min(1).optional(),
     ETHERSCAN_API_KEY_POLYGON: z.string().min(1).optional(),
-    GRAPH_API_KEY: z.string().min(1).optional(),
   },
   client: {
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER: z.enum(['true', 'false']).default('true'),
@@ -41,6 +40,5 @@ export const env = createEnv({
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER: process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER,
     NEXT_PUBLIC_ALCHEMY_API_KEY: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     NEXT_PUBLIC_INFURA_API_KEY: process.env.NEXT_PUBLIC_INFURA_API_KEY,
-    GRAPH_API_KEY: process.env.THE_GRAPH_API_KEY,
   },
 })

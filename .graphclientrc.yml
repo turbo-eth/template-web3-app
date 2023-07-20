@@ -1,5 +1,5 @@
 sources:
-  - name: unlock-mumbai
+  - name: unlock
     handler: 
       graphql: 
         endpoint: https://api.thegraph.com/subgraphs/name/unlock-protocol/mumbai-v2

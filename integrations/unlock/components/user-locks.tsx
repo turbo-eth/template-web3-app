@@ -1,23 +1,21 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useAccount } from 'wagmi'
 
-import { UserLocksQueryDocument, UserLocksQueryQuery, execute } from '@/.graphclient'
-
+import { UserLocksQueryQuery } from '@/.graphclient'
+import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
 import LockPreview from './lock-preview'
 
 export default function UserLocks() {
   const [userLocks, setUserLocks] = useState<UserLocksQueryQuery>()
-  const { address } = useAccount()
+  const { getUserLocks } = useUnlockSubgraph()
 
   useEffect(() => {
-    const variables = { user: address }
-    execute(UserLocksQueryDocument, variables).then((result) => {
-      console.log(UserLocksQueryDocument)
-      console.log(result?.data)
-      setUserLocks(result?.data)
-    })
+    async function fetchUserLocks() {
+      const locks = await getUserLocks()
+      setUserLocks(locks)
+    }
+    fetchUserLocks()
   }, [UserLocks])
 
   return (
