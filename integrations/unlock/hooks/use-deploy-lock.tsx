@@ -5,7 +5,7 @@ import { networks } from '@unlock-protocol/networks'
 import { ethers } from 'ethers'
 import { useAccount, useContractWrite, useNetwork, usePrepareContractWrite } from 'wagmi'
 
-export function useUnlock() {
+export function useDeployLock() {
   // eslint-disable-neeNetwork()
   const { address } = useAccount()
   const { chain } = useNetwork()
@@ -42,11 +42,8 @@ export function useUnlock() {
         name,
       ])
     )
-
-    if (write) {
-      write()
-    }
+    write?.()
   }
 
-  return { deployLock }
+  return { data, isLoading, isSuccess, deployLock }
 }

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 
-import { useUnlock } from '../hooks/use-lock'
+import { useDeployLock } from '../hooks/use-deploy-lock'
 
 export default function FormDeployLock() {
   const [lockName, setLockName] = useState<string>('test lock')
@@ -18,12 +18,15 @@ export default function FormDeployLock() {
   const [unlimitedKeys, setUnlimitedKeys] = useState<boolean>(false)
   const [unlimitedDuration, setUnlimitedDuration] = useState<boolean>(false)
 
-  const { deployLock } = useUnlock()
+  const { data, isLoading, isSuccess, deployLock } = useDeployLock()
 
   function handleDeploy() {
-    deployLock(duration, keyPrice, maxKeys, lockName)
-      .then((r) => console.log(r))
-      .catch((e) => console.log(e))
+    deployLock(duration, keyPrice, maxKeys, lockName).then(() => {
+      console.log('deploying lock...')
+    })
+    .catch((e) => {
+      console.log('error deploying lock', e)
+    })
   }
 
   function handleUnlimitedKeys(e: boolean) {
@@ -80,12 +83,9 @@ export default function FormDeployLock() {
       </div>
 
       <Button onClick={() => handleDeploy()}>Deploy Lock</Button>
-      {/*
-
-      <Button onClick={() => write?.()}>Deploy Lock</Button>
       {isLoading && <p>Deploying Lock...</p>}
       {isSuccess && <p>Lock Deployed!</p>}
-      */}
+
     </div>
   )
 }

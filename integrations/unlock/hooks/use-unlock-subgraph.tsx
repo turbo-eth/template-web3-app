@@ -1,6 +1,5 @@
 import { useAccount, useNetwork } from 'wagmi'
 import { networks } from '@unlock-protocol/networks'
-import { useEffect, useState } from 'react'
 
 import { UserKeysQueryDocument, UserLocksQueryDocument, LockStatsQueryDocument, execute } from '@/.graphclient'
 
