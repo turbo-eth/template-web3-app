@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-import { IssuedCredentials } from '../../utils/types'
+import { EventData, IssuedCredentials } from '../../utils/types'
 
-export async function appDiscoPostCredentialIssue(values: { recipientDid: any }) {
+export async function appDiscoPostCredentialIssue(values: EventData) {
   const payload = {
     schemaUrl: 'https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/ProofOfHackCredential/1-0-0.json',
     subjectData: { ...values },

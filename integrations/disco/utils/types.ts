@@ -149,3 +149,15 @@ export interface IssueEntity {
   }
   recipientDID: string
 }
+
+export interface EventData {
+  eventDate: string
+  eventName: string
+  expDate: string
+  place: string
+  projectName: string
+  recipientDid: string
+  sourceCodeUrl: string
+  teamName: string
+  usageLink: string
+}
