@@ -2,7 +2,7 @@ import { useAccount, useNetwork } from 'wagmi'
 import { networks } from '@unlock-protocol/networks'
 import { useEffect, useState } from 'react'
 
-import { UserKeysQueryDocument, UserLocksQueryDocument, execute } from '@/.graphclient'
+import { UserKeysQueryDocument, UserLocksQueryDocument, LockStatsQueryDocument, execute } from '@/.graphclient'
 
 const endpoints = {
   1: 'mainnet-v2',
@@ -21,23 +21,25 @@ export default function useUnlockSubgraph() {
   const networkConfig = networks[chain.id]
   if (!networkConfig) throw new Error('Unsupported Chain')
 
-  async function getUserKeys() {
-    console.log('getting user keys')
-    console.log(endpoints[chain.id].subgraphUrl)
+  const unlockNetworkEndpoint = endpoints[chain?.id]
 
+  async function getUserKeys() {
     const variables = { user: address }
-    const result = await execute(UserKeysQueryDocument, variables, { network: endpoints[chain?.id] })
+    const result = await execute(UserKeysQueryDocument, variables, { network: unlockNetworkEndpoint })
     return result?.data
   }
 
   async function getUserLocks() {
-    console.log('getting user locks')
-    console.log(endpoints[chain.id].subgraphUrl)
-
     const variables = { user: address }
-    const result = await execute(UserLocksQueryDocument, variables, { network: endpoints[chain?.id] })
+    const result = await execute(UserLocksQueryDocument, variables, { network: unlockNetworkEndpoint })
     return result?.data
   }
 
-  return { getUserKeys, getUserLocks }
+  async function getLockStats({ lockId }: { lockId: string }) {
+    const variables = { lockId: lockId }
+    const result = await execute(LockStatsQueryDocument, variables, { network: unlockNetworkEndpoint })
+    return result?.data
+  }
+
+  return { getUserKeys, getUserLocks, getLockStats }
 }

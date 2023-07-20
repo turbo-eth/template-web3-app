@@ -4,19 +4,19 @@
 // TODO: convert duration to days, and price to ether/matic
 
 import { useEffect, useState } from 'react'
-import { useAccount } from 'wagmi'
-
-import { LockStatsQueryDocument, LockStatsQueryQuery, execute } from '@/.graphclient'
+import { LockStatsQueryQuery } from '@/.graphclient'
+import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
 
 export default function LockStats({ lockId }: { lockId: string }) {
   const [lockStats, setLockStats] = useState<LockStatsQueryQuery>()
+  const { getLockStats } = useUnlockSubgraph()
 
   useEffect(() => {
-    const variables = { lockId: lockId }
-    execute(LockStatsQueryDocument, variables).then((result) => {
-      console.log(result?.data)
-      setLockStats(result?.data)
-    })
+    async function fetchLockStats() {
+      const stats = await getLockStats({ lockId })
+      setLockStats(stats)
+    }
+    fetchLockStats()
   }, [LockStats])
 
   return (
