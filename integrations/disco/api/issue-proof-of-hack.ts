@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 import { SERVER_SESSION_SETTINGS } from '@/lib/session'
 
-import { postCredentialIssue } from '../routes/post-credential-issue'
+import { discoIssueProofOfHack } from '../routes/issue-proof-of-hack'
 
 const discoSchema = z.object({
   schemaUrl: z.string(),
@@ -40,13 +40,13 @@ export async function POST(req: Request) {
     const session = await getIronSession(req, res, SERVER_SESSION_SETTINGS)
 
     if (!session?.isAdmin) {
-      return new Response('Unauthorized', { status: 401 })
+      return new Response('Unauthorized. You need to be an app admin to issue a Proof of Hack', { status: 401 })
     }
 
     if (!prunedReq.recipientDID) {
       return new Response('recipientDID not found', { status: 400 })
     }
-    const info = await postCredentialIssue(prunedReq)
+    const info = await discoIssueProofOfHack(prunedReq)
 
     if (info) {
       return new Response(JSON.stringify(info), { status: 200, headers: { 'Content-Type': 'application/json' } })

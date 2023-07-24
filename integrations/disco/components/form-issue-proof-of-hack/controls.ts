@@ -1,4 +1,4 @@
-export const discoControls = [
+export const issueProofOfHackFormControls = [
   {
     formfieldName: 'eventDate',
     component: 'input',

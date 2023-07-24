@@ -1,10 +1,11 @@
 import { discoClient } from '@/integrations/disco/disco-client'
 
+import { PROOF_OF_HACK_SCHEMA_URL } from '../../utils/constants'
 import { IssueEntity, IssuedCredentials } from '../../utils/types'
 
-export async function postCredentialIssue(val: IssueEntity) {
+export async function discoIssueProofOfHack(val: IssueEntity) {
   const payload = {
-    schemaUrl: 'https://raw.githubusercontent.com/discoxyz/disco-schemas/main/json/ProofOfHackCredential/1-0-0.json',
+    schemaUrl: PROOF_OF_HACK_SCHEMA_URL,
     subjectData: { ...val?.subjectData },
     recipientDID: val?.subjectData?.recipientDid,
   }

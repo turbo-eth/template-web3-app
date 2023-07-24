@@ -2,10 +2,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useDiscoIssueCredential } from './use-disco-issue-credential'
+import { useDiscoIssueProofOfHack } from '../../hooks/use-disco-issue-proof-of-hack'
 
 export const useDiscoIssueForm = () => {
-  const { mutation } = useDiscoIssueCredential()
+  const { mutate, data, isLoading, isError, error, isSuccess } = useDiscoIssueProofOfHack()
   const discoSchema = z.object({
     eventDate: z.string().transform((value) => {
       const date = new Date(value)
@@ -47,7 +47,7 @@ export const useDiscoIssueForm = () => {
 
   const onSubmit = async (values: z.infer<typeof discoSchema>) => {
     try {
-      await mutation.mutateAsync({
+      mutate({
         eventDate: values.eventDate,
         eventName: values.eventName,
         place: values.place,
@@ -58,7 +58,6 @@ export const useDiscoIssueForm = () => {
         expDate: values.expDate,
         recipientDid: values.recipientDid,
       })
-
       form.reset()
     } catch (error) {
       console.log(error)
@@ -66,6 +65,11 @@ export const useDiscoIssueForm = () => {
   }
 
   return {
+    error,
+    data,
+    isError,
+    isLoading,
+    isSuccess,
     discoSchema,
     form,
     onSubmit,
