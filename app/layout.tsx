@@ -12,7 +12,7 @@ import { siteConfig } from '@/config/site'
 import { env } from '@/env.mjs'
 import { cn } from '@/lib/utils'
 
-const url = env.SITE_URL || 'http://localhost:3000'
+const url = env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
 export const metadata = {
   metadataBase: new URL(url),
