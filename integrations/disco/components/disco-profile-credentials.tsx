@@ -16,9 +16,10 @@ interface DiscoProfileCredentialsProps extends HTMLAttributes<HTMLDivElement> {
 
 export const DiscoProfileCredentials = ({ className, address, ...props }: DiscoProfileCredentialsProps) => {
   const { user } = useUser()
-  const { data, isLoading, isError } = useDiscoGetProfileFromAddress(address, user)
+  const { data, isLoading, isError, error } = useDiscoGetProfileFromAddress(address, user)
 
-  if (isError) return <div className={className}>No profile found. </div>
+  if (isError) return <div className={cn('text-red-500 font-medium', className)}>{error instanceof Error ? error.message : String(error)}</div>
+
   return (
     <div className={cn('mt-10 grid grid-cols-1 items-center justify-center gap-3 md:grid-cols-2 lg:grid-cols-3', className)} {...props}>
       {isLoading
