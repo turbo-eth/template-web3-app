@@ -14,7 +14,7 @@ export default function PageIntegration() {
   const { address } = useAccount()
 
   return (
-    <div className="mx-auto mt-10 w-full max-w-screen-xl px-5">
+    <div className="mx-auto mt-10 flex w-full max-w-screen-xl flex-col justify-center px-5">
       <IsWalletConnected>
         <IsSignedIn>
           <section className="flex w-full flex-col gap-y-10">

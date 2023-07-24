@@ -10,7 +10,7 @@ import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
 
 export default function PageIntegration() {
   return (
-    <div className="mx-auto mt-10 w-full max-w-screen-lg px-5">
+    <div className="mx-auto mt-10 flex w-full max-w-screen-lg flex-col justify-center px-5">
       <IsWalletConnected>
         <IsSignedIn>
           <FormCredentialIssuanceProofOfHack />
