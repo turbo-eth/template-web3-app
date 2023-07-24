@@ -67,7 +67,7 @@ export function NavigationMenuGeneral() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Integrations</NavigationMenuTrigger>
-          <NavigationMenuContent>
+          <NavigationMenuContent className="overflow-y-scroll xl:max-h-[690px] 2xl:overflow-y-hidden">
             <ul className="grid w-[600px] gap-3 p-4 md:grid-cols-2">
               {Object.values(turboIntegrations).map((component) => (
                 <ListItem key={component.name} title={component.name} {...component}>
