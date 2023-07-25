@@ -10,10 +10,10 @@ interface livepeerForm {
 }
 
 export function FormLivepeerAsset() {
-  const route = useRouter()
-  const { register, handleSubmit } = useForm<livepeerForm>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [playbackId, setPlaybackId] = useState<string>('')
+  const route = useRouter()
+  const { register, handleSubmit, watch } = useForm<livepeerForm>()
+  const playbackId = watch('playbackId')
 
   function onSubmit(FieldValues: livepeerForm) {
     setIsLoading(true)
@@ -25,7 +25,7 @@ export function FormLivepeerAsset() {
     <div className="card w-full">
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Playback ID</label>
-        <input required className="input mt-4" {...register('playbackId')} value={playbackId} onChange={(e) => setPlaybackId(e.target.value)} />
+        <input required className="input mt-4" {...register('playbackId')} />
         <button className="btn btn-emerald mt-4 w-full" disabled={!playbackId || isLoading} type="submit">
           {isLoading ? 'Loading...' : 'Submit'}
         </button>
