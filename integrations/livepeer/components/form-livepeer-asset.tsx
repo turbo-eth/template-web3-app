@@ -6,27 +6,27 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 
 interface livepeerForm {
-  assetId: string
+  playbackId: string
 }
 
 export function FormLivepeerAsset() {
-  const route = useRouter()
-  const { register, handleSubmit } = useForm<livepeerForm>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [assetId, setAssetId] = useState<string>('')
+  const route = useRouter()
+  const { register, handleSubmit, watch } = useForm<livepeerForm>()
+  const playbackId = watch('playbackId')
 
   function onSubmit(FieldValues: livepeerForm) {
     setIsLoading(true)
-    if (FieldValues.assetId !== '') {
-      route.push(`/integration/livepeer/vod/${FieldValues.assetId}`)
+    if (FieldValues.playbackId !== '') {
+      route.push(`/integration/livepeer/vod/${FieldValues.playbackId}`)
     }
   }
   return (
     <div className="card w-full">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>Asset ID</label>
-        <input required className="input mt-4" {...register('assetId')} value={assetId} onChange={(e) => setAssetId(e.target.value)} />
-        <button className="btn btn-emerald mt-4 w-full" disabled={!assetId || isLoading} type="submit">
+        <label>Playback ID</label>
+        <input required className="input mt-4" {...register('playbackId')} />
+        <button className="btn btn-emerald mt-4 w-full" disabled={!playbackId || isLoading} type="submit">
           {isLoading ? 'Loading...' : 'Submit'}
         </button>
       </form>

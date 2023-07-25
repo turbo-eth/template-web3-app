@@ -16,12 +16,12 @@ export default function PageIntegration() {
       {!isLivepeerApiKeySet && <FormLivepeerApiKey />}
       <LinkComponent href={newStreamObsPath}>
         <button className="btn btn-emerald mt-4 w-full" disabled={!isLivepeerApiKeySet}>
-          Create a new OBS livestream
+          Go live from OBS
         </button>
       </LinkComponent>
       <LinkComponent href={newStreamBrowserPath}>
         <button className="btn btn-emerald mt-4 w-full" disabled={!isLivepeerApiKeySet}>
-          Create a new Browser livestream
+          Go live from your browser
         </button>
       </LinkComponent>
       <LinkComponent href={watchStreamPath}>

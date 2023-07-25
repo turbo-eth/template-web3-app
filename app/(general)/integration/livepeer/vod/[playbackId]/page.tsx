@@ -1,6 +1,6 @@
 'use client'
 
-import { useAsset } from '@livepeer/react'
+import { usePlaybackInfo } from '@livepeer/react'
 
 import { LinkComponent } from '@/components/shared/link-component'
 import { ButtonShare } from '@/integrations/livepeer/components/button-share'
@@ -12,14 +12,13 @@ import { useIsLivepeerApiKeySet } from '@/integrations/livepeer/hooks/use-livepe
 const watchVideoPath = '/integration/livepeer/vod/watch/'
 const videoPath = '/integration/livepeer/vod/'
 
-export default function Page({ params }: { params: { assetId: string } }) {
+export default function Page({ params }: { params: { playbackId: string } }) {
+  const { playbackId } = params
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
 
-  const SHARE_HREF = videoPath + params.assetId
+  const SHARE_HREF = videoPath + playbackId
 
-  const { data: asset, error } = useAsset({
-    assetId: params.assetId,
-  })
+  const { data: playbackInfo, error } = usePlaybackInfo(playbackId)
 
   if (error) {
     return (
@@ -44,7 +43,7 @@ export default function Page({ params }: { params: { assetId: string } }) {
     )
   }
 
-  if (!asset || !asset.playbackId)
+  if (!playbackInfo)
     return (
       <div className="flex w-full items-center justify-center py-20">
         <Spinner />
@@ -53,7 +52,7 @@ export default function Page({ params }: { params: { assetId: string } }) {
 
   return (
     <>
-      <PlayerComponent containerBorderRadius="16px" playbackId={asset.playbackId} title={asset.name} type={PlayerType.FILE} />
+      <PlayerComponent containerBorderRadius="16px" playbackId={playbackId} title="Video On Demand" type={PlayerType.FILE} />
       <ButtonShare href={SHARE_HREF} PlayerType={PlayerType.FILE} />
     </>
   )
