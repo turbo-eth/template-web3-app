@@ -45,6 +45,7 @@ export function PlayerComponent({
 
   return (
     <Player
+      lowLatency
       priority
       showPipButton
       objectFit="cover"
