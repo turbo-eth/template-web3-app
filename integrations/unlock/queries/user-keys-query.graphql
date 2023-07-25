@@ -3,6 +3,7 @@ query UserKeysQuery($user: Bytes!){
     id
     lock {
       id
+      name
     }
     tokenId
     owner

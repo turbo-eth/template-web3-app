@@ -80,6 +80,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/connext.png',
     imgDark: '/integrations/connext.png',
   },
+  unlock: {
+    name: 'Unlock Protocol',
+    href: '/integration/unlock',
+    url: 'https://docs.unlock-protocol.com/?_ga=2.100163804.370043445.1690238160-1370418924.1685652724',
+    description: 'Smart contracts built specifically for memberships and subscriptions',
+    imgLight: '/logo-gradient.png',
+    imgDark: '/logo-dark.png',
+  },
   starter: {
     name: 'Starter Template',
     href: '/integration/starter',

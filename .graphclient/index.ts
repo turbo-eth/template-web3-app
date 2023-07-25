@@ -1531,7 +1531,7 @@ export type LockStatsQueryQueryVariables = Exact<{
 }>;
 
 
-export type LockStatsQueryQuery = { locks: Array<Pick<Lock, 'id' | 'address' | 'name' | 'symbol' | 'totalKeys' | 'expirationDuration' | 'price'>> };
+export type LockStatsQueryQuery = { locks: Array<Pick<Lock, 'id' | 'address' | 'name' | 'symbol' | 'totalKeys' | 'maxNumberOfKeys' | 'expirationDuration' | 'price'>> };
 
 export type UserKeysQueryQueryVariables = Exact<{
   user: Scalars['Bytes'];
@@ -1540,7 +1540,7 @@ export type UserKeysQueryQueryVariables = Exact<{
 
 export type UserKeysQueryQuery = { keys: Array<(
     Pick<Key, 'id' | 'tokenId' | 'owner'>
-    & { lock: Pick<Lock, 'id'> }
+    & { lock: Pick<Lock, 'id' | 'name'> }
   )> };
 
 export type UserLocksQueryQueryVariables = Exact<{
@@ -1559,6 +1559,7 @@ export const LockStatsQueryDocument = gql`
     name
     symbol
     totalKeys
+    maxNumberOfKeys
     expirationDuration
     price
   }
@@ -1570,6 +1571,7 @@ export const UserKeysQueryDocument = gql`
     id
     lock {
       id
+      name
     }
     tokenId
     owner

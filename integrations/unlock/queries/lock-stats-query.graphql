@@ -5,6 +5,7 @@ query LockStatsQuery($lockId: ID!) {
     name
     symbol
     totalKeys
+    maxNumberOfKeys
   	expirationDuration
     price
   }

@@ -4,6 +4,7 @@ import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
 import { UserKeysQueryQuery } from '@/.graphclient'
 import { useState, useEffect } from 'react'
 import { useAccount, useNetwork } from 'wagmi'
+import KeyPreview from './key-preview'
 
 export default function UserKeys() {
   const [userKeys, setUserKeys] = useState<UserKeysQueryQuery | undefined>(undefined)
@@ -24,9 +25,10 @@ export default function UserKeys() {
     <div>
       {userKeys && userKeys?.keys.length > 0 ? (
         <div>
-          <p>Keys Found</p>
           {userKeys.keys.map((key) => (
-            <p key={key.id}>{key.lock.id}</p> 
+            <div key={key.id}>
+              <KeyPreview lockName={key.lock.name} />
+            </div>
           ))}
         </div>
       ) : (

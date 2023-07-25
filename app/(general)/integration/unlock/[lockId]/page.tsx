@@ -4,6 +4,7 @@ import ButtonKeyCheckout from '@/integrations/unlock/components/button-key-check
 export default function UnlockLockPage({ params }: { params: { lockId: string } }) {
   return (
     <div>
+      <h1 className="text-center font-bold">Lock Stats</h1>
       <LockStats lockId={params.lockId} />
       <ButtonKeyCheckout lockId={params.lockId} />
     </div>
