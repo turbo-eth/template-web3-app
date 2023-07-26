@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  '@bgd-labs/aave-address-book':
+    specifier: ^1.30.0
+    version: 1.30.0
   '@connext/nxtp-utils':
     specifier: ^2.0.3
     version: 2.0.3(sinon@15.2.0)
@@ -1675,6 +1678,10 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
     dev: true
+
+  /@bgd-labs/aave-address-book@1.30.0:
+    resolution: {integrity: sha512-/GTb1Xh0698/H67GJkocplzzYChv4YBMwj8mVJTkIh2B9KhRFHqZ0sl9uwNYfMqx1wCZPulfs4p4SeyCM+TsIg==}
+    dev: false
 
   /@chainsafe/as-sha256@0.3.1:
     resolution: {integrity: sha512-hldFFYuf49ed7DAakWVXSJODuq3pzJEguD8tQ7h+sGkM18vja+OFoJI9krnGmgzyuZC2ETX0NOIcCTy31v2Mtg==}

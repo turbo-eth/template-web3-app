@@ -1,10 +1,19 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { useNetwork, useSwitchNetwork } from 'wagmi'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
+import { useAave } from '../hooks/use-aave'
+import { marketsData } from '../utils/market-config'
+
 export const GeneralInfo = () => {
+  const { chain } = useNetwork()
+  const { switchNetwork } = useSwitchNetwork()
+
+  const { balanceInUsd, totalDebtInUsd } = useAave()
+
   return (
     <motion.div
       animate="show"
@@ -15,47 +24,25 @@ export const GeneralInfo = () => {
         {/* Network Select */}
         <div className="mb-4 flex items-center">
           <div className="flex w-60 flex-col ">
-            <Select value="ethereum">
+            <Select value={chain?.id.toString()} onValueChange={(e) => switchNetwork?.(+e)}>
               <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
                 <SelectValue placeholder="Select market" />
               </SelectTrigger>
               <SelectContent className="w-56 bg-white dark:bg-gray-700">
-                <SelectItem value="ethereum">
-                  <div className="flex items-center justify-between">
-                    <Image
-                      alt="Ethereum"
-                      className="mr-2 rounded-full"
-                      height={30}
-                      src="/integrations/connext/logos/chains/ethereum.png"
-                      width={30}
-                    />
-                    Ethereum Market
-                  </div>
-                </SelectItem>
-                <SelectItem value="asdf">
-                  <div className="flex items-center justify-between">
-                    <Image
-                      alt="Ethereum"
-                      className="mr-2 rounded-full"
-                      height={30}
-                      src="/integrations/connext/logos/chains/ethereum.png"
-                      width={30}
-                    />
-                    Ethereum Market
-                  </div>
-                </SelectItem>
-                <SelectItem value="qwer">
-                  <div className="flex items-center justify-between">
-                    <Image
-                      alt="Ethereum"
-                      className="mr-2 rounded-full"
-                      height={30}
-                      src="/integrations/connext/logos/chains/ethereum.png"
-                      width={30}
-                    />
-                    Ethereum Market
-                  </div>
-                </SelectItem>
+                {marketsData.map((market, index) => (
+                  <SelectItem key={index} value={market.chainId.toString()}>
+                    <div className="flex items-center justify-between">
+                      <Image
+                        alt={market.marketTitle}
+                        className="mr-2 rounded-full"
+                        height={30}
+                        src={`/integrations/aave/logos/${market.marketTitle.split(' ')[0].toLowerCase()}.png`}
+                        width={30}
+                      />
+                      {market.marketTitle} Market
+                    </div>
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -65,7 +52,8 @@ export const GeneralInfo = () => {
           <div className="mr-3 text-slate-500 dark:text-slate-300">
             <h3 className="mb-2">Net Worth</h3>
             <p className="font-bold text-black dark:text-white">
-              <span className="text-slate-500 dark:text-slate-300">$</span>1.000
+              <span className="text-slate-500 dark:text-slate-300">$</span>
+              {(balanceInUsd - totalDebtInUsd).toFixed(2)}
             </p>{' '}
             {/* replace with actual value */}
           </div>
