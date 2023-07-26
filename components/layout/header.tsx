@@ -61,10 +61,8 @@ export function Header({ className, ...props }: HTMLAttributes<HTMLElement>) {
         </div>
         <div className="flex items-center gap-4">
           <BranchButtonLoginOrAccount classNameButtonLogin="menu-item colormode" classNameButtonLogout="menu-item" />
-          <LinkComponent className="flex items-center" href="/dashboard">
-            <button className="btn btn-pill bg-gradient-button hover:scale-105 hover:shadow-lg">
-              <span className="px-2">Dashboard</span>
-            </button>
+          <LinkComponent className="btn btn-pill bg-gradient-button px-2 hover:scale-105 hover:shadow-lg" href="/dashboard">
+            Dashboard
           </LinkComponent>
           <ThemeToggle />
         </div>

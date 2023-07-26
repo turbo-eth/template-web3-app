@@ -72,6 +72,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/pooltogether.svg',
     imgDark: '/integrations/pooltogether.svg',
   },
+  livepeer: {
+    name: 'Livepeer',
+    href: '/integration/livepeer',
+    url: 'https://docs.livepeer.org/',
+    description: "Livepeer is the world's open video infrastructure.",
+    imgLight: '/integrations/livepeer.svg',
+    imgDark: '/integrations/livepeer.svg',
+  },
   connext: {
     name: 'Connext',
     href: '/integration/connext',

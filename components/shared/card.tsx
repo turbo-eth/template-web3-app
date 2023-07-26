@@ -52,8 +52,8 @@ export default function Card({
           </Balancer>
         </div>
         {!href ? null : (
-          <LinkComponent href={href}>
-            <button className="btn btn-light my-4">Demo</button>
+          <LinkComponent className="btn btn-light my-4" href={href}>
+            Demo
           </LinkComponent>
         )}
       </div>
