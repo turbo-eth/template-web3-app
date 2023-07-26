@@ -13,10 +13,10 @@ export const ListAssetsToSupply = () => {
         <table className="mt-7 w-full table-auto border-collapse text-left">
           <thead>
             <tr>
-              <th className="px-4 py-2 text-xs text-slate-500 dark:text-slate-300">Asset</th>
-              <th className="px-4 py-2 text-xs text-slate-500 dark:text-slate-300">Wallet balance</th>
-              <th className="px-4 py-2 text-xs text-slate-500 dark:text-slate-300">APY</th>
-              <th className="px-4 py-2 text-xs text-slate-500 dark:text-slate-300">Can be collateral</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Asset</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Wallet balance</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">APY</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Can be collateral</th>
             </tr>
           </thead>
           <tbody>
@@ -27,7 +27,7 @@ export const ListAssetsToSupply = () => {
                 <AssetToSupplyItem
                   key={index}
                   address={reserve.underlyingAsset}
-                  canBeCollateral={reserve.usageAsCollateralEnabled}
+                  canBeCollateral={reserve.usageAsCollateralEnabled && reserve.debtCeiling === BigInt(0)}
                   symbol={reserve.symbol}
                 />
               )

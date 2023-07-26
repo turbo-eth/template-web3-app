@@ -32,10 +32,10 @@ export const ListSuppliedAssets = () => {
         <table className="mt-7 w-full table-auto border-collapse text-left">
           <thead>
             <tr>
-              <th className="px-4 py-2 text-xs text-slate-500 dark:text-slate-300">Asset</th>
-              <th className="px-4 py-2 text-xs text-slate-500 dark:text-slate-300">Balance</th>
-              <th className="px-4 py-2 text-xs text-slate-500 dark:text-slate-300">APY</th>
-              <th className="px-4 py-2 text-xs text-slate-500 dark:text-slate-300">Collateral</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Asset</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Balance</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">APY</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Collateral</th>
             </tr>
           </thead>
           <tbody>

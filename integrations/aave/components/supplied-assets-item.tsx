@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import { formatUnits } from 'viem'
-import { useAccount, useNetwork } from 'wagmi'
+import { useNetwork } from 'wagmi'
 
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
-import { useErc20BalanceOf, useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
+import { useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
 
 import { limitDecimals } from '../utils'
 
@@ -18,15 +18,12 @@ const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : s
 
 export const SuppliedAssetsItem = ({ address, balance, collateralEnabled }: ISuppliedAssetsItemProps) => {
   const { chain } = useNetwork()
-  const { address: user } = useAccount()
-
-  const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined })
   const symbol = getSymbol(useErc20Symbol({ address }).data)
   const { data: decimals } = useErc20Decimals({ address })
 
   return (
     <tr>
-      <td className="mt-2 flex items-center px-4 py-2">
+      <td className="mt-2 flex items-center justify-center px-4 py-2">
         <Image
           alt={symbol?.toString() ?? ''}
           className="mr-2 rounded-full"
@@ -36,12 +33,12 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled }: ISup
         />
         {symbol === 'WETH' ? 'ETH' : symbol}
       </td>
-      <td className="px-4 py-2">{limitDecimals(formatUnits(balance, decimals ?? 18).toString(), 2)}</td>
-      <td className="px-4 py-2">3%</td>
-      <td className="px-4 py-2">
-        <Switch checked={collateralEnabled} color="green" />
+      <td className="px-4 py-2 text-center">{limitDecimals(formatUnits(balance, decimals ?? 18).toString(), 2)}</td>
+      <td className="px-4 py-2 text-center">3%</td>
+      <td className="px-4 py-2 text-center">
+        <Switch checked={collateralEnabled} className="bg-green-700" />
       </td>
-      <td className="px-4 py-2">
+      <td className="px-4 py-2 text-center">
         <Button className="mr-2">Withdraw</Button>
       </td>
     </tr>
