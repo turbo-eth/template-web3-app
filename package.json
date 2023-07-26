@@ -37,6 +37,7 @@
   },
   "packageManager": "pnpm@7.1.8",
   "dependencies": {
+    "@hookform/resolvers": "^3.1.1",
     "@connext/nxtp-utils": "^2.0.3",
     "@connext/sdk": "2.0.4-alpha.2",
     "@lit-protocol/lit-node-client": "2.1.161",
@@ -63,6 +64,7 @@
     "@radix-ui/react-select": "^1.2.0",
     "@radix-ui/react-separator": "^1.0.1",
     "@radix-ui/react-slider": "^1.1.0",
+    "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-switch": "^1.0.1",
     "@radix-ui/react-tabs": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.3",
