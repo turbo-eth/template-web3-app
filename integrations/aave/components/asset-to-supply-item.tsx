@@ -27,9 +27,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral }: IAssetTo
       </td>
       <td className="px-4 py-2">1.0121</td>
       <td className="px-4 py-2">3%</td>
-      <td className="px-4 pb-2">
-        <TiTick color="green" size={30} />
-      </td>
+      <td className="px-4 pb-2">{canBeCollateral ? <TiTick color="green" size={30} /> : <p>—</p>}</td>
       <td className="px-4 py-2">
         <Button className="mr-2">Borrow</Button>
       </td>

@@ -4,11 +4,6 @@ import { useAave } from '../hooks/use-aave'
 export const ListSuppliedAssets = () => {
   const { reservesData, userReservesData: userReserves, usdData, balanceInUsd, collateralInUsd } = useAave()
 
-  console.log('+===================+')
-  console.log(reservesData?.[1].marketReferenceCurrencyPriceInUsd)
-  console.log(usdData)
-  console.log('+===================+')
-
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">
       <div className="mb-4 flex items-center justify-between">

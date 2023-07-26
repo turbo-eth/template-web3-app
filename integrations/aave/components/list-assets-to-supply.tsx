@@ -2,7 +2,7 @@ import { AssetToSupplyItem } from './asset-to-supply-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListAssetsToSupply = () => {
-  const { reservesData } = useAave()
+  const { reservesData, userReservesData } = useAave()
 
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">
@@ -21,6 +21,8 @@ export const ListAssetsToSupply = () => {
           </thead>
           <tbody>
             {reservesData?.[0].map((reserve, index) => {
+              const userReserve = userReservesData?.find((userReserve) => userReserve.underlyingAsset === reserve.underlyingAsset)
+
               return (
                 <AssetToSupplyItem
                   key={index}
