@@ -82,9 +82,11 @@ export default function FormDeployLock() {
         <Input placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
       </div>
 
-      <Button onClick={() => handleDeploy()}>Deploy Lock</Button>
-      {isLoading && <p>Deploying Lock...</p>}
-      {isSuccess && <p>Lock Deployed!</p>}
+      <div className="flex justify-center items-center m-10">
+          <Button onClick={() => handleDeploy()}>Deploy Lock</Button>
+          {isLoading && <p>Deploying Lock...</p>}
+          {isSuccess && <p>Lock Deployed!</p>}
+      </div>
 
     </div>
   )
