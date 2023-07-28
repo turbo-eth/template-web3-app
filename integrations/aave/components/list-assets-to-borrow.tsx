@@ -2,7 +2,7 @@ import { AssetToBorrowItem } from './asset-to-borrow-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListAssetsToBorrow = () => {
-  const { reservesData } = useAave()
+  const { usdData } = useAave()
 
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">
@@ -20,9 +20,9 @@ export const ListAssetsToBorrow = () => {
             </tr>
           </thead>
           <tbody>
-            {reservesData?.[0].map((reserve, index) => {
-              if (reserve.borrowingEnabled) {
-                return <AssetToBorrowItem key={index} address={reserve.underlyingAsset} symbol={reserve.symbol} />
+            {usdData?.map((reserve, index) => {
+              if (reserve.reserveData.borrowingEnabled) {
+                return <AssetToBorrowItem key={index} symbol={reserve.reserveData.symbol} tokenPriceInUsd={reserve.tokenPriceInUsd} />
               }
             })}
           </tbody>

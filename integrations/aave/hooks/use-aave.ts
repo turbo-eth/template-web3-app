@@ -13,6 +13,7 @@ export const useAave = () => {
   const [balanceInUsd, setBalanceInUsd] = useState(0)
   const [collateralInUsd, setCollateralInUsd] = useState(0)
   const [totalDebtInUsd, setTotalDebtInUsd] = useState(0)
+  const [maxBorrowableInUsd, setMaxBorrowableInUsd] = useState(0)
   const [usdData, setUsdData] = useState<UsdData[] | null>(null)
 
   const { data: reservesData } = useUiPoolDataProviderGetReservesData({
@@ -34,20 +35,25 @@ export const useAave = () => {
       let balanceInUsd = 0
       let collateralInUsd = 0
       let totalDebtInUsd = 0
+      let maxBorrowableInUsd = 0
 
       const usdData = data.map((userReserveData) => {
         const reserveData = reservesData?.[0].find((reserve) => reserve.underlyingAsset === userReserveData.underlyingAsset) as ReserveData
+
         const tokenPriceInUsd = Number(reserveData?.priceInMarketReferenceCurrency) / Number(reservesData?.[1].marketReferenceCurrencyPriceInUsd)
-        const amountInUsd = (Number(userReserveData.scaledATokenBalance) / 10 ** Number(reserveData?.decimals)) * tokenPriceInUsd
-        const debtInUsd = (Number(userReserveData.scaledVariableDebt) / 10 ** Number(reserveData?.decimals)) * tokenPriceInUsd
+        const amountInUsd =
+          (((Number(userReserveData.scaledATokenBalance) / 10 ** 18) * Number(reserveData.liquidityIndex)) / 10 ** 27) * tokenPriceInUsd
+        const debtInUsd =
+          (((Number(userReserveData.scaledVariableDebt) / 10 ** 18) * Number(reserveData.variableBorrowIndex)) / 10 ** 27) * tokenPriceInUsd
 
         balanceInUsd += amountInUsd
         totalDebtInUsd += debtInUsd
+        maxBorrowableInUsd += amountInUsd * (Number(reserveData.baseLTVasCollateral) / 10000)
 
         if (reserveData?.usageAsCollateralEnabled) collateralInUsd += amountInUsd
 
         return {
-          ...userReservesData,
+          ...userReserveData,
           reserveData,
           tokenPriceInUsd,
           amountInUsd,
@@ -55,15 +61,14 @@ export const useAave = () => {
         }
       }) as UsdData[]
 
-      console.log(usdData)
-
       setUserReservesData(data)
       setBalanceInUsd(balanceInUsd)
       setCollateralInUsd(collateralInUsd)
       setTotalDebtInUsd(totalDebtInUsd)
+      setMaxBorrowableInUsd(maxBorrowableInUsd - totalDebtInUsd)
       setUsdData(usdData)
     }
   }, [data, market, user])
 
-  return { reservesData, userReservesData, usdData, balanceInUsd, totalDebtInUsd, collateralInUsd }
+  return { reservesData, userReservesData, usdData, balanceInUsd, totalDebtInUsd, collateralInUsd, maxBorrowableInUsd }
 }

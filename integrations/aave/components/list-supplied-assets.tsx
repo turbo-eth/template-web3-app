@@ -39,14 +39,14 @@ export const ListSuppliedAssets = () => {
             </tr>
           </thead>
           <tbody>
-            {userReserves
+            {usdData
               ?.filter((reserve) => reserve.scaledATokenBalance !== BigInt(0))
               .map((reserve, index) => {
                 return (
                   <SuppliedAssetsItem
                     key={index}
                     address={reserve.underlyingAsset}
-                    balance={reserve.scaledATokenBalance}
+                    balance={((Number(reserve.scaledATokenBalance) / 10 ** 18) * Number(reserve.reserveData.liquidityIndex)) / 10 ** 27}
                     collateralEnabled={reserve.usageAsCollateralEnabledOnUser}
                   />
                 )

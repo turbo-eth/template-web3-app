@@ -2,7 +2,7 @@ import { BorrowedAssetsItem } from './borrowed-assets-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListBorrowedAssets = () => {
-  const { userReservesData: userReserves, totalDebtInUsd } = useAave()
+  const { userReservesData: userReserves, totalDebtInUsd, reservesData } = useAave()
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">
       <div className="mb-4 flex items-center justify-between">
@@ -33,9 +33,17 @@ export const ListBorrowedAssets = () => {
           </thead>
           <tbody>
             {userReserves
-              ?.filter((reserve) => reserve.scaledVariableDebt !== BigInt(0))
-              .map((reserve, index) => {
-                return <BorrowedAssetsItem key={index} address={reserve.underlyingAsset} debt={reserve.scaledVariableDebt} />
+              ?.filter((userReserve) => userReserve.scaledVariableDebt !== BigInt(0))
+              .map((userReserve, index) => {
+                const reserve = reservesData?.[0].find((reserve) => reserve.underlyingAsset === userReserve.underlyingAsset)
+
+                return (
+                  <BorrowedAssetsItem
+                    key={index}
+                    address={userReserve.underlyingAsset}
+                    debt={((Number(userReserve.scaledVariableDebt) / 10 ** 18) * Number(reserve?.variableBorrowIndex ?? BigInt(1))) / 10 ** 27}
+                  />
+                )
               })}
           </tbody>
         </table>

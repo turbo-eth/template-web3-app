@@ -1,25 +1,20 @@
 import Image from 'next/image'
-import { formatUnits } from 'viem'
-import { useNetwork } from 'wagmi'
 
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
+import { useErc20Symbol } from '@/lib/generated/blockchain'
 
 import { limitDecimals } from '../utils'
 
 interface IBorrowedAssetsItemProps {
   address: `0x${string}`
-  debt: bigint
+  debt: number
 }
 
 const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : symbol)
 
 export const BorrowedAssetsItem = ({ address, debt }: IBorrowedAssetsItemProps) => {
-  const { chain } = useNetwork()
-
   const symbol = getSymbol(useErc20Symbol({ address }).data)
-  const { data: decimals } = useErc20Decimals({ address })
 
   return (
     <tr>
@@ -33,7 +28,7 @@ export const BorrowedAssetsItem = ({ address, debt }: IBorrowedAssetsItemProps) 
         />
         {symbol === 'WETH' ? 'ETH' : symbol}
       </td>
-      <td className="px-4 py-2 text-center">{limitDecimals(formatUnits(debt, decimals ?? 18).toString(), 2)}</td>
+      <td className="px-4 py-2 text-center">{limitDecimals(debt.toString(), 2)}</td>
       <td className="px-4 py-2 text-center">3%</td>
       <td className="px-4 pb-2 text-center">
         <Select value="ethereum">

@@ -38,7 +38,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral }: IAssetTo
       <td className="px-4 py-2 text-center">3%</td>
       <td className="flex justify-center px-4 pb-2 text-center">{canBeCollateral ? <TiTick color="green" size={30} /> : <p>—</p>}</td>
       <td className="px-4 py-2 text-center">
-        <Button className="mr-2" disabled={tokenBalance === BigInt(0)}>
+        <Button className="mr-2 bg-slate-400 dark:bg-slate-200" disabled={tokenBalance === BigInt(0)}>
           Supply
         </Button>
       </td>
