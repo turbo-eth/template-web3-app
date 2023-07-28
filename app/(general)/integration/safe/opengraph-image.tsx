@@ -6,4 +6,4 @@ export const size = {
   height: 630,
 }
 
-export default IntegrationOgImage('starter')
+export default IntegrationOgImage('safe')
