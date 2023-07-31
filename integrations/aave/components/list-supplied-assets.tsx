@@ -48,6 +48,7 @@ export const ListSuppliedAssets = () => {
                     address={reserve.underlyingAsset}
                     balance={((Number(reserve.scaledATokenBalance) / 10 ** 18) * Number(reserve.reserveData.liquidityIndex)) / 10 ** 27}
                     collateralEnabled={reserve.usageAsCollateralEnabledOnUser}
+                    liquidityRate={Number(reserve.reserveData.liquidityRate) / 10 ** 25}
                   />
                 )
               })}

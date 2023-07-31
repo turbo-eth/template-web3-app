@@ -2,7 +2,7 @@ import { AssetToSupplyItem } from './asset-to-supply-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListAssetsToSupply = () => {
-  const { reservesData, userReservesData } = useAave()
+  const { usdData } = useAave()
 
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">
@@ -20,15 +20,14 @@ export const ListAssetsToSupply = () => {
             </tr>
           </thead>
           <tbody>
-            {reservesData?.[0].map((reserve, index) => {
-              const userReserve = userReservesData?.find((userReserve) => userReserve.underlyingAsset === reserve.underlyingAsset)
-
+            {usdData?.map((reserve, index) => {
               return (
                 <AssetToSupplyItem
                   key={index}
                   address={reserve.underlyingAsset}
-                  canBeCollateral={reserve.usageAsCollateralEnabled && reserve.debtCeiling === BigInt(0)}
-                  symbol={reserve.symbol}
+                  canBeCollateral={reserve.reserveData.usageAsCollateralEnabled && reserve.reserveData.debtCeiling === BigInt(0)}
+                  liquidityRate={Number(reserve.reserveData.liquidityRate) / 10 ** 25}
+                  symbol={reserve.reserveData.symbol}
                 />
               )
             })}

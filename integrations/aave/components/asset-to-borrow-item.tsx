@@ -7,9 +7,11 @@ import { useAave } from '../hooks/use-aave'
 interface IAssetToSupplyItem {
   symbol: string
   tokenPriceInUsd: number
+  variableBorrowRate: number
+  stableBorrowRate?: number
 }
 
-export const AssetToBorrowItem = ({ symbol, tokenPriceInUsd }: IAssetToSupplyItem) => {
+export const AssetToBorrowItem = ({ symbol, tokenPriceInUsd, variableBorrowRate, stableBorrowRate }: IAssetToSupplyItem) => {
   const { maxBorrowableInUsd } = useAave()
 
   return (
@@ -25,8 +27,8 @@ export const AssetToBorrowItem = ({ symbol, tokenPriceInUsd }: IAssetToSupplyIte
         {symbol}
       </td>
       <td className="px-4 py-2 text-center">{(maxBorrowableInUsd / tokenPriceInUsd).toFixed(2)}</td>
-      <td className="px-4 py-2 text-center">3%</td>
-      <td className="px-4 pb-2 text-center">5%</td>
+      <td className="px-4 py-2 text-center">{variableBorrowRate.toFixed(2)}%</td>
+      <td className="px-4 pb-2 text-center">{stableBorrowRate ? `${stableBorrowRate.toFixed(2)}%` : '—'}</td>
       <td className="px-4 py-2 text-center">
         <Button className="mr-2">Borrow</Button>
       </td>

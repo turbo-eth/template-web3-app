@@ -10,11 +10,12 @@ interface ISuppliedAssetsItemProps {
   address: `0x${string}`
   balance: number
   collateralEnabled: boolean
+  liquidityRate: number
 }
 
 const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : symbol)
 
-export const SuppliedAssetsItem = ({ address, balance, collateralEnabled }: ISuppliedAssetsItemProps) => {
+export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, liquidityRate }: ISuppliedAssetsItemProps) => {
   const symbol = getSymbol(useErc20Symbol({ address }).data)
 
   return (
@@ -30,7 +31,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled }: ISup
         {symbol === 'WETH' ? 'ETH' : symbol}
       </td>
       <td className="px-4 py-2 text-center">{limitDecimals(balance.toString(), 2)}</td>
-      <td className="px-4 py-2 text-center">3%</td>
+      <td className="px-4 py-2 text-center">{liquidityRate !== 0 ? `${liquidityRate.toFixed(2)}%` : '0'}</td>
       <td className="px-4 py-2 text-center">
         <Switch checked={collateralEnabled} className="bg-green-700" />
       </td>

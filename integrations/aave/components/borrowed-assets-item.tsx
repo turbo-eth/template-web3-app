@@ -9,11 +9,12 @@ import { limitDecimals } from '../utils'
 interface IBorrowedAssetsItemProps {
   address: `0x${string}`
   debt: number
+  variableBorrowRate: number
 }
 
 const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : symbol)
 
-export const BorrowedAssetsItem = ({ address, debt }: IBorrowedAssetsItemProps) => {
+export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorrowedAssetsItemProps) => {
   const symbol = getSymbol(useErc20Symbol({ address }).data)
 
   return (
@@ -29,17 +30,17 @@ export const BorrowedAssetsItem = ({ address, debt }: IBorrowedAssetsItemProps) 
         {symbol === 'WETH' ? 'ETH' : symbol}
       </td>
       <td className="px-4 py-2 text-center">{limitDecimals(debt.toString(), 2)}</td>
-      <td className="px-4 py-2 text-center">3%</td>
+      <td className="px-4 py-2 text-center">{variableBorrowRate.toFixed(2)}%</td>
       <td className="px-4 pb-2 text-center">
-        <Select value="ethereum">
+        <Select value="variable">
           <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
             <SelectValue placeholder="Select market" />
           </SelectTrigger>
           <SelectContent className="w-56 bg-white dark:bg-gray-700">
-            <SelectItem value="ethereum">
+            <SelectItem value="variable">
               <div className="flex items-center justify-between">Variable</div>
             </SelectItem>
-            <SelectItem value="asdf">
+            <SelectItem value="stable">
               <div className="flex items-center justify-between">Stable</div>
             </SelectItem>
           </SelectContent>

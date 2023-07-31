@@ -22,7 +22,14 @@ export const ListAssetsToBorrow = () => {
           <tbody>
             {usdData?.map((reserve, index) => {
               if (reserve.reserveData.borrowingEnabled) {
-                return <AssetToBorrowItem key={index} symbol={reserve.reserveData.symbol} tokenPriceInUsd={reserve.tokenPriceInUsd} />
+                return (
+                  <AssetToBorrowItem
+                    key={index}
+                    symbol={reserve.reserveData.symbol}
+                    tokenPriceInUsd={reserve.tokenPriceInUsd}
+                    variableBorrowRate={Number(reserve.reserveData.variableBorrowRate) / 10 ** 25}
+                  />
+                )
               }
             })}
           </tbody>
