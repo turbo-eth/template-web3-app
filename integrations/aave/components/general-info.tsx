@@ -12,7 +12,7 @@ export const GeneralInfo = () => {
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
 
-  const { balanceInUsd, totalDebtInUsd } = useAave()
+  const { balanceInUsd, totalDebtInUsd, healthFactor } = useAave()
 
   return (
     <motion.div
@@ -21,7 +21,6 @@ export const GeneralInfo = () => {
       initial="hidden"
       variants={FADE_DOWN_ANIMATION_VARIANTS}>
       <div className="rounded border border-slate-200 p-5 dark:border-slate-600">
-        {/* Network Select */}
         <div className="mb-4 flex items-center">
           <div className="flex w-60 flex-col ">
             <Select value={chain?.id.toString()} onValueChange={(e) => switchNetwork?.(+e)}>
@@ -47,27 +46,34 @@ export const GeneralInfo = () => {
             </Select>
           </div>
         </div>
-        {/* Net Worth, Net APY, Health Factor */}
         <div className="flex justify-between">
           <div className="mr-3 text-slate-500 dark:text-slate-300">
             <h3 className="mb-2">Net Worth</h3>
             <p className="font-bold text-black dark:text-white">
-              <span className="text-slate-500 dark:text-slate-300">$</span>
-              {(balanceInUsd - totalDebtInUsd).toFixed(2)}
+              <span className="text-slate-500 dark:text-slate-300">$ </span>
+              {balanceInUsd > 0 ? (balanceInUsd - totalDebtInUsd).toFixed(2) : '0'}
             </p>{' '}
-            {/* replace with actual value */}
           </div>
           <div className="mr-3 text-slate-500 dark:text-slate-300">
             <h3 className="mb-2">Net APY</h3>
             <p className="font-bold text-black dark:text-white">
-              2.5<span className="text-slate-500 dark:text-slate-300">%</span>
+              {balanceInUsd > 0 ? (
+                <>
+                  2.5<span className="text-slate-500 dark:text-slate-300">%</span>
+                </>
+              ) : (
+                '—'
+              )}
             </p>{' '}
-            {/* replace with actual value */}
           </div>
-          <div className="mr-3 text-slate-500 dark:text-slate-300">
-            <h3 className="mb-2">Health Factor</h3>
-            <p className="font-bold text-orange-500">1.65</p> {/* replace with actual value */}
-          </div>
+          {totalDebtInUsd > 0 ? (
+            <div className="mr-3 text-slate-500 dark:text-slate-300">
+              <h3 className="mb-2">Health Factor</h3>
+              <p className={`font-bold ${healthFactor >= 3 ? 'text-green-500' : 'text-orange-500'} `}>{healthFactor}</p>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </motion.div>

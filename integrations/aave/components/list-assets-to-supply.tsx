@@ -28,6 +28,7 @@ export const ListAssetsToSupply = () => {
                   canBeCollateral={reserve.reserveData.usageAsCollateralEnabled && reserve.reserveData.debtCeiling === BigInt(0)}
                   liquidityRate={Number(reserve.reserveData.liquidityRate) / 10 ** 25}
                   symbol={reserve.reserveData.symbol}
+                  tokenPriceInUsd={reserve.tokenPriceInUsd}
                 />
               )
             })}

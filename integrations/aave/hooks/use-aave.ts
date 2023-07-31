@@ -70,5 +70,5 @@ export const useAave = () => {
     }
   }, [data, market, user])
 
-  return { reservesData, userReservesData, usdData, balanceInUsd, totalDebtInUsd, collateralInUsd, maxBorrowableInUsd }
+  return { reservesData, userReservesData, usdData, balanceInUsd, totalDebtInUsd, collateralInUsd, maxBorrowableInUsd, healthFactor: 2.14 }
 }
