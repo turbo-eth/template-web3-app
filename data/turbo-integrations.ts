@@ -87,7 +87,6 @@ export const turboIntegrations = {
     imgLight: '/integrations/connext.png',
     imgDark: '/integrations/connext.png',
   },
-
   gelato: {
     name: 'Gelato',
     href: '/integration/gelato',
@@ -111,6 +110,15 @@ export const turboIntegrations = {
     description: 'Moralis provides a complete end-to-end blockchain application development platform.',
     imgLight: '/integrations/moralis.png',
     imgDark: '/integrations/moralis.png',
+  },
+  arweave: {
+    name: 'Arweave',
+    href: '/integration/arweave',
+    url: 'https://arwiki.arweave.dev',
+    description:
+      'Arweave is the first protocol that enables permanent data storage. Its design allows anyone to preserve data forever with just a single, one-time fee.',
+    imgLight: '/integrations/arweave-light.png',
+    imgDark: '/integrations/arweave-dark.png',
   },
   starter: {
     name: 'Starter Template',
