@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import Balancer from 'react-wrap-balancer'
 
 import { IsDarkTheme } from '@/components/shared/is-dark-theme'
@@ -10,12 +11,20 @@ import { IsLightTheme } from '@/components/shared/is-light-theme'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import { SafeProvider } from '@/integrations/safe/safe-provider'
+import { cn } from '@/lib/utils'
 
-const integrationData = turboIntegrations.starter
+const integrationData = turboIntegrations.safe
+
+// TODO: Safe paths
+const livestreamPath = '/integration/livepeer/livestream'
+const videoOnDemandPath = '/integration/livepeer/vod'
 
 export default function LayoutIntegration({ children }: { children: ReactNode }) {
+  const pathname = usePathname()
+
   return (
-    <>
+    <SafeProvider>
       <div className="flex-center flex-col items-center justify-center text-center">
         <motion.div
           animate="show"
@@ -50,9 +59,19 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
               Documentation
             </LinkComponent>
           </motion.div>
+          <motion.div className="mt-8 flex flex-col justify-center gap-x-14 text-2xl sm:flex-row" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <LinkComponent href={videoOnDemandPath}>
+              <button className={cn('btn hover:opacity-75', pathname === livestreamPath && 'opacity-50')}>Create new Safe</button>
+            </LinkComponent>
+            <LinkComponent href={livestreamPath}>
+              <button className={cn('btn hover:opacity-75', pathname === videoOnDemandPath && 'opacity-50')}>Interact with Safe</button>
+            </LinkComponent>
+          </motion.div>
+          <motion.div className="flex h-full w-full justify-center" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <div className="w-7/12">{children}</div>
+          </motion.div>
         </motion.div>
       </div>
-      <section>{children}</section>
-    </>
+    </SafeProvider>
   )
 }
