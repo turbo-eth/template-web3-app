@@ -12,7 +12,7 @@ export const size = {
 
 export const contentType = 'image/png'
 
-const url = env.SITE_URL || 'http://localhost:3000'
+const url = env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 
 export function IntegrationOgImage(integration: keyof typeof turboIntegrations) {
   const integrationData = turboIntegrations[integration]

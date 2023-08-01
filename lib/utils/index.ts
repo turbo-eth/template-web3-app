@@ -17,7 +17,7 @@ export function formatDate(input: string | number): string {
 }
 
 export function absoluteUrl(path: string) {
-  return `${env.SITE_URL || 'http://localhost:3000'}${path}`
+  return `${env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}${path}`
 }
 
 export function trimFormattedBalance(balance: string | undefined, decimals = 4) {
