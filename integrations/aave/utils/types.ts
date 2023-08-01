@@ -70,4 +70,6 @@ interface UsdData extends UserReserveData {
   tokenPriceInUsd: number
   amountInUsd: number
   debtInUsd: number
+  supplyProportion: number
+  borrowProportion: number
 }

@@ -15,6 +15,7 @@ export const useAave = () => {
   const [totalDebtInUsd, setTotalDebtInUsd] = useState(0)
   const [maxBorrowableInUsd, setMaxBorrowableInUsd] = useState(0)
   const [usdData, setUsdData] = useState<UsdData[] | null>(null)
+  const [healthFactor, setHealthFactor] = useState(0)
 
   const { data: reservesData } = useUiPoolDataProviderGetReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
@@ -42,7 +43,8 @@ export const useAave = () => {
 
         const tokenPriceInUsd = Number(reserveData?.priceInMarketReferenceCurrency) / Number(reservesData?.[1].marketReferenceCurrencyPriceInUsd)
         const amountInUsd =
-          (((Number(userReserveData.scaledATokenBalance) / 10 ** 18) * Number(reserveData.liquidityIndex)) / 10 ** 27) * tokenPriceInUsd
+          (((Number(userReserveData.scaledATokenBalance) / 10 ** Number(reserveData.decimals)) * Number(reserveData.liquidityIndex)) / 10 ** 27) *
+          tokenPriceInUsd
         const debtInUsd =
           (((Number(userReserveData.scaledVariableDebt) / 10 ** 18) * Number(reserveData.variableBorrowIndex)) / 10 ** 27) * tokenPriceInUsd
 
@@ -50,7 +52,9 @@ export const useAave = () => {
         totalDebtInUsd += debtInUsd
         maxBorrowableInUsd += amountInUsd * (Number(reserveData.baseLTVasCollateral) / 10000)
 
-        if (reserveData?.usageAsCollateralEnabled) collateralInUsd += amountInUsd
+        if (reserveData?.usageAsCollateralEnabled) {
+          collateralInUsd += amountInUsd
+        }
 
         return {
           ...userReserveData,
@@ -61,6 +65,18 @@ export const useAave = () => {
         }
       }) as UsdData[]
 
+      let averageLiquidationThreshold = 0
+      usdData.forEach((data) => {
+        data.supplyProportion = data.amountInUsd / balanceInUsd
+        data.borrowProportion = data.debtInUsd / totalDebtInUsd
+        averageLiquidationThreshold += data.supplyProportion * (Number(data.reserveData.reserveLiquidationThreshold) / 10000)
+      })
+
+      const nativeTokenPrice = Number(reservesData?.[1].networkBaseTokenPriceInUsd) / Number(reservesData?.[1].marketReferenceCurrencyUnit)
+      const collateralInNativeToken = collateralInUsd / nativeTokenPrice
+      const debtInNativeToken = totalDebtInUsd / nativeTokenPrice
+
+      setHealthFactor((collateralInNativeToken * averageLiquidationThreshold) / debtInNativeToken)
       setUserReservesData(data)
       setBalanceInUsd(balanceInUsd)
       setCollateralInUsd(collateralInUsd)
@@ -70,5 +86,5 @@ export const useAave = () => {
     }
   }, [data, market, user])
 
-  return { reservesData, userReservesData, usdData, balanceInUsd, totalDebtInUsd, collateralInUsd, maxBorrowableInUsd, healthFactor: 2.14 }
+  return { reservesData, userReservesData, usdData, balanceInUsd, totalDebtInUsd, collateralInUsd, maxBorrowableInUsd, healthFactor }
 }

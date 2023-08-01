@@ -5,6 +5,7 @@ import { useNetwork, useSwitchNetwork } from 'wagmi'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
+import { HealthFactor } from './health-factor'
 import { useAave } from '../hooks/use-aave'
 import { marketsData } from '../utils/market-config'
 
@@ -69,7 +70,7 @@ export const GeneralInfo = () => {
           {totalDebtInUsd > 0 ? (
             <div className="mr-3 text-slate-500 dark:text-slate-300">
               <h3 className="mb-2">Health Factor</h3>
-              <p className={`font-bold ${healthFactor >= 3 ? 'text-green-500' : 'text-orange-500'} `}>{healthFactor}</p>
+              <HealthFactor value={healthFactor} />
             </div>
           ) : (
             <div></div>

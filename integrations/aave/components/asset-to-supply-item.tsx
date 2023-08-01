@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useErc20BalanceOf, useErc20Decimals } from '@/lib/generated/blockchain'
 
+import { HealthFactor } from './health-factor'
 import { useAave } from '../hooks/use-aave'
 
 interface IAssetToSupplyItem {
@@ -23,7 +24,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
   const { healthFactor, balanceInUsd } = useAave()
   const { address: user } = useAccount()
 
-  const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined })
+  const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined, watch: true })
   const { data: decimals } = useErc20Decimals({ address })
 
   const [supplyAmount, setSupplyAmount] = useState('')
@@ -110,11 +111,11 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                   <div className="mb-3 flex items-center justify-between">
                     <span>Health factor</span>
                     <div className="flex items-center justify-between">
-                      <span className={healthFactor >= 3 ? 'text-green-500' : 'text-orange-500'}>{healthFactor}</span>
+                      <HealthFactor value={healthFactor} />
                       {Number(supplyAmount) > 0 && (
                         <>
                           <TiArrowRight />
-                          <span className={calcNewHealthFactor() >= 3 ? 'text-green-500' : 'text-orange-500'}>{calcNewHealthFactor()}</span>
+                          <HealthFactor value={calcNewHealthFactor()} />
                         </>
                       )}
                     </div>

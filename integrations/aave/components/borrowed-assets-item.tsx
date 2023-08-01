@@ -10,6 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useErc20BalanceOf, useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
 
+import { HealthFactor } from './health-factor'
 import { useAave } from '../hooks/use-aave'
 import { limitDecimals } from '../utils'
 
@@ -25,7 +26,7 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
   const { address: user } = useAccount()
 
   const symbol = getSymbol(useErc20Symbol({ address }).data)
-  const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined })
+  const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined, watch: true })
   const { data: decimals } = useErc20Decimals({ address })
 
   const [repayAmount, setRepayAmount] = useState('')
@@ -48,7 +49,7 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
         />
         {symbol === 'WETH' ? 'ETH' : symbol}
       </td>
-      <td className="px-4 py-2 text-center">{limitDecimals(debt.toString(), 2)}</td>
+      <td className="px-4 py-2 text-center">{limitDecimals(debt.toString(), 5)}</td>
       <td className="px-4 py-2 text-center">{variableBorrowRate.toFixed(2)}%</td>
       <td className="px-4 pb-2 text-center">
         <Select value="variable">
@@ -127,13 +128,13 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
               </div>
               <div className="input dark:bg-slate-900">
                 <div className="flex items-center justify-between">
-                  <span>Health factor</span>
+                  <span>Health Factor</span>
                   <div className="flex items-center justify-between">
-                    <span className={healthFactor >= 3 ? 'text-green-500' : 'text-orange-500'}>{healthFactor}</span>
+                    <HealthFactor value={healthFactor} />
                     {Number(repayAmount) > 0 && (
                       <>
                         <TiArrowRight />
-                        <span className={calcNewHealthFactor() >= 3 ? 'text-green-500' : 'text-orange-500'}>{calcNewHealthFactor()}</span>
+                        <HealthFactor value={calcNewHealthFactor()} />
                       </>
                     )}
                   </div>

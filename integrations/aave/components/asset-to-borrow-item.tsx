@@ -6,6 +6,7 @@ import { TiArrowRight } from 'react-icons/ti'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 
+import { HealthFactor } from './health-factor'
 import { useAave } from '../hooks/use-aave'
 
 interface IAssetToSupplyItem {
@@ -96,11 +97,11 @@ export const AssetToBorrowItem = ({ symbol, tokenPriceInUsd, variableBorrowRate,
                 <div className="flex items-center justify-between">
                   <span>Health factor</span>
                   <div className="flex items-center justify-between">
-                    <span className={healthFactor >= 3 ? 'text-green-500' : 'text-orange-500'}>{healthFactor}</span>
+                    <HealthFactor value={healthFactor} />
                     {Number(borrowAmount) > 0 && (
                       <>
                         <TiArrowRight />
-                        <span className={calcNewHealthFactor() >= 3 ? 'text-green-500' : 'text-orange-500'}>{calcNewHealthFactor()}</span>
+                        <HealthFactor value={calcNewHealthFactor()} />
                       </>
                     )}
                   </div>

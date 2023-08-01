@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { Switch } from '@/components/ui/switch'
 import { useErc20Symbol } from '@/lib/generated/blockchain'
 
+import { HealthFactor } from './health-factor'
 import { useAave } from '../hooks/use-aave'
 import { limitDecimals } from '../utils'
 
@@ -41,7 +42,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, liquid
         />
         {symbol === 'WETH' ? 'ETH' : symbol}
       </td>
-      <td className="px-4 py-2 text-center">{limitDecimals(balance.toString(), 2)}</td>
+      <td className="px-4 py-2 text-center">{limitDecimals(balance.toString(), 5)}</td>
       <td className="px-4 py-2 text-center">{liquidityRate !== 0 ? `${liquidityRate.toFixed(2)}%` : '0'}</td>
       <td className="px-4 py-2 text-center">
         <Switch checked={collateralEnabled} className="bg-green-700" />
@@ -110,11 +111,11 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, liquid
                 <div className="flex items-center justify-between">
                   <span>Health factor</span>
                   <div className="flex items-center justify-between">
-                    <span className={healthFactor >= 3 ? 'text-green-500' : 'text-orange-500'}>{healthFactor}</span>
+                    <HealthFactor value={healthFactor} />
                     {Number(withdrawAmount) > 0 && (
                       <>
                         <TiArrowRight />
-                        <span className={calcNewHealthFactor() >= 3 ? 'text-green-500' : 'text-orange-500'}>{calcNewHealthFactor()}</span>
+                        <HealthFactor value={calcNewHealthFactor()} />
                       </>
                     )}
                   </div>

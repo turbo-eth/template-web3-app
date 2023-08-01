@@ -6,6 +6,10 @@ export const ListSuppliedAssets = () => {
 
   const filteredUserReserves = usdData?.filter((reserve) => reserve.scaledATokenBalance !== BigInt(0))
 
+  const averageSupplyApy = () => {
+    return 2.5
+  }
+
   return (
     <div className="flex-1 justify-between rounded border p-3 dark:border-slate-600">
       <div className="mb-4 flex items-center justify-between">
@@ -22,7 +26,8 @@ export const ListSuppliedAssets = () => {
             </div>
             <div className="mr-2 rounded border bg-white py-2 px-4 dark:border-slate-600 dark:bg-gray-800">
               <h3 className="text-xs font-bold">
-                <span className="text-slate-500 dark:text-slate-300">APY</span> 2.5 <span className="text-slate-500 dark:text-slate-300">%</span>
+                <span className="text-slate-500 dark:text-slate-300">APY</span> {averageSupplyApy()}{' '}
+                <span className="text-slate-500 dark:text-slate-300">%</span>
               </h3>
             </div>
             <div className="mr-2 rounded border bg-white py-2 px-4 dark:border-slate-600 dark:bg-gray-800">
