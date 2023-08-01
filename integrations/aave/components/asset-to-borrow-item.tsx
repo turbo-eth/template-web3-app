@@ -1,27 +1,39 @@
 import { useState } from 'react'
 
 import Image from 'next/image'
-import { TiArrowRight } from 'react-icons/ti'
+import { parseUnits } from 'viem'
+import { useAccount } from 'wagmi'
 
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { useErc20Decimals } from '@/lib/generated/blockchain'
 
-import { HealthFactor } from './health-factor'
+import { usePoolBorrow } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
 
 interface IAssetToSupplyItem {
+  address: `0x${string}`
   symbol: string
   tokenPriceInUsd: number
   variableBorrowRate: number
   stableBorrowRate?: number
 }
 
-export const AssetToBorrowItem = ({ symbol, tokenPriceInUsd, variableBorrowRate, stableBorrowRate }: IAssetToSupplyItem) => {
-  const { maxBorrowableInUsd, healthFactor } = useAave()
+export const AssetToBorrowItem = ({ address, symbol, tokenPriceInUsd, variableBorrowRate, stableBorrowRate }: IAssetToSupplyItem) => {
+  const { maxBorrowableInUsd, poolAddress } = useAave()
+  const { address: user } = useAccount()
   const [borrowAmount, setBorrowAmount] = useState('')
+  const { data: decimals } = useErc20Decimals({ address })
 
-  const calcNewHealthFactor = () => {
-    return 3
+  // eslint-disable-next-line
+  const { write: borrowWrite } = usePoolBorrow({
+    address: poolAddress,
+    args: [address, parseUnits(`${Number(borrowAmount)}`, decimals ?? 18), BigInt(2), 0, user as `0x${string}`],
+  })
+
+  const buttonAction = () => {
+    // eslint-disable-next-line
+    borrowWrite()
   }
 
   return (
@@ -37,7 +49,8 @@ export const AssetToBorrowItem = ({ symbol, tokenPriceInUsd, variableBorrowRate,
         {symbol}
       </td>
       <td className={`px-4 py-2 text-center ${maxBorrowableInUsd === 0 ? 'text-slate-400' : ''}`}>
-        {maxBorrowableInUsd > 0 ? (maxBorrowableInUsd / tokenPriceInUsd).toFixed(2) : '0'}
+        {/* Only allowing borrowing 80% of max borrow amount to keep health factor safe */}
+        {maxBorrowableInUsd > 0 ? ((maxBorrowableInUsd / tokenPriceInUsd) * 0.8).toFixed(2) : '0'}{' '}
       </td>
       <td className="px-4 py-2 text-center">{variableBorrowRate.toFixed(2)}%</td>
       <td className="px-4 pb-2 text-center">{stableBorrowRate ? `${stableBorrowRate.toFixed(2)}%` : '—'}</td>
@@ -70,7 +83,8 @@ export const AssetToBorrowItem = ({ symbol, tokenPriceInUsd, variableBorrowRate,
                         }
                         value = value.replace(',', '.')
                         setBorrowAmount(value)
-                        if (Number(value) > maxBorrowableInUsd / tokenPriceInUsd) setBorrowAmount((maxBorrowableInUsd / tokenPriceInUsd).toFixed(2))
+                        if (Number(value) > (maxBorrowableInUsd / tokenPriceInUsd) * 0.8)
+                          setBorrowAmount(((maxBorrowableInUsd / tokenPriceInUsd) * 0.8).toFixed(2))
                       }
                     }}
                   />
@@ -87,27 +101,10 @@ export const AssetToBorrowItem = ({ symbol, tokenPriceInUsd, variableBorrowRate,
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>Available: {(maxBorrowableInUsd / tokenPriceInUsd).toFixed(2)}</span>
+                  <span>Available: {((maxBorrowableInUsd / tokenPriceInUsd) * 0.8).toFixed(2)}</span> {/* Showing 80% to keep health factor "safe" */}
                 </div>
               </div>
-              <div className="mt-5 mb-2">
-                <label>Transaction overview</label>
-              </div>
-              <div className="input dark:bg-slate-900">
-                <div className="flex items-center justify-between">
-                  <span>Health factor</span>
-                  <div className="flex items-center justify-between">
-                    <HealthFactor value={healthFactor} />
-                    {Number(borrowAmount) > 0 && (
-                      <>
-                        <TiArrowRight />
-                        <HealthFactor value={calcNewHealthFactor()} />
-                      </>
-                    )}
-                  </div>
-                </div>
-              </div>
-              <button className="btn btn-primary mt-5 w-full" disabled={!Number(borrowAmount)}>
+              <button className="btn btn-primary mt-5 w-full" disabled={!Number(borrowAmount)} onClick={buttonAction}>
                 Borrow {symbol}
               </button>
             </DialogDescription>

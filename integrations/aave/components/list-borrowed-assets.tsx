@@ -32,7 +32,7 @@ export const ListBorrowedAssets = () => {
               <thead>
                 <tr>
                   <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Asset</th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Balance</th>
+                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Debt</th>
                   <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">APY</th>
                   <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">APY Type</th>
                 </tr>
@@ -45,8 +45,12 @@ export const ListBorrowedAssets = () => {
                     <BorrowedAssetsItem
                       key={index}
                       address={userReserve.underlyingAsset}
-                      debt={((Number(userReserve.scaledVariableDebt) / 10 ** 18) * Number(reserve?.variableBorrowIndex ?? BigInt(1))) / 10 ** 27}
                       variableBorrowRate={Number(userReserve.reserveData.variableBorrowRate) / 10 ** 25}
+                      debt={
+                        ((Number(userReserve.scaledVariableDebt) / 10 ** (Number(reserve?.decimals) ?? 18)) *
+                          Number(reserve?.variableBorrowIndex ?? BigInt(1))) /
+                        10 ** 27
+                      }
                     />
                   )
                 })}

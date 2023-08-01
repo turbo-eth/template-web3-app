@@ -2,15 +2,15 @@ import { useState } from 'react'
 
 import Image from 'next/image'
 import { TiArrowRight } from 'react-icons/ti'
-import { formatUnits } from 'viem'
+import { formatUnits, parseUnits } from 'viem'
 import { useAccount } from 'wagmi'
 
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { useErc20BalanceOf, useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
+import { useErc20Allowance, useErc20Approve, useErc20BalanceOf, useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
 
-import { HealthFactor } from './health-factor'
+import { usePoolRepay } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
 import { limitDecimals } from '../utils'
 
@@ -24,17 +24,30 @@ const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : s
 
 export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorrowedAssetsItemProps) => {
   const { address: user } = useAccount()
+  const { poolAddress } = useAave()
+  const [repayAmount, setRepayAmount] = useState('')
 
   const symbol = getSymbol(useErc20Symbol({ address }).data)
   const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined, watch: true })
   const { data: decimals } = useErc20Decimals({ address })
+  const allowance = useErc20Allowance({ address, args: user ? [user, poolAddress] : undefined, watch: true }).data
+  const { write: approveWrite } = useErc20Approve({
+    address,
+    args: [poolAddress, parseUnits(`${Number(repayAmount)}`, decimals ?? 18)],
+  })
+  // eslint-disable-next-line
+  const { write: repayWrite } = usePoolRepay({
+    address: poolAddress,
+    args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), BigInt(2), user as `0x${string}`],
+  })
 
-  const [repayAmount, setRepayAmount] = useState('')
-
-  const { healthFactor } = useAave()
-
-  const calcNewHealthFactor = () => {
-    return 3
+  const buttonAction = () => {
+    if (Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(repayAmount)) {
+      approveWrite()
+    } else {
+      // eslint-disable-next-line
+      repayWrite()
+    }
   }
 
   return (
@@ -52,7 +65,7 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
       <td className="px-4 py-2 text-center">{limitDecimals(debt.toString(), 5)}</td>
       <td className="px-4 py-2 text-center">{variableBorrowRate.toFixed(2)}%</td>
       <td className="px-4 pb-2 text-center">
-        <Select value="variable">
+        <Select disabled value="variable">
           <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
             <SelectValue placeholder="Select market" />
           </SelectTrigger>
@@ -93,7 +106,10 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
                         }
                         value = value.replace(',', '.')
                         setRepayAmount(value)
-                        /* if (Number(value) > maxBorrowableInUsd / tokenPriceInUsd) setRepayAmount((maxBorrowableInUsd / tokenPriceInUsd).toFixed(2)) */
+                        console.log(Number(value))
+                        console.log(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18))
+                        if (Number(value) > Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)))
+                          setRepayAmount(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18))
                       }
                     }}
                   />
@@ -110,7 +126,7 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>Wallet balance: {formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)}</span>
+                  <span>Wallet balance: {limitDecimals(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18), 5)}</span>
                 </div>
               </div>
               <div className="mt-5 mb-2">
@@ -121,27 +137,23 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
                   <span>Remaining debt</span>
                   <div className="flex items-center justify-between">
                     <span>
-                      <span className="font-bold">{healthFactor}</span> {symbol}
+                      <span className="font-bold">{debt.toFixed(5)}</span> {symbol}
                     </span>
-                  </div>
-                </div>
-              </div>
-              <div className="input dark:bg-slate-900">
-                <div className="flex items-center justify-between">
-                  <span>Health Factor</span>
-                  <div className="flex items-center justify-between">
-                    <HealthFactor value={healthFactor} />
                     {Number(repayAmount) > 0 && (
                       <>
                         <TiArrowRight />
-                        <HealthFactor value={calcNewHealthFactor()} />
+                        <span>
+                          <span className="font-bold">{(debt - Number(repayAmount)).toFixed(5)}</span> {symbol}
+                        </span>
                       </>
                     )}
                   </div>
                 </div>
               </div>
-              <button className="btn btn-primary mt-5 w-full" disabled={!Number(repayAmount)}>
-                Repay {symbol}
+              <button className="btn btn-primary mt-5 w-full" disabled={!Number(repayAmount)} onClick={buttonAction}>
+                {Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(repayAmount)
+                  ? `Approve ${symbol ?? ''}`
+                  : `Repay ${symbol ?? ''}`}
               </button>
             </DialogDescription>
           </DialogContent>

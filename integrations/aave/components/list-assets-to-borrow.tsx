@@ -25,6 +25,7 @@ export const ListAssetsToBorrow = () => {
                 return (
                   <AssetToBorrowItem
                     key={index}
+                    address={reserve.underlyingAsset}
                     symbol={reserve.reserveData.symbol}
                     tokenPriceInUsd={reserve.tokenPriceInUsd}
                     variableBorrowRate={Number(reserve.reserveData.variableBorrowRate) / 10 ** 25}

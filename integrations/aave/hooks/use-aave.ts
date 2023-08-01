@@ -23,11 +23,13 @@ export const useAave = () => {
   const { data: reservesData } = useUiPoolDataProviderGetReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
     args: market ? [market?.addresses.LENDING_POOL_ADDRESS_PROVIDER] : undefined,
+    watch: true,
   })
 
   const data = useUiPoolDataProviderGetUserReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
     args: market && user ? [market?.addresses.LENDING_POOL_ADDRESS_PROVIDER, user] : undefined,
+    watch: true,
   }).data?.[0] as UserReserveData[]
 
   useEffect(() => {
@@ -55,7 +57,7 @@ export const useAave = () => {
         totalDebtInUsd += debtInUsd
         maxBorrowableInUsd += amountInUsd * (Number(reserveData.baseLTVasCollateral) / 10000)
 
-        if (reserveData?.usageAsCollateralEnabled) {
+        if (userReserveData.usageAsCollateralEnabledOnUser) {
           collateralInUsd += amountInUsd
         }
 
@@ -94,7 +96,7 @@ export const useAave = () => {
       setUsdData(usdData)
       setAverageSupplyApy(averageSupplyApy)
       setAverageBorrowApy(averageBorrowApy)
-      setAverageNetApy((balanceInUsd * averageSupplyApy - totalDebtInUsd * averageBorrowApy) / netWorth)
+      setAverageNetApy(totalDebtInUsd > 0 ? (balanceInUsd * averageSupplyApy - totalDebtInUsd * averageBorrowApy) / netWorth : averageSupplyApy)
     }
   }, [data, market, user])
 
@@ -110,5 +112,6 @@ export const useAave = () => {
     averageSupplyApy,
     averageBorrowApy,
     averageNetApy,
+    poolAddress: (market?.addresses.LENDING_POOL ?? '') as `0x${string}`,
   }
 }

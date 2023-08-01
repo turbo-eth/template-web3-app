@@ -1,34 +1,80 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Image from 'next/image'
 import { TiArrowRight } from 'react-icons/ti'
+import { parseUnits } from 'viem'
+import { useAccount } from 'wagmi'
 
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Switch } from '@/components/ui/switch'
-import { useErc20Symbol } from '@/lib/generated/blockchain'
+import { useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
 
-import { HealthFactor } from './health-factor'
+import { usePoolSetUserUseReserveAsCollateral, usePoolWithdraw } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
-import { limitDecimals } from '../utils'
 
 interface ISuppliedAssetsItemProps {
   address: `0x${string}`
   balance: number
   collateralEnabled: boolean
   liquidityRate: number
+  canBeCollateral: boolean
 }
 
 const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : symbol)
 
-export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, liquidityRate }: ISuppliedAssetsItemProps) => {
-  const symbol = getSymbol(useErc20Symbol({ address }).data)
-  const [withdrawAmount, setWithdrawAmount] = useState('')
-  const { healthFactor } = useAave()
+export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeCollateral, liquidityRate }: ISuppliedAssetsItemProps) => {
+  const { address: user } = useAccount()
+  const { poolAddress } = useAave()
 
-  const calcNewHealthFactor = () => {
-    return 3
+  const symbol = getSymbol(useErc20Symbol({ address }).data)
+  const { data: decimals } = useErc20Decimals({ address })
+
+  const [withdrawAmount, setWithdrawAmount] = useState('')
+
+  const switchCollateralUsage = () => {
+    // eslint-disable-next-line
+    writeSetUserUseReserveAsCollateral()
   }
+
+  const buttonAction = () => {
+    // eslint-disable-next-line
+    withdrawWrite()
+  }
+
+  const getWithdrawAmount = () => {
+    return parseUnits(`${Number(withdrawAmount)}`, decimals ?? 18)
+  }
+
+  // eslint-disable-next-line
+  const { error: setUserUseReserveAsCollateralError, write: writeSetUserUseReserveAsCollateral } = usePoolSetUserUseReserveAsCollateral({
+    address: poolAddress,
+    args: [address, !collateralEnabled],
+  })
+
+  // eslint-disable-next-line
+  const { error: withdrawError, write: withdrawWrite } = usePoolWithdraw({
+    address: poolAddress,
+    args: [address, getWithdrawAmount(), user as `0x${string}`],
+  })
+
+  useEffect(() => {
+    if (setUserUseReserveAsCollateralError) {
+      // eslint-disable-next-line
+      if (setUserUseReserveAsCollateralError?.name === 'ContractFunctionExecutionError') {
+        alert("You can't switch collateral mode because it will cause collateral call!")
+      }
+    }
+  }, [setUserUseReserveAsCollateralError])
+
+  useEffect(() => {
+    if (withdrawError) {
+      // eslint-disable-next-line
+      if (withdrawError?.name === 'ContractFunctionExecutionError') {
+        alert("You can't withdraw that amount because it will cause collateral call!")
+      }
+    }
+  }, [withdrawError])
 
   return (
     <tr>
@@ -42,10 +88,10 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, liquid
         />
         {symbol === 'WETH' ? 'ETH' : symbol}
       </td>
-      <td className="px-4 py-2 text-center">{limitDecimals(balance.toString(), 5)}</td>
+      <td className="px-4 py-2 text-center">{balance.toFixed(5)}</td>
       <td className="px-4 py-2 text-center">{liquidityRate !== 0 ? `${liquidityRate.toFixed(2)}%` : '0'}</td>
       <td className="px-4 py-2 text-center">
-        <Switch checked={collateralEnabled} className="bg-green-700" />
+        <Switch checked={collateralEnabled} className="bg-green-700" disabled={!canBeCollateral} onClick={switchCollateralUsage} />
       </td>
       <td className="px-4 py-2 text-center">
         <Dialog>
@@ -74,7 +120,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, liquid
                         }
                         value = value.replace(',', '.')
                         setWithdrawAmount(value)
-                        /* if (Number(value) > maxBorrowableInUsd / tokenPriceInUsd) setWithdrawAmount((maxBorrowableInUsd / tokenPriceInUsd).toFixed(2)) */
+                        if (balance - Number(value) < 0) setWithdrawAmount(balance.toString())
                       }
                     }}
                   />
@@ -91,7 +137,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, liquid
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>Available: 3.15</span>
+                  <span>Available: {balance.toFixed(5)}</span>
                 </div>
               </div>
               <div className="mt-5 mb-2">
@@ -99,29 +145,23 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, liquid
               </div>
               <div className="input dark:bg-slate-900">
                 <div className="flex items-center justify-between">
-                  <span>Remaining supply</span>
+                  <span>Remaining debt</span>
                   <div className="flex items-center justify-between">
                     <span>
-                      <span className="font-bold">{healthFactor}</span> {symbol}
+                      <span className="font-bold">{balance.toFixed(5)}</span> {symbol}
                     </span>
-                  </div>
-                </div>
-              </div>
-              <div className="input dark:bg-slate-900">
-                <div className="flex items-center justify-between">
-                  <span>Health factor</span>
-                  <div className="flex items-center justify-between">
-                    <HealthFactor value={healthFactor} />
                     {Number(withdrawAmount) > 0 && (
                       <>
                         <TiArrowRight />
-                        <HealthFactor value={calcNewHealthFactor()} />
+                        <span>
+                          <span className="font-bold">{(balance - Number(withdrawAmount)).toFixed(5)}</span> {symbol}
+                        </span>
                       </>
                     )}
                   </div>
                 </div>
               </div>
-              <button className="btn btn-primary mt-5 w-full" disabled={!Number(withdrawAmount)}>
+              <button className="btn btn-primary mt-5 w-full" disabled={!Number(withdrawAmount)} onClick={buttonAction}>
                 Withdraw {symbol}
               </button>
             </DialogDescription>
