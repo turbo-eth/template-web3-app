@@ -55,8 +55,8 @@ export default function PageIntegration() {
             <Balancer>{turboIntegrations.etherscan.description}</Balancer>
           </motion.p>
           <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent isExternal href={turboIntegrations.etherscan.url}>
-              <button className="btn btn-primary">Documentation</button>
+            <LinkComponent isExternal className="btn btn-primary" href={turboIntegrations.etherscan.url}>
+              Documentation
             </LinkComponent>
           </motion.div>
         </motion.div>
