@@ -16,6 +16,9 @@ export const useAave = () => {
   const [maxBorrowableInUsd, setMaxBorrowableInUsd] = useState(0)
   const [usdData, setUsdData] = useState<UsdData[] | null>(null)
   const [healthFactor, setHealthFactor] = useState(0)
+  const [averageSupplyApy, setAverageSupplyApy] = useState(0)
+  const [averageBorrowApy, setAverageBorrowApy] = useState(0)
+  const [averageNetApy, setAverageNetApy] = useState(0)
 
   const { data: reservesData } = useUiPoolDataProviderGetReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
@@ -65,11 +68,17 @@ export const useAave = () => {
         }
       }) as UsdData[]
 
+      const netWorth = balanceInUsd - totalDebtInUsd
       let averageLiquidationThreshold = 0
+      let averageSupplyApy = 0
+      let averageBorrowApy = 0
+
       usdData.forEach((data) => {
         data.supplyProportion = data.amountInUsd / balanceInUsd
         data.borrowProportion = data.debtInUsd / totalDebtInUsd
         averageLiquidationThreshold += data.supplyProportion * (Number(data.reserveData.reserveLiquidationThreshold) / 10000)
+        averageSupplyApy += data.supplyProportion * (Number(data.reserveData.liquidityRate) / 10 ** 25)
+        averageBorrowApy += data.borrowProportion * (Number(data.reserveData.variableBorrowRate) / 10 ** 25)
       })
 
       const nativeTokenPrice = Number(reservesData?.[1].networkBaseTokenPriceInUsd) / Number(reservesData?.[1].marketReferenceCurrencyUnit)
@@ -83,8 +92,23 @@ export const useAave = () => {
       setTotalDebtInUsd(totalDebtInUsd)
       setMaxBorrowableInUsd(maxBorrowableInUsd - totalDebtInUsd)
       setUsdData(usdData)
+      setAverageSupplyApy(averageSupplyApy)
+      setAverageBorrowApy(averageBorrowApy)
+      setAverageNetApy((balanceInUsd * averageSupplyApy - totalDebtInUsd * averageBorrowApy) / netWorth)
     }
   }, [data, market, user])
 
-  return { reservesData, userReservesData, usdData, balanceInUsd, totalDebtInUsd, collateralInUsd, maxBorrowableInUsd, healthFactor }
+  return {
+    reservesData,
+    userReservesData,
+    usdData,
+    balanceInUsd,
+    totalDebtInUsd,
+    collateralInUsd,
+    maxBorrowableInUsd,
+    healthFactor,
+    averageSupplyApy,
+    averageBorrowApy,
+    averageNetApy,
+  }
 }

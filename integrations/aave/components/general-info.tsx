@@ -13,7 +13,7 @@ export const GeneralInfo = () => {
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
 
-  const { balanceInUsd, totalDebtInUsd, healthFactor } = useAave()
+  const { balanceInUsd, totalDebtInUsd, healthFactor, averageNetApy } = useAave()
 
   return (
     <motion.div
@@ -60,7 +60,8 @@ export const GeneralInfo = () => {
             <p className="font-bold text-black dark:text-white">
               {balanceInUsd > 0 ? (
                 <>
-                  2.5<span className="text-slate-500 dark:text-slate-300">%</span>
+                  {averageNetApy.toFixed(2)}
+                  <span className="text-slate-500 dark:text-slate-300"> %</span>
                 </>
               ) : (
                 '—'
