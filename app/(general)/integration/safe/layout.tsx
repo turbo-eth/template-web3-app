@@ -68,7 +68,7 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
             </LinkComponent>
           </motion.div>
           <motion.div className="flex h-full w-full justify-center" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <div className="w-7/12">{children}</div>
+            <div>{children}</div>
           </motion.div>
         </motion.div>
       </div>
