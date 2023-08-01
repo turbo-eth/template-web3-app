@@ -23,5 +23,5 @@ export function SafeProvider({ children }: { children: ReactNode }) {
 
   // safeClient?.service.getServiceInfo().then((info) => console.log(info))
 
-  return <SafeContext.Provider value={safeClient}>{children}</SafeContext.Provider>
+  return <SafeContext.Provider value={{ safeClient }}>{children}</SafeContext.Provider>
 }
