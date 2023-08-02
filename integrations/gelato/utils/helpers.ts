@@ -106,6 +106,12 @@ export const getTransactionUrl = (tx: ethers.ContractTransaction, chainId: numbe
   return `${explorerUrl}/tx/${tx.hash}`
 }
 
+export const getAddressUrl = (address: string, chainId: number) => {
+  const explorerUrl = GELATO_CONSTANTS.networks[chainId].explorerUrl
+
+  return `${explorerUrl}/address/${address}`
+}
+
 export const sortInputsByOrder = (func: string, abi: string, inputs?: { [key: string]: string }) => {
   const abiFunction = getAbiFunctions(JSON.parse(abi) as Abi).find((item) => item.name === func) as AbiFunction
 
@@ -116,4 +122,18 @@ export const sortInputsByOrder = (func: string, abi: string, inputs?: { [key: st
     }
     return value
   })
+}
+
+export const getGqlEndpoint = (chainId: number) => {
+  return chainId == 1 ? '' : `-${GELATO_CONSTANTS.networks[chainId].graph}`
+}
+
+export const getTaskFunctionData = (contractAddress: string, abi: string, execDataOrSelector: string) => {
+  const contract = new ethers.Contract(contractAddress, abi)
+  const functionSignature = execDataOrSelector.slice(0, 10)
+
+  return {
+    func: contract.interface.getFunction(functionSignature),
+    data: contract.interface.decodeFunctionData(functionSignature, execDataOrSelector),
+  }
 }

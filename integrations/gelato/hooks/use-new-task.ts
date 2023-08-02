@@ -1,17 +1,16 @@
-import { CreateTaskOptions } from '@gelatonetwork/automate-sdk'
 import { useMutation } from '@tanstack/react-query'
-import { Overrides } from 'ethers'
 
 import { useGelatoAutomateSdk } from './use-automate-sdk'
+import { UseNewTaskProps } from '../utils/types'
 
 export const useNewTask = () => {
   const { automateSdk } = useGelatoAutomateSdk()
 
   return useMutation({
-    mutationFn: async (_args: CreateTaskOptions, overrides?: Overrides, authToken?: string) => {
+    mutationFn: async ({ args, overrides, authToken }: UseNewTaskProps) => {
       if (!automateSdk) throw new Error('Sdk not initiated')
 
-      return automateSdk.createTask(_args, overrides, authToken)
+      return automateSdk.createTask(args, overrides, authToken)
     },
   })
 }

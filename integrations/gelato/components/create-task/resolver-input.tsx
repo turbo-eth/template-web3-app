@@ -5,9 +5,9 @@ import { GELATO_CONSTANTS } from '../../utils/constants'
 
 export function ResolverInput() {
   return (
-    <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-800">
+    <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
       <div className="mb-10 flex w-full items-center justify-between">
-        <h3 className="text-2xl font-bold">When</h3>
+        <h3 className="text-2xl font-bold dark:opacity-70">When</h3>
       </div>
       <div>
         <div>Resolver Contracts allow you to define arbitrary conditions that should trigger an execution.</div>

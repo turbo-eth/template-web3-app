@@ -32,6 +32,7 @@ export const useAbi = ({ contractAddress }: { contractAddress: string }) => {
 
       return abiFetcher({ contractAddress, chainId: chain.id })
     },
+    enabled: !!contractAddress,
     retry: 0,
     refetchOnWindowFocus: false,
   })

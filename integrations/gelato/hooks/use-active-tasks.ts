@@ -5,6 +5,7 @@ import { useAccount, useNetwork } from 'wagmi'
 import { useGelatoAutomateSdk } from './use-automate-sdk'
 import { GetAllTaskDataDocument, GetAllTaskDataQuery, GetAllTaskDataQueryVariables } from '../graphql/graphql/generated/graphql'
 import { GELATO_CONSTANTS } from '../utils/constants'
+import { getGqlEndpoint } from '../utils/helpers'
 import { FetchActiveTasksProps } from '../utils/types'
 
 const fetchActiveTasks = ({ address, gqlEndpoint }: FetchActiveTasksProps) => {
@@ -30,7 +31,7 @@ export const useActiveTasks = () => {
     queryFn: async () => {
       if (!chainId || !GELATO_CONSTANTS.networks[chainId] || !address) throw new Error('Missing Parameters')
 
-      const gqlEndpoint = chainId == 1 ? '' : `-${GELATO_CONSTANTS.networks[chainId].graph}`
+      const gqlEndpoint = getGqlEndpoint(chain.id)
 
       const tasks = await fetchActiveTasks({ address, gqlEndpoint })
       const names = await automateSdk?.getTaskNames(tasks.tasks.map((task) => task.id))

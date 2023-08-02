@@ -16,5 +16,5 @@ export const useGelatoAutomateSdk = () => {
     if (chain?.id && signer) setAutomateSdk(new AutomateSDK(chain.id, signer))
   }, [chain?.id, signer])
 
-  return { automateSdk }
+  return { automateSdk, isLoading: !chain?.id || !signer }
 }

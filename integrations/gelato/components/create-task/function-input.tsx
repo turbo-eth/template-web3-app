@@ -30,7 +30,7 @@ export function FunctionInput({ abiFieldName, funcFieldName, inputsFieldName }: 
 
   return (
     <div className="mt-8">
-      <label htmlFor="execute_function">
+      <label className="dark:opacity-70" htmlFor="execute_function">
         {funcFieldName === 'func' ? 'Function to be automated' : 'Function to be called at the resolver (to check task status)'}
       </label>
       <Select

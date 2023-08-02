@@ -52,7 +52,9 @@ export function ContractInput({ contractFieldName, abiFieldName }: ContractInput
 
   return (
     <div>
-      <label htmlFor="contract_address">{contractFieldName == 'contractAddress' ? 'Contract address' : 'Resolver contract address'}</label>
+      <label className="dark:opacity-70" htmlFor="contract_address">
+        {contractFieldName == 'contractAddress' ? 'Contract address' : 'Resolver contract address'}
+      </label>
       <input
         className="input mt-2 !rounded-2xl dark:!bg-zinc-700 dark:!text-white"
         placeholder="0x..."
@@ -98,7 +100,9 @@ export function ContractInput({ contractFieldName, abiFieldName }: ContractInput
       {shouldShowAbiInput && (
         <>
           <div className="mt-5">
-            <label htmlFor="abi_input">ABI</label>
+            <label className="dark:opacity-70" htmlFor="abi_input">
+              ABI
+            </label>
             <textarea
               {...register(abiFieldName, {
                 required: 'ABI is required',

@@ -56,9 +56,9 @@ export function IntervalInput() {
   const secondExecution = useMemo(() => moment(date).add(totalInterval, 'seconds').format('ll, HH:mm:ss'), [date])
 
   return (
-    <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-800">
+    <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
       <div className="mb-10 flex w-full items-center justify-between">
-        <h3 className="text-2xl font-bold">When</h3>
+        <h3 className="text-2xl font-bold dark:opacity-70">When</h3>
       </div>
       <div>
         <div className="flex">
@@ -88,8 +88,8 @@ export function IntervalInput() {
         {timeOption === 'exact' ? (
           <div>
             <div>Execute a contract at a given interval with a set start time.</div>
-            <div className="mt-3">
-              <label>
+            <div className="mt-5">
+              <label className="dark:opacity-70">
                 Interval - <small>minimum 25 seconds</small>
               </label>
               <div className="mt-2 flex items-center space-x-5">
@@ -117,7 +117,7 @@ export function IntervalInput() {
             <ValidationError error={errors.timeInterval?.message} />
 
             <div className="mt-5">
-              <label>Start time</label>
+              <label className="dark:opacity-70">Start time</label>
               <input
                 {...register('startTime')}
                 className={cn('input mt-2 !rounded-2xl dark:!bg-zinc-700 dark:!text-white', startImmediately ? 'opacity-70' : '')}
@@ -127,7 +127,7 @@ export function IntervalInput() {
             </div>
             <div className="mt-3 flex items-center space-x-3">
               <Switch defaultChecked={startImmediately} id="start_immediately" onCheckedChange={(val) => setValue('startImmediately', val)} />
-              <label className="cursor-pointer" htmlFor="start_immediately">
+              <label className="cursor-pointer dark:opacity-70" htmlFor="start_immediately">
                 Start Immediately
               </label>
             </div>

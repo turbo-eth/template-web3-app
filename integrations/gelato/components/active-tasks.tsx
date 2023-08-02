@@ -21,7 +21,7 @@ export function ActiveTasks() {
   })
 
   return (
-    <div className="card w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-800">
+    <div className="card w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
       <div className="mb-5 flex w-full items-center justify-between">
         <h3 className="text-lg font-bold">My tasks</h3>
         <div className="flex items-center space-x-3">

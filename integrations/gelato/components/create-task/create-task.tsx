@@ -68,26 +68,34 @@ export function CreateTask() {
 
   const { isLoading: createTaskIsLoading, isError: createTaskIsError, mutateAsync: createTask } = useNewTask()
 
-  const { shouldShowFunction, shouldShowInputs, shouldShowRestrictionInfo, shouldShowPayment, shouldShowResolverInputs, isValid } = useWizard(form)
+  const {
+    shouldShowFunction,
+    shouldShowInputs,
+    shouldShowRestrictionInfo,
+    shouldShowIntervalInput,
+    shouldShowPayment,
+    shouldShowResolverInputs,
+    isValid,
+  } = useWizard(form)
 
   const onSubmit = async () => {
     const values = form.getValues()
 
     const contract = new ethers.Contract(values.contractAddress, values.abi, signer)
 
-    const { days, hours, minutes, seconds } = values.timeInterval
+    const { days, hours, minutes, seconds } = values.timeInterval || {}
+
     let taskData: CreateTaskOptions = {
       name: values.name,
       execAddress: values.contractAddress,
       execSelector: contract.interface.getSighash(getFunctionSignature(values.abi, values.func)),
-      interval: values.timeOption === 'exact' ? getTotalInterval(days, hours, minutes, seconds) : undefined,
+      interval: shouldShowIntervalInput && values.timeOption === 'exact' ? getTotalInterval(days, hours, minutes, seconds) : undefined,
       startTime: values.startImmediately || values.timeOption === 'whenever_possible' ? undefined : moment(values.startTime).unix(),
-      useTreasury: values.payWith === 'transaction',
+      useTreasury: values.payWith !== 'transaction',
       dedicatedMsgSender: false,
     }
 
     if (values.inputDefinition === 'predefined') {
-      console.log(sortInputsByOrder(values.func, values.abi, values.predefinedInputs), values.predefinedInputs)
       taskData = {
         ...taskData,
         execAbi: values.abi,
@@ -108,7 +116,9 @@ export function CreateTask() {
     }
 
     setCreateTxWaiting(true)
-    const task = await createTask(taskData)
+    const task = await createTask({
+      args: taskData,
+    })
 
     setCreateTx(task.tx)
     await task.tx.wait()
@@ -119,27 +129,23 @@ export function CreateTask() {
   return (
     <FormProvider {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-800">
+        <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
           <div className="mb-10 flex w-full items-center justify-between">
-            <h3 className="text-2xl font-bold">Execute</h3>
+            <h3 className="text-2xl font-bold dark:opacity-70">Execute</h3>
           </div>
           <ContractInput abiFieldName="abi" contractFieldName="contractAddress" />
           {shouldShowFunction && <FunctionInput abiFieldName="abi" funcFieldName="func" inputsFieldName="predefinedInputs" />}
           {shouldShowInputs && <ExecutionValues abiFieldName="abi" funcFieldName="func" inputFieldName="predefinedInputs" />}
         </div>
         {shouldShowResolverInputs && <ResolverInput />}
-        {shouldShowRestrictionInfo && (
-          <>
-            <RestrictionInfo />
-            <IntervalInput />
-          </>
-        )}
+        {shouldShowRestrictionInfo && <RestrictionInfo />}
+        {shouldShowIntervalInput && <IntervalInput />}
         {shouldShowPayment && (
           <>
             <PaymentInput />
             <TaskNameInput />
             <div className="mt-10 flex w-full">
-              <button className="btn btn-blue mx-auto !rounded-2xl" disabled={!isValid || createTaskIsLoading} type="submit">
+              <button className="btn btn-blue mx-auto !rounded-full" disabled={!isValid || createTaskIsLoading} type="submit">
                 <span className="flex items-center space-x-2">
                   {createTaskIsLoading && <FaSpinner className="animate-spin" />}
                   <span>Create Task</span>

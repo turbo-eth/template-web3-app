@@ -1,5 +1,7 @@
 'use client'
 
-export default function PageIntegration() {
-  return <>Task!</>
+import { TaskView } from '@/integrations/gelato'
+
+export default function PageIntegration({ params }: { params: { id: string } }) {
+  return <TaskView taskId={params.id} />
 }

@@ -61,8 +61,13 @@ export const useWizard = (form: UseFormReturn<CreateTaskForm>) => {
   const shouldShowInputs = shouldShowFunction && !!func
   const shouldShowResolverInputs = shouldShowInputs && inputDefinition === 'resolver'
   const allInputsAreFilled = inputDefinition === 'resolver' ? allResolverInputsAreFilled : allPredefinedInputsAreFilled
+
   const shouldShowRestrictionInfo = shouldShowInputs && !!allInputsAreFilled
-  const shouldShowPayment = shouldShowRestrictionInfo && (totalInterval >= 25 || timeOption == 'whenever_possible')
+  const shouldShowIntervalInput = shouldShowRestrictionInfo && inputDefinition === 'predefined'
+
+  const intervalIsValid = shouldShowIntervalInput ? totalInterval >= 25 : true
+
+  const shouldShowPayment = shouldShowRestrictionInfo && (intervalIsValid || timeOption == 'whenever_possible')
   const isValid = shouldShowPayment && !!name
 
   return {
@@ -70,6 +75,7 @@ export const useWizard = (form: UseFormReturn<CreateTaskForm>) => {
     shouldShowInputs,
     shouldShowResolverInputs,
     shouldShowRestrictionInfo,
+    shouldShowIntervalInput,
     shouldShowPayment,
     isValid,
   }
