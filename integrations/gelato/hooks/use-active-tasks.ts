@@ -4,10 +4,10 @@ import { useAccount, useNetwork } from 'wagmi'
 
 import { useGelatoAutomateSdk } from './use-automate-sdk'
 import { GetAllTaskDataDocument, GetAllTaskDataQuery, GetAllTaskDataQueryVariables } from '../graphql/graphql/generated/graphql'
-import { GELATO_CONSTANTS } from '../utils/contants'
-import { fetchActiveTasksProps } from '../utils/types'
+import { GELATO_CONSTANTS } from '../utils/constants'
+import { FetchActiveTasksProps } from '../utils/types'
 
-const fetchActiveTasks = ({ address, gqlEndpoint }: fetchActiveTasksProps) => {
+const fetchActiveTasks = ({ address, gqlEndpoint }: FetchActiveTasksProps) => {
   return request<GetAllTaskDataQuery, GetAllTaskDataQueryVariables>({
     url: `https://api.thegraph.com/subgraphs/name/gelatodigital/poke-me` + gqlEndpoint,
     document: GetAllTaskDataDocument,

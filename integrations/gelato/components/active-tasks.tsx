@@ -8,20 +8,20 @@ import { ActiveTaskPreview } from './active-task-preview'
 import { useActiveTasks } from '../hooks'
 
 export function ActiveTasks() {
-  const { data: activeTasks, isLoading, isError } = useActiveTasks()
-
   const [search, setSearch] = useState('')
+
+  const { data: activeTasks, isLoading, isError } = useActiveTasks()
 
   const searchInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
 
-  const filteredActiveTasks = activeTasks?.tasks.filter((item) => {
-    if (!search) return true
+  const activeTaskIdsFilteredByName = activeTasks?.names?.filter((item) => item.name.toLowerCase().includes(search)).map((item) => item.taskId)
 
-    return item.id.toLowerCase().includes(search)
+  const filteredActiveTasks = activeTasks?.tasks.filter((item) => {
+    return activeTaskIdsFilteredByName?.includes(item.id)
   })
 
   return (
-    <div className="card w-full !rounded-xl">
+    <div className="card w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-800">
       <div className="mb-5 flex w-full items-center justify-between">
         <h3 className="text-lg font-bold">My tasks</h3>
         <div className="flex items-center space-x-3">
@@ -33,7 +33,7 @@ export function ActiveTasks() {
           />
           <Input
             ref={searchInputRef}
-            className="w-56 !border-none duration-100 hover:outline-none focus:w-96 focus:bg-black/10"
+            className="w-56 !border-none duration-100 hover:outline-none focus:w-96 focus:bg-black/10 focus:!shadow-none"
             placeholder="Search"
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -44,7 +44,7 @@ export function ActiveTasks() {
           <div className="h-20 w-full animate-pulse rounded-lg bg-slate-400/70"></div>
         ) : (
           <>
-            <div className="mt-10 flex justify-between text-sm dark:text-white dark:text-opacity-30">
+            <div className="flex justify-between text-sm dark:text-white dark:text-opacity-30">
               <div className="flex gap-4 lg:gap-10">
                 <span>#</span>
                 <span className="pl-3">Task, owner, contract &amp; function</span>

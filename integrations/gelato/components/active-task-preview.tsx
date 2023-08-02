@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { GetAllTaskDataQuery } from '../graphql/graphql/generated/graphql'
 import { formatFee, truncateEthAddress } from '../utils/helpers'
 
@@ -8,9 +10,9 @@ export type ActiveTaskPreviewProps = {
 }
 export function ActiveTaskPreview({ task, name, index }: ActiveTaskPreviewProps) {
   return (
-    <a
-      className="-mx-5 flex flex-col items-center justify-between border-t border-white px-3 py-6 duration-200 hover:bg-black/20 md:flex-row"
-      href="/task/0x11685951e8d2e4d4896e64047ab43de193e509c8018fd7b711530816d9f42379?chainId=80001">
+    <Link
+      className="light:hover:bg-black/5 -mx-5 flex flex-col items-center justify-between border-t border-white/30 px-3 py-6 duration-200 dark:hover:bg-white/5 md:flex-row"
+      href={`/integration/gelato/tasks/${task.id}`}>
       <div className="flex w-full items-center gap-4 md:w-auto lg:gap-10">
         <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gray-200 text-xs font-bold dark:bg-gray-800">{index}</div>
         <div className="flex w-full flex-col gap-2">
@@ -35,8 +37,8 @@ export function ActiveTaskPreview({ task, name, index }: ActiveTaskPreviewProps)
       </div>
       <div className="mt-4 flex flex-col md:mt-0 md:items-end">
         <p className="font-bold">{task.feeTotal ? <>{formatFee(task.feeTotal as string)} MATIC</> : <></>}</p>
-        <p className="dark: text-xs text-white text-opacity-50"> {task.feeTotalUsd ? <>$ {formatFee(task.feeTotalUsd as string)}</> : <></>}</p>
+        <p className="text-xs text-white text-opacity-50"> {task.feeTotalUsd ? <>$ {formatFee(task.feeTotalUsd as string)}</> : <></>}</p>
       </div>
-    </a>
+    </Link>
   )
 }

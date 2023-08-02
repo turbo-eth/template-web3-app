@@ -13,7 +13,7 @@ import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { useIsAutomateSupported } from '@/integrations/gelato/hooks/use-is-automate-supported'
+import { useIsAutomateSupported } from '@/integrations/gelato'
 
 export default function LayoutIntegration({ children }: { children: ReactNode }) {
   const isAutomateSupported = useIsAutomateSupported()
