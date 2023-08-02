@@ -9,7 +9,6 @@ export const useAave = () => {
   const { address: user } = useAccount()
   const { chain } = useNetwork()
   const [market, setMarket] = useState<MarketDataType | null>(null)
-  const [userReservesData, setUserReservesData] = useState<UserReserveData[] | null>(null)
   const [balanceInUsd, setBalanceInUsd] = useState(0)
   const [collateralInUsd, setCollateralInUsd] = useState(0)
   const [totalDebtInUsd, setTotalDebtInUsd] = useState(0)
@@ -26,7 +25,7 @@ export const useAave = () => {
     watch: true,
   })
 
-  const data = useUiPoolDataProviderGetUserReservesData({
+  const userReservesData = useUiPoolDataProviderGetUserReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
     args: market && user ? [market?.addresses.LENDING_POOL_ADDRESS_PROVIDER, user] : undefined,
     watch: true,
@@ -34,16 +33,16 @@ export const useAave = () => {
 
   useEffect(() => {
     setMarket(marketsData?.find((market) => market.chainId === chain?.id) ?? null)
-  }, [chain])
+  }, [chain, userReservesData, reservesData])
 
   useEffect(() => {
-    if (data) {
+    if (userReservesData) {
       let balanceInUsd = 0
       let collateralInUsd = 0
       let totalDebtInUsd = 0
       let maxBorrowableInUsd = 0
 
-      const usdData = data.map((userReserveData) => {
+      const usdData = userReservesData.map((userReserveData) => {
         const reserveData = reservesData?.[0].find((reserve) => reserve.underlyingAsset === userReserveData.underlyingAsset) as ReserveData
 
         const tokenPriceInUsd = Number(reserveData?.priceInMarketReferenceCurrency) / Number(reservesData?.[1].marketReferenceCurrencyPriceInUsd)
@@ -88,7 +87,6 @@ export const useAave = () => {
       const debtInNativeToken = totalDebtInUsd / nativeTokenPrice
 
       setHealthFactor((collateralInNativeToken * averageLiquidationThreshold) / debtInNativeToken)
-      setUserReservesData(data)
       setBalanceInUsd(balanceInUsd)
       setCollateralInUsd(collateralInUsd)
       setTotalDebtInUsd(totalDebtInUsd)
@@ -98,7 +96,7 @@ export const useAave = () => {
       setAverageBorrowApy(averageBorrowApy)
       setAverageNetApy(totalDebtInUsd > 0 ? (balanceInUsd * averageSupplyApy - totalDebtInUsd * averageBorrowApy) / netWorth : averageSupplyApy)
     }
-  }, [data, market, user])
+  }, [userReservesData, market, user])
 
   return {
     reservesData,
