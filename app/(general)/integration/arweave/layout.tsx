@@ -19,21 +19,21 @@ const integrationData = turboIntegrations.arweave
 export default function ArweaveLayout({ children }: { children: ReactNode }) {
   return (
     <ArweaveWalletProvider>
-      <div className="flex-center flex-col items-center justify-center text-center">
-        <motion.div
-          animate="show"
-          className="max-w-3xl px-5 text-center xl:px-0"
-          initial="hidden"
-          viewport={{ once: true }}
-          whileInView="show"
-          variants={{
-            hidden: {},
-            show: {
-              transition: {
-                staggerChildren: 0.15,
-              },
+      <motion.div
+        animate="show"
+        className="flex-center flex-col items-center justify-center text-center"
+        initial="hidden"
+        viewport={{ once: true }}
+        whileInView="show"
+        variants={{
+          hidden: {},
+          show: {
+            transition: {
+              staggerChildren: 0.15,
             },
-          }}>
+          },
+        }}>
+        <motion.div className="max-w-3xl content-center items-center px-5 text-center xl:px-0" variants={FADE_DOWN_ANIMATION_VARIANTS}>
           <IsLightTheme>
             <Image alt="Starter logo" className="mx-auto" height={100} src={integrationData.imgDark} width={100} />
           </IsLightTheme>
@@ -53,14 +53,14 @@ export default function ArweaveLayout({ children }: { children: ReactNode }) {
               Documentation
             </LinkComponent>
           </motion.div>
-          <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <section className="mt-10 flex w-full overflow-hidden rounded-xl bg-gray-900">
-              <SideBar />
-              <div className="flex-center flex-1 flex-col items-center justify-center p-10 text-center">{children}</div>
-            </section>
-          </motion.div>
         </motion.div>
-      </div>
+        <motion.div className="my-4 w-full text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+          <section className="mt-10 flex overflow-hidden rounded-xl bg-gray-900">
+            <SideBar />
+            <div className="flex-center flex-1 flex-col items-center justify-center p-10 text-center">{children}</div>
+          </section>
+        </motion.div>
+      </motion.div>
     </ArweaveWalletProvider>
   )
 }
