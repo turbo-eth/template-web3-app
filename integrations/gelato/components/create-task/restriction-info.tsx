@@ -5,10 +5,9 @@ import { useFormContext } from 'react-hook-form'
 import { FaCopy } from 'react-icons/fa'
 
 import { CreateTaskForm } from './create-task'
-import { GELATO_CONSTANTS } from '../../utils/constants'
 import { getFunctionSignature } from '../../utils/helpers'
 
-export function RestrictionInfo() {
+export function RestrictionInfo({ dedicatedMsgSender }: { dedicatedMsgSender?: string }) {
   const [copied, setCopied] = useState(false)
 
   const { watch } = useFormContext<CreateTaskForm>()
@@ -28,7 +27,7 @@ export function RestrictionInfo() {
         <span className="text-indigo-400">msg.sender</span>
       </div>
       <CopyToClipboard
-        text={GELATO_CONSTANTS.whitelistAddress}
+        text={dedicatedMsgSender || ''}
         onCopy={() => {
           setCopied(true)
           setTimeout(() => setCopied(false), 3000)
@@ -38,7 +37,7 @@ export function RestrictionInfo() {
             <>Copied!</>
           ) : (
             <>
-              <span>{GELATO_CONSTANTS.whitelistAddress}</span> <FaCopy />
+              <span>{dedicatedMsgSender}</span> <FaCopy />
             </>
           )}
         </div>

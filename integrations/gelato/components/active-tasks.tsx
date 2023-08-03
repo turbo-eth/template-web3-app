@@ -10,7 +10,7 @@ import { useActiveTasks } from '../hooks'
 export function ActiveTasks() {
   const [search, setSearch] = useState('')
 
-  const { data: activeTasks, isLoading, isError } = useActiveTasks()
+  const { data: activeTasks, isLoading } = useActiveTasks()
 
   const searchInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
 

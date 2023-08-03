@@ -3,7 +3,6 @@ import { Overrides } from 'ethers'
 
 export type GelatoConstants = {
   subgraphBaseUrl: string
-  whitelistAddress: string
   docs: {
     payment: string
     resolver: string

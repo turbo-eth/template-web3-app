@@ -3,10 +3,11 @@ import { useState } from 'react'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { FaCopy } from 'react-icons/fa'
 
-import { GELATO_CONSTANTS } from '../../utils/constants'
+import { useMsgSender } from '../../hooks/use-msg-sender'
 
 export function ExecutingAddress() {
   const [copied, setCopied] = useState(false)
+  const { data: dedicatedMsgSender } = useMsgSender()
 
   return (
     <div>
@@ -17,7 +18,7 @@ export function ExecutingAddress() {
         <p className="col-span-2 opacity-70 md:col-span-1">Your msg.sender</p>
         <p className="col-span-2 md:col-span-3">
           <CopyToClipboard
-            text={GELATO_CONSTANTS.whitelistAddress}
+            text={dedicatedMsgSender?.address || ''}
             onCopy={() => {
               setCopied(true)
               setTimeout(() => setCopied(false), 3000)
@@ -27,7 +28,7 @@ export function ExecutingAddress() {
                 <>Copied!</>
               ) : (
                 <>
-                  <span>{GELATO_CONSTANTS.whitelistAddress}</span> <FaCopy />
+                  <span>{dedicatedMsgSender?.address}</span> <FaCopy />
                 </>
               )}
             </div>

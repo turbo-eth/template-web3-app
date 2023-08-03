@@ -2,7 +2,6 @@ import { GelatoConstants } from './types'
 
 export const GELATO_CONSTANTS: GelatoConstants = {
   subgraphBaseUrl: 'https://api.thegraph.com/subgraphs/name/gelatodigital/poke-me',
-  whitelistAddress: '0xA815D14153f64D1349CFe7608506210D1970F9FB',
   docs: {
     payment: 'https://docs.gelato.network/developer-services/automate/paying-for-your-transactions',
     resolver: 'https://docs.gelato.network/developer-services/automate/guides/custom-logic-triggers',
@@ -91,7 +90,7 @@ export const GELATO_CONSTANTS: GelatoConstants = {
       contract: '0xc1C6805B857Bef1f412519C4A842522431aFed39',
       explorerApiUrl: 'https://api-mumbai.polygonscan.com/api',
       explorerUrl: 'https://mumbai.polygonscan.com',
-      explorerApiKey: process.env.NEXT_PUBLIC_GELATO_SCAN_KEY_MUMBAI as string,
+      explorerApiKey: (process.env.NEXT_PUBLIC_GELATO_SCAN_KEY_MUMBAI as string) || 'TTE1XRYPE4MRFH2I18BPRSB172PRNBRPBS',
     },
     421613: {
       testnet: true,
