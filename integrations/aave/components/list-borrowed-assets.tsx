@@ -45,6 +45,7 @@ export const ListBorrowedAssets = () => {
                     <BorrowedAssetsItem
                       key={index}
                       address={userReserve.underlyingAsset}
+                      aTokenBalance={userReserve.scaledATokenBalance}
                       variableBorrowRate={Number(userReserve.reserveData.variableBorrowRate) / 10 ** 25}
                       debt={
                         ((Number(userReserve.scaledVariableDebt) / 10 ** (Number(reserve?.decimals) ?? 18)) *

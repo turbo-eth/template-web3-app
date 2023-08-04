@@ -32,7 +32,6 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
     address,
     args: [poolAddress, parseUnits(`${Number(supplyAmount)}`, decimals ?? 18)],
   })
-  // eslint-disable-next-line
   const { write: repayWrite } = usePoolSupply({
     address: poolAddress,
     args: [address, parseUnits(`${Number(supplyAmount)}`, decimals ?? 18), user as `0x${string}`, 0],
@@ -42,7 +41,6 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
     if (Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(supplyAmount)) {
       approveWrite()
     } else {
-      // eslint-disable-next-line
       repayWrite()
     }
   }

@@ -25,14 +25,12 @@ export const AssetToBorrowItem = ({ address, symbol, tokenPriceInUsd, variableBo
   const [borrowAmount, setBorrowAmount] = useState('')
   const { data: decimals } = useErc20Decimals({ address })
 
-  // eslint-disable-next-line
   const { write: borrowWrite } = usePoolBorrow({
     address: poolAddress,
     args: [address, parseUnits(`${Number(borrowAmount)}`, decimals ?? 18), BigInt(2), 0, user as `0x${string}`],
   })
 
   const buttonAction = () => {
-    // eslint-disable-next-line
     borrowWrite()
   }
 

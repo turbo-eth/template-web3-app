@@ -10,22 +10,24 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useErc20Allowance, useErc20Approve, useErc20BalanceOf, useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
 
-import { usePoolRepay } from '../generated/aave-wagmi'
+import { usePoolRepay, usePoolRepayWithATokens } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
 import { limitDecimals } from '../utils'
 
 interface IBorrowedAssetsItemProps {
   address: `0x${string}`
+  aTokenBalance: bigint
   debt: number
   variableBorrowRate: number
 }
 
 const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : symbol)
 
-export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorrowedAssetsItemProps) => {
+export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, variableBorrowRate }: IBorrowedAssetsItemProps) => {
   const { address: user } = useAccount()
   const { poolAddress } = useAave()
   const [repayAmount, setRepayAmount] = useState('')
+  const [repayWithATokens, setRepayWithATokens] = useState(false)
 
   const symbol = getSymbol(useErc20Symbol({ address }).data)
   const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined, watch: true })
@@ -35,18 +37,28 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
     address,
     args: [poolAddress, parseUnits(`${Number(repayAmount)}`, decimals ?? 18)],
   })
-  // eslint-disable-next-line
+
   const { write: repayWrite } = usePoolRepay({
     address: poolAddress,
     args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), BigInt(2), user as `0x${string}`],
   })
 
+  const { write: repayWithATokensWrite } = usePoolRepayWithATokens({
+    address: poolAddress,
+    args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), BigInt(2)],
+  })
+
+  const getRepayBalance = () => (repayWithATokens ? aTokenBalance : tokenBalance)
+
   const buttonAction = () => {
     if (Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(repayAmount)) {
       approveWrite()
     } else {
-      // eslint-disable-next-line
-      repayWrite()
+      if (repayWithATokens) {
+        repayWithATokensWrite()
+      } else {
+        repayWrite()
+      }
     }
   }
 
@@ -88,6 +100,22 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
             <DialogTitle>Repay {symbol}</DialogTitle>
             <DialogDescription>
               <div className="mt-4 mb-2">
+                <label>Repay with</label>
+              </div>
+              <Select value={repayWithATokens ? 'aTokens' : 'walletBalance'} onValueChange={(value) => setRepayWithATokens(value === 'aTokens')}>
+                <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
+                  <SelectValue placeholder="Select market" />
+                </SelectTrigger>
+                <SelectContent className="w-56 bg-white dark:bg-gray-700">
+                  <SelectItem value="walletBalance">
+                    <div className="flex items-center justify-between">Wallet balance</div>
+                  </SelectItem>
+                  <SelectItem value="aTokens">
+                    <div className="flex items-center justify-between">Collateral</div>
+                  </SelectItem>
+                </SelectContent>
+              </Select>
+              <div className="mt-4 mb-2">
                 <label>Amount</label>
               </div>
               <div className="input dark:bg-slate-900">
@@ -105,11 +133,14 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
                           value = `0${value}`
                         }
                         value = value.replace(',', '.')
+                        if (Number(value) > Number(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18)))
+                          if (Number(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18)) > debt) {
+                            value = debt.toString()
+                          } else {
+                            value = formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18)
+                          }
+
                         setRepayAmount(value)
-                        console.log(Number(value))
-                        console.log(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18))
-                        if (Number(value) > Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)))
-                          setRepayAmount(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18))
                       }
                     }}
                   />
@@ -126,7 +157,10 @@ export const BorrowedAssetsItem = ({ address, debt, variableBorrowRate }: IBorro
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>Wallet balance: {limitDecimals(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18), 5)}</span>
+                  <span>
+                    {repayWithATokens ? `a${symbol ?? ''} balance` : 'Wallet balance'}:{' '}
+                    {limitDecimals(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18), 5)}
+                  </span>
                 </div>
               </div>
               <div className="mt-5 mb-2">

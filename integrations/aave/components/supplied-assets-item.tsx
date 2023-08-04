@@ -33,12 +33,10 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
   const [withdrawAmount, setWithdrawAmount] = useState('')
 
   const switchCollateralUsage = () => {
-    // eslint-disable-next-line
     writeSetUserUseReserveAsCollateral()
   }
 
   const buttonAction = () => {
-    // eslint-disable-next-line
     withdrawWrite()
   }
 
@@ -46,13 +44,11 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
     return parseUnits(`${Number(withdrawAmount)}`, decimals ?? 18)
   }
 
-  // eslint-disable-next-line
   const { error: setUserUseReserveAsCollateralError, write: writeSetUserUseReserveAsCollateral } = usePoolSetUserUseReserveAsCollateral({
     address: poolAddress,
     args: [address, !collateralEnabled],
   })
 
-  // eslint-disable-next-line
   const { error: withdrawError, write: withdrawWrite } = usePoolWithdraw({
     address: poolAddress,
     args: [address, getWithdrawAmount(), user as `0x${string}`],
@@ -60,7 +56,6 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
 
   useEffect(() => {
     if (setUserUseReserveAsCollateralError) {
-      // eslint-disable-next-line
       if (setUserUseReserveAsCollateralError?.name === 'ContractFunctionExecutionError') {
         alert("You can't switch collateral mode because it will cause collateral call!")
       }
@@ -69,7 +64,6 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
 
   useEffect(() => {
     if (withdrawError) {
-      // eslint-disable-next-line
       if (withdrawError?.name === 'ContractFunctionExecutionError') {
         alert("You can't withdraw that amount because it will cause collateral call!")
       }
