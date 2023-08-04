@@ -6,6 +6,7 @@ import { useAccount } from 'wagmi'
 
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useErc20Decimals } from '@/lib/generated/blockchain'
 
 import { usePoolBorrow } from '../generated/aave-wagmi'
@@ -17,17 +18,26 @@ interface IAssetToSupplyItem {
   tokenPriceInUsd: number
   variableBorrowRate: number
   stableBorrowRate?: number
+  canBorrowStableRateMode?: boolean
 }
 
-export const AssetToBorrowItem = ({ address, symbol, tokenPriceInUsd, variableBorrowRate, stableBorrowRate }: IAssetToSupplyItem) => {
+export const AssetToBorrowItem = ({
+  address,
+  symbol,
+  tokenPriceInUsd,
+  variableBorrowRate,
+  stableBorrowRate,
+  canBorrowStableRateMode,
+}: IAssetToSupplyItem) => {
   const { maxBorrowableInUsd, poolAddress } = useAave()
   const { address: user } = useAccount()
   const [borrowAmount, setBorrowAmount] = useState('')
+  const [borrowVariableRateMode, setBorrowVariableRateMode] = useState(true)
   const { data: decimals } = useErc20Decimals({ address })
 
   const { write: borrowWrite } = usePoolBorrow({
     address: poolAddress,
-    args: [address, parseUnits(`${Number(borrowAmount)}`, decimals ?? 18), BigInt(2), 0, user as `0x${string}`],
+    args: [address, parseUnits(`${Number(borrowAmount)}`, decimals ?? 18), borrowVariableRateMode ? BigInt(2) : BigInt(1), 0, user as `0x${string}`],
   })
 
   const buttonAction = () => {
@@ -62,6 +72,28 @@ export const AssetToBorrowItem = ({ address, symbol, tokenPriceInUsd, variableBo
           <DialogContent>
             <DialogTitle>Borrow {symbol}</DialogTitle>
             <DialogDescription>
+              {canBorrowStableRateMode && (
+                <>
+                  <div className="mt-4 mb-2">
+                    <label>Borrow APY rate</label>
+                  </div>
+                  <Select
+                    value={borrowVariableRateMode ? 'variable' : 'stable'}
+                    onValueChange={(value) => setBorrowVariableRateMode(value === 'variable')}>
+                    <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
+                      <SelectValue placeholder="Select market" />
+                    </SelectTrigger>
+                    <SelectContent className="w-56 bg-white dark:bg-gray-700">
+                      <SelectItem value="variable">
+                        <div className="flex items-center justify-between">Variable</div>
+                      </SelectItem>
+                      <SelectItem value="stable">
+                        <div className="flex items-center justify-between">Stable</div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </>
+              )}
               <div className="mt-4 mb-2">
                 <label>Amount</label>
               </div>

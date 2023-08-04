@@ -20,15 +20,19 @@ export const ListAssetsToBorrow = () => {
             </tr>
           </thead>
           <tbody>
-            {usdData?.map((reserve, index) => {
-              if (reserve.reserveData.borrowingEnabled) {
+            {usdData?.map((userReserve, index) => {
+              if (userReserve.reserveData.borrowingEnabled) {
                 return (
                   <AssetToBorrowItem
                     key={index}
-                    address={reserve.underlyingAsset}
-                    symbol={reserve.reserveData.symbol}
-                    tokenPriceInUsd={reserve.tokenPriceInUsd}
-                    variableBorrowRate={Number(reserve.reserveData.variableBorrowRate) / 10 ** 25}
+                    address={userReserve.underlyingAsset}
+                    canBorrowStableRateMode={userReserve.reserveData.stableBorrowRateEnabled && userReserve.scaledVariableDebt === BigInt(0)}
+                    symbol={userReserve.reserveData.symbol}
+                    tokenPriceInUsd={userReserve.tokenPriceInUsd}
+                    variableBorrowRate={Number(userReserve.reserveData.variableBorrowRate) / 10 ** 25}
+                    stableBorrowRate={
+                      userReserve.reserveData.stableBorrowRateEnabled ? Number(userReserve.reserveData.stableBorrowRate) / 10 ** 25 : 0
+                    }
                   />
                 )
               }

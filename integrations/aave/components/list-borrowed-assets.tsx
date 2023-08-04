@@ -4,7 +4,7 @@ import { useAave } from '../hooks/use-aave'
 export const ListBorrowedAssets = () => {
   const { usdData, totalDebtInUsd, reservesData, averageBorrowApy } = useAave()
 
-  const filteredUserReserves = usdData?.filter((reserve) => reserve.scaledVariableDebt !== BigInt(0))
+  const filteredUserReserves = usdData?.filter((reserve) => (reserve.scaledVariableDebt || reserve.principalStableDebt) !== BigInt(0))
 
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">
@@ -40,17 +40,31 @@ export const ListBorrowedAssets = () => {
               <tbody>
                 {filteredUserReserves?.map((userReserve, index) => {
                   const reserve = reservesData?.[0].find((reserve) => reserve.underlyingAsset === userReserve.underlyingAsset)
+                  const isVariableRate = userReserve.scaledVariableDebt > BigInt(0)
+                  const decimalsAsNumber = Number(reserve?.decimals) ?? 18
 
                   return (
                     <BorrowedAssetsItem
                       key={index}
                       address={userReserve.underlyingAsset}
                       aTokenBalance={userReserve.scaledATokenBalance}
-                      variableBorrowRate={Number(userReserve.reserveData.variableBorrowRate) / 10 ** 25}
+                      borrowRate={isVariableRate ? Number(reserve?.variableBorrowRate) / 10 ** 25 : Number(reserve?.stableBorrowRate) / 10 ** 25}
+                      rateMode={isVariableRate ? BigInt(2) : BigInt(1)}
+                      canSwitchRateMode={
+                        reserve?.stableBorrowRateEnabled
+                          ? isVariableRate
+                            ? Number(userReserve.scaledATokenBalance) / 10 ** decimalsAsNumber <
+                              ((Number(userReserve.scaledVariableDebt) / 10 ** decimalsAsNumber) *
+                                Number(reserve?.variableBorrowIndex ?? BigInt(1))) /
+                                10 ** 27
+                            : true
+                          : false
+                      }
                       debt={
-                        ((Number(userReserve.scaledVariableDebt) / 10 ** (Number(reserve?.decimals) ?? 18)) *
-                          Number(reserve?.variableBorrowIndex ?? BigInt(1))) /
-                        10 ** 27
+                        isVariableRate
+                          ? ((Number(userReserve.scaledVariableDebt) / 10 ** decimalsAsNumber) * Number(reserve?.variableBorrowIndex ?? BigInt(1))) /
+                            10 ** 27
+                          : Number(userReserve.principalStableDebt) / 10 ** decimalsAsNumber
                       }
                     />
                   )

@@ -50,7 +50,10 @@ export const useAave = () => {
           (((Number(userReserveData.scaledATokenBalance) / 10 ** Number(reserveData.decimals)) * Number(reserveData.liquidityIndex)) / 10 ** 27) *
           tokenPriceInUsd
         const debtInUsd =
-          (((Number(userReserveData.scaledVariableDebt) / 10 ** 18) * Number(reserveData.variableBorrowIndex)) / 10 ** 27) * tokenPriceInUsd
+          (((Number(userReserveData.scaledVariableDebt || userReserveData.principalStableDebt) / 10 ** 18) *
+            Number(reserveData.variableBorrowIndex)) /
+            10 ** 27) *
+          tokenPriceInUsd
 
         balanceInUsd += amountInUsd
         totalDebtInUsd += debtInUsd

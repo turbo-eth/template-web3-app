@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useErc20Allowance, useErc20Approve, useErc20BalanceOf, useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
 
-import { usePoolRepay, usePoolRepayWithATokens } from '../generated/aave-wagmi'
+import { usePoolRepay, usePoolRepayWithATokens, usePoolSwapBorrowRateMode } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
 import { limitDecimals } from '../utils'
 
@@ -18,12 +18,14 @@ interface IBorrowedAssetsItemProps {
   address: `0x${string}`
   aTokenBalance: bigint
   debt: number
-  variableBorrowRate: number
+  borrowRate: number
+  rateMode: bigint
+  canSwitchRateMode?: boolean
 }
 
 const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : symbol)
 
-export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, variableBorrowRate }: IBorrowedAssetsItemProps) => {
+export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, canSwitchRateMode, rateMode }: IBorrowedAssetsItemProps) => {
   const { address: user } = useAccount()
   const { poolAddress } = useAave()
   const [repayAmount, setRepayAmount] = useState('')
@@ -40,12 +42,17 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, variableBorro
 
   const { write: repayWrite } = usePoolRepay({
     address: poolAddress,
-    args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), BigInt(2), user as `0x${string}`],
+    args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), rateMode, user as `0x${string}`],
   })
 
   const { write: repayWithATokensWrite } = usePoolRepayWithATokens({
     address: poolAddress,
-    args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), BigInt(2)],
+    args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), rateMode],
+  })
+
+  const { write: swapBorrowRateModeWrite } = usePoolSwapBorrowRateMode({
+    address: poolAddress,
+    args: [address, rateMode],
   })
 
   const getRepayBalance = () => (repayWithATokens ? aTokenBalance : tokenBalance)
@@ -75,17 +82,17 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, variableBorro
         {symbol === 'WETH' ? 'ETH' : symbol}
       </td>
       <td className="px-4 py-2 text-center">{limitDecimals(debt.toString(), 5)}</td>
-      <td className="px-4 py-2 text-center">{variableBorrowRate.toFixed(2)}%</td>
+      <td className="px-4 py-2 text-center">{borrowRate.toFixed(2)}%</td>
       <td className="px-4 pb-2 text-center">
-        <Select disabled value="variable">
+        <Select disabled={!canSwitchRateMode} value={rateMode.toString()} onValueChange={() => swapBorrowRateModeWrite()}>
           <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
             <SelectValue placeholder="Select market" />
           </SelectTrigger>
           <SelectContent className="w-56 bg-white dark:bg-gray-700">
-            <SelectItem value="variable">
+            <SelectItem value="2">
               <div className="flex items-center justify-between">Variable</div>
             </SelectItem>
-            <SelectItem value="stable">
+            <SelectItem value="1">
               <div className="flex items-center justify-between">Stable</div>
             </SelectItem>
           </SelectContent>
