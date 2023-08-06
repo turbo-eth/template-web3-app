@@ -1,26 +1,40 @@
 import { arweave } from '..'
+import { ArweavePost } from '../utils/types'
 
-// owners:["${address}"],
-const queryObject = {
+type QueryReturnType = {
+  edges: {
+    cursor: string
+    node: ArweavePost
+  }[]
+}
+
+const buildQueryObject = (address: string) => ({
   query: `{
 		transactions (
-			tags: [
-			  {
-					name: "Type",
-					values: ["manifest"]
-				}
-			]
+      owners:["${address}"],
 		) {
+			{
 			edges {
+        cursor,
 				node {
-					id
+					id,
+          tags { name, value },
+          owner { address },
+          data { size, type },
+          anchor,
+          signature,
+          recipient,
+          fee { winston, ar },
+          quantity { winston, ar },
+          block { timestamp, height },
+          bundledIn { id }
 				}
 			}
 		}
 	}`,
-}
+})
 
-export const queryPosts = async () => {
-  const results = await arweave.api.post('/graphql', queryObject)
-  return results
+export const queryPosts = async (address: string) => {
+  const results = await arweave.api.post<QueryReturnType>('/graphql', buildQueryObject(address))
+  return results.data.edges
 }

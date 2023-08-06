@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { redirect } from 'next/navigation'
 
 import { Spinner } from './spinner'
 import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 
 export function ConnectArweaveWallet() {
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
-  const { generate, disconnect, wallet, address, backupWallet, balance, importFromFile, error } = useArweaveWallet()
+  const { generate, wallet, importFromFile, error } = useArweaveWallet()
   useEffect(() => {
     if (wallet) setLoading(false)
     if (error) setLoading(false)
@@ -20,26 +20,24 @@ export function ConnectArweaveWallet() {
     return (
       <div>
         <div>Generate a new Arweave Wallet</div>
-        <Button
+        <button
+          className="btn btn-emerald mt-2"
           onClick={() => {
             setLoading(true)
             void generate()
           }}>
           Generate wallet
-        </Button>
-        <div className="my-5"> - or - </div>
+        </button>
+        <div className="my-5 text-slate-500"> - or - </div>
         <div>Import your wallet KeyFile</div>
-        <label>
-          <Input
+        <button className="btn btn-primary mt-2" onClick={() => fileInputRef.current?.click()}>
+          <span className="mt-2 text-base leading-normal">Select a file</span>
+          <input
+            ref={fileInputRef}
             accept="application/json"
+            className="hidden"
+            hidden={true}
             type="file"
-            className="text-sm
-            file:mr-5 file:rounded-full file:border-0
-            file:bg-blue-50 file:py-2
-            file:px-6 file:text-sm
-            file:font-medium file:text-blue-700
-            hover:file:cursor-pointer
-          "
             onChange={(e) => {
               if (e.target.files) {
                 setLoading(true)
@@ -47,28 +45,14 @@ export function ConnectArweaveWallet() {
               }
             }}
           />
-        </label>
-        {error && <div className="text-red-50">{error}</div>}
+        </button>
+        {error && (
+          <div className="mt-2">
+            <span className="text-sm text-red-400">{error}</span>
+          </div>
+        )}
       </div>
     )
 
-  return (
-    <div>
-      <h3>Connected to {address}</h3>
-      <div className="flex">
-        Balance:{' '}
-        {balance ? (
-          <>
-            {balance?.ar} AR ({balance?.winston} winston)
-          </>
-        ) : (
-          <Spinner />
-        )}
-      </div>
-      <div>
-        <Button onClick={() => backupWallet()}>backup keyfile</Button>
-        <Button onClick={() => disconnect()}>disconnect</Button>
-      </div>
-    </div>
-  )
+  return redirect('/integration/arweave/settings')
 }

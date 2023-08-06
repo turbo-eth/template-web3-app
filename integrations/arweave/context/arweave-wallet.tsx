@@ -3,13 +3,14 @@ import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { JWKInterface } from 'arweave/node/lib/wallet'
 
-import { ArweaveWalletBalance, generateArweaveWallet, getArweaveWalletAddress, getArweaveWalletBalance } from '..'
+import { generateArweaveWallet, getArweaveWalletAddress, getArweaveWalletBalance } from '..'
+import { ArweaveAmount } from '../utils/types'
 
 export interface IArweaveWalletContext {
   wallet: JWKInterface | null
   error: string | null
   address: string | null
-  balance: ArweaveWalletBalance | null
+  balance: ArweaveAmount | null
   disconnect: () => void
   generate: () => Promise<void>
   importFromFile: (file: File) => Promise<void>
@@ -33,7 +34,7 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
   const [wallet, setWallet] = useState<JWKInterface | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [address, setAddress] = useState<string | null>(null)
-  const [balance, setBalance] = useState<ArweaveWalletBalance | null>(null)
+  const [balance, setBalance] = useState<ArweaveAmount | null>(null)
 
   const disconnect = useCallback(() => {
     setWallet(null)
@@ -104,7 +105,7 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
       importFromFile,
       backupWallet,
     }),
-    [address, wallet, balance]
+    [address, wallet, balance, error]
   )
   return <ArweaveWalletContext.Provider value={value}>{children}</ArweaveWalletContext.Provider>
 }

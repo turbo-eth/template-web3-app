@@ -1,34 +1,26 @@
-import { useEffect, useState } from 'react'
-
-import { ArAccount } from 'arweave-account'
-
+import { LinkComponent } from '@/components/shared/link-component'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { truncateString } from '@/integrations/arweave/utils'
 
-import { getUserAccount } from '../arweave-account'
+import { useArweaveAccount } from '../hooks/use-arweave-account'
 import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 
 export const ArweaveAccountPreview = () => {
-  const [account, setAccount] = useState<ArAccount | null>(null)
-  const { wallet, address } = useArweaveWallet()
-  useEffect(() => {
-    if (wallet)
-      getUserAccount(wallet)
-        .then((account) => setAccount(account))
-        .catch((e) => console.error(e))
-  }, [wallet])
-  if (!wallet || !address) return null
+  const { balance, address } = useArweaveWallet()
+  const { account } = useArweaveAccount()
   const handleName = account?.profile?.handleName ?? null
+  if (!account || !address) return null
   return (
-    <div className="mb-5 flex items-center">
+    <LinkComponent className="mb-5 flex items-center" href="/integration/arweave/settings">
       <Avatar>
         <AvatarImage src={account?.profile?.avatarURL} />
         <AvatarFallback>{(handleName ?? address).substring(0, 2)}</AvatarFallback>
       </Avatar>
-      <div className="ml-2">
-        {handleName && <span>{handleName}</span>}
-        <span className="font-mono text-sm">{truncateString(address, 15)}</span>
+      <div className="ml-2 flex-col">
+        {handleName && <div>{handleName}</div>}
+        <div className="font-mono text-sm">{truncateString(address, 15)}</div>
+        {balance !== null && <div className="text-xs text-slate-400">{balance?.ar} AR</div>}
       </div>
-    </div>
+    </LinkComponent>
   )
 }

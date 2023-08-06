@@ -1,6 +1,8 @@
 import Arweave from 'arweave'
 import { JWKInterface } from 'arweave/node/lib/wallet'
 
+import { ArweaveAmount } from './utils/types'
+
 export const arweave = Arweave.init({
   host: 'arweave.net', // Hostname or IP address for a Arweave host
   port: 443, // Port
@@ -19,12 +21,7 @@ export const getArweaveWalletAddress = async (wallet: JWKInterface) => {
   return address
 }
 
-export type ArweaveWalletBalance = {
-  ar: string
-  winston: string
-}
-
-export const getArweaveWalletBalance = async (wallet: JWKInterface): Promise<ArweaveWalletBalance> => {
+export const getArweaveWalletBalance = async (wallet: JWKInterface): Promise<ArweaveAmount> => {
   const balance = await arweave.wallets.getBalance(await getArweaveWalletAddress(wallet))
   const ar = arweave.ar.winstonToAr(balance)
   return {
