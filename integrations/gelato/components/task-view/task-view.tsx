@@ -14,7 +14,7 @@ import { PaymentInfo } from './payment-info'
 import { ResolverValues } from './resolver-values'
 import { useAbi, useTask } from '../../hooks'
 import { useTaskResolver } from '../../hooks/use-task-resolver'
-import { getAddressUrl, getTaskFunctionData } from '../../utils/helpers'
+import { formatFee, getAddressUrl, getTaskFunctionData, truncateEthAddress } from '../../utils/helpers'
 import { decodeModuleArgs } from '../../utils/resolverDecoder'
 import { RenameTask } from '../rename-task'
 
@@ -80,7 +80,7 @@ export function TaskView({ taskId }: TasKViewProps) {
         </div>
         <div className="mt-10">
           <div className="flex items-center space-x-5">
-            <h2 className="text-2xl font-bold">{name}</h2>
+            <h2 className="text-2xl font-bold">{truncateEthAddress(name, 30)}</h2>
             <div>
               {showRename ? (
                 <FaTimesCircle className="cursor-pointer opacity-50 duration-200 hover:opacity-100" size={24} onClick={() => setShowRename(false)} />
@@ -111,6 +111,16 @@ export function TaskView({ taskId }: TasKViewProps) {
           </div>
           <div className="mt-4">
             <span className="opacity-50">Task ID: {taskId}</span>
+          </div>
+          <div className="mt-6 flex space-x-5">
+            <div>
+              <div className="text-2xl font-bold">{task.executionCount}</div>
+              <div className="mt-1 opacity-50">Executions</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold">$ {task.feeTotalUsd ? formatFee(task.feeTotalUsd as string) : '0.00'}</div>
+              <div className="mt-1 opacity-50">Cost</div>
+            </div>
           </div>
         </div>
         <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
