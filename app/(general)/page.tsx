@@ -335,6 +335,21 @@ const features = [
     ),
   },
   {
+    title: turboIntegrations.allo.name,
+    description: turboIntegrations.allo.description,
+    href: turboIntegrations.allo.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Allo logo" className="rounded-full" height={100} src={turboIntegrations.allo.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Allo logo" className="rounded-full" height={100} src={turboIntegrations.allo.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.starter.name,
     description: turboIntegrations.starter.description,
     href: turboIntegrations.starter.href,

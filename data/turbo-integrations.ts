@@ -88,6 +88,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/connext.png',
     imgDark: '/integrations/connext.png',
   },
+  allo: {
+    name: 'Allo Protocol',
+    href: '/integration/allo',
+    url: 'https://docs.allo.gitcoin.co/',
+    description: 'Allo Protocol is an open-source protocol that enables groups to efficiently and transparently allocate pooled capital.',
+    imgLight: '/integrations/allo.jpeg',
+    imgDark: '/integrations/allo.jpeg',
+  },
   starter: {
     name: 'Starter Template',
     href: '/integration/starter',
