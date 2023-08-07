@@ -73,3 +73,5 @@ interface UsdData extends UserReserveData {
   supplyProportion: number
   borrowProportion: number
 }
+
+export type { UserReserveData, ReserveData, UsdData }
