@@ -4,6 +4,7 @@ import { useAccount, useNetwork } from 'wagmi'
 
 import { useUiPoolDataProviderGetReservesData, useUiPoolDataProviderGetUserReservesData } from '../generated/aave-wagmi'
 import { MarketDataType, marketsData } from '../utils/market-config'
+import { ReserveData, UsdData, UserReserveData } from '../utils/types'
 
 export const useAave = () => {
   const { address: user } = useAccount()
