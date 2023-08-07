@@ -12,6 +12,9 @@ const config: CodegenConfig = {
   generates: {
     [pth('graphql/generated/')]: {
       preset: 'client',
+      presetConfig: {
+        fragmentMasking: false,
+      },
     },
   },
 }
