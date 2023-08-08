@@ -473,11 +473,6 @@ export const erc1155ABI = [
         type: "uint256"
       },
       {
-        internalType: "bytes",
-        name: "data",
-        type: "bytes"
-      },
-      {
         internalType: "string",
         name: "uri_",
         type: "string"

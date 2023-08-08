@@ -15,7 +15,7 @@ export function Erc1155OwnerOf({ address, chainId, className, tokenId, ...props 
 
   return (
     <span className={className} {...props}>
-      {data}
+      {data && JSON.stringify(data)}
     </span>
   )
 }

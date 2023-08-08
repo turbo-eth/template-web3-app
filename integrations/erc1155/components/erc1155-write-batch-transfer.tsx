@@ -40,13 +40,10 @@ export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps
 
   const transferFromAddress = watchDifferentFromAddress ? debouncedFromAddress : accountAddress
 
-  const args = 
-  [transferFromAddress, debouncedToAddress, [debouncedTokenId, debouncedTokenId2, debouncedTokenId3], [debouncedAmount, debouncedAmount2, debouncedAmount3], ["", "", ""]]
-
   const { config, error, isError } = usePrepareErc1155SafeBatchTransferFrom({
     address,
     args:
-      transferFromAddress && debouncedToAddress && debouncedTokenId ? args : undefined,
+      transferFromAddress && debouncedToAddress && debouncedTokenId ? [transferFromAddress, debouncedToAddress, [BigInt(debouncedTokenId), BigInt(debouncedTokenId2), BigInt(debouncedTokenId3)], [BigInt(debouncedAmount), BigInt(debouncedAmount2), BigInt(debouncedAmount3)], ""] : undefined,
     enabled: Boolean(transferFromAddress && debouncedToAddress && debouncedTokenId && debouncedTokenId2 && debouncedTokenId3 && debouncedAmount && debouncedAmount2 && debouncedAmount3),
   })
 
@@ -77,26 +74,26 @@ export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps
         )}
         <label>To Address</label>
         <input {...register('toAddress')} className="input" />
-        <label>Token Id</label>
+        <label>Token Id (1st)</label>
         <input type="number" {...register('tokenId')} className="input" />
-        <label>Amount</label>
+        <label>Amount (1st)</label>
         <input type="number" {...register('amount')} className="input" />
-        <label>2nd Token Id</label>
+        <label>Token Id (2nd)</label>
         <input type="number" {...register('tokenId2')} className="input" />
-        <label>2nd Amount</label>
+        <label>Amount (2nd)</label>
         <input type="number" {...register('amount2')} className="input" />
-        <label>3rd Token Id</label>
+        <label>Token Id (3rd)</label>
         <input type="number" {...register('tokenId3')} className="input" />
-        <label>3rd Amount</label>
+        <label>Amount (3rd)</label>
         <input type="number" {...register('amount3')} className="input" />
         <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Transferring..." type="submit" write={!!write}>
           Batch Transfer
         </ContractWriteButton>
-        <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
+        <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError && Boolean(debouncedTokenId && debouncedAmount3)} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC1155 Batch Transfer</h3>
-          <p className="text-center text-sm text-gray-500">Batch Transfer NFTs or FTs to any address</p>
+          <p className="text-center text-sm text-gray-500">Batch Transfer 3 token types to any address</p>
         </div>
       </form>
     </div>

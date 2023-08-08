@@ -34,7 +34,7 @@ export function Erc1155WriteMint({ address }: Erc1155WriteMintProps) {
     address,
     args:
       debouncedToAddress && debouncedTokenId && debouncedTokenAmount && debouncedUri
-        ? [debouncedToAddress, BigInt(debouncedTokenId || 0), debouncedTokenAmount, debouncedUri]
+        ? [debouncedToAddress, BigInt(debouncedTokenId || 0), BigInt(debouncedTokenAmount), debouncedUri]
         : undefined,
     enabled: Boolean(debouncedToAddress && debouncedTokenId && debouncedTokenAmount && debouncedUri),
   })
@@ -63,11 +63,11 @@ export function Erc1155WriteMint({ address }: Erc1155WriteMintProps) {
         <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Minting..." type="submit" write={!!write}>
           Mint
         </ContractWriteButton>
-        <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
+        <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError && Boolean(debouncedTokenId && debouncedTokenAmount)} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC1155 Mint</h3>
-          <p className="text-center text-sm text-gray-500">Mint NFTs to any address</p>
+          <p className="text-center text-sm text-gray-500">Mint NFT/SFT to any address</p>
         </div>
       </form>
     </div>

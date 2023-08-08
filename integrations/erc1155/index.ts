@@ -1,4 +1,5 @@
-export { ERC1155Uri } from './components/erc1155-uri'
+export { ERC1155ContractUri } from './components/erc1155-contract-uri'
+export { ERC1155TokenUri } from './components/erc1155-token-uri'
 export { ERC1155TokenUriSymbol } from './components/erc1155-token-uri-symbol'
 export { ERC1155TokenTotalSupply } from './components/erc1155-token-total-supply'
 export { Erc1155WriteBatchTransfer } from './components/erc1155-write-batch-transfer'

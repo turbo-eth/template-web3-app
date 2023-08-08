@@ -43,11 +43,8 @@ export function useERC1155Metadata({ address, chainId, tokenId, ipfsGatewayUrl =
       if (!tokenUriData) throw new Error('No tokenUri found')
       const uri = tokenUriData.replace('ipfs://', '')
       const response = await fetch(`${ipfsGatewayUrl}/${uri}`)
-      console.log(response)
 
       const json = (await response.json()) as IERC1155Metadata
-
-      console.log(json)
 
       if (!json.image) throw new Error('No image found in metadata')
       if (!json.attributes) throw new Error('No attributes found in metadata')

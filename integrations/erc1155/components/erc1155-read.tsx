@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 
 import type { Address } from 'wagmi'
-import { useAccount } from 'wagmi'
 
-import { ERC1155TokenUriDescription, ERC1155TokenUriImage, ERC1155TokenUriName, Erc1155Name, Erc1155Symbol, ERC1155TokenTotalSupply, Erc1155OwnerOf } from '..'
+import { ERC1155TokenUriDescription, ERC1155TokenUriImage, ERC1155TokenUriName, Erc1155Name, Erc1155Symbol, ERC1155TokenTotalSupply, Erc1155OwnerOf, ERC1155ContractUri, ERC1155TokenUri } from '..'
 
 interface Erc1155ReadProps {
   address: Address
@@ -38,11 +37,19 @@ export function Erc1155Read({ address }: Erc1155ReadProps) {
             <span className="font-medium">Total Supply:</span>
             <ERC1155TokenTotalSupply address={address} tokenId={BigInt(tokenId || 1)} />
           </div>
+          <div className="flex flex-wrap items-center justify-between break-words">
+            <span className="font-medium">Token URI:</span>
+            <ERC1155TokenUri address={address} className="overflow-x-scroll" tokenId={BigInt(tokenId || 1)} />
+          </div>
+          <div className="flex flex-wrap items-center justify-between break-words">
+            <span className="font-medium">Contract URI:</span>
+            <ERC1155ContractUri address={address} className="overflow-x-scroll"/>
+          </div>
         </div>
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC1155 Read</h3>
-          <p className="text-center text-sm text-gray-500">See detailed NFT/FT information</p>
+          <p className="text-center text-sm text-gray-500">See detailed NFT/SFT information</p>
         </div>
       </div>
     </div>

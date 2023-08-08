@@ -43,7 +43,7 @@ export function Erc1155WriteApprove({ address }: Erc1155WriteApproveProps) {
   return (
     <div className="card w-full">
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <label>Address</label>
+        <label>Contract Address</label>
         <input {...register('toAddress')} className="input" />
         <label>Token Id</label>
         <input {...register('tokenId')} className="input" />
@@ -62,10 +62,9 @@ export function Erc1155WriteApprove({ address }: Erc1155WriteApproveProps) {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC1155 Approve</h3>
-          <p className="text-center text-sm text-gray-500">Approve any tokenIds to any address</p>
+          <p className="text-center text-sm text-gray-500">Approve any tokenId to any address</p>
         </div>
       </form>
     </div>
   )
 }
- 

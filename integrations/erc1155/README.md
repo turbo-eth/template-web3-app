@@ -1,62 +1,85 @@
-# Starter TurboETH Integration
+# ERC1155 TurboETH Integration
 
-Welcome to the Starter TurboETH Integration! This folder serves as a blueprint for creating new integrations in TurboETH. If you're looking to contribute a new integration, simply copy this directory, and also the starter page located at `app/integration/starter`, to begin your development.
+This TurboETH integration provides a suite of hooks and components to facilitate interaction with ERC1155 contracts. In consideration of the numerous extensions and features offered by ERC1155, this integration is based in a contract from [solidstate](https://github.com/solidstate-network/solidstate-solidity), incorporating the following features and access controls:
 
-## Creating a new integration
+**Features:**
 
-Below are the steps to create a new integration.
+- Mintable
+- Enumerable
+- Base Storage
 
-1. Copy the integration folder template from `/integrations/starter` and add your integration code, adhering to the file structure patterns evident in this folder.
+**Access Control:**
 
-2. Duplicate the integration page from `/app/(general)/integration/starter` and populate it with your integration pages' code.
+- Ownable
 
-3. Locate any API endpoints associated with your integration in the `/api` folder within the page folder of your integration. An example API endpoint can be found at `/app/(general)/integration/starter/api/hello-world/route.ts`. These API endpoints should follow the new [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) patterns of Next.js 13.
+## ABI and Bytecode
 
-4. Enter the data related to your integration in `/data/turbo-integrations.ts`. Here, add a new object with the name, description, image, and URL of your integration.
+Within the `artifacts` directory, you will find the `erc1155-abi.ts` file, containing the ABI from the contract that was used to generate the [Wagmi CLI](https://wagmi.sh/cli/getting-started) contract hooks. The `erc1155-bytecode.ts` file contains the bytecode used for contract deployment. If you wish to use a different ERC1155 contract with distinct features/extensions, simply update the ABI and bytecode, and then regenerate the Wagmi CLI hooks using the command `pnpm wagmi generate`.
 
-5. Update the OG image configuration of your integration page in the `opengraph-image.tsx` file. Do this by replacing the argument of the `IntegrationOgImage` function with the object key of your integration used in the previous step.
+## Hooks:
 
-## Understanding the Starter template
+- `useErc1155TokenStorage`: Utilizes Jotai and local storage to persist the deployed token's address within the browser's local storage. It updates the value across all components observing it whenever a new deploy occurs.
+- `useERC1155Metadata`: Accepts contract and token information (contract address, chainId, tokenId, and ipfsGatewayUrl) and returns a query object from `tanstack-query` with the token metadata information. The hook and the components adhere to the "ERC1155 Metadata JSON Schema" convention for metadata formatting. Learn more [here](https://eips.ethereum.org/EIPS/eip-1155).
 
-Each component of the Starter TurboETH template is designed to help streamline your development process:
+## Components:
 
-- **abis/**: Put your contract's ABI here. Each ABI should be in its own TypeScript file.
+This integration includes read and write/deploy components. The read components solely access the contract information and retrieve the response, whereas the write/deploy components are capable of deploying the contract and performing write actions, requiring a signer and a transaction to be submitted.
 
-- **client/**: Any client initialization for your chosen module or SDK should be placed here.
+**Read Components:**
 
-- **components/**: This is the home for your React components. 'Read' components, which display data from a contract, and 'write' components, that send transactions, should all be placed here.
+- `ERC1155Name`: Returns the contract's name.
+- `ERC1155Symbol`: Returns the contract's symbol.
+- `ERC1155TotalSupply`: Returns the total supply of the contract.
+- `ERC1155OwnerOf`: Returns the owners of a specific token.
+- `ERC1155TokenUriName`: Returns the name of a specific token.
+- `ERC1155TokenUriDescription`: Returns the description of a specific token.
+- `ERC1155TokenUriImage`: Returns the image of a specific token.
+- `Erc1155Read`: Returns a card with aggregate information about the contract and a selected token ID.
 
-- **hooks/**: Place your custom React hooks in this folder. These hooks are intended to manage state updates and encapsulate the logic for interacting with Ethereum contracts.
+**Write/Deploy Components:**
 
-- **starter-wagmi.ts**: This is a generated file from [wagmi-cli](https://wagmi.sh/cli/getting-started). It includes hooks for your contracts .
+- `ERC1155Deploy`: Form for contract deployment. Upon deployment, the contract address is saved in local storage under the key `erc1155-token`.
+- `ERC1155DeployTest`: Form for test contract deployment. Upon deployment, the contract address is saved in local storage under the key `erc1155-token`.
+- `Erc1155WriteMint`: Form for minting new NFTs. Only the contract owner can mint new NFTs.
+- `Erc1155WriteApprove`: Form for approving an address's permission to transfer a token on behalf of the token holder. Only the token holder can perform the approve transaction.
+- `Erc1155WriteTransfer`: Form for transferring a token to a different address. Only a token owner or approved address can transfer.
 
-- **index.ts**: Consider this as the entry point for your integration. It should export all the hooks, components, and utility functions that your integration provides.
-
-- **wagmi.config.ts**: This file should hold the wagmi-cli configuration for your integration, which includes settings like compiler version and optimization.
-
-- **README.md**: Here, you should document your integration. Explain its purpose, its use, and any important information a new developer or user should know.
-
-Each of these elements plays a crucial role in making your integration functional and accessible.
-
-## File Structure
+File Structure
 
 ```
-integrations/starter
-├─ abis/
-│  ├─ starter-abi.ts
-├─ client/
-│  ├─ index.ts
+integrations/erc1155
+├─ artifacts/
+|  ├─ core/
+│  |  ├─ erc1155-abi.ts
+│  |  ├─ erc1155-bytecode.ts
+|  ├─ test/
+│  |  ├─ erc1155-abi.ts
+│  |  ├─ erc1155-bytecode.ts
 ├─ components/
-│  ├─ starter-header.tsx
+│  ├─ erc1155-deploy.tsx
+│  ├─ erc1155-name.tsx
+│  ├─ erc1155-owner-of.tsx
+│  ├─ erc1155-read.tsx
+│  ├─ erc1155-set-token-storage.tsx
+│  ├─ erc1155-symbol.tsx
+│  ├─ erc1155-token-uri-description.tsx
+│  ├─ erc1155-token-uri-image.tsx
+│  ├─ erc1155-token-uri-name.tsx
+│  ├─ erc1155-token-uri.tsx
+│  ├─ erc1155-contract-uri.tsx
+│  ├─ erc1155-total-supply.tsx
+│  ├─ erc1155-write-approve.tsx
+│  ├─ erc1155-write-mint.tsx
+│  ├─ erc1155-write-transfer.tsx
+│  ├─ erc1155-write-batch-transfer.tsx
 ├─ generated/
-│  ├─ starter-wagmi.ts
+│  ├─ erc1155-wagmi.ts
 ├─ hooks/
-│  ├─ use-starter.ts
+│  ├─ use-erc1155-metadata.ts
+│  ├─ use-erc1155-token-storage.ts
 ├─ utils/
 │  ├─ types.ts
 ├─ index.ts
-├─ README.md
 ├─ wagmi.config.ts
+├─ README.md
 ```
-
-By using this template, you'll create well-organized and understandable integrations that are easy for you and others to navigate. Happy coding!
