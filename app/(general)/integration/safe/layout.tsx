@@ -17,8 +17,8 @@ import { cn } from '@/lib/utils'
 const integrationData = turboIntegrations.safe
 
 // TODO: Safe paths
-const livestreamPath = '/integration/livepeer/livestream'
-const videoOnDemandPath = '/integration/livepeer/vod'
+const createPath = '/integration/safe/create'
+const interactPath = '/integration/safe/interact'
 
 export default function LayoutIntegration({ children }: { children: ReactNode }) {
   const pathname = usePathname()
@@ -60,11 +60,11 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
             </LinkComponent>
           </motion.div>
           <motion.div className="mt-8 flex flex-col justify-center gap-x-14 text-2xl sm:flex-row" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent href={videoOnDemandPath}>
-              <button className={cn('btn hover:opacity-75', pathname === livestreamPath && 'opacity-50')}>Create new Safe</button>
+            <LinkComponent href={createPath}>
+              <button className={cn('btn hover:opacity-75', pathname === interactPath && 'opacity-50')}>Create new Safe</button>
             </LinkComponent>
-            <LinkComponent href={livestreamPath}>
-              <button className={cn('btn hover:opacity-75', pathname === videoOnDemandPath && 'opacity-50')}>Interact with Safe</button>
+            <LinkComponent href={interactPath}>
+              <button className={cn('btn hover:opacity-75', pathname === createPath && 'opacity-50')}>Interact with Safe</button>
             </LinkComponent>
           </motion.div>
           <motion.div className="flex h-full w-full justify-center" variants={FADE_DOWN_ANIMATION_VARIANTS}>

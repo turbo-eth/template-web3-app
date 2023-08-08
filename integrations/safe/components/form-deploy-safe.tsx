@@ -2,11 +2,13 @@
 
 import { useContext, useState } from 'react'
 
-import Safe, { SafeAccountConfig, SafeFactory } from '@safe-global/protocol-kit'
+import { SafeAccountConfig } from '@safe-global/protocol-kit'
 import { useForm } from 'react-hook-form'
 import { FaPlus, FaRegTrashAlt } from 'react-icons/fa'
+import { Address, useAccount, usePublicClient, useQuery } from 'wagmi'
 
-import { useEthersSigner } from '@/lib/hooks/web3/use-ethers-signer'
+import { BlockExplorerLink } from '@/components/blockchain/block-explorer-link'
+import { useToast } from '@/lib/hooks/use-toast'
 
 import { Client } from '../safe-client'
 import { SafeContext } from '../safe-provider'
@@ -20,61 +22,91 @@ interface deploySafeForm {
   safeAccountConfig: SafeAccountConfig
 }
 
-export function FormDeploySafe() {
-  const safeOwner = useEthersSigner()
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [safeSdk, setSafeSdk] = useState<Safe>()
-  const { factory }: { factory: SafeFactory } = useContext(SafeContext) as Client
-  const { register, handleSubmit } = useForm<deploySafeForm>()
-  const [loadedOwners, setLoadedOwners] = useState<object[]>([])
+interface owner {
+  index: number
+  value: string
+}
 
-  // useEffect(() => {
-  //   // if (safeClient) safeClient.factory.deploySafe({ safeAccountConfig }).then((sdk) => setSafeSdk(sdk))
-  //   if (safeOwner != undefined) setLoadedOwners([safeOwner._address])
-  // }, [safeOwner])
+export function FormDeploySafe() {
+  const publicClient = usePublicClient()
+  const { address } = useAccount()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  // const [safeSdk, setSafeSdk] = useState<Safe>()
+  const safeClient: Client = useContext(SafeContext) as Client
+  const { register, handleSubmit } = useForm<deploySafeForm>()
+  const [loadedOwners, setLoadedOwners] = useState<owner[]>([])
+  const [safeAddress, setSafeAddress] = useState<Address>('0x')
+  const { toast, dismiss } = useToast()
+
+  const handleToast = ({ title, description }: { title: string; description: string }) => {
+    toast({
+      title,
+      description,
+    })
+
+    setTimeout(() => {
+      dismiss()
+    }, 10000)
+  }
+
+  const { data: nonce } = useQuery(['wallet-nonce', address, publicClient], {
+    queryFn: async () => {
+      if (!publicClient || !address) return
+      return await publicClient.getTransactionCount({
+        address,
+      })
+    },
+    enabled: !!address && !!publicClient,
+  })
 
   function onSubmit(FieldValues: deploySafeForm) {
     setIsLoading(true)
-    if (factory != undefined && FieldValues.owners != undefined && FieldValues.threshold != undefined) {
+    if (safeClient.factory != undefined && FieldValues.threshold != undefined && address != undefined) {
       const safeAccountConfig: SafeAccountConfig = {
-        owners: [safeOwner, loadedOwners], // ['0x<address>', '0x<address>', '0x<address>']
+        owners: [address, ...loadedOwners.map((owner) => owner.value)], // ['0x<address>', '0x<address>', '0x<address>']
         threshold: FieldValues.threshold,
       }
-      // factory
-      //   .deploySafe({ safeAccountConfig })
-      //   .then((sdk) => {
-      //     setSafeSdk(sdk)
-      //     console.log(safeSdk)
-      //   })
-      //   .catch((error) => console.error({ error }))
-      console.log(safeAccountConfig)
+      safeClient.factory
+        .deploySafe({ safeAccountConfig, saltNonce: nonce?.toString() })
+        .then(async (safe) => {
+          const addr: Address = (await safe.getAddress()) as Address
+          setSafeAddress(addr)
+          handleToast({
+            title: 'New Safe created',
+            description: 'Click on contract address to explore new Safe.',
+          })
+        })
+        .catch((error) => {
+          console.log(error)
+          handleToast({
+            title: 'An Error Occurred',
+            description: 'Error when trying to create a new Safe. Try again later.',
+          })
+        })
       setIsLoading(false)
     }
+    // TODO: handle errors in the form on submit
   }
 
-  const addBtnClick = (e) => {
+  const addBtnClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault()
     setLoadedOwners([...loadedOwners, { index: loadedOwners.length, value: '' }])
   }
 
-  const handleChange = (e, index) => {
-    const values = [...loadedOwners]
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    const values: owner[] = [...loadedOwners]
     values[index].value = e.target.value
     setLoadedOwners(values)
   }
 
-  const handleDelete = (e, index) => {
+  const handleDelete = (index: number) => {
     const values = loadedOwners.filter((item) => item.index !== index)
     const newValues = values.map((val, index) => {
-      console.log(val.index, index)
       val.index = index
       return val
     })
     setLoadedOwners([...newValues])
   }
-
-  console.log(loadedOwners)
-
   // After onsubmit execution we have the safeSdk created
 
   return (
@@ -83,40 +115,44 @@ export function FormDeploySafe() {
         <p>Set the owner wallets of your Safe Account and how many need to confirm to execute a valid transaction.</p>
         <div className="mt-8 flex flex-col justify-center gap-x-14 text-2xl sm:flex-col">
           <span>Owners:</span>
-          <input
-            required
-            className="input mt-4"
-            placeholder="Insert address"
-            value={safeOwner ? safeOwner._address : null}
-            {...register('address')}
-          />
-          {loadedOwners.length > 0
-            ? loadedOwners.map((owner) => (
-                <div key={owner.index} className="flex">
-                  <input required className="input mr-2 mt-4" placeholder="Address" onChange={(e) => handleChange(e, owner.index)} />
-                  <button className="btn btn-sm btn-red mt-4" disabled={false} onClick={(e) => handleDelete(e, owner.index)}>
-                    <FaRegTrashAlt />
-                  </button>
-                </div>
-              ))
-            : null}
+          <input readOnly required className="input mt-4" placeholder="Insert address" value={address} />
+          {loadedOwners.length > 0 ? (
+            loadedOwners.map((owner) => (
+              <div key={owner.index} className="flex">
+                <input
+                  required
+                  className="input mr-2 mt-4"
+                  placeholder="Address"
+                  value={owner.value || ''}
+                  onChange={(e) => handleChange(e, owner.index)}
+                />
+                <button className="btn btn-sm btn-red mt-4" onClick={() => handleDelete(owner.index)}>
+                  <FaRegTrashAlt />
+                </button>
+              </div>
+            ))
+          ) : (
+            <div />
+          )}
         </div>
         <button className="btn btn-blue mt-4 w-full" disabled={false} onClick={addBtnClick}>
-          {isLoading ? (
-            'Loading...'
-          ) : (
-            <div className="flex justify-center">
-              <FaPlus />
-              <span className="px-1">Add new owner</span>
-            </div>
-          )}
+          <div className="flex justify-center">
+            <FaPlus />
+            <span className="px-1">Add new owner</span>
+          </div>
         </button>
         <label>Threshold</label>
         <input required className="input mt-4" {...register('threshold')} />
         <button className="btn btn-emerald mt-4 w-full" disabled={false} type="submit">
-          {isLoading ? 'Loading...' : 'Create Safe'}
+          {isLoading ? 'Creating Safe...' : 'Create Safe'}
         </button>
       </form>
+      {safeAddress.length > 2 ? (
+        <div className="flex max-w-full flex-wrap items-center justify-between break-words pb-2 pt-5">
+          <span className="font-semibold">Contract Address:</span>
+          <BlockExplorerLink address={safeAddress} />
+        </div>
+      ) : null}
     </div>
   )
 }

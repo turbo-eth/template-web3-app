@@ -14,7 +14,7 @@ export async function getSafeClient({ safeOwner }: { safeOwner: ethers.providers
     // Not sure how to fix types for the following line
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    signerOrProvider: safeOwner?.provider,
+    signerOrProvider: safeOwner,
   })
 
   // TODO: figure out urls for dynamic networks
