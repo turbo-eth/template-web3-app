@@ -18,5 +18,6 @@ export const useArweaveAccount = () => {
         .finally(() => setLoading(false))
     }
   }, [wallet])
-  return { account, loading }
+
+  return { account, loading, userHasAccount: !!account?.txid }
 }

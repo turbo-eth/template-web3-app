@@ -1,4 +1,5 @@
 import Arweave from 'arweave'
+import Transaction from 'arweave/node/lib/transaction'
 import { JWKInterface } from 'arweave/node/lib/wallet'
 
 import { ArweaveAmount } from './utils/types'
@@ -28,4 +29,27 @@ export const getArweaveWalletBalance = async (wallet: JWKInterface): Promise<Arw
     ar,
     winston: balance,
   }
+}
+
+export const createArweaveTx = async (
+  wallet: JWKInterface,
+  data: WithImplicitCoercion<string> | { [Symbol.toPrimitive](hint: 'string'): string }
+): Promise<Transaction> => {
+  return await arweave.createTransaction(
+    {
+      data: Buffer.from(data, 'utf8'),
+    },
+    wallet
+  )
+}
+
+type TxTag = { name: string; value: string }
+
+export const signAndSendArweaveTx = async (wallet: JWKInterface, tx: Transaction, tags: Array<TxTag>) => {
+  tags.forEach((tag) => {
+    tx.addTag(tag.name, tag.value)
+  })
+  console.error(tx, wallet)
+  await arweave.transactions.sign(tx, wallet)
+  return await arweave.transactions.post(tx)
 }

@@ -21,7 +21,7 @@ export default function ArweaveLayout({ children }: { children: ReactNode }) {
     <ArweaveWalletProvider>
       <motion.div
         animate="show"
-        className="flex-center flex-col items-center justify-center text-center"
+        className="flex-center w-full flex-col items-center justify-center text-center"
         initial="hidden"
         viewport={{ once: true }}
         whileInView="show"

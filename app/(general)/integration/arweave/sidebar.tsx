@@ -1,6 +1,6 @@
 import { LinkComponent } from '@/components/shared/link-component'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { ArweaveAccountPreview } from '@/integrations/arweave/components/arweave-account-preview'
+import { ArweaveAccountPreview } from '@/integrations/arweave/components/arweave-account/sidebar-preview'
 
 export const SideBar = () => {
   const arweaveBaseUrl = turboIntegrations.arweave.href

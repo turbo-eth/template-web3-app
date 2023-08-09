@@ -1,20 +1,22 @@
 import { JWKInterface } from 'arweave/node/lib/wallet'
-import Account, { ArAccount, ArProfile } from 'arweave-account'
+import Account, { ArAccount } from 'arweave-account'
+import { T_profile } from 'arweave-account/lib/types'
 
-import { getArweaveWalletAddress } from '.'
+import { createArweaveTx, getArweaveWalletAddress, signAndSendArweaveTx } from '.'
 
-export const ArweaveAccount = new Account({
-  cacheIsActivated: true,
-  cacheSize: 100,
-  cacheTime: 3600000, // 3600000ms => 1 hour cache duration
-})
+export const ArweaveAccount = new Account()
 
 export const getUserAccount = async (wallet: JWKInterface): Promise<ArAccount> => {
   const acc: ArAccount = await ArweaveAccount.get(await getArweaveWalletAddress(wallet))
   return acc
 }
 
-export const editProfile = async (wallet: JWKInterface, payload: ArProfile) => {
-  await ArweaveAccount.connect(wallet)
-  await ArweaveAccount.updateProfile(payload)
+export const updateArweaveAccount = async (wallet: JWKInterface, payload: T_profile) => {
+  const tx = await createArweaveTx(wallet, JSON.stringify(payload))
+  const tags = [
+    { name: 'Protocol-Name', value: 'Account-0.3' },
+    { name: 'handle', value: payload.handleName },
+  ]
+  const txResult = await signAndSendArweaveTx(wallet, tx, tags)
+  return txResult
 }
