@@ -4,8 +4,9 @@ import { EthersAdapter } from '@safe-global/protocol-kit'
 import { ethers } from 'ethers'
 
 export interface Client {
-  service: object
+  service: SafeApiKit
   factory: SafeFactory
+  ethAdapter: EthersAdapter
 }
 
 export async function getSafeClient({ safeOwner }: { safeOwner: ethers.providers.JsonRpcSigner }): Promise<Client> {
@@ -23,5 +24,5 @@ export async function getSafeClient({ safeOwner }: { safeOwner: ethers.providers
 
   const safeFactory = await SafeFactory.create({ ethAdapter })
 
-  return { service: safeService, factory: safeFactory }
+  return { service: safeService, factory: safeFactory, ethAdapter }
 }

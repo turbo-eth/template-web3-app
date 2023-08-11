@@ -1,6 +1,7 @@
 import { ReactNode, createContext, useEffect, useState } from 'react'
 
-import { SafeFactory } from '@safe-global/protocol-kit'
+import SafeApiKit from '@safe-global/api-kit'
+import { EthersAdapter, SafeFactory } from '@safe-global/protocol-kit'
 
 import { useEthersSigner } from '@/lib/hooks/web3/use-ethers-signer'
 
@@ -16,7 +17,9 @@ export function SafeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (safeOwner != undefined) {
       getSafeClient({ safeOwner })
-        .then(({ service, factory }: { service: object; factory: SafeFactory }) => setSafeClient({ service, factory }))
+        .then(({ service, factory, ethAdapter }: { service: SafeApiKit; factory: SafeFactory; ethAdapter: EthersAdapter }) =>
+          setSafeClient({ service, factory, ethAdapter })
+        )
         .catch((error) => console.error({ error }))
     }
   }, [safeOwner])

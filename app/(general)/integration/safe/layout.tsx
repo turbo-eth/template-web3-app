@@ -16,7 +16,6 @@ import { cn } from '@/lib/utils'
 
 const integrationData = turboIntegrations.safe
 
-// TODO: Safe paths
 const createPath = '/integration/safe/create'
 const interactPath = '/integration/safe/interact'
 
