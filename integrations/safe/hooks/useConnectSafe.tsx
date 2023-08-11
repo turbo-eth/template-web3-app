@@ -20,7 +20,7 @@ export function ConnectSafe({ children }: { children: ReactNode }) {
   const { address } = useAccount()
   const [safeSdk, setSafeSdk] = useState<Safe>()
   const safeClient: Client = useContext(SafeContext) as Client
-  const [safeAddress, setSafeAddress] = useState<Address>('0x')
+  const [safeAddress, setSafeAddress] = useState<Address | undefined>()
   const { toast, dismiss } = useToast()
   const [ownerSafes, setOwnerSafes] = useState<string[]>()
 
@@ -34,8 +34,6 @@ export function ConnectSafe({ children }: { children: ReactNode }) {
         .catch((error) => console.log(error))
     }
   }, [safeClient])
-
-  console.log(safeSdk)
 
   const handleToast = ({ title, description }: { title: string; description: string }) => {
     toast({

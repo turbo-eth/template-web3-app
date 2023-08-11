@@ -80,14 +80,14 @@ export function FormSendSafeTransaction() {
   }
 
   return (
-    <div className="card w-full">
+    <div className="card mb-4 w-full">
       <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <p>Create a send transaction.</p>
         <label>Receiver Address</label>
         <input required className="input mt-4" placeholder="Insert address" {...register('address')} />
         <label>Amount</label>
         <input required className="input mt-4" {...register('amount')} />
-        <button className="btn btn-emerald mt-4 w-full" disabled={false} type="submit">
+        <button className="btn btn-emerald mt-4 w-full" disabled={!safeSdk} type="submit">
           {isLoading ? 'Sending...' : 'Send'}
         </button>
       </form>

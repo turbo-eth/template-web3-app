@@ -1,5 +1,6 @@
 // import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { FormSendSafeTransaction } from '@/integrations/safe/components/form-send-safe-transaction'
+import { PendingSafeTransactions } from '@/integrations/safe/components/pending-safe-transactions'
 import { ConnectSafe } from '@/integrations/safe/hooks/useConnectSafe'
 
 export default function PageIntegration() {
@@ -10,6 +11,7 @@ export default function PageIntegration() {
         {/* <WalletConnect className="inline-block" /> */}
         <ConnectSafe>
           <FormSendSafeTransaction />
+          <PendingSafeTransactions />
         </ConnectSafe>
       </div>
     </section>
