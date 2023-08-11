@@ -96,4 +96,12 @@ export const turboIntegrations = {
     imgLight: '/logo-gradient.png',
     imgDark: '/logo-dark.png',
   },
+  gitcoinPassport: {
+    name: 'Gitcoin Passport',
+    href: '/integration/gitcoin-passport',
+    url: 'https://docs.passport.gitcoin.co/',
+    description: 'Connext is a modular protocol for securely passing funds and data between chains.',
+    imgLight: '/integrations/gitcoinPassport-light.svg',
+    imgDark: '/integrations/gitcoinPassport-dark.svg',
+  },
 }
