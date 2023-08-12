@@ -4,6 +4,7 @@ export const arweaveAccountFormControls = [
     component: 'input',
     label: 'Handle Name',
     placeholder: 'Insert your @ here',
+    attributes: { required: true },
   },
   {
     formfieldName: 'avatar',

@@ -18,8 +18,7 @@ export const generateArweaveWallet = async () => {
 }
 
 export const getArweaveWalletAddress = async (wallet: JWKInterface) => {
-  const address = await arweave.wallets.jwkToAddress(wallet)
-  return address
+  return await arweave.wallets.jwkToAddress(wallet)
 }
 
 export const getArweaveWalletBalance = async (wallet: JWKInterface): Promise<ArweaveAmount> => {
@@ -31,25 +30,59 @@ export const getArweaveWalletBalance = async (wallet: JWKInterface): Promise<Arw
   }
 }
 
-export const createArweaveTx = async (
-  wallet: JWKInterface,
-  data: WithImplicitCoercion<string> | { [Symbol.toPrimitive](hint: 'string'): string }
-): Promise<Transaction> => {
+export const createArweaveWalletToWalletTx = async (wallet: JWKInterface, targetAddress: string, arQuantity: string): Promise<Transaction> => {
   return await arweave.createTransaction(
     {
-      data: Buffer.from(data, 'utf8'),
+      target: targetAddress,
+      quantity: arweave.ar.arToWinston(arQuantity),
     },
     wallet
   )
 }
 
-type TxTag = { name: string; value: string }
+export const createArweaveDataTx = async (wallet: JWKInterface, data: string | ArrayBuffer | Uint8Array): Promise<Transaction> => {
+  return await arweave.createTransaction(
+    {
+      data,
+    },
+    wallet
+  )
+}
 
-export const signAndSendArweaveTx = async (wallet: JWKInterface, tx: Transaction, tags: Array<TxTag>) => {
+export type ArweaveTxTag = { name: string; value: string }
+export type ArweaveTxId = string
+export type ArweaveTxPostResponse = {
+  status: number
+  statusText: string
+  data: unknown
+}
+
+export const signAndSendArweaveTx = async (
+  wallet: JWKInterface,
+  tx: Transaction,
+  tags: Array<ArweaveTxTag>,
+  hasFile = false
+): Promise<[ArweaveTxId, ArweaveTxPostResponse | null]> => {
   tags.forEach((tag) => {
     tx.addTag(tag.name, tag.value)
   })
-  console.error(tx, wallet)
   await arweave.transactions.sign(tx, wallet)
-  return await arweave.transactions.post(tx)
+  await arweave.transactions.verify(tx)
+  // check if tx has files
+  if (hasFile) {
+    const uploader = await arweave.transactions.getUploader(tx)
+    // run the uploader until it completes the upload.
+    while (!uploader.isComplete) {
+      await uploader.uploadChunk()
+    }
+    return [tx.id, null]
+  } else {
+    // this is a wallet to wallet tx
+    const response = await arweave.transactions.post(tx)
+    return [tx.id, response]
+  }
+}
+
+export const getArweaveTxStatus = async (txId: ArweaveTxId) => {
+  return await arweave.transactions.getStatus(txId)
 }

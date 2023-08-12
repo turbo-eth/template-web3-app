@@ -2,35 +2,31 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 
 import { arweaveAccountFormControls } from './controls'
-import { useArweaveAccountForm } from './hook'
-import { useArweaveAccount } from '../../../hooks/use-arweave-account'
-import { useArweaveWallet } from '../../../hooks/use-arweave-wallet'
-import { ConnectArweaveWallet } from '../../connect-arweave-wallet'
-import { Spinner } from '../../spinner'
+import { useArweavePostForm } from './hook'
+import { useArweaveWallet } from '../../hooks/use-arweave-wallet'
+import { ConnectArweaveWallet } from '../connect-arweave-wallet'
 
 export const ArweaveAccount = () => {
   const { wallet, address } = useArweaveWallet()
-  const { loading: isArweaveAccountLoading, userHasAccount } = useArweaveAccount()
-  const { onSubmit, form, isLoading, isError, isSuccess, error } = useArweaveAccountForm()
+  const { onSubmit, form, isLoading, isError, isSuccess, error } = useArweavePostForm()
   const { handleSubmit, register } = form
   if (!wallet || !address) return <ConnectArweaveWallet />
-  if (isArweaveAccountLoading) return <Spinner />
   return (
     <>
       <div className="card w-full text-left">
-        <h3 className="mb-4">{userHasAccount ? 'Edit your Profile' : 'Create your Arweave account'}</h3>
+        <h3 className="mb-4">Create a new Arweave post</h3>
         <Form {...form}>
           <form className="flex w-full flex-col space-y-8" onSubmit={handleSubmit(onSubmit)}>
             {arweaveAccountFormControls.map((item) => (
               <FormField
                 key={item?.label}
                 control={form.control}
-                name={item?.formfieldName as 'handleName'}
+                name={item?.formfieldName as 'data'}
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{item?.label}</FormLabel>
                     <FormControl className="input dark:border-gray-600 dark:text-gray-600 dark:[color-scheme:dark]">
-                      <Input {...field} {...register(item?.formfieldName as 'handleName')} className="bg-slate-200" />
+                      <Input {...item.attributes} {...field} {...register(item?.formfieldName as 'data')} className="bg-slate-200" />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -39,7 +35,7 @@ export const ArweaveAccount = () => {
             ))}
             <div>
               <button className="btn btn-emerald w-full" disabled={isLoading}>
-                {isLoading ? 'Loading...' : userHasAccount ? 'Update Arweave account' : 'Create Arweave account'}
+                {isLoading ? 'Loading...' : 'Create Arweave post'}
               </button>
               {isError && <div className="mt-3 font-medium text-red-500">Error: {error instanceof Error ? error.message : String(error)}</div>}
             </div>
@@ -47,14 +43,14 @@ export const ArweaveAccount = () => {
         </Form>
         <hr className="my-4" />
         <div className="flex items-center justify-between">
-          <h3 className="text-center">Arweave account</h3>
-          <p className="text-center text-sm text-gray-500">Arweave profile is the universal account in arweave ecosystem.</p>
+          <h3 className="text-center">Arweave post</h3>
+          <p className="text-center text-sm text-gray-500">Arweave post is a type of transaction arweave ecosystem which can store data on chain.</p>
         </div>
       </div>
       {isSuccess && (
         <div className="card container mt-10 w-full">
           <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-bold">Successfully Updated Arweave profile!</h3>
+            <h3 className="text-2xl font-bold">Successfully created an arweave post!</h3>
           </div>
         </div>
       )}

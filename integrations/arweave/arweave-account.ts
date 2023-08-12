@@ -2,7 +2,7 @@ import { JWKInterface } from 'arweave/node/lib/wallet'
 import Account, { ArAccount } from 'arweave-account'
 import { T_profile } from 'arweave-account/lib/types'
 
-import { createArweaveTx, getArweaveWalletAddress, signAndSendArweaveTx } from '.'
+import { ArweaveTxId, ArweaveTxPostResponse, createArweaveDataTx, getArweaveWalletAddress, signAndSendArweaveTx } from '.'
 
 export const ArweaveAccount = new Account()
 
@@ -11,12 +11,28 @@ export const getUserAccount = async (wallet: JWKInterface): Promise<ArAccount> =
   return acc
 }
 
-export const updateArweaveAccount = async (wallet: JWKInterface, payload: T_profile) => {
-  const tx = await createArweaveTx(wallet, JSON.stringify(payload))
+export type UpdateArweaveAccountPayload = Partial<T_profile> & Pick<T_profile, 'handleName'>
+
+export const updateArweaveAccount = async (
+  wallet: JWKInterface,
+  payload: UpdateArweaveAccountPayload
+): Promise<[ArweaveTxId, ArweaveTxPostResponse | null]> => {
+  const tx = await createArweaveDataTx(wallet, JSON.stringify(removeEmpty(payload)))
   const tags = [
     { name: 'Protocol-Name', value: 'Account-0.3' },
     { name: 'handle', value: payload.handleName },
   ]
-  const txResult = await signAndSendArweaveTx(wallet, tx, tags)
-  return txResult
+  return await signAndSendArweaveTx(wallet, tx, tags)
+}
+
+function removeEmpty(obj: { [k: string]: unknown }): { [k: string]: unknown } {
+  const removedEmpty = Object.fromEntries(
+    Object.entries(obj)
+      .filter(([, v]) => !!v)
+      .map(([k, v]) => [k, v === Object(v) ? removeEmpty(v as { [k: string]: unknown }) : v])
+  )
+  const removedEmptyNestedObjects = Object.fromEntries(
+    Object.entries(removedEmpty).filter(([, v]) => (v === Object(v) ? Object.keys(v as object).length > 0 : !!v))
+  )
+  return removedEmptyNestedObjects
 }
