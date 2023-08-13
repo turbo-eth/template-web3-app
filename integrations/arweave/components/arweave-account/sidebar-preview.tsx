@@ -3,14 +3,12 @@ import { FaCopy } from 'react-icons/fa'
 
 import { LinkComponent } from '@/components/shared/link-component'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { useArweaveAccount } from '@/integrations/arweave/hooks/use-arweave-account'
 import { useArweaveWallet } from '@/integrations/arweave/hooks/use-arweave-wallet'
 import { truncateString } from '@/integrations/arweave/utils'
 import { useToast } from '@/lib/hooks/use-toast'
 
 export const ArweaveAccountPreview = () => {
-  const { balance, address } = useArweaveWallet()
-  const { account } = useArweaveAccount()
+  const { account, balance, address } = useArweaveWallet()
   const { toast, dismiss } = useToast()
 
   const handleToast = () => {

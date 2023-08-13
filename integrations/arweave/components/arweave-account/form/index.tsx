@@ -1,42 +1,43 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
 
 import { arweaveAccountFormControls } from './controls'
 import { useArweaveAccountForm } from './hook'
-import { useArweaveAccount } from '../../../hooks/use-arweave-account'
 import { useArweaveWallet } from '../../../hooks/use-arweave-wallet'
+import { getComponent } from '../../../utils/get-element-component'
 import { ConnectArweaveWallet } from '../../connect-arweave-wallet'
 import { Spinner } from '../../spinner'
 
 export const ArweaveAccount = () => {
-  const { wallet, address } = useArweaveWallet()
-  const { loading: isArweaveAccountLoading, userHasAccount } = useArweaveAccount()
+  const { wallet, address, isAccountLoading, userHasAccount } = useArweaveWallet()
   const { onSubmit, form, isLoading, isError, isSuccess, error } = useArweaveAccountForm()
   const { handleSubmit, register } = form
   if (!wallet || !address) return <ConnectArweaveWallet />
-  if (isArweaveAccountLoading) return <Spinner />
+  if (isAccountLoading) return <Spinner />
   return (
     <>
       <div className="card w-full text-left">
         <h3 className="mb-4">{userHasAccount ? 'Edit your Profile' : 'Create your Arweave account'}</h3>
         <Form {...form}>
           <form className="flex w-full flex-col space-y-8" onSubmit={handleSubmit(onSubmit)}>
-            {arweaveAccountFormControls.map((item) => (
-              <FormField
-                key={item?.label}
-                control={form.control}
-                name={item?.formfieldName as 'handleName'}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{item?.label}</FormLabel>
-                    <FormControl className="input dark:border-gray-600 dark:text-gray-600 dark:[color-scheme:dark]">
-                      <Input {...field} {...register(item?.formfieldName as 'handleName')} className="bg-slate-200" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            ))}
+            {arweaveAccountFormControls.map((item) => {
+              const Component = getComponent(item.component)
+              return (
+                <FormField
+                  key={item?.label}
+                  control={form.control}
+                  name={item?.formfieldName as 'handleName'}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{item?.label}</FormLabel>
+                      <FormControl className="input dark:border-gray-600 dark:text-gray-600 dark:[color-scheme:dark]">
+                        <Component {...field} {...register(item?.formfieldName as 'handleName')} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )
+            })}
             <div>
               <button className="btn btn-emerald w-full" disabled={isLoading}>
                 {isLoading ? 'Loading...' : userHasAccount ? 'Update Arweave account' : 'Create Arweave account'}

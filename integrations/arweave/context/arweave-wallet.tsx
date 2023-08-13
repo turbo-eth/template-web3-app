@@ -2,11 +2,16 @@
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { JWKInterface } from 'arweave/node/lib/wallet'
+import { ArAccount } from 'arweave-account'
 
 import { generateArweaveWallet, getArweaveWalletAddress, getArweaveWalletBalance } from '..'
+import { useArweaveAccount } from '../hooks/use-arweave-account'
 import { ArweaveAmount } from '../utils/types'
 
 export interface IArweaveWalletContext {
+  account: ArAccount | null
+  isAccountLoading: boolean
+  userHasAccount: boolean
   wallet: JWKInterface | null
   error: string | null
   address: string | null
@@ -18,6 +23,9 @@ export interface IArweaveWalletContext {
 }
 
 export const ArweaveWalletContext = createContext<IArweaveWalletContext>({
+  account: null,
+  isAccountLoading: false,
+  userHasAccount: false,
   wallet: null,
   error: null,
   address: null,
@@ -35,6 +43,7 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
   const [error, setError] = useState<string | null>(null)
   const [address, setAddress] = useState<string | null>(null)
   const [balance, setBalance] = useState<ArweaveAmount | null>(null)
+  const { account, loading: isAccountLoading, userHasAccount } = useArweaveAccount(wallet)
 
   const disconnect = useCallback(() => {
     setWallet(null)
@@ -96,6 +105,9 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
 
   const value: IArweaveWalletContext = useMemo(
     () => ({
+      account,
+      isAccountLoading,
+      userHasAccount,
       wallet,
       error,
       address,
@@ -105,7 +117,7 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
       importFromFile,
       backupWallet,
     }),
-    [address, wallet, balance, error]
+    [address, wallet, balance, error, account, isAccountLoading]
   )
   return <ArweaveWalletContext.Provider value={value}>{children}</ArweaveWalletContext.Provider>
 }

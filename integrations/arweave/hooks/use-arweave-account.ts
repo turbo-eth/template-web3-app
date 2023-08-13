@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
 
+import { JWKInterface } from 'arweave/node/lib/wallet'
 import { ArAccount } from 'arweave-account'
 
 import { getUserAccount } from '../arweave-account'
-import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 
-export const useArweaveAccount = () => {
+export const useArweaveAccount = (wallet: JWKInterface | null) => {
   const [account, setAccount] = useState<ArAccount | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
-  const { wallet } = useArweaveWallet()
   useEffect(() => {
     if (wallet) {
       setLoading(true)

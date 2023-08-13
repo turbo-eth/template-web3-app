@@ -7,7 +7,6 @@ import { z } from 'zod'
 
 import { getArweaveTxStatus } from '@/integrations/arweave'
 import { UpdateArweaveAccountPayload, updateArweaveAccount } from '@/integrations/arweave/arweave-account'
-import { useArweaveAccount } from '@/integrations/arweave/hooks/use-arweave-account'
 import { useArweaveWallet } from '@/integrations/arweave/hooks/use-arweave-wallet'
 
 const useEditProfileAPI = () => {
@@ -24,8 +23,7 @@ const useEditProfileAPI = () => {
 }
 
 export const useArweaveAccountForm = () => {
-  const { wallet } = useArweaveWallet()
-  const { account } = useArweaveAccount()
+  const { account, wallet } = useArweaveWallet()
   const { mutate, data, isLoading, isError, error, isSuccess } = useEditProfileAPI()
   const profileSchema = z.object({
     handleName: z.string().min(1),
@@ -66,7 +64,7 @@ export const useArweaveAccountForm = () => {
         console.error('No Arweave wallet connected.')
         return
       }
-      mutate({ wallet, payload: { ...values, bannerURL: values.banner, avatarURL: values.avatar } })
+      mutate({ wallet, payload: { handleName: values.handleName } })
     } catch (error) {
       console.log(error)
     }

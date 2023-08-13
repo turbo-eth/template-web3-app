@@ -5,18 +5,16 @@ export const arweaveAccountFormControls = [
     label: 'Handle Name',
     placeholder: 'Insert your @ here',
   },
-  {
-    formfieldName: 'avatar',
-    component: 'input',
-    label: 'Avatar URL',
-    placeholder: 'Insert your avatar URL here',
-  },
-  {
-    formfieldName: 'banner',
-    component: 'input',
-    label: 'Banner URL',
-    placeholder: 'Insert your banner URL here',
-  },
+  // {
+  //   formfieldName: 'avatar',
+  //   component: 'file',
+  //   label: 'Avatar',
+  // },
+  // {
+  //   formfieldName: 'banner',
+  //   component: 'file',
+  //   label: 'Banner',
+  // },
   {
     formfieldName: 'name',
     component: 'input',
@@ -25,7 +23,7 @@ export const arweaveAccountFormControls = [
   },
   {
     formfieldName: 'bio',
-    component: 'input',
+    component: 'textArea',
     label: 'Bio',
     placeholder: 'Insert your bio here',
   },

@@ -9,7 +9,7 @@ export const arweave = Arweave.init({
   port: 443, // Port
   protocol: 'https', // Network protocol http or https
   timeout: 20000, // Network request timeouts in milliseconds
-  logging: false, // Enable network request logging
+  logging: true, // Enable network request logging
 })
 
 export const generateArweaveWallet = async () => {
@@ -43,7 +43,7 @@ export const createArweaveWalletToWalletTx = async (wallet: JWKInterface, target
 export const createArweaveDataTx = async (wallet: JWKInterface, data: string | ArrayBuffer | Uint8Array): Promise<Transaction> => {
   return await arweave.createTransaction(
     {
-      data,
+      data: Buffer.from(data as string, 'utf8'),
     },
     wallet
   )
@@ -62,12 +62,12 @@ export const signAndSendArweaveTx = async (
   tx: Transaction,
   tags: Array<ArweaveTxTag>,
   hasFile = false
-): Promise<[ArweaveTxId, ArweaveTxPostResponse | null]> => {
+): Promise<[ArweaveTxId, ArweaveTxPostResponse]> => {
   tags.forEach((tag) => {
     tx.addTag(tag.name, tag.value)
   })
   await arweave.transactions.sign(tx, wallet)
-  await arweave.transactions.verify(tx)
+  console.error(tx)
   // check if tx has files
   if (hasFile) {
     const uploader = await arweave.transactions.getUploader(tx)
@@ -75,9 +75,8 @@ export const signAndSendArweaveTx = async (
     while (!uploader.isComplete) {
       await uploader.uploadChunk()
     }
-    return [tx.id, null]
+    return [tx.id, { status: uploader.lastResponseStatus, statusText: uploader.lastResponseError, data: null }]
   } else {
-    // this is a wallet to wallet tx
     const response = await arweave.transactions.post(tx)
     return [tx.id, response]
   }

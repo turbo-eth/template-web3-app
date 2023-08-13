@@ -1,15 +1,16 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 
-import { arweaveAccountFormControls } from './controls'
 import { useArweavePostForm } from './hook'
 import { useArweaveWallet } from '../../hooks/use-arweave-wallet'
 import { ConnectArweaveWallet } from '../connect-arweave-wallet'
 
-export const ArweaveAccount = () => {
+export const FormNewPost = () => {
   const { wallet, address } = useArweaveWallet()
   const { onSubmit, form, isLoading, isError, isSuccess, error } = useArweavePostForm()
-  const { handleSubmit, register } = form
+  const { handleSubmit, register, getValues } = form
+  const values = getValues()
   if (!wallet || !address) return <ConnectArweaveWallet />
   return (
     <>
@@ -17,22 +18,39 @@ export const ArweaveAccount = () => {
         <h3 className="mb-4">Create a new Arweave post</h3>
         <Form {...form}>
           <form className="flex w-full flex-col space-y-8" onSubmit={handleSubmit(onSubmit)}>
-            {arweaveAccountFormControls.map((item) => (
-              <FormField
-                key={item?.label}
-                control={form.control}
-                name={item?.formfieldName as 'data'}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{item?.label}</FormLabel>
-                    <FormControl className="input dark:border-gray-600 dark:text-gray-600 dark:[color-scheme:dark]">
-                      <Input {...item.attributes} {...field} {...register(item?.formfieldName as 'data')} className="bg-slate-200" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            ))}
+            <FormField
+              control={form.control}
+              name="data"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Data to be stored</FormLabel>
+                  <FormControl className="input dark:border-gray-600 dark:text-gray-600 dark:[color-scheme:dark]">
+                    <Textarea {...field} {...register('data')} className="bg-slate-200" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <div className="my-2 w-full text-center dark:text-gray-600">- or -</div>
+            <FormField
+              control={form.control}
+              name="file"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>File to be stored</FormLabel>
+                  <FormControl className="input dark:border-gray-600 dark:text-gray-600 dark:[color-scheme:dark]">
+                    <Input
+                      type="file"
+                      {...field}
+                      value={(values.file as { filename: string })?.filename || ''}
+                      {...register('file')}
+                      className="bg-slate-200"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <div>
               <button className="btn btn-emerald w-full" disabled={isLoading}>
                 {isLoading ? 'Loading...' : 'Create Arweave post'}
