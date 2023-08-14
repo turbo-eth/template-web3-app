@@ -60,3 +60,4 @@ integrations/starter
 ```
 
 By using this template, you'll create well-organized and understandable integrations that are easy for you and others to navigate. Happy coding!
+
