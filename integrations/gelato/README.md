@@ -4,12 +4,11 @@ Gelato is a Web3’s decentralized backend, enabling developers to create augmen
 
 This integration provides useful hooks and components from Gelato Automate.
 
-
 ## Features
 
 - Create Task: Simple UI for task creation&automation
 - List Tasks: Effectively query and preview active tasks
-- Rename or cancel tasks 
+- Rename or cancel tasks
 
 ## Components
 
@@ -22,11 +21,13 @@ This integration provides useful hooks and components from Gelato Automate.
 `RenameTask` Renders rename task form
 
 ## Hooks
+
 These hooks are mostly gelato-specific wrappers for react-query. So it utilizes all the features react-query has.
 
-For example: 
+For example:
+
 ```ts
-const { data, isLoading, error, refetch} = useActiveTasks()
+const { data, isLoading, error, refetch } = useActiveTasks()
 ```
 
 ### Query hooks
@@ -50,7 +51,6 @@ const { data, isLoading, error, refetch} = useActiveTasks()
 `useCancelTask`: Returns cancel task mutation
 
 `useRenameTask`: Returns rename task mutation
-
 
 ## Environment Variables
 

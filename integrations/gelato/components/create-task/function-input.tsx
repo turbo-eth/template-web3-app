@@ -41,7 +41,7 @@ export function FunctionInput({ abiFieldName, funcFieldName, inputsFieldName }: 
         <SelectTrigger className="mt-2 rounded-2xl" id="execute_function">
           <SelectValue placeholder="Select a function" />
         </SelectTrigger>
-        <SelectContent className="max-w-full rounded-2xl dark:!bg-zinc-700">
+        <SelectContent avoidCollisions={false} className="max-w-full rounded-2xl dark:!bg-zinc-700">
           {abiFunctions?.map((item, ind) => (
             <SelectItem key={ind} className="cursor-pointer duration-200 hover:!bg-black/10" value={item.name}>
               <div className="flex items-center py-3">
