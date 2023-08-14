@@ -94,21 +94,21 @@ export function TaskView({ taskId }: TasKViewProps) {
             </div>
           </div>
           {showRename && <RenameTask name={name} taskId={taskId} onSave={() => handleRename()} />}
-          <div className="mt-4 flex space-x-4">
+          <div className="mt-4 flex flex-col gap-4 md:flex-row">
             <span>Created By:</span>
             <span>
               <a
                 className="flex items-center space-x-2 bg-gradient-to-r from-orange-200 to-pink-200 bg-clip-text text-transparent"
                 href={getAddressUrl(task.taskCreator.id, chain?.id as number)}
                 target="_blank">
-                <span>{task.taskCreator.id}</span>
+                <span>{truncateEthAddress(task.taskCreator.id, 20)}</span>
                 <FaExternalLinkAlt className="text-pink-200" />
               </a>
             </span>
             <span className="opacity-50">{moment.unix(task.createdAt as number).format('ll, HH:mm:ss')}</span>
           </div>
           <div className="mt-4">
-            <span className="opacity-50">Task ID: {taskId}</span>
+            <span className="break-words opacity-50">Task ID: {taskId}</span>
           </div>
           <div className="mt-6 flex space-x-5">
             <div>
@@ -127,7 +127,7 @@ export function TaskView({ taskId }: TasKViewProps) {
               <div className="mb-5 flex w-full items-center justify-between opacity-70">
                 <h3 className="text-2xl font-bold">Execute</h3>
               </div>
-              <div className="grid grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
                 <p className="col-span-2 opacity-70 md:col-span-1">Target Contract</p>
                 <p className="col-span-2 md:col-span-3">
                   <div className="flex items-center space-x-3">
@@ -135,7 +135,7 @@ export function TaskView({ taskId }: TasKViewProps) {
                       className="bg-gradient-to-r from-pink-300 to-indigo-300 bg-clip-text text-transparent duration-200 hover:opacity-50"
                       href={getAddressUrl(task.execAddress, chain?.id as number)}
                       target="_blank">
-                      <span>{task.execAddress}</span>
+                      <span>{truncateEthAddress(task.execAddress, 12)}</span>
                     </a>
                     <FaExternalLinkAlt className="opacity-50" />
                   </div>

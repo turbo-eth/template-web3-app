@@ -41,7 +41,7 @@ export function ExecutionValues({ inputFieldName, funcFieldName, abiFieldName }:
   return (
     <div className="mt-10">
       {!isResolver && (
-        <div className="flex">
+        <div className="mb-10 flex">
           <div className="mx-auto flex space-x-3 rounded-2xl p-2 dark:bg-zinc-700">
             <button
               type="button"
