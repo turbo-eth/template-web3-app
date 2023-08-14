@@ -58,9 +58,7 @@ export function TaskView({ taskId }: TasKViewProps) {
 
   const handleRename = () => {
     setShowRename(false)
-    refetch().catch(() => {
-      //
-    })
+    refetch().catch((e) => console.error(e))
   }
 
   if (isLoading || !taskWithName) {
