@@ -106,7 +106,7 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
           <DialogContent>
             <DialogTitle>Repay {symbol}</DialogTitle>
             <DialogDescription>
-              <div className="mt-4 mb-2">
+              <div className="mb-2 mt-4">
                 <label>Repay with</label>
               </div>
               <Select value={repayWithATokens ? 'aTokens' : 'walletBalance'} onValueChange={(value) => setRepayWithATokens(value === 'aTokens')}>
@@ -122,7 +122,7 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
                   </SelectItem>
                 </SelectContent>
               </Select>
-              <div className="mt-4 mb-2">
+              <div className="mb-2 mt-4">
                 <label>Amount</label>
               </div>
               <div className="input dark:bg-slate-900">
@@ -170,7 +170,7 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
                   </span>
                 </div>
               </div>
-              <div className="mt-5 mb-2">
+              <div className="mb-2 mt-5">
                 <label>Transaction overview</label>
               </div>
               <div className="input dark:bg-slate-900">

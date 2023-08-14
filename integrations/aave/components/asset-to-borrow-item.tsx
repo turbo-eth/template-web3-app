@@ -74,7 +74,7 @@ export const AssetToBorrowItem = ({
             <DialogDescription>
               {canBorrowStableRateMode && (
                 <>
-                  <div className="mt-4 mb-2">
+                  <div className="mb-2 mt-4">
                     <label>Borrow APY rate</label>
                   </div>
                   <Select
@@ -94,7 +94,7 @@ export const AssetToBorrowItem = ({
                   </Select>
                 </>
               )}
-              <div className="mt-4 mb-2">
+              <div className="mb-2 mt-4">
                 <label>Amount</label>
               </div>
               <div className="input dark:bg-slate-900">

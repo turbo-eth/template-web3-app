@@ -75,7 +75,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
           <DialogContent>
             <DialogTitle>Supply {symbol}</DialogTitle>
             <DialogDescription>
-              <div className="mt-4 mb-2">
+              <div className="mb-2 mt-4">
                 <label>Amount</label>
               </div>
               <div className="input dark:bg-slate-900">
@@ -115,7 +115,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                   <span>Available: {Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toFixed(5)}</span>
                 </div>
               </div>
-              <div className="mt-5 mb-2">
+              <div className="mb-2 mt-5">
                 <label>Transaction overview</label>
               </div>
               <div className="input dark:bg-slate-900">

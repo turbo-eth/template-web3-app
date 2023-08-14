@@ -1,3 +1,6 @@
+// disable eslint for this file due to @bgd-labs/aave-address-book import issues
+/* eslint-disable */
+
 import { ReactNode } from 'react'
 
 import {

@@ -95,7 +95,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
           <DialogContent>
             <DialogTitle>Withdraw {symbol}</DialogTitle>
             <DialogDescription>
-              <div className="mt-4 mb-2">
+              <div className="mb-2 mt-4">
                 <label>Amount</label>
               </div>
               <div className="input dark:bg-slate-900">
@@ -134,7 +134,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
                   <span>Available: {balance.toFixed(5)}</span>
                 </div>
               </div>
-              <div className="mt-5 mb-2">
+              <div className="mb-2 mt-5">
                 <label>Transaction overview</label>
               </div>
               <div className="input dark:bg-slate-900">

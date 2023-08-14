@@ -1,17 +1,13 @@
-
-#  Aave - TurboETH Integration
-
-  
+# Aave - TurboETH Integration
 
 This React Hook integrates with [Aave](https://aave.com/), enabling users to supply and borrow assets. The integration is built using [Wagmi CLI](https://wagmi.sh/cli/commands/generate), interacting with the Aave [UiPoolDataProvider](https://docs.aave.com/developers/periphery-contracts/uipooldataproviderv3) and [Pool](https://docs.aave.com/developers/core-contracts/pool) contracts.
 
-  
+## Features
 
-##  Features
 - Get pools and users data on Aave with the `useAave` hook
-- Interact with the pool contract using Wagmi's generated hooks  
+- Interact with the pool contract using Wagmi's generated hooks
 
-##  Hooks
+## Hooks
 
 ### `useAave()`
 
@@ -69,12 +65,13 @@ const {
   averageBorrowApy,
   averageNetApy,
   poolAddress,
-} = useAave();
+} = useAave()
 ```
 
 Also check the hooks generated at `integrations/aave/generated/aave-wagmi.ts`
 
-##  File Structure
+## File Structure
+
 ```
 integrations/aave
 ├── abis

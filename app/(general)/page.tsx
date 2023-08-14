@@ -72,7 +72,7 @@ export default function Home() {
             </motion.div>
             <CopyToClipboard text="pnpm create turbo-eth@latest" onCopy={() => setCopied(true)}>
               <motion.div
-                className="group mx-auto mt-8 flex max-w-fit cursor-pointer items-center justify-between gap-x-2 rounded-xl border border-gray-200 bg-white py-4 px-3 text-sm font-medium shadow-md transition-colors dark:border-gray-800 dark:bg-neutral-800 dark:text-white hover:dark:border-gray-600/70 hover:dark:bg-neutral-700/70 md:px-6 md:text-lg"
+                className="group mx-auto mt-8 flex max-w-fit cursor-pointer items-center justify-between gap-x-2 rounded-xl border border-gray-200 bg-white px-3 py-4 text-sm font-medium shadow-md transition-colors dark:border-gray-800 dark:bg-neutral-800 dark:text-white hover:dark:border-gray-600/70 hover:dark:bg-neutral-700/70 md:px-6 md:text-lg"
                 variants={FADE_DOWN_ANIMATION_VARIANTS}>
                 <pre>pnpm create turbo-eth@latest</pre>
                 <span className="flex-center flex h-4 w-4 cursor-pointer rounded-md text-neutral-600 dark:text-neutral-100 md:h-7 md:w-7">
