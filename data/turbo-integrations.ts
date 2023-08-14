@@ -88,6 +88,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/connext.png',
     imgDark: '/integrations/connext.png',
   },
+  gelato: {
+    name: 'Gelato',
+    href: '/integration/gelato',
+    url: 'https://docs.gelato.network/',
+    description: 'Enabling developers to create augmented smart contracts that are automated, gasless & off-chain aware',
+    imgLight: '/integrations/gelato-light.svg',
+    imgDark: '/integrations/gelato-light.svg',
+  },
   starter: {
     name: 'Starter Template',
     href: '/integration/starter',

@@ -1,0 +1,63 @@
+query getAllTaskData($taskCreator: String, $limit: Int, $skip: Int) {
+  tasks(first: $limit, skip: $skip, where: { taskCreator: $taskCreator }, orderBy: createdAt, orderDirection: desc) {
+    id
+    version {
+      id
+    }
+    taskCreator {
+      id
+      opsProxy
+    }
+    executionCount
+    feeTotalUsd
+    feeTotal
+    feeToken
+    execAddress
+    status
+    nextExec
+    interval
+    execDataOrSelector
+    resolverAddress
+    resolverData
+    modules
+    moduleArgs
+    useTaskTreasuryFunds
+    resolverHash
+    createdTxHash
+    cancelledTxHash
+    createdAt
+    updatedAt
+  }
+}
+
+query getTask($id: ID!) {
+  task(id: $id) {
+    id
+    version {
+      id
+    }
+    taskCreator {
+      id
+      opsProxy
+    }
+    executionCount
+    feeTotalUsd
+    feeTotal
+    feeToken
+    execAddress
+    status
+    nextExec
+    interval
+    execDataOrSelector
+    resolverAddress
+    resolverData
+    modules
+    moduleArgs
+    useTaskTreasuryFunds
+    resolverHash
+    createdTxHash
+    cancelledTxHash
+    createdAt
+    updatedAt
+  }
+}
