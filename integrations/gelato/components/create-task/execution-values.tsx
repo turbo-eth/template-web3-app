@@ -20,7 +20,6 @@ export function ExecutionValues({ inputFieldName, funcFieldName, abiFieldName }:
     watch,
     setValue,
     register,
-    getValues,
     formState: { errors },
   } = useFormContext<CreateTaskForm>()
 

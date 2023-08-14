@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 
 import { BsSearch } from 'react-icons/bs'
 
@@ -14,11 +14,15 @@ export function ActiveTasks() {
 
   const searchInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
 
-  const activeTaskIdsFilteredByName = activeTasks?.names?.filter((item) => item.name.toLowerCase().includes(search)).map((item) => item.taskId)
+  const activeTaskIdsFilteredByName = useMemo(
+    () => activeTasks?.names?.filter((item) => item.name.toLowerCase().includes(search)).map((item) => item.taskId),
+    [activeTasks]
+  )
 
-  const filteredActiveTasks = activeTasks?.tasks.filter((item) => {
-    return activeTaskIdsFilteredByName?.includes(item.id)
-  })
+  const filteredActiveTasks = useMemo(
+    () => activeTasks?.tasks.filter((item) => activeTaskIdsFilteredByName?.includes(item.id)),
+    [activeTasks, activeTaskIdsFilteredByName]
+  )
 
   return (
     <div className="card w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
