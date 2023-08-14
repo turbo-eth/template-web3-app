@@ -74,11 +74,19 @@ export const turboIntegrations = {
   },
   pooltogether_v4: {
     name: 'PoolTogether',
-    href: '/integration/pooltogether-v4',
+    href: '/integration/pooltogether-v4/deposit',
     url: 'https://pooltogether.com/',
     description: 'PoolTogether is a prize savings protocol, enable you to win by saving.',
     imgLight: '/integrations/pooltogether.svg',
     imgDark: '/integrations/pooltogether.svg',
+  },
+  livepeer: {
+    name: 'Livepeer',
+    href: '/integration/livepeer',
+    url: 'https://docs.livepeer.org/',
+    description: "Livepeer is the world's open video infrastructure.",
+    imgLight: '/integrations/livepeer.svg',
+    imgDark: '/integrations/livepeer.svg',
   },
   connext: {
     name: 'Connext',
