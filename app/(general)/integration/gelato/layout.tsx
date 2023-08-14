@@ -64,7 +64,9 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
       </div>
       <section className="w-full lg:mt-10">
         <IsWalletConnected>
-          <div className="container flex w-full flex-col items-center">{isAutomateSupported ? children : <>Network Not Supported</>}</div>
+          <div className="container flex w-full flex-col items-center">
+            {isAutomateSupported ? children : <h3 className="text-2xl font-bold"> Network Not Supported</h3>}
+          </div>
         </IsWalletConnected>
       </section>
     </>
