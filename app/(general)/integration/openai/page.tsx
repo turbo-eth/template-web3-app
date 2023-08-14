@@ -35,8 +35,8 @@ export default function PageIntegration() {
             <Balancer>{turboIntegrations.openai.description}</Balancer>
           </motion.p>
           <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent isExternal href={turboIntegrations.openai.url}>
-              <button className="btn btn-primary">Documentation</button>
+            <LinkComponent isExternal className="btn btn-primary" href={turboIntegrations.openai.url}>
+              Documentation
             </LinkComponent>
           </motion.div>
         </motion.div>

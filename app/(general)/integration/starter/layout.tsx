@@ -46,8 +46,8 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
             <Balancer>{integrationData.description}</Balancer>
           </motion.p>
           <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent href={integrationData.url}>
-              <button className="btn btn-primary">Documentation</button>
+            <LinkComponent className="btn btn-primary" href={integrationData.url}>
+              Documentation
             </LinkComponent>
           </motion.div>
         </motion.div>

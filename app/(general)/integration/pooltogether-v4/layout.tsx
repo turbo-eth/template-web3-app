@@ -53,16 +53,16 @@ export default function PoolTogetherLayout({ children }: { children: ReactNode }
             <Balancer>{integrationData.description}</Balancer>
           </motion.p>
           <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent href={integrationData.url}>
-              <button className="btn btn-primary">Documentation</button>
+            <LinkComponent className="btn btn-primary" href={integrationData.url}>
+              Documentation
             </LinkComponent>
           </motion.div>
           <motion.div className="mt-8 flex justify-center gap-4 text-2xl sm:gap-6 md:gap-10 lg:gap-14" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent href={depositPath}>
-              <button className={cn('btn hover:opacity-75', pathname === depositPath && 'opacity-50')}>Deposit</button>
+            <LinkComponent className={cn('btn hover:opacity-75', pathname === depositPath && 'opacity-50')} href={depositPath}>
+              Deposit
             </LinkComponent>
-            <LinkComponent href={withdrawPath}>
-              <button className={cn('btn hover:opacity-75', pathname === withdrawPath && 'opacity-50')}>Withdraw</button>
+            <LinkComponent className={cn('btn hover:opacity-75', pathname === withdrawPath && 'opacity-50')} href={withdrawPath}>
+              Withdraw
             </LinkComponent>
           </motion.div>
         </motion.div>
