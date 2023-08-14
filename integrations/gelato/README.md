@@ -1,63 +1,140 @@
-# Starter TurboETH Integration
+# Gelato Automate Integration
 
-Welcome to the Starter TurboETH Integration! This folder serves as a blueprint for creating new integrations in TurboETH. If you're looking to contribute a new integration, simply copy this directory, and also the starter page located at `app/integration/starter`, to begin your development.
+Gelato is a Web3’s decentralized backend, enabling developers to create augmented smart contracts that are automated, gasless & off-chain aware.
 
-## Creating a new integration
+This integration provides useful hooks and components from Gelato Automate.
 
-Below are the steps to create a new integration.
 
-1. Copy the integration folder template from `/integrations/starter` and add your integration code, adhering to the file structure patterns evident in this folder.
+## Features
 
-2. Duplicate the integration page from `/app/(general)/integration/starter` and populate it with your integration pages' code.
+- Create Task: Simple UI for task creation&automation
+- List Tasks: Effectively query and preview active tasks
+- Rename or cancel tasks 
 
-3. Locate any API endpoints associated with your integration in the `/api` folder within the page folder of your integration. An example API endpoint can be found at `/app/(general)/integration/starter/api/hello-world/route.ts`. These API endpoints should follow the new [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/router-handlers) patterns of Next.js 13.
+## Components
 
-4. Enter the data related to your integration in `/data/turbo-integrations.ts`. Here, add a new object with the name, description, image, and URL of your integration.
+`ActiveTasks` Renders list of active tasks on current network
 
-5. Update the OG image configuration of your integration page in the `opengraph-image.tsx` file. Do this by replacing the argument of the `IntegrationOgImage` function with the object key of your integration used in the previous step.
+`CreateTask` Renders create task form
 
-## Understanding the Starter template
+`TaskView` Renders task details, option feature to rename task.
 
-Each component of the Starter TurboETH template is designed to help streamline your development process:
+`RenameTask` Renders rename task form
 
-- **abis/**: Put your contract's ABI here. Each ABI should be in its own TypeScript file.
+## Hooks
+These hooks are mostly gelato-specific wrappers for react-query. So it utilizes all the features react-query has.
 
-- **client/**: Any client initialization for your chosen module or SDK should be placed here.
+For example: 
+```ts
+const { data, isLoading, error, refetch} = useActiveTasks()
+```
 
-- **components/**: This is the home for your React components. 'Read' components, which display data from a contract, and 'write' components, that send transactions, should all be placed here.
+### Query hooks
 
-- **hooks/**: Place your custom React hooks in this folder. These hooks are intended to manage state updates and encapsulate the logic for interacting with Ethereum contracts.
+`useGelatoAutomateSdk`: Returns Automate SDK instance based on the current network
 
-- **starter-wagmi.ts**: This is a generated file from [wagmi-cli](https://wagmi.sh/cli/getting-started). It includes hooks for your contracts .
+`useIsAutomateSupported`: Returns whether Automate is supported for the current network
 
-- **index.ts**: Consider this as the entry point for your integration. It should export all the hooks, components, and utility functions that your integration provides.
+`useActiveTasks`: Returns active tasks based on the current network
 
-- **wagmi.config.ts**: This file should hold the wagmi-cli configuration for your integration, which includes settings like compiler version and optimization.
+`useActiveTasks`: Returns active tasks based on the current network
 
-- **README.md**: Here, you should document your integration. Explain its purpose, its use, and any important information a new developer or user should know.
+`useTask`: Returns task based on the parameters
 
-Each of these elements plays a crucial role in making your integration functional and accessible.
+`useAbi`: Returns abi based on the parameters and the current network
+
+### Mutation hooks
+
+`useNewTask`: Returns task create mutation
+
+`useCancelTask`: Returns cancel task mutation
+
+`useRenameTask`: Returns rename task mutation
+
+
+## Environment Variables
+
+To support ABI fetching from blockchain explorers in `CreateTask` component, it's needed to specify API keys for each explorer.
+
+```
+NEXT_PUBLIC_GELATO_SCAN_KEY_MAINNET=
+NEXT_PUBLIC_GELATO_SCAN_KEY_POLYGON=
+NEXT_PUBLIC_GELATO_SCAN_KEY_FANTOM=
+NEXT_PUBLIC_GELATO_SCAN_KEY_ARBITRUM=
+NEXT_PUBLIC_GELATO_SCAN_KEY_AVALANCHE=
+NEXT_PUBLIC_GELATO_SCAN_KEY_BSC=
+NEXT_PUBLIC_GELATO_SCAN_KEY_CRONOS=
+NEXT_PUBLIC_GELATO_SCAN_KEY_GNOSIS=
+NEXT_PUBLIC_GELATO_SCAN_KEY_OPTIMISM=
+NEXT_PUBLIC_GELATO_SCAN_KEY_MOONBEAM=
+NEXT_PUBLIC_GELATO_SCAN_KEY_MOONRIVER=
+NEXT_PUBLIC_GELATO_SCAN_KEY_MUMBAI=
+NEXT_PUBLIC_GELATO_SCAN_KEY_ARBITRUM_GOERLI=
+NEXT_PUBLIC_GELATO_SCAN_KEY_GOERLI=
+```
 
 ## File Structure
 
 ```
-integrations/starter
-├─ abis/
-│  ├─ starter-abi.ts
-├─ client/
-│  ├─ index.ts
-├─ components/
-│  ├─ starter-header.tsx
-├─ generated/
-│  ├─ starter-wagmi.ts
-├─ hooks/
-│  ├─ use-starter.ts
-├─ utils/
-│  ├─ types.ts
-├─ index.ts
-├─ README.md
-├─ wagmi.config.ts
+integrations/gelato/
+├── abis
+├── components
+│   ├── active-task-preview.tsx
+│   ├── active-tasks.tsx
+│   ├── create-task
+│   │   ├── contract-input.tsx
+│   │   ├── create-task.tsx
+│   │   ├── execution-values.tsx
+│   │   ├── function-input.tsx
+│   │   ├── hooks
+│   │   │   └── use-wizard.ts
+│   │   ├── index.ts
+│   │   ├── interval-input.tsx
+│   │   ├── payment-input.tsx
+│   │   ├── resolver-input.tsx
+│   │   ├── restriction-info.tsx
+│   │   └── task-name-input.tsx
+│   ├── errors
+│   │   └── validation-error.tsx
+│   ├── index.tsx
+│   ├── rename-task.tsx
+│   └── task-view
+│       ├── executing-address.tsx
+│       ├── function-data.tsx
+│       ├── index.ts
+│       ├── input-values.tsx
+│       ├── interval-values.tsx
+│       ├── payment-info.tsx
+│       ├── resolver-values.tsx
+│       └── task-view.tsx
+├── graphql
+│   ├── codegen.ts
+│   ├── graphql
+│   │   └── generated
+│   │       ├── gql.ts
+│   │       ├── graphql.ts
+│   │       └── index.ts
+│   └── tasks.graphql
+├── hooks
+│   ├── index.ts
+│   ├── use-abi.ts
+│   ├── use-active-tasks.ts
+│   ├── use-automate-sdk.ts
+│   ├── use-cancel-task.ts
+│   ├── use-is-automate-supported.ts
+│   ├── use-msg-sender.ts
+│   ├── use-new-task.ts
+│   ├── use-rename-task.ts
+│   ├── use-task-resolver.ts
+│   └── use-task.ts
+├── index.ts
+├── README.md
+├── utils
+│   ├── constants.ts
+│   ├── helpers.ts
+│   ├── resolverDecoder.ts
+│   └── types.ts
+├── index.ts
+└── README.md
+
 ```
-
-By using this template, you'll create well-organized and understandable integrations that are easy for you and others to navigate. Happy coding!
-

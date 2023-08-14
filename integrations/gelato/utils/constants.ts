@@ -57,7 +57,7 @@ export const GELATO_CONSTANTS: GelatoConstants = {
       explorerApiKey: process.env.NEXT_PUBLIC_GELATO_SCAN_KEY_CRONOS as string,
     },
     100: {
-      graph: 'gnosis',
+      graph: 'gnosis-chain',
       contract: '0x8aB6aDbC1fec4F18617C9B889F5cE7F28401B8dB',
       explorerApiUrl: 'https://api.gnosisscan.io/api',
       explorerUrl: 'https://gnosisscan.io',

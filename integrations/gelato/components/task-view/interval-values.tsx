@@ -23,17 +23,17 @@ export function IntervalValues({ startTime, interval, createdAt }: IntervalValue
       </div>
       {startTime && interval ? (
         <>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
             <p className="col-span-2 opacity-70 md:col-span-1">Interval</p>
             <p className="col-span-2 md:col-span-3">{moment.duration({ seconds: parseInt(interval || '0') }).humanize()}</p>
           </div>
-          <div className="mt-4 grid grid-cols-4 gap-4">
+          <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-4">
             <p className="col-span-2 opacity-70 md:col-span-1">Next Execution</p>
             <p className="col-span-2 md:col-span-3">{nextExecution}</p>
           </div>
         </>
       ) : (
-        <div className="grid grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
           <p className="col-span-2 opacity-70 md:col-span-1">Next execution</p>
           <p className="col-span-2 md:col-span-3">Will be attempted at the next block</p>
         </div>

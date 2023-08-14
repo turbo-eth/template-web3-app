@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form'
 import { FaCopy } from 'react-icons/fa'
 
 import { CreateTaskForm } from './create-task'
-import { getFunctionSignature } from '../../utils/helpers'
+import { getFunctionSignature, truncateEthAddress } from '../../utils/helpers'
 
 export function RestrictionInfo({ dedicatedMsgSender }: { dedicatedMsgSender?: string }) {
   const [copied, setCopied] = useState(false)
@@ -37,7 +37,7 @@ export function RestrictionInfo({ dedicatedMsgSender }: { dedicatedMsgSender?: s
             <>Copied!</>
           ) : (
             <>
-              <span>{dedicatedMsgSender}</span> <FaCopy />
+              <span>{truncateEthAddress(dedicatedMsgSender || '', 20)}</span> <FaCopy />
             </>
           )}
         </div>

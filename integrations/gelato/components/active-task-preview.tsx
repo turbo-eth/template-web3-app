@@ -11,12 +11,12 @@ export type ActiveTaskPreviewProps = {
 export function ActiveTaskPreview({ task, name, index }: ActiveTaskPreviewProps) {
   return (
     <Link
-      className="light:hover:bg-black/5 -mx-5 flex flex-col items-center justify-between border-t border-white/30 px-3 py-6 duration-200 dark:hover:bg-white/5 md:flex-row"
+      className="light:hover:bg-black/5 -mx-5 flex items-center justify-between border-t border-white/30 px-3 py-6 duration-200 dark:hover:bg-white/5"
       href={`/integration/gelato/tasks/${task.id}`}>
       <div className="flex w-full items-center gap-4 md:w-auto lg:gap-10">
         <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gray-200 text-xs font-bold dark:bg-gray-800">{index}</div>
         <div className="flex w-full flex-col gap-2">
-          <p className="flex shrink-0 flex-col gap-3 text-xs font-bold md:flex-row md:items-center lg:text-lg">
+          <p className="flex items-center gap-3 text-xs font-bold lg:text-lg">
             <span>{truncateEthAddress(name)}</span>
             <span className="pointer-events-none rounded-2xl bg-black/50 px-2 py-1 pr-3 text-xs font-normal">
               <i className={`mr-0.5 ${task.status == 'ongoing' ? 'text-green-500' : 'text-red-500'}`}> •&nbsp; </i>
