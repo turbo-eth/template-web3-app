@@ -6,13 +6,20 @@ import { useArweaveWallet } from '../../../hooks/use-arweave-wallet'
 import { getComponent } from '../../../utils/get-element-component'
 import { ConnectArweaveWallet } from '../../connect-arweave-wallet'
 import { Spinner } from '../../spinner'
+import { TxStatus } from '../../tx-status'
 
+// This wrapper exists so the form renders only if we're done getting account
 export const ArweaveAccount = () => {
-  const { wallet, address, isAccountLoading, userHasAccount } = useArweaveWallet()
-  const { onSubmit, form, isLoading, isError, isSuccess, error } = useArweaveAccountForm()
-  const { handleSubmit, register } = form
+  const { wallet, address, isAccountLoading } = useArweaveWallet()
   if (!wallet || !address) return <ConnectArweaveWallet />
   if (isAccountLoading) return <Spinner />
+  return <ArweaveAccountForm />
+}
+
+const ArweaveAccountForm = () => {
+  const { userHasAccount, getAccount } = useArweaveWallet()
+  const { onSubmit, form, isLoading, isError, isSuccess, error, data, estimation } = useArweaveAccountForm()
+  const { handleSubmit, register } = form
   return (
     <>
       <div className="card w-full text-left">
@@ -29,8 +36,12 @@ export const ArweaveAccount = () => {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{item?.label}</FormLabel>
-                      <FormControl className="input dark:border-gray-600 dark:text-gray-600 dark:[color-scheme:dark]">
-                        <Component {...field} {...register(item?.formfieldName as 'handleName')} />
+                      <FormControl className="input">
+                        <Component
+                          className="dark:border-gray-600 dark:bg-neutral-800 dark:text-gray-400 dark:[color-scheme:dark]"
+                          {...field}
+                          {...register(item?.formfieldName as 'handleName')}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -38,6 +49,20 @@ export const ArweaveAccount = () => {
                 />
               )
             })}
+            <div className="flex items-center text-sm">
+              <span className="mr-2 text-slate-200">Estimated Tx Fee:</span>
+              {estimation.loading ? (
+                <Spinner isSmall={true} />
+              ) : estimation.error ? (
+                <span className="text-red-500">{estimation.error}</span>
+              ) : estimation.amount ? (
+                <span className="font-mono">
+                  {estimation.amount?.ar} AR <span className="text-xs">({estimation.amount?.winston} winston) </span>
+                </span>
+              ) : (
+                <span>-</span>
+              )}
+            </div>
             <div>
               <button className="btn btn-emerald w-full" disabled={isLoading}>
                 {isLoading ? 'Loading...' : userHasAccount ? 'Update Arweave account' : 'Create Arweave account'}
@@ -52,13 +77,7 @@ export const ArweaveAccount = () => {
           <p className="text-center text-sm text-gray-500">Arweave profile is the universal account in arweave ecosystem.</p>
         </div>
       </div>
-      {isSuccess && (
-        <div className="card container mt-10 w-full">
-          <div className="flex items-center justify-between">
-            <h3 className="text-2xl font-bold">Successfully Updated Arweave profile!</h3>
-          </div>
-        </div>
-      )}
+      {isSuccess && data && <TxStatus txId={data} onConfirmation={getAccount} />}
     </>
   )
 }

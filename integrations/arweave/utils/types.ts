@@ -30,3 +30,11 @@ export type ArweavePost = {
   block: { timestamp: string; height: number }
   bundledIn: { id: string }
 }
+
+export type ArweaveTxTag = { name: string; value: string }
+export type ArweaveTxId = string
+export type ArweaveTxPostResponse = {
+  status: number
+  statusText: string
+  data: unknown
+}

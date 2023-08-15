@@ -5,7 +5,7 @@ import { JWKInterface } from 'arweave/node/lib/wallet'
 import { ArAccount } from 'arweave-account'
 
 import { generateArweaveWallet, getArweaveWalletAddress, getArweaveWalletBalance } from '..'
-import { useArweaveAccount } from '../hooks/use-arweave-account'
+import { getUserAccount } from '../arweave-account'
 import { ArweaveAmount } from '../utils/types'
 
 export interface IArweaveWalletContext {
@@ -20,6 +20,7 @@ export interface IArweaveWalletContext {
   generate: () => Promise<void>
   importFromFile: (file: File) => Promise<void>
   backupWallet: () => Promise<void>
+  getAccount: () => void
 }
 
 export const ArweaveWalletContext = createContext<IArweaveWalletContext>({
@@ -36,6 +37,9 @@ export const ArweaveWalletContext = createContext<IArweaveWalletContext>({
   generate: () => Promise.resolve(),
   importFromFile: () => Promise.resolve(),
   backupWallet: () => Promise.resolve(),
+  getAccount: () => {
+    return
+  },
 })
 
 export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode }) => {
@@ -43,7 +47,24 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
   const [error, setError] = useState<string | null>(null)
   const [address, setAddress] = useState<string | null>(null)
   const [balance, setBalance] = useState<ArweaveAmount | null>(null)
-  const { account, loading: isAccountLoading, userHasAccount } = useArweaveAccount(wallet)
+  const [account, setAccount] = useState<ArAccount | null>(null)
+  const [isAccountLoading, setIsAccountLoading] = useState<boolean>(true)
+
+  const getAccount = useCallback(() => {
+    if (wallet) {
+      setIsAccountLoading(true)
+      getUserAccount(wallet)
+        .then((account) => setAccount(account))
+        .catch((e) => console.error(e))
+        .finally(() => setIsAccountLoading(false))
+    }
+  }, [wallet])
+
+  useEffect(() => {
+    if (wallet) {
+      getAccount()
+    }
+  }, [wallet])
 
   const disconnect = useCallback(() => {
     setWallet(null)
@@ -107,7 +128,8 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
     () => ({
       account,
       isAccountLoading,
-      userHasAccount,
+      userHasAccount: !!account?.txid,
+      getAccount,
       wallet,
       error,
       address,

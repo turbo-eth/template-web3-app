@@ -30,7 +30,7 @@ export const arweaveAccountFormControls = [
   {
     formfieldName: 'email',
     component: 'input',
-    label: 'Email Name',
+    label: 'Email Address',
     placeholder: 'Insert your Email here',
   },
   {

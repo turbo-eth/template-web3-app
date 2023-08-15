@@ -1,13 +1,16 @@
+import { useEffect } from 'react'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
 import { JWKInterface } from 'arweave/node/lib/wallet'
 import { ethers } from 'ethers'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
+import { useDebounce } from 'usehooks-ts'
 import { z } from 'zod'
 
-import { getArweaveTxStatus } from '@/integrations/arweave'
 import { UpdateArweaveAccountPayload, updateArweaveAccount } from '@/integrations/arweave/arweave-account'
 import { useArweaveWallet } from '@/integrations/arweave/hooks/use-arweave-wallet'
+import { useEstimateTxFee } from '@/integrations/arweave/hooks/use-estimate-tx-fee'
 
 const useEditProfileAPI = () => {
   return useMutation({
@@ -16,8 +19,7 @@ const useEditProfileAPI = () => {
       if (response?.status !== 200) {
         throw (response?.data as { error: string }).error
       }
-      const status = await getArweaveTxStatus(txId)
-      return status
+      return txId
     },
   })
 }
@@ -57,6 +59,15 @@ export const useArweaveAccountForm = () => {
     resolver: zodResolver(profileSchema),
     defaultValues: { ...(profile ?? {}) },
   })
+  const formData = useWatch({ control: form.control })
+  const debouncedFormData = useDebounce(formData, 1000)
+  const { estimatedTxFee, isEstimatingTxFee, estimationError, estimateTxFee } = useEstimateTxFee()
+
+  useEffect(() => {
+    if (form.formState.isValid && !form.formState.isValidating) {
+      estimateTxFee(JSON.stringify(debouncedFormData))
+    }
+  }, [debouncedFormData])
 
   const onSubmit = async (values: z.infer<typeof profileSchema>) => {
     try {
@@ -64,7 +75,7 @@ export const useArweaveAccountForm = () => {
         console.error('No Arweave wallet connected.')
         return
       }
-      mutate({ wallet, payload: { handleName: values.handleName } })
+      mutate({ wallet, payload: values })
     } catch (error) {
       console.log(error)
     }
@@ -79,5 +90,10 @@ export const useArweaveAccountForm = () => {
     profileSchema,
     form,
     onSubmit,
+    estimation: {
+      amount: estimatedTxFee,
+      loading: isEstimatingTxFee,
+      error: estimationError,
+    },
   }
 }

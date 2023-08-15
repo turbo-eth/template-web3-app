@@ -45,7 +45,7 @@ export const useArweavePostForm = () => {
     defaultValues: {
       data: '',
       file: undefined,
-      tags: [],
+      tags: [{ name: 'tag name', value: 'tag value' }],
     },
   })
 

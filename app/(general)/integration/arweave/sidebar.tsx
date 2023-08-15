@@ -6,16 +6,16 @@ export const SideBar = () => {
   const arweaveBaseUrl = turboIntegrations.arweave.href
   return (
     <aside aria-label="Sidebar" className="w-64">
-      <div className="h-full overflow-y-auto bg-gray-50 px-3 py-4 text-left dark:bg-gray-800">
+      <div className="h-full overflow-y-auto bg-neutral-50 px-3 py-4 text-left dark:bg-neutral-800">
         <ArweaveAccountPreview />
         <ul className="space-y-2 font-medium">
           <li>
             <LinkComponent
-              className="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              className="group flex items-center rounded-lg p-2 text-neutral-900 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
               href={`${arweaveBaseUrl}/account`}>
               <svg
                 aria-hidden="true"
-                className="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                className="h-5 w-5 text-neutral-500 transition duration-75 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-white"
                 fill="currentColor"
                 viewBox="0 0 22 21"
                 xmlns="http://www.w3.org/2000/svg">
@@ -27,11 +27,11 @@ export const SideBar = () => {
           </li>
           <li>
             <LinkComponent
-              className="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              className="group flex items-center rounded-lg p-2 text-neutral-900 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
               href={`${arweaveBaseUrl}/posts`}>
               <svg
                 aria-hidden="true"
-                className="h-5 w-5 shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                className="h-5 w-5 shrink-0 text-neutral-500 transition duration-75 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-white"
                 fill="currentColor"
                 viewBox="0 0 18 18"
                 xmlns="http://www.w3.org/2000/svg">
@@ -42,11 +42,11 @@ export const SideBar = () => {
           </li>
           <li>
             <LinkComponent
-              className="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+              className="group flex items-center rounded-lg p-2 text-neutral-900 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
               href={`${arweaveBaseUrl}/posts/new`}>
               <svg
                 aria-hidden="true"
-                className="h-5 w-5 shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                className="h-5 w-5 shrink-0 text-neutral-500 transition duration-75 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-white"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">

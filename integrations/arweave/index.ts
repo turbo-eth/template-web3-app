@@ -1,8 +1,9 @@
 import Arweave from 'arweave'
 import Transaction from 'arweave/node/lib/transaction'
+import { bufferToString, stringToBuffer } from 'arweave/node/lib/utils'
 import { JWKInterface } from 'arweave/node/lib/wallet'
 
-import { ArweaveAmount } from './utils/types'
+import { ArweaveAmount, ArweaveTxId, ArweaveTxPostResponse, ArweaveTxTag } from './utils/types'
 
 export const arweave = Arweave.init({
   host: 'arweave.net', // Hostname or IP address for a Arweave host
@@ -43,18 +44,10 @@ export const createArweaveWalletToWalletTx = async (wallet: JWKInterface, target
 export const createArweaveDataTx = async (wallet: JWKInterface, data: string | ArrayBuffer | Uint8Array): Promise<Transaction> => {
   return await arweave.createTransaction(
     {
-      data: Buffer.from(data as string, 'utf8'),
+      data,
     },
     wallet
   )
-}
-
-export type ArweaveTxTag = { name: string; value: string }
-export type ArweaveTxId = string
-export type ArweaveTxPostResponse = {
-  status: number
-  statusText: string
-  data: unknown
 }
 
 export const signAndSendArweaveTx = async (
@@ -67,7 +60,6 @@ export const signAndSendArweaveTx = async (
     tx.addTag(tag.name, tag.value)
   })
   await arweave.transactions.sign(tx, wallet)
-  console.error(tx)
   // check if tx has files
   if (hasFile) {
     const uploader = await arweave.transactions.getUploader(tx)
@@ -84,4 +76,17 @@ export const signAndSendArweaveTx = async (
 
 export const getArweaveTxStatus = async (txId: ArweaveTxId) => {
   return await arweave.transactions.getStatus(txId)
+}
+
+export const getArweaveTx = async (txId: ArweaveTxId) => {
+  const tx = await arweave.transactions.get(txId)
+  if (!tx.data) tx.data = (await arweave.transactions.getData(txId, { decode: true })) as Uint8Array
+  return { ...tx, data: bufferToString(tx.data) }
+}
+
+export const estimateTxFee = async (data: string) => {
+  const buffer = stringToBuffer(data)
+  const length = buffer.byteLength
+  const cost = await arweave.transactions.getPrice(length)
+  return { ar: arweave.ar.winstonToAr(cost), winston: cost }
 }
