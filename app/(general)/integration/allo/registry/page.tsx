@@ -8,7 +8,7 @@ import { RegistryCreateProfile, RegistryUpdateProfileMetadata, RegistryUpdatePro
 export default function PageRegistry() {
   return (
     <section className="w-full lg:mt-10">
-      <div className="container mx-auto mt-10  max-w-screen-xl gap-6">
+      <div className="container mx-auto mt-10 max-w-screen-lg gap-6">
         <IsWalletConnected>
           <div className="flex w-full flex-col gap-y-10">
             <RegistryCreateProfile />

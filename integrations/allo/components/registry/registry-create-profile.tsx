@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
-import type { Address, BaseError } from 'viem'
+import type { BaseError } from 'viem'
 import { encodePacked, keccak256 } from 'viem'
 import { useAccount, useWaitForTransaction } from 'wagmi'
 
@@ -11,6 +11,7 @@ import { TransactionStatus } from '@/components/blockchain/transaction-status'
 
 import { usePrepareRegistryCreateProfile, useRegistryCreateProfile } from '../../generated/allo-wagmi'
 import { useNonce } from '../../hooks/use-nonce'
+import { parseAddresses } from '../../utils'
 import { REGISTRY_ADDRESS } from '../../utils/constants'
 
 interface FormSchema {
@@ -18,15 +19,6 @@ interface FormSchema {
   protocol: string
   pointer: string
   members: string
-}
-
-function parseAddresses(input: string | undefined): Address[] {
-  if (!input) return []
-  // Split by comma, then map over the results and trim whitespace from each address
-  return input
-    .split(',')
-    .map((address) => address.trim() as Address)
-    .filter((address) => address.length > 0)
 }
 
 export function RegistryCreateProfile() {

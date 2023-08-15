@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils'
 
 const integrationData = turboIntegrations.allo
 const registryPath = '/integration/allo/registry'
-const alloPath = '/integration/allo/allo'
+const alloPath = '/integration/allo/pool'
 
 export default function LayoutIntegration({ children }: { children: ReactNode }) {
   const pathname = usePathname()
@@ -38,10 +38,10 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
             },
           }}>
           <IsLightTheme>
-            <Image alt="Starter logo" className="mx-auto" height={100} src={integrationData.imgDark} width={100} />
+            <Image alt="Starter logo" className="mx-auto rounded-full" height={100} src={integrationData.imgDark} width={100} />
           </IsLightTheme>
           <IsDarkTheme>
-            <Image alt="Starter logo" className="mx-auto" height={100} src={integrationData.imgLight} width={100} />
+            <Image alt="Starter logo" className="mx-auto rounded-full" height={100} src={integrationData.imgLight} width={100} />
           </IsDarkTheme>
           <motion.h1
             className="text-gradient-sand my-8 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
@@ -60,7 +60,7 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
                 <button className={cn('btn hover:opacity-75', pathname === alloPath && 'opacity-50')}>Project Registry</button>
               </LinkComponent>
               <LinkComponent href={alloPath}>
-                <button className={cn('btn hover:opacity-75', pathname === registryPath && 'opacity-50')}>Allo</button>
+                <button className={cn('btn hover:opacity-75', pathname === registryPath && 'opacity-50')}>Pool</button>
               </LinkComponent>
             </motion.div>
           </motion.div>
