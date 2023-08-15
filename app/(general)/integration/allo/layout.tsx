@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import Balancer from 'react-wrap-balancer'
 
 import { IsDarkTheme } from '@/components/shared/is-dark-theme'
@@ -10,10 +11,15 @@ import { IsLightTheme } from '@/components/shared/is-light-theme'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import { cn } from '@/lib/utils'
 
 const integrationData = turboIntegrations.allo
+const registryPath = '/integration/allo/registry'
+const alloPath = '/integration/allo/allo'
 
 export default function LayoutIntegration({ children }: { children: ReactNode }) {
+  const pathname = usePathname()
+
   return (
     <>
       <div className="flex-center flex-col items-center justify-center text-center">
@@ -49,6 +55,14 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
             <LinkComponent className="btn btn-primary" href={integrationData.url}>
               Documentation
             </LinkComponent>
+            <motion.div className="mt-8 flex flex-col justify-center gap-x-14 text-2xl sm:flex-row" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+              <LinkComponent href={registryPath}>
+                <button className={cn('btn hover:opacity-75', pathname === alloPath && 'opacity-50')}>Project Registry</button>
+              </LinkComponent>
+              <LinkComponent href={alloPath}>
+                <button className={cn('btn hover:opacity-75', pathname === registryPath && 'opacity-50')}>Allo</button>
+              </LinkComponent>
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
