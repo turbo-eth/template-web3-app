@@ -1,12 +1,12 @@
 'use client'
 
-// TODO: make this look better
-// TODO: convert duration to days, and price to ether/matic
-
 import { useEffect, useState } from 'react'
-import { LockStatsQueryDocument, LockStatsQueryQuery } from '@/.graphclient'
-import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
+
 import { ethers } from 'ethers'
+
+import { LockStatsQueryQuery } from '@/.graphclient'
+
+import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
 
 export default function LockStats({ lockId }: { lockId: string }) {
   const [lockStats, setLockStats] = useState<LockStatsQueryQuery>()
@@ -14,22 +14,40 @@ export default function LockStats({ lockId }: { lockId: string }) {
 
   useEffect(() => {
     async function fetchLockStats() {
-      const stats = await getLockStats({ lockId })
+      const stats: LockStatsQueryQuery = await getLockStats({ lockId })
       setLockStats(stats)
     }
     void fetchLockStats()
   }, [LockStats])
 
   return (
-    <div>
+    <div className="card w-full shadow-xl">
       {lockStats ? (
         <div>
-          <p>Lock Name: {lockStats.locks[0].name}</p>
-          <p>Symbol: {lockStats.locks[0].symbol}</p>
-          <p>Keys Sold: {lockStats.locks[0].totalKeys}</p>
-          <p>Max Keys: {formatMaxKeys(lockStats.locks[0].maxNumberOfKeys)}</p>
-          <p>Duration: {formatDuration(lockStats.locks[0].expirationDuration)}</p>
-          <p>Price: {formatPrice(lockStats.locks[0].price)}</p>
+          <div className="flex justify-between space-x-8">
+            <label className="inline font-bold">Lock Name:</label>
+            <p className="inline">{lockStats.locks[0].name}</p>
+          </div>
+          <div className="flex justify-between space-x-8">
+            <label className="inline font-bold">Symbol:</label>
+            <p className="inline">{lockStats.locks[0].symbol}</p>
+          </div>
+          <div className="flex justify-between space-x-8">
+            <label className="inline font-bold">Keys Sold:</label>
+            <p className="inline">{lockStats.locks[0].totalKeys}</p>
+          </div>
+          <div className="flex justify-between space-x-8">
+            <label className="inline font-bold">Max Keys:</label>
+            <p className="inline">{formatMaxKeys(lockStats.locks[0].maxNumberOfKeys as string)}</p>
+          </div>
+          <div className="flex justify-between space-x-8">
+            <label className="inline font-bold">Duration:</label>
+            <p className="inline">{formatDuration(lockStats.locks[0].expirationDuration as string)}</p>
+          </div>
+          <div className="flex justify-between space-x-8">
+            <label className="inline font-bold">Price:</label>
+            <p className="inline">{formatPrice(lockStats.locks[0].price as string)}</p>
+          </div>
         </div>
       ) : (
         <p>No Lock Found</p>
@@ -39,7 +57,6 @@ export default function LockStats({ lockId }: { lockId: string }) {
 }
 
 function formatDuration(duration: string): string {
-
   if (duration === ethers.constants.MaxUint256.toString()) {
     return 'Unlimited'
   }
@@ -63,5 +80,3 @@ function formatPrice(keyPrice: string): string {
 
   return `${priceInEther} ETH`
 }
-
-
