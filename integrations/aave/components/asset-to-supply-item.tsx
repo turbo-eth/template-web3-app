@@ -18,9 +18,10 @@ interface IAssetToSupplyItem {
   canBeCollateral: boolean
   tokenPriceInUsd: number
   liquidityRate: number
+  showIfZeroBalance: boolean
 }
 
-export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityRate }: IAssetToSupplyItem) => {
+export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityRate, showIfZeroBalance }: IAssetToSupplyItem) => {
   const { poolAddress } = useAave()
   const { address: user } = useAccount()
   const [supplyAmount, setSupplyAmount] = useState('')
@@ -45,7 +46,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
     }
   }
 
-  return (
+  return tokenBalance !== BigInt(0) || showIfZeroBalance ? (
     <tr>
       <td className="mt-2 flex items-center justify-center px-4 py-2">
         <Image
@@ -138,5 +139,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
         </Dialog>
       </td>
     </tr>
+  ) : (
+    <div></div>
   )
 }
