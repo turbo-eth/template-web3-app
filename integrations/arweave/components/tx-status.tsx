@@ -44,8 +44,10 @@ export const TxStatus = ({ txId, onConfirmation }: { txId: ArweaveTxId; onConfir
         {!isFinished ? (
           <Spinner />
         ) : (
-          <div className="flex-row text-green-600">
-            <FaCheck />
+          <div className="flex items-center text-green-400">
+            <div>
+              <FaCheck />
+            </div>
             <span className="ml-2">Confirmed</span>
           </div>
         )}

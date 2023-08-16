@@ -9,7 +9,7 @@ export const useEstimateTxFee = () => {
   const [isEstimatingTxFee, setIsEstimatingTxFee] = useState<boolean>(false)
   const [estimationError, setEstimationError] = useState<string | null>(null)
 
-  const estimateTxFee = useCallback((data: string) => {
+  const estimateTxFee = useCallback((data: string | ArrayBuffer) => {
     setIsEstimatingTxFee(true)
     estimateTxFeeAPI(data)
       .then((res) => setEstimatedTxFee(res))

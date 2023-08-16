@@ -91,9 +91,9 @@ export const useArweaveAccountForm = () => {
     form,
     onSubmit,
     estimation: {
-      amount: estimatedTxFee,
-      loading: isEstimatingTxFee,
-      error: estimationError,
+      estimatedTxFee,
+      isEstimatingTxFee,
+      estimationError,
     },
   }
 }

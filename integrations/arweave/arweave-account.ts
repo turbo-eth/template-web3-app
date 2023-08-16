@@ -44,3 +44,30 @@ function encode(profile: UpdateArweaveAccountPayload): ArAccountEncoded | null {
   if (profile.wallets) data = { ...data, wallets: profile.wallets }
   return data
 }
+
+export const uploadArweaveAccountAvatar = async (
+  wallet: JWKInterface,
+  profile: T_profile,
+  avatar: ArrayBuffer,
+  avatarFileType: string
+): Promise<[ArweaveTxId, ArweaveTxPostResponse]> => {
+  const avatarTx = await createArweaveDataTx(wallet, avatar)
+  const { winston } = await getArweaveWalletBalance(wallet)
+  if (avatarTx.reward > winston)
+    return [
+      avatarTx.id,
+      {
+        status: 400,
+        statusText: 'insufficient balance',
+        data: { error: `Insufficient balance, tx fee: ${arweave.ar.winstonToAr(avatarTx.reward)} AR.` },
+      },
+    ]
+  const tags = [{ name: 'Content-type', value: avatarFileType }]
+  const [txId, response] = await signAndSendArweaveTx(wallet, avatarTx, tags)
+  if (response.status === 200) {
+    const avatarUrl = `ar://${txId}`
+    const payload = { ...profile, avatar: avatarUrl }
+    return await updateArweaveAccount(wallet, payload)
+  }
+  return [txId, response]
+}

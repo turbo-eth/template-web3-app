@@ -84,8 +84,8 @@ export const getArweaveTx = async (txId: ArweaveTxId) => {
   return { ...tx, data: bufferToString(tx.data) }
 }
 
-export const estimateTxFee = async (data: string) => {
-  const buffer = stringToBuffer(data)
+export const estimateTxFee = async (data: string | ArrayBuffer) => {
+  const buffer = data instanceof ArrayBuffer ? data : stringToBuffer(data)
   const length = buffer.byteLength
   const cost = await arweave.transactions.getPrice(length)
   return { ar: arweave.ar.winstonToAr(cost), winston: cost }

@@ -5,14 +5,15 @@ import { useArweaveAccountForm } from './hook'
 import { useArweaveWallet } from '../../../hooks/use-arweave-wallet'
 import { getComponent } from '../../../utils/get-element-component'
 import { ConnectArweaveWallet } from '../../connect-arweave-wallet'
+import { FeeEstimation } from '../../fee-estimation'
 import { Spinner } from '../../spinner'
 import { TxStatus } from '../../tx-status'
 
 // This wrapper exists so the form renders only if we're done getting account
-export const ArweaveAccount = () => {
-  const { wallet, address, isAccountLoading } = useArweaveWallet()
+export const ArweaveAccountEdit = () => {
+  const { wallet, address, account } = useArweaveWallet()
   if (!wallet || !address) return <ConnectArweaveWallet />
-  if (isAccountLoading) return <Spinner />
+  if (!account) return <Spinner />
   return <ArweaveAccountForm />
 }
 
@@ -50,18 +51,7 @@ const ArweaveAccountForm = () => {
               )
             })}
             <div className="flex items-center text-sm">
-              <span className="mr-2 text-slate-200">Estimated Tx Fee:</span>
-              {estimation.loading ? (
-                <Spinner isSmall={true} />
-              ) : estimation.error ? (
-                <span className="text-red-500">{estimation.error}</span>
-              ) : estimation.amount ? (
-                <span className="font-mono">
-                  {estimation.amount?.ar} AR <span className="text-xs">({estimation.amount?.winston} winston) </span>
-                </span>
-              ) : (
-                <span>-</span>
-              )}
+              <FeeEstimation {...estimation} />
             </div>
             <div>
               <button className="btn btn-emerald w-full" disabled={isLoading}>

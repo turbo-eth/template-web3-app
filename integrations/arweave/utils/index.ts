@@ -16,3 +16,10 @@ export const convertFileToBase64 = (file: File): Promise<string | ArrayBuffer> =
     reader.onerror = reject
     reader.readAsDataURL(file)
   })
+export const convertBlobToBase64 = (blob: Blob): Promise<ArrayBuffer> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onload = () => (reader.result ? resolve(reader.result as ArrayBuffer) : reject('Unable to handle file'))
+    reader.onerror = reject
+    reader.readAsArrayBuffer(blob)
+  })

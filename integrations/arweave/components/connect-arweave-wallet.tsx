@@ -32,20 +32,20 @@ export function ConnectArweaveWallet() {
         <div>Import your wallet KeyFile</div>
         <button className="btn btn-primary mt-2" onClick={() => fileInputRef.current?.click()}>
           <span className="mt-2 text-base leading-normal">Select a file</span>
-          <input
-            ref={fileInputRef}
-            accept="application/json"
-            className="hidden"
-            hidden={true}
-            type="file"
-            onChange={(e) => {
-              if (e.target.files) {
-                setLoading(true)
-                void importFromFile(e.target.files[0])
-              }
-            }}
-          />
         </button>
+        <input
+          ref={fileInputRef}
+          accept="application/json"
+          className="hidden"
+          hidden={true}
+          type="file"
+          onChange={(e) => {
+            if (e.target.files) {
+              setLoading(true)
+              void importFromFile(e.target.files[0])
+            }
+          }}
+        />
         {error && (
           <div className="mt-2">
             <span className="text-sm text-red-400">{error}</span>
