@@ -8,11 +8,13 @@ import { ListAssetsToBorrow } from '@/integrations/aave/components/list-assets-t
 import { ListAssetsToSupply } from '@/integrations/aave/components/list-assets-to-supply'
 import { ListBorrowedAssets } from '@/integrations/aave/components/list-borrowed-assets'
 import { ListSuppliedAssets } from '@/integrations/aave/components/list-supplied-assets'
+import { useAave } from '@/integrations/aave/hooks/use-aave'
 
 export default function AaveHome() {
   const [actionSelected, setActionSelected] = useState('supply')
+  const { chainSupported } = useAave()
 
-  return (
+  return chainSupported ? (
     <section className="w-full lg:mt-10">
       <div className="mx-auto max-w-screen-xl">
         <GeneralInfo />
@@ -51,5 +53,10 @@ export default function AaveHome() {
         </div>
       </div>
     </section>
+  ) : (
+    <>
+      <h1 className=" mt-5 text-center text-2xl">Chain not supported</h1>
+      <GeneralInfo />
+    </>
   )
 }
