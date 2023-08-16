@@ -159,6 +159,16 @@ const features = [
     ),
   },
   {
+    title: 'SpruceKit',
+    description: turboIntegrations.sprucekit.description,
+    href: turboIntegrations.sprucekit.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <Image alt="Prisma logo" height={80} src="/integrations/sprucekit.svg" width={80} />
+      </div>
+    ),
+  },
+  {
     title: 'Rainbowkit',
     description: 'The best way to connect a wallet. Designed for everyone. Built for developers.',
     demo: (

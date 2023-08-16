@@ -2,7 +2,7 @@
 
 # ⚡ TurboETH - Web3 App Starter Kit
 
-Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!
+Web3 App Template built using Next.js, RainbowKit, SIWE, SpruceKit, Disco, and more!
 
 ### Starter Kit Examples
 
