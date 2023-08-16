@@ -16,7 +16,7 @@ export default function AaveHome() {
     <section className="w-full lg:mt-10">
       <div className="mx-auto max-w-screen-xl">
         <GeneralInfo />
-        <div className="mb-5 ml-4 w-40">
+        <div className="mb-5 ml-4 w-40 xl:hidden">
           <Select value={actionSelected} onValueChange={(action) => setActionSelected(action)}>
             <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
               <SelectValue placeholder="Select market" />
