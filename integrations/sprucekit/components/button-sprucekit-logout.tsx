@@ -2,9 +2,10 @@
 
 import { HTMLAttributes } from 'react'
 
+import { useSSX } from '@spruceid/ssx-react'
+
 import { spruceKitLogout } from '@/integrations/sprucekit/actions/sprucekit-logout'
 import { useUser } from '@/lib/hooks/use-user'
-import { useSSX } from '@spruceid/ssx-react';
 
 interface ButtonSpruceKitLogoutProps extends HTMLAttributes<HTMLButtonElement> {
   label?: string
