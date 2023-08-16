@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 'use client'
 
 import { useEffect, useState } from 'react'
 
-import { UserLocksQueryQuery } from '@/.graphclient'
-import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
-import LockPreview from './lock-preview'
 import { useAccount, useNetwork } from 'wagmi'
+
+import { UserLocksQueryQuery } from '@/.graphclient'
+
+import LockPreview from './lock-preview'
+import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
 
 export default function UserLocks() {
   const [userLocks, setUserLocks] = useState<UserLocksQueryQuery>()
@@ -18,7 +21,7 @@ export default function UserLocks() {
       const locks = await getUserLocks()
       setUserLocks(locks)
     }
-    fetchUserLocks()
+    void fetchUserLocks()
   }, [address, chain])
 
   return (

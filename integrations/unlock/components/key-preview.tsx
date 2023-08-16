@@ -1,5 +1,5 @@
 interface KeyPreviewProps {
-  lockName: string
+  lockName: string | undefined | null
 }
 export default function KeyPreview({ lockName }: KeyPreviewProps) {
   return (

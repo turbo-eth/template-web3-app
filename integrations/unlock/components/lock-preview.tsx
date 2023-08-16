@@ -1,6 +1,6 @@
 interface LockPreviewProps {
   lockId: string
-  lockName: string
+  lockName: string | undefined | null
 }
 export default function LockPreview({ lockId, lockName }: LockPreviewProps) {
   return (
