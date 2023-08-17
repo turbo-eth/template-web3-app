@@ -42,7 +42,6 @@ export const turboIntegrations = {
   sessionKeys: {
     name: 'Session Keys',
     href: '/integration/session-keys',
-    // TODO: Update url to the session keys section of Turbo ETH docs once it's finished
     url: 'https://viem.sh/',
     description: 'Short-lived private keys enable transaction signing and the granting of temporary smart contract permissions.',
     imgLight: '/integrations/session-keys.png',
@@ -72,6 +71,14 @@ export const turboIntegrations = {
     imgLight: '/integrations/pooltogether.svg',
     imgDark: '/integrations/pooltogether.svg',
   },
+  livepeer: {
+    name: 'Livepeer',
+    href: '/integration/livepeer',
+    url: 'https://docs.livepeer.org/',
+    description: "Livepeer is the world's open video infrastructure.",
+    imgLight: '/integrations/livepeer.svg',
+    imgDark: '/integrations/livepeer.svg',
+  },
   connext: {
     name: 'Connext',
     href: '/integration/connext',
@@ -79,6 +86,23 @@ export const turboIntegrations = {
     description: 'Connext is a modular protocol for securely passing funds and data between chains.',
     imgLight: '/integrations/connext.png',
     imgDark: '/integrations/connext.png',
+  },
+
+  gelato: {
+    name: 'Gelato',
+    href: '/integration/gelato',
+    url: 'https://docs.gelato.network/',
+    description: 'Enabling developers to create augmented smart contracts that are automated, gasless & off-chain aware',
+    imgLight: '/integrations/gelato-light.svg',
+    imgDark: '/integrations/gelato-light.svg',
+  },
+  push_protocol: {
+    name: 'Push Protocol',
+    href: '/integration/push-protocol',
+    url: 'https://push.org/',
+    description: 'Push Protocol is a web3 communication network, enabling cross-chain notifications and messaging for dapps, wallets, and services.',
+    imgLight: '/integrations/push.svg',
+    imgDark: '/integrations/push.svg',
   },
   moralis: {
     name: 'Moralis',

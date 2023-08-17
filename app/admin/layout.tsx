@@ -16,7 +16,7 @@ import { siteConfig } from '@/config/site'
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="bg-gradient-dark h-screen lg:grid lg:grid-cols-12">
+    <div className="h-screen lg:grid lg:grid-cols-12">
       <div className="col-span-12 flex flex-col bg-slate-50 shadow-md dark:bg-slate-800 lg:col-span-2 lg:pb-8">
         <IsMobile>
           <div className="flex p-4">
