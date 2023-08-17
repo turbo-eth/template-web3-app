@@ -44,12 +44,12 @@ export function ChannelCard({ env, channelAddress, onSubscribe, onUnsubscribe }:
     <Loadable isLoading={channelIsLoading}>
       {channel && (
         <div className="flex w-full space-x-4">
-          <div className="flex flex-col relative">
-            <Image alt={channel.name} className="w-24 md:w-32 rounded-xl" height={100} src={channel.icon} width={100} />
+          <div className="flex flex-col shrink-0 relative">
+            <Image alt={channel.name} className="w-10 md:w-32 rounded-xl" height={100} src={channel.icon} width={100} />
           </div>
-          <div className="flex grow flex-col">
-            <LinkComponent className="flex items-center gap-x-2" href={channel.url}>
-              <p className="overflow-hidden hover:underline transition-all underline-offset-2 text-ellipsis whitespace-nowrap text-xl">
+          <div className="flex grow flex-col ">
+            <LinkComponent className="flex overflow-hidden max-w-full flex-wrap items-center gap-2" href={channel.url}>
+              <p className="overflow-hidden max-w-full hover:underline transition-all underline-offset-2 text-ellipsis whitespace-nowrap md:text-xl">
                 {channel.name}
               </p>
               <LuExternalLink />
@@ -58,7 +58,7 @@ export function ChannelCard({ env, channelAddress, onSubscribe, onUnsubscribe }:
             <div className="mt-auto">
               <div className="mt-2 flex flex-col items-start space-y-2 md:flex-row md:items-end md:space-y-0 md:space-x-2">
                 <SubscribeButton channelAddress={channelAddress} env={env} onSubscribe={onSubscribe} onUnsubscribe={onUnsubscribe} />
-                <div className="flex space-x-2">
+                <div className="flex flex-wrap gap-2">
                   <div className="flex space-x-1 rounded-full bg-pink-200 px-2 py-1 text-xs text-pink-600">
                     <HiUser />
                     <div>{channel.subscriber_count}</div>
