@@ -56,6 +56,7 @@ export function IntegrationOgImage(integration: keyof typeof turboIntegrations) 
               fontSize: '22px',
               fontFamily: 'SF Pro',
               maxWidth: '800px',
+              textAlign: 'center',
               background: 'linear-gradient(to bottom right, #000000 21.66%, #78716c 86.47%)',
               backgroundClip: 'text',
               color: 'transparent',
