@@ -350,6 +350,21 @@ const features = [
     ),
   },
   {
+    title: turboIntegrations.push_protocol.name,
+    description: turboIntegrations.push_protocol.description,
+    href: turboIntegrations.push_protocol.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Push Protocol logo" height={100} src={turboIntegrations.push_protocol.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Push Protocol logo" height={100} src={turboIntegrations.push_protocol.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.starter.name,
     description: turboIntegrations.starter.description,
     href: turboIntegrations.starter.href,
