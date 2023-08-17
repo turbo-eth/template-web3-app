@@ -72,7 +72,7 @@ export default function PageIntegration() {
                 <NotificationBell env={ENV.STAGING} mockedNotifications={mockedNotifications} />
               </div>
             </div>
-            <div className="mb-3 w-full">
+            <div className="mb-6 w-full">
               <div className="card">
                 <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                   <div className="grow">

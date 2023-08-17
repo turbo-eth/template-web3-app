@@ -48,6 +48,7 @@ export function ChannelSearch() {
             {channels?.slice(0, 5).map((channel) => (
               <ChannelCard key={`channel-${channel.channel}`} channelAddress={channel.channel} env={searchEnv} />
             ))}
+            {channels?.length === 0 && <p className="py-14 text-xl font-bold text-center">No Channels Found...</p>}
           </div>
         </Loadable>
       </div>

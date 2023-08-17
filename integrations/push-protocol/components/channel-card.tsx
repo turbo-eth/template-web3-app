@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { HiUser } from 'react-icons/hi'
+import { LuExternalLink } from 'react-icons/lu'
+
+import { LinkComponent } from '@/components/shared/link-component'
 
 import { ENV } from '..'
 import { useChannel } from '../hooks'
@@ -45,7 +48,12 @@ export function ChannelCard({ env, channelAddress, onSubscribe, onUnsubscribe }:
             <Image alt={channel.name} className="w-24 md:w-32 rounded-xl" height={100} src={channel.icon} width={100} />
           </div>
           <div className="flex grow flex-col">
-            <p className="overflow-hidden text-ellipsis whitespace-nowrap text-xl">{channel.name}</p>
+            <LinkComponent className="flex items-center gap-x-2" href={channel.url}>
+              <p className="overflow-hidden hover:underline transition-all underline-offset-2 text-ellipsis whitespace-nowrap text-xl">
+                {channel.name}
+              </p>
+              <LuExternalLink />
+            </LinkComponent>
             <p className="hidden text-xs md:block">{strLimit(channel.info, 100)}</p>
             <div className="mt-auto">
               <div className="mt-2 flex flex-col items-start space-y-2 md:flex-row md:items-end md:space-y-0 md:space-x-2">
