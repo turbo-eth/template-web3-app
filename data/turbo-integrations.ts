@@ -87,6 +87,7 @@ export const turboIntegrations = {
     imgLight: '/integrations/connext.png',
     imgDark: '/integrations/connext.png',
   },
+
   gelato: {
     name: 'Gelato',
     href: '/integration/gelato',
@@ -102,6 +103,14 @@ export const turboIntegrations = {
     description: 'Push Protocol is a web3 communication network, enabling cross-chain notifications and messaging for dapps, wallets, and services.',
     imgLight: '/integrations/push.svg',
     imgDark: '/integrations/push.svg',
+  },
+  moralis: {
+    name: 'Moralis',
+    href: '/integration/moralis',
+    url: 'https://docs.moralis.io/',
+    description: 'Moralis provides a complete end-to-end blockchain application development platform.',
+    imgLight: '/integrations/moralis.png',
+    imgDark: '/integrations/moralis.png',
   },
   starter: {
     name: 'Starter Template',

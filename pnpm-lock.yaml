@@ -22,6 +22,9 @@ dependencies:
   '@livepeer/react':
     specifier: ^2.6.0
     version: 2.6.0(@types/react-dom@18.0.10)(@types/react@18.0.26)(react-dom@18.2.0)(react-native@0.72.4)(react@18.2.0)
+  '@moralisweb3/common-evm-utils':
+    specifier: ^2.22.4
+    version: 2.22.4
   '@prisma/client':
     specifier: ^4.8.1
     version: 4.8.1(prisma@4.8.1)
@@ -169,6 +172,9 @@ dependencies:
   moment:
     specifier: ^2.29.4
     version: 2.29.4
+  moralis:
+    specifier: ^2.22.4
+    version: 2.22.4
   next:
     specifier: 13.4.0
     version: 13.4.0(@babel/core@7.18.5)(react-dom@18.2.0)(react@18.2.0)
@@ -6538,6 +6544,156 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
+  /@moralisweb3/api-utils@2.22.5:
+    resolution: {integrity: sha512-MYQ2SaL0Ug6+uKYWUV3JTOLZTOjdPNLhW4fO5XiQwxrqvLSuoYoNzaTR9hsvvGRy/lD7ERz1Q20SYl4E/1EjqQ==}
+    dependencies:
+      '@moralisweb3/common-core': 2.22.5
+      '@moralisweb3/common-evm-utils': 2.22.5
+      axios: 1.3.3
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/aptos-api@2.22.5:
+    resolution: {integrity: sha512-S4BnXtSjev6IEbWN1m/9N/K34RZi/LJXlEAQzRA+Q7vIn9wJEq500K1aCYfaf4YdQrTWPVokkc1E+R2FYIfheA==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.22.5
+      '@moralisweb3/common-aptos-utils': 2.22.5
+      '@moralisweb3/common-core': 2.22.5
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/auth@2.22.5:
+    resolution: {integrity: sha512-+0p/yNLMJ7KHu3fdnS3iXVVW5z/TDjHiy9Diqt87XxNVcXUuMSdqhD1hS/f65ZxxdzW0SUYgcpIogmzWvEL8ZA==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.22.5
+      '@moralisweb3/common-aptos-utils': 2.22.5
+      '@moralisweb3/common-auth-utils': 2.22.5
+      '@moralisweb3/common-core': 2.22.5
+      '@moralisweb3/common-evm-utils': 2.22.5
+      '@moralisweb3/common-sol-utils': 2.22.5
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/common-aptos-utils@2.22.5:
+    resolution: {integrity: sha512-m2K06yHze0UtAquct7UYVmYguvkPQ9LlNHRflTN5w89+UcJTw1VIH/mP1vArDidOxV6jiZKUgf8PS7WsPPZSyg==}
+    dependencies:
+      '@moralisweb3/common-core': 2.22.5
+      '@noble/hashes': 1.3.1
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/common-auth-utils@2.22.5:
+    resolution: {integrity: sha512-UEasn8EutGCPKSXqBADTFCyyImt38VLwLFyaPXwpJFwHoaYWOidBIK2uMdrBKIBZoFliRjcjNCW21NPwwFgTWw==}
+    dependencies:
+      '@ethersproject/abi': 5.7.0
+      '@moralisweb3/common-aptos-utils': 2.22.5
+      '@moralisweb3/common-core': 2.22.5
+      '@moralisweb3/common-evm-utils': 2.22.5
+      '@moralisweb3/common-sol-utils': 2.22.5
+      '@moralisweb3/streams-typings': 1.0.7
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/common-core@2.22.5:
+    resolution: {integrity: sha512-T0ndBY2JFRps3p2NT0YaMa7HGnVNNvyfETaEb+f2Ejecn9hThNDkVoffR9mX1grjZGO39Xi1+XnnstUoPqahXQ==}
+    dependencies:
+      axios: 1.3.3
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/common-evm-utils@2.22.4:
+    resolution: {integrity: sha512-hghNO3xksq6TmDgbwoURTzir7h/Ipg/8DlZa/6kb5/fDvGR9kyY+HbKcQyVNGc9PoykQO1BSEv1LLq47BD8w1w==}
+    dependencies:
+      '@ethersproject/address': 5.7.0
+      '@ethersproject/bytes': 5.7.0
+      '@ethersproject/transactions': 5.7.0
+      '@moralisweb3/common-core': 2.22.5
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/common-evm-utils@2.22.5:
+    resolution: {integrity: sha512-rkbIIN5CIepVHkhnBdIN1HDGR/TPGuFzCrhMDvbU/J4f+/KDNMDgPVoDQriAworm7TG7dmAbGulk7bwcgiUuAw==}
+    dependencies:
+      '@ethersproject/address': 5.7.0
+      '@ethersproject/bytes': 5.7.0
+      '@ethersproject/transactions': 5.7.0
+      '@moralisweb3/common-core': 2.22.5
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/common-sol-utils@2.22.5:
+    resolution: {integrity: sha512-0TC/w9lAXjGRF8GIZVjWpLevDc5Mf0o7pjnnF4PG/h/bFPSfJbhuzRaRs5RoOzWKobawYnF3wzUNGeeTolf/0A==}
+    dependencies:
+      '@moralisweb3/common-core': 2.22.5
+      bn.js: 5.2.1
+      bs58: 5.0.0
+      buffer: 6.0.3
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/common-streams-utils@2.22.5:
+    resolution: {integrity: sha512-BxUqZzddSfBY2R4ERRumXXEPomd7AWPjOmzRoRkb7Wh5PNiGmzz2aT8o0VzpYNP/xoX6FYyad1Qq4XjQsbxuow==}
+    dependencies:
+      '@ethersproject/abi': 5.7.0
+      '@moralisweb3/common-aptos-utils': 2.22.5
+      '@moralisweb3/common-core': 2.22.5
+      '@moralisweb3/common-evm-utils': 2.22.5
+      '@moralisweb3/streams-typings': 1.0.7
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/evm-api@2.22.5:
+    resolution: {integrity: sha512-0JYnNTOj6+ZqopnotwhUAuumk+V03rkXAHULDyOsK1MMHyKtK1LktFd2J0Ex0Hmv7nYAJBnTqvkWWBqjD/SvGw==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.22.5
+      '@moralisweb3/common-core': 2.22.5
+      '@moralisweb3/common-evm-utils': 2.22.5
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/sol-api@2.22.5:
+    resolution: {integrity: sha512-V9QvRk77LZUUrfn3z8RtYOIWPIkY9MC40b15V0Oe5w/tij1IdQf9cLWWQdecWYvRrYaDVjS/l3DlFidUwc1XLQ==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.22.5
+      '@moralisweb3/common-core': 2.22.5
+      '@moralisweb3/common-sol-utils': 2.22.5
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@moralisweb3/streams-typings@1.0.7:
+    resolution: {integrity: sha512-ShbVqil0KLOTyTjO6z9JewPcVVE3S6kzkQFnW2flGBRsGdKucpkUdOx1HijOLoaikz/9gH92n+lzTvRFIj0AoA==}
+    dev: false
+
+  /@moralisweb3/streams@2.22.5:
+    resolution: {integrity: sha512-1ICcxRZabmWVL5wHMQubxEVBMgvfyQtCLk2eGCQHkICye6KU+sbUH3zg+PBrCSPqK8aZ+h+fcf4i5xdHufOS0w==}
+    dependencies:
+      '@ethersproject/abi': 5.7.0
+      '@ethersproject/bignumber': 5.7.0
+      '@ethersproject/sha2': 5.7.0
+      '@ethersproject/strings': 5.7.0
+      '@moralisweb3/api-utils': 2.22.5
+      '@moralisweb3/common-core': 2.22.5
+      '@moralisweb3/common-evm-utils': 2.22.5
+      '@moralisweb3/common-streams-utils': 2.22.5
+      '@moralisweb3/streams-typings': 1.0.7
+      ethereumjs-util: 7.1.5
+      web3-eth-abi: 1.10.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /@motionone/animation@10.15.1:
     resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==}
     dependencies:
@@ -11746,6 +11902,10 @@ packages:
     dependencies:
       safe-buffer: 5.2.1
 
+  /base-x@4.0.0:
+    resolution: {integrity: sha512-FuwxlW4H5kh37X/oW59pwTzzTKRzfrrQwhmyspRM7swOEZcHtDZSCt45U6oKgtuFE+WYPblePMVIPR4RZrh/hw==}
+    dev: false
+
   /base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
@@ -11963,6 +12123,12 @@ packages:
     resolution: {integrity: sha512-Ok3Wdf5vOIlBrgCvTq96gBkJw+JUEzdBgyaza5HLtPm7yTHkjRy8+JzNyHF7BHa0bNWOQIp3m5YF0nnFcOIKLw==}
     dependencies:
       base-x: 3.0.9
+
+  /bs58@5.0.0:
+    resolution: {integrity: sha512-r+ihvQJvahgYT50JD05dyJNKlmmSlMoOGwn1lCcEzanPglg7TxYjioQUYehQ9mAR/+hOSd2jRc/Z2y5UxBymvQ==}
+    dependencies:
+      base-x: 4.0.0
+    dev: false
 
   /bs58check@2.1.2:
     resolution: {integrity: sha512-0TS1jicxdU09dwJMNZtVAfzPi6Q6QeN0pM1Fkzrjn+XYHvzMKPU3pHVpva+769iNVSfIYWf7LJ6WR+BuuMf8cA==}
@@ -18591,6 +18757,26 @@ packages:
 
   /moment@2.29.4:
     resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
+
+  /moralis@2.22.4:
+    resolution: {integrity: sha512-3DRVO6FoqFgvnDDP1rxXCdFMOJ9xKjY8JF0SC5ceh72ad5d4SCNZHQ2UOTYJU5jg9bXwQE3W559lCIkVnsqcKg==}
+    dependencies:
+      '@moralisweb3/api-utils': 2.22.5
+      '@moralisweb3/aptos-api': 2.22.5
+      '@moralisweb3/auth': 2.22.5
+      '@moralisweb3/common-aptos-utils': 2.22.5
+      '@moralisweb3/common-auth-utils': 2.22.5
+      '@moralisweb3/common-core': 2.22.5
+      '@moralisweb3/common-evm-utils': 2.22.4
+      '@moralisweb3/common-sol-utils': 2.22.5
+      '@moralisweb3/common-streams-utils': 2.22.5
+      '@moralisweb3/evm-api': 2.22.5
+      '@moralisweb3/sol-api': 2.22.5
+      '@moralisweb3/streams': 2.22.5
+      '@moralisweb3/streams-typings': 1.0.7
+    transitivePeerDependencies:
+      - debug
     dev: false
 
   /motion@10.15.5:

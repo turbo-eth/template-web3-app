@@ -365,6 +365,21 @@ const features = [
     ),
   },
   {
+    title: turboIntegrations.moralis.name,
+    description: turboIntegrations.moralis.description,
+    href: turboIntegrations.moralis.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Moralis logo" height={100} src={turboIntegrations.moralis.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Mtarter logo" height={100} src={turboIntegrations.moralis.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.starter.name,
     description: turboIntegrations.starter.description,
     href: turboIntegrations.starter.href,
