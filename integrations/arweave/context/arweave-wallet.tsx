@@ -20,6 +20,7 @@ export interface IArweaveWalletContext {
   generate: () => Promise<void>
   importFromFile: (file: File) => Promise<void>
   backupWallet: () => Promise<void>
+  getBalance: () => Promise<void>
   getAccount: () => void
 }
 
@@ -37,6 +38,7 @@ export const ArweaveWalletContext = createContext<IArweaveWalletContext>({
   generate: () => Promise.resolve(),
   importFromFile: () => Promise.resolve(),
   backupWallet: () => Promise.resolve(),
+  getBalance: () => Promise.resolve(),
   getAccount: () => {
     return
   },
@@ -100,7 +102,6 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
 
   const backupWallet = useCallback(async () => {
     if (!wallet || !address) return
-    console.info(wallet, address)
     const json = JSON.stringify(wallet, null, 2)
     const blob = new Blob([json], { type: 'application/json' })
     const href = URL.createObjectURL(blob)
@@ -118,9 +119,15 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
       void (async () => {
         const address = await getArweaveWalletAddress(wallet)
         setAddress(address)
-        const balance = await getArweaveWalletBalance(wallet)
-        setBalance(balance)
+        await getBalance()
       })()
+    }
+  }, [wallet])
+
+  const getBalance = useCallback(async () => {
+    if (wallet) {
+      const balance = await getArweaveWalletBalance(wallet)
+      setBalance(balance)
     }
   }, [wallet])
 
@@ -138,6 +145,7 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
       generate,
       importFromFile,
       backupWallet,
+      getBalance,
     }),
     [address, wallet, balance, error, account, isAccountLoading]
   )

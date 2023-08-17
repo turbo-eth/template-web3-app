@@ -2,10 +2,14 @@ import { arweave } from '..'
 import { ArweavePost } from '../utils/types'
 
 type QueryReturnType = {
-  edges: {
-    cursor: string
-    node: ArweavePost
-  }[]
+  data: {
+    transactions: {
+      edges: {
+        cursor: string
+        node: ArweavePost
+      }[]
+    }
+  }
 }
 
 const buildQueryObject = (address: string) => ({
@@ -13,7 +17,6 @@ const buildQueryObject = (address: string) => ({
 		transactions (
       owners:["${address}"],
 		) {
-			{
 			edges {
         cursor,
 				node {
@@ -36,5 +39,5 @@ const buildQueryObject = (address: string) => ({
 
 export const queryPosts = async (address: string) => {
   const results = await arweave.api.post<QueryReturnType>('/graphql', buildQueryObject(address))
-  return results.data.edges
+  return results.data.data.transactions.edges.map((edge) => edge.node)
 }

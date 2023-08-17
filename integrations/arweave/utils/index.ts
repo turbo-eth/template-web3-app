@@ -9,13 +9,6 @@ export function truncateString(fullStr: string, strLen: number, separator: strin
   return fullStr.substring(0, frontChars) + separator + fullStr.substring(fullStr.length - backChars)
 }
 
-export const convertFileToBase64 = (file: File): Promise<string | ArrayBuffer> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader()
-    reader.onload = () => (reader.result ? resolve(reader.result) : reject('Unable to handle file'))
-    reader.onerror = reject
-    reader.readAsDataURL(file)
-  })
 export const convertBlobToBase64 = (blob: Blob): Promise<ArrayBuffer> =>
   new Promise((resolve, reject) => {
     const reader = new FileReader()

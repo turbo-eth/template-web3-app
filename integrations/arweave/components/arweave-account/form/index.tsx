@@ -50,9 +50,7 @@ const ArweaveAccountForm = () => {
                 />
               )
             })}
-            <div className="flex items-center text-sm">
-              <FeeEstimation {...estimation} />
-            </div>
+            <FeeEstimation {...estimation} />
             <div>
               <button className="btn btn-emerald w-full" disabled={isLoading}>
                 {isLoading ? 'Loading...' : userHasAccount ? 'Update Arweave account' : 'Create Arweave account'}

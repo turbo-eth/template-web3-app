@@ -1,3 +1,5 @@
+import { LinkComponent } from '@/components/shared/link-component'
+
 import { ConnectArweaveWallet } from './connect-arweave-wallet'
 import { Spinner } from './spinner'
 import { useArweaveWallet } from '../hooks/use-arweave-wallet'
@@ -12,9 +14,9 @@ export const ListPosts = () => {
   return (
     <div className="columns-3">
       {posts.map((p) => (
-        <div key={p.id} className="card">
-          {p.id}
-        </div>
+        <LinkComponent key={p.id} className="card" href={`/integration/arweave/posts/${p.id}`}>
+          {p.data.size} - {p.data.type}
+        </LinkComponent>
       ))}
     </div>
   )

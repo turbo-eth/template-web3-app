@@ -10,8 +10,8 @@ export const FeeEstimation = ({
   isEstimatingTxFee: boolean
   estimationError: string | null
 }) => (
-  <div className="flex items-center">
-    <span className="mr-2 text-slate-200">Estimated Tx Fee:</span>
+  <div className="flex items-center text-sm">
+    <span className="mr-2 text-slate-700 dark:text-slate-200">Estimated Tx Fee:</span>
     {isEstimatingTxFee ? (
       <Spinner isSmall={true} />
     ) : estimationError ? (

@@ -8,12 +8,14 @@ import { useToast } from '@/lib/hooks/use-toast'
 
 import { Spinner } from './spinner'
 import { getArweaveTxStatus } from '..'
+import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 import { ArweaveTxId } from '../utils/types'
 
 const CONFIRMED_THRESHOLD = 1
 
 export const TxStatus = ({ txId, onConfirmation }: { txId: ArweaveTxId; onConfirmation?: () => void }) => {
   const [status, setStatus] = useState<TransactionStatusResponse | null>(null)
+  const { getBalance } = useArweaveWallet()
   const { toast, dismiss } = useToast()
   const handleToast = () => {
     toast({
@@ -31,6 +33,7 @@ export const TxStatus = ({ txId, onConfirmation }: { txId: ArweaveTxId; onConfir
       const numberOfConfirmations = txStatus.confirmed?.number_of_confirmations
       if (numberOfConfirmations && numberOfConfirmations > CONFIRMED_THRESHOLD) {
         onConfirmation && onConfirmation()
+        getBalance().catch(console.error)
         clearInterval(intervalId)
       }
     }, 3000)
@@ -44,7 +47,7 @@ export const TxStatus = ({ txId, onConfirmation }: { txId: ArweaveTxId; onConfir
         {!isFinished ? (
           <Spinner />
         ) : (
-          <div className="flex items-center text-green-400">
+          <div className="flex items-center text-green-800 dark:text-green-400">
             <div>
               <FaCheck />
             </div>

@@ -1,16 +1,4 @@
-/**
- * Placeholder for the starter type. Replace with your own types.
- */
-export interface Starter {
-  title: string
-}
-
-export enum MimeType {
-  HTML = 'text/html',
-  TEXT = 'text/plain',
-  IMAGE = 'image/png',
-  JSON = 'application/json',
-}
+import Transaction from 'arweave/node/lib/transaction'
 
 export type ArweaveAmount = {
   ar: string
@@ -29,6 +17,10 @@ export type ArweavePost = {
   quantity: ArweaveAmount
   block: { timestamp: string; height: number }
   bundledIn: { id: string }
+}
+
+export type ArweaveTx = Transaction & {
+  raw_data: string
 }
 
 export type ArweaveTxTag = { name: string; value: string }

@@ -3,7 +3,7 @@ import Transaction from 'arweave/node/lib/transaction'
 import { bufferToString, stringToBuffer } from 'arweave/node/lib/utils'
 import { JWKInterface } from 'arweave/node/lib/wallet'
 
-import { ArweaveAmount, ArweaveTxId, ArweaveTxPostResponse, ArweaveTxTag } from './utils/types'
+import { ArweaveAmount, ArweaveTx, ArweaveTxId, ArweaveTxPostResponse, ArweaveTxTag } from './utils/types'
 
 export const arweave = Arweave.init({
   host: 'arweave.net', // Hostname or IP address for a Arweave host
@@ -81,7 +81,7 @@ export const getArweaveTxStatus = async (txId: ArweaveTxId) => {
 export const getArweaveTx = async (txId: ArweaveTxId) => {
   const tx = await arweave.transactions.get(txId)
   if (!tx.data) tx.data = (await arweave.transactions.getData(txId, { decode: true })) as Uint8Array
-  return { ...tx, data: bufferToString(tx.data) }
+  return { ...tx, raw_data: bufferToString(tx.data) } as ArweaveTx
 }
 
 export const estimateTxFee = async (data: string | ArrayBuffer) => {

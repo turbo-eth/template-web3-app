@@ -17,5 +17,11 @@ export const useEstimateTxFee = () => {
       .finally(() => setIsEstimatingTxFee(false))
   }, [])
 
-  return { estimatedTxFee, isEstimatingTxFee, estimationError, estimateTxFee }
+  const reset = useCallback(() => {
+    setEstimatedTxFee(null)
+    setIsEstimatingTxFee(false)
+    setEstimationError(null)
+  }, [])
+
+  return { estimatedTxFee, isEstimatingTxFee, estimationError, estimateTxFee, setIsEstimatingTxFee, reset }
 }
