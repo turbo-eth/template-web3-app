@@ -22,7 +22,12 @@ export const ArweaveAccountPreview = () => {
   }
 
   const handleName = account?.profile?.handleName ?? null
-  if (!account || !address) return null
+  if (!account || !address)
+    return (
+      <LinkComponent className="btn btn-emerald my-4 w-full" href="/integration/arweave/account">
+        Connect Wallet
+      </LinkComponent>
+    )
   return (
     <LinkComponent className="mb-5 flex items-center" href="/integration/arweave/settings">
       <Avatar>

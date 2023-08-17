@@ -7,11 +7,11 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 
 import { useArweavePostForm } from './hook'
+import { FormListTags } from './list-tags'
 import { useArweaveWallet } from '../../hooks/use-arweave-wallet'
 import { truncateString } from '../../utils'
 import { ConnectArweaveWallet } from '../connect-arweave-wallet'
 import { FeeEstimation } from '../fee-estimation'
-import { FormListTags } from '../list-tags'
 import { TxStatus } from '../tx-status'
 
 export const FormNewPost = () => {

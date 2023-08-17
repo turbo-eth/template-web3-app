@@ -37,7 +37,7 @@ export const ArweaveAccount = () => {
   if (!wallet) return <ConnectArweaveWallet />
   if (!account) return <Spinner />
   return (
-    <div className="w-full">
+    <div className="card w-full">
       <div className="flex flex-col items-center">
         <Avatar className="h-24 w-24">
           <AvatarImage src={picture?.url ?? account?.profile?.avatarURL} />

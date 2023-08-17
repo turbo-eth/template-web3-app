@@ -1,5 +1,3 @@
-import Transaction from 'arweave/node/lib/transaction'
-
 export type ArweaveAmount = {
   ar: string
   winston: string
@@ -19,11 +17,8 @@ export type ArweavePost = {
   bundledIn: { id: string }
 }
 
-export type ArweaveTx = Transaction & {
-  raw_data: string
-}
-
 export type ArweaveTxTag = { name: string; value: string }
+export type ArweaveTxSearchTag = { name: string; values: { value: string }[] }
 export type ArweaveTxId = string
 export type ArweaveTxPostResponse = {
   status: number

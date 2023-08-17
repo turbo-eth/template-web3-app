@@ -11,6 +11,10 @@ export const getUserAccount = async (wallet: JWKInterface): Promise<ArAccount> =
   const acc: ArAccount = await ArweaveAccount.get(await getArweaveWalletAddress(wallet))
   return acc
 }
+export const getAccountByAddress = async (address: string): Promise<ArAccount> => {
+  const acc: ArAccount = await ArweaveAccount.get(address)
+  return acc
+}
 
 export type UpdateArweaveAccountPayload = Partial<T_profile> & Pick<T_profile, 'handleName'>
 
