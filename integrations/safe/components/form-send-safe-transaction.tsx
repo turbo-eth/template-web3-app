@@ -8,6 +8,9 @@ import { ethers } from 'ethers'
 import { useForm } from 'react-hook-form'
 import { Address, useAccount } from 'wagmi'
 
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { useToast } from '@/lib/hooks/use-toast'
 
 import { useConnectedSafe } from '../hooks/useConnectSafe'
@@ -82,14 +85,14 @@ export function FormSendSafeTransaction() {
   return (
     <div className="card mb-4 w-full">
       <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <p>Create a send transaction.</p>
-        <label>Receiver Address</label>
-        <input required className="input mt-4" placeholder="Insert address" {...register('address')} />
-        <label>Amount</label>
-        <input required className="input mt-4" {...register('amount')} />
-        <button className="btn btn-emerald mt-4 w-full" disabled={!safeSdk} type="submit">
+        <h3 className="mb-4 block text-2xl font-semibold leading-[1.3] text-inherit antialiased">Create send transaction</h3>
+        <Label>Receiver Address</Label>
+        <Input required className="input mt-4" placeholder="Insert address" {...register('address')} />
+        <Label>Amount</Label>
+        <Input required className="input mt-4" {...register('amount')} />
+        <Button className="mt-4 w-full" disabled={!safeSdk} type="submit">
           {isLoading ? 'Sending...' : 'Send'}
-        </button>
+        </Button>
       </form>
     </div>
   )
