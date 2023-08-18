@@ -32,7 +32,9 @@ export function Erc1155WriteTransfer({ address }: Erc1155WriteTransferProps) {
   const { config, error, isError } = usePrepareErc1155SafeTransferFrom({
     address,
     args:
-      transferFromAddress && debouncedToAddress && debouncedTokenId ? [transferFromAddress, debouncedToAddress, BigInt(debouncedTokenId), BigInt(debouncedAmount), ""] : undefined,
+      transferFromAddress && debouncedToAddress && debouncedTokenId
+        ? [transferFromAddress, debouncedToAddress, BigInt(debouncedTokenId), BigInt(debouncedAmount), '0x']
+        : undefined,
     enabled: Boolean(transferFromAddress && debouncedToAddress && debouncedTokenId),
   })
 

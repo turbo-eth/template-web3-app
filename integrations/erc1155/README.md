@@ -6,7 +6,8 @@ This TurboETH integration provides a suite of hooks and components to facilitate
 
 - Mintable
 - Enumerable
-- Base Storage
+- ERC1155BaseStorage
+- Single Approve
 
 **Access Control:**
 

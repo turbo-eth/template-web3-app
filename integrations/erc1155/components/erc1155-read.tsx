@@ -2,7 +2,17 @@ import React, { useState } from 'react'
 
 import type { Address } from 'wagmi'
 
-import { ERC1155TokenUriDescription, ERC1155TokenUriImage, ERC1155TokenUriName, Erc1155Name, Erc1155Symbol, ERC1155TokenTotalSupply, Erc1155OwnerOf, ERC1155ContractUri, ERC1155TokenUri } from '..'
+import {
+  ERC1155ContractUri,
+  ERC1155TokenTotalSupply,
+  ERC1155TokenUri,
+  ERC1155TokenUriDescription,
+  ERC1155TokenUriImage,
+  ERC1155TokenUriName,
+  Erc1155Name,
+  Erc1155OwnerOf,
+  Erc1155Symbol,
+} from '..'
 
 interface Erc1155ReadProps {
   address: Address
@@ -39,11 +49,11 @@ export function Erc1155Read({ address }: Erc1155ReadProps) {
           </div>
           <div className="flex flex-wrap items-center justify-between break-words">
             <span className="font-medium">Token URI:</span>
-            <ERC1155TokenUri address={address} className="overflow-x-scroll" tokenId={BigInt(tokenId || 1)} />
+            <ERC1155TokenUri address={address} tokenId={BigInt(tokenId || 1)} />
           </div>
           <div className="flex flex-wrap items-center justify-between break-words">
             <span className="font-medium">Contract URI:</span>
-            <ERC1155ContractUri address={address} className="overflow-x-scroll"/>
+            <ERC1155ContractUri address={address} />
           </div>
         </div>
         <hr className="my-4" />

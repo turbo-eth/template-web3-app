@@ -43,8 +43,25 @@ export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps
   const { config, error, isError } = usePrepareErc1155SafeBatchTransferFrom({
     address,
     args:
-      transferFromAddress && debouncedToAddress && debouncedTokenId ? [transferFromAddress, debouncedToAddress, [BigInt(debouncedTokenId), BigInt(debouncedTokenId2), BigInt(debouncedTokenId3)], [BigInt(debouncedAmount), BigInt(debouncedAmount2), BigInt(debouncedAmount3)], ""] : undefined,
-    enabled: Boolean(transferFromAddress && debouncedToAddress && debouncedTokenId && debouncedTokenId2 && debouncedTokenId3 && debouncedAmount && debouncedAmount2 && debouncedAmount3),
+      transferFromAddress && debouncedToAddress && debouncedTokenId
+        ? [
+            transferFromAddress,
+            debouncedToAddress,
+            [BigInt(debouncedTokenId), BigInt(debouncedTokenId2), BigInt(debouncedTokenId3)],
+            [BigInt(debouncedAmount), BigInt(debouncedAmount2), BigInt(debouncedAmount3)],
+            '0x',
+          ]
+        : undefined,
+    enabled: Boolean(
+      transferFromAddress &&
+        debouncedToAddress &&
+        debouncedTokenId &&
+        debouncedTokenId2 &&
+        debouncedTokenId3 &&
+        debouncedAmount &&
+        debouncedAmount2 &&
+        debouncedAmount3
+    ),
   })
 
   const { data, write, isLoading: isLoadingWrite } = useErc1155SafeBatchTransferFrom(config)
@@ -89,7 +106,13 @@ export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps
         <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Transferring..." type="submit" write={!!write}>
           Batch Transfer
         </ContractWriteButton>
-        <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError && Boolean(debouncedTokenId && debouncedAmount3)} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
+        <TransactionStatus
+          error={error as BaseError}
+          hash={data?.hash}
+          isError={isError && Boolean(debouncedTokenId && debouncedAmount3)}
+          isLoadingTx={isLoadingTx}
+          isSuccess={isSuccess}
+        />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC1155 Batch Transfer</h3>

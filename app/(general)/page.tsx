@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import React from 'react'
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -19,16 +20,13 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { DEPLOY_URL, siteConfig } from '@/config/site'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import { ERC1155TokenUriImage, ERC1155TokenUriName } from '@/integrations/erc1155'
 import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@/integrations/erc20/components/erc20-read'
 import { ERC721TokenUriImage, ERC721TokenUriName } from '@/integrations/erc721'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
 import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
 import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
 import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
-import { ERC1155TokenUriName, ERC1155TokenUriImage } from '@/integrations/erc1155'
-
-import React from 'react'
-
 
 export default function Home() {
   const [copied, setCopied] = useState(false)

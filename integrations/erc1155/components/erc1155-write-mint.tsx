@@ -16,6 +16,7 @@ interface FormSchema {
   toAddress: Address
   tokenId: string
   tokenAmount: string
+  uri: string
 }
 
 export function Erc1155WriteMint({ address }: Erc1155WriteMintProps) {
@@ -63,7 +64,13 @@ export function Erc1155WriteMint({ address }: Erc1155WriteMintProps) {
         <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Minting..." type="submit" write={!!write}>
           Mint
         </ContractWriteButton>
-        <TransactionStatus error={error as BaseError} hash={data?.hash} isError={isError && Boolean(debouncedTokenId && debouncedTokenAmount)} isLoadingTx={isLoadingTx} isSuccess={isSuccess} />
+        <TransactionStatus
+          error={error as BaseError}
+          hash={data?.hash}
+          isError={isError && Boolean(debouncedTokenId && debouncedTokenAmount)}
+          isLoadingTx={isLoadingTx}
+          isSuccess={isSuccess}
+        />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC1155 Mint</h3>

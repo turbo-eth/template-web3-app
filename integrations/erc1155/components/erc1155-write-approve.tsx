@@ -6,7 +6,7 @@ import { Address, useWaitForTransaction } from 'wagmi'
 import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { TransactionStatus } from '@/components/blockchain/transaction-status'
 
-import { useErc1155Approve, usePrepareErc1155Approve, useErc1155Allowance } from '../generated/erc1155-wagmi'
+import { useErc1155Approve, usePrepareErc1155Approve } from '../generated/erc1155-wagmi'
 
 interface Erc1155WriteApproveProps {
   address: Address
@@ -50,7 +50,7 @@ export function Erc1155WriteApprove({ address }: Erc1155WriteApproveProps) {
         <label>Target value</label>
         <input {...register('targetValue')} className="input" />
         <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Approving..." type="submit" write={!!write}>
-          Approve 
+          Approve
         </ContractWriteButton>
         <TransactionStatus
           error={error as BaseError}

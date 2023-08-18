@@ -27,7 +27,6 @@ export function Erc1155DeployTest() {
       hash = await walletClient.deployContract({
         abi: erc1155ABI,
         bytecode: erc1155ByteCode,
-        args: [],
       })
     } catch (e) {
       setIsSigning(false)
@@ -49,10 +48,7 @@ export function Erc1155DeployTest() {
   return (
     <div className="card w-full">
       <form className="flex flex-col gap-4" onSubmit={onSubmit}>
-        <ContractWriteButton
-          isLoadingTx={isWaitingTransaction}
-          isLoadingWrite={isSigning}
-          loadingTxText="Deploying...">
+        <ContractWriteButton isLoadingTx={isWaitingTransaction} isLoadingWrite={isSigning} loadingTxText="Deploying...">
           Deploy Test ERC1155
         </ContractWriteButton>
       </form>
