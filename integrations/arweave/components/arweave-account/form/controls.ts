@@ -5,16 +5,6 @@ export const arweaveAccountFormControls = [
     label: 'Handle Name',
     placeholder: 'Insert your @ here',
   },
-  // {
-  //   formfieldName: 'avatar',
-  //   component: 'file',
-  //   label: 'Avatar',
-  // },
-  // {
-  //   formfieldName: 'banner',
-  //   component: 'file',
-  //   label: 'Banner',
-  // },
   {
     formfieldName: 'name',
     component: 'input',

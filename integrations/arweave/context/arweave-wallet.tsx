@@ -1,8 +1,8 @@
 'use client'
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 
-import { JWKInterface } from 'arweave/node/lib/wallet'
 import { ArAccount } from 'arweave-account'
+import { JWKInterface } from 'arweave/node/lib/wallet'
 
 import { generateArweaveWallet, getArweaveWalletAddress, getArweaveWalletBalance } from '..'
 import { getUserAccount } from '../arweave-account'

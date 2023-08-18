@@ -1,13 +1,13 @@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 
-import { arweaveAccountFormControls } from './controls'
-import { useArweaveAccountForm } from './hook'
 import { useArweaveWallet } from '../../../hooks/use-arweave-wallet'
 import { getComponent } from '../../../utils/get-element-component'
 import { ConnectArweaveWallet } from '../../connect-arweave-wallet'
 import { FeeEstimation } from '../../fee-estimation'
 import { Spinner } from '../../spinner'
 import { TxStatus } from '../../tx-status'
+import { arweaveAccountFormControls } from './controls'
+import { useArweaveAccountForm } from './hook'
 
 // This wrapper exists so the form renders only if we're done getting account
 export const ArweaveAccountEdit = () => {

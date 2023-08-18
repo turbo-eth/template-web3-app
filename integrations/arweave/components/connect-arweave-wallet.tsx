@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 
 import { redirect } from 'next/navigation'
 
-import { Spinner } from './spinner'
 import { useArweaveWallet } from '../hooks/use-arweave-wallet'
+import { Spinner } from './spinner'
 
 export function ConnectArweaveWallet() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)

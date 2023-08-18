@@ -6,10 +6,10 @@ import { FaCheck, FaCopy } from 'react-icons/fa'
 
 import { useToast } from '@/lib/hooks/use-toast'
 
-import { Spinner } from './spinner'
 import { getArweaveTxStatus } from '..'
 import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 import { ArweaveTxId } from '../utils/types'
+import { Spinner } from './spinner'
 
 const CONFIRMED_THRESHOLD = 1
 

@@ -1,6 +1,6 @@
-import { JWKInterface } from 'arweave/node/lib/wallet'
 import Account, { ArAccount } from 'arweave-account'
 import { ArAccountEncoded, T_profile } from 'arweave-account/lib/types'
+import { JWKInterface } from 'arweave/node/lib/wallet'
 
 import { arweave, createArweaveDataTx, getArweaveWalletAddress, getArweaveWalletBalance, signAndSendArweaveTx } from '.'
 import { ArweaveTxId, ArweaveTxPostResponse } from './utils/types'

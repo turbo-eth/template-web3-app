@@ -6,13 +6,13 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 
-import { useArweavePostForm } from './hook'
-import { FormListTags } from './list-tags'
 import { useArweaveWallet } from '../../hooks/use-arweave-wallet'
 import { truncateString } from '../../utils'
 import { ConnectArweaveWallet } from '../connect-arweave-wallet'
 import { FeeEstimation } from '../fee-estimation'
 import { TxStatus } from '../tx-status'
+import { useArweavePostForm } from './hook'
+import { FormListTags } from './list-tags'
 
 export const FormNewPost = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
@@ -114,7 +114,7 @@ export const FormNewPost = () => {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">Arweave post</h3>
-          <p className="text-center text-sm text-gray-500">Arweave post is a type of transaction which can store data on-chain.</p>
+          <p className="text-center text-sm text-gray-500">Arweave post is a type of transaction which can store data on-chain permanently.</p>
         </div>
       </div>
       {isSuccess && data && (
