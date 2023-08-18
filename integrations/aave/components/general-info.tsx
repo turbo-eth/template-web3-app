@@ -18,7 +18,7 @@ export const GeneralInfo = () => {
   return (
     <motion.div
       animate="show"
-      className="mb-4 flex items-start justify-start p-4 dark:text-white"
+      className="mb-4 flex items-start justify-start py-4 dark:text-white"
       initial="hidden"
       variants={FADE_DOWN_ANIMATION_VARIANTS}>
       <div className="rounded border border-slate-200 p-5 dark:border-slate-600">
