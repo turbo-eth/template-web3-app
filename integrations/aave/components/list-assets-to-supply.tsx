@@ -4,10 +4,9 @@ import { Checkbox } from '@/components/ui/checkbox'
 
 import { AssetToSupplyItem } from './asset-to-supply-item'
 import { useAave } from '../hooks/use-aave'
-import { AaveState } from '../utils/types'
 
 export const ListAssetsToSupply = () => {
-  const { usdData } = useAave().data as AaveState
+  const { usdData } = useAave().data
   const [showZeroBalanceAssets, setShowZeroBalanceAssets] = useState(false)
 
   return (

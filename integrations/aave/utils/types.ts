@@ -75,7 +75,7 @@ interface UsdData extends UserReserveData {
 }
 
 interface AaveState {
-  userReservesData: UserReserveData[]
+  userReservesData: UserReserveData[] | null
   healthFactor: number
   balanceInUsd: number
   collateralInUsd: number
@@ -84,7 +84,7 @@ interface AaveState {
   averageSupplyApy: number
   averageBorrowApy: number
   averageNetApy: number
-  usdData: UsdData[]
+  usdData: UsdData[] | null
   poolAddress: `0x${string}`
   chainSupported: boolean
 }

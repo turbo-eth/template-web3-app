@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useAccount, useNetwork } from 'wagmi'
 
 import { useUiPoolDataProviderGetReservesData, useUiPoolDataProviderGetUserReservesData } from '../generated/aave-wagmi'
+import { getDefaultUseAaveState } from '../utils'
 import { MarketDataType, marketsData, supportedChains } from '../utils/market-config'
 import { AaveState, ReserveData, UsdData, UserReserveData } from '../utils/types'
 
@@ -20,7 +21,7 @@ export const useAave = () => {
   const [averageBorrowApy, setAverageBorrowApy] = useState(0)
   const [averageNetApy, setAverageNetApy] = useState(0)
   const [chainSupported, setChainSupported] = useState(false)
-  const [data, setData] = useState<AaveState | null>(null)
+  const [data, setData] = useState<AaveState>(getDefaultUseAaveState())
 
   const { data: reservesData } = useUiPoolDataProviderGetReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
@@ -117,7 +118,7 @@ export const useAave = () => {
       })
     } else {
       setChainSupported(supportedChains.includes(chain ? chain?.id : 1))
-      setData({ ...(data as AaveState), chainSupported: false })
+      setData({ ...data, chainSupported: false })
     }
   }, [userReservesData, market, user, chain])
 

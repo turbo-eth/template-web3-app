@@ -1,9 +1,8 @@
 import { BorrowedAssetsItem } from './borrowed-assets-item'
 import { useAave } from '../hooks/use-aave'
-import { AaveState } from '../utils/types'
 
 export const ListBorrowedAssets = () => {
-  const { usdData, totalDebtInUsd, averageBorrowApy } = useAave().data as AaveState
+  const { usdData, totalDebtInUsd, averageBorrowApy } = useAave().data
 
   const filteredUserReserves = usdData?.filter((reserve) => (reserve.scaledVariableDebt || reserve.principalStableDebt) !== BigInt(0))
 
