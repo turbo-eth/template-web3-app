@@ -1,8 +1,9 @@
 import { SuppliedAssetsItem } from './supplied-assets-item'
 import { useAave } from '../hooks/use-aave'
+import { AaveState } from '../utils/types'
 
 export const ListSuppliedAssets = () => {
-  const { usdData, balanceInUsd, collateralInUsd, averageSupplyApy } = useAave()
+  const { usdData, balanceInUsd, collateralInUsd, averageSupplyApy } = useAave().data as AaveState
 
   const filteredUserReserves = usdData?.filter((reserve) => reserve.scaledATokenBalance !== BigInt(0))
 

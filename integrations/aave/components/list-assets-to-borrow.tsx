@@ -1,8 +1,9 @@
 import { AssetToBorrowItem } from './asset-to-borrow-item'
 import { useAave } from '../hooks/use-aave'
+import { AaveState } from '../utils/types'
 
 export const ListAssetsToBorrow = () => {
-  const { usdData } = useAave()
+  const { usdData } = useAave().data as AaveState
 
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">

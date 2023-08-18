@@ -13,6 +13,7 @@ import { useErc20Allowance, useErc20Approve, useErc20BalanceOf, useErc20Decimals
 import { usePoolRepay, usePoolRepayWithATokens, usePoolSwapBorrowRateMode } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
 import { limitDecimals } from '../utils'
+import { AaveState } from '../utils/types'
 
 interface IBorrowedAssetsItemProps {
   address: `0x${string}`
@@ -27,7 +28,7 @@ const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : s
 
 export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, canSwitchRateMode, rateMode }: IBorrowedAssetsItemProps) => {
   const { address: user } = useAccount()
-  const { poolAddress } = useAave()
+  const { poolAddress } = useAave().data as AaveState
   const [repayAmount, setRepayAmount] = useState('')
   const [repayWithATokens, setRepayWithATokens] = useState(false)
 

@@ -19,7 +19,7 @@ The hook doesn't take any parameters.
 
 **Returns:**
 
-The hook returns an object with the following properties:
+The hook returns an object `data` with the following properties:
 
 - `reservesData`: An array of data on the reserves fetched from the Aave protocol, with information about each asset in the pool, such as total liquidity, total borrowings, liquidity rate, variable borrow rate, and more.
 
@@ -52,20 +52,7 @@ The hook returns an object with the following properties:
 **Example:**
 
 ```javascript
-const {
-  reservesData,
-  userReservesData,
-  usdData,
-  balanceInUsd,
-  totalDebtInUsd,
-  collateralInUsd,
-  maxBorrowableInUsd,
-  healthFactor,
-  averageSupplyApy,
-  averageBorrowApy,
-  averageNetApy,
-  poolAddress,
-} = useAave()
+const { data } = useAave()
 ```
 
 Also check the hooks generated at `integrations/aave/generated/aave-wagmi.ts`

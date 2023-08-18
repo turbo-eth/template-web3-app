@@ -8,12 +8,13 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { HealthFactor } from './health-factor'
 import { useAave } from '../hooks/use-aave'
 import { marketsData } from '../utils/market-config'
+import { AaveState } from '../utils/types'
 
 export const GeneralInfo = () => {
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
 
-  const { balanceInUsd, totalDebtInUsd, healthFactor, averageNetApy } = useAave()
+  const { balanceInUsd, totalDebtInUsd, healthFactor, averageNetApy } = useAave().data as AaveState
 
   return (
     <motion.div

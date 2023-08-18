@@ -1,10 +1,13 @@
-import { AssetToSupplyItem } from './asset-to-supply-item'
-import { useAave } from '../hooks/use-aave'
-import { Checkbox } from '@/components/ui/checkbox'
 import { useState } from 'react'
 
+import { Checkbox } from '@/components/ui/checkbox'
+
+import { AssetToSupplyItem } from './asset-to-supply-item'
+import { useAave } from '../hooks/use-aave'
+import { AaveState } from '../utils/types'
+
 export const ListAssetsToSupply = () => {
-  const { usdData } = useAave()
+  const { usdData } = useAave().data as AaveState
   const [showZeroBalanceAssets, setShowZeroBalanceAssets] = useState(false)
 
   return (

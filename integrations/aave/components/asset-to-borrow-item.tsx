@@ -11,6 +11,7 @@ import { useErc20Decimals } from '@/lib/generated/blockchain'
 
 import { usePoolBorrow } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
+import { AaveState } from '../utils/types'
 
 interface IAssetToSupplyItem {
   address: `0x${string}`
@@ -29,7 +30,7 @@ export const AssetToBorrowItem = ({
   stableBorrowRate,
   canBorrowStableRateMode,
 }: IAssetToSupplyItem) => {
-  const { maxBorrowableInUsd, poolAddress } = useAave()
+  const { maxBorrowableInUsd, poolAddress } = useAave().data as AaveState
   const { address: user } = useAccount()
   const [borrowAmount, setBorrowAmount] = useState('')
   const [borrowVariableRateMode, setBorrowVariableRateMode] = useState(true)

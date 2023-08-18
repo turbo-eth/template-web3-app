@@ -12,6 +12,7 @@ import { useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
 
 import { usePoolSetUserUseReserveAsCollateral, usePoolWithdraw } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
+import { AaveState } from '../utils/types'
 
 interface ISuppliedAssetsItemProps {
   address: `0x${string}`
@@ -25,7 +26,7 @@ const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : s
 
 export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeCollateral, liquidityRate }: ISuppliedAssetsItemProps) => {
   const { address: user } = useAccount()
-  const { poolAddress } = useAave()
+  const { poolAddress } = useAave().data as AaveState
 
   const symbol = getSymbol(useErc20Symbol({ address }).data)
   const { data: decimals } = useErc20Decimals({ address })

@@ -4,7 +4,7 @@ import { useAccount, useNetwork } from 'wagmi'
 
 import { useUiPoolDataProviderGetReservesData, useUiPoolDataProviderGetUserReservesData } from '../generated/aave-wagmi'
 import { MarketDataType, marketsData, supportedChains } from '../utils/market-config'
-import { ReserveData, UsdData, UserReserveData } from '../utils/types'
+import { AaveState, ReserveData, UsdData, UserReserveData } from '../utils/types'
 
 export const useAave = () => {
   const { address: user } = useAccount()
@@ -20,6 +20,7 @@ export const useAave = () => {
   const [averageBorrowApy, setAverageBorrowApy] = useState(0)
   const [averageNetApy, setAverageNetApy] = useState(0)
   const [chainSupported, setChainSupported] = useState(false)
+  const [data, setData] = useState<AaveState | null>(null)
 
   const { data: reservesData } = useUiPoolDataProviderGetReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
@@ -100,8 +101,23 @@ export const useAave = () => {
       setAverageSupplyApy(averageSupplyApy)
       setAverageBorrowApy(averageBorrowApy)
       setAverageNetApy(totalDebtInUsd > 0 ? (balanceInUsd * averageSupplyApy - totalDebtInUsd * averageBorrowApy) / netWorth : averageSupplyApy)
+      setData({
+        userReservesData,
+        usdData,
+        balanceInUsd,
+        collateralInUsd,
+        totalDebtInUsd,
+        averageSupplyApy,
+        averageBorrowApy,
+        averageNetApy,
+        maxBorrowableInUsd: maxBorrowableInUsd - totalDebtInUsd,
+        healthFactor: (collateralInNativeToken * averageLiquidationThreshold) / debtInNativeToken,
+        poolAddress: (market?.addresses.LENDING_POOL ?? '') as `0x${string}`,
+        chainSupported: true,
+      })
     } else {
       setChainSupported(supportedChains.includes(chain ? chain?.id : 1))
+      setData({ ...(data as AaveState), chainSupported: false })
     }
   }, [userReservesData, market, user, chain])
 
@@ -119,5 +135,6 @@ export const useAave = () => {
     averageNetApy,
     poolAddress: (market?.addresses.LENDING_POOL ?? '') as `0x${string}`,
     chainSupported,
+    data,
   }
 }

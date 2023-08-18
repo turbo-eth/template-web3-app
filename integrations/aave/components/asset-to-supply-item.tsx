@@ -11,6 +11,7 @@ import { useErc20Allowance, useErc20Approve, useErc20BalanceOf, useErc20Decimals
 
 import { usePoolSupply } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
+import { AaveState } from '../utils/types'
 
 interface IAssetToSupplyItem {
   address: `0x${string}`
@@ -22,7 +23,7 @@ interface IAssetToSupplyItem {
 }
 
 export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityRate, showIfZeroBalance }: IAssetToSupplyItem) => {
-  const { poolAddress } = useAave()
+  const { poolAddress } = useAave().data as AaveState
   const { address: user } = useAccount()
   const [supplyAmount, setSupplyAmount] = useState('')
 
