@@ -53,6 +53,8 @@ export const AssetToBorrowItem = ({
     borrowWrite()
   }
 
+  const setMaxAmount = () => setBorrowAmount(((maxBorrowableInUsd / tokenPriceInUsd) * 0.8).toFixed(2))
+
   return (
     <tr>
       <td className="mt-2 flex items-center justify-center px-4 py-2">
@@ -122,8 +124,7 @@ export const AssetToBorrowItem = ({
                         }
                         value = value.replace(',', '.')
                         setBorrowAmount(value)
-                        if (Number(value) > (maxBorrowableInUsd / tokenPriceInUsd) * 0.8)
-                          setBorrowAmount(((maxBorrowableInUsd / tokenPriceInUsd) * 0.8).toFixed(2))
+                        if (Number(value) > (maxBorrowableInUsd / tokenPriceInUsd) * 0.8) setMaxAmount()
                       }
                     }}
                   />
@@ -140,7 +141,13 @@ export const AssetToBorrowItem = ({
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>Available: {((maxBorrowableInUsd / tokenPriceInUsd) * 0.8).toFixed(2)}</span> {/* Showing 80% to keep health factor "safe" */}
+                  <div className="flex items-center justify-between">
+                    <span>Available: {((maxBorrowableInUsd / tokenPriceInUsd) * 0.8).toFixed(2)}</span>{' '}
+                    {/* Showing 80% to keep health factor "safe" */}
+                    <button className="btn ml-3" onClick={setMaxAmount}>
+                      Max
+                    </button>
+                  </div>
                 </div>
               </div>
               <ContractWriteButton

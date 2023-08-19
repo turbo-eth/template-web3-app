@@ -64,6 +64,8 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
     hash: data?.hash,
   })
 
+  const setMaxAmount = () => setWithdrawAmount(balance.toString())
+
   useEffect(() => {
     if (setUserUseReserveAsCollateralError) {
       if (setUserUseReserveAsCollateralError?.name === 'ContractFunctionExecutionError') {
@@ -124,7 +126,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
                         }
                         value = value.replace(',', '.')
                         setWithdrawAmount(value)
-                        if (balance - Number(value) < 0) setWithdrawAmount(balance.toString())
+                        if (balance - Number(value) < 0) setMaxAmount()
                       }
                     }}
                   />
@@ -141,7 +143,12 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>Available: {balance.toFixed(5)}</span>
+                  <div className="flex items-center justify-between">
+                    <span>Available: {balance.toFixed(5)}</span>
+                    <button className="btn ml-3" onClick={setMaxAmount}>
+                      Max
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="mb-2 mt-5">

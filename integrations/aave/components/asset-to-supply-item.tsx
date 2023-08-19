@@ -66,7 +66,8 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
   }
 
   const isApproving = () => Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(supplyAmount)
-  const getActionText = () => (isApproving() ? `Approve` : `Supply`)
+
+  const setMaxAmount = () => setSupplyAmount(Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toString())
 
   return tokenBalance !== BigInt(0) || showIfZeroBalance ? (
     <tr>
@@ -117,8 +118,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                         }
                         value = value.replace(',', '.')
                         setSupplyAmount(value)
-                        if (Number(value) > Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)))
-                          setSupplyAmount(Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toString())
+                        if (Number(value) > Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18))) setMaxAmount()
                       }
                     }}
                   />
@@ -135,7 +135,12 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>Available: {Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toFixed(5)}</span>
+                  <div className="flex items-center justify-between">
+                    <span>Available: {Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toFixed(5)}</span>
+                    <button className="btn ml-3" onClick={setMaxAmount}>
+                      Max
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="mb-2 mt-5">

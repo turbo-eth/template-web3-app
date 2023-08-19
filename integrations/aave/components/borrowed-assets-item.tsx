@@ -96,7 +96,14 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
   }
 
   const isApproving = () => Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(repayAmount)
-  const getActionText = () => (isApproving() ? `Approve` : `Repay`)
+
+  const setMaxAmount = () => {
+    if (Number(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18)) > debt) {
+      setRepayAmount(debt.toString())
+    } else {
+      setRepayAmount(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18))
+    }
+  }
 
   return (
     <tr>
@@ -193,10 +200,15 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>
-                    {repayWithATokens ? `a${symbol ?? ''} balance` : 'Wallet balance'}:{' '}
-                    {limitDecimals(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18), 5)}
-                  </span>
+                  <div className="flex items-center justify-between">
+                    <span>
+                      {repayWithATokens ? `a${symbol ?? ''} balance` : 'Wallet balance'}:{' '}
+                      {limitDecimals(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18), 5)}
+                    </span>
+                    <button className="btn ml-3" onClick={setMaxAmount}>
+                      Max
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="mb-2 mt-5">
