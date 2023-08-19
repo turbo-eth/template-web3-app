@@ -15,7 +15,8 @@ import { useEstimateTxFee } from '@/integrations/arweave/hooks/use-estimate-tx-f
 const useEditProfileAPI = () => {
   return useMutation({
     mutationFn: async ({ wallet, payload }: { wallet: JWKInterface; payload: UpdateArweaveAccountPayload }) => {
-      const [txId, response] = await updateArweaveAccount(wallet, payload)
+      const { txId, response, insufficientBalance } = await updateArweaveAccount(wallet, payload)
+      if (insufficientBalance) throw { insufficientBalance: true }
       if (response?.status !== 200) {
         throw (response?.data as { error: string }).error
       }

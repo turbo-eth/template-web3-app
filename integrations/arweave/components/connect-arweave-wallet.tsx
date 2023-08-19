@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 import { redirect } from 'next/navigation'
+import { useAccount } from 'wagmi'
 
 import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 import { Spinner } from './spinner'
@@ -8,10 +9,10 @@ import { Spinner } from './spinner'
 export function ConnectArweaveWallet() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
-  const { generate, wallet, importFromFile, error } = useArweaveWallet()
+  const { generate, wallet, importFromFile, error, generateBasedOnEthAddress } = useArweaveWallet()
+  const { address: ethAccountAddress } = useAccount()
   useEffect(() => {
-    if (wallet) setLoading(false)
-    if (error) setLoading(false)
+    if (wallet || error) setLoading(false)
   }, [wallet, error])
 
   if (loading) return <Spinner />
@@ -19,9 +20,22 @@ export function ConnectArweaveWallet() {
   if (!wallet)
     return (
       <div>
-        <div>Generate a new Arweave Wallet</div>
+        <div>Use your Eth address</div>
         <button
           className="btn btn-emerald mt-2"
+          disabled={!ethAccountAddress}
+          onClick={() => {
+            if (ethAccountAddress) {
+              setLoading(true)
+              void generateBasedOnEthAddress()
+            }
+          }}>
+          Generate wallet
+        </button>
+        <div className="my-5 text-slate-500"> - or - </div>
+        <div>Generate a new Arweave Wallet</div>
+        <button
+          className="btn btn-primary mt-2"
           onClick={() => {
             setLoading(true)
             void generate()
@@ -51,6 +65,9 @@ export function ConnectArweaveWallet() {
             <span className="text-sm text-red-400">{error}</span>
           </div>
         )}
+        <div className="w-80 text-sm text-gray-600 mt-4">
+          You can get a backup of your Arweave wallet by clicking your wallet address in the sidebar once connected.
+        </div>
       </div>
     )
 

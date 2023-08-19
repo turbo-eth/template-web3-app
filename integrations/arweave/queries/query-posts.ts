@@ -65,5 +65,9 @@ const buildQueryObject = (address = '', tags: ArweaveTxSearchTag[], cursor = '')
 export const queryPosts = async (address: string, tags: ArweaveTxSearchTag[], lastCursor?: string) => {
   const results = await arweave.api.post<QueryReturnType>('/graphql', buildQueryObject(address, tags, lastCursor))
   const txs = results.data.data.transactions
-  return { txs: txs.edges.map((edge) => edge.node), lastCursor: txs.edges[txs.edges.length - 1].cursor, hasNextPage: txs.pageInfo.hasNextPage }
+  return {
+    txs: txs.edges.map((edge) => edge.node),
+    lastCursor: txs.edges.length ? txs.edges[txs.edges.length - 1].cursor : '',
+    hasNextPage: txs.pageInfo.hasNextPage,
+  }
 }

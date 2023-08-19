@@ -4,8 +4,9 @@ import { useArweaveWallet } from '../../../hooks/use-arweave-wallet'
 import { getComponent } from '../../../utils/get-element-component'
 import { ConnectArweaveWallet } from '../../connect-arweave-wallet'
 import { FeeEstimation } from '../../fee-estimation'
+import { InsufficientBalanceError } from '../../insufficient-balance-error'
+import { PendingTx } from '../../pending-tx'
 import { Spinner } from '../../spinner'
-import { TxStatus } from '../../tx-status'
 import { arweaveAccountFormControls } from './controls'
 import { useArweaveAccountForm } from './hook'
 
@@ -55,7 +56,13 @@ const ArweaveAccountForm = () => {
               <button className="btn btn-emerald w-full" disabled={isLoading}>
                 {isLoading ? 'Loading...' : userHasAccount ? 'Update Arweave account' : 'Create Arweave account'}
               </button>
-              {isError && <div className="mt-3 font-medium text-red-500">Error: {error instanceof Error ? error.message : String(error)}</div>}
+              {isError ? (
+                (error as { insufficientBalance: boolean }).insufficientBalance ? (
+                  <InsufficientBalanceError />
+                ) : (
+                  <div className="mt-3 font-medium text-red-500">Error: {error instanceof Error ? error.message : String(error)}</div>
+                )
+              ) : null}
             </div>
           </form>
         </Form>
@@ -65,7 +72,7 @@ const ArweaveAccountForm = () => {
           <p className="text-center text-sm text-gray-500">Arweave profile is the universal account in arweave ecosystem.</p>
         </div>
       </div>
-      {isSuccess && data && <TxStatus txId={data} onConfirmation={getAccount} />}
+      {isSuccess && data && <PendingTx txId={data} onConfirmation={getAccount} />}
     </>
   )
 }

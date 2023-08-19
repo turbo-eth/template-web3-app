@@ -38,7 +38,19 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
       })
       .catch(console.error)
     getArweaveTxStatus(txId)
-      .then((res) => setTxStatus(res))
+      .then((res) => {
+        setTxStatus(res)
+        if (res && !res.confirmed) {
+          const intervalId = setInterval(() => {
+            getArweaveTxStatus(txId)
+              .then((res) => {
+                setTxStatus(res)
+                if (res?.confirmed) clearInterval(intervalId)
+              })
+              .catch(console.error)
+          }, 3000)
+        }
+      })
       .catch(console.error)
   }, [txId])
 
@@ -94,7 +106,10 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
               </div>
             </>
           ) : (
-            <div className="mt-2 text-sm">Pending</div>
+            <div className="flex space-x-4 mt-2 text-sm items-center">
+              <Spinner isSmall={true} />
+              Pending
+            </div>
           )}
         </div>
       )}

@@ -10,7 +10,8 @@ import { useArweaveWallet } from '../../hooks/use-arweave-wallet'
 import { truncateString } from '../../utils'
 import { ConnectArweaveWallet } from '../connect-arweave-wallet'
 import { FeeEstimation } from '../fee-estimation'
-import { TxStatus } from '../tx-status'
+import { InsufficientBalanceError } from '../insufficient-balance-error'
+import { PendingTx } from '../pending-tx'
 import { useArweavePostForm } from './hook'
 import { FormListTags } from './list-tags'
 
@@ -107,7 +108,13 @@ export const FormNewPost = () => {
               <button className="btn btn-emerald w-full" disabled={isLoading || estimation.isEstimatingTxFee}>
                 {isLoading ? 'Loading...' : 'Create Arweave post'}
               </button>
-              {isError && <div className="mt-3 font-medium text-red-500">Error: {error instanceof Error ? error.message : String(error)}</div>}
+              {isError ? (
+                (error as { insufficientBalance: boolean }).insufficientBalance ? (
+                  <InsufficientBalanceError />
+                ) : (
+                  <div className="mt-3 font-medium text-red-500">Error: {error instanceof Error ? error.message : String(error)}</div>
+                )
+              ) : null}
             </div>
           </form>
         </Form>
@@ -120,7 +127,7 @@ export const FormNewPost = () => {
       {isSuccess && data && (
         <div className="card container mt-10 w-full">
           <div className="flex items-center justify-between">
-            <TxStatus txId={data} />
+            <PendingTx txId={data} />
           </div>
         </div>
       )}

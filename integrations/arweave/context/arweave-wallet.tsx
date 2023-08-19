@@ -3,10 +3,17 @@ import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 
 import { ArAccount } from 'arweave-account'
 import { JWKInterface } from 'arweave/node/lib/wallet'
+import { TransactionStatusResponse } from 'arweave/node/transactions'
+import { useAccount } from 'wagmi'
 
-import { generateArweaveWallet, getArweaveWalletAddress, getArweaveWalletBalance } from '..'
+import { CONFIRMED_THRESHOLD, generateArweaveWallet, getArweaveTxStatus, getArweaveWalletAddress, getArweaveWalletBalance } from '..'
 import { getUserAccount } from '../arweave-account'
-import { ArweaveAmount } from '../utils/types'
+import { AddPendingTxPayload, ArweaveAmount, ArweaveTxId } from '../utils/types'
+
+type PendingTx = {
+  txId: ArweaveTxId
+  status: TransactionStatusResponse | null
+}
 
 export interface IArweaveWalletContext {
   account: ArAccount | null
@@ -16,11 +23,14 @@ export interface IArweaveWalletContext {
   error: string | null
   address: string | null
   balance: ArweaveAmount | null
+  pendingTxs: PendingTx[]
   disconnect: () => void
   generate: () => Promise<void>
   importFromFile: (file: File) => Promise<void>
   backupWallet: () => Promise<void>
   getBalance: () => Promise<void>
+  generateBasedOnEthAddress: () => Promise<void>
+  addPendingTx: ({ txId, onConfirmation }: AddPendingTxPayload) => void
   getAccount: () => void
 }
 
@@ -32,6 +42,7 @@ export const ArweaveWalletContext = createContext<IArweaveWalletContext>({
   error: null,
   address: null,
   balance: null,
+  pendingTxs: [],
   disconnect: () => {
     return
   },
@@ -39,6 +50,8 @@ export const ArweaveWalletContext = createContext<IArweaveWalletContext>({
   importFromFile: () => Promise.resolve(),
   backupWallet: () => Promise.resolve(),
   getBalance: () => Promise.resolve(),
+  generateBasedOnEthAddress: () => Promise.resolve(),
+  addPendingTx: () => Promise.resolve(),
   getAccount: () => {
     return
   },
@@ -48,9 +61,11 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
   const [wallet, setWallet] = useState<JWKInterface | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [address, setAddress] = useState<string | null>(null)
+  const [pendingTxs, setPendingTxs] = useState<PendingTx[]>([])
   const [balance, setBalance] = useState<ArweaveAmount | null>(null)
   const [account, setAccount] = useState<ArAccount | null>(null)
   const [isAccountLoading, setIsAccountLoading] = useState<boolean>(true)
+  const { address: ethAccountAddress } = useAccount()
 
   const getAccount = useCallback(() => {
     if (wallet) {
@@ -72,12 +87,21 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
     setWallet(null)
     setAddress(null)
     setBalance(null)
+    setPendingTxs([])
   }, [])
 
   const generate = useCallback(async () => {
     const wallet = await generateArweaveWallet()
     setWallet(wallet)
   }, [])
+
+  const generateBasedOnEthAddress = useCallback(async () => {
+    if (ethAccountAddress) {
+      const wallet = await generateArweaveWallet()
+      localStorage.setItem(`coupled-arweave-wallet-${ethAccountAddress}`, JSON.stringify(wallet))
+      setWallet(wallet)
+    }
+  }, [ethAccountAddress])
 
   const importFromFile = useCallback(async (file: File) => {
     try {
@@ -131,6 +155,32 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
     }
   }, [wallet])
 
+  // this hook is responsible for checking if there's a coupled wallet stored in localStorage
+  useEffect(() => {
+    if (!ethAccountAddress && wallet) {
+      disconnect()
+    } else if (ethAccountAddress) {
+      const storedWallet = localStorage.getItem(`coupled-arweave-wallet-${ethAccountAddress}`)
+      if (storedWallet) {
+        setWallet(JSON.parse(storedWallet) as JWKInterface)
+      }
+    }
+  }, [ethAccountAddress])
+
+  const addPendingTx = useCallback(({ txId, onConfirmation }: AddPendingTxPayload) => {
+    setPendingTxs((prevTxs) => [...prevTxs, { txId, status: null }])
+    const intervalId = setInterval(async () => {
+      const status = await getArweaveTxStatus(txId)
+      const numberOfConfirmations = status.confirmed?.number_of_confirmations
+      if (numberOfConfirmations && numberOfConfirmations > CONFIRMED_THRESHOLD) {
+        setPendingTxs((prevTxs) => [...prevTxs.filter((tx) => tx.txId !== txId), { txId, status }])
+        onConfirmation && (await onConfirmation())
+        getBalance().catch(console.error)
+        clearInterval(intervalId)
+      }
+    }, 3000)
+  }, [])
+
   const value: IArweaveWalletContext = useMemo(
     () => ({
       account,
@@ -146,8 +196,11 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
       importFromFile,
       backupWallet,
       getBalance,
+      generateBasedOnEthAddress,
+      addPendingTx,
+      pendingTxs,
     }),
-    [address, wallet, balance, error, account, isAccountLoading]
+    [address, wallet, balance, error, account, isAccountLoading, pendingTxs]
   )
   return <ArweaveWalletContext.Provider value={value}>{children}</ArweaveWalletContext.Provider>
 }

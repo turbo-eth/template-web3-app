@@ -9,14 +9,16 @@ import { useEstimateTxFee } from '../../hooks/use-estimate-tx-fee'
 import { convertBlobToBase64 } from '../../utils'
 import { ConnectArweaveWallet } from '../connect-arweave-wallet'
 import { FeeEstimation } from '../fee-estimation'
+import { InsufficientBalanceError } from '../insufficient-balance-error'
+import { PendingTx } from '../pending-tx'
 import { Spinner } from '../spinner'
-import { TxStatus } from '../tx-status'
 
 export const ArweaveAccount = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [picture, setPicture] = useState<{ file: ArrayBuffer; type: string; url: string } | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [txId, setTxId] = useState<string | null>(null)
+  const [insufficientBalance, setInsufficientBalance] = useState<boolean>(false)
   const [uploading, setUploading] = useState<boolean>(false)
   const { address, account, wallet, getAccount } = useArweaveWallet()
   const handleName = account?.profile?.handleName ?? null
@@ -24,9 +26,14 @@ export const ArweaveAccount = () => {
   const upload = useCallback(async () => {
     if (wallet && picture && account?.profile) {
       setUploading(true)
-      const [txId, response] = await uploadArweaveAccountAvatar(wallet, account?.profile, picture.file, picture.type)
-      if (response.status !== 200) {
-        setError(`${response.statusText} - ${(response?.data as { error: string }).error}`)
+      const { txId, response, insufficientBalance } = await uploadArweaveAccountAvatar(wallet, account?.profile, picture.file, picture.type)
+      if (insufficientBalance) {
+        setInsufficientBalance(true)
+        setUploading(false)
+        return
+      }
+      if (response?.status !== 200) {
+        setError(`${response?.statusText ?? ''} - ${(response?.data as { error: string }).error}`)
         setUploading(false)
         return
       }
@@ -60,6 +67,7 @@ export const ArweaveAccount = () => {
             </div>
           </div>
         )}
+        {insufficientBalance && <InsufficientBalanceError />}
         {error && <div className="mt-3 font-medium text-red-500">Error: {String(error)}</div>}
       </div>
       <input
@@ -71,6 +79,7 @@ export const ArweaveAccount = () => {
         onChange={(e) => {
           if (e.target.files) {
             setError(null)
+            setInsufficientBalance(false)
             const blobUrl = URL.createObjectURL(e.target.files[0])
             fetch(blobUrl)
               .then((r) => r.blob())
@@ -87,7 +96,7 @@ export const ArweaveAccount = () => {
         }}
       />
       {txId && (
-        <TxStatus
+        <PendingTx
           txId={txId}
           onConfirmation={() => {
             getAccount()

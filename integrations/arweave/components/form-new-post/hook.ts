@@ -27,9 +27,10 @@ const useCreateArweavePostAPI = () => {
       const tx = await createArweaveDataTx(wallet, payload.data ?? payload.file)
       const { winston } = await getArweaveWalletBalance(wallet)
       if (tx.reward > winston) throw `Insufficient balance, tx fee: ${arweave.ar.winstonToAr(tx.reward)} AR.`
-      const [txId, response] = await signAndSendArweaveTx(wallet, tx, payload.tags, !!payload.file)
-      if (response.status !== 200) {
-        throw `${response.statusText} - ${(response?.data as { error: string }).error}`
+      const { txId, response, insufficientBalance } = await signAndSendArweaveTx(wallet, tx, payload.tags, !!payload.file)
+      if (insufficientBalance) throw { insufficientBalance: true }
+      if (response?.status !== 200) {
+        throw `${response?.statusText ?? ''} - ${(response?.data as { error: string }).error}`
       }
       return txId
     },

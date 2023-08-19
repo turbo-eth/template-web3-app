@@ -3,7 +3,7 @@ import Transaction from 'arweave/node/lib/transaction'
 import { bufferToString, stringToBuffer } from 'arweave/node/lib/utils'
 import { JWKInterface } from 'arweave/node/lib/wallet'
 
-import { ArweaveAmount, ArweaveTxId, ArweaveTxPostResponse, ArweaveTxTag } from './utils/types'
+import { ArweaveAmount, ArweaveTxId, ArweaveTxTag, SignAndSendArweaveTxResponse } from './utils/types'
 
 const arweaveConfig = {
   host: 'arweave.net', // Hostname or IP address for a Arweave host
@@ -12,7 +12,11 @@ const arweaveConfig = {
   timeout: 20000, // Network request timeouts in milliseconds
   logging: false, // Enable network request logging
 }
+
 export const arweave = Arweave.init(arweaveConfig)
+// Threshold to detect if a tx is confirmed, should be set to a higher number
+// this is just for the demo purpose.
+export const CONFIRMED_THRESHOLD = 0
 
 export const arweaveGatewayUrl = `${arweaveConfig.protocol}://${arweaveConfig.host}:${arweaveConfig.port}/`
 
@@ -58,7 +62,7 @@ export const signAndSendArweaveTx = async (
   tx: Transaction,
   tags: Array<ArweaveTxTag>,
   hasFile = false
-): Promise<[ArweaveTxId, ArweaveTxPostResponse]> => {
+): Promise<SignAndSendArweaveTxResponse> => {
   tags.forEach((tag) => {
     tx.addTag(tag.name, tag.value)
   })
@@ -70,10 +74,14 @@ export const signAndSendArweaveTx = async (
     while (!uploader.isComplete) {
       await uploader.uploadChunk()
     }
-    return [tx.id, { status: uploader.lastResponseStatus, statusText: uploader.lastResponseError, data: null }]
+    return {
+      response: { status: uploader.lastResponseStatus, statusText: uploader.lastResponseError, data: null },
+      insufficientBalance: false,
+      txId: tx.id,
+    }
   } else {
     const response = await arweave.transactions.post(tx)
-    return [tx.id, response]
+    return { txId: tx.id, response, insufficientBalance: false }
   }
 }
 
