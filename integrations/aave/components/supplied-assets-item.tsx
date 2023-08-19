@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { TiArrowRight } from 'react-icons/ti'
 import { parseUnits } from 'viem'
-import { useAccount } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Switch } from '@/components/ui/switch'
@@ -49,9 +50,18 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
     args: [address, !collateralEnabled],
   })
 
-  const { error: withdrawError, write: withdrawWrite } = usePoolWithdraw({
+  const {
+    error: withdrawError,
+    data: data,
+    isLoading: isLoadingWrite,
+    write: withdrawWrite,
+  } = usePoolWithdraw({
     address: poolAddress,
     args: [address, getWithdrawAmount(), user as `0x${string}`],
+  })
+
+  const { isLoading: isLoadingTx } = useWaitForTransaction({
+    hash: data?.hash,
   })
 
   useEffect(() => {
@@ -155,9 +165,16 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
                   </div>
                 </div>
               </div>
-              <button className="btn btn-primary mt-5 w-full" disabled={!Number(withdrawAmount)} onClick={buttonAction}>
-                Withdraw {symbol}
-              </button>
+              <ContractWriteButton
+                className="btn btn-primary mt-5 w-full"
+                disabled={!Number(withdrawAmount)}
+                isLoadingTx={isLoadingTx}
+                isLoadingWrite={isLoadingWrite}
+                loadingTxText="Withdrawing..."
+                write={!!withdrawWrite}
+                onClick={buttonAction}>
+                {`Withdraw ${symbol ?? ''}`}
+              </ContractWriteButton>
             </DialogDescription>
           </DialogContent>
         </Dialog>

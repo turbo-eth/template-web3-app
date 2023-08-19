@@ -39,7 +39,7 @@ export const ListBorrowedAssets = () => {
               </thead>
               <tbody>
                 {filteredUserReserves?.map((userReserve, index) => {
-                  const reserve = usdData.find((reserve) => reserve.underlyingAsset === userReserve.underlyingAsset)
+                  const reserve = usdData?.find((reserve) => reserve.underlyingAsset === userReserve.underlyingAsset)
                   const isVariableRate = userReserve.scaledVariableDebt > BigInt(0)
                   const decimalsAsNumber = Number(reserve?.reserveData.decimals) ?? 18
 

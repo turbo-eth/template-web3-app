@@ -2,8 +2,9 @@ import { useState } from 'react'
 
 import Image from 'next/image'
 import { parseUnits } from 'viem'
-import { useAccount } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -35,9 +36,17 @@ export const AssetToBorrowItem = ({
   const [borrowVariableRateMode, setBorrowVariableRateMode] = useState(true)
   const { data: decimals } = useErc20Decimals({ address })
 
-  const { write: borrowWrite } = usePoolBorrow({
+  const {
+    data,
+    isLoading: isLoadingWrite,
+    write: borrowWrite,
+  } = usePoolBorrow({
     address: poolAddress,
     args: [address, parseUnits(`${Number(borrowAmount)}`, decimals ?? 18), borrowVariableRateMode ? BigInt(2) : BigInt(1), 0, user as `0x${string}`],
+  })
+
+  const { isLoading: isLoadingTx } = useWaitForTransaction({
+    hash: data?.hash,
   })
 
   const buttonAction = () => {
@@ -134,9 +143,16 @@ export const AssetToBorrowItem = ({
                   <span>Available: {((maxBorrowableInUsd / tokenPriceInUsd) * 0.8).toFixed(2)}</span> {/* Showing 80% to keep health factor "safe" */}
                 </div>
               </div>
-              <button className="btn btn-primary mt-5 w-full" disabled={!Number(borrowAmount)} onClick={buttonAction}>
+              <ContractWriteButton
+                className="btn btn-primary mt-5 w-full"
+                disabled={!Number(borrowAmount)}
+                isLoadingTx={isLoadingTx}
+                isLoadingWrite={isLoadingWrite}
+                loadingTxText="Borrowing..."
+                write={!!borrowWrite}
+                onClick={buttonAction}>
                 Borrow {symbol}
-              </button>
+              </ContractWriteButton>
             </DialogDescription>
           </DialogContent>
         </Dialog>
