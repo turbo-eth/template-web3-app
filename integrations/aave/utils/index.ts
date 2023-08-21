@@ -1,9 +1,6 @@
-interface ICoinApiResponse {
-  time: string
-  asset_id_base: string
-  asset_id_quote: string
-  rate: string
-}
+import { zeroAddress } from 'viem'
+
+import { AaveState } from './types'
 
 export const limitDecimals = (input: string, decimalPlaces: number): string => {
   const parts = input.split('.')
@@ -15,13 +12,17 @@ export const limitDecimals = (input: string, decimalPlaces: number): string => {
   }
 }
 
-export const getTokenPrice = async (symbol: string): Promise<ICoinApiResponse> => {
-  try {
-    const response = await fetch(`https://rest.coinapi.io/v1/exchangerate/${symbol}/USD?apikey=EF7D1235-5AC4-4044-9443-32908878A370`)
-    const data: ICoinApiResponse = await response.json()
-    return data
-  } catch (e) {
-    console.error(e)
-    throw e // If you need to propagate the error.
-  }
-}
+export const getDefaultUseAaveState = (): AaveState => ({
+  healthFactor: 0,
+  balanceInUsd: 0,
+  collateralInUsd: 0,
+  totalDebtInUsd: 0,
+  maxBorrowableInUsd: 0,
+  averageSupplyApy: 0,
+  averageBorrowApy: 0,
+  averageNetApy: 0,
+  poolAddress: zeroAddress,
+  chainSupported: false,
+  userReservesData: null,
+  usdData: null,
+})

@@ -3,8 +3,9 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { TiArrowRight } from 'react-icons/ti'
 import { formatUnits, parseUnits } from 'viem'
-import { useAccount } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -27,7 +28,7 @@ const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : s
 
 export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, canSwitchRateMode, rateMode }: IBorrowedAssetsItemProps) => {
   const { address: user } = useAccount()
-  const { poolAddress } = useAave()
+  const { poolAddress } = useAave().data
   const [repayAmount, setRepayAmount] = useState('')
   const [repayWithATokens, setRepayWithATokens] = useState(false)
 
@@ -35,19 +36,44 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
   const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined, watch: true })
   const { data: decimals } = useErc20Decimals({ address })
   const allowance = useErc20Allowance({ address, args: user ? [user, poolAddress] : undefined, watch: true }).data
-  const { write: approveWrite } = useErc20Approve({
+
+  const {
+    data: dataApprove,
+    isLoading: isLoadingApproveWrite,
+    write: approveWrite,
+  } = useErc20Approve({
     address,
     args: [poolAddress, parseUnits(`${Number(repayAmount)}`, decimals ?? 18)],
   })
 
-  const { write: repayWrite } = usePoolRepay({
+  const { isLoading: isLoadingApproveTx } = useWaitForTransaction({
+    hash: dataApprove?.hash,
+  })
+
+  const {
+    data: dataRepay,
+    isLoading: isLoadingRepayWrite,
+    write: repayWrite,
+  } = usePoolRepay({
     address: poolAddress,
     args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), rateMode, user as `0x${string}`],
   })
 
-  const { write: repayWithATokensWrite } = usePoolRepayWithATokens({
+  const { isLoading: isLoadingRepayTx } = useWaitForTransaction({
+    hash: dataRepay?.hash,
+  })
+
+  const {
+    data: dataRepayATokens,
+    isLoading: isLoadingRepayATokensWrite,
+    write: repayWithATokensWrite,
+  } = usePoolRepayWithATokens({
     address: poolAddress,
     args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), rateMode],
+  })
+
+  const { isLoading: isLoadingRepayATokensTx } = useWaitForTransaction({
+    hash: dataRepayATokens?.hash,
   })
 
   const { write: swapBorrowRateModeWrite } = usePoolSwapBorrowRateMode({
@@ -66,6 +92,16 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
       } else {
         repayWrite()
       }
+    }
+  }
+
+  const isApproving = () => Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(repayAmount)
+
+  const setMaxAmount = () => {
+    if (Number(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18)) > debt) {
+      setRepayAmount(debt.toString())
+    } else {
+      setRepayAmount(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18))
     }
   }
 
@@ -164,10 +200,15 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>
-                    {repayWithATokens ? `a${symbol ?? ''} balance` : 'Wallet balance'}:{' '}
-                    {limitDecimals(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18), 5)}
-                  </span>
+                  <div className="flex items-center justify-between">
+                    <span>
+                      {repayWithATokens ? `a${symbol ?? ''} balance` : 'Wallet balance'}:{' '}
+                      {limitDecimals(formatUnits(getRepayBalance() ?? BigInt(1), decimals ?? 18), 5)}
+                    </span>
+                    <button className="btn ml-3" onClick={setMaxAmount}>
+                      Max
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="mb-2 mt-5">
@@ -191,11 +232,16 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
                   </div>
                 </div>
               </div>
-              <button className="btn btn-primary mt-5 w-full" disabled={!Number(repayAmount)} onClick={buttonAction}>
-                {Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(repayAmount)
-                  ? `Approve ${symbol ?? ''}`
-                  : `Repay ${symbol ?? ''}`}
-              </button>
+              <ContractWriteButton
+                className="btn btn-primary mt-5 w-full"
+                disabled={!Number(repayAmount)}
+                isLoadingTx={isLoadingApproveTx || isLoadingRepayTx || isLoadingRepayATokensTx}
+                isLoadingWrite={isLoadingApproveWrite || isLoadingRepayWrite || isLoadingRepayATokensWrite}
+                loadingTxText={isApproving() ? `Approving...` : `Repaying...`}
+                write={!!approveWrite || !!repayWrite || !!repayWithATokensWrite}
+                onClick={buttonAction}>
+                {`${isApproving() ? `Approve` : `Repay`} ${symbol ?? ''}`}
+              </ContractWriteButton>
             </DialogDescription>
           </DialogContent>
         </Dialog>

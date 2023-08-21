@@ -250,3 +250,15 @@ export const marketsData: MarketDataType[] = [
     v3: true,
   },
 ]
+
+export const supportedChains: number[] = [
+  arbitrum.id,
+  arbitrumGoerli.id,
+  goerli.id,
+  mainnet.id,
+  optimism.id,
+  optimismGoerli.id,
+  polygon.id,
+  polygonMumbai.id,
+  sepolia.id,
+]

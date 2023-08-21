@@ -3,8 +3,9 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { TiTick } from 'react-icons/ti'
 import { formatUnits, parseUnits } from 'viem'
-import { useAccount } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useErc20Allowance, useErc20Approve, useErc20BalanceOf, useErc20Decimals } from '@/lib/generated/blockchain'
@@ -18,34 +19,57 @@ interface IAssetToSupplyItem {
   canBeCollateral: boolean
   tokenPriceInUsd: number
   liquidityRate: number
+  showIfZeroBalance: boolean
 }
 
-export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityRate }: IAssetToSupplyItem) => {
-  const { poolAddress } = useAave()
+export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityRate, showIfZeroBalance }: IAssetToSupplyItem) => {
+  const { poolAddress } = useAave().data
   const { address: user } = useAccount()
   const [supplyAmount, setSupplyAmount] = useState('')
 
   const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined, watch: true })
   const { data: decimals } = useErc20Decimals({ address })
   const allowance = useErc20Allowance({ address, args: user ? [user, poolAddress] : undefined, watch: true }).data
-  const { write: approveWrite } = useErc20Approve({
+
+  const {
+    data: dataApprove,
+    isLoading: isLoadingApproveWrite,
+    write: approveWrite,
+  } = useErc20Approve({
     address,
     args: [poolAddress, parseUnits(`${Number(supplyAmount)}`, decimals ?? 18)],
   })
-  const { write: repayWrite } = usePoolSupply({
+
+  const { isLoading: isLoadingApproveTx } = useWaitForTransaction({
+    hash: dataApprove?.hash,
+  })
+
+  const {
+    data: dataSupply,
+    isLoading: isLoadingSupplyWrite,
+    write: supplyWrite,
+  } = usePoolSupply({
     address: poolAddress,
     args: [address, parseUnits(`${Number(supplyAmount)}`, decimals ?? 18), user as `0x${string}`, 0],
+  })
+
+  const { isLoading: isLoadingSupplyTx } = useWaitForTransaction({
+    hash: dataSupply?.hash,
   })
 
   const buttonAction = () => {
     if (Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(supplyAmount)) {
       approveWrite()
     } else {
-      repayWrite()
+      supplyWrite()
     }
   }
 
-  return (
+  const isApproving = () => Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(supplyAmount)
+
+  const setMaxAmount = () => setSupplyAmount(Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toString())
+
+  return tokenBalance !== BigInt(0) || showIfZeroBalance ? (
     <tr>
       <td className="mt-2 flex items-center justify-center px-4 py-2">
         <Image
@@ -94,8 +118,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                         }
                         value = value.replace(',', '.')
                         setSupplyAmount(value)
-                        if (Number(value) > Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)))
-                          setSupplyAmount(Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toString())
+                        if (Number(value) > Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18))) setMaxAmount()
                       }
                     }}
                   />
@@ -112,7 +135,12 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>Available: {Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toFixed(5)}</span>
+                  <div className="flex items-center justify-between">
+                    <span>Available: {Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toFixed(5)}</span>
+                    <button className="btn ml-3" onClick={setMaxAmount}>
+                      Max
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="mb-2 mt-5">
@@ -128,15 +156,22 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                   <span className={canBeCollateral ? 'text-green-500' : 'text-red-500'}>{canBeCollateral ? 'Enabled' : 'Disabled'}</span>
                 </div>
               </div>
-              <button className="btn btn-primary mt-5 w-full" disabled={!Number(supplyAmount)} onClick={buttonAction}>
-                {Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(supplyAmount)
-                  ? `Approve ${symbol ?? ''}`
-                  : `Supply ${symbol ?? ''}`}
-              </button>
+              <ContractWriteButton
+                className="btn btn-primary mt-5 w-full"
+                disabled={!Number(supplyAmount)}
+                isLoadingTx={isLoadingApproveTx || isLoadingSupplyTx}
+                isLoadingWrite={isLoadingApproveWrite || isLoadingSupplyWrite}
+                loadingTxText={isApproving() ? `Approving...` : `Supplying...`}
+                write={!!approveWrite || !!supplyWrite}
+                onClick={buttonAction}>
+                {`${isApproving() ? `Approve` : `Supply`} ${symbol}`}
+              </ContractWriteButton>
             </DialogDescription>
           </DialogContent>
         </Dialog>
       </td>
     </tr>
+  ) : (
+    <div></div>
   )
 }

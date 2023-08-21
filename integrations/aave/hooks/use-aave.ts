@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import { useAccount, useNetwork } from 'wagmi'
 
 import { useUiPoolDataProviderGetReservesData, useUiPoolDataProviderGetUserReservesData } from '../generated/aave-wagmi'
-import { MarketDataType, marketsData } from '../utils/market-config'
-import { ReserveData, UsdData, UserReserveData } from '../utils/types'
+import { getDefaultUseAaveState } from '../utils'
+import { MarketDataType, marketsData, supportedChains } from '../utils/market-config'
+import { AaveState, ReserveData, UsdData, UserReserveData } from '../utils/types'
 
 export const useAave = () => {
   const { address: user } = useAccount()
@@ -19,6 +20,8 @@ export const useAave = () => {
   const [averageSupplyApy, setAverageSupplyApy] = useState(0)
   const [averageBorrowApy, setAverageBorrowApy] = useState(0)
   const [averageNetApy, setAverageNetApy] = useState(0)
+  const [chainSupported, setChainSupported] = useState(false)
+  const [data, setData] = useState<AaveState>(getDefaultUseAaveState())
 
   const { data: reservesData } = useUiPoolDataProviderGetReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
@@ -99,8 +102,25 @@ export const useAave = () => {
       setAverageSupplyApy(averageSupplyApy)
       setAverageBorrowApy(averageBorrowApy)
       setAverageNetApy(totalDebtInUsd > 0 ? (balanceInUsd * averageSupplyApy - totalDebtInUsd * averageBorrowApy) / netWorth : averageSupplyApy)
+      setData({
+        userReservesData,
+        usdData,
+        balanceInUsd,
+        collateralInUsd,
+        totalDebtInUsd,
+        averageSupplyApy,
+        averageBorrowApy,
+        averageNetApy,
+        maxBorrowableInUsd: maxBorrowableInUsd - totalDebtInUsd,
+        healthFactor: (collateralInNativeToken * averageLiquidationThreshold) / debtInNativeToken,
+        poolAddress: (market?.addresses.LENDING_POOL ?? '') as `0x${string}`,
+        chainSupported: true,
+      })
+    } else {
+      setChainSupported(supportedChains.includes(chain ? chain?.id : 1))
+      setData({ ...data, chainSupported: false })
     }
-  }, [userReservesData, market, user])
+  }, [userReservesData, market, user, chain])
 
   return {
     reservesData,
@@ -115,5 +135,7 @@ export const useAave = () => {
     averageBorrowApy,
     averageNetApy,
     poolAddress: (market?.addresses.LENDING_POOL ?? '') as `0x${string}`,
+    chainSupported,
+    data,
   }
 }

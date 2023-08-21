@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { TiArrowRight } from 'react-icons/ti'
 import { parseUnits } from 'viem'
-import { useAccount } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 
+import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Switch } from '@/components/ui/switch'
@@ -25,7 +26,7 @@ const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : s
 
 export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeCollateral, liquidityRate }: ISuppliedAssetsItemProps) => {
   const { address: user } = useAccount()
-  const { poolAddress } = useAave()
+  const { poolAddress } = useAave().data
 
   const symbol = getSymbol(useErc20Symbol({ address }).data)
   const { data: decimals } = useErc20Decimals({ address })
@@ -49,10 +50,21 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
     args: [address, !collateralEnabled],
   })
 
-  const { error: withdrawError, write: withdrawWrite } = usePoolWithdraw({
+  const {
+    error: withdrawError,
+    data: data,
+    isLoading: isLoadingWrite,
+    write: withdrawWrite,
+  } = usePoolWithdraw({
     address: poolAddress,
     args: [address, getWithdrawAmount(), user as `0x${string}`],
   })
+
+  const { isLoading: isLoadingTx } = useWaitForTransaction({
+    hash: data?.hash,
+  })
+
+  const setMaxAmount = () => setWithdrawAmount(balance.toString())
 
   useEffect(() => {
     if (setUserUseReserveAsCollateralError) {
@@ -114,7 +126,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
                         }
                         value = value.replace(',', '.')
                         setWithdrawAmount(value)
-                        if (balance - Number(value) < 0) setWithdrawAmount(balance.toString())
+                        if (balance - Number(value) < 0) setMaxAmount()
                       }
                     }}
                   />
@@ -131,7 +143,12 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div></div>
-                  <span>Available: {balance.toFixed(5)}</span>
+                  <div className="flex items-center justify-between">
+                    <span>Available: {balance.toFixed(5)}</span>
+                    <button className="btn ml-3" onClick={setMaxAmount}>
+                      Max
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="mb-2 mt-5">
@@ -155,9 +172,16 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
                   </div>
                 </div>
               </div>
-              <button className="btn btn-primary mt-5 w-full" disabled={!Number(withdrawAmount)} onClick={buttonAction}>
-                Withdraw {symbol}
-              </button>
+              <ContractWriteButton
+                className="btn btn-primary mt-5 w-full"
+                disabled={!Number(withdrawAmount)}
+                isLoadingTx={isLoadingTx}
+                isLoadingWrite={isLoadingWrite}
+                loadingTxText="Withdrawing..."
+                write={!!withdrawWrite}
+                onClick={buttonAction}>
+                {`Withdraw ${symbol ?? ''}`}
+              </ContractWriteButton>
             </DialogDescription>
           </DialogContent>
         </Dialog>

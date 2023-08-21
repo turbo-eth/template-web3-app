@@ -74,4 +74,19 @@ interface UsdData extends UserReserveData {
   borrowProportion: number
 }
 
-export type { UserReserveData, ReserveData, UsdData }
+interface AaveState {
+  userReservesData: UserReserveData[] | null
+  healthFactor: number
+  balanceInUsd: number
+  collateralInUsd: number
+  totalDebtInUsd: number
+  maxBorrowableInUsd: number
+  averageSupplyApy: number
+  averageBorrowApy: number
+  averageNetApy: number
+  usdData: UsdData[] | null
+  poolAddress: `0x${string}`
+  chainSupported: boolean
+}
+
+export type { UserReserveData, ReserveData, UsdData, AaveState }
