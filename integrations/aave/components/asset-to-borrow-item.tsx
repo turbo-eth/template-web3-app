@@ -175,7 +175,7 @@ export const AssetToBorrowItem = ({
               </div>
               <ContractWriteButton
                 className="btn btn-primary mt-5 w-full"
-                disabled={!Number(borrowAmount)}
+                disabled={!Number(borrowAmount) || isLoadingTx || isLoadingWrite}
                 isLoadingTx={isLoadingTx}
                 isLoadingWrite={isLoadingWrite}
                 loadingTxText="Borrowing..."
