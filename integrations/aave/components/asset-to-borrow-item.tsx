@@ -17,6 +17,7 @@ interface IAssetToSupplyItem {
   address: `0x${string}`
   symbol: string
   tokenPriceInUsd: number
+  aTokensBalance: number
   variableBorrowRate: number
   stableBorrowRate?: number
   canBorrowStableRateMode?: boolean
@@ -24,6 +25,7 @@ interface IAssetToSupplyItem {
 
 export const AssetToBorrowItem = ({
   address,
+  aTokensBalance,
   symbol,
   tokenPriceInUsd,
   variableBorrowRate,
@@ -50,6 +52,9 @@ export const AssetToBorrowItem = ({
   })
 
   const buttonAction = () => {
+    if (Number(borrowAmount) < aTokensBalance && !borrowVariableRateMode) {
+      return alert('You have to borrow more than the amount supplied on stable rate mode!')
+    }
     borrowWrite()
   }
 
