@@ -26,6 +26,8 @@ export const env = createEnv({
     NEXT_PUBLIC_INFURA_API_KEY: z.string().min(1).optional(),
     NEXT_PUBLIC_LIVEPEER_API_KEY: z.string().min(1).optional(),
     NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
+    NEXT_PUBLIC_GITCOIN_PASSPORT_API_KEY: z.string().min(1),
+    NEXT_PUBLIC_GITCOIN_PASSPORT_SCORER_ID: z.string().min(1),
   },
   runtimeEnv: {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
@@ -33,6 +35,8 @@ export const env = createEnv({
     APP_ADMINS: process.env.APP_ADMINS,
     DISCO_API_KEY: process.env.DISCO_API_KEY,
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    NEXT_PUBLIC_GITCOIN_PASSPORT_API_KEY: process.env.NEXT_PUBLIC_GITCOIN_PASSPORT_API_KEY,
+    NEXT_PUBLIC_GITCOIN_PASSPORT_SCORER_ID: process.env.NEXT_PUBLIC_GITCOIN_PASSPORT_SCORER_ID,
     NEXT_PUBLIC_PROD_NETWORKS_DEV: process.env.NEXT_PUBLIC_PROD_NETWORKS_DEV,
     ETHERSCAN_API_KEY: process.env.ETHERSCAN_API_KEY,
     ETHERSCAN_API_KEY_OPTIMISM: process.env.ETHERSCAN_API_KEY_OPTIMISM,
