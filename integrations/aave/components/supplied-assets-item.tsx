@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Switch } from '@/components/ui/switch'
 import { useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
+import { useToast } from '@/lib/hooks/use-toast'
 
 import { usePoolSetUserUseReserveAsCollateral, usePoolWithdraw } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
@@ -32,6 +33,17 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
   const { data: decimals } = useErc20Decimals({ address })
 
   const [withdrawAmount, setWithdrawAmount] = useState('')
+  const [open, setOpen] = useState(false)
+
+  const { toast } = useToast()
+
+  const handleToast = () => {
+    toast({
+      title: 'Success',
+      description: `${symbol ?? ''} successfully withdrawn`,
+      duration: 4200,
+    })
+  }
 
   const switchCollateralUsage = () => {
     writeSetUserUseReserveAsCollateral()
@@ -60,7 +72,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
     args: [address, getWithdrawAmount(), user as `0x${string}`],
   })
 
-  const { isLoading: isLoadingTx } = useWaitForTransaction({
+  const { isLoading: isLoadingTx, isSuccess: isSuccessTx } = useWaitForTransaction({
     hash: data?.hash,
   })
 
@@ -82,6 +94,13 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
     }
   }, [withdrawError])
 
+  useEffect(() => {
+    if (isSuccessTx) {
+      handleToast()
+      setOpen(false)
+    }
+  }, [isSuccessTx])
+
   return (
     <tr>
       <td className="mt-2 flex items-center justify-center px-4 py-2">
@@ -100,7 +119,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
         <Switch checked={collateralEnabled} className="bg-green-700" disabled={!canBeCollateral} onClick={switchCollateralUsage} />
       </td>
       <td className="px-4 py-2 text-center">
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger>
             <Button className="mr-2">Withdraw</Button>
           </DialogTrigger>
