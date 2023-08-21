@@ -1,14 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 'use client'
 
+import { useEffect, useState } from 'react'
+
+import { useNetwork } from 'wagmi'
+import { Paywall } from '@unlock-protocol/paywall'
+import networks from '@unlock-protocol/networks'
+import { useAccount } from 'wagmi'
 import { Button } from '@/components/ui/button'
 import useUnlockSubgraph from '@/integrations/unlock/hooks/use-unlock-subgraph'
-import { useNetwork } from 'wagmi'
-import { useState, useEffect } from 'react'
 
 export default function ButtonKeyCheckout({ lockId }: { lockId: string }) {
   const { chain } = useNetwork()
   const { getLockStats } = useUnlockSubgraph()
   const [lockAddress, setLockAddress] = useState<string>('')
+  const { connector } = useAccount()
 
   const baseUrl = 'https://app.unlock-protocol.com/checkout?'
   const paywallConfig = {
@@ -18,24 +25,23 @@ export default function ButtonKeyCheckout({ lockId }: { lockId: string }) {
       },
     },
   }
-  const redirectUri: string = window.location.href
-  const checkoutUrl = `${baseUrl}&paywallConfig=${encodeURIComponent(JSON.stringify(paywallConfig))}&redirectUri${redirectUri}`
+  const paywall = new Paywall(networks)
+  //const redirectUri: string = window.location.href
+  //const checkoutUrl = `${baseUrl}&paywallConfig=${encodeURIComponent(JSON.stringify(paywallConfig))}&redirectUri${redirectUri}`
+  async function handleCheckout() {
+    if (connector) {
+      await paywall.connect(await connector.getProvider())
+      await paywall.loadCheckoutModal(paywallConfig)
+    }
+  }
 
   useEffect(() => {
     async function fetchLockAddress() {
       const stats = await getLockStats({ lockId })
-      setLockAddress(stats?.locks[0].address)
+      setLockAddress(stats.locks[0].address)
     }
-    fetchLockAddress()
+    void fetchLockAddress()
   }, [lockId])
 
-  return (
-    <div>
-      {lockAddress && (
-        <a href={checkoutUrl} rel="noreferrer" target="_blank">
-          <Button>Checkout</Button>
-        </a>
-      )}
-    </div>
-  )
+  return <div>{lockAddress && <Button onClick={handleCheckout}>Checkout</Button>}</div>
 }

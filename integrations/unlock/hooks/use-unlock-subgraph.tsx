@@ -1,12 +1,22 @@
-import { useAccount, useNetwork } from 'wagmi'
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { networks } from '@unlock-protocol/networks'
+import { useAccount, useNetwork } from 'wagmi'
 
-import { UserKeysQueryDocument, UserLocksQueryDocument, LockStatsQueryDocument, execute } from '@/.graphclient'
+import { LockStatsQueryDocument, UserKeysQueryDocument, UserLocksQueryDocument, execute } from '@/.graphclient'
 
-const endpoints = {
-  1: 'mainnet-v2',
-  5: 'goerli-v2',
-  80001: 'mumbai-v2',
+const getEndpoint = (id: number) => {
+  switch (id) {
+    case 1:
+      return 'mainnet-v2'
+    case 5:
+      return 'goerli-v2'
+    case 80001:
+      return 'goerli-v2'
+    default:
+      return 'goerli-v2'
+  }
 }
 
 export default function useUnlockSubgraph() {
@@ -20,7 +30,7 @@ export default function useUnlockSubgraph() {
   const networkConfig = networks[chain.id]
   if (!networkConfig) throw new Error('Unsupported Chain')
 
-  const unlockNetworkEndpoint = endpoints[chain?.id]
+  const unlockNetworkEndpoint = getEndpoint(chain.id)
 
   async function getUserKeys() {
     const variables = { user: address }

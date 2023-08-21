@@ -1,10 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 'use client'
 
-import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
-import { UserKeysQueryQuery } from '@/.graphclient'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
 import { useAccount, useNetwork } from 'wagmi'
+
+import { UserKeysQueryQuery } from '@/.graphclient'
+
 import KeyPreview from './key-preview'
+import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
 
 export default function UserKeys() {
   const [userKeys, setUserKeys] = useState<UserKeysQueryQuery | undefined>(undefined)
@@ -18,7 +22,7 @@ export default function UserKeys() {
       console.log(keys)
       setUserKeys(keys)
     }
-    fetchUserKeys()
+    void fetchUserKeys()
   }, [address, chain])
 
   return (

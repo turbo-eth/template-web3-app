@@ -21,12 +21,13 @@ export default function FormDeployLock() {
   const { data, isLoading, isSuccess, deployLock } = useDeployLock()
 
   function handleDeploy() {
-    deployLock(duration, keyPrice, maxKeys, lockName).then(() => {
-      console.log('deploying lock...')
-    })
-    .catch((e) => {
-      console.log('error deploying lock', e)
-    })
+    deployLock(duration, keyPrice, maxKeys, lockName)
+      .then(() => {
+        console.log('deploying lock...')
+      })
+      .catch((e) => {
+        console.log('error deploying lock', e)
+      })
   }
 
   function handleUnlimitedKeys(e: boolean) {
@@ -50,44 +51,46 @@ export default function FormDeployLock() {
   }
 
   return (
-    <div>
-      <div>
-        <p>Lock Name</p>
+    <div className="card w-full">
+      <div className="flex flex-col gap-4">
+        <label>Lock Name</label>
         <Input placeholder={lockName} onChange={(e) => setLockName(e.target.value)} />
-      </div>
-      <div>
-        <p>Max Number of Keys</p>
-        <div className="flex flex-row items-center justify-center">
+        <label>Max Number of Keys</label>
+        <div className="flex flex-row items-center justify-center space-x-4">
           {unlimitedKeys ? (
             <Input disabled={true} />
           ) : (
             <Input placeholder={maxKeys.toString()} onChange={(e) => setMaxKeys(Number(e.target.value))} />
           )}
-          unlimited <Switch onCheckedChange={(e) => handleUnlimitedKeys(e)} />
+          <div className="flex flex-row space-x-2">
+            <p>unlimited:</p>
+            <Switch onCheckedChange={(e) => handleUnlimitedKeys(e)} />
+          </div>
+        </div>
+        <div>
+          <label>Membership Duration (Days)</label>
+          <div className="flex flex-row items-center justify-center space-x-4">
+            {unlimitedDuration ? (
+              <Input disabled={true} />
+            ) : (
+              <Input placeholder={duration.toString()} onChange={(e) => setDuration(Number(e.target.value))} />
+            )}
+            <div className="flex flex-row space-x-2">
+              <p>unlimited</p>
+              <Switch onCheckedChange={(e) => handleUnlimitedDuration(e)} />
+            </div>
+          </div>
+        </div>
+        <div>
+          <label>Key Price</label>
+          <Input placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
+        </div>
+        <div className="m-10 flex flex-col items-center justify-center">
+          <Button onClick={handleDeploy}>Deploy Lock</Button>
+          {isLoading && <p>Deploying lock...</p>}
+          {isSuccess && <p>Lock deployed!</p>}
         </div>
       </div>
-      <div>
-        <p>Membership Duration (Days)</p>
-        <div className="flex flex-row items-center justify-center">
-          {unlimitedDuration ? (
-            <Input disabled={true} />
-          ) : (
-            <Input placeholder={duration.toString()} onChange={(e) => setDuration(Number(e.target.value))} />
-          )}
-          unlimited <Switch onCheckedChange={(e) => handleUnlimitedDuration(e)} />
-        </div>
-      </div>
-      <div>
-        <p>Key Price</p>
-        <Input placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
-      </div>
-
-      <div className="flex justify-center items-center m-10">
-          <Button onClick={() => handleDeploy()}>Deploy Lock</Button>
-          {isLoading && <p>Deploying Lock...</p>}
-          {isSuccess && <p>Lock Deployed!</p>}
-      </div>
-
     </div>
   )
 }

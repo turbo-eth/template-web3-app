@@ -1,10 +1,11 @@
-import PaywallScript from '@/integrations/unlock/components/paywall-script'
+'use client'
+
+import PaywallDemo from '@/integrations/unlock/components/paywall-demo'
 
 export default function PaywallPage() {
-
   return (
     <div>
-      <PaywallScript />
+      <PaywallDemo />
     </div>
   )
 }
