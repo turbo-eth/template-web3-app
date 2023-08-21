@@ -49,7 +49,7 @@ export function Erc1155Read({ address }: Erc1155ReadProps) {
           </div>
           <div className="flex flex-wrap items-center justify-between break-words">
             <span className="font-medium">Token URI:</span>
-            <ERC1155TokenUri address={address} tokenId={BigInt(tokenId || 1)} />
+            <ERC1155TokenUri address={address} className="max-w-full" tokenId={BigInt(tokenId || 1)} />
           </div>
           <div className="flex flex-wrap items-center justify-between break-words">
             <span className="font-medium">Contract URI:</span>
