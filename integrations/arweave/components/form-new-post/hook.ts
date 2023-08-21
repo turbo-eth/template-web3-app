@@ -7,7 +7,7 @@ import { useForm, useWatch } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
 import { z } from 'zod'
 
-import { arweave, createArweaveDataTx, getArweaveWalletBalance, signAndSendArweaveTx } from '@/integrations/arweave'
+import { createArweaveDataTx, signAndSendArweaveTx } from '@/integrations/arweave'
 import { useArweaveWallet } from '@/integrations/arweave/hooks/use-arweave-wallet'
 
 import { useEstimateTxFee } from '../../hooks/use-estimate-tx-fee'
@@ -25,8 +25,6 @@ const useCreateArweavePostAPI = () => {
         throw 'No Data or Files selected'
       }
       const tx = await createArweaveDataTx(wallet, payload.data ?? payload.file)
-      const { winston } = await getArweaveWalletBalance(wallet)
-      if (tx.reward > winston) throw `Insufficient balance, tx fee: ${arweave.ar.winstonToAr(tx.reward)} AR.`
       const { txId, response, insufficientBalance } = await signAndSendArweaveTx(wallet, tx, payload.tags, !!payload.file)
       if (insufficientBalance) throw { insufficientBalance: true }
       if (response?.status !== 200) {

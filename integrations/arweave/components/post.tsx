@@ -83,8 +83,8 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
             </span>
           </CopyToClipboard>
         </div>
-        <LinkComponent className="btn btn-primary text-xs" href={`https://viewblock.io/arweave/tx/${txId}`} isExternal={true}>
-          View on Explorer
+        <LinkComponent className="btn btn-primary text-xs" href={`https://arweave.app/tx/${txId}`} isExternal={true}>
+          View on Arweave.app
         </LinkComponent>
       </div>
       {txStatus && (

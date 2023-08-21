@@ -175,7 +175,7 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
       if (numberOfConfirmations && numberOfConfirmations > CONFIRMED_THRESHOLD) {
         setPendingTxs((prevTxs) => [...prevTxs.filter((tx) => tx.txId !== txId), { txId, status }])
         onConfirmation && (await onConfirmation())
-        getBalance().catch(console.error)
+        getBalance().catch((e) => console.error('Get balance error:', e))
         clearInterval(intervalId)
       }
     }, 3000)

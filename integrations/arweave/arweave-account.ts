@@ -2,7 +2,7 @@ import Account, { ArAccount } from 'arweave-account'
 import { ArAccountEncoded, T_profile } from 'arweave-account/lib/types'
 import { JWKInterface } from 'arweave/node/lib/wallet'
 
-import { createArweaveDataTx, getArweaveWalletAddress, getArweaveWalletBalance, signAndSendArweaveTx } from '.'
+import { createArweaveDataTx, getArweaveWalletAddress, signAndSendArweaveTx } from '.'
 import { SignAndSendArweaveTxResponse } from './utils/types'
 
 export const ArweaveAccount = new Account()
@@ -20,14 +20,6 @@ export type UpdateArweaveAccountPayload = Partial<T_profile> & Pick<T_profile, '
 
 export const updateArweaveAccount = async (wallet: JWKInterface, payload: UpdateArweaveAccountPayload): Promise<SignAndSendArweaveTxResponse> => {
   const tx = await createArweaveDataTx(wallet, JSON.stringify(encode(payload)))
-  const cost = tx.reward
-  const { winston } = await getArweaveWalletBalance(wallet)
-  if (cost > winston)
-    return {
-      txId: tx.id,
-      response: null,
-      insufficientBalance: true,
-    }
   const tags = [
     { name: 'Protocol-Name', value: 'Account-0.3' },
     { name: 'handle', value: payload.handleName },
@@ -54,15 +46,9 @@ export const uploadArweaveAccountAvatar = async (
   avatarFileType: string
 ): Promise<SignAndSendArweaveTxResponse> => {
   const avatarTx = await createArweaveDataTx(wallet, avatar)
-  const { winston } = await getArweaveWalletBalance(wallet)
-  if (avatarTx.reward > winston)
-    return {
-      txId: avatarTx.id,
-      response: null,
-      insufficientBalance: true,
-    }
   const tags = [{ name: 'Content-type', value: avatarFileType }]
-  const { txId, response } = await signAndSendArweaveTx(wallet, avatarTx, tags)
+  const { txId, response, insufficientBalance } = await signAndSendArweaveTx(wallet, avatarTx, tags)
+  if (insufficientBalance) return { txId, response, insufficientBalance }
   if (response?.status === 200) {
     const avatarUrl = `ar://${txId}`
     const payload = { ...profile, avatar: avatarUrl }
