@@ -54,10 +54,10 @@ export default function ArweaveLayout({ children }: { children: ReactNode }) {
             </LinkComponent>
           </motion.div>
         </motion.div>
-        <motion.div className="my-4 w-full text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+        <motion.div className="container my-4 w-full text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
           <section className="mt-10 flex overflow-hidden rounded-xl bg-neutral-200 dark:bg-neutral-900">
             <SideBar />
-            <div className="flex-center flex-1 flex-col items-center justify-center p-10 text-center">{children}</div>
+            <div className="flex-center flex-1 min-h-[600px] flex-col items-center justify-center p-10 text-center">{children}</div>
           </section>
         </motion.div>
       </motion.div>
