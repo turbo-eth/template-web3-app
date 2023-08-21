@@ -158,7 +158,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
               </div>
               <ContractWriteButton
                 className="btn btn-primary mt-5 w-full"
-                disabled={!Number(supplyAmount)}
+                disabled={!Number(supplyAmount) || isLoadingApproveTx || isLoadingSupplyTx || isLoadingSupplyWrite || isLoadingApproveWrite}
                 isLoadingTx={isLoadingApproveTx || isLoadingSupplyTx}
                 isLoadingWrite={isLoadingApproveWrite || isLoadingSupplyWrite}
                 loadingTxText={isApproving() ? `Approving...` : `Supplying...`}

@@ -92,7 +92,7 @@ export const useAave = () => {
       const nativeTokenPrice = Number(reservesData?.[1].networkBaseTokenPriceInUsd) / Number(reservesData?.[1].marketReferenceCurrencyUnit)
       const collateralInNativeToken = collateralInUsd / nativeTokenPrice
       const debtInNativeToken = totalDebtInUsd / nativeTokenPrice
-
+      const avgNetApy = totalDebtInUsd > 0 ? (balanceInUsd * averageSupplyApy - totalDebtInUsd * averageBorrowApy) / netWorth : averageSupplyApy
       setHealthFactor((collateralInNativeToken * averageLiquidationThreshold) / debtInNativeToken)
       setBalanceInUsd(balanceInUsd)
       setCollateralInUsd(collateralInUsd)
@@ -101,7 +101,7 @@ export const useAave = () => {
       setUsdData(usdData)
       setAverageSupplyApy(averageSupplyApy)
       setAverageBorrowApy(averageBorrowApy)
-      setAverageNetApy(totalDebtInUsd > 0 ? (balanceInUsd * averageSupplyApy - totalDebtInUsd * averageBorrowApy) / netWorth : averageSupplyApy)
+      setAverageNetApy(isNaN(avgNetApy) ? 0 : avgNetApy)
       setData({
         userReservesData,
         usdData,
