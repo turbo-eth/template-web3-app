@@ -6,10 +6,10 @@ export const ListBorrowedAssets = () => {
 
   const filteredUserReserves = usdData?.filter((reserve) => {
     // If debt > 0.00001
-    return (
-      reserve.scaledVariableDebt > BigInt(1) * BigInt(10) ** (reserve.reserveData.decimals - BigInt(5)) ||
-      reserve.principalStableDebt > BigInt(1) * BigInt(10) ** (reserve.reserveData.decimals - BigInt(5))
-    )
+    const exponent = reserve.reserveData.decimals - BigInt(5)
+    const comparisonValue = exponent >= 0 ? BigInt(1) * BigInt(10) ** exponent : BigInt(1) / BigInt(10) ** -exponent
+
+    return reserve.scaledVariableDebt > comparisonValue || reserve.principalStableDebt > comparisonValue
   })
 
   return (

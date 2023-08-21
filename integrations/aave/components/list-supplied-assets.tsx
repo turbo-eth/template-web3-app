@@ -6,7 +6,12 @@ export const ListSuppliedAssets = () => {
 
   const filteredUserReserves = usdData?.filter((reserve) => {
     // If balance > 0.00001
-    return reserve.scaledATokenBalance > BigInt(1) * BigInt(10) ** (reserve.reserveData.decimals - BigInt(5))
+    console.log(reserve.reserveData.symbol)
+    console.log(reserve.reserveData.decimals)
+    const exponent = reserve.reserveData.decimals - BigInt(5)
+    return exponent >= 0
+      ? reserve.scaledATokenBalance > BigInt(1) * BigInt(10) ** exponent
+      : reserve.scaledATokenBalance > BigInt(1) / BigInt(10) ** -exponent
   })
 
   return (
