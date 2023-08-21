@@ -53,7 +53,7 @@ export function Erc1155Read({ address }: Erc1155ReadProps) {
           </div>
           <div className="flex flex-wrap items-center justify-between break-words">
             <span className="font-medium">Contract URI:</span>
-            <ERC1155ContractUri address={address} />
+            <ERC1155ContractUri address={address} className="max-w-full" />
           </div>
         </div>
         <hr className="my-4" />
