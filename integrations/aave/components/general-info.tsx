@@ -13,7 +13,7 @@ export const GeneralInfo = () => {
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
 
-  const { balanceInUsd, totalDebtInUsd, healthFactor, averageNetApy } = useAave().data
+  const { balanceInUsd, totalDebtInUsd, healthFactor, averageNetApy } = useAave()
 
   return (
     <motion.div

@@ -30,7 +30,7 @@ export const AssetToBorrowItem = ({
   stableBorrowRate,
   canBorrowStableRateMode,
 }: IAssetToSupplyItem) => {
-  const { maxBorrowableInUsd, poolAddress } = useAave().data
+  const { maxBorrowableInUsd, poolAddress } = useAave()
   const { address: user } = useAccount()
   const [borrowAmount, setBorrowAmount] = useState('')
   const [borrowVariableRateMode, setBorrowVariableRateMode] = useState(true)

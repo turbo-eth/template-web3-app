@@ -26,7 +26,7 @@ const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : s
 
 export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeCollateral, liquidityRate }: ISuppliedAssetsItemProps) => {
   const { address: user } = useAccount()
-  const { poolAddress } = useAave().data
+  const { poolAddress } = useAave()
 
   const symbol = getSymbol(useErc20Symbol({ address }).data)
   const { data: decimals } = useErc20Decimals({ address })

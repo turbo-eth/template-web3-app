@@ -28,7 +28,7 @@ const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : s
 
 export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, canSwitchRateMode, rateMode }: IBorrowedAssetsItemProps) => {
   const { address: user } = useAccount()
-  const { poolAddress } = useAave().data
+  const { poolAddress } = useAave()
   const [repayAmount, setRepayAmount] = useState('')
   const [repayWithATokens, setRepayWithATokens] = useState(false)
 

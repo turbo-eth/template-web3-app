@@ -2,7 +2,7 @@ import { BorrowedAssetsItem } from './borrowed-assets-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListBorrowedAssets = () => {
-  const { usdData, totalDebtInUsd, averageBorrowApy } = useAave().data
+  const { usdData, totalDebtInUsd, averageBorrowApy } = useAave()
 
   const filteredUserReserves = usdData?.filter((reserve) => {
     // If debt > 0.00001

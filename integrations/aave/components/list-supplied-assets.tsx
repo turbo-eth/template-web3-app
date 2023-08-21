@@ -2,7 +2,7 @@ import { SuppliedAssetsItem } from './supplied-assets-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListSuppliedAssets = () => {
-  const { usdData, balanceInUsd, collateralInUsd, averageSupplyApy } = useAave().data
+  const { usdData, balanceInUsd, collateralInUsd, averageSupplyApy } = useAave()
 
   const filteredUserReserves = usdData?.filter((reserve) => {
     // If balance > 0.00001

@@ -2,7 +2,7 @@ import { AssetToBorrowItem } from './asset-to-borrow-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListAssetsToBorrow = () => {
-  const { usdData } = useAave().data
+  const { usdData } = useAave()
 
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">

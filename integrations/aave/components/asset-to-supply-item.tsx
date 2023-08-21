@@ -23,7 +23,7 @@ interface IAssetToSupplyItem {
 }
 
 export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityRate, showIfZeroBalance }: IAssetToSupplyItem) => {
-  const { poolAddress } = useAave().data
+  const { poolAddress } = useAave()
   const { address: user } = useAccount()
   const [supplyAmount, setSupplyAmount] = useState('')
 
