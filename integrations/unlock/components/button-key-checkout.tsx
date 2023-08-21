@@ -4,10 +4,11 @@
 
 import { useEffect, useState } from 'react'
 
-import { useNetwork } from 'wagmi'
-import { Paywall } from '@unlock-protocol/paywall'
 import networks from '@unlock-protocol/networks'
+import { Paywall } from '@unlock-protocol/paywall'
+import { useNetwork } from 'wagmi'
 import { useAccount } from 'wagmi'
+
 import { Button } from '@/components/ui/button'
 import useUnlockSubgraph from '@/integrations/unlock/hooks/use-unlock-subgraph'
 

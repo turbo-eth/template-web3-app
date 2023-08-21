@@ -7,8 +7,8 @@ import { useAccount, useNetwork } from 'wagmi'
 
 import { UserKeysQueryQuery } from '@/.graphclient'
 
-import KeyPreview from './key-preview'
 import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
+import KeyPreview from './key-preview'
 
 export default function UserKeys() {
   const [userKeys, setUserKeys] = useState<UserKeysQueryQuery | undefined>(undefined)

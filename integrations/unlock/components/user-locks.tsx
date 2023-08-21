@@ -7,8 +7,8 @@ import { useAccount, useNetwork } from 'wagmi'
 
 import { UserLocksQueryQuery } from '@/.graphclient'
 
-import LockPreview from './lock-preview'
 import useUnlockSubgraph from '../hooks/use-unlock-subgraph'
+import LockPreview from './lock-preview'
 
 export default function UserLocks() {
   const [userLocks, setUserLocks] = useState<UserLocksQueryQuery>()

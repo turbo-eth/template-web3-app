@@ -1,13594 +1,13615 @@
 // @ts-nocheck
-import { buildASTSchema } from 'graphql';
+import { buildASTSchema } from 'graphql'
 
 const schemaAST = {
-  "kind": "Document",
-  "definitions": [
+  kind: 'Document',
+  definitions: [
     {
-      "kind": "SchemaDefinition",
-      "operationTypes": [
+      kind: 'SchemaDefinition',
+      operationTypes: [
         {
-          "kind": "OperationTypeDefinition",
-          "operation": "query",
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Query"
-            }
-          }
+          kind: 'OperationTypeDefinition',
+          operation: 'query',
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Query',
+            },
+          },
         },
         {
-          "kind": "OperationTypeDefinition",
-          "operation": "subscription",
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Subscription"
-            }
-          }
-        }
+          kind: 'OperationTypeDefinition',
+          operation: 'subscription',
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Subscription',
+            },
+          },
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "DirectiveDefinition",
-      "description": {
-        "kind": "StringValue",
-        "value": "Marks the GraphQL type as indexable entity.  Each type that should be an entity is required to be annotated with this directive."
+      kind: 'DirectiveDefinition',
+      description: {
+        kind: 'StringValue',
+        value: 'Marks the GraphQL type as indexable entity.  Each type that should be an entity is required to be annotated with this directive.',
       },
-      "name": {
-        "kind": "Name",
-        "value": "entity"
+      name: {
+        kind: 'Name',
+        value: 'entity',
       },
-      "arguments": [],
-      "repeatable": false,
-      "locations": [
+      arguments: [],
+      repeatable: false,
+      locations: [
         {
-          "kind": "Name",
-          "value": "OBJECT"
-        }
-      ]
-    },
-    {
-      "kind": "DirectiveDefinition",
-      "description": {
-        "kind": "StringValue",
-        "value": "Defined a Subgraph ID for an object type"
-      },
-      "name": {
-        "kind": "Name",
-        "value": "subgraphId"
-      },
-      "arguments": [
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
-          },
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "String"
-              }
-            }
-          },
-          "directives": []
-        }
+          kind: 'Name',
+          value: 'OBJECT',
+        },
       ],
-      "repeatable": false,
-      "locations": [
-        {
-          "kind": "Name",
-          "value": "OBJECT"
-        }
-      ]
     },
     {
-      "kind": "DirectiveDefinition",
-      "description": {
-        "kind": "StringValue",
-        "value": "creates a virtual field on the entity that may be queried but cannot be set manually through the mappings API."
+      kind: 'DirectiveDefinition',
+      description: {
+        kind: 'StringValue',
+        value: 'Defined a Subgraph ID for an object type',
       },
-      "name": {
-        "kind": "Name",
-        "value": "derivedFrom"
+      name: {
+        kind: 'Name',
+        value: 'subgraphId',
       },
-      "arguments": [
+      arguments: [
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "field"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "String"
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'String',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "repeatable": false,
-      "locations": [
+      repeatable: false,
+      locations: [
         {
-          "kind": "Name",
-          "value": "FIELD_DEFINITION"
-        }
-      ]
-    },
-    {
-      "kind": "ScalarTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "BigDecimal"
-      },
-      "directives": []
-    },
-    {
-      "kind": "ScalarTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "BigInt"
-      },
-      "directives": []
-    },
-    {
-      "kind": "InputObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "BlockChangedFilter"
-      },
-      "fields": [
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "number_gte"
-          },
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Int"
-              }
-            }
-          },
-          "directives": []
-        }
+          kind: 'Name',
+          value: 'OBJECT',
+        },
       ],
-      "directives": []
     },
     {
-      "kind": "InputObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Block_height"
+      kind: 'DirectiveDefinition',
+      description: {
+        kind: 'StringValue',
+        value: 'creates a virtual field on the entity that may be queried but cannot be set manually through the mappings API.',
       },
-      "fields": [
+      name: {
+        kind: 'Name',
+        value: 'derivedFrom',
+      },
+      arguments: [
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "hash"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'field',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'String',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "number"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Int"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "number_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Int"
-            }
-          },
-          "directives": []
-        }
       ],
-      "directives": []
-    },
-    {
-      "kind": "ScalarTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Bytes"
-      },
-      "directives": []
-    },
-    {
-      "kind": "ScalarTypeDefinition",
-      "description": {
-        "kind": "StringValue",
-        "value": "8 bytes signed integer\n",
-        "block": true
-      },
-      "name": {
-        "kind": "Name",
-        "value": "Int8"
-      },
-      "directives": []
-    },
-    {
-      "kind": "ObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Key"
-      },
-      "fields": [
+      repeatable: false,
+      locations: [
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Unique identifier for a key (combination of lock address and token id)",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "id"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "ID"
-              }
-            }
-          },
-          "directives": []
+          kind: 'Name',
+          value: 'FIELD_DEFINITION',
         },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "In the Unlock ecosystem, a “Lock” is a smart contract that creates (or “mints”) NFTs",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "lock"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Lock"
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "TokenId for a given key",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "tokenId"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "The address of the key owner",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "owner"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Bytes"
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "An assigned title set on an Unlock key which gives a specific wallet address authorization to transfer, share or cancel",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "manager"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Time the key expires",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "expiration"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "The tokenURI on an NFT is a unique identifier",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Block key was created",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Timestamp of the block in which the key was created",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "createdAt"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Invoked by a Lock manager to expire the user's key and perform a refund and cancellation of the key",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "cancelled"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Boolean"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "list of transaction hashes for purchase/extensions of a specific token",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "transactionsHash"
-          },
-          "arguments": [],
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        }
       ],
-      "interfaces": [],
-      "directives": []
     },
     {
-      "kind": "InputObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Key_filter"
+      kind: 'ScalarTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'BigDecimal',
       },
-      "fields": [
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_contains_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_not_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_not_contains_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_starts_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_starts_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_not_starts_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_not_starts_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_ends_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_ends_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_not_ends_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_not_ends_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock_"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Lock_filter"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenId"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenId_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenId_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenId_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenId_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenId_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenId_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenId_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner_not_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager_not_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
+      directives: [],
+    },
+    {
+      kind: 'ScalarTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'BigInt',
+      },
+      directives: [],
+    },
+    {
+      kind: 'InputObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'BlockChangedFilter',
+      },
+      fields: [
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'number_gte',
+          },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Int',
+              },
+            },
+          },
+          directives: [],
         },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expiration"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expiration_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expiration_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expiration_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expiration_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expiration_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expiration_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expiration_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_contains_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_not_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_not_contains_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_starts_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_starts_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_not_starts_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_not_starts_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_ends_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_ends_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_not_ends_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI_not_ends_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAt_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAt_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAt_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAt_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAt_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAt_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAt_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "cancelled"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Boolean"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "cancelled_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Boolean"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "cancelled_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Boolean"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "cancelled_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Boolean"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "transactionsHash"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "transactionsHash_not"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "transactionsHash_contains"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "transactionsHash_contains_nocase"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "transactionsHash_not_contains"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "transactionsHash_not_contains_nocase"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Filter for the block changed event.",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "_change_block"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BlockChangedFilter"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "and"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Key_filter"
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "or"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Key_filter"
-              }
-            }
-          },
-          "directives": []
-        }
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "EnumTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Key_orderBy"
+      kind: 'InputObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Block_height',
       },
-      "values": [
+      fields: [
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'hash',
           },
-          "directives": []
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'number',
           },
-          "directives": []
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Int',
+            },
+          },
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__id"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'number_gte',
           },
-          "directives": []
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Int',
+            },
+          },
+          directives: [],
         },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__address"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__name"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__symbol"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__expirationDuration"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__tokenAddress"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__price"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__version"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__totalKeys"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__maxNumberOfKeys"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__maxKeysPerAddress"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__createdAtBlock"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__lastKeyMintedAt"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__deployer"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock__numberOfReceipts"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenId"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "owner"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "manager"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expiration"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenURI"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAt"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "cancelled"
-          },
-          "directives": []
-        },
-        {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "transactionsHash"
-          },
-          "directives": []
-        }
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Lock"
+      kind: 'ScalarTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Bytes',
       },
-      "fields": [
+      directives: [],
+    },
+    {
+      kind: 'ScalarTypeDefinition',
+      description: {
+        kind: 'StringValue',
+        value: '8 bytes signed integer\n',
+        block: true,
+      },
+      name: {
+        kind: 'Name',
+        value: 'Int8',
+      },
+      directives: [],
+    },
+    {
+      kind: 'ObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Key',
+      },
+      fields: [
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Unique ID for the Lock object (uses the lock address)",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Unique identifier for a key (combination of lock address and token id)',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "ID"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'ID',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Address of the lock",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'In the Unlock ecosystem, a “Lock” is a smart contract that creates (or “mints”) NFTs',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "address"
+          name: {
+            kind: 'Name',
+            value: 'lock',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Bytes"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Lock',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "A descriptive name for a collection of NFTs in this contract",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'TokenId for a given key',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "name"
+          name: {
+            kind: 'Name',
+            value: 'tokenId',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Token symbol",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'The address of the key owner',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "symbol"
+          name: {
+            kind: 'Name',
+            value: 'owner',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Bytes',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Duration is set the on the lock when you deploy and the expiration which is set on each key when they are minted",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'An assigned title set on an Unlock key which gives a specific wallet address authorization to transfer, share or cancel',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration"
+          name: {
+            kind: 'Name',
+            value: 'manager',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Address of the 'currency' ERC20 contract if the keys are priced using an ERC20",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Time the key expires',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress"
+          name: {
+            kind: 'Name',
+            value: 'expiration',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Bytes"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Price of the keys sold by the lock",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'The tokenURI on an NFT is a unique identifier',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "price"
+          name: {
+            kind: 'Name',
+            value: 'tokenURI',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "An assigned role set on a Lock contract which gives the highest level of permissions to the wallet address set to that role",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Block key was created',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "lockManagers"
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "Bytes"
-                  }
-                }
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Unlock Protocol version of a minting contract",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Timestamp of the block in which the key was created',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "version"
+          name: {
+            kind: 'Name',
+            value: 'createdAt',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Number of keys minted (expired or not)",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: "Invoked by a Lock manager to expire the user's key and perform a refund and cancellation of the key",
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys"
+          name: {
+            kind: 'Name',
+            value: 'cancelled',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Boolean',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Maximum number of keys for sale",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'list of transaction hashes for purchase/extensions of a specific token',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys"
+          name: {
+            kind: 'Name',
+            value: 'transactionsHash',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          arguments: [],
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
+        },
+      ],
+      interfaces: [],
+      directives: [],
+    },
+    {
+      kind: 'InputObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Key_filter',
+      },
+      fields: [
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "The maximum number of keys allowed for a single address",
-            "block": true
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not',
           },
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress"
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Refer to key entity",
-            "block": true
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gt',
           },
-          "name": {
-            "kind": "Name",
-            "value": "keys"
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "arguments": [
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_contains_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_not_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_not_contains_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_starts_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_starts_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_not_starts_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_not_starts_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_ends_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_ends_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_not_ends_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_not_ends_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock_',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Lock_filter',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenId',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenId_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenId_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenId_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenId_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenId_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenId_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenId_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner_not_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager_not_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expiration',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expiration_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expiration_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expiration_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expiration_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expiration_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expiration_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expiration_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_contains_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_not_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_not_contains_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_starts_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_starts_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_not_starts_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_not_starts_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_ends_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_ends_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_not_ends_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI_not_ends_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAt_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAt_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAt_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAt_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAt_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAt_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAt_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'cancelled',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Boolean',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'cancelled_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Boolean',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'cancelled_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Boolean',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'cancelled_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Boolean',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'transactionsHash',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'transactionsHash_not',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'transactionsHash_contains',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'transactionsHash_contains_nocase',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'transactionsHash_not_contains',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'transactionsHash_not_contains_nocase',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Filter for the block changed event.',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: '_change_block',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BlockChangedFilter',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'and',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Key_filter',
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'or',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Key_filter',
+              },
+            },
+          },
+          directives: [],
+        },
+      ],
+      directives: [],
+    },
+    {
+      kind: 'EnumTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Key_orderBy',
+      },
+      values: [
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__id',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__address',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__name',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__symbol',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__expirationDuration',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__tokenAddress',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__price',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__version',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__totalKeys',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__maxNumberOfKeys',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__maxKeysPerAddress',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__createdAtBlock',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__lastKeyMintedAt',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__deployer',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock__numberOfReceipts',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenId',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'owner',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'manager',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expiration',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenURI',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAt',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'cancelled',
+          },
+          directives: [],
+        },
+        {
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'transactionsHash',
+          },
+          directives: [],
+        },
+      ],
+      directives: [],
+    },
+    {
+      kind: 'ObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Lock',
+      },
+      fields: [
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Unique ID for the Lock object (uses the lock address)',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'id',
+          },
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'ID',
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Address of the lock',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'address',
+          },
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Bytes',
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'A descriptive name for a collection of NFTs in this contract',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'name',
+          },
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Token symbol',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'symbol',
+          },
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Duration is set the on the lock when you deploy and the expiration which is set on each key when they are minted',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration',
+          },
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: "Address of the 'currency' ERC20 contract if the keys are priced using an ERC20",
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress',
+          },
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Bytes',
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Price of the keys sold by the lock',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'price',
+          },
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'An assigned role set on a Lock contract which gives the highest level of permissions to the wallet address set to that role',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'lockManagers',
+          },
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'Bytes',
+                  },
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Unlock Protocol version of a minting contract',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'version',
+          },
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Number of keys minted (expired or not)',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'totalKeys',
+          },
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Maximum number of keys for sale',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys',
+          },
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'The maximum number of keys allowed for a single address',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress',
+          },
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Refer to key entity',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: 'keys',
+          },
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Key_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Key_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Key_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Key_filter',
+                },
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Key"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Key',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Which block the lock was created",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Which block the lock was created',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock"
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "The timestamp of the block in which the last key was minted",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'The timestamp of the block in which the last key was minted',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt"
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Address of the lock deployer",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Address of the lock deployer',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "deployer"
+          name: {
+            kind: 'Name',
+            value: 'deployer',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Bytes"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Bytes',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total number of receipts of lock",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total number of receipts of lock',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts"
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "interfaces": [],
-      "directives": []
+      interfaces: [],
+      directives: [],
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "LockStats"
+      kind: 'ObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'LockStats',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Transaction Hash",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Transaction Hash',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "ID"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'ID',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total locks deployed",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total locks deployed',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed"
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total keys sold",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total keys sold',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold"
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "interfaces": [],
-      "directives": []
+      interfaces: [],
+      directives: [],
     },
     {
-      "kind": "InputObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "LockStats_filter"
+      kind: 'InputObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'LockStats_filter',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Filter for the block changed event.",
-            "block": true
+          kind: 'InputValueDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Filter for the block changed event.',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "_change_block"
+          name: {
+            kind: 'Name',
+            value: '_change_block',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BlockChangedFilter"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BlockChangedFilter',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "and"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'and',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "LockStats_filter"
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'LockStats_filter',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "or"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'or',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "LockStats_filter"
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'LockStats_filter',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "EnumTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "LockStats_orderBy"
+      kind: 'EnumTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'LockStats_orderBy',
       },
-      "values": [
+      values: [
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLocksDeployed"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLocksDeployed',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold',
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "InputObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Lock_filter"
+      kind: 'InputObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Lock_filter',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address_not_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_contains_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_not_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_not_contains_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_starts_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_starts_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_not_starts_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_not_starts_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address_not_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_contains_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_not_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_not_contains_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_starts_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_starts_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_not_starts_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_not_starts_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_ends_with"
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_ends_with_nocase"
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_not_ends_with"
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_not_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name_not_ends_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name_not_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_contains"
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_contains',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_contains_nocase"
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_contains_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_not_contains"
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_not_contains',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_not_contains_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_not_contains_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_starts_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_starts_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_starts_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_starts_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_not_starts_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_not_starts_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_not_starts_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_not_starts_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_ends_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_ends_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_not_ends_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_not_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol_not_ends_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol_not_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration_gt"
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
-        },
+          directives: [],
+        },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
-        },
+          directives: [],
+        },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_gte"
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_lte"
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_in"
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_contains"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_contains',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not_contains"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not_contains',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "price"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'price',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "price_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "price_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "price_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "price_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "price_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "price_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "price_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockManagers"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockManagers_not"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockManagers_contains"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockManagers_contains_nocase"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockManagers_not_contains"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockManagers_not_contains_nocase"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "version"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "version_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "version_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "version_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "version_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "version_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "version_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "version_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keys_"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Key_filter"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer_not_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Filter for the block changed event.",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "_change_block"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BlockChangedFilter"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "and"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Lock_filter"
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "or"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Lock_filter"
-              }
-            }
-          },
-          "directives": []
-        }
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'price_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'price_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'price_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'price_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'price_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'price_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'price_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockManagers',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockManagers_not',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockManagers_contains',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockManagers_contains_nocase',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockManagers_not_contains',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockManagers_not_contains_nocase',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'version',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'version_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'version_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'version_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'version_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'version_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'version_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'version_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeys',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeys_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeys_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeys_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeys_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeys_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeys_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeys_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keys_',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Key_filter',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer_not_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Filter for the block changed event.',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: '_change_block',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BlockChangedFilter',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'and',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Lock_filter',
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'or',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Lock_filter',
+              },
+            },
+          },
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "EnumTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Lock_orderBy"
+      kind: 'EnumTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Lock_orderBy',
       },
-      "values": [
+      values: [
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "address"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'address',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "name"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'name',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "symbol"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'symbol',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "expirationDuration"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'expirationDuration',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "price"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'price',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockManagers"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockManagers',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "version"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'version',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeys"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeys',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxNumberOfKeys"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxNumberOfKeys',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "maxKeysPerAddress"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'maxKeysPerAddress',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keys"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keys',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "createdAtBlock"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'createdAtBlock',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lastKeyMintedAt"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lastKeyMintedAt',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "deployer"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'deployer',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "numberOfReceipts"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'numberOfReceipts',
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "EnumTypeDefinition",
-      "description": {
-        "kind": "StringValue",
-        "value": "Defines the order direction, either ascending or descending",
-        "block": true
+      kind: 'EnumTypeDefinition',
+      description: {
+        kind: 'StringValue',
+        value: 'Defines the order direction, either ascending or descending',
+        block: true,
       },
-      "name": {
-        "kind": "Name",
-        "value": "OrderDirection"
+      name: {
+        kind: 'Name',
+        value: 'OrderDirection',
       },
-      "values": [
+      values: [
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "asc"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'asc',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "desc"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'desc',
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Query"
+      kind: 'ObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Query',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "id"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'id',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "ID"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'ID',
+                  },
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Lock"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Lock',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "locks"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'locks',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Lock_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Lock_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Lock_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Lock_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "Lock"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'Lock',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "key"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'key',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "id"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'id',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "ID"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'ID',
+                  },
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Key"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Key',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keys"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keys',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Key_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Key_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Key_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Key_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "Key"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'Key',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "unlockDailyData"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'unlockDailyData',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "id"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'id',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "ID"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'ID',
+                  },
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "UnlockDailyData"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'UnlockDailyData',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "unlockDailyDatas"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'unlockDailyDatas',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "UnlockDailyData_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'UnlockDailyData_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "UnlockDailyData_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'UnlockDailyData_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "UnlockDailyData"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'UnlockDailyData',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockStats"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockStats',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "LockStats_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'LockStats_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "LockStats_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'LockStats_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "LockStats"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'LockStats',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "unlockStats"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'unlockStats',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "UnlockStats_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'UnlockStats_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "UnlockStats_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'UnlockStats_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "UnlockStats"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'UnlockStats',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receipt"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receipt',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "id"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'id',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "ID"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'ID',
+                  },
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Receipt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Receipt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receipts"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receipts',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Receipt_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Receipt_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Receipt_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Receipt_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "Receipt"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'Receipt',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Access to subgraph metadata",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Access to subgraph metadata',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "_meta"
+          name: {
+            kind: 'Name',
+            value: '_meta',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "_Meta_"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: '_Meta_',
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "interfaces": [],
-      "directives": []
+      interfaces: [],
+      directives: [],
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Receipt"
+      kind: 'ObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Receipt',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Transaction Hash",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Transaction Hash',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "ID"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'ID',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Timestamp",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Timestamp',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "timestamp"
+          name: {
+            kind: 'Name',
+            value: 'timestamp',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Sender of the transaction",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Sender of the transaction',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "sender"
+          name: {
+            kind: 'Name',
+            value: 'sender',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "String"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'String',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Payer in the case of an ERC20 lock renewal, the sender and payer might differ",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Payer in the case of an ERC20 lock renewal, the sender and payer might differ',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "payer"
+          name: {
+            kind: 'Name',
+            value: 'payer',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Address of the Lock smart contract",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Address of the Lock smart contract',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress"
+          name: {
+            kind: 'Name',
+            value: 'lockAddress',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "String"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'String',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Address of the 'currency' ERC20 contract if the keys are priced using an ERC20",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: "Address of the 'currency' ERC20 contract if the keys are priced using an ERC20",
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress"
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "String"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'String',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "amount",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'amount',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred"
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total gas paid",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total gas paid',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal"
+          name: {
+            kind: 'Name',
+            value: 'gasTotal',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Increasing number of receipt",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Increasing number of receipt',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber"
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "interfaces": [],
-      "directives": []
+      interfaces: [],
+      directives: [],
     },
     {
-      "kind": "InputObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Receipt_filter"
+      kind: 'InputObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Receipt_filter',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "timestamp"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "timestamp_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "timestamp_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "timestamp_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "timestamp_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "timestamp_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "timestamp_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "timestamp_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_contains_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_not_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_not_contains_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_starts_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_starts_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_not_starts_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_not_starts_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_ends_with"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_ends_with_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'timestamp',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'timestamp_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'timestamp_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'timestamp_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'timestamp_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'timestamp_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'timestamp_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'timestamp_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_contains_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_not_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_not_contains_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_starts_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_starts_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_not_starts_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_not_starts_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_ends_with',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_ends_with_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_not_ends_with"
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_not_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender_not_ends_with_nocase"
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender_not_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_not"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_gt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_lt"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_gte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_lte"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_contains"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_contains_nocase"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_not',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_gt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_lt',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_gte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_lte',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_contains',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_contains_nocase',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_not_contains"
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_not_contains',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_not_contains_nocase"
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_not_contains_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_starts_with"
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_starts_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_starts_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_starts_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_not_starts_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_not_starts_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_not_starts_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_not_starts_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_ends_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_ends_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_not_ends_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_not_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer_not_ends_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer_not_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_gt"
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_lt"
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_gte"
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
-          },
-          "directives": []
-        },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
+          },
+          directives: [],
+        },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
-        },
+          directives: [],
+        },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_contains"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_contains',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_contains_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_contains_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_not_contains"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_not_contains',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_not_contains_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_not_contains_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_starts_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_starts_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_starts_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_starts_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_not_starts_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_not_starts_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_not_starts_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_not_starts_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_ends_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_ends_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_not_ends_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_not_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress_not_ends_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress_not_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "String"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'String',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_contains"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_contains',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_contains_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_contains_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not_contains"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not_contains',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not_contains_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not_contains_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_starts_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_starts_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_starts_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_starts_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not_starts_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not_starts_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not_starts_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not_starts_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_ends_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_ends_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not_ends_with"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not_ends_with',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress_not_ends_with_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress_not_ends_with_nocase',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "String"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'String',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'gasTotal',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'gasTotal_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'gasTotal_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'gasTotal_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'gasTotal_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'gasTotal_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'gasTotal_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'gasTotal_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber_not_in"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Filter for the block changed event.",
-            "block": true
-          },
-          "name": {
-            "kind": "Name",
-            "value": "_change_block"
-          },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BlockChangedFilter"
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "and"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Receipt_filter"
-              }
-            }
-          },
-          "directives": []
-        },
-        {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "or"
-          },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Receipt_filter"
-              }
-            }
-          },
-          "directives": []
-        }
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber_not_in',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Filter for the block changed event.',
+            block: true,
+          },
+          name: {
+            kind: 'Name',
+            value: '_change_block',
+          },
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BlockChangedFilter',
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'and',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Receipt_filter',
+              },
+            },
+          },
+          directives: [],
+        },
+        {
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'or',
+          },
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Receipt_filter',
+              },
+            },
+          },
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "EnumTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Receipt_orderBy"
+      kind: 'EnumTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Receipt_orderBy',
       },
-      "values": [
+      values: [
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "timestamp"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'timestamp',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "sender"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'sender',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "payer"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'payer',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockAddress"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockAddress',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "tokenAddress"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'tokenAddress',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "amountTransferred"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'amountTransferred',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "gasTotal"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'gasTotal',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receiptNumber"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receiptNumber',
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "Subscription"
+      kind: 'ObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'Subscription',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lock"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lock',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "id"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'id',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "ID"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'ID',
+                  },
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Lock"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Lock',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "locks"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'locks',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Lock_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Lock_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Lock_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Lock_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "Lock"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'Lock',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "key"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'key',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "id"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'id',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "ID"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'ID',
+                  },
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Key"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Key',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keys"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keys',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Key_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Key_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Key_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Key_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "Key"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'Key',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "unlockDailyData"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'unlockDailyData',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "id"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'id',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "ID"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'ID',
+                  },
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "UnlockDailyData"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'UnlockDailyData',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "unlockDailyDatas"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'unlockDailyDatas',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "UnlockDailyData_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'UnlockDailyData_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "UnlockDailyData_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'UnlockDailyData_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "UnlockDailyData"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'UnlockDailyData',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockStats"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockStats',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "LockStats_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'LockStats_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "LockStats_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'LockStats_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "LockStats"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'LockStats',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "unlockStats"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'unlockStats',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "UnlockStats_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'UnlockStats_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "UnlockStats_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'UnlockStats_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "UnlockStats"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'UnlockStats',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receipt"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receipt',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "id"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'id',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "ID"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'ID',
+                  },
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Receipt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Receipt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "receipts"
+          kind: 'FieldDefinition',
+          name: {
+            kind: 'Name',
+            value: 'receipts',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "skip"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'skip',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "0"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '0',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "first"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'first',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Int"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Int',
+                },
               },
-              "defaultValue": {
-                "kind": "IntValue",
-                "value": "100"
+              defaultValue: {
+                kind: 'IntValue',
+                value: '100',
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderBy"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderBy',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Receipt_orderBy"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Receipt_orderBy',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "orderDirection"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'orderDirection',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "OrderDirection"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'OrderDirection',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "where"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'where',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Receipt_filter"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Receipt_filter',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value:
+                  'The block at which the query should be executed. Can either be a `{ hash: Bytes }` value containing a block hash, a `{ number: Int }` containing the block number, or a `{ number_gte: Int }` containing the minimum block number. In the case of `number_gte`, the query will be executed on the latest block only if the subgraph has progressed to or past the minimum block number. Defaults to the latest block when omitted.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
+              directives: [],
             },
             {
-              "kind": "InputValueDefinition",
-              "description": {
-                "kind": "StringValue",
-                "value": "Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.",
-                "block": true
+              kind: 'InputValueDefinition',
+              description: {
+                kind: 'StringValue',
+                value: 'Set to `allow` to receive data even if the subgraph has skipped over errors while syncing.',
+                block: true,
               },
-              "name": {
-                "kind": "Name",
-                "value": "subgraphError"
+              name: {
+                kind: 'Name',
+                value: 'subgraphError',
               },
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "_SubgraphErrorPolicy_"
-                  }
-                }
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: '_SubgraphErrorPolicy_',
+                  },
+                },
               },
-              "defaultValue": {
-                "kind": "EnumValue",
-                "value": "deny"
+              defaultValue: {
+                kind: 'EnumValue',
+                value: 'deny',
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "ListType",
-              "type": {
-                "kind": "NonNullType",
-                "type": {
-                  "kind": "NamedType",
-                  "name": {
-                    "kind": "Name",
-                    "value": "Receipt"
-                  }
-                }
-              }
-            }
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: {
+                    kind: 'Name',
+                    value: 'Receipt',
+                  },
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Access to subgraph metadata",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Access to subgraph metadata',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "_meta"
+          name: {
+            kind: 'Name',
+            value: '_meta',
           },
-          "arguments": [
+          arguments: [
             {
-              "kind": "InputValueDefinition",
-              "name": {
-                "kind": "Name",
-                "value": "block"
+              kind: 'InputValueDefinition',
+              name: {
+                kind: 'Name',
+                value: 'block',
               },
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Block_height"
-                }
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Block_height',
+                },
               },
-              "directives": []
-            }
+              directives: [],
+            },
           ],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "_Meta_"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: '_Meta_',
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "interfaces": [],
-      "directives": []
+      interfaces: [],
+      directives: [],
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "UnlockDailyData"
+      kind: 'ObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'UnlockDailyData',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Day identifier",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Day identifier',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "ID"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'ID',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Number of locks deployed on that day",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Number of locks deployed on that day',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed"
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total number of locks deployed",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total number of locks deployed',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed"
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Daily number of keys sold",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Daily number of keys sold',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "keysSold"
+          name: {
+            kind: 'Name',
+            value: 'keysSold',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total number of keys sold",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total number of keys sold',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold"
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Daily number of active locks (active locks have minted at least one membership in the last 30 days",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Daily number of active locks (active locks have minted at least one membership in the last 30 days',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "activeLocks"
+          name: {
+            kind: 'Name',
+            value: 'activeLocks',
           },
-          "arguments": [],
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total value exchanged on the network",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total value exchanged on the network',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct"
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "interfaces": [],
-      "directives": []
+      interfaces: [],
+      directives: [],
     },
     {
-      "kind": "InputObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "UnlockDailyData_filter"
+      kind: 'InputObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'UnlockDailyData_filter',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keysSold"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keysSold',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keysSold_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keysSold_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keysSold_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keysSold_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keysSold_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keysSold_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keysSold_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keysSold_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keysSold_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keysSold_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keysSold_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keysSold_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keysSold_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keysSold_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "activeLocks"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'activeLocks',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "activeLocks_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'activeLocks_not',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "activeLocks_contains"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'activeLocks_contains',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "activeLocks_contains_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'activeLocks_contains_nocase',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "activeLocks_not_contains"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'activeLocks_not_contains',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "activeLocks_not_contains_nocase"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'activeLocks_not_contains_nocase',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "Bytes"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'Bytes',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Filter for the block changed event.",
-            "block": true
+          kind: 'InputValueDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Filter for the block changed event.',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "_change_block"
+          name: {
+            kind: 'Name',
+            value: '_change_block',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BlockChangedFilter"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BlockChangedFilter',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "and"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'and',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "UnlockDailyData_filter"
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'UnlockDailyData_filter',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "or"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'or',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "UnlockDailyData_filter"
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'UnlockDailyData_filter',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "EnumTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "UnlockDailyData_orderBy"
+      kind: 'EnumTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'UnlockDailyData_orderBy',
       },
-      "values": [
+      values: [
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "lockDeployed"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'lockDeployed',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "keysSold"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'keysSold',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "activeLocks"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'activeLocks',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct',
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "UnlockStats"
+      kind: 'ObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'UnlockStats',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Identifier",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Identifier',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "ID"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'ID',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total number of locks deployed",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total number of locks deployed',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed"
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total number of keys sold",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total number of keys sold',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold"
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Total value exchanged on the network",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Total value exchanged on the network',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct"
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "BigInt"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'BigInt',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "interfaces": [],
-      "directives": []
+      interfaces: [],
+      directives: [],
     },
     {
-      "kind": "InputObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "UnlockStats_filter"
+      kind: 'InputObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'UnlockStats_filter',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "ID"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'ID',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "ID"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'ID',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_not"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_not',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_gt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_gt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_lt"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_lt',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_gte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_gte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_lte"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_lte',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BigInt"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BigInt',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct_not_in"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct_not_in',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NonNullType",
-              "type": {
-                "kind": "NamedType",
-                "name": {
-                  "kind": "Name",
-                  "value": "BigInt"
-                }
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NonNullType',
+              type: {
+                kind: 'NamedType',
+                name: {
+                  kind: 'Name',
+                  value: 'BigInt',
+                },
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Filter for the block changed event.",
-            "block": true
+          kind: 'InputValueDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Filter for the block changed event.',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "_change_block"
+          name: {
+            kind: 'Name',
+            value: '_change_block',
           },
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "BlockChangedFilter"
-            }
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'BlockChangedFilter',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "and"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'and',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "UnlockStats_filter"
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'UnlockStats_filter',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "InputValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "or"
+          kind: 'InputValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'or',
           },
-          "type": {
-            "kind": "ListType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "UnlockStats_filter"
-              }
-            }
+          type: {
+            kind: 'ListType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'UnlockStats_filter',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "EnumTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "UnlockStats_orderBy"
+      kind: 'EnumTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: 'UnlockStats_orderBy',
       },
-      "values": [
+      values: [
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "id"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'id',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalLockDeployed"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalLockDeployed',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "totalKeysSold"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'totalKeysSold',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "name": {
-            "kind": "Name",
-            "value": "grossNetworkProduct"
+          kind: 'EnumValueDefinition',
+          name: {
+            kind: 'Name',
+            value: 'grossNetworkProduct',
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
+      directives: [],
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "_Block_"
+      kind: 'ObjectTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: '_Block_',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "The hash of the block",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'The hash of the block',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "hash"
+          name: {
+            kind: 'Name',
+            value: 'hash',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Bytes"
-            }
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Bytes',
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "The block number",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'The block number',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "number"
+          name: {
+            kind: 'Name',
+            value: 'number',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Int"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Int',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Integer representation of the timestamp stored in blocks for the chain",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Integer representation of the timestamp stored in blocks for the chain',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "timestamp"
+          name: {
+            kind: 'Name',
+            value: 'timestamp',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NamedType",
-            "name": {
-              "kind": "Name",
-              "value": "Int"
-            }
+          arguments: [],
+          type: {
+            kind: 'NamedType',
+            name: {
+              kind: 'Name',
+              value: 'Int',
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "interfaces": [],
-      "directives": []
+      interfaces: [],
+      directives: [],
     },
     {
-      "kind": "ObjectTypeDefinition",
-      "description": {
-        "kind": "StringValue",
-        "value": "The type for the top-level _meta field",
-        "block": true
+      kind: 'ObjectTypeDefinition',
+      description: {
+        kind: 'StringValue',
+        value: 'The type for the top-level _meta field',
+        block: true,
       },
-      "name": {
-        "kind": "Name",
-        "value": "_Meta_"
+      name: {
+        kind: 'Name',
+        value: '_Meta_',
       },
-      "fields": [
+      fields: [
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Information about a specific subgraph block. The hash of the block\nwill be null if the _meta field has a block constraint that asks for\na block number. It will be filled if the _meta field has no block constraint\nand therefore asks for the latest  block\n",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value:
+              'Information about a specific subgraph block. The hash of the block\nwill be null if the _meta field has a block constraint that asks for\na block number. It will be filled if the _meta field has no block constraint\nand therefore asks for the latest  block\n',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "block"
+          name: {
+            kind: 'Name',
+            value: 'block',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "_Block_"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: '_Block_',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "The deployment ID",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'The deployment ID',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "deployment"
+          name: {
+            kind: 'Name',
+            value: 'deployment',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "String"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'String',
+              },
+            },
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "FieldDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "If `true`, the subgraph encountered indexing errors at some past block",
-            "block": true
+          kind: 'FieldDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'If `true`, the subgraph encountered indexing errors at some past block',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "hasIndexingErrors"
+          name: {
+            kind: 'Name',
+            value: 'hasIndexingErrors',
           },
-          "arguments": [],
-          "type": {
-            "kind": "NonNullType",
-            "type": {
-              "kind": "NamedType",
-              "name": {
-                "kind": "Name",
-                "value": "Boolean"
-              }
-            }
+          arguments: [],
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: {
+                kind: 'Name',
+                value: 'Boolean',
+              },
+            },
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "interfaces": [],
-      "directives": []
+      interfaces: [],
+      directives: [],
     },
     {
-      "kind": "EnumTypeDefinition",
-      "name": {
-        "kind": "Name",
-        "value": "_SubgraphErrorPolicy_"
+      kind: 'EnumTypeDefinition',
+      name: {
+        kind: 'Name',
+        value: '_SubgraphErrorPolicy_',
       },
-      "values": [
+      values: [
         {
-          "kind": "EnumValueDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "Data will be returned even if the subgraph has indexing errors",
-            "block": true
+          kind: 'EnumValueDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'Data will be returned even if the subgraph has indexing errors',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "allow"
+          name: {
+            kind: 'Name',
+            value: 'allow',
           },
-          "directives": []
+          directives: [],
         },
         {
-          "kind": "EnumValueDefinition",
-          "description": {
-            "kind": "StringValue",
-            "value": "If the subgraph has indexing errors, data will be omitted. The default.",
-            "block": true
+          kind: 'EnumValueDefinition',
+          description: {
+            kind: 'StringValue',
+            value: 'If the subgraph has indexing errors, data will be omitted. The default.',
+            block: true,
           },
-          "name": {
-            "kind": "Name",
-            "value": "deny"
+          name: {
+            kind: 'Name',
+            value: 'deny',
           },
-          "directives": []
-        }
+          directives: [],
+        },
       ],
-      "directives": []
-    }
-  ]
-};
+      directives: [],
+    },
+  ],
+}
 
 export default buildASTSchema(schemaAST, {
   assumeValid: true,
-  assumeValidSDL: true
-});
+  assumeValidSDL: true,
+})

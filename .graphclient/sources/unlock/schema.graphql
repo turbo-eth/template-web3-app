@@ -30,38 +30,53 @@ scalar Bytes
 
 """
 8 bytes signed integer
-
 """
 scalar Int8
 
 type Key {
-  """Unique identifier for a key (combination of lock address and token id)"""
+  """
+  Unique identifier for a key (combination of lock address and token id)
+  """
   id: ID!
   """
   In the Unlock ecosystem, a “Lock” is a smart contract that creates (or “mints”) NFTs
   """
   lock: Lock!
-  """TokenId for a given key"""
+  """
+  TokenId for a given key
+  """
   tokenId: BigInt!
-  """The address of the key owner"""
+  """
+  The address of the key owner
+  """
   owner: Bytes!
   """
   An assigned title set on an Unlock key which gives a specific wallet address authorization to transfer, share or cancel
   """
   manager: Bytes
-  """Time the key expires"""
+  """
+  Time the key expires
+  """
   expiration: BigInt!
-  """The tokenURI on an NFT is a unique identifier"""
+  """
+  The tokenURI on an NFT is a unique identifier
+  """
   tokenURI: String
-  """Block key was created"""
+  """
+  Block key was created
+  """
   createdAtBlock: BigInt!
-  """Timestamp of the block in which the key was created"""
+  """
+  Timestamp of the block in which the key was created
+  """
   createdAt: BigInt!
   """
   Invoked by a Lock manager to expire the user's key and perform a refund and cancellation of the key
   """
   cancelled: Boolean
-  """list of transaction hashes for purchase/extensions of a specific token"""
+  """
+  list of transaction hashes for purchase/extensions of a specific token
+  """
   transactionsHash: [String!]
 }
 
@@ -177,7 +192,9 @@ input Key_filter {
   transactionsHash_contains_nocase: [String!]
   transactionsHash_not_contains: [String!]
   transactionsHash_not_contains_nocase: [String!]
-  """Filter for the block changed event."""
+  """
+  Filter for the block changed event.
+  """
   _change_block: BlockChangedFilter
   and: [Key_filter]
   or: [Key_filter]
@@ -213,13 +230,21 @@ enum Key_orderBy {
 }
 
 type Lock {
-  """Unique ID for the Lock object (uses the lock address)"""
+  """
+  Unique ID for the Lock object (uses the lock address)
+  """
   id: ID!
-  """Address of the lock"""
+  """
+  Address of the lock
+  """
   address: Bytes!
-  """A descriptive name for a collection of NFTs in this contract"""
+  """
+  A descriptive name for a collection of NFTs in this contract
+  """
   name: String
-  """Token symbol"""
+  """
+  Token symbol
+  """
   symbol: String
   """
   Duration is set the on the lock when you deploy and the expiration which is set on each key when they are minted
@@ -229,38 +254,64 @@ type Lock {
   Address of the 'currency' ERC20 contract if the keys are priced using an ERC20
   """
   tokenAddress: Bytes!
-  """Price of the keys sold by the lock"""
+  """
+  Price of the keys sold by the lock
+  """
   price: BigInt!
   """
   An assigned role set on a Lock contract which gives the highest level of permissions to the wallet address set to that role
   """
   lockManagers: [Bytes!]!
-  """Unlock Protocol version of a minting contract"""
+  """
+  Unlock Protocol version of a minting contract
+  """
   version: BigInt!
-  """Number of keys minted (expired or not)"""
+  """
+  Number of keys minted (expired or not)
+  """
   totalKeys: BigInt!
-  """Maximum number of keys for sale"""
+  """
+  Maximum number of keys for sale
+  """
   maxNumberOfKeys: BigInt
-  """The maximum number of keys allowed for a single address"""
+  """
+  The maximum number of keys allowed for a single address
+  """
   maxKeysPerAddress: BigInt
-  """Refer to key entity"""
+  """
+  Refer to key entity
+  """
   keys(skip: Int = 0, first: Int = 100, orderBy: Key_orderBy, orderDirection: OrderDirection, where: Key_filter): [Key!]
-  """Which block the lock was created"""
+  """
+  Which block the lock was created
+  """
   createdAtBlock: BigInt
-  """The timestamp of the block in which the last key was minted"""
+  """
+  The timestamp of the block in which the last key was minted
+  """
   lastKeyMintedAt: BigInt
-  """Address of the lock deployer"""
+  """
+  Address of the lock deployer
+  """
   deployer: Bytes!
-  """Total number of receipts of lock"""
+  """
+  Total number of receipts of lock
+  """
   numberOfReceipts: BigInt!
 }
 
 type LockStats {
-  """Transaction Hash"""
+  """
+  Transaction Hash
+  """
   id: ID!
-  """Total locks deployed"""
+  """
+  Total locks deployed
+  """
   totalLocksDeployed: BigInt!
-  """Total keys sold"""
+  """
+  Total keys sold
+  """
   totalKeysSold: BigInt!
 }
 
@@ -289,7 +340,9 @@ input LockStats_filter {
   totalKeysSold_lte: BigInt
   totalKeysSold_in: [BigInt!]
   totalKeysSold_not_in: [BigInt!]
-  """Filter for the block changed event."""
+  """
+  Filter for the block changed event.
+  """
   _change_block: BlockChangedFilter
   and: [LockStats_filter]
   or: [LockStats_filter]
@@ -459,7 +512,9 @@ input Lock_filter {
   numberOfReceipts_lte: BigInt
   numberOfReceipts_in: [BigInt!]
   numberOfReceipts_not_in: [BigInt!]
-  """Filter for the block changed event."""
+  """
+  Filter for the block changed event.
+  """
   _change_block: BlockChangedFilter
   and: [Lock_filter]
   or: [Lock_filter]
@@ -485,7 +540,9 @@ enum Lock_orderBy {
   numberOfReceipts
 }
 
-"""Defines the order direction, either ascending or descending"""
+"""
+Defines the order direction, either ascending or descending
+"""
 enum OrderDirection {
   asc
   desc
@@ -626,32 +683,48 @@ type Query {
     """
     subgraphError: _SubgraphErrorPolicy_! = deny
   ): [Receipt!]!
-  """Access to subgraph metadata"""
+  """
+  Access to subgraph metadata
+  """
   _meta(block: Block_height): _Meta_
 }
 
 type Receipt {
-  """Transaction Hash"""
+  """
+  Transaction Hash
+  """
   id: ID!
-  """Timestamp"""
+  """
+  Timestamp
+  """
   timestamp: BigInt!
-  """Sender of the transaction"""
+  """
+  Sender of the transaction
+  """
   sender: String!
   """
   Payer in the case of an ERC20 lock renewal, the sender and payer might differ
   """
   payer: String
-  """Address of the Lock smart contract"""
+  """
+  Address of the Lock smart contract
+  """
   lockAddress: String!
   """
   Address of the 'currency' ERC20 contract if the keys are priced using an ERC20
   """
   tokenAddress: String!
-  """amount"""
+  """
+  amount
+  """
   amountTransferred: BigInt!
-  """Total gas paid"""
+  """
+  Total gas paid
+  """
   gasTotal: BigInt!
-  """Increasing number of receipt"""
+  """
+  Increasing number of receipt
+  """
   receiptNumber: BigInt!
 }
 
@@ -776,7 +849,9 @@ input Receipt_filter {
   receiptNumber_lte: BigInt
   receiptNumber_in: [BigInt!]
   receiptNumber_not_in: [BigInt!]
-  """Filter for the block changed event."""
+  """
+  Filter for the block changed event.
+  """
   _change_block: BlockChangedFilter
   and: [Receipt_filter]
   or: [Receipt_filter]
@@ -929,26 +1004,40 @@ type Subscription {
     """
     subgraphError: _SubgraphErrorPolicy_! = deny
   ): [Receipt!]!
-  """Access to subgraph metadata"""
+  """
+  Access to subgraph metadata
+  """
   _meta(block: Block_height): _Meta_
 }
 
 type UnlockDailyData {
-  """Day identifier"""
+  """
+  Day identifier
+  """
   id: ID!
-  """Number of locks deployed on that day"""
+  """
+  Number of locks deployed on that day
+  """
   lockDeployed: BigInt!
-  """Total number of locks deployed"""
+  """
+  Total number of locks deployed
+  """
   totalLockDeployed: BigInt!
-  """Daily number of keys sold"""
+  """
+  Daily number of keys sold
+  """
   keysSold: BigInt!
-  """Total number of keys sold"""
+  """
+  Total number of keys sold
+  """
   totalKeysSold: BigInt!
   """
   Daily number of active locks (active locks have minted at least one membership in the last 30 days
   """
   activeLocks: [Bytes!]
-  """Total value exchanged on the network"""
+  """
+  Total value exchanged on the network
+  """
   grossNetworkProduct: BigInt!
 }
 
@@ -1007,7 +1096,9 @@ input UnlockDailyData_filter {
   grossNetworkProduct_lte: BigInt
   grossNetworkProduct_in: [BigInt!]
   grossNetworkProduct_not_in: [BigInt!]
-  """Filter for the block changed event."""
+  """
+  Filter for the block changed event.
+  """
   _change_block: BlockChangedFilter
   and: [UnlockDailyData_filter]
   or: [UnlockDailyData_filter]
@@ -1024,13 +1115,21 @@ enum UnlockDailyData_orderBy {
 }
 
 type UnlockStats {
-  """Identifier"""
+  """
+  Identifier
+  """
   id: ID!
-  """Total number of locks deployed"""
+  """
+  Total number of locks deployed
+  """
   totalLockDeployed: BigInt!
-  """Total number of keys sold"""
+  """
+  Total number of keys sold
+  """
   totalKeysSold: BigInt!
-  """Total value exchanged on the network"""
+  """
+  Total value exchanged on the network
+  """
   grossNetworkProduct: BigInt!
 }
 
@@ -1067,7 +1166,9 @@ input UnlockStats_filter {
   grossNetworkProduct_lte: BigInt
   grossNetworkProduct_in: [BigInt!]
   grossNetworkProduct_not_in: [BigInt!]
-  """Filter for the block changed event."""
+  """
+  Filter for the block changed event.
+  """
   _change_block: BlockChangedFilter
   and: [UnlockStats_filter]
   or: [UnlockStats_filter]
@@ -1081,32 +1182,45 @@ enum UnlockStats_orderBy {
 }
 
 type _Block_ {
-  """The hash of the block"""
+  """
+  The hash of the block
+  """
   hash: Bytes
-  """The block number"""
+  """
+  The block number
+  """
   number: Int!
-  """Integer representation of the timestamp stored in blocks for the chain"""
+  """
+  Integer representation of the timestamp stored in blocks for the chain
+  """
   timestamp: Int
 }
 
-"""The type for the top-level _meta field"""
+"""
+The type for the top-level _meta field
+"""
 type _Meta_ {
   """
   Information about a specific subgraph block. The hash of the block
   will be null if the _meta field has a block constraint that asks for
   a block number. It will be filled if the _meta field has no block constraint
   and therefore asks for the latest  block
-  
   """
   block: _Block_!
-  """The deployment ID"""
+  """
+  The deployment ID
+  """
   deployment: String!
-  """If `true`, the subgraph encountered indexing errors at some past block"""
+  """
+  If `true`, the subgraph encountered indexing errors at some past block
+  """
   hasIndexingErrors: Boolean!
 }
 
 enum _SubgraphErrorPolicy_ {
-  """Data will be returned even if the subgraph has indexing errors"""
+  """
+  Data will be returned even if the subgraph has indexing errors
+  """
   allow
   """
   If the subgraph has indexing errors, data will be omitted. The default.

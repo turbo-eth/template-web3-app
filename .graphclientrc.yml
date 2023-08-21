@@ -1,10 +1,10 @@
 sources:
   - name: unlock
-    handler: 
-      graphql: 
+    handler:
+      graphql:
         endpoint: 'https://api.thegraph.com/subgraphs/name/unlock-protocol/{context.network:goerli-v2}'
 
-documents: 
+documents:
   - ./integrations/unlock/queries/user-locks-query.graphql
   - ./integrations/unlock/queries/lock-stats-query.graphql
   - ./integrations/unlock/queries/user-keys-query.graphql

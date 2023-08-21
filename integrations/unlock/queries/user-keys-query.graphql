@@ -1,5 +1,5 @@
-query UserKeysQuery($user: Bytes!){
-  keys(where: {owner: $user}) {
+query UserKeysQuery($user: Bytes!) {
+  keys(where: { owner: $user }) {
     id
     lock {
       id
