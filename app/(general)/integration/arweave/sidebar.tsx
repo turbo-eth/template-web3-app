@@ -5,8 +5,8 @@ import { ArweaveAccountPreview } from '@/integrations/arweave/components/arweave
 export const SideBar = () => {
   const arweaveBaseUrl = turboIntegrations.arweave.href
   return (
-    <aside aria-label="Sidebar" className="w-64">
-      <div className="h-full overflow-y-auto bg-neutral-50 px-3 py-4 text-left dark:bg-neutral-800">
+    <aside aria-label="Sidebar" className="w-full sm:w-64">
+      <div className="sm:h-full overflow-y-auto bg-neutral-50 px-3 py-4 text-left dark:bg-neutral-800">
         <ArweaveAccountPreview />
         <ul className="space-y-2 font-medium">
           <li>

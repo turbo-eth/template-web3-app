@@ -5,12 +5,12 @@ export const ArweaveSettings = () => {
   const { wallet, disconnect, address, backupWallet } = useArweaveWallet()
   if (!wallet) return <ConnectArweaveWallet />
   return (
-    <div>
-      <h4 className="mb-2">
-        Connected to <span className="font-mono">{address}</span>
+    <div className="max-w-full">
+      <h4 className="mb-2 ">
+        Connected to <span className="font-mono break-words">{address}</span>
       </h4>
-      <div>
-        <button className="btn btn-primary mr-2 text-sm" onClick={() => backupWallet()}>
+      <div className="flex mt-2 justify-center items-center flex-wrap gap-2">
+        <button className="btn btn-primary text-sm" onClick={() => backupWallet()}>
           backup keyfile
         </button>
         <button className="btn btn-primary text-sm" onClick={() => disconnect()}>
