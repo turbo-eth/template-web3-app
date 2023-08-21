@@ -1,0 +1,7 @@
+query UserLocksQuery($user: Bytes!) {
+  locks(where: { lockManagers: [$user] }) {
+    id
+    address
+    name
+  }
+}

@@ -9,8 +9,8 @@ import { BiVideoPlus } from 'react-icons/bi'
 
 import { Progress } from '@/components/ui/progress'
 
-import { FormLivepeerApiKey } from './form-livepeer-api-key'
 import { useIsLivepeerApiKeySet } from '../hooks/use-livepeer-api-key'
+import { FormLivepeerApiKey } from './form-livepeer-api-key'
 
 export function UploadFile() {
   const [video, setVideo] = useState<File | undefined>()

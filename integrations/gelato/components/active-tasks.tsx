@@ -4,8 +4,8 @@ import { BsSearch } from 'react-icons/bs'
 
 import { Input } from '@/components/ui/input'
 
-import { ActiveTaskPreview } from './active-task-preview'
 import { useActiveTasks } from '../hooks'
+import { ActiveTaskPreview } from './active-task-preview'
 
 export function ActiveTasks() {
   const [search, setSearch] = useState('')

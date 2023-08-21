@@ -6,9 +6,9 @@ import { useFormContext } from 'react-hook-form'
 import { Switch } from '@/components/ui/switch'
 import { cn } from '@/lib/utils'
 
-import { CreateTaskForm } from './create-task'
 import { getTotalInterval } from '../../utils/helpers'
 import { ValidationError } from '../errors/validation-error'
+import { CreateTaskForm } from './create-task'
 
 export function IntervalInput() {
   const [date, setDate] = useState(Date.now())

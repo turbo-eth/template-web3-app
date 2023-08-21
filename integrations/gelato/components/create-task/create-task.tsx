@@ -10,6 +10,9 @@ import { useNetwork } from 'wagmi'
 
 import { useEthersSigner } from '@/lib/hooks/web3/use-ethers-signer'
 
+import { useNewTask } from '../../hooks'
+import { useMsgSender } from '../../hooks/use-msg-sender'
+import { getFunctionSignature, getTotalInterval, getTransactionUrl, sortInputsByOrder } from '../../utils/helpers'
 import { ContractInput } from './contract-input'
 import { ExecutionValues } from './execution-values'
 import { FunctionInput } from './function-input'
@@ -19,9 +22,6 @@ import { PaymentInput } from './payment-input'
 import { ResolverInput } from './resolver-input'
 import { RestrictionInfo } from './restriction-info'
 import { TaskNameInput } from './task-name-input'
-import { useNewTask } from '../../hooks'
-import { useMsgSender } from '../../hooks/use-msg-sender'
-import { getFunctionSignature, getTotalInterval, getTransactionUrl, sortInputsByOrder } from '../../utils/helpers'
 
 export type CreateTaskForm = {
   contractAddress: string
