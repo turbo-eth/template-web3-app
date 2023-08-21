@@ -37,7 +37,6 @@ export function useERC1155Metadata({ address, chainId, tokenId, ipfsGatewayUrl =
     args: [tokenId],
   })
 
-
   const metadataQuery = useQuery([address, chainId, 'uri', tokenId, tokenUriData], {
     queryFn: async () => {
       if (!tokenUriData) throw new Error('No tokenUri found')

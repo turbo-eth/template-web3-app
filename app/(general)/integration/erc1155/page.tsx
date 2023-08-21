@@ -8,7 +8,15 @@ import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
-import { Erc1155Deploy, Erc1155DeployTest, Erc1155Read, Erc1155WriteApprove, Erc1155WriteMint, Erc1155WriteTransfer, Erc1155WriteBatchTransfer } from '@/integrations/erc1155'
+import {
+  Erc1155Deploy,
+  Erc1155DeployTest,
+  Erc1155Read,
+  Erc1155WriteApprove,
+  Erc1155WriteBatchTransfer,
+  Erc1155WriteMint,
+  Erc1155WriteTransfer,
+} from '@/integrations/erc1155'
 import { Erc1155SetTokenStorage } from '@/integrations/erc1155/components/erc1155-set-token-storage'
 import { useErc1155TokenStorage } from '@/integrations/erc1155/hooks/use-erc1155-token-storage'
 
