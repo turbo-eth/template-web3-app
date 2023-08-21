@@ -31,7 +31,7 @@ export default function ConnextLayout({ children }: { children: ReactNode }) {
               }}>
               <Image alt="Connext Icon" className="mx-auto mb-5" height={100} src={turboIntegrations.connext.imgDark} width={100} />
               <motion.h1
-                className="text-gradient-pooltogether pb-5 text-center text-2xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
+                className="text-gradient-sand pb-5 text-center text-2xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
                 variants={FADE_DOWN_ANIMATION_VARIANTS}>
                 Connext
               </motion.h1>
@@ -39,8 +39,8 @@ export default function ConnextLayout({ children }: { children: ReactNode }) {
                 <Balancer className="text-xl font-semibold">Bridge assets directly from your app</Balancer>
               </motion.p>
               <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-                <LinkComponent isExternal href={turboIntegrations.connext.url}>
-                  <button className="btn btn-primary">Documentation</button>
+                <LinkComponent isExternal className="btn btn-primary" href={turboIntegrations.connext.url}>
+                  Documentation
                 </LinkComponent>
               </motion.div>
             </motion.div>
