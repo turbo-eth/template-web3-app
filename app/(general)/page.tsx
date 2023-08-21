@@ -348,10 +348,55 @@ const features = [
     demo: (
       <div className="flex items-center justify-center space-x-20">
         <IsLightTheme>
-          <Image alt="PoolTogether logo" height={100} src={turboIntegrations.connext.imgDark} width={100} />
+          <Image alt={`${turboIntegrations.connext.name} logo`} height={100} src={turboIntegrations.connext.imgDark} width={100} />
         </IsLightTheme>
         <IsDarkTheme>
-          <Image alt="PoolTogether logo" height={100} src={turboIntegrations.connext.imgLight} width={100} />
+          <Image alt={`${turboIntegrations.connext.name} logo`} height={100} src={turboIntegrations.connext.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
+    title: turboIntegrations.gelato.name,
+    description: turboIntegrations.gelato.description,
+    href: turboIntegrations.gelato.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt={`${turboIntegrations.gelato.name} logo`} height={100} src={turboIntegrations.gelato.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt={`${turboIntegrations.gelato.name} logo`} height={100} src={turboIntegrations.gelato.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
+    title: turboIntegrations.push_protocol.name,
+    description: turboIntegrations.push_protocol.description,
+    href: turboIntegrations.push_protocol.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Push Protocol logo" height={100} src={turboIntegrations.push_protocol.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Push Protocol logo" height={100} src={turboIntegrations.push_protocol.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
+    title: turboIntegrations.moralis.name,
+    description: turboIntegrations.moralis.description,
+    href: turboIntegrations.moralis.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Moralis logo" height={100} src={turboIntegrations.moralis.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Mtarter logo" height={100} src={turboIntegrations.moralis.imgLight} width={100} />
         </IsDarkTheme>
       </div>
     ),
