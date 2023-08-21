@@ -74,7 +74,7 @@ export const ETH_CHAINS_PROD = [mainnet, optimism, arbitrum, polygon, celo, gnos
 export const ETH_CHAINS_DEV =
   env.NEXT_PUBLIC_PROD_NETWORKS_DEV === 'true'
     ? [...ETH_CHAINS_PROD, ...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST]
-    : [...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST, ...ETH_CHAINS_PROD]
+    : [...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST]
 
 export const CHAINS: Chain[] = process.env.NODE_ENV === 'production' ? ETH_CHAINS_PROD : ETH_CHAINS_DEV
 

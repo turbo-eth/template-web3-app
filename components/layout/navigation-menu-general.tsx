@@ -29,7 +29,7 @@ export function NavigationMenuGeneral() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <div className="relative flex h-full w-full select-none flex-col justify-end overflow-hidden rounded-md bg-gradient-to-b from-emerald-500 to-lime-700 p-6 no-underline outline-none focus:shadow-md">
-                    <div className="absolute right-0 top-10 z-0 h-48 w-48 bg-[url('https://em-content.zobj.net/thumbs/240/twitter/322/high-voltage_26a1.png')] bg-cover opacity-20" />
+                    <div className="absolute top-10 right-0 z-0 h-48 w-48 bg-[url('https://em-content.zobj.net/thumbs/240/twitter/322/high-voltage_26a1.png')] bg-cover opacity-20" />
                     <div className="z-10">
                       <h3 className="z-10 mb-2 mt-4 text-lg font-medium text-white">
                         <span className="text-4xl">⚡️</span>
@@ -67,8 +67,8 @@ export function NavigationMenuGeneral() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Integrations</NavigationMenuTrigger>
-          <NavigationMenuContent className="overflow-y-scroll xl:max-h-[690px] 2xl:overflow-y-hidden">
-            <ul className="grid w-[600px] gap-3 p-4 md:grid-cols-2">
+          <NavigationMenuContent className="overflow-y-scroll xl:max-h-[690px]">
+            <ul className="grid w-[750px] gap-3 p-4 md:grid-cols-3">
               {Object.values(turboIntegrations).map((component) => (
                 <ListItem key={component.name} title={component.name} {...component}>
                   {component.description}
