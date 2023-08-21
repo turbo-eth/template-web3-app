@@ -82,7 +82,6 @@ export const useAave = () => {
       const nativeTokenPrice = Number(reservesData?.[1].networkBaseTokenPriceInUsd) / Number(reservesData?.[1].marketReferenceCurrencyUnit)
       const collateralInNativeToken = collateralInUsd / nativeTokenPrice
       const debtInNativeToken = totalDebtInUsd / nativeTokenPrice
-
       setData({
         userReservesData,
         usdData,

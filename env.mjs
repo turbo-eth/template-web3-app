@@ -17,6 +17,7 @@ export const env = createEnv({
     ETHERSCAN_API_KEY_OPTIMISM: z.string().min(1).optional(),
     ETHERSCAN_API_KEY_ARBITRUM: z.string().min(1).optional(),
     ETHERSCAN_API_KEY_POLYGON: z.string().min(1).optional(),
+    MORALIS_API_KEY: z.string().min(1).optional(),
   },
   client: {
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER: z.enum(['true', 'false']).default('true'),
@@ -37,6 +38,7 @@ export const env = createEnv({
     ETHERSCAN_API_KEY_OPTIMISM: process.env.ETHERSCAN_API_KEY_OPTIMISM,
     ETHERSCAN_API_KEY_ARBITRUM: process.env.ETHERSCAN_API_KEY_ARBITRUM,
     ETHERSCAN_API_KEY_POLYGON: process.env.ETHERSCAN_API_KEY_POLYGON,
+    MORALIS_API_KEY: process.env.MORALIS_API_KEY,
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER: process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER,
     NEXT_PUBLIC_ALCHEMY_API_KEY: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     NEXT_PUBLIC_INFURA_API_KEY: process.env.NEXT_PUBLIC_INFURA_API_KEY,
