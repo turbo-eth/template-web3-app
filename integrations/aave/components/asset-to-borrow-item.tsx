@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Image from 'next/image'
 import { parseUnits } from 'viem'
@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useErc20Decimals } from '@/lib/generated/blockchain'
+import { useToast } from '@/lib/hooks/use-toast'
 
 import { usePoolBorrow } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
@@ -17,6 +18,7 @@ interface IAssetToSupplyItem {
   address: `0x${string}`
   symbol: string
   tokenPriceInUsd: number
+  aTokensBalance: number
   variableBorrowRate: number
   stableBorrowRate?: number
   canBorrowStableRateMode?: boolean
@@ -24,17 +26,28 @@ interface IAssetToSupplyItem {
 
 export const AssetToBorrowItem = ({
   address,
+  aTokensBalance,
   symbol,
   tokenPriceInUsd,
   variableBorrowRate,
   stableBorrowRate,
   canBorrowStableRateMode,
 }: IAssetToSupplyItem) => {
-  const { maxBorrowableInUsd, poolAddress } = useAave().data
+  const { maxBorrowableInUsd, poolAddress } = useAave()
   const { address: user } = useAccount()
   const [borrowAmount, setBorrowAmount] = useState('')
   const [borrowVariableRateMode, setBorrowVariableRateMode] = useState(true)
   const { data: decimals } = useErc20Decimals({ address })
+  const [open, setOpen] = useState(false)
+  const { toast } = useToast()
+
+  const handleToast = () => {
+    toast({
+      title: 'Success',
+      description: `${symbol} successfully borrowed`,
+      duration: 4200,
+    })
+  }
 
   const {
     data,
@@ -45,15 +58,25 @@ export const AssetToBorrowItem = ({
     args: [address, parseUnits(`${Number(borrowAmount)}`, decimals ?? 18), borrowVariableRateMode ? BigInt(2) : BigInt(1), 0, user as `0x${string}`],
   })
 
-  const { isLoading: isLoadingTx } = useWaitForTransaction({
+  const { isLoading: isLoadingTx, isSuccess: isSuccessTx } = useWaitForTransaction({
     hash: data?.hash,
   })
 
   const buttonAction = () => {
+    if (Number(borrowAmount) < aTokensBalance && !borrowVariableRateMode) {
+      return alert('You have to borrow more than the amount supplied on stable rate mode!')
+    }
     borrowWrite()
   }
 
   const setMaxAmount = () => setBorrowAmount(((maxBorrowableInUsd / tokenPriceInUsd) * 0.8).toFixed(2))
+
+  useEffect(() => {
+    if (isSuccessTx) {
+      handleToast()
+      setOpen(false)
+    }
+  }, [isSuccessTx])
 
   return (
     <tr>
@@ -74,7 +97,7 @@ export const AssetToBorrowItem = ({
       <td className="px-4 py-2 text-center">{variableBorrowRate.toFixed(2)}%</td>
       <td className="px-4 pb-2 text-center">{stableBorrowRate ? `${stableBorrowRate.toFixed(2)}%` : '—'}</td>
       <td className="px-4 py-2 text-center">
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger disabled={maxBorrowableInUsd === 0}>
             <Button className="mr-2" disabled={maxBorrowableInUsd === 0}>
               Borrow

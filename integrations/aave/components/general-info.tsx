@@ -13,12 +13,12 @@ export const GeneralInfo = () => {
   const { chain } = useNetwork()
   const { switchNetwork } = useSwitchNetwork()
 
-  const { balanceInUsd, totalDebtInUsd, healthFactor, averageNetApy } = useAave().data
+  const { balanceInUsd, totalDebtInUsd, healthFactor, averageNetApy } = useAave()
 
   return (
     <motion.div
       animate="show"
-      className="mb-4 flex items-start justify-start py-4 dark:text-white"
+      className="m-2 mb-4 flex items-start justify-start py-4 dark:text-white"
       initial="hidden"
       variants={FADE_DOWN_ANIMATION_VARIANTS}>
       <div className="rounded border border-slate-200 p-5 dark:border-slate-600">

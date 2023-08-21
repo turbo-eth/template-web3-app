@@ -2,9 +2,17 @@ import { SuppliedAssetsItem } from './supplied-assets-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListSuppliedAssets = () => {
-  const { usdData, balanceInUsd, collateralInUsd, averageSupplyApy } = useAave().data
+  const { usdData, balanceInUsd, collateralInUsd, averageSupplyApy } = useAave()
 
-  const filteredUserReserves = usdData?.filter((reserve) => reserve.scaledATokenBalance !== BigInt(0))
+  const filteredUserReserves = usdData?.filter((reserve) => {
+    // If balance > 0.00001
+    console.log(reserve.reserveData.symbol)
+    console.log(reserve.reserveData.decimals)
+    const exponent = reserve.reserveData.decimals - BigInt(5)
+    return exponent >= 0
+      ? reserve.scaledATokenBalance > BigInt(1) * BigInt(10) ** exponent
+      : reserve.scaledATokenBalance > BigInt(1) / BigInt(10) ** -exponent
+  })
 
   return (
     <div className="flex-1 justify-between rounded border p-3 dark:border-slate-600">
@@ -44,24 +52,22 @@ export const ListSuppliedAssets = () => {
                 </tr>
               </thead>
               <tbody>
-                {usdData
-                  ?.filter((reserve) => reserve.scaledATokenBalance !== BigInt(0))
-                  .map((reserve, index) => {
-                    return (
-                      <SuppliedAssetsItem
-                        key={index}
-                        address={reserve.underlyingAsset}
-                        canBeCollateral={reserve.reserveData.usageAsCollateralEnabled}
-                        collateralEnabled={reserve.reserveData.usageAsCollateralEnabled && reserve.reserveData.debtCeiling === BigInt(0)}
-                        liquidityRate={Number(reserve.reserveData.liquidityRate) / 10 ** 25}
-                        balance={
-                          ((Number(reserve.scaledATokenBalance) / 10 ** (Number(reserve.reserveData.decimals) ?? 18)) *
-                            Number(reserve.reserveData.liquidityIndex)) /
-                          10 ** 27
-                        }
-                      />
-                    )
-                  })}
+                {filteredUserReserves.map((reserve, index) => {
+                  return (
+                    <SuppliedAssetsItem
+                      key={index}
+                      address={reserve.underlyingAsset}
+                      canBeCollateral={reserve.reserveData.usageAsCollateralEnabled}
+                      collateralEnabled={reserve.reserveData.usageAsCollateralEnabled && reserve.reserveData.debtCeiling === BigInt(0)}
+                      liquidityRate={Number(reserve.reserveData.liquidityRate) / 10 ** 25}
+                      balance={
+                        ((Number(reserve.scaledATokenBalance) / 10 ** (Number(reserve.reserveData.decimals) ?? 18)) *
+                          Number(reserve.reserveData.liquidityIndex)) /
+                        10 ** 27
+                      }
+                    />
+                  )
+                })}
               </tbody>
             </table>
           </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Image from 'next/image'
 import { TiArrowRight } from 'react-icons/ti'
@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useErc20Allowance, useErc20Approve, useErc20BalanceOf, useErc20Decimals, useErc20Symbol } from '@/lib/generated/blockchain'
+import { useToast } from '@/lib/hooks/use-toast'
 
 import { usePoolRepay, usePoolRepayWithATokens, usePoolSwapBorrowRateMode } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
@@ -28,14 +29,25 @@ const getSymbol = (symbol: string | undefined) => (symbol === 'WETH' ? 'ETH' : s
 
 export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, canSwitchRateMode, rateMode }: IBorrowedAssetsItemProps) => {
   const { address: user } = useAccount()
-  const { poolAddress } = useAave().data
+  const { poolAddress } = useAave()
   const [repayAmount, setRepayAmount] = useState('')
   const [repayWithATokens, setRepayWithATokens] = useState(false)
+  const [open, setOpen] = useState(false)
 
   const symbol = getSymbol(useErc20Symbol({ address }).data)
   const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined, watch: true })
   const { data: decimals } = useErc20Decimals({ address })
   const allowance = useErc20Allowance({ address, args: user ? [user, poolAddress] : undefined, watch: true }).data
+
+  const { toast } = useToast()
+
+  const handleToast = () => {
+    toast({
+      title: 'Success',
+      description: `${symbol ?? ''} successfully repaid`,
+      duration: 4200,
+    })
+  }
 
   const {
     data: dataApprove,
@@ -59,7 +71,7 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
     args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), rateMode, user as `0x${string}`],
   })
 
-  const { isLoading: isLoadingRepayTx } = useWaitForTransaction({
+  const { isLoading: isLoadingRepayTx, isSuccess: isSuccessRepayTx } = useWaitForTransaction({
     hash: dataRepay?.hash,
   })
 
@@ -72,7 +84,7 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
     args: [address, parseUnits(`${Number(repayAmount)}`, decimals ?? 18), rateMode],
   })
 
-  const { isLoading: isLoadingRepayATokensTx } = useWaitForTransaction({
+  const { isLoading: isLoadingRepayATokensTx, isSuccess: isSuccessRepayATokensTx } = useWaitForTransaction({
     hash: dataRepayATokens?.hash,
   })
 
@@ -105,6 +117,13 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
     }
   }
 
+  useEffect(() => {
+    if (isSuccessRepayTx || isSuccessRepayATokensTx) {
+      handleToast()
+      setOpen(false)
+    }
+  }, [isSuccessRepayTx, isSuccessRepayATokensTx])
+
   return (
     <tr>
       <td className="mt-2 flex items-center justify-center px-4 py-2">
@@ -135,7 +154,7 @@ export const BorrowedAssetsItem = ({ address, aTokenBalance, debt, borrowRate, c
         </Select>
       </td>
       <td className="px-4 py-2 text-center">
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger>
             <Button className="mr-2">Repay</Button>
           </DialogTrigger>

@@ -6,7 +6,7 @@ import { AssetToSupplyItem } from './asset-to-supply-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListAssetsToSupply = () => {
-  const { usdData } = useAave().data
+  const { usdData } = useAave()
   const [showZeroBalanceAssets, setShowZeroBalanceAssets] = useState(false)
 
   return (

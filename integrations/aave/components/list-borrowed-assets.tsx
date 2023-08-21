@@ -2,9 +2,15 @@ import { BorrowedAssetsItem } from './borrowed-assets-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListBorrowedAssets = () => {
-  const { usdData, totalDebtInUsd, averageBorrowApy } = useAave().data
+  const { usdData, totalDebtInUsd, averageBorrowApy } = useAave()
 
-  const filteredUserReserves = usdData?.filter((reserve) => (reserve.scaledVariableDebt || reserve.principalStableDebt) !== BigInt(0))
+  const filteredUserReserves = usdData?.filter((reserve) => {
+    // If debt > 0.00001
+    const exponent = reserve.reserveData.decimals - BigInt(5)
+    const comparisonValue = exponent >= 0 ? BigInt(1) * BigInt(10) ** exponent : BigInt(1) / BigInt(10) ** -exponent
+
+    return reserve.scaledVariableDebt > comparisonValue || reserve.principalStableDebt > comparisonValue
+  })
 
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">

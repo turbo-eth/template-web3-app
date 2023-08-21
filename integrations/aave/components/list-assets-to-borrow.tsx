@@ -2,7 +2,7 @@ import { AssetToBorrowItem } from './asset-to-borrow-item'
 import { useAave } from '../hooks/use-aave'
 
 export const ListAssetsToBorrow = () => {
-  const { usdData } = useAave().data
+  const { usdData } = useAave()
 
   return (
     <div className="flex-1 rounded border p-3 dark:border-slate-600">
@@ -30,6 +30,11 @@ export const ListAssetsToBorrow = () => {
                     symbol={userReserve.reserveData.symbol}
                     tokenPriceInUsd={userReserve.tokenPriceInUsd}
                     variableBorrowRate={Number(userReserve.reserveData.variableBorrowRate) / 10 ** 25}
+                    aTokensBalance={
+                      ((Number(userReserve.scaledATokenBalance) / 10 ** Number(userReserve.reserveData.decimals)) *
+                        Number(userReserve.reserveData.liquidityIndex)) /
+                      10 ** 27
+                    }
                     stableBorrowRate={
                       userReserve.reserveData.stableBorrowRateEnabled ? Number(userReserve.reserveData.stableBorrowRate) / 10 ** 25 : 0
                     }

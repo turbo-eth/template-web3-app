@@ -18,7 +18,7 @@ export default function AaveHome() {
     <section className="w-full lg:mt-10">
       <div className="mx-auto max-w-screen-xl">
         <GeneralInfo />
-        <div className="mb-5 w-40 xl:hidden">
+        <div className="m-2 mb-5 w-40 xl:hidden">
           <Select value={actionSelected} onValueChange={(action) => setActionSelected(action)}>
             <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
               <SelectValue placeholder="Select market" />
@@ -34,20 +34,20 @@ export default function AaveHome() {
           </Select>
         </div>
 
-        <div className="mb-4 flex justify-between space-x-4 dark:text-white">
-          <div className={`${actionSelected === 'supply' ? '' : 'hidden'} w-full xl:block`}>
+        <div className="mb-4 flex justify-between dark:text-white">
+          <div className={`${actionSelected === 'supply' ? '' : 'hidden'} m-2 w-full xl:block`}>
             <ListSuppliedAssets />
           </div>
-          <div className={`${actionSelected === 'borrow' ? '' : 'hidden'} w-full xl:block`}>
+          <div className={`${actionSelected === 'borrow' ? '' : 'hidden'} m-2 w-full xl:block`}>
             <ListBorrowedAssets />
           </div>
         </div>
 
-        <div className="flex justify-between space-x-4 dark:text-white ">
-          <div className={`${actionSelected === 'supply' ? '' : 'hidden'} w-full xl:block`}>
+        <div className="flex justify-between dark:text-white ">
+          <div className={`${actionSelected === 'supply' ? '' : 'hidden'} m-2 w-full xl:block`}>
             <ListAssetsToSupply />
           </div>
-          <div className={`${actionSelected === 'borrow' ? '' : 'hidden'} w-full xl:block`}>
+          <div className={`${actionSelected === 'borrow' ? '' : 'hidden'} m-2 w-full xl:block`}>
             <ListAssetsToBorrow />
           </div>
         </div>

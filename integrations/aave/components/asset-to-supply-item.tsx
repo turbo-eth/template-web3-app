@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import Image from 'next/image'
 import { TiTick } from 'react-icons/ti'
@@ -9,6 +9,7 @@ import { ContractWriteButton } from '@/components/blockchain/contract-write-butt
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
 import { useErc20Allowance, useErc20Approve, useErc20BalanceOf, useErc20Decimals } from '@/lib/generated/blockchain'
+import { useToast } from '@/lib/hooks/use-toast'
 
 import { usePoolSupply } from '../generated/aave-wagmi'
 import { useAave } from '../hooks/use-aave'
@@ -23,13 +24,24 @@ interface IAssetToSupplyItem {
 }
 
 export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityRate, showIfZeroBalance }: IAssetToSupplyItem) => {
-  const { poolAddress } = useAave().data
+  const { poolAddress } = useAave()
   const { address: user } = useAccount()
   const [supplyAmount, setSupplyAmount] = useState('')
+  const [open, setOpen] = useState(false)
 
   const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined, watch: true })
   const { data: decimals } = useErc20Decimals({ address })
   const allowance = useErc20Allowance({ address, args: user ? [user, poolAddress] : undefined, watch: true }).data
+
+  const { toast } = useToast()
+
+  const handleToast = () => {
+    toast({
+      title: 'Success',
+      description: `${symbol} successfully supplied`,
+      duration: 4200,
+    })
+  }
 
   const {
     data: dataApprove,
@@ -53,7 +65,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
     args: [address, parseUnits(`${Number(supplyAmount)}`, decimals ?? 18), user as `0x${string}`, 0],
   })
 
-  const { isLoading: isLoadingSupplyTx } = useWaitForTransaction({
+  const { isLoading: isLoadingSupplyTx, isSuccess: isSuccessTx } = useWaitForTransaction({
     hash: dataSupply?.hash,
   })
 
@@ -68,6 +80,13 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
   const isApproving = () => Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(supplyAmount)
 
   const setMaxAmount = () => setSupplyAmount(Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toString())
+
+  useEffect(() => {
+    if (isSuccessTx) {
+      handleToast()
+      setOpen(false)
+    }
+  }, [isSuccessTx])
 
   return tokenBalance !== BigInt(0) || showIfZeroBalance ? (
     <tr>
@@ -90,7 +109,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
       <td className="px-4 py-2 text-center">{liquidityRate !== 0 ? `${liquidityRate.toFixed(2)}%` : '0'}</td>
       <td className="flex justify-center px-4 pb-2 text-center">{canBeCollateral ? <TiTick color="green" size={30} /> : <p>—</p>}</td>
       <td className="px-4 py-2 text-center">
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger disabled={tokenBalance === BigInt(0)}>
             <Button className="mr-2" disabled={tokenBalance === BigInt(0)}>
               Supply
