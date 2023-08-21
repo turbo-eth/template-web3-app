@@ -5,6 +5,9 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Balancer from 'react-wrap-balancer'
 
+import { WalletConnect } from '@/components/blockchain/wallet-connect'
+import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
+import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { turboIntegrations } from '@/data/turbo-integrations'
@@ -47,7 +50,14 @@ export default function AaveLayout({ children }: { children: ReactNode }) {
           </div>
         </div>
       </div>
-      <main className="w-full">{children}</main>
+      <main className="w-full">
+        <IsWalletDisconnected>
+          <div className="mx-auto mt-10 w-fit">
+            <WalletConnect />
+          </div>
+        </IsWalletDisconnected>
+        <IsWalletConnected>{children}</IsWalletConnected>
+      </main>
     </>
   )
 }

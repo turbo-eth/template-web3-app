@@ -193,7 +193,7 @@ export const SuppliedAssetsItem = ({ address, balance, collateralEnabled, canBeC
               </div>
               <ContractWriteButton
                 className="btn btn-primary mt-5 w-full"
-                disabled={!Number(withdrawAmount)}
+                disabled={!Number(withdrawAmount) || isLoadingTx || isLoadingWrite}
                 isLoadingTx={isLoadingTx}
                 isLoadingWrite={isLoadingWrite}
                 loadingTxText="Withdrawing..."
