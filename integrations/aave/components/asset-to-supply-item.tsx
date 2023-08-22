@@ -153,7 +153,6 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                   </div>
                 </div>
                 <div className="mt-2 flex items-center justify-between">
-                  <div></div>
                   <div className="flex items-center justify-between">
                     <span>Available: {Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toFixed(5)}</span>
                     <button className="btn ml-3" onClick={setMaxAmount}>

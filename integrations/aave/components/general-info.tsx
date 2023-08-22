@@ -22,6 +22,7 @@ export const GeneralInfo = () => {
       initial="hidden"
       variants={FADE_DOWN_ANIMATION_VARIANTS}>
       <div className="rounded border border-slate-200 p-5 dark:border-slate-600">
+        <h3 className="text-lg font-normal">Select Chain</h3>
         <div className="mb-4 flex items-center">
           <div className="flex w-60 flex-col ">
             <Select value={chain?.id.toString()} onValueChange={(e) => switchNetwork?.(+e)}>

@@ -54,9 +54,11 @@ export default function AaveHome() {
       </div>
     </section>
   ) : (
-    <>
-      <h1 className=" mt-5 text-center text-2xl">Chain not supported</h1>
-      <GeneralInfo />
-    </>
+    <section className="w-full lg:mt-10">
+      <div className="mx-auto max-w-screen-xl">
+        <h1 className=" mt-5 text-center text-2xl">Chain not supported</h1>
+        <GeneralInfo />
+      </div>
+    </section>
   )
 }
