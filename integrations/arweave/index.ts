@@ -67,7 +67,7 @@ export const signAndSendArweaveTx = async (
     tx.addTag(tag.name, tag.value)
   })
   const { winston: winstonBalance } = await getArweaveWalletBalance(wallet)
-  if (tx.reward > winstonBalance)
+  if (parseInt(tx.reward) > parseInt(winstonBalance))
     return {
       txId: tx.id,
       response: null,
