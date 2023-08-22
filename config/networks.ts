@@ -4,8 +4,6 @@
 import {
   arbitrum,
   arbitrumGoerli,
-  avalanche,
-  avalancheFuji,
   base,
   baseGoerli,
   celo,
@@ -28,10 +26,6 @@ import { publicProvider } from 'wagmi/providers/public'
 
 import { env } from '@/env.mjs'
 
-// @ts-ignore
-avalanche.iconUrl = '/icons/NetworkAvalanche.svg'
-// @ts-ignore
-avalancheFuji.iconUrl = '/icons/NetworkAvalanche.svg'
 // @ts-ignore
 gnosis.iconUrl = '/icons/NetworkGnosis.svg'
 // @ts-ignore
