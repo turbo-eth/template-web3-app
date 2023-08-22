@@ -56,12 +56,16 @@ export const ListSuppliedAssets = () => {
                       key={index}
                       address={reserve.underlyingAsset}
                       canBeCollateral={reserve.reserveData.usageAsCollateralEnabled}
-                      collateralEnabled={reserve.reserveData.usageAsCollateralEnabled && reserve.reserveData.debtCeiling === BigInt(0)}
                       liquidityRate={Number(reserve.reserveData.liquidityRate) / 10 ** 25}
                       balance={
                         ((Number(reserve.scaledATokenBalance) / 10 ** (Number(reserve.reserveData.decimals) ?? 18)) *
                           Number(reserve.reserveData.liquidityIndex)) /
                         10 ** 27
+                      }
+                      collateralEnabled={
+                        reserve.usageAsCollateralEnabledOnUser &&
+                        reserve.reserveData.usageAsCollateralEnabled &&
+                        reserve.reserveData.debtCeiling === BigInt(0)
                       }
                     />
                   )
