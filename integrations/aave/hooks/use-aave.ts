@@ -51,10 +51,10 @@ export const useAave = () => {
 
         balanceInUsd += amountInUsd
         totalDebtInUsd += debtInUsd
-        maxBorrowableInUsd += amountInUsd * (Number(reserveData.baseLTVasCollateral) / 10000)
 
         if (userReserveData.usageAsCollateralEnabledOnUser) {
           collateralInUsd += amountInUsd
+          maxBorrowableInUsd += amountInUsd * (Number(reserveData.baseLTVasCollateral) / 10000)
         }
 
         return {
