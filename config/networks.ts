@@ -4,6 +4,7 @@
 import {
   arbitrum,
   arbitrumGoerli,
+  base,
   baseGoerli,
   celo,
   celoAlfajores,
@@ -32,6 +33,8 @@ arbitrumGoerli.iconUrl = '/icons/NetworkArbitrumTest.svg'
 // @ts-ignore
 baseGoerli.iconUrl = '/icons/NetworkBaseTest.svg'
 // @ts-ignore
+base.iconUrl = '/icons/NetworkBaseTest.svg'
+// @ts-ignore
 celo.iconUrl = '/icons/NetworkCelo.svg'
 // @ts-ignore
 celoAlfajores.iconUrl = '/icons/NetworkCeloTest.svg'
@@ -41,6 +44,7 @@ const CHAINS_SUPPORTED_BY_INFURA = [mainnet, goerli, sepolia] // TODO add other 
 const CHAINS_SUPPORTED_BY_PUBLIC_PROVIER = [
   arbitrum,
   arbitrumGoerli,
+  base,
   baseGoerli,
   goerli,
   mainnet,
