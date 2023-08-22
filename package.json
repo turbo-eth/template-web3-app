@@ -68,7 +68,7 @@
     "@turbo-eth/core-wagmi": "0.0.0-beta.8",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "@vercel/analytics": "^0.1.6",
-    "@wagmi/chains": "^0.2.13",
+    "@wagmi/chains": "^1.7.0",
     "class-variance-authority": "^0.4.0",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
