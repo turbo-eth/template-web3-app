@@ -1,5 +1,5 @@
-import { ArweaveAmount } from '../utils/types'
 import { Spinner } from './spinner'
+import { ArweaveAmount } from '../utils/types'
 
 export const FeeEstimation = ({
   estimatedTxFee,

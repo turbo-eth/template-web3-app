@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { redirect } from 'next/navigation'
 import { useAccount } from 'wagmi'
 
-import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 import { Spinner } from './spinner'
+import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 
 export function ConnectArweaveWallet() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
@@ -65,7 +65,7 @@ export function ConnectArweaveWallet() {
             <span className="text-sm text-red-400">{error}</span>
           </div>
         )}
-        <div className="w-80 text-sm text-gray-600 mt-4">
+        <div className="mt-4 w-80 text-sm text-gray-600">
           You can get a backup of your Arweave wallet by clicking your wallet address in the sidebar once connected.
         </div>
       </div>

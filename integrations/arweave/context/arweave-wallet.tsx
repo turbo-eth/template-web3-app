@@ -1,9 +1,9 @@
 'use client'
 import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
 
-import { ArAccount } from 'arweave-account'
 import { JWKInterface } from 'arweave/node/lib/wallet'
 import { TransactionStatusResponse } from 'arweave/node/transactions'
+import { ArAccount } from 'arweave-account'
 import { useAccount } from 'wagmi'
 
 import { CONFIRMED_THRESHOLD, generateArweaveWallet, getArweaveTxStatus, getArweaveWalletAddress, getArweaveWalletBalance } from '..'

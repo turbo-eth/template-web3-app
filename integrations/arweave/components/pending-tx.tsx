@@ -6,10 +6,10 @@ import { FaCheck, FaCopy } from 'react-icons/fa'
 import { LinkComponent } from '@/components/shared/link-component'
 import { useToast } from '@/lib/hooks/use-toast'
 
+import { Spinner } from './spinner'
 import { CONFIRMED_THRESHOLD } from '..'
 import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 import { AddPendingTxPayload } from '../utils/types'
-import { Spinner } from './spinner'
 
 export const PendingTx = ({ txId, onConfirmation }: AddPendingTxPayload) => {
   const { pendingTxs, addPendingTx } = useArweaveWallet()
@@ -37,14 +37,14 @@ export const PendingTx = ({ txId, onConfirmation }: AddPendingTxPayload) => {
           {!isFinished ? (
             <Spinner />
           ) : (
-            <div className="flex items-center text-green-800 dark:text-green-400 mr-4">
+            <div className="mr-4 flex items-center text-green-800 dark:text-green-400">
               <div>
                 <FaCheck />
               </div>
               <span className="ml-2">Confirmed</span>
             </div>
           )}
-          <div className="flex items-center ml-4">
+          <div className="ml-4 flex items-center">
             <span className="rounded-xl bg-slate-100 p-2 font-mono text-sm text-blue-500 dark:bg-slate-600 dark:text-blue-100">{txId}</span>
             <CopyToClipboard text={txId} onCopy={() => handleToast()}>
               <span className="flex-center ml-2 flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">

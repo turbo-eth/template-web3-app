@@ -3,7 +3,7 @@ import { LinkComponent } from '@/components/shared/link-component'
 // TODO: change the exchange name and url
 export const InsufficientBalanceError = () => {
   return (
-    <div className="text-red-500 text-sm my-2">
+    <div className="my-2 text-sm text-red-500">
       Insuffient balance. you can buy $AR at
       <LinkComponent isExternal className="link px-1" href={'https://'}>
         FOO exchange
