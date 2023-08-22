@@ -66,6 +66,13 @@ export const signAndSendArweaveTx = async (
   tags.forEach((tag) => {
     tx.addTag(tag.name, tag.value)
   })
+  const { winston: winstonBalance } = await getArweaveWalletBalance(wallet)
+  if (tx.reward > winstonBalance)
+    return {
+      txId: tx.id,
+      response: null,
+      insufficientBalance: true,
+    }
   await arweave.transactions.sign(tx, wallet)
   // check if tx has files
   if (hasFile) {
