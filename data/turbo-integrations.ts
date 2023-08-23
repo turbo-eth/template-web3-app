@@ -87,7 +87,6 @@ export const turboIntegrations = {
     imgLight: '/integrations/connext.png',
     imgDark: '/integrations/connext.png',
   },
-
   gelato: {
     name: 'Gelato',
     href: '/integration/gelato',
@@ -112,6 +111,7 @@ export const turboIntegrations = {
     imgLight: '/integrations/moralis.png',
     imgDark: '/integrations/moralis.png',
   },
+
   aave: {
     name: 'Aave',
     href: '/integration/aave',
@@ -119,6 +119,15 @@ export const turboIntegrations = {
     description: 'Aave is a decentralized non-custodial liquidity protocol.',
     imgLight: '/integrations/aave.png',
     imgDark: '/integrations/aave.png',
+  },
+  arweave: {
+    name: 'Arweave',
+    href: '/integration/arweave',
+    url: 'https://arwiki.arweave.dev',
+    description:
+      'Arweave is the first protocol that enables permanent data storage. Its design allows anyone to preserve data forever with just a single, one-time fee.',
+    imgLight: '/integrations/arweave-light.png',
+    imgDark: '/integrations/arweave-dark.png',
   },
   starter: {
     name: 'Starter Template',
