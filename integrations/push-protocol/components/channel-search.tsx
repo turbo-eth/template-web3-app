@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { ENV } from '@/integrations/push-protocol'
 
-import { useSearchChannels } from '../hooks'
 import { ChannelCard } from './channel-card'
 import { Loadable } from './loadable'
+import { useSearchChannels } from '../hooks'
 
 export function ChannelSearch() {
   const [searchQuery, setSearchQuery] = useState('')

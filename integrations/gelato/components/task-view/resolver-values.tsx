@@ -1,5 +1,5 @@
-import { getTaskFunctionData } from '../../utils/helpers'
 import { InputValues } from './input-values'
+import { getTaskFunctionData } from '../../utils/helpers'
 
 export type ResolverValuesProps = {
   functionData: ReturnType<typeof getTaskFunctionData>

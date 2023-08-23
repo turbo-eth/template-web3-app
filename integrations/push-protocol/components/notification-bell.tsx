@@ -6,9 +6,9 @@ import { useAccount } from 'wagmi'
 
 import { Popover, PopoverContent, PopoverTrigger } from 'components/ui/popover'
 
+import { NotificationFeed } from './notification-feed'
 import { ENV } from '..'
 import { useNotifications } from '../hooks'
-import { NotificationFeed } from './notification-feed'
 
 export type NotificationBellProps = {
   env: ENV

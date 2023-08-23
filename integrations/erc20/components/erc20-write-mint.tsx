@@ -9,8 +9,8 @@ import { TransactionStatus } from '@/components/blockchain/transaction-status'
 import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
 import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 
-import { useErc20MintableMint, usePrepareErc20MintableMint } from '../generated/erc20-wagmi'
 import ERC20EventMint from './erc20-event-mint'
+import { useErc20MintableMint, usePrepareErc20MintableMint } from '../generated/erc20-wagmi'
 
 interface ERC20WriteMintProps {
   address: Address

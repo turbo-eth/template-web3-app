@@ -1,5 +1,5 @@
-import { useAave } from '../hooks/use-aave'
 import { AssetToBorrowItem } from './asset-to-borrow-item'
+import { useAave } from '../hooks/use-aave'
 
 export const ListAssetsToBorrow = () => {
   const { usdData } = useAave()

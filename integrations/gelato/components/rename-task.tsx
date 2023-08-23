@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form'
 import { FaSpinner } from 'react-icons/fa'
 
-import { useRenameTask } from '../hooks'
 import { ValidationError } from './errors/validation-error'
+import { useRenameTask } from '../hooks'
 
 type RenameTaskForm = {
   name: string

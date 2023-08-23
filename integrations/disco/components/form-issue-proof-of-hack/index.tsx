@@ -4,9 +4,9 @@ import { FaCopy } from 'react-icons/fa'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { useToast } from '@/lib/hooks/use-toast'
 
-import { getComponent } from '../../utils/get-element-component'
 import { issueProofOfHackFormControls } from './controls'
 import { useDiscoIssueForm } from './hook'
+import { getComponent } from '../../utils/get-element-component'
 
 export function FormCredentialIssuanceProofOfHack() {
   const { onSubmit, form, isLoading, isError, isSuccess, error, data } = useDiscoIssueForm()

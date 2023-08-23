@@ -8,8 +8,8 @@ import { useAccount } from 'wagmi'
 
 import { LinkComponent } from '@/components/shared/link-component'
 
-import { useLatestTransfers } from '../hooks/use-latest-transfers'
 import { Transfer } from './transfer'
+import { useLatestTransfers } from '../hooks/use-latest-transfers'
 
 interface LatestTransfersProps {
   isMainnet: boolean

@@ -2,8 +2,8 @@ import { useState } from 'react'
 
 import { Checkbox } from '@/components/ui/checkbox'
 
-import { useAave } from '../hooks/use-aave'
 import { AssetToSupplyItem } from './asset-to-supply-item'
+import { useAave } from '../hooks/use-aave'
 
 export const ListAssetsToSupply = () => {
   const { usdData } = useAave()

@@ -9,8 +9,8 @@ import { WalletConnect } from '@/components/blockchain/wallet-connect'
 import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
 import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
 
-import { useErc20Transfer, usePrepareErc20Transfer } from '../generated/erc20-wagmi'
 import ERC20EventTransfer from './erc20-event-transfer'
+import { useErc20Transfer, usePrepareErc20Transfer } from '../generated/erc20-wagmi'
 
 interface ERC20WriteTransferProps {
   address: Address

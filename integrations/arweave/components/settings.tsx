@@ -1,5 +1,5 @@
-import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 import { ConnectArweaveWallet } from './connect-arweave-wallet'
+import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 
 export const ArweaveSettings = () => {
   const { wallet, disconnect, address, backupWallet } = useArweaveWallet()

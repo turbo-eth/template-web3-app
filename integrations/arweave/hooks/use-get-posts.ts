@@ -4,9 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { useArweaveWallet } from './use-arweave-wallet'
 import { queryPosts } from '../queries/query-posts'
 import { ArweavePost, ArweaveTxSearchTag } from '../utils/types'
-import { useArweaveWallet } from './use-arweave-wallet'
 
 export function useGetPosts() {
   const { address: connectedWalletAddress } = useArweaveWallet()

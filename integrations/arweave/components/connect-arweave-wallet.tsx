@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { redirect } from 'next/navigation'
 import { useAccount } from 'wagmi'
 
-import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 import { Spinner } from './spinner'
+import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 
 export function ConnectArweaveWallet() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)

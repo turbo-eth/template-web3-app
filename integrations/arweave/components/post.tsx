@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { ArAccount } from 'arweave-account'
 import { TransactionStatusResponse } from 'arweave/node/transactions'
+import { ArAccount } from 'arweave-account'
 import moment from 'moment'
 import CopyToClipboard from 'react-copy-to-clipboard'
 import { FaCopy } from 'react-icons/fa'
@@ -10,12 +10,12 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useToast } from '@/lib/hooks/use-toast'
 
+import { Spinner } from './spinner'
 import { arweaveGatewayUrl, getArweaveTxData, getArweaveTxStatus } from '..'
 import { getAccountByAddress } from '../arweave-account'
 import { getArweaveTx } from '../queries/query-post'
 import { humanFileSize, truncateString } from '../utils'
 import { ArweavePost, ArweaveTxId } from '../utils/types'
-import { Spinner } from './spinner'
 
 export const Post = ({ txId }: { txId: ArweaveTxId }) => {
   const [txDetails, setTxDetails] = useState<ArweavePost | null>(null)

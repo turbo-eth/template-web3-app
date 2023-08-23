@@ -5,11 +5,11 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 
+import { ConnectArweaveWallet } from './connect-arweave-wallet'
+import { Spinner } from './spinner'
 import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 import { useGetPosts } from '../hooks/use-get-posts'
 import { humanFileSize } from '../utils'
-import { ConnectArweaveWallet } from './connect-arweave-wallet'
-import { Spinner } from './spinner'
 
 type FormType = {
   tags: {
