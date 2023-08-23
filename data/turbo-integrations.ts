@@ -111,6 +111,15 @@ export const turboIntegrations = {
     imgLight: '/integrations/moralis.png',
     imgDark: '/integrations/moralis.png',
   },
+
+  aave: {
+    name: 'Aave',
+    href: '/integration/aave',
+    url: 'https://docs.aave.com/hub/',
+    description: 'Aave is a decentralized non-custodial liquidity protocol.',
+    imgLight: '/integrations/aave.png',
+    imgDark: '/integrations/aave.png',
+  },
   arweave: {
     name: 'Arweave',
     href: '/integration/arweave',

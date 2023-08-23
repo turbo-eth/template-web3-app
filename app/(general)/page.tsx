@@ -380,6 +380,21 @@ const features = [
     ),
   },
   {
+    title: turboIntegrations.aave.name,
+    description: turboIntegrations.aave.description,
+    href: turboIntegrations.aave.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Aave logo" height={100} src={turboIntegrations.aave.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Aave logo" height={100} src={turboIntegrations.aave.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.arweave.name,
     description: turboIntegrations.arweave.description,
     href: turboIntegrations.arweave.href,

@@ -5,9 +5,8 @@ import { Chain, configureChains } from 'wagmi'
 import {
   arbitrum,
   arbitrumGoerli as arbitrumGoerliNoIcon,
-  avalancheFuji as avalancheFujiNoIcon,
-  avalanche as avalancheNoIcon,
   baseGoerli as baseGoerliNoIcon,
+  base as baseNoIcon,
   celoAlfajores as celoAlfajoresNoIcon,
   celo as celoNoIcon,
   gnosisChiado as gnosisChiadoNoIcon,
@@ -39,6 +38,11 @@ const arbitrumGoerli = {
   ...arbitrumGoerliNoIcon,
   iconUrl: '/icons/NetworkArbitrumTest.svg',
 }
+const base = {
+  ...baseNoIcon,
+  iconUrl: '/icons/NetworkBaseTest.svg',
+}
+
 const baseGoerli = {
   ...baseGoerliNoIcon,
   iconUrl: '/icons/NetworkBaseTest.svg',
@@ -51,14 +55,6 @@ const celoAlfajores = {
   ...celoAlfajoresNoIcon,
   iconUrl: '/icons/NetworkCeloTest.svg',
 }
-const avalanche = {
-  ...avalancheNoIcon,
-  iconUrl: '/icons/NetworkAvalanche.svg',
-}
-const avalancheFuji = {
-  ...avalancheFujiNoIcon,
-  iconUrl: '/icons/NetworkAvalanche.svg',
-}
 const gnosis = {
   ...gnosisNoIcon,
   iconUrl: '/icons/NetworkGnosis.svg',
@@ -68,9 +64,9 @@ const gnosisChiado = {
   iconUrl: '/icons/NetworkGnosis.svg',
 }
 
-export const ETH_CHAINS_TEST = [mainnet, goerli, sepolia, polygonMumbai, celoAlfajores, gnosisChiado, avalancheFuji, hardhat]
+export const ETH_CHAINS_TEST = [mainnet, goerli, sepolia, polygonMumbai, celoAlfajores, gnosisChiado, hardhat]
 export const ETH_CHAINS_L2_TEST = [baseGoerli, optimismGoerli, arbitrumGoerli]
-export const ETH_CHAINS_PROD = [mainnet, optimism, arbitrum, polygon, celo, gnosis, avalanche, goerli, baseGoerli]
+export const ETH_CHAINS_PROD = [mainnet, optimism, arbitrum, polygon, celo, gnosis, goerli, base, baseGoerli]
 export const ETH_CHAINS_DEV =
   env.NEXT_PUBLIC_PROD_NETWORKS_DEV === 'true'
     ? [...ETH_CHAINS_PROD, ...ETH_CHAINS_TEST, ...ETH_CHAINS_L2_TEST]
