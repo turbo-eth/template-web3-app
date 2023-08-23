@@ -43,6 +43,7 @@
     "@gelatonetwork/automate-sdk": "^2.14.0",
     "@graphql-typed-document-node/core": "^3.2.0",
     "@hookform/resolvers": "^3.1.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@lit-protocol/lit-node-client": "2.1.161",
     "@livepeer/react": "^2.6.0",
     "@moralisweb3/common-evm-utils": "^2.22.4",
@@ -77,9 +78,6 @@
     "@radix-ui/react-tooltip": "^1.0.3",
     "@rainbow-me/rainbowkit": "1.0.1",
     "@t3-oss/env-nextjs": "^0.4.0",
-    "@tailwindcss/forms": "^0.5.3",
-    "@tailwindcss/line-clamp": "^0.4.2",
-    "@tailwindcss/typography": "^0.5.9",
     "@tanstack/react-query": "^4.3.9",
     "abitype": "^0.9.6",
     "arweave": "^1.14.0",
@@ -159,6 +157,7 @@
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.0",
     "prisma": "^4.8.1",
+    "tailwindcss-animate": "^1.0.6",
     "typescript": "5.0.4"
   }
 }
