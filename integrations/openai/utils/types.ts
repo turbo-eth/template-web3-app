@@ -9,7 +9,7 @@ export const models = ['gpt-4', 'gpt-3.5-turbo', 'text-davinci-003', 'text-davin
  * See more details at https://platform.openai.com/docs/api-reference/chat/create
  */
 export interface ModelConfig {
-  model: typeof models[number]
+  model: (typeof models)[number]
   /**
    * A list of messages describing the conversation so far.
    */

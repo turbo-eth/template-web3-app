@@ -37,6 +37,7 @@
   },
   "packageManager": "pnpm@7.1.8",
   "dependencies": {
+    "@bgd-labs/aave-address-book": "^1.30.0",
     "@connext/nxtp-utils": "^2.0.3",
     "@connext/sdk": "2.0.4-alpha.2",
     "@gelatonetwork/automate-sdk": "^2.14.0",
