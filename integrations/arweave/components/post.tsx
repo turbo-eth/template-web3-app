@@ -75,10 +75,12 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
     <div className="card w-full text-left">
       <h2>Transaction</h2>
       <div className="mt-2 flex flex-col items-center justify-between gap-2 sm:flex-row">
-        <div className="flex items-center">
-          <span className="break-words rounded-xl bg-slate-100 p-2 font-mono text-sm text-blue-500 dark:bg-slate-600 dark:text-blue-100">{txId}</span>
+        <div className="flex max-w-full flex-wrap items-center gap-2">
+          <span className="max-w-full break-words rounded-xl bg-slate-100 p-2 font-mono text-sm text-blue-500 dark:bg-slate-600 dark:text-blue-100">
+            {txId}
+          </span>
           <CopyToClipboard text={txId} onCopy={() => handleToast('Arweave Tx ID Copied')}>
-            <span className="flex-center ml-2 flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+            <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
               <FaCopy className="text-neutral-600 dark:text-neutral-100" />
             </span>
           </CopyToClipboard>
