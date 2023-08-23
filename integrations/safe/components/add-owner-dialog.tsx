@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 
 import { useForm } from 'react-hook-form'
 import { FaChevronDown, FaPlus } from 'react-icons/fa'
@@ -14,17 +14,21 @@ import { addOwnerForm } from './manage-safe'
 const AddOwnerDialog = ({
   ownersAmount,
   isLoading,
+  open,
+  setOpen,
   onSubmit,
 }: {
   ownersAmount: number
   isLoading: boolean
-  onSubmit: (FieldValues: addOwnerForm) => Promise<void>
+  open: boolean
+  setOpen: Dispatch<SetStateAction<boolean>>
+  onSubmit: (FieldValues: addOwnerForm, newThreshold: number | undefined) => Promise<void>
 }) => {
   const { register, handleSubmit } = useForm<addOwnerForm>()
   const [newThreshold, setNewThreshold] = useState<number | undefined>(undefined)
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="btn btn-emerald mt-4 w-full" disabled={false}>
           {isLoading ? (
@@ -40,7 +44,7 @@ const AddOwnerDialog = ({
       <DialogContent>
         <DialogTitle>New Owner</DialogTitle>
         <DialogDescription>Provide new owner&lsquo;s address and set new treshold</DialogDescription>
-        <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex w-full flex-col gap-4" onSubmit={handleSubmit((fieldValues) => onSubmit(fieldValues, newThreshold))}>
           <fieldset>
             <Label>Address</Label>
             <Input required className="mt-4" {...register('newOwner')} />
