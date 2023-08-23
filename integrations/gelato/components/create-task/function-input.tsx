@@ -5,8 +5,8 @@ import { useFormContext } from 'react-hook-form'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
-import { CreateTaskForm } from './create-task'
 import { getAbiFunctions } from '../../utils/helpers'
+import { CreateTaskForm } from './create-task'
 
 export type FunctionInputProps = {
   abiFieldName: 'abi' | 'resolverAbi'

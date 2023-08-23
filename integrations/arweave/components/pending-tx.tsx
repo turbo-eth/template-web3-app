@@ -6,10 +6,10 @@ import { FaCheck, FaCopy } from 'react-icons/fa'
 import { LinkComponent } from '@/components/shared/link-component'
 import { useToast } from '@/lib/hooks/use-toast'
 
-import { Spinner } from './spinner'
 import { CONFIRMED_THRESHOLD } from '..'
 import { useArweaveWallet } from '../hooks/use-arweave-wallet'
 import { AddPendingTxPayload } from '../utils/types'
+import { Spinner } from './spinner'
 
 export const PendingTx = ({ txId, onConfirmation }: AddPendingTxPayload) => {
   const { pendingTxs, addPendingTx } = useArweaveWallet()

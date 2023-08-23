@@ -7,11 +7,11 @@ import { LuExternalLink } from 'react-icons/lu'
 
 import { LinkComponent } from '@/components/shared/link-component'
 
-import { Loadable } from './loadable'
-import { SubscribeButton } from './subscribe-button'
 import { ENV } from '..'
 import { useChannel } from '../hooks'
 import { strLimit, truncateAddress } from '../utils/helpers'
+import { Loadable } from './loadable'
+import { SubscribeButton } from './subscribe-button'
 
 export type ChannelCardProps = {
   channelAddress: string

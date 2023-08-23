@@ -17,9 +17,9 @@ import { Textarea } from '@/components/ui/textarea'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { useToast } from '@/lib/hooks/use-toast'
 
-import { AccessControlSingleAddress, AccessControlSingleERC721, AccessControlTokenGroup } from './access-control'
 import { useLitClient } from '../hooks/use-lit-client'
 import { AccessControlConditions } from '../utils/types'
+import { AccessControlSingleAddress, AccessControlSingleERC721, AccessControlTokenGroup } from './access-control'
 
 interface FormSchema {
   message: string
