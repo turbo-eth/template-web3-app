@@ -31,7 +31,6 @@ export function FormDeploySafe() {
   const publicClient = usePublicClient()
   const { address } = useAccount()
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  // const [safeSdk, setSafeSdk] = useState<Safe>()
   const safeClient: Client = useContext(SafeContext) as Client
   const { register, handleSubmit } = useForm<deploySafeForm>()
   const [loadedOwners, setLoadedOwners] = useState<owner[]>([])
@@ -107,7 +106,6 @@ export function FormDeploySafe() {
     })
     setLoadedOwners([...newValues])
   }
-  // After onsubmit execution we have the safeSdk created
 
   return (
     <div className="card w-full">

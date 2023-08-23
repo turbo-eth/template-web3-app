@@ -80,7 +80,7 @@ export function ConnectSafe({ children }: { children: ReactNode }) {
           </div>
         ) : (
           <div>
-            <p>Select a Safe account address to interact with it.</p>
+            <p>Select a Safe account address to connect.</p>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button className="btn btn-blue mt-4 w-full">Connect Safe account</Button>
