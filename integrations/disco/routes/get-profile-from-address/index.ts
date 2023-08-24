@@ -12,6 +12,6 @@ export async function discoGetProfileFromAddress(address?: string) {
     )
     return data
   } catch (error) {
-    throw error
+    throw new Error("something went wrong ", error.message)
   }
 }

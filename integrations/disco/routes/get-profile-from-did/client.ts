@@ -15,6 +15,6 @@ export async function appDiscoGetProfileFromDID(address?: Address) {
     )
     return data
   } catch (error) {
-    throw error
+    throw new Error("something went wrong ", error.message)
   }
 }

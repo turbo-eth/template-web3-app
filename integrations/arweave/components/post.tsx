@@ -29,6 +29,7 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
       .then((res) => {
         setTxDetails(res)
         if (res.data.type?.split("/")[0] === "image") {
+          // TODO: Fix this conditional
         } else if (parseFloat(res.data.size) < 1024) {
           getArweaveTxData(txId)
             .then((res) => setTxData(res))

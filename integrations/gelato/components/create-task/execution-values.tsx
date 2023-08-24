@@ -56,7 +56,7 @@ export function ExecutionValues({
             <button
               type="button"
               className={cn(
-                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 duration-200 hover:text-inherit",
                 inputDefinition === "predefined" ? "bg-zinc-900" : ""
               )}
               onClick={() => setValue("inputDefinition", "predefined")}
@@ -66,7 +66,7 @@ export function ExecutionValues({
             <button
               type="button"
               className={cn(
-                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 duration-200 hover:text-inherit",
                 inputDefinition === "resolver" ? "bg-zinc-900" : ""
               )}
               onClick={() => setValue("inputDefinition", "resolver")}

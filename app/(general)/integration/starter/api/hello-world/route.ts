@@ -1,4 +1,4 @@
-export async function GET(request: Request) {
+export function GET() {
   return new Response("Hello, TurboETH!", {
     status: 200,
   })

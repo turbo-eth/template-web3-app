@@ -14,6 +14,6 @@ export async function getAppUsers() {
     } = await axios.get("/api/app/users")
     return data
   } catch (error) {
-    throw error
+    throw new Error("Something went wrong")
   }
 }

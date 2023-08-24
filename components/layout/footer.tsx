@@ -9,7 +9,7 @@ import { LinkComponent } from "../shared/link-component"
 export function Footer({ className, ...props }: HTMLAttributes<HTMLElement>) {
   const classes = cn(
     className,
-    "px-4 py-6 flex flex-col justify-center items-center"
+    "flex flex-col items-center justify-center px-4 py-6"
   )
 
   return (

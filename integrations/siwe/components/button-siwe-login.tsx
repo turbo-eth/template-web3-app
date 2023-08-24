@@ -42,7 +42,7 @@ export const ButtonSIWELogin = ({
       className={classes}
       disabled={disabled}
       type="button"
-      onClick={handleCreateMessage}
+      onClick={() => void handleCreateMessage()}
       {...props}
     >
       {isLoading && (

@@ -34,7 +34,7 @@ export function PaymentInput() {
           <div className="mx-auto flex space-x-3 rounded-2xl p-2 dark:bg-zinc-700">
             <button
               className={cn(
-                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 duration-200 hover:text-inherit",
                 payWith === "gelato" ? "bg-zinc-900" : ""
               )}
               type="button"
@@ -45,7 +45,7 @@ export function PaymentInput() {
             <button
               type="button"
               className={cn(
-                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 duration-200 hover:text-inherit",
                 payWith === "transaction" ? "bg-zinc-900" : ""
               )}
               onClick={() => setValue("payWith", "transaction")}

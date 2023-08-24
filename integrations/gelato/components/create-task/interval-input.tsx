@@ -82,7 +82,7 @@ export function IntervalInput() {
             <button
               type="button"
               className={cn(
-                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 duration-200 hover:text-inherit",
                 timeOption === "exact" ? "bg-zinc-900" : ""
               )}
               onClick={() => setValue("timeOption", "exact")}
@@ -92,7 +92,7 @@ export function IntervalInput() {
             <button
               type="button"
               className={cn(
-                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 duration-200 hover:text-inherit",
                 timeOption === "whenever_possible" ? "bg-zinc-900" : ""
               )}
               onClick={() => setValue("timeOption", "whenever_possible")}

@@ -22,7 +22,11 @@ export const ButtonSIWELogout = ({
   }
 
   return (
-    <button className={className} onClick={handleLogout} {...props}>
+    <button
+      className={className}
+      onClick={() => void handleLogout()}
+      {...props}
+    >
       {children || label}
     </button>
   )

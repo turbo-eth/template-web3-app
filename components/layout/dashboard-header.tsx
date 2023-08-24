@@ -22,7 +22,7 @@ export function DashboardHeader({
   className,
   ...props
 }: HTMLAttributes<HTMLElement>) {
-  const classes = cn(className, "px-6 lg:px-10 py-3 flex items-center w-full")
+  const classes = cn(className, "flex w-full items-center px-6 py-3 lg:px-10")
   const { address } = useAccount()
   const { toast, dismiss } = useToast()
 

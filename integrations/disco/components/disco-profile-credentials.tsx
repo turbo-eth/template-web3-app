@@ -26,7 +26,7 @@ export const DiscoProfileCredentials = ({
 
   if (isError)
     return (
-      <div className={cn("text-red-500 font-medium", className)}>
+      <div className={cn("font-medium text-red-500", className)}>
         {error instanceof Error ? error.message : String(error)}
       </div>
     )

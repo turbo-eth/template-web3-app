@@ -116,15 +116,16 @@ export const ArweaveWalletProvider = ({
     }
   }, [ethAccountAddress])
 
+  function isValidWallet(json: object): json is JWKInterface {
+    return (json as JWKInterface).kty !== undefined
+  }
+
   const importFromFile = useCallback(async (file: File) => {
     try {
       const fileReader = new FileReader()
       fileReader.readAsText(file, "UTF-8")
       fileReader.onload = (e) => {
         if (e.target?.result) {
-          function isValidWallet(json: object): json is JWKInterface {
-            return (json as JWKInterface).kty !== undefined
-          }
           const result: object = JSON.parse(e.target.result as string)
           if (isValidWallet(result)) setWallet(result)
           else {

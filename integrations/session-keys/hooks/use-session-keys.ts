@@ -70,7 +70,7 @@ export const useSessionKeys = () => {
     const storedSessionKey = await getStoredSessionKey(address)
     const entryId = id ?? address
 
-    if (!!storedSessionKey) {
+    if (storedSessionKey) {
       throw new Error("Session key already exists")
     }
 
