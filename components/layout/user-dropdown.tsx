@@ -29,7 +29,7 @@ export function UserDropdown() {
     >
       <Popover>
         <PopoverTrigger>
-          <button className="bg-card flex items-center justify-center overflow-hidden rounded-md p-2 px-4 transition-all duration-75 hover:bg-neutral-100 focus:outline-none active:scale-95 ">
+          <button className="flex items-center justify-center overflow-hidden rounded-md bg-card p-2 px-4 transition-all duration-75 hover:bg-neutral-100 focus:outline-none active:scale-95 ">
             Menu
           </button>
         </PopoverTrigger>

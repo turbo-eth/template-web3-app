@@ -17,13 +17,16 @@ interface RootProviderProps {
 export default function RootProvider({ children }: RootProviderProps) {
   const isMounted = useIsMounted()
   return isMounted ? (
-    <ThemeProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
       <QueryClientProvider client={queryClient}>
         <RWBProvider>
           <RainbowKit>
-            <HandleWalletEvents>
-              <main>{children}</main>
-            </HandleWalletEvents>
+            <HandleWalletEvents>{children}</HandleWalletEvents>
           </RainbowKit>
         </RWBProvider>
       </QueryClientProvider>
