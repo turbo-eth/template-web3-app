@@ -4,10 +4,10 @@ import { useFormContext } from 'react-hook-form'
 import { FiChevronLeft } from 'react-icons/fi'
 import { isAddress } from 'viem'
 
-import { CreateTaskForm } from './create-task'
 import { useAbi } from '../../hooks'
 import { isValidAbi } from '../../utils/helpers'
 import { ValidationError } from '../errors/validation-error'
+import { CreateTaskForm } from './create-task'
 
 export type ContractInputProps = {
   contractFieldName: 'contractAddress' | 'resolverContractAddress'
