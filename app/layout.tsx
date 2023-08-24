@@ -1,6 +1,7 @@
 import "@/styles/app.css"
 import "@/styles/gradient.css"
 import "@/styles/periphery.css"
+import "@/styles/globals.css"
 
 import { ReactNode } from "react"
 import { Inter as FontSans, Raleway } from "next/font/google"
@@ -10,6 +11,7 @@ import { env } from "@/env.mjs"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import RootProvider from "@/components/providers/root-provider"
+import { Toaster } from "@/components/ui/toaster"
 
 const url = env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
@@ -65,6 +67,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           )}
         >
           <RootProvider>{children}</RootProvider>
+          <Toaster />
         </body>
       </html>
     </>

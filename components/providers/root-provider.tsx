@@ -21,7 +21,9 @@ export default function RootProvider({ children }: RootProviderProps) {
       <QueryClientProvider client={queryClient}>
         <RWBProvider>
           <RainbowKit>
-            <HandleWalletEvents>{children}</HandleWalletEvents>
+            <HandleWalletEvents>
+              <main>{children}</main>
+            </HandleWalletEvents>
           </RainbowKit>
         </RWBProvider>
       </QueryClientProvider>
