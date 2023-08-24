@@ -1,3 +1,5 @@
+import { parseUnits } from "viem"
+
 import { useAave } from "../hooks/use-aave"
 import { SuppliedAssetsItem } from "./supplied-assets-item"
 
@@ -6,10 +8,10 @@ export const ListSuppliedAssets = () => {
 
   const filteredUserReserves = usdData?.filter((reserve) => {
     // If balance > 0.00001
-    const exponent = reserve.reserveData.decimals - BigInt(5)
+    const exponent = Number(reserve.reserveData.decimals - BigInt(5))
     return exponent >= 0
-      ? reserve.scaledATokenBalance > BigInt(1) * BigInt(10) ** exponent
-      : reserve.scaledATokenBalance > BigInt(1) / BigInt(10) ** -exponent
+      ? reserve.scaledATokenBalance > BigInt(1) * parseUnits("10", exponent)
+      : reserve.scaledATokenBalance > BigInt(1) / parseUnits("10", -exponent)
   })
 
   return (

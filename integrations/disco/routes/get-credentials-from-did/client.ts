@@ -12,6 +12,7 @@ export async function appDiscoGetCredentialsFromDID(did?: string) {
     )
     return data
   } catch (error) {
-    throw new Error("something went wrong ", error.message)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    throw new Error("something went wrong")
   }
 }

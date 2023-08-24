@@ -1,14 +1,15 @@
 import { env } from "@/env.mjs"
 import { IronSessionOptions } from "iron-session"
+import type { SiweMessage } from "siwe"
 
 import { siteConfig } from "@/config/site"
 
 declare module "iron-session" {
-  // interface IronSessionData {
-  //   nonce: string
-  //   siwe: SiweMessage
-  //   isAdmin: boolean
-  // }
+  interface IronSessionData {
+    nonce: string
+    siwe: SiweMessage
+    isAdmin: boolean
+  }
 }
 
 // This is the secret used to encrypt the session cookie

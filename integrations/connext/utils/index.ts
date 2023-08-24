@@ -1,4 +1,5 @@
 import moment from "moment"
+import { parseUnits } from "viem"
 
 import { Asset, Chain } from "./types"
 
@@ -52,7 +53,7 @@ export function findDecimals(
 
 export function calculateAmount(amount: string, decimals: number): string {
   const amountBigInt = BigInt(amount)
-  const divisor = BigInt(10) ** BigInt(decimals)
+  const divisor = parseUnits("10", decimals)
   const result = Number(amountBigInt) / Number(divisor)
   const formattedResult = result.toFixed(2)
   return formattedResult === "0.00" ? "0.00" : formattedResult
