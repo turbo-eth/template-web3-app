@@ -3,3 +3,4 @@
 **/components/shared/table/**
 **/generated
 .next/**
+tailwind.config.js

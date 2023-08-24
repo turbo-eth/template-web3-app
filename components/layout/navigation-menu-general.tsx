@@ -146,7 +146,7 @@ const ListItem = ({
             />
           </IsDarkTheme>
           <div className="text-sm font-medium leading-none">{name}</div>
-          <p className="text-sm leading-snug text-slate-500 line-clamp-2 dark:text-slate-400">
+          <p className="line-clamp-2 text-sm leading-snug text-slate-500 dark:text-slate-400">
             {children}
           </p>
         </LinkComponent>

@@ -32,14 +32,14 @@ export function NetworkStatus({ className, ...props }: NetworkStatusProps) {
       </span>
       {explorerUrl && (
         <LinkComponent
-          className="mx-3 text-2xs dark:hover:text-gray-200"
+          className="text-2xs mx-3 dark:hover:text-gray-200"
           href={explorerUrl}
         >
           <>#{block.data?.toString()}</>
         </LinkComponent>
       )}
       {!explorerUrl && (
-        <span className="mx-3 text-2xs"># {block.data?.toString()}</span>
+        <span className="text-2xs mx-3"># {block.data?.toString()}</span>
       )}
     </div>
   )

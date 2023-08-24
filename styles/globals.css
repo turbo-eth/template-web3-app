@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    // Default background color of <body />...
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+
+    // <TabsList />, <Skeleton /> and <Switch />
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    // <Card />
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+
+    // <Dropdown />, <HoverCard />, <Popover />
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+
+    // Default border color
+    --border: 214.3 31.8% 91.4%;
+
+    // Border color for inputs. <Input />, <Select /> and <Textarea />
+    --input: 214.3 31.8% 91.4%;
+
+    // Primary colors for <Button /> and <CTA />
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    // Secondary colors for <Button /> and <CTA />
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    // For accents such as hover effects on <Dropdown />, <SelectItem />...etc
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    // For destructive actions such as delete on <Button variant="destructive" />
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 210 40% 98%;
+
+    // For focus ring
+    --ring: 215 20.2% 65.1%;
+
+    // Border radius for <Card />, <Input />, <Button />...etc
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+
+    --accent: 216 34% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --popover: 224 71% 4%;
+    --popover-foreground: 215 20.2% 65.1%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 222.2 47.4% 11.2%;
+    --secondary-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
