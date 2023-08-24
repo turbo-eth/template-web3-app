@@ -1,5 +1,8 @@
-import type { GetTransactionJSONResponse, GetTransactionResponse } from '@moralisweb3/common-evm-utils'
-import { useQuery } from '@tanstack/react-query'
+import type {
+  GetTransactionJSONResponse,
+  GetTransactionResponse,
+} from "@moralisweb3/common-evm-utils"
+import { useQuery } from "@tanstack/react-query"
 
 interface GetTransactionArgs {
   chain: string
@@ -7,10 +10,16 @@ interface GetTransactionArgs {
   enabled?: boolean
 }
 
-export function useGetTransaction({ chain, transactionHash, enabled }: GetTransactionArgs) {
-  return useQuery(['get-transaction', chain, transactionHash], {
+export function useGetTransaction({
+  chain,
+  transactionHash,
+  enabled,
+}: GetTransactionArgs) {
+  return useQuery(["get-transaction", chain, transactionHash], {
     queryFn: async () => {
-      const res = await fetch(`/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=result`)
+      const res = await fetch(
+        `/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=result`
+      )
       if (!res.ok) {
         const testRes = await res.text()
         throw new Error(testRes)
@@ -22,10 +31,16 @@ export function useGetTransaction({ chain, transactionHash, enabled }: GetTransa
   })
 }
 
-export function useGetTransactionRaw({ chain, transactionHash, enabled }: GetTransactionArgs) {
-  return useQuery(['get-transaction-raw', chain, transactionHash], {
+export function useGetTransactionRaw({
+  chain,
+  transactionHash,
+  enabled,
+}: GetTransactionArgs) {
+  return useQuery(["get-transaction-raw", chain, transactionHash], {
     queryFn: async () => {
-      const res = await fetch(`/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=raw`)
+      const res = await fetch(
+        `/integration/moralis/api/transaction/getTransaction?chain=${chain}&transactionHash=${transactionHash}&format=raw`
+      )
       if (!res.ok) {
         const testRes = await res.text()
         throw new Error(testRes)

@@ -1,6 +1,6 @@
-import Moralis from 'moralis'
+import { env } from "@/env.mjs"
+import Moralis from "moralis"
 
-import { env } from '@/env.mjs'
 ;(async () => {
   // Initializes Moralis
   // This operation should run only once
@@ -11,7 +11,7 @@ import { env } from '@/env.mjs'
 
 export async function getMoralis() {
   try {
-    if (!Moralis) throw new Error('Moralis not initialized')
+    if (!Moralis) throw new Error("Moralis not initialized")
     return Moralis
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : String(e)

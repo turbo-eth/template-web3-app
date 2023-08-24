@@ -32,4 +32,7 @@ export type SignAndSendArweaveTxResponse = {
   insufficientBalance: boolean
 }
 
-export type AddPendingTxPayload = { txId: ArweaveTxId; onConfirmation?: () => Promise<void> | void }
+export type AddPendingTxPayload = {
+  txId: ArweaveTxId
+  onConfirmation?: () => Promise<void> | void
+}

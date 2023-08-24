@@ -1,20 +1,20 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState } from "react"
+import { usePublicClient, useWalletClient } from "wagmi"
 
-import { usePublicClient, useWalletClient } from 'wagmi'
+import { BlockExplorerLink } from "@/components/blockchain/block-explorer-link"
+import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 
-import { BlockExplorerLink } from '@/components/blockchain/block-explorer-link'
-import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
-
-import { erc721ABI } from '../abis/erc721-abi'
-import { erc721ByteCode } from '../abis/erc721-bytecode'
-import { useErc721TokenStorage } from '../hooks/use-erc721-token-storage'
+import { erc721ABI } from "../abis/erc721-abi"
+import { erc721ByteCode } from "../abis/erc721-bytecode"
+import { useErc721TokenStorage } from "../hooks/use-erc721-token-storage"
 
 export function ERC721Deploy() {
   const [token, setTokenStorage] = useErc721TokenStorage()
   const [isSigning, setIsSigning] = useState<boolean>(false)
-  const [isWaitingTransaction, setIsWaitingTransaction] = useState<boolean>(false)
-  const [name, setName] = useState<string>('')
-  const [symbol, setSymbol] = useState<string>('')
+  const [isWaitingTransaction, setIsWaitingTransaction] =
+    useState<boolean>(false)
+  const [name, setName] = useState<string>("")
+  const [symbol, setSymbol] = useState<string>("")
 
   const publicClient = usePublicClient()
   const { data: walletClient } = useWalletClient()
@@ -52,27 +52,40 @@ export function ERC721Deploy() {
     <div className="card w-full">
       <form className="flex flex-col gap-4" onSubmit={onSubmit}>
         <label>Name</label>
-        <input className="input" value={name} onChange={(e) => setName(e.target.value)} />
+        <input
+          className="input"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
         <label>Symbol</label>
-        <input className="input" value={symbol} onChange={(e) => setSymbol(e.target.value)} />
+        <input
+          className="input"
+          value={symbol}
+          onChange={(e) => setSymbol(e.target.value)}
+        />
         <ContractWriteButton
           isLoadingTx={isWaitingTransaction}
           isLoadingWrite={isSigning}
           loadingTxText="Deploying..."
-          write={Boolean(name && symbol)}>
+          write={Boolean(name && symbol)}
+        >
           Deploy
         </ContractWriteButton>
       </form>
       {(token || isWaitingTransaction) && (
         <div className="flex max-w-full flex-wrap items-center justify-between break-words pb-2 pt-5">
-          <span className="font-semibold">{token ? 'Mint Contract Address' : 'Deploying contract'}:</span>
+          <span className="font-semibold">
+            {token ? "Mint Contract Address" : "Deploying contract"}:
+          </span>
           <BlockExplorerLink address={token} />
         </div>
       )}
       <hr className="my-4" />
       <div className="flex items-center justify-between">
         <h3 className="text-center">ERC721 Deploy</h3>
-        <p className="text-center text-sm text-gray-500">Deploy a new mintable ERC721 token to any blockchain</p>
+        <p className="text-center text-sm text-gray-500">
+          Deploy a new mintable ERC721 token to any blockchain
+        </p>
       </div>
     </div>
   )

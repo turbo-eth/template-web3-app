@@ -3,7 +3,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 export const menuAdmin = [
   {
-    label: 'Users',
-    href: '/admin',
+    label: "Users",
+    href: "/admin",
   },
 ]

@@ -1,16 +1,21 @@
-'use client'
+"use client"
 
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { formatUnits } from "viem"
+import { Address, useAccount } from "wagmi"
 
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { formatUnits } from 'viem'
-import { Address, useAccount } from 'wagmi'
+import { cn } from "@/lib/utils"
+import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
+import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 
-import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
-import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
-import { cn } from '@/lib/utils'
-
-import { useErc20BalanceOf, useErc20Decimals, useErc20Name, useErc20Symbol, useErc20TotalSupply } from '../generated/erc20-wagmi'
+import {
+  useErc20BalanceOf,
+  useErc20Decimals,
+  useErc20Name,
+  useErc20Symbol,
+  useErc20TotalSupply,
+} from "../generated/erc20-wagmi"
 
 interface ERC20Props extends HTMLAttributes<HTMLElement> {
   address: Address
@@ -31,7 +36,12 @@ export function ERC20Image({ address, ...props }: ERC20Props) {
   )
 }
 
-export function ERC20Name({ address, chainId, className, ...props }: ERC20ChainIdProps) {
+export function ERC20Name({
+  address,
+  chainId,
+  className,
+  ...props
+}: ERC20ChainIdProps) {
   const { data } = useErc20Name({
     address,
     chainId,
@@ -43,7 +53,12 @@ export function ERC20Name({ address, chainId, className, ...props }: ERC20ChainI
   )
 }
 
-export function ERC20Symbol({ address, chainId, className, ...props }: ERC20ChainIdProps) {
+export function ERC20Symbol({
+  address,
+  chainId,
+  className,
+  ...props
+}: ERC20ChainIdProps) {
   const { data } = useErc20Symbol({
     address,
     chainId,
@@ -55,7 +70,12 @@ export function ERC20Symbol({ address, chainId, className, ...props }: ERC20Chai
   )
 }
 
-export function ERC20TotalSupply({ address, chainId, className, ...props }: ERC20ChainIdProps) {
+export function ERC20TotalSupply({
+  address,
+  chainId,
+  className,
+  ...props
+}: ERC20ChainIdProps) {
   const { data: decimals } = useErc20Decimals({
     address,
     chainId,
@@ -73,7 +93,12 @@ export function ERC20TotalSupply({ address, chainId, className, ...props }: ERC2
 }
 
 // @TODO: Add Decimals to Display
-export function ERC20Decimals({ address, chainId, className, ...props }: ERC20ChainIdProps) {
+export function ERC20Decimals({
+  address,
+  chainId,
+  className,
+  ...props
+}: ERC20ChainIdProps) {
   const { data } = useErc20Decimals({
     address,
     chainId,
@@ -85,7 +110,12 @@ export function ERC20Decimals({ address, chainId, className, ...props }: ERC20Ch
   )
 }
 
-export function ERC20Balance({ address, chainId, className, ...props }: ERC20ChainIdProps) {
+export function ERC20Balance({
+  address,
+  chainId,
+  className,
+  ...props
+}: ERC20ChainIdProps) {
   const { address: accountAddress } = useAccount()
   const { data: decimals } = useErc20Decimals({
     address,
@@ -102,7 +132,7 @@ export function ERC20Balance({ address, chainId, className, ...props }: ERC20Cha
 
   return (
     <span className={className} {...props}>
-      {' '}
+      {" "}
       {Number(formatUnits(data, decimals)).toLocaleString()}
     </span>
   )
@@ -114,15 +144,28 @@ interface ERC20ReadProps extends ERC20ChainIdProps {
   showTotalSupply?: boolean
 }
 
-export function ERC20Read({ className, address, chainId, showImage, showBalance, showTotalSupply, ...props }: ERC20ReadProps) {
+export function ERC20Read({
+  className,
+  address,
+  chainId,
+  showImage,
+  showBalance,
+  showTotalSupply,
+  ...props
+}: ERC20ReadProps) {
   return (
     <>
       <IsWalletConnected>
-        <div className={cn('card w-full', className)} {...props}>
+        <div className={cn("card w-full", className)} {...props}>
           <div className="flex items-center justify-center space-x-6">
             <div className="text-center">
               <span className="text-3xl">
-                {showImage && <ERC20Image address={address} className="mx-auto h-12 w-12 rounded-full border-2 border-white shadow-md" />}
+                {showImage && (
+                  <ERC20Image
+                    address={address}
+                    className="mx-auto h-12 w-12 rounded-full border-2 border-white shadow-md"
+                  />
+                )}
                 <ERC20Name address={address} />
                 <span className="ml-2">
                   (
@@ -131,13 +174,15 @@ export function ERC20Read({ className, address, chainId, showImage, showBalance,
               </span>
               <div className="my-4 flex items-center justify-center gap-4">
                 <span>
-                  <span className="font-medium">Decimals</span> <ERC20Decimals address={address} chainId={chainId} />
+                  <span className="font-medium">Decimals</span>{" "}
+                  <ERC20Decimals address={address} chainId={chainId} />
                 </span>
                 {showTotalSupply && (
                   <>
                     <span className="">|</span>
                     <span>
-                      <span className="font-medium">Total Supply</span> <ERC20TotalSupply address={address} chainId={chainId} />
+                      <span className="font-medium">Total Supply</span>{" "}
+                      <ERC20TotalSupply address={address} chainId={chainId} />
                     </span>
                   </>
                 )}
@@ -156,7 +201,9 @@ export function ERC20Read({ className, address, chainId, showImage, showBalance,
           <hr className="my-4" />
           <div className="flex items-center justify-between">
             <h3 className="text-center">ERC20 Read</h3>
-            <p className="text-center text-sm text-gray-500">Read core ERC20 token storage values</p>
+            <p className="text-center text-sm text-gray-500">
+              Read core ERC20 token storage values
+            </p>
           </div>
         </div>
       </IsWalletConnected>

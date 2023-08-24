@@ -1,22 +1,30 @@
-'use client'
-import { HTMLAttributes } from 'react'
+"use client"
 
-import { usePathname } from 'next/navigation'
+import { HTMLAttributes } from "react"
+import { usePathname } from "next/navigation"
 
-import { menuAdmin } from '@/config/menu-admin'
-import { cn } from '@/lib/utils'
+import { menuAdmin } from "@/config/menu-admin"
+import { cn } from "@/lib/utils"
 
-import { LinkComponent } from '../shared/link-component'
+import { LinkComponent } from "../shared/link-component"
 
-export const MenuAdminSidebar = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
-  const cx = cn(className, 'flex flex-col gap-1')
+export const MenuAdminSidebar = ({
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) => {
+  const cx = cn(className, "flex flex-col gap-1")
 
   const pathname = usePathname()
   return (
     <div className={cx} {...props}>
       {menuAdmin.map((item) => {
         return (
-          <Item key={item.href} className="menu-item my-2" currentPath={pathname} href={item.href}>
+          <Item
+            key={item.href}
+            className="menu-item my-2"
+            currentPath={pathname}
+            href={item.href}
+          >
             <span className="text-lg">{item.label}</span>
           </Item>
         )
@@ -31,7 +39,7 @@ interface ItemProps extends HTMLAttributes<HTMLElement> {
 }
 
 const Item = ({ children, href, currentPath }: ItemProps) => {
-  const cx = cn('menu-item my-2', {
+  const cx = cn("menu-item my-2", {
     active: currentPath === href,
   })
 

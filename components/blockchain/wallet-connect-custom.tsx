@@ -1,6 +1,5 @@
-import { HTMLAttributes } from 'react'
-
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { HTMLAttributes } from "react"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 
 interface WalletConnectCustomProps extends HTMLAttributes<HTMLDivElement> {
   classNameConnect?: string
@@ -12,17 +11,26 @@ interface WalletConnectCustomProps extends HTMLAttributes<HTMLDivElement> {
 
 export const WalletConnectCustom = ({
   className,
-  classNameConnect = 'btn btn-primary w-full',
-  classNameConnected = 'btn btn-primary w-full',
-  classNameWrongNetwork = 'btn btn-red w-full',
-  labelConnect = 'Connect Wallet',
-  labelWrongNetwork = 'Wrong Network',
+  classNameConnect = "btn btn-primary w-full",
+  classNameConnected = "btn btn-primary w-full",
+  classNameWrongNetwork = "btn btn-red w-full",
+  labelConnect = "Connect Wallet",
+  labelWrongNetwork = "Wrong Network",
   ...props
 }: WalletConnectCustomProps) => {
   return (
     <ConnectButton.Custom>
-      {({ account, chain, openChainModal, openConnectModal, authenticationStatus }) => {
-        const connected = account && chain && (!authenticationStatus || authenticationStatus === 'authenticated')
+      {({
+        account,
+        chain,
+        openChainModal,
+        openConnectModal,
+        authenticationStatus,
+      }) => {
+        const connected =
+          account &&
+          chain &&
+          (!authenticationStatus || authenticationStatus === "authenticated")
 
         return (
           <div className={className} {...props}>
@@ -30,7 +38,11 @@ export const WalletConnectCustom = ({
               if (!connected) {
                 return (
                   <>
-                    <button className={classNameConnect} type="button" onClick={openConnectModal}>
+                    <button
+                      className={classNameConnect}
+                      type="button"
+                      onClick={openConnectModal}
+                    >
                       {labelConnect}
                     </button>
                   </>
@@ -39,7 +51,11 @@ export const WalletConnectCustom = ({
 
               if (chain.unsupported) {
                 return (
-                  <button className={classNameWrongNetwork} type="button" onClick={openChainModal}>
+                  <button
+                    className={classNameWrongNetwork}
+                    type="button"
+                    onClick={openChainModal}
+                  >
                     {labelWrongNetwork}
                   </button>
                 )
@@ -47,7 +63,12 @@ export const WalletConnectCustom = ({
 
               return (
                 <div className="">
-                  <button className={classNameConnected} style={{ display: 'flex', alignItems: 'center' }} type="button" onClick={openChainModal}>
+                  <button
+                    className={classNameConnected}
+                    style={{ display: "flex", alignItems: "center" }}
+                    type="button"
+                    onClick={openChainModal}
+                  >
                     {chain.hasIcon && (
                       <div
                         style={{
@@ -55,10 +76,17 @@ export const WalletConnectCustom = ({
                           width: 18,
                           height: 18,
                           borderRadius: 999,
-                          overflow: 'hidden',
+                          overflow: "hidden",
                           marginRight: 4,
-                        }}>
-                        {chain.iconUrl && <img alt={chain.name ?? 'Chain icon'} src={chain.iconUrl} style={{ width: 18, height: 18 }} />}
+                        }}
+                      >
+                        {chain.iconUrl && (
+                          <img
+                            alt={chain.name ?? "Chain icon"}
+                            src={chain.iconUrl}
+                            style={{ width: 18, height: 18 }}
+                          />
+                        )}
                       </div>
                     )}
                     <span className="ml-1 text-lg lowercase">{chain.name}</span>

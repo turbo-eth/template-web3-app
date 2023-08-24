@@ -1,25 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
+import { ArAccount } from "arweave-account"
+import { TransactionStatusResponse } from "arweave/node/transactions"
+import moment from "moment"
+import CopyToClipboard from "react-copy-to-clipboard"
+import { FaCopy } from "react-icons/fa"
 
-import { TransactionStatusResponse } from 'arweave/node/transactions'
-import { ArAccount } from 'arweave-account'
-import moment from 'moment'
-import CopyToClipboard from 'react-copy-to-clipboard'
-import { FaCopy } from 'react-icons/fa'
+import { useToast } from "@/lib/hooks/use-toast"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { LinkComponent } from "@/components/shared/link-component"
 
-import { LinkComponent } from '@/components/shared/link-component'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { useToast } from '@/lib/hooks/use-toast'
-
-import { Spinner } from './spinner'
-import { arweaveGatewayUrl, getArweaveTxData, getArweaveTxStatus } from '..'
-import { getAccountByAddress } from '../arweave-account'
-import { getArweaveTx } from '../queries/query-post'
-import { humanFileSize, truncateString } from '../utils'
-import { ArweavePost, ArweaveTxId } from '../utils/types'
+import { arweaveGatewayUrl, getArweaveTxData, getArweaveTxStatus } from ".."
+import { getAccountByAddress } from "../arweave-account"
+import { getArweaveTx } from "../queries/query-post"
+import { humanFileSize, truncateString } from "../utils"
+import { ArweavePost, ArweaveTxId } from "../utils/types"
+import { Spinner } from "./spinner"
 
 export const Post = ({ txId }: { txId: ArweaveTxId }) => {
   const [txDetails, setTxDetails] = useState<ArweavePost | null>(null)
-  const [txStatus, setTxStatus] = useState<TransactionStatusResponse | null>(null)
+  const [txStatus, setTxStatus] = useState<TransactionStatusResponse | null>(
+    null
+  )
   const [txData, setTxData] = useState<string | null>(null)
   const [downloadLink, setDownloadLink] = useState<string | null>(null)
   const [owner, setOwner] = useState<ArAccount | null>(null)
@@ -27,7 +28,7 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
     getArweaveTx(txId)
       .then((res) => {
         setTxDetails(res)
-        if (res.data.type?.split('/')[0] === 'image') {
+        if (res.data.type?.split("/")[0] === "image") {
         } else if (parseFloat(res.data.size) < 1024) {
           getArweaveTxData(txId)
             .then((res) => setTxData(res))
@@ -79,13 +80,20 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
           <span className="max-w-full break-words rounded-xl bg-slate-100 p-2 font-mono text-sm text-blue-500 dark:bg-slate-600 dark:text-blue-100">
             {txId}
           </span>
-          <CopyToClipboard text={txId} onCopy={() => handleToast('Arweave Tx ID Copied')}>
+          <CopyToClipboard
+            text={txId}
+            onCopy={() => handleToast("Arweave Tx ID Copied")}
+          >
             <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
               <FaCopy className="text-neutral-600 dark:text-neutral-100" />
             </span>
           </CopyToClipboard>
         </div>
-        <LinkComponent className="btn btn-primary text-xs" href={`https://arweave.app/tx/${txId}`} isExternal={true}>
+        <LinkComponent
+          className="btn btn-primary text-xs"
+          href={`https://arweave.app/tx/${txId}`}
+          isExternal={true}
+        >
           View on Arweave.app
         </LinkComponent>
       </div>
@@ -95,16 +103,26 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
           {txStatus?.confirmed ? (
             <>
               <div className="mt-2 text-sm">
-                <span className="text-gray-600 dark:text-gray-500">Confirmations:</span>
-                <span className="ml-2">{txStatus.confirmed?.number_of_confirmations}</span>
+                <span className="text-gray-600 dark:text-gray-500">
+                  Confirmations:
+                </span>
+                <span className="ml-2">
+                  {txStatus.confirmed?.number_of_confirmations}
+                </span>
               </div>
               <div className="mt-2 text-sm">
-                <span className="text-gray-600 dark:text-gray-500">Block height:</span>
+                <span className="text-gray-600 dark:text-gray-500">
+                  Block height:
+                </span>
                 <span className="ml-2">{txStatus.confirmed?.block_height}</span>
               </div>
               <div className="mt-2 text-sm">
-                <span className="text-gray-600 dark:text-gray-500">Block Hash:</span>
-                <span className="ml-2 break-words font-mono text-xs">{txStatus.confirmed?.block_indep_hash}</span>
+                <span className="text-gray-600 dark:text-gray-500">
+                  Block Hash:
+                </span>
+                <span className="ml-2 break-words font-mono text-xs">
+                  {txStatus.confirmed?.block_indep_hash}
+                </span>
               </div>
             </>
           ) : (
@@ -119,25 +137,36 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
         <div>
           <div className="mt-2 text-sm">
             <span className="text-gray-600 dark:text-gray-500">Fee:</span>
-            <span className="ml-2 font-mono text-xs">{txDetails.fee.winston} winston</span>
+            <span className="ml-2 font-mono text-xs">
+              {txDetails.fee.winston} winston
+            </span>
           </div>
           <div className="mt-2 text-sm">
             <span className="text-gray-600 dark:text-gray-500">Time:</span>
             <span className="ml-2 font-mono text-xs">
-              {txDetails.block?.timestamp ? moment(parseInt(txDetails.block.timestamp) * 1000).format('MMM D, YYYY h:mm A') : '-'}
+              {txDetails.block?.timestamp
+                ? moment(parseInt(txDetails.block.timestamp) * 1000).format(
+                    "MMM D, YYYY h:mm A"
+                  )
+                : "-"}
             </span>
           </div>
           <div className="mt-8">Owner</div>
           <div className="mb-5 mt-2 flex items-center">
             <Avatar>
               <AvatarImage src={owner?.profile?.avatarURL} />
-              <AvatarFallback>{(owner?.handle ?? txDetails.owner.address).substring(0, 2)}</AvatarFallback>
+              <AvatarFallback>
+                {(owner?.handle ?? txDetails.owner.address).substring(0, 2)}
+              </AvatarFallback>
             </Avatar>
             <div className="ml-2 flex-col">
               {owner?.handle && <div className="text-sm">{owner?.handle}</div>}
               <div className="flex items-center font-mono text-xs">
                 {truncateString(txDetails.owner.address, 15)}
-                <CopyToClipboard text={txDetails.owner.address} onCopy={() => handleToast('Owner address Copied')}>
+                <CopyToClipboard
+                  text={txDetails.owner.address}
+                  onCopy={() => handleToast("Owner address Copied")}
+                >
                   <span className="flex-center ml-2 flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
                     <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
                   </span>
@@ -152,7 +181,9 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
         {txDetails?.tags.map((tag) => (
           <div key={tag.name}>
             <div className="mt-2 inline-block w-auto rounded bg-blue-100 p-2 text-sm dark:bg-slate-800">
-              <span className="mr-2 text-gray-600 dark:text-gray-500">{tag.name}</span>
+              <span className="mr-2 text-gray-600 dark:text-gray-500">
+                {tag.name}
+              </span>
               <span className="ml-2 font-mono">{tag.value}</span>
             </div>
           </div>
@@ -164,18 +195,36 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
           <>
             <div className="mt-2 text-sm">
               <span className="text-gray-600 dark:text-gray-500">Size:</span>
-              <span className="ml-2 font-mono text-xs">{humanFileSize(txDetails.data.size)}</span>
+              <span className="ml-2 font-mono text-xs">
+                {humanFileSize(txDetails.data.size)}
+              </span>
             </div>
             <div className="mt-2 text-sm">
               <span className="text-gray-600 dark:text-gray-500">Type:</span>
-              <span className="ml-2 font-mono text-xs">{txDetails.data.type ?? '-'}</span>
+              <span className="ml-2 font-mono text-xs">
+                {txDetails.data.type ?? "-"}
+              </span>
             </div>
           </>
         )}
-        {txDetails?.data.type?.split('/')[0] === 'image' && <img alt="" className="mt-3 w-64 rounded" src={`${arweaveGatewayUrl}${txId}`} />}
-        {txData && <div className="mt-2 break-all bg-slate-100 p-4 font-mono text-sm dark:bg-slate-500">{txData}</div>}
+        {txDetails?.data.type?.split("/")[0] === "image" && (
+          <img
+            alt=""
+            className="mt-3 w-64 rounded"
+            src={`${arweaveGatewayUrl}${txId}`}
+          />
+        )}
+        {txData && (
+          <div className="mt-2 break-all bg-slate-100 p-4 font-mono text-sm dark:bg-slate-500">
+            {txData}
+          </div>
+        )}
         {downloadLink && (
-          <LinkComponent isExternal className="btn btn-blue mt-3 text-sm" href={downloadLink}>
+          <LinkComponent
+            isExternal
+            className="btn btn-blue mt-3 text-sm"
+            href={downloadLink}
+          >
             Download Data from Arweave
           </LinkComponent>
         )}

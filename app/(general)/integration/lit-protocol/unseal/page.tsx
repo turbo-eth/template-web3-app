@@ -1,16 +1,16 @@
-'use client'
+"use client"
 
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from "next/navigation"
 
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
-import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
-import { FormLitDecryptMessage } from '@/integrations/lit-protocol/components/form-lit-decrypt-message'
+import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
+import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { FormLitDecryptMessage } from "@/integrations/lit-protocol/components/form-lit-decrypt-message"
 
 export default function PageIntegration() {
   const searchParams = useSearchParams()
 
-  const id = searchParams?.get('id') || ''
+  const id = searchParams?.get("id") || ""
 
   return (
     <section className="w-full lg:mt-10">

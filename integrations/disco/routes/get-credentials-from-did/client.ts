@@ -1,12 +1,15 @@
-import axios from 'axios'
+import axios from "axios"
 
 export async function appDiscoGetCredentialsFromDID(did?: string) {
   try {
-    const { data }: { data: Credential[] } = await axios.get(`/api/disco/credentials-from-did`, {
-      params: {
-        did: did,
-      },
-    })
+    const { data }: { data: Credential[] } = await axios.get(
+      `/api/disco/credentials-from-did`,
+      {
+        params: {
+          did: did,
+        },
+      }
+    )
     return data
   } catch (error) {
     throw error

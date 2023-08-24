@@ -1,49 +1,61 @@
-'use client'
+"use client"
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState } from "react"
+import { Broadcast, useCreateStream } from "@livepeer/react"
+import { CopyToClipboard } from "react-copy-to-clipboard"
+import { useForm } from "react-hook-form"
+import { FaCopy } from "react-icons/fa"
 
-import { useCreateStream } from '@livepeer/react'
-import { Broadcast } from '@livepeer/react'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { useForm } from 'react-hook-form'
-import { FaCopy } from 'react-icons/fa'
+import { useToast } from "@/lib/hooks/use-toast"
 
-import { useToast } from '@/lib/hooks/use-toast'
-
-import { ButtonShare } from './button-share'
-import { DialogStopStream } from './dialog-stop-stream'
-import { FormLivepeerApiKey } from './form-livepeer-api-key'
-import { PlayerComponent, PlayerType } from './player'
-import { useIsLivepeerApiKeySet } from '../hooks/use-livepeer-api-key'
+import { useIsLivepeerApiKeySet } from "../hooks/use-livepeer-api-key"
+import { ButtonShare } from "./button-share"
+import { DialogStopStream } from "./dialog-stop-stream"
+import { FormLivepeerApiKey } from "./form-livepeer-api-key"
+import { PlayerComponent, PlayerType } from "./player"
 
 interface createStreamForm {
   streamName: string
 }
 
 enum StreamOrigin {
-  OBS = 'OBS',
-  BROWSER = 'BROWSER',
+  OBS = "OBS",
+  BROWSER = "BROWSER",
 }
 
-const OBS_URL = 'https://obsproject.com/'
-const streamPath = '/integration/livepeer/livestream/'
+const OBS_URL = "https://obsproject.com/"
+const streamPath = "/integration/livepeer/livestream/"
 
-export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof typeof StreamOrigin }) => {
-  const [streamName, setStreamName] = useState<string>('')
+export const CreateStream = ({
+  origin = StreamOrigin.BROWSER,
+}: {
+  origin: keyof typeof StreamOrigin
+}) => {
+  const [streamName, setStreamName] = useState<string>("")
   const { register, handleSubmit } = useForm<createStreamForm>()
-  const { mutate: createStream, data: streamData, status } = useCreateStream(streamName ? { name: streamName } : null)
+  const {
+    mutate: createStream,
+    data: streamData,
+    status,
+  } = useCreateStream(streamName ? { name: streamName } : null)
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
   const { toast, dismiss } = useToast()
 
-  const isLoading = useMemo(() => status === 'loading', [status])
+  const isLoading = useMemo(() => status === "loading", [status])
 
   function onSubmit() {
     createStream?.()
   }
 
-  const streamRtpmIngestUrl = 'rtmp://rtmp.livepeer.com/live'
+  const streamRtpmIngestUrl = "rtmp://rtmp.livepeer.com/live"
 
-  const handleToast = ({ title, description }: { title: string; description: string }) => {
+  const handleToast = ({
+    title,
+    description,
+  }: {
+    title: string
+    description: string
+  }) => {
     toast({
       title,
       description,
@@ -69,12 +81,16 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
                 <input
                   required
                   className="input mt-4"
-                  {...register('streamName')}
+                  {...register("streamName")}
                   value={streamName}
                   onChange={(e) => setStreamName(e.target.value)}
                 />
-                <button className="btn btn-emerald mt-4 w-full" disabled={!streamName || isLoading} type="submit">
-                  {isLoading ? 'Loading...' : 'Create Stream'}
+                <button
+                  className="btn btn-emerald mt-4 w-full"
+                  disabled={!streamName || isLoading}
+                  type="submit"
+                >
+                  {isLoading ? "Loading..." : "Create Stream"}
                 </button>
               </form>
             </div>
@@ -83,16 +99,19 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
             <>
               <div className="card w-full">
                 <div className="flex flex-col gap-y-3">
-                  <h2 className="text-center text-xl font-bold text-yellow-200">Your stream was succesfuly created!</h2>
+                  <h2 className="text-center text-xl font-bold text-yellow-200">
+                    Your stream was succesfuly created!
+                  </h2>
                   <span>
-                    To make the stream active, you must configure your{' '}
+                    To make the stream active, you must configure your{" "}
                     <a
                       className="font-semibold underline decoration-yellow-200 underline-offset-2"
                       href={OBS_URL}
                       rel="noopener noreferrer"
-                      target="_blank">
+                      target="_blank"
+                    >
                       OBS
-                    </a>{' '}
+                    </a>{" "}
                     by following the steps below:
                   </span>
                   <ol className="list-inside list-decimal">
@@ -104,23 +123,30 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
                       Go to <span className="font-semibold">Stream</span>
                     </li>
                     <li>
-                      Set Service to <span className="font-semibold">Custom...</span>
+                      Set Service to{" "}
+                      <span className="font-semibold">Custom...</span>
                     </li>
                     <li>
-                      Set <span className="font-semibold">Server</span> to RTMP Ingest URL provided below
+                      Set <span className="font-semibold">Server</span> to RTMP
+                      Ingest URL provided below
                     </li>
                     <li>
-                      Set <span className="font-semibold">Stream Key</span> to the Stream Key provided below
+                      Set <span className="font-semibold">Stream Key</span> to
+                      the Stream Key provided below
                     </li>
                     <li>
-                      Click <span className="font-semibold">Apply</span> and then <span className="font-semibold">OK</span>
+                      Click <span className="font-semibold">Apply</span> and
+                      then <span className="font-semibold">OK</span>
                     </li>
                     <li>
-                      Click <span className="font-semibold">Start Streaming</span>
+                      Click{" "}
+                      <span className="font-semibold">Start Streaming</span>
                     </li>
                   </ol>
                   <span>
-                    With this proccess, you will be able to stream whatever is set as <span className="font-semibold">Sources</span> on your OBS
+                    With this proccess, you will be able to stream whatever is
+                    set as <span className="font-semibold">Sources</span> on
+                    your OBS
                   </span>
                 </div>
               </div>
@@ -135,10 +161,12 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
                           className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
                           onClick={() => {
                             handleToast({
-                              title: 'Copied to clipboard!',
-                              description: 'You can now paste the RTMP Ingest URL on OBS',
+                              title: "Copied to clipboard!",
+                              description:
+                                "You can now paste the RTMP Ingest URL on OBS",
                             })
-                          }}>
+                          }}
+                        >
                           <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
                         </span>
                       </CopyToClipboard>
@@ -153,16 +181,21 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
                           className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
                           onClick={() => {
                             handleToast({
-                              title: 'Copied to clipboard!',
-                              description: 'You can now paste the Stream Key on OBS',
+                              title: "Copied to clipboard!",
+                              description:
+                                "You can now paste the Stream Key on OBS",
                             })
-                          }}>
+                          }}
+                        >
                           <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
                         </span>
                       </CopyToClipboard>
                     </div>
                   </div>
-                  <ButtonShare href={streamPath + streamData.id} PlayerType={PlayerType.STREAM} />
+                  <ButtonShare
+                    href={streamPath + streamData.id}
+                    PlayerType={PlayerType.STREAM}
+                  />
                 </div>
               </div>
               <div className="mt-4">
@@ -181,10 +214,13 @@ export const CreateStream = ({ origin = StreamOrigin.BROWSER }: { origin: keyof 
               <Broadcast
                 streamKey={streamData.streamKey}
                 theme={{
-                  radii: { containerBorderRadius: '16px' },
+                  radii: { containerBorderRadius: "16px" },
                 }}
               />
-              <ButtonShare href={streamPath + streamData.id} PlayerType={PlayerType.STREAM} />
+              <ButtonShare
+                href={streamPath + streamData.id}
+                PlayerType={PlayerType.STREAM}
+              />
               <DialogStopStream />
             </div>
           )}

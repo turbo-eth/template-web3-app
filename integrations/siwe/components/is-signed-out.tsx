@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
 
-import { useUser } from '@/lib/hooks/use-user'
+import { useUser } from "@/lib/hooks/use-user"
 
 interface IsSignedOutProps {
   children: ReactNode

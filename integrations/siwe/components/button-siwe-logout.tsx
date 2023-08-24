@@ -1,15 +1,20 @@
-'use client'
+"use client"
 
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
 
-import { siweLogout } from '@/integrations/siwe/actions/siwe-logout'
-import { useUser } from '@/lib/hooks/use-user'
+import { useUser } from "@/lib/hooks/use-user"
+import { siweLogout } from "@/integrations/siwe/actions/siwe-logout"
 
 interface ButtonSIWELogoutProps extends HTMLAttributes<HTMLButtonElement> {
   label?: string
 }
 
-export const ButtonSIWELogout = ({ className, label = 'Logout', children, ...props }: ButtonSIWELogoutProps) => {
+export const ButtonSIWELogout = ({
+  className,
+  label = "Logout",
+  children,
+  ...props
+}: ButtonSIWELogoutProps) => {
   const { mutateUser } = useUser()
   const handleLogout = async () => {
     await siweLogout()

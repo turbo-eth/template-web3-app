@@ -2,7 +2,13 @@
  * GPT models can understand and generate natural language or code.
  * For more details, access https://platform.openai.com/docs/models/gpt-3-5
  */
-export const models = ['gpt-4', 'gpt-3.5-turbo', 'text-davinci-003', 'text-davinci-002', 'code-davinci-002'] as const
+export const models = [
+  "gpt-4",
+  "gpt-3.5-turbo",
+  "text-davinci-003",
+  "text-davinci-002",
+  "code-davinci-002",
+] as const
 
 /**
  * OpenAI API model configuration.
@@ -14,7 +20,7 @@ export interface ModelConfig {
    * A list of messages describing the conversation so far.
    */
   messages: {
-    role: 'system' | 'user' | 'assistant'
+    role: "system" | "user" | "assistant"
     content: string
     name?: string
   }[]

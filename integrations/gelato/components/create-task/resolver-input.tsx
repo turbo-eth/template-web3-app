@@ -1,7 +1,7 @@
-import { ContractInput } from './contract-input'
-import { ExecutionValues } from './execution-values'
-import { FunctionInput } from './function-input'
-import { GELATO_CONSTANTS } from '../../utils/constants'
+import { GELATO_CONSTANTS } from "../../utils/constants"
+import { ContractInput } from "./contract-input"
+import { ExecutionValues } from "./execution-values"
+import { FunctionInput } from "./function-input"
 
 export function ResolverInput() {
   return (
@@ -10,16 +10,34 @@ export function ResolverInput() {
         <h3 className="text-2xl font-bold dark:opacity-70">When</h3>
       </div>
       <div>
-        <div>Resolver Contracts allow you to define arbitrary conditions that should trigger an execution.</div>
         <div>
-          <a className="text-indigo-400" href={GELATO_CONSTANTS.docs.resolver} target="_blank">
+          Resolver Contracts allow you to define arbitrary conditions that
+          should trigger an execution.
+        </div>
+        <div>
+          <a
+            className="text-indigo-400"
+            href={GELATO_CONSTANTS.docs.resolver}
+            target="_blank"
+          >
             Read Resolver Documentation
           </a>
         </div>
         <div className="mt-5">
-          <ContractInput abiFieldName="resolverAbi" contractFieldName="resolverContractAddress" />
-          <FunctionInput abiFieldName="resolverAbi" funcFieldName="resolverFunc" inputsFieldName="resolverInputs" />
-          <ExecutionValues abiFieldName="resolverAbi" funcFieldName="resolverFunc" inputFieldName="resolverInputs" />
+          <ContractInput
+            abiFieldName="resolverAbi"
+            contractFieldName="resolverContractAddress"
+          />
+          <FunctionInput
+            abiFieldName="resolverAbi"
+            funcFieldName="resolverFunc"
+            inputsFieldName="resolverInputs"
+          />
+          <ExecutionValues
+            abiFieldName="resolverAbi"
+            funcFieldName="resolverFunc"
+            inputFieldName="resolverInputs"
+          />
         </div>
       </div>
     </div>

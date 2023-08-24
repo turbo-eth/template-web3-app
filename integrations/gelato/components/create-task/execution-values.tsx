@@ -1,21 +1,24 @@
-import { ChangeEvent, useMemo } from 'react'
+import { ChangeEvent, useMemo } from "react"
+import { Abi } from "abitype"
+import { useFormContext } from "react-hook-form"
 
-import { Abi } from 'abitype'
-import { useFormContext } from 'react-hook-form'
+import { cn } from "@/lib/utils"
 
-import { cn } from '@/lib/utils'
-
-import { CreateTaskForm } from './create-task'
-import { getAbiFunctions, validateInput } from '../../utils/helpers'
-import { ValidationError } from '../errors/validation-error'
+import { getAbiFunctions, validateInput } from "../../utils/helpers"
+import { ValidationError } from "../errors/validation-error"
+import { CreateTaskForm } from "./create-task"
 
 export type ExecutionValuesProps = {
-  inputFieldName: 'predefinedInputs' | 'resolverInputs'
-  funcFieldName: 'func' | 'resolverFunc'
-  abiFieldName: 'abi' | 'resolverAbi'
+  inputFieldName: "predefinedInputs" | "resolverInputs"
+  funcFieldName: "func" | "resolverFunc"
+  abiFieldName: "abi" | "resolverAbi"
 }
 
-export function ExecutionValues({ inputFieldName, funcFieldName, abiFieldName }: ExecutionValuesProps) {
+export function ExecutionValues({
+  inputFieldName,
+  funcFieldName,
+  abiFieldName,
+}: ExecutionValuesProps) {
   const {
     watch,
     setValue,
@@ -23,16 +26,23 @@ export function ExecutionValues({ inputFieldName, funcFieldName, abiFieldName }:
     formState: { errors },
   } = useFormContext<CreateTaskForm>()
 
-  const [inputDefinition, func, abi, predefinedInputs] = watch(['inputDefinition', funcFieldName, abiFieldName, inputFieldName])
+  const [inputDefinition, func, abi, predefinedInputs] = watch([
+    "inputDefinition",
+    funcFieldName,
+    abiFieldName,
+    inputFieldName,
+  ])
 
-  const isResolver = funcFieldName === 'resolverFunc'
-  const shouldShowInputs = inputDefinition === 'predefined' || isResolver
+  const isResolver = funcFieldName === "resolverFunc"
+  const shouldShowInputs = inputDefinition === "predefined" || isResolver
 
   const selectedFunctionAbi = useMemo(() => {
     if (!abi) return
 
     try {
-      return getAbiFunctions(JSON.parse(abi) as Abi).find((item) => item.name === func)
+      return getAbiFunctions(JSON.parse(abi) as Abi).find(
+        (item) => item.name === func
+      )
     } catch (e) {
       return
     }
@@ -46,19 +56,21 @@ export function ExecutionValues({ inputFieldName, funcFieldName, abiFieldName }:
             <button
               type="button"
               className={cn(
-                'rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200',
-                inputDefinition === 'predefined' ? 'bg-zinc-900' : ''
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                inputDefinition === "predefined" ? "bg-zinc-900" : ""
               )}
-              onClick={() => setValue('inputDefinition', 'predefined')}>
+              onClick={() => setValue("inputDefinition", "predefined")}
+            >
               Predefined Inputs
             </button>
             <button
               type="button"
               className={cn(
-                'rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200',
-                inputDefinition === 'resolver' ? 'bg-zinc-900' : ''
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                inputDefinition === "resolver" ? "bg-zinc-900" : ""
               )}
-              onClick={() => setValue('inputDefinition', 'resolver')}>
+              onClick={() => setValue("inputDefinition", "resolver")}
+            >
               Resolver
             </button>
           </div>
@@ -79,7 +91,12 @@ export function ExecutionValues({ inputFieldName, funcFieldName, abiFieldName }:
                     placeholder="value"
                     {...register(`${inputFieldName}.${item.name}`, {
                       validate: {
-                        format: (value) => validateInput(item.name as string, value, selectedFunctionAbi),
+                        format: (value) =>
+                          validateInput(
+                            item.name as string,
+                            value,
+                            selectedFunctionAbi
+                          ),
                       },
                       onChange: (e: ChangeEvent<HTMLInputElement>) => {
                         setValue(inputFieldName, {
@@ -89,7 +106,9 @@ export function ExecutionValues({ inputFieldName, funcFieldName, abiFieldName }:
                       },
                     })}
                   />
-                  <ValidationError error={errors[inputFieldName]?.[item.name]?.message} />
+                  <ValidationError
+                    error={errors[inputFieldName]?.[item.name]?.message}
+                  />
                 </>
               )}
             </div>

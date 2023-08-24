@@ -1,5 +1,5 @@
 export function handleErrorTypes(error: unknown) {
-  if (typeof error === 'string') {
+  if (typeof error === "string") {
     throw new Error(error)
   }
 }

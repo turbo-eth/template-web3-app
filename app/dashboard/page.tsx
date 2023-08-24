@@ -1,13 +1,13 @@
-'use client'
+"use client"
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion"
 
-import { WalletAddress } from '@/components/blockchain/wallet-address'
-import { WalletBalance } from '@/components/blockchain/wallet-balance'
-import { WalletEnsName } from '@/components/blockchain/wallet-ens-name'
-import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
-import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
+import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
+import { WalletAddress } from "@/components/blockchain/wallet-address"
+import { WalletBalance } from "@/components/blockchain/wallet-balance"
+import { WalletEnsName } from "@/components/blockchain/wallet-ens-name"
+import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
+import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 
 export default function PageDashboard() {
   return (
@@ -17,7 +17,8 @@ export default function PageDashboard() {
       initial="hidden"
       variants={FADE_DOWN_ANIMATION_VARIANTS}
       viewport={{ once: true }}
-      whileInView="show">
+      whileInView="show"
+    >
       <IsWalletConnected>
         <div className="flex-center col-span-12 flex flex-col lg:col-span-9">
           <div className="text-center">
@@ -38,7 +39,9 @@ export default function PageDashboard() {
         </div>
       </IsWalletConnected>
       <IsWalletDisconnected>
-        <h3 className="text-lg font-normal">Connect Wallet to view your personalized dashboard.</h3>
+        <h3 className="text-lg font-normal">
+          Connect Wallet to view your personalized dashboard.
+        </h3>
       </IsWalletDisconnected>
     </motion.div>
   )

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement } from "react"
 
 interface ITablePagination {
   canPreviousPage: boolean
@@ -30,28 +30,44 @@ export const TablePagination = ({
   return (
     <div className="flex justify-between items-center bg-white text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 shadow-sm px-3 py-5 rounded-b-lg">
       <div className="">
-        <button className="tag tag-smoke" onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          {'<<'}
-        </button>{' '}
-        <button className="tag tag-smoke" onClick={() => previousPage()} disabled={!canPreviousPage}>
-          {'<'}
-        </button>{' '}
-        <button className="tag tag-smoke" onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        <button className="tag tag-smoke" onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
+        <button
+          className="tag tag-smoke"
+          onClick={() => gotoPage(0)}
+          disabled={!canPreviousPage}
+        >
+          {"<<"}
+        </button>{" "}
+        <button
+          className="tag tag-smoke"
+          onClick={() => previousPage()}
+          disabled={!canPreviousPage}
+        >
+          {"<"}
+        </button>{" "}
+        <button
+          className="tag tag-smoke"
+          onClick={() => nextPage()}
+          disabled={!canNextPage}
+        >
+          {">"}
+        </button>{" "}
+        <button
+          className="tag tag-smoke"
+          onClick={() => gotoPage(pageCount - 1)}
+          disabled={!canNextPage}
+        >
+          {">>"}
+        </button>{" "}
         <span className="mx-2">
-          Page{' '}
+          Page{" "}
           <strong>
             {pageIndex + 1} of {pageCount}
-          </strong>{' '}
+          </strong>{" "}
         </span>
         |
         <span className="bg-card mx-2 inline-block rounded-xl py-3 px-2">
           <span className="p-2">
-            Go to page:{' '}
+            Go to page:{" "}
             <input
               className="input ml-3 h-[32px] w-[64px] text-neutral-700 dark:text-neutral-800"
               type="number"
@@ -62,10 +78,10 @@ export const TablePagination = ({
                 const page = e.target.value ? Number(e.target.value) - 1 : 0
                 gotoPage(page)
               }}
-              style={{ width: '64px' }}
+              style={{ width: "64px" }}
             />
           </span>
-        </span>{' '}
+        </span>{" "}
       </div>
       <div className="">
         <select
@@ -73,9 +89,14 @@ export const TablePagination = ({
           value={pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value))
-          }}>
+          }}
+        >
           {[5, 10, 20, 30, 40, 50].map((pageSizeParams) => (
-            <option className="text-xl" key={pageSizeParams} value={pageSizeParams}>
+            <option
+              className="text-xl"
+              key={pageSizeParams}
+              value={pageSizeParams}
+            >
               Show {pageSizeParams}
             </option>
           ))}

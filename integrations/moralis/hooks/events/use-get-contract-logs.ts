@@ -1,5 +1,8 @@
-import type { GetContractLogsJSONResponse, GetContractLogsResponse } from '@moralisweb3/common-evm-utils'
-import { useQuery } from '@tanstack/react-query'
+import type {
+  GetContractLogsJSONResponse,
+  GetContractLogsResponse,
+} from "@moralisweb3/common-evm-utils"
+import { useQuery } from "@tanstack/react-query"
 
 interface GetContractLogsArgs {
   chain: string
@@ -7,19 +10,26 @@ interface GetContractLogsArgs {
   enabled?: boolean
 }
 
-export function useGetContractLogs({ chain, address, enabled }: GetContractLogsArgs) {
-  return useQuery(['get-contract-logs', chain, address], {
+export function useGetContractLogs({
+  chain,
+  address,
+  enabled,
+}: GetContractLogsArgs) {
+  return useQuery(["get-contract-logs", chain, address], {
     queryFn: async () => {
-      const res = await fetch(`/integration/moralis/api/events/getContractLogs`, {
-        method: 'POST',
-        body: JSON.stringify({
-          format: 'result',
-          args: {
-            chain,
-            address,
-          },
-        }),
-      })
+      const res = await fetch(
+        `/integration/moralis/api/events/getContractLogs`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            format: "result",
+            args: {
+              chain,
+              address,
+            },
+          }),
+        }
+      )
       if (!res.ok) {
         const testRes = await res.text()
         throw new Error(testRes)
@@ -31,19 +41,26 @@ export function useGetContractLogs({ chain, address, enabled }: GetContractLogsA
   })
 }
 
-export function useGetContractLogsRaw({ chain, address, enabled }: GetContractLogsArgs) {
-  return useQuery(['get-contract-logs-raw', chain, address], {
+export function useGetContractLogsRaw({
+  chain,
+  address,
+  enabled,
+}: GetContractLogsArgs) {
+  return useQuery(["get-contract-logs-raw", chain, address], {
     queryFn: async () => {
-      const res = await fetch(`/integration/moralis/api/events/getContractLogs`, {
-        method: 'POST',
-        body: JSON.stringify({
-          format: 'raw',
-          args: {
-            chain,
-            address,
-          },
-        }),
-      })
+      const res = await fetch(
+        `/integration/moralis/api/events/getContractLogs`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            format: "raw",
+            args: {
+              chain,
+              address,
+            },
+          }),
+        }
+      )
       if (!res.ok) {
         const testRes = await res.text()
         throw new Error(testRes)

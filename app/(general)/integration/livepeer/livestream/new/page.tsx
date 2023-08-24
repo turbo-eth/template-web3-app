@@ -1,4 +1,5 @@
-import { redirect } from 'next/navigation'
+import { redirect } from "next/navigation"
+
 export default function PageIntegration() {
-  redirect('/integration/livepeer/livestream')
+  redirect("/integration/livepeer/livestream")
 }

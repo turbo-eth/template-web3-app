@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
+import { useAccount, useNetwork } from "wagmi"
 
-import { useAccount, useNetwork } from 'wagmi'
-
-import { useUiPoolDataProviderGetReservesData, useUiPoolDataProviderGetUserReservesData } from '../generated/aave-wagmi'
-import { getDefaultUseAaveState } from '../utils'
-import { MarketDataType, marketsData } from '../utils/market-config'
-import { AaveState, ReserveData, UsdData, UserReserveData } from '../utils/types'
+import {
+  useUiPoolDataProviderGetReservesData,
+  useUiPoolDataProviderGetUserReservesData,
+} from "../generated/aave-wagmi"
+import { getDefaultUseAaveState } from "../utils"
+import { MarketDataType, marketsData } from "../utils/market-config"
+import {
+  AaveState,
+  ReserveData,
+  UsdData,
+  UserReserveData,
+} from "../utils/types"
 
 export const useAave = () => {
   const { address: user } = useAccount()
@@ -15,18 +22,25 @@ export const useAave = () => {
 
   const { data: reservesData } = useUiPoolDataProviderGetReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
-    args: market ? [market?.addresses.LENDING_POOL_ADDRESS_PROVIDER] : undefined,
+    args: market
+      ? [market?.addresses.LENDING_POOL_ADDRESS_PROVIDER]
+      : undefined,
     watch: true,
   })
 
   const userReservesData = useUiPoolDataProviderGetUserReservesData({
     address: market?.addresses.UI_POOL_DATA_PROVIDER,
-    args: market && user ? [market?.addresses.LENDING_POOL_ADDRESS_PROVIDER, user] : undefined,
+    args:
+      market && user
+        ? [market?.addresses.LENDING_POOL_ADDRESS_PROVIDER, user]
+        : undefined,
     watch: true,
   }).data?.[0] as UserReserveData[]
 
   useEffect(() => {
-    setMarket(marketsData?.find((market) => market.chainId === chain?.id) ?? null)
+    setMarket(
+      marketsData?.find((market) => market.chainId === chain?.id) ?? null
+    )
   }, [chain, userReservesData, reservesData])
 
   useEffect(() => {
@@ -37,14 +51,26 @@ export const useAave = () => {
       let maxBorrowableInUsd = 0
 
       const usdData = userReservesData.map((userReserveData) => {
-        const reserveData = reservesData?.[0].find((reserve) => reserve.underlyingAsset === userReserveData.underlyingAsset) as ReserveData
+        const reserveData = reservesData?.[0].find(
+          (reserve) =>
+            reserve.underlyingAsset === userReserveData.underlyingAsset
+        ) as ReserveData
 
-        const tokenPriceInUsd = Number(reserveData?.priceInMarketReferenceCurrency) / Number(reservesData?.[1].marketReferenceCurrencyPriceInUsd)
+        const tokenPriceInUsd =
+          Number(reserveData?.priceInMarketReferenceCurrency) /
+          Number(reservesData?.[1].marketReferenceCurrencyPriceInUsd)
         const amountInUsd =
-          (((Number(userReserveData.scaledATokenBalance) / 10 ** Number(reserveData.decimals)) * Number(reserveData.liquidityIndex)) / 10 ** 27) *
+          (((Number(userReserveData.scaledATokenBalance) /
+            10 ** Number(reserveData.decimals)) *
+            Number(reserveData.liquidityIndex)) /
+            10 ** 27) *
           tokenPriceInUsd
         const debtInUsd =
-          (((Number(userReserveData.scaledVariableDebt || userReserveData.principalStableDebt) / 10 ** 18) *
+          (((Number(
+            userReserveData.scaledVariableDebt ||
+              userReserveData.principalStableDebt
+          ) /
+            10 ** 18) *
             Number(reserveData.variableBorrowIndex)) /
             10 ** 27) *
           tokenPriceInUsd
@@ -54,7 +80,8 @@ export const useAave = () => {
 
         if (userReserveData.usageAsCollateralEnabledOnUser) {
           collateralInUsd += amountInUsd
-          maxBorrowableInUsd += amountInUsd * (Number(reserveData.baseLTVasCollateral) / 10000)
+          maxBorrowableInUsd +=
+            amountInUsd * (Number(reserveData.baseLTVasCollateral) / 10000)
         }
 
         return {
@@ -74,12 +101,20 @@ export const useAave = () => {
       usdData.forEach((data) => {
         data.supplyProportion = data.amountInUsd / balanceInUsd
         data.borrowProportion = data.debtInUsd / totalDebtInUsd
-        averageLiquidationThreshold += data.supplyProportion * (Number(data.reserveData.reserveLiquidationThreshold) / 10000)
-        averageSupplyApy += data.supplyProportion * (Number(data.reserveData.liquidityRate) / 10 ** 25)
-        averageBorrowApy += data.borrowProportion * (Number(data.reserveData.variableBorrowRate) / 10 ** 25)
+        averageLiquidationThreshold +=
+          data.supplyProportion *
+          (Number(data.reserveData.reserveLiquidationThreshold) / 10000)
+        averageSupplyApy +=
+          data.supplyProportion *
+          (Number(data.reserveData.liquidityRate) / 10 ** 25)
+        averageBorrowApy +=
+          data.borrowProportion *
+          (Number(data.reserveData.variableBorrowRate) / 10 ** 25)
       })
 
-      const nativeTokenPrice = Number(reservesData?.[1].networkBaseTokenPriceInUsd) / Number(reservesData?.[1].marketReferenceCurrencyUnit)
+      const nativeTokenPrice =
+        Number(reservesData?.[1].networkBaseTokenPriceInUsd) /
+        Number(reservesData?.[1].marketReferenceCurrencyUnit)
       const collateralInNativeToken = collateralInUsd / nativeTokenPrice
       const debtInNativeToken = totalDebtInUsd / nativeTokenPrice
       setData({
@@ -90,10 +125,17 @@ export const useAave = () => {
         totalDebtInUsd,
         averageSupplyApy,
         averageBorrowApy,
-        averageNetApy: totalDebtInUsd > 0 ? (balanceInUsd * averageSupplyApy - totalDebtInUsd * averageBorrowApy) / netWorth : averageSupplyApy,
+        averageNetApy:
+          totalDebtInUsd > 0
+            ? (balanceInUsd * averageSupplyApy -
+                totalDebtInUsd * averageBorrowApy) /
+              netWorth
+            : averageSupplyApy,
         maxBorrowableInUsd: maxBorrowableInUsd - totalDebtInUsd,
-        healthFactor: (collateralInNativeToken * averageLiquidationThreshold) / debtInNativeToken,
-        poolAddress: (market?.addresses.LENDING_POOL ?? '') as `0x${string}`,
+        healthFactor:
+          (collateralInNativeToken * averageLiquidationThreshold) /
+          debtInNativeToken,
+        poolAddress: (market?.addresses.LENDING_POOL ?? "") as `0x${string}`,
         chainSupported: true,
       })
     } else {

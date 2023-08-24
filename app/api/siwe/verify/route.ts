@@ -1,1 +1,1 @@
-export { POST } from '@/integrations/siwe/api/verify'
+export { POST } from "@/integrations/siwe/api/verify"

@@ -1,14 +1,20 @@
-'use client'
-import { createContext, useCallback, useEffect, useMemo, useState } from 'react'
+"use client"
 
-import { JWKInterface } from 'arweave/node/lib/wallet'
-import { TransactionStatusResponse } from 'arweave/node/transactions'
-import { ArAccount } from 'arweave-account'
-import { useAccount } from 'wagmi'
+import { createContext, useCallback, useEffect, useMemo, useState } from "react"
+import { ArAccount } from "arweave-account"
+import { JWKInterface } from "arweave/node/lib/wallet"
+import { TransactionStatusResponse } from "arweave/node/transactions"
+import { useAccount } from "wagmi"
 
-import { CONFIRMED_THRESHOLD, generateArweaveWallet, getArweaveTxStatus, getArweaveWalletAddress, getArweaveWalletBalance } from '..'
-import { getUserAccount } from '../arweave-account'
-import { AddPendingTxPayload, ArweaveAmount, ArweaveTxId } from '../utils/types'
+import {
+  CONFIRMED_THRESHOLD,
+  generateArweaveWallet,
+  getArweaveTxStatus,
+  getArweaveWalletAddress,
+  getArweaveWalletBalance,
+} from ".."
+import { getUserAccount } from "../arweave-account"
+import { AddPendingTxPayload, ArweaveAmount, ArweaveTxId } from "../utils/types"
 
 type PendingTx = {
   txId: ArweaveTxId
@@ -57,7 +63,11 @@ export const ArweaveWalletContext = createContext<IArweaveWalletContext>({
   },
 })
 
-export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode }) => {
+export const ArweaveWalletProvider = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   const [wallet, setWallet] = useState<JWKInterface | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [address, setAddress] = useState<string | null>(null)
@@ -98,7 +108,10 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
   const generateBasedOnEthAddress = useCallback(async () => {
     if (ethAccountAddress) {
       const wallet = await generateArweaveWallet()
-      localStorage.setItem(`coupled-arweave-wallet-${ethAccountAddress}`, JSON.stringify(wallet))
+      localStorage.setItem(
+        `coupled-arweave-wallet-${ethAccountAddress}`,
+        JSON.stringify(wallet)
+      )
       setWallet(wallet)
     }
   }, [ethAccountAddress])
@@ -106,7 +119,7 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
   const importFromFile = useCallback(async (file: File) => {
     try {
       const fileReader = new FileReader()
-      fileReader.readAsText(file, 'UTF-8')
+      fileReader.readAsText(file, "UTF-8")
       fileReader.onload = (e) => {
         if (e.target?.result) {
           function isValidWallet(json: object): json is JWKInterface {
@@ -115,7 +128,7 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
           const result: object = JSON.parse(e.target.result as string)
           if (isValidWallet(result)) setWallet(result)
           else {
-            setError('Not a valid Arweave wallet KeyFile')
+            setError("Not a valid Arweave wallet KeyFile")
           }
         }
       }
@@ -127,9 +140,9 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
   const backupWallet = useCallback(async () => {
     if (!wallet || !address) return
     const json = JSON.stringify(wallet, null, 2)
-    const blob = new Blob([json], { type: 'application/json' })
+    const blob = new Blob([json], { type: "application/json" })
     const href = URL.createObjectURL(blob)
-    const link = document.createElement('a')
+    const link = document.createElement("a")
     link.href = href
     link.download = `${address}.json`
     document.body.appendChild(link)
@@ -160,26 +173,37 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
     if (!ethAccountAddress && wallet) {
       disconnect()
     } else if (ethAccountAddress) {
-      const storedWallet = localStorage.getItem(`coupled-arweave-wallet-${ethAccountAddress}`)
+      const storedWallet = localStorage.getItem(
+        `coupled-arweave-wallet-${ethAccountAddress}`
+      )
       if (storedWallet) {
         setWallet(JSON.parse(storedWallet) as JWKInterface)
       }
     }
   }, [ethAccountAddress])
 
-  const addPendingTx = useCallback(({ txId, onConfirmation }: AddPendingTxPayload) => {
-    setPendingTxs((prevTxs) => [...prevTxs, { txId, status: null }])
-    const intervalId = setInterval(async () => {
-      const status = await getArweaveTxStatus(txId)
-      const numberOfConfirmations = status.confirmed?.number_of_confirmations
-      if (numberOfConfirmations && numberOfConfirmations > CONFIRMED_THRESHOLD) {
-        setPendingTxs((prevTxs) => [...prevTxs.filter((tx) => tx.txId !== txId), { txId, status }])
-        onConfirmation && (await onConfirmation())
-        getBalance().catch((e) => console.error('Get balance error:', e))
-        clearInterval(intervalId)
-      }
-    }, 3000)
-  }, [])
+  const addPendingTx = useCallback(
+    ({ txId, onConfirmation }: AddPendingTxPayload) => {
+      setPendingTxs((prevTxs) => [...prevTxs, { txId, status: null }])
+      const intervalId = setInterval(async () => {
+        const status = await getArweaveTxStatus(txId)
+        const numberOfConfirmations = status.confirmed?.number_of_confirmations
+        if (
+          numberOfConfirmations &&
+          numberOfConfirmations > CONFIRMED_THRESHOLD
+        ) {
+          setPendingTxs((prevTxs) => [
+            ...prevTxs.filter((tx) => tx.txId !== txId),
+            { txId, status },
+          ])
+          onConfirmation && (await onConfirmation())
+          getBalance().catch((e) => console.error("Get balance error:", e))
+          clearInterval(intervalId)
+        }
+      }, 3000)
+    },
+    []
+  )
 
   const value: IArweaveWalletContext = useMemo(
     () => ({
@@ -202,5 +226,9 @@ export const ArweaveWalletProvider = ({ children }: { children: React.ReactNode 
     }),
     [address, wallet, balance, error, account, isAccountLoading, pendingTxs]
   )
-  return <ArweaveWalletContext.Provider value={value}>{children}</ArweaveWalletContext.Provider>
+  return (
+    <ArweaveWalletContext.Provider value={value}>
+      {children}
+    </ArweaveWalletContext.Provider>
+  )
 }

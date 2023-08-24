@@ -1,7 +1,8 @@
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
+import Image from "next/image"
+import { turboIntegrations } from "@/data/turbo-integrations"
 
-import Image from 'next/image'
-
+import { cn } from "@/lib/utils"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -10,13 +11,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu'
-import { turboIntegrations } from '@/data/turbo-integrations'
-import { cn } from '@/lib/utils'
+} from "@/components/ui/navigation-menu"
 
-import { IsDarkTheme } from '../shared/is-dark-theme'
-import { IsLightTheme } from '../shared/is-light-theme'
-import { LinkComponent } from '../shared/link-component'
+import { IsDarkTheme } from "../shared/is-dark-theme"
+import { IsLightTheme } from "../shared/is-light-theme"
+import { LinkComponent } from "../shared/link-component"
 
 export function NavigationMenuGeneral() {
   return (
@@ -37,9 +36,12 @@ export function NavigationMenuGeneral() {
                         Build in Turbo Mode
                       </h3>
                       <p className="mb-3 text-sm leading-tight text-white/90">
-                        TurboETH is a Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!
+                        TurboETH is a Web3 App Template built using Next.js,
+                        RainbowKit, SIWE, Disco, and more!
                       </p>
-                      <p className="text-sm font-bold leading-tight text-white/90">#TurboETH</p>
+                      <p className="text-sm font-bold leading-tight text-white/90">
+                        #TurboETH
+                      </p>
                     </div>
                   </div>
                 </NavigationMenuLink>
@@ -50,7 +52,9 @@ export function NavigationMenuGeneral() {
                     <h3 className="text-lg font-bold">🎛️ Dashboard</h3>
                     <div className="my-2" />
                     <p className="text-xs">
-                      The TurboETH Dashboard is a great place to start. It&apos;s where you can see your app&apos;s features, and get started.
+                      The TurboETH Dashboard is a great place to start.
+                      It&apos;s where you can see your app&apos;s features, and
+                      get started.
                     </p>
                   </div>
                 </LinkComponent>
@@ -58,7 +62,10 @@ export function NavigationMenuGeneral() {
                   <div className="card bg-card-with-hover">
                     <h3 className="text-lg font-bold">🔐 Admin</h3>
                     <div className="my-2" />
-                    <p className="text-xs">The TurboETH Admin area is where you can see your app&apos;s users.</p>
+                    <p className="text-xs">
+                      The TurboETH Admin area is where you can see your
+                      app&apos;s users.
+                    </p>
                   </div>
                 </LinkComponent>
               </li>
@@ -70,7 +77,11 @@ export function NavigationMenuGeneral() {
           <NavigationMenuContent className="overflow-y-scroll xl:max-h-[690px]">
             <ul className="grid w-[750px] gap-3 p-4 md:grid-cols-3">
               {Object.values(turboIntegrations).map((component) => (
-                <ListItem key={component.name} title={component.name} {...component}>
+                <ListItem
+                  key={component.name}
+                  title={component.name}
+                  {...component}
+                >
                   {component.description}
                 </ListItem>
               ))}
@@ -79,7 +90,9 @@ export function NavigationMenuGeneral() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <LinkComponent href="https://docs.turboeth.xyz/overview">
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>Documentation</NavigationMenuLink>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Documentation
+            </NavigationMenuLink>
           </LinkComponent>
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -94,28 +107,51 @@ interface ListItemProps extends HTMLAttributes<HTMLElement> {
   imgDark: string
 }
 
-const ListItem = ({ className, href, name, imgLight, imgDark, children, ...props }: ListItemProps) => {
+const ListItem = ({
+  className,
+  href,
+  name,
+  imgLight,
+  imgDark,
+  children,
+  ...props
+}: ListItemProps) => {
   return (
     <li key={name}>
       <NavigationMenuLink asChild>
         <LinkComponent
           href={href}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700',
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 focus:bg-slate-100 dark:hover:bg-slate-700 dark:focus:bg-slate-700",
             className
           )}
-          {...props}>
+          {...props}
+        >
           <IsLightTheme>
-            <Image alt="Etherscan logo" className="mb-3 h-7 w-7 rounded-full" height={100} src={imgDark} width={100} />
+            <Image
+              alt="Etherscan logo"
+              className="mb-3 h-7 w-7 rounded-full"
+              height={100}
+              src={imgDark}
+              width={100}
+            />
           </IsLightTheme>
           <IsDarkTheme>
-            <Image alt="Etherscan logo" className="mb-3 h-7 w-7 rounded-full" height={100} src={imgLight} width={100} />
+            <Image
+              alt="Etherscan logo"
+              className="mb-3 h-7 w-7 rounded-full"
+              height={100}
+              src={imgLight}
+              width={100}
+            />
           </IsDarkTheme>
           <div className="text-sm font-medium leading-none">{name}</div>
-          <p className="text-sm leading-snug text-slate-500 line-clamp-2 dark:text-slate-400">{children}</p>
+          <p className="text-sm leading-snug text-slate-500 line-clamp-2 dark:text-slate-400">
+            {children}
+          </p>
         </LinkComponent>
       </NavigationMenuLink>
     </li>
   )
 }
-ListItem.displayName = 'ListItem'
+ListItem.displayName = "ListItem"

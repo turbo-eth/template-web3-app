@@ -1,1 +1,1 @@
-export { GET } from '@/integrations/moralis/api/transaction'
+export { GET } from "@/integrations/moralis/api/transaction"

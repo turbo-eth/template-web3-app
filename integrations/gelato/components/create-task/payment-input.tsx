@@ -1,14 +1,14 @@
-import { useFormContext } from 'react-hook-form'
+import { useFormContext } from "react-hook-form"
 
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils"
 
-import { CreateTaskForm } from './create-task'
-import { GELATO_CONSTANTS } from '../../utils/constants'
+import { GELATO_CONSTANTS } from "../../utils/constants"
+import { CreateTaskForm } from "./create-task"
 
 export function PaymentInput() {
   const { watch, setValue } = useFormContext<CreateTaskForm>()
 
-  const [payWith] = watch(['payWith'])
+  const [payWith] = watch(["payWith"])
 
   return (
     <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
@@ -17,35 +17,51 @@ export function PaymentInput() {
       </div>
 
       <div>
-        <div>Choose how the task should be paid for. The cost of each execution equals the network fee</div>
         <div>
-          <a className="text-indigo-400" href={GELATO_CONSTANTS.docs.payment} target="_blank">
+          Choose how the task should be paid for. The cost of each execution
+          equals the network fee
+        </div>
+        <div>
+          <a
+            className="text-indigo-400"
+            href={GELATO_CONSTANTS.docs.payment}
+            target="_blank"
+          >
             Docs
           </a>
         </div>
         <div className="mt-10 flex">
           <div className="mx-auto flex space-x-3 rounded-2xl p-2 dark:bg-zinc-700">
             <button
-              className={cn('rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200', payWith === 'gelato' ? 'bg-zinc-900' : '')}
+              className={cn(
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                payWith === "gelato" ? "bg-zinc-900" : ""
+              )}
               type="button"
-              onClick={() => setValue('payWith', 'gelato')}>
+              onClick={() => setValue("payWith", "gelato")}
+            >
               Gelato Balance
             </button>
             <button
               type="button"
               className={cn(
-                'rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200',
-                payWith === 'transaction' ? 'bg-zinc-900' : ''
+                "rounded-2xl p-2 px-5 text-xl text-slate-200 hover:text-inherit duration-200",
+                payWith === "transaction" ? "bg-zinc-900" : ""
               )}
-              onClick={() => setValue('payWith', 'transaction')}>
+              onClick={() => setValue("payWith", "transaction")}
+            >
               Transaction pays itself
             </button>
           </div>
         </div>
-        {payWith === 'transaction' && (
+        {payWith === "transaction" && (
           <div className="mt-10">
-            The fees will be taken from the address of the automated contract.{' '}
-            <a className="text-indigo-400" href={`${GELATO_CONSTANTS.docs.payment}#transaction-pays-for-itself`} target="_blank">
+            The fees will be taken from the address of the automated contract.{" "}
+            <a
+              className="text-indigo-400"
+              href={`${GELATO_CONSTANTS.docs.payment}#transaction-pays-for-itself`}
+              target="_blank"
+            >
               Docs
             </a>
           </div>

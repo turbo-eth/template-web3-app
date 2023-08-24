@@ -1,5 +1,5 @@
-import { BorrowedAssetsItem } from './borrowed-assets-item'
-import { useAave } from '../hooks/use-aave'
+import { useAave } from "../hooks/use-aave"
+import { BorrowedAssetsItem } from "./borrowed-assets-item"
 
 export const ListBorrowedAssets = () => {
   const { usdData, totalDebtInUsd, averageBorrowApy } = useAave()
@@ -7,9 +7,15 @@ export const ListBorrowedAssets = () => {
   const filteredUserReserves = usdData?.filter((reserve) => {
     // If debt > 0.00001
     const exponent = reserve.reserveData.decimals - BigInt(5)
-    const comparisonValue = exponent >= 0 ? BigInt(1) * BigInt(10) ** exponent : BigInt(1) / BigInt(10) ** -exponent
+    const comparisonValue =
+      exponent >= 0
+        ? BigInt(1) * BigInt(10) ** exponent
+        : BigInt(1) / BigInt(10) ** -exponent
 
-    return reserve.scaledVariableDebt > comparisonValue || reserve.principalStableDebt > comparisonValue
+    return (
+      reserve.scaledVariableDebt > comparisonValue ||
+      reserve.principalStableDebt > comparisonValue
+    )
   })
 
   return (
@@ -22,13 +28,17 @@ export const ListBorrowedAssets = () => {
           <div className="flex items-center">
             <div className="mr-2 rounded border bg-white px-4 py-2 dark:border-slate-600 dark:bg-gray-800">
               <h3 className="text-xs font-bold">
-                <span className="text-slate-500 dark:text-slate-300"> Debt $ </span>
+                <span className="text-slate-500 dark:text-slate-300">
+                  {" "}
+                  Debt ${" "}
+                </span>
                 {totalDebtInUsd.toFixed(2)}
               </h3>
             </div>
             <div className="mr-2 rounded border bg-white px-4 py-2 dark:border-slate-600 dark:bg-gray-800">
               <h3 className="text-xs font-bold">
-                <span className="text-slate-500 dark:text-slate-300">APY</span> {averageBorrowApy.toFixed(2)}{' '}
+                <span className="text-slate-500 dark:text-slate-300">APY</span>{" "}
+                {averageBorrowApy.toFixed(2)}{" "}
                 <span className="text-slate-500 dark:text-slate-300">%</span>
               </h3>
             </div>
@@ -37,17 +47,30 @@ export const ListBorrowedAssets = () => {
             <table className="mt-7 w-full table-auto border-collapse text-left">
               <thead>
                 <tr>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Asset</th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Debt</th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">APY</th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">APY Type</th>
+                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                    Asset
+                  </th>
+                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                    Debt
+                  </th>
+                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                    APY
+                  </th>
+                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                    APY Type
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {filteredUserReserves?.map((userReserve, index) => {
-                  const reserve = usdData?.find((reserve) => reserve.underlyingAsset === userReserve.underlyingAsset)
-                  const isVariableRate = userReserve.scaledVariableDebt > BigInt(0)
-                  const decimalsAsNumber = Number(reserve?.reserveData.decimals) ?? 18
+                  const reserve = usdData?.find(
+                    (reserve) =>
+                      reserve.underlyingAsset === userReserve.underlyingAsset
+                  )
+                  const isVariableRate =
+                    userReserve.scaledVariableDebt > BigInt(0)
+                  const decimalsAsNumber =
+                    Number(reserve?.reserveData.decimals) ?? 18
 
                   return (
                     <BorrowedAssetsItem
@@ -56,34 +79,49 @@ export const ListBorrowedAssets = () => {
                       aTokenBalance={userReserve.scaledATokenBalance}
                       rateMode={isVariableRate ? BigInt(2) : BigInt(1)}
                       borrowRate={
-                        isVariableRate ? Number(reserve?.reserveData.variableBorrowRate) / 10 ** 25 : Number(reserve?.stableBorrowRate) / 10 ** 25
+                        isVariableRate
+                          ? Number(reserve?.reserveData.variableBorrowRate) /
+                            10 ** 25
+                          : Number(reserve?.stableBorrowRate) / 10 ** 25
                       }
                       canSwitchRateMode={
                         reserve?.reserveData.stableBorrowRateEnabled
                           ? isVariableRate
-                            ? Number(userReserve.scaledATokenBalance) / 10 ** decimalsAsNumber <
-                              ((Number(userReserve.scaledVariableDebt) / 10 ** decimalsAsNumber) *
-                                Number(reserve?.reserveData.variableBorrowIndex ?? BigInt(1))) /
+                            ? Number(userReserve.scaledATokenBalance) /
+                                10 ** decimalsAsNumber <
+                              ((Number(userReserve.scaledVariableDebt) /
+                                10 ** decimalsAsNumber) *
+                                Number(
+                                  reserve?.reserveData.variableBorrowIndex ??
+                                    BigInt(1)
+                                )) /
                                 10 ** 27
                             : true
                           : false
                       }
                       debt={
                         isVariableRate
-                          ? ((Number(userReserve.scaledVariableDebt) / 10 ** decimalsAsNumber) *
-                              Number(reserve?.reserveData.variableBorrowIndex ?? BigInt(1))) /
+                          ? ((Number(userReserve.scaledVariableDebt) /
+                              10 ** decimalsAsNumber) *
+                              Number(
+                                reserve?.reserveData.variableBorrowIndex ??
+                                  BigInt(1)
+                              )) /
                             10 ** 27
-                          : Number(userReserve.principalStableDebt) / 10 ** decimalsAsNumber
+                          : Number(userReserve.principalStableDebt) /
+                            10 ** decimalsAsNumber
                       }
                     />
                   )
                 })}
               </tbody>
             </table>
-          </div>{' '}
+          </div>{" "}
         </>
       ) : (
-        <p className="text-sm text-slate-500 dark:text-slate-300">Nothing borrowed yet</p>
+        <p className="text-sm text-slate-500 dark:text-slate-300">
+          Nothing borrowed yet
+        </p>
       )}
     </div>
   )

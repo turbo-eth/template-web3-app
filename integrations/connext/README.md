@@ -168,10 +168,10 @@ An object with the following properties:
 ```javascript
 const { estimatedAmount, isFastPath, isLoading } = useEstimatedAmount({
   isMainnet: true,
-  originDomain: '1634886255',
-  destinationDomain: '6778479',
-  originTokenAddress: '0x...',
-  amount: ethers.utils.parseUnits('10', 'ether'),
+  originDomain: "1634886255",
+  destinationDomain: "6778479",
+  originTokenAddress: "0x...",
+  amount: ethers.utils.parseUnits("10", "ether"),
 })
 ```
 
@@ -204,8 +204,8 @@ The hook returns a string representing the estimated relayer fee.
 ```javascript
 const estimatedRelayerFee = useEstimatedRelayerFee({
   isMainnet: true,
-  originDomain: '16778479',
-  destinationDomain: '1634886255',
+  originDomain: "16778479",
+  destinationDomain: "1634886255",
 })
 ```
 
@@ -242,9 +242,9 @@ An object with the following properties:
 ```javascript
 const { request, isLoading } = useApproveIfNeeded({
   isMainnet: true,
-  originDomain: '1634886255',
-  assetAddress: '0x...',
-  amount: ethers.utils.parseUnits('10', 'ether'),
+  originDomain: "1634886255",
+  assetAddress: "0x...",
+  amount: ethers.utils.parseUnits("10", "ether"),
 })
 ```
 
@@ -277,8 +277,8 @@ The hook returns a string representing the estimated relayer fee.
 ```javascript
 const estimatedRelayerFee = useEstimatedRelayerFee({
   isMainnet: true,
-  originDomain: '16778479',
-  destinationDomain: '1634886255',
+  originDomain: "16778479",
+  destinationDomain: "1634886255",
 })
 ```
 
@@ -318,12 +318,12 @@ The hook returns an object with the following properties:
 ```javascript
 const { isLoading, error, result } = useXcall({
   isMainnet: true,
-  origin: '16778479',
-  destination: '1634886255',
-  to: '0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B',
-  asset: '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2',
-  amount: '1.5',
-  relayerFee: '0.01',
+  origin: "16778479",
+  destination: "1634886255",
+  to: "0xAb5801a7D398351b8bE11C439e05C5B3259aeC9B",
+  asset: "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+  amount: "1.5",
+  relayerFee: "0.01",
 })
 ```
 

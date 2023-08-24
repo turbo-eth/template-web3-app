@@ -1,9 +1,10 @@
-'use client'
+"use client"
 
-import { PoolTogetherFormDeposit } from '@/actions/pooltogether-v4/components/form-yield-source-prize-pool-deposit'
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
-import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
+import { PoolTogetherFormDeposit } from "@/actions/pooltogether-v4/components/form-yield-source-prize-pool-deposit"
+
+import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
+import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 
 export default function PoolTogetherDeposit() {
   return (

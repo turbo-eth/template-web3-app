@@ -1,33 +1,35 @@
-'use client'
+"use client"
 
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
+import { CopyToClipboard } from "react-copy-to-clipboard"
+import { FaCopy } from "react-icons/fa"
+import { useAccount } from "wagmi"
 
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { FaCopy } from 'react-icons/fa'
-import { useAccount } from 'wagmi'
+import { useToast } from "@/lib/hooks/use-toast"
+import { cn } from "@/lib/utils"
+import { WalletAddress } from "@/components/blockchain/wallet-address"
+import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
+import { ButtonSIWELogout } from "@/integrations/siwe/components/button-siwe-logout"
+import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
+import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
 
-import { WalletAddress } from '@/components/blockchain/wallet-address'
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
-import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
-import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
-import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
-import { useToast } from '@/lib/hooks/use-toast'
-import { cn } from '@/lib/utils'
+import { IsWalletConnected } from "../shared/is-wallet-connected"
+import { IsWalletDisconnected } from "../shared/is-wallet-disconnected"
+import { ThemeToggle } from "../shared/theme-toggle"
 
-import { IsWalletConnected } from '../shared/is-wallet-connected'
-import { IsWalletDisconnected } from '../shared/is-wallet-disconnected'
-import { ThemeToggle } from '../shared/theme-toggle'
-
-export function DashboardHeader({ className, ...props }: HTMLAttributes<HTMLElement>) {
-  const classes = cn(className, 'px-6 lg:px-10 py-3 flex items-center w-full')
+export function DashboardHeader({
+  className,
+  ...props
+}: HTMLAttributes<HTMLElement>) {
+  const classes = cn(className, "px-6 lg:px-10 py-3 flex items-center w-full")
   const { address } = useAccount()
   const { toast, dismiss } = useToast()
 
   const handleToast = () => {
     toast({
-      title: 'Addess Copied',
-      description: 'Your address has been copied to your clipboard.',
+      title: "Addess Copied",
+      description: "Your address has been copied to your clipboard.",
     })
 
     setTimeout(() => {
@@ -39,7 +41,11 @@ export function DashboardHeader({ className, ...props }: HTMLAttributes<HTMLElem
     <header className={classes} {...props}>
       <div className="flex flex-1 ">
         <span className="flex items-center gap-2">
-          <WalletAddress isLink truncate className="tag tag-primary hover:shadow-sm" />
+          <WalletAddress
+            isLink
+            truncate
+            className="tag tag-primary hover:shadow-sm"
+          />
           <span className="">
             <IsWalletConnected>
               <span className="" onClick={handleToast}>

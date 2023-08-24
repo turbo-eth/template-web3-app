@@ -1,1 +1,1 @@
-export { GET } from '@/integrations/etherscan/api/account/transactions'
+export { GET } from "@/integrations/etherscan/api/account/transactions"

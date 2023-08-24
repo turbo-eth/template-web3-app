@@ -1,6 +1,8 @@
-import { prisma } from '@/lib/prisma'
+import { prisma } from "@/lib/prisma"
 
-export type LitProtocolMessage = Awaited<ReturnType<typeof prisma.litProtocolMessage.findFirst>>
+export type LitProtocolMessage = Awaited<
+  ReturnType<typeof prisma.litProtocolMessage.findFirst>
+>
 
 export type AccessControlConditions = {
   conditionType: string

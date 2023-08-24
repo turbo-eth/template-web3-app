@@ -1,18 +1,21 @@
-import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
-import { LinkComponent } from '@/components/shared/link-component'
-import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
-import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils"
+import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
+import { LinkComponent } from "@/components/shared/link-component"
+import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
+import { ButtonSIWELogout } from "@/integrations/siwe/components/button-siwe-logout"
 
-import { IsSignedIn } from './is-signed-in'
-import { IsSignedOut } from './is-signed-out'
+import { IsSignedIn } from "./is-signed-in"
+import { IsSignedOut } from "./is-signed-out"
 
 interface BranchButtonLoginOrAccountProps {
   classNameButtonLogin?: string
   classNameButtonLogout?: string
 }
 
-export const BranchButtonLoginOrAccount = ({ classNameButtonLogin, classNameButtonLogout }: BranchButtonLoginOrAccountProps) => {
+export const BranchButtonLoginOrAccount = ({
+  classNameButtonLogin,
+  classNameButtonLogout,
+}: BranchButtonLoginOrAccountProps) => {
   return (
     <IsWalletConnected>
       <IsSignedIn>
@@ -24,7 +27,7 @@ export const BranchButtonLoginOrAccount = ({ classNameButtonLogin, classNameButt
         </div>
       </IsSignedIn>
       <IsSignedOut>
-        <ButtonSIWELogin className={cn('colormode', classNameButtonLogin)} />
+        <ButtonSIWELogin className={cn("colormode", classNameButtonLogin)} />
       </IsSignedOut>
     </IsWalletConnected>
   )

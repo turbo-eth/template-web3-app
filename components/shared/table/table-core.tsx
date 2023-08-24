@@ -1,18 +1,18 @@
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
 import {
   TableInstance,
-  UsePaginationInstanceProps,
-  UsePaginationState,
-  UseSortByInstanceProps,
   useExpanded,
   usePagination,
+  UsePaginationInstanceProps,
+  UsePaginationState,
   useSortBy,
+  UseSortByInstanceProps,
   useTable,
-} from 'react-table'
+} from "react-table"
 
-import TableBody from './table-body'
-import TableHead from './table-head'
-import TablePagination from './table-pagination'
+import TableBody from "./table-body"
+import TableHead from "./table-head"
+import TablePagination from "./table-pagination"
 
 interface TableProps extends HTMLAttributes<HTMLDivElement> {
   data: Array<any>
@@ -55,8 +55,16 @@ export function TableCore({ className, columns, data, ...props }: TableProps) {
   return (
     <div className={className} {...props}>
       <table className="w-full overflow-hidden " {...getTableProps()}>
-        <TableHead defaultStyle headerGroups={headerGroups} className=" bg-white text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100" />
-        <TableBody page={page} prepareRow={prepareRow} props={getTableBodyProps()} />
+        <TableHead
+          defaultStyle
+          headerGroups={headerGroups}
+          className=" bg-white text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
+        />
+        <TableBody
+          page={page}
+          prepareRow={prepareRow}
+          props={getTableBodyProps()}
+        />
       </table>
       <TablePagination
         pageSize={pageSize}

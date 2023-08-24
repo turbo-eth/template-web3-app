@@ -1,18 +1,17 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
+import Image from "next/image"
 
-import Image from 'next/image'
-
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { DashboardFooter } from '@/components/layout/dashboard-footer'
-import { DashboardHeader } from '@/components/layout/dashboard-header'
-import { MenuAdminSidebar } from '@/components/layout/menu-admin-sidebar'
-import { UserDropdown } from '@/components/layout/user-dropdown'
-import { IsDarkTheme } from '@/components/shared/is-dark-theme'
-import { IsDesktop } from '@/components/shared/is-desktop'
-import { IsLightTheme } from '@/components/shared/is-light-theme'
-import { IsMobile } from '@/components/shared/is-mobile'
-import { LinkComponent } from '@/components/shared/link-component'
-import { siteConfig } from '@/config/site'
+import { siteConfig } from "@/config/site"
+import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { DashboardFooter } from "@/components/layout/dashboard-footer"
+import { DashboardHeader } from "@/components/layout/dashboard-header"
+import { MenuAdminSidebar } from "@/components/layout/menu-admin-sidebar"
+import { UserDropdown } from "@/components/layout/user-dropdown"
+import { IsDarkTheme } from "@/components/shared/is-dark-theme"
+import { IsDesktop } from "@/components/shared/is-desktop"
+import { IsLightTheme } from "@/components/shared/is-light-theme"
+import { IsMobile } from "@/components/shared/is-mobile"
+import { LinkComponent } from "@/components/shared/link-component"
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
@@ -25,7 +24,12 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 <Image alt="Logo" height={32} src="/logo-dark.png" width={32} />
               </IsLightTheme>
               <IsDarkTheme>
-                <Image alt="Logo" height={32} src="/logo-white.png" width={32} />
+                <Image
+                  alt="Logo"
+                  height={32}
+                  src="/logo-white.png"
+                  width={32}
+                />
               </IsDarkTheme>
             </LinkComponent>
             <div className="">
@@ -40,9 +44,16 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
                 <Image alt="Logo" height={32} src="/logo-dark.png" width={32} />
               </IsLightTheme>
               <IsDarkTheme>
-                <Image alt="Logo" height={32} src="/logo-white.png" width={32} />
+                <Image
+                  alt="Logo"
+                  height={32}
+                  src="/logo-white.png"
+                  width={32}
+                />
               </IsDarkTheme>
-              <h1 className="text-gradient-sand ml-2 text-2xl font-bold">{siteConfig.name}</h1>
+              <h1 className="text-gradient-sand ml-2 text-2xl font-bold">
+                {siteConfig.name}
+              </h1>
             </LinkComponent>
           </div>
           <div className="flex-1 px-8 py-5">
@@ -50,7 +61,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
           </div>
           <div className="px-8">
             <WalletConnect />
-            <LinkComponent className="link my-2 mt-8 inline-block text-xs" href="/dashboard">
+            <LinkComponent
+              className="link my-2 mt-8 inline-block text-xs"
+              href="/dashboard"
+            >
               Dashboard
             </LinkComponent>
           </div>

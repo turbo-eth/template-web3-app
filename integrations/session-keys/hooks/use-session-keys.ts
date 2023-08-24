@@ -1,8 +1,8 @@
-import { useLiveQuery } from 'dexie-react-hooks'
-import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
-import type { Address } from 'wagmi'
+import { useLiveQuery } from "dexie-react-hooks"
+import { generatePrivateKey, privateKeyToAccount } from "viem/accounts"
+import type { Address } from "wagmi"
 
-import { SessionKeysDB } from '../database'
+import { SessionKeysDB } from "../database"
 
 export const db = new SessionKeysDB()
 
@@ -59,13 +59,19 @@ export const useSessionKeys = () => {
    * @throws Error - If the session key is already saved
    * @throws Error - If the session key is not a valid private key
    *  */
-  const saveSessionKey = async ({ id, privateKey }: { id?: string; privateKey: Address }) => {
+  const saveSessionKey = async ({
+    id,
+    privateKey,
+  }: {
+    id?: string
+    privateKey: Address
+  }) => {
     const { address } = privateKeyToAccount(privateKey)
     const storedSessionKey = await getStoredSessionKey(address)
     const entryId = id ?? address
 
     if (!!storedSessionKey) {
-      throw new Error('Session key already exists')
+      throw new Error("Session key already exists")
     }
 
     if (isValidPrivateKey(privateKey).success) {
@@ -75,7 +81,7 @@ export const useSessionKeys = () => {
         privateKey,
       })
     } else {
-      throw new Error('Invalid private key')
+      throw new Error("Invalid private key")
     }
     return { address, privateKey }
   }
@@ -103,7 +109,7 @@ export const useSessionKeys = () => {
   const deleteSessionKey = async (id: string) => {
     const storedSessionKey = await getStoredSessionKey(id)
     if (!storedSessionKey) {
-      throw new Error('Session key does not exist')
+      throw new Error("Session key does not exist")
     }
     if (isValidPrivateKey(storedSessionKey.privateKey).success) {
       await db.sessionKey.delete(id)
@@ -128,10 +134,16 @@ export const useSessionKeys = () => {
   const getSessionAccount = async (id: string) => {
     const storedSessionKey = await getStoredSessionKey(id)
     if (!storedSessionKey) {
-      throw new Error('Session key does not exist')
+      throw new Error("Session key does not exist")
     }
     return isValidPrivateKey(storedSessionKey.privateKey).account
   }
 
-  return { sessionKeys, createSessionKey, deleteSessionKey, deleteAllSessionKeys, getSessionAccount }
+  return {
+    sessionKeys,
+    createSessionKey,
+    deleteSessionKey,
+    deleteAllSessionKeys,
+    getSessionAccount,
+  }
 }

@@ -6,12 +6,12 @@ module.exports = {
     "eslint:recommended",
     "prettier",
     "plugin:tailwindcss/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
   ],
   plugins: ["@typescript-eslint", "tailwindcss"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: './tsconfig.json',
+    project: "./tsconfig.json",
     tsconfigRootDir: __dirname,
   },
   rules: {
@@ -24,11 +24,11 @@ module.exports = {
   settings: {
     tailwindcss: {
       callees: ["cn", "cva"],
-      config: "tailwind.config.js"
+      config: "tailwind.config.js",
     },
     next: {
-      rootDir: true
-    }
+      rootDir: true,
+    },
   },
 }
 
@@ -36,4 +36,3 @@ module.exports = {
 // "@typescript-eslint/require-await": "off",
 // "@typescript-eslint/no-misused-promises": "off",
 // "@typescript-eslint/no-unsafe-assignment": "off",
-

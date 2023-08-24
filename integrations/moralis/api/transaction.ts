@@ -1,7 +1,7 @@
-import console from 'console'
+import console from "console"
 
-import { getMoralis } from '../client'
-import { formatSchema, transactionAPIMethodsSchema } from '../utils/types'
+import { getMoralis } from "../client"
+import { formatSchema, transactionAPIMethodsSchema } from "../utils/types"
 
 export async function GET(
   req: Request,
@@ -15,23 +15,26 @@ export async function GET(
 ) {
   try {
     const { searchParams } = new URL(req.url)
-    const chain = searchParams.get('chain')
-    const transactionHash = searchParams.get('transactionHash')
-    const address = searchParams.get('address')
+    const chain = searchParams.get("chain")
+    const transactionHash = searchParams.get("transactionHash")
+    const address = searchParams.get("address")
     const method = transactionAPIMethodsSchema.safeParse(params.method)
-    const format = formatSchema.safeParse(searchParams.get('format'))
+    const format = formatSchema.safeParse(searchParams.get("format"))
 
-    if (!format.success) throw new Error('Invalid format')
-    if (!method.success) throw new Error('Invalid method')
+    if (!format.success) throw new Error("Invalid format")
+    if (!method.success) throw new Error("Invalid method")
 
     const safeMethod = method.data
     const acceptsTransactionHash =
-      safeMethod === 'getTransaction' || safeMethod === 'getTransactionVerbose' || safeMethod === 'getInternalTransactions'
+      safeMethod === "getTransaction" ||
+      safeMethod === "getTransactionVerbose" ||
+      safeMethod === "getInternalTransactions"
 
-    if (!chain || acceptsTransactionHash ? !transactionHash : !address) throw new Error('Invalid query parameters')
+    if (!chain || acceptsTransactionHash ? !transactionHash : !address)
+      throw new Error("Invalid query parameters")
 
     const Moralis = await getMoralis()
-    if (!Moralis) throw new Error('Moralis not initialized')
+    if (!Moralis) throw new Error("Moralis not initialized")
 
     let transaction
     if (acceptsTransactionHash) {
@@ -46,8 +49,12 @@ export async function GET(
       })
     }
 
-    const response = format.data === 'raw' ? transaction?.raw : transaction?.result
-    return new Response(JSON.stringify(response), { status: 200, headers: { 'Content-Type': 'application/json' } })
+    const response =
+      format.data === "raw" ? transaction?.raw : transaction?.result
+    return new Response(JSON.stringify(response), {
+      status: 200,
+      headers: { "Content-Type": "application/json" },
+    })
   } catch (e) {
     const errorMessage = e instanceof Error ? e.message : String(e)
     console.error(errorMessage)
