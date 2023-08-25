@@ -86,7 +86,7 @@ export function PoolTogetherFormWithdraw() {
             <input className="input" {...register('withdrawAmount')} />
           </Form.Control>
         </Form.Field>
-        <div className="mt-6 mb-4 flex justify-center space-x-5">
+        <div className="mb-4 mt-6 flex justify-center space-x-5">
           <Form.Submit asChild className="w-full">
             <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText={'Withdrawing...'} write={!!write}>
               Withdraw

@@ -65,7 +65,7 @@ export function DeployERC20Contract() {
         Deploy
       </ContractWriteButton>
       {!token ? null : (
-        <div className="flex max-w-full flex-wrap items-center justify-between break-words pt-5 pb-2">
+        <div className="flex max-w-full flex-wrap items-center justify-between break-words pb-2 pt-5">
           <span className="font-semibold">Mint Contract Address:</span>
           <BlockExplorerLink address={token} />
         </div>

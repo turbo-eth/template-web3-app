@@ -65,7 +65,7 @@ export function FormLitEncryptMessage() {
       <IsWalletConnected>
         <div className="w-full">
           {encryptedMessageId ? (
-            <motion.div animate="show" className="card my-8 mx-auto max-w-fit" initial="hidden" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <motion.div animate="show" className="card mx-auto my-8 max-w-fit" initial="hidden" variants={FADE_DOWN_ANIMATION_VARIANTS}>
               <h4 className="mb-4">Share:</h4>
               <CopyToClipboard text={`${origin}/integration/lit-protocol/unseal?id=${encryptedMessageId}`}>
                 <span

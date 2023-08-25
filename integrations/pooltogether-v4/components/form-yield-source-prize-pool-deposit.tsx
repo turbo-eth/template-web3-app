@@ -122,7 +122,7 @@ export function PoolTogetherFormDeposit() {
             <strong className="cursor-pointer font-semibold">Min. 2 USDC</strong>
           </div>
         )}
-        <div className="mt-6 mb-4 flex justify-center space-x-5">
+        <div className="mb-4 mt-6 flex justify-center space-x-5">
           <Form.Submit asChild className="w-full">
             <ContractWriteButton
               isLoadingTx={isApproved ? isLoadingTx : isLoadingTxApprove}
