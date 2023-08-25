@@ -7,6 +7,7 @@ import { integrations } from "@/data/integrations"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { LuMenu } from "react-icons/lu"
 
+import { menuDashboard } from "@/config/menu-dashboard"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import {
@@ -64,7 +65,7 @@ export function MobileNav() {
           />
         </MobileLink>
         <ScrollArea className="my-4 mr-4 h-[calc(100vh-8rem)] pb-10">
-          <div className="flex flex-col space-y-3">
+          <div className="flex flex-col space-y-4">
             <Accordion type="single" collapsible className="mx-auto w-full">
               <AccordionItem value="integrations">
                 <AccordionTrigger className="text-base font-medium">
@@ -114,11 +115,34 @@ export function MobileNav() {
                   </ul>
                 </AccordionContent>
               </AccordionItem>
+              <AccordionItem value="dashboard">
+                <AccordionTrigger className="text-base font-medium">
+                  Dashboard
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex flex-col space-y-2">
+                    {menuDashboard?.map((item, index) =>
+                      item.href ? (
+                        <Link
+                          key={index}
+                          href={item.href}
+                          onClick={() => setOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <div
+                          key={index}
+                          className="text-muted-foreground/70 transition-colors"
+                        >
+                          {item.label}
+                        </div>
+                      )
+                    )}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
             </Accordion>
-            <Link href="/dashboard" className="font-medium">
-              Dashboard
-            </Link>
-            <Separator />
             <Link
               href="https://docs.turboeth.xyz/overview"
               className="font-medium"
@@ -186,7 +210,7 @@ const NavMenuListItem = ({
           router.push(href.toString())
           onOpenChange?.(false)
         }}
-        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+        className="block select-none space-y-1 rounded-md py-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
       >
         <div className="flex items-center space-x-2">
           <LightDarkImage

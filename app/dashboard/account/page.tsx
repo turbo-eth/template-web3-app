@@ -13,7 +13,7 @@ export default function PageDashboardAccount() {
   return (
     <motion.div
       animate="show"
-      className="flex-center flex h-full w-full"
+      className="flex-center flex h-full w-full py-6 lg:py-8"
       initial="hidden"
       variants={FADE_DOWN_ANIMATION_VARIANTS}
       viewport={{ once: true }}

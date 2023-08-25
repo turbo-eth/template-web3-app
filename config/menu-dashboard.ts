@@ -3,7 +3,7 @@
 // -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 export const menuDashboard = [
   {
-    label: "Dashboard",
+    label: "Overview",
     href: "/dashboard",
   },
   {

@@ -13,7 +13,7 @@ import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
 
 export default function PageDashboardTransactions() {
   return (
-    <section className="p-10">
+    <section className="px-10 py-6 lg:py-8">
       <div className="flex items-center justify-between">
         <h3 className="text-4xl font-normal">Transactions</h3>
         <IsWalletConnected>

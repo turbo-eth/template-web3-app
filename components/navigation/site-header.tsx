@@ -16,8 +16,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full backdrop-blur transition-all",
-        scrolled && "border-b bg-background/50 "
+        "sticky top-0 z-50 w-full border-b backdrop-blur transition-all",
+        scrolled && "bg-background/50 "
       )}
     >
       <div className="container flex h-20 items-center">
