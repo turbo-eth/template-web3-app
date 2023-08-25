@@ -23,5 +23,5 @@
 }
 
 .text-gradient-sand {
-  @apply bg-gradient-to-br from-black to-stone-500 dark:from-stone-100 dark:to-yellow-200 text-gradient;
+  @apply bg-gradient-to-br from-black to-stone-500 dark:from-stone-100 dark:to-yellow-200 bg-clip-text text-transparent;
 }

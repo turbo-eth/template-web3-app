@@ -161,11 +161,11 @@ export const ListPosts = () => {
           />
         </form>
       </Form>
-      <h2 className="mt-4 mb-2">Posts</h2>
+      <h2 className="mb-2 mt-4">Posts</h2>
       {posts.map((p) => (
         <LinkComponent
           key={p.id}
-          className="card mt-1 mb-2 flex justify-between"
+          className="card mb-2 mt-1 flex justify-between"
           href={`/integration/arweave/posts/${p.id}`}
         >
           <div className="flex flex-col items-start text-sm capitalize">

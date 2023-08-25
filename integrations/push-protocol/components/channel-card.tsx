@@ -71,7 +71,7 @@ export function ChannelCard({
               {strLimit(channel.info, 100)}
             </p>
             <div className="mt-auto">
-              <div className="mt-2 flex flex-col items-start space-y-2 md:flex-row md:items-end md:space-y-0 md:space-x-2">
+              <div className="mt-2 flex flex-col items-start space-y-2 md:flex-row md:items-end md:space-x-2 md:space-y-0">
                 <SubscribeButton
                   channelAddress={channelAddress}
                   env={env}

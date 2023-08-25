@@ -367,7 +367,7 @@ export function FormConnextXTransfer({
   }, [approveTxSuccess])
 
   return showTransferStatus ? (
-    <div className="space-y-4 rounded border bg-slate-50 px-4 pt-5 pb-6 dark:border-slate-700 dark:bg-slate-900 sm:px-6 sm:pt-5 sm:pb-6">
+    <div className="space-y-4 rounded border bg-slate-50 px-4 pb-6 pt-5 dark:border-slate-700 dark:bg-slate-900 sm:px-6 sm:pb-6 sm:pt-5">
       <div className="flex items-center justify-between space-x-2">
         <span className="text-lg font-semibold">Transfer status</span>
         <button onClick={() => setShowTransferStatus(false)}>
@@ -389,7 +389,7 @@ export function FormConnextXTransfer({
   ) : (
     <motion.div
       animate="show"
-      className="card my-8 mx-4 max-w-fit dark:bg-gray-800 sm:mx-auto"
+      className="card mx-4 my-8 max-w-fit dark:bg-gray-800 sm:mx-auto"
       initial="hidden"
       style={{
         boxShadow: `${`${
@@ -658,7 +658,7 @@ export function FormConnextXTransfer({
           </div>{" "}
         </>
       ) : (
-        <div className="3xl:text-2xl mt-6 mb-2 text-center font-medium text-slate-400 dark:text-slate-200">
+        <div className="3xl:text-2xl mb-2 mt-6 text-center font-medium text-slate-400 dark:text-slate-200">
           Route not supported
         </div>
       )}

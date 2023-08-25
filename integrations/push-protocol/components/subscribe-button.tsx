@@ -85,7 +85,7 @@ export function SubscribeButton({
 
   return userIsSubscribed ? (
     <button
-      className="rounded-md border-2 border-pink-600 px-3 py-1 text-sm font-semibold text-inherit shadow focus:outline-none md:py-2 md:px-3"
+      className="rounded-md border-2 border-pink-600 px-3 py-1 text-sm font-semibold text-inherit shadow focus:outline-none md:px-3 md:py-2"
       disabled={buttonIsLoading}
       onClick={() => toggleSubscribe()}
     >
@@ -97,7 +97,7 @@ export function SubscribeButton({
     </button>
   ) : (
     <button
-      className="rounded-md border-2 border-pink-600 bg-pink-600 px-3 py-1 text-sm font-semibold text-white shadow focus:outline-none md:py-2 md:px-3"
+      className="rounded-md border-2 border-pink-600 bg-pink-600 px-3 py-1 text-sm font-semibold text-white shadow focus:outline-none md:px-3 md:py-2"
       disabled={buttonIsLoading}
       onClick={() => toggleSubscribe()}
     >

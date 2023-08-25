@@ -114,7 +114,7 @@
     "react-wrap-balancer": "^0.3.0",
     "siwe": "1.1.6",
     "tailwind-merge": "^1.10.0",
-    "tailwindcss": "^3.2.4",
+    "tailwindcss": "^3.3.3",
     "tailwindcss-animate": "^1.0.6",
     "usehooks-ts": "^2.9.1",
     "viem": "^1.0.0",

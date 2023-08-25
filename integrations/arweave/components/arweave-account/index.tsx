@@ -90,7 +90,7 @@ export const ArweaveAccount = () => {
                 <span className="mt-2 text-base leading-normal">Cancel</span>
               </button>
               <button
-                className="btn btn-emerald mt-2 ml-3 text-sm"
+                className="btn btn-emerald ml-3 mt-2 text-sm"
                 disabled={uploading}
                 onClick={() => upload()}
               >
