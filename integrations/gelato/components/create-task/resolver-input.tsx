@@ -1,7 +1,7 @@
-import { GELATO_CONSTANTS } from '../../utils/constants'
 import { ContractInput } from './contract-input'
 import { ExecutionValues } from './execution-values'
 import { FunctionInput } from './function-input'
+import { GELATO_CONSTANTS } from '../../utils/constants'
 
 export function ResolverInput() {
   return (

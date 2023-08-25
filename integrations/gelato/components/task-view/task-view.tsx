@@ -6,17 +6,17 @@ import { FaEdit, FaExternalLinkAlt, FaTimesCircle } from 'react-icons/fa'
 import { FiChevronLeft } from 'react-icons/fi'
 import { useNetwork } from 'wagmi'
 
-import { useAbi, useTask } from '../../hooks'
-import { useTaskResolver } from '../../hooks/use-task-resolver'
-import { formatFee, getAddressUrl, getTaskFunctionData, truncateEthAddress } from '../../utils/helpers'
-import { decodeModuleArgs } from '../../utils/resolverDecoder'
-import { RenameTask } from '../rename-task'
 import { ExecutingAddress } from './executing-address'
 import { FunctionData } from './function-data'
 import { InputValues } from './input-values'
 import { IntervalValues } from './interval-values'
 import { PaymentInfo } from './payment-info'
 import { ResolverValues } from './resolver-values'
+import { useAbi, useTask } from '../../hooks'
+import { useTaskResolver } from '../../hooks/use-task-resolver'
+import { formatFee, getAddressUrl, getTaskFunctionData, truncateEthAddress } from '../../utils/helpers'
+import { decodeModuleArgs } from '../../utils/resolverDecoder'
+import { RenameTask } from '../rename-task'
 
 export type TasKViewProps = {
   taskId: string

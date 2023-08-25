@@ -7,11 +7,11 @@ import { LuExternalLink } from 'react-icons/lu'
 
 import { LinkComponent } from '@/components/shared/link-component'
 
+import { Loadable } from './loadable'
+import { SubscribeButton } from './subscribe-button'
 import { ENV } from '..'
 import { useChannel } from '../hooks'
 import { strLimit, truncateAddress } from '../utils/helpers'
-import { Loadable } from './loadable'
-import { SubscribeButton } from './subscribe-button'
 
 export type ChannelCardProps = {
   channelAddress: string
@@ -44,12 +44,12 @@ export function ChannelCard({ env, channelAddress, onSubscribe, onUnsubscribe }:
     <Loadable isLoading={channelIsLoading}>
       {channel && (
         <div className="flex w-full space-x-4">
-          <div className="flex flex-col shrink-0 relative">
-            <Image alt={channel.name} className="w-10 md:w-32 rounded-xl" height={100} src={channel.icon} width={100} />
+          <div className="relative flex shrink-0 flex-col">
+            <Image alt={channel.name} className="w-10 rounded-xl md:w-32" height={100} src={channel.icon} width={100} />
           </div>
           <div className="flex grow flex-col ">
-            <LinkComponent className="flex overflow-hidden max-w-full flex-wrap items-center gap-2" href={channel.url}>
-              <p className="overflow-hidden max-w-full hover:underline transition-all underline-offset-2 text-ellipsis whitespace-nowrap md:text-xl">
+            <LinkComponent className="flex max-w-full flex-wrap items-center gap-2 overflow-hidden" href={channel.url}>
+              <p className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap underline-offset-2 transition-all hover:underline md:text-xl">
                 {channel.name}
               </p>
               <LuExternalLink />

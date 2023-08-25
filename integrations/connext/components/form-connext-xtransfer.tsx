@@ -16,6 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Switch } from '@/components/ui/switch'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 
+import { Spinner } from './spinner'
 import { useApproveIfNeeded } from '../hooks/use-approve-if-needed'
 import { useEstimatedAmount } from '../hooks/use-estimated-amount'
 import { useEstimatedRelayerFee } from '../hooks/use-estimated-relayer-fee'
@@ -26,7 +27,6 @@ import { mainnetAssets, testnetAssets } from '../utils/assets'
 import { mainnetChains, testnetChains } from '../utils/chains'
 import { arbitrumDomainId, arbitrumGoerliId, optimismDomainId, optimismGoerliDomainId } from '../utils/constants'
 import { Asset } from '../utils/types'
-import { Spinner } from './spinner'
 
 interface FormConnextXTransferProps {
   isMainnet: boolean

@@ -8,6 +8,8 @@ import { siteConfig } from '@/config/site'
 import useScroll from '@/lib/hooks/use-scroll'
 import { cn } from '@/lib/utils'
 
+import { NavigationMenuGeneral } from './navigation-menu-general'
+import { UserDropdown } from './user-dropdown'
 import BranchButtonLoginOrAccount from '../../integrations/siwe/components/branch-button-login-or-account'
 import { IsDarkTheme } from '../shared/is-dark-theme'
 import { IsDesktop } from '../shared/is-desktop'
@@ -15,8 +17,6 @@ import { IsLightTheme } from '../shared/is-light-theme'
 import { IsMobile } from '../shared/is-mobile'
 import { LinkComponent } from '../shared/link-component'
 import { ThemeToggle } from '../shared/theme-toggle'
-import { NavigationMenuGeneral } from './navigation-menu-general'
-import { UserDropdown } from './user-dropdown'
 
 export function Header({ className, ...props }: HTMLAttributes<HTMLElement>) {
   const scrolled = useScroll(50)

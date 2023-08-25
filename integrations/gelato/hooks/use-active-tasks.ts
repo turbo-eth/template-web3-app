@@ -2,11 +2,11 @@ import { useQuery } from '@tanstack/react-query'
 import { request } from 'graphql-request'
 import { useAccount, useNetwork } from 'wagmi'
 
+import { useGelatoAutomateSdk } from './use-automate-sdk'
 import { GetAllTaskDataDocument, GetAllTaskDataQuery, GetAllTaskDataQueryVariables } from '../graphql/graphql/generated/graphql'
 import { GELATO_CONSTANTS } from '../utils/constants'
 import { getGqlEndpoint } from '../utils/helpers'
 import { FetchActiveTasksProps } from '../utils/types'
-import { useGelatoAutomateSdk } from './use-automate-sdk'
 
 const fetchActiveTasks = ({ address, gqlEndpoint }: FetchActiveTasksProps) => {
   return request<GetAllTaskDataQuery, GetAllTaskDataQueryVariables>({
