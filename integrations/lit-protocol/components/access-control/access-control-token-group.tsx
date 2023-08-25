@@ -5,8 +5,8 @@ import { isAddress } from 'viem'
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
-import { AccessControlProps } from './types'
 import { supportedChains } from '../../utils/config'
+import { AccessControlProps } from './types'
 
 interface FormSchema {
   chain: string

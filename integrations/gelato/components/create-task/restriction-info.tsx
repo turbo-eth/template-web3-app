@@ -4,8 +4,8 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import { useFormContext } from 'react-hook-form'
 import { FaCopy } from 'react-icons/fa'
 
-import { CreateTaskForm } from './create-task'
 import { getFunctionSignature, truncateEthAddress } from '../../utils/helpers'
+import { CreateTaskForm } from './create-task'
 
 export function RestrictionInfo({ dedicatedMsgSender }: { dedicatedMsgSender?: string }) {
   const [copied, setCopied] = useState(false)

@@ -2,8 +2,8 @@ import { useFormContext } from 'react-hook-form'
 
 import { cn } from '@/lib/utils'
 
-import { CreateTaskForm } from './create-task'
 import { GELATO_CONSTANTS } from '../../utils/constants'
+import { CreateTaskForm } from './create-task'
 
 export function PaymentInput() {
   const { watch, setValue } = useFormContext<CreateTaskForm>()
