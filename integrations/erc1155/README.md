@@ -1,6 +1,6 @@
 # ERC1155 TurboETH Integration
 
-This TurboETH integration provides a suite of hooks and components to facilitate interaction with ERC1155 contracts. In consideration of the numerous extensions and features offered by ERC1155, this integration is based in a contract from [solidstate](https://github.com/solidstate-network/solidstate-solidity), incorporating the following features and access controls:
+This TurboETH integration provides a suite of hooks and components to facilitate interaction with ERC1155 contracts. In consideration of the numerous extensions and features offered by ERC1155, this integration is based on a contract from [solidstate](https://github.com/solidstate-network/solidstate-solidity), incorporating the following features and access controls:
 
 **Features:**
 
@@ -19,7 +19,7 @@ Within the `artifacts` directory, you will find the `erc1155-abi.ts` file, conta
 
 ## Hooks:
 
-- `useErc1155TokenStorage`: Utilizes Jotai and local storage to persist the deployed token's address within the browser's local storage. It updates the value across all components observing it whenever a new deploy occurs.
+- `useErc1155TokenStorage`: Utilizes Jotai and local storage to persist the deployed token's address within the browser's local storage. It updates the value across all components observing it whenever a new deployment occurs.
 - `useERC1155Metadata`: Accepts contract and token information (contract address, chainId, tokenId, and ipfsGatewayUrl) and returns a query object from `tanstack-query` with the token metadata information. The hook and the components adhere to the "ERC1155 Metadata JSON Schema" convention for metadata formatting. Learn more [here](https://eips.ethereum.org/EIPS/eip-1155).
 
 ## Components:
@@ -42,7 +42,7 @@ This integration includes read and write/deploy components. The read components 
 - `ERC1155Deploy`: Form for contract deployment. Upon deployment, the contract address is saved in local storage under the key `erc1155-token`.
 - `ERC1155DeployTest`: Form for test contract deployment. Upon deployment, the contract address is saved in local storage under the key `erc1155-token`.
 - `Erc1155WriteMint`: Form for minting new NFTs. Only the contract owner can mint new NFTs.
-- `Erc1155WriteApprove`: Form for approving an address's permission to transfer a token on behalf of the token holder. Only the token holder can perform the approve transaction.
+- `Erc1155WriteApprove`: Form for approving an address's permission to transfer a token on behalf of the token holder. Only the token holder can perform the approved transaction.
 - `Erc1155WriteTransfer`: Form for transferring a token to a different address. Only a token owner or approved address can transfer.
 
 File Structure

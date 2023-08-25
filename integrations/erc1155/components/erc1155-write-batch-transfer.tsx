@@ -89,11 +89,9 @@ export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps
         )}
         <label>To Address</label>
         <input {...register('toAddress')} className="input" />
-        <label>Batch Number?</label>
+        <label>Batch Number</label>
         <input className="input" type="number" value={batchNumber} onChange={(e) => setBatchNumber(e.target.valueAsNumber)} />
-
         {batchFields}
-
         <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Transferring..." type="submit" write={!!write}>
           Batch Transfer
         </ContractWriteButton>
