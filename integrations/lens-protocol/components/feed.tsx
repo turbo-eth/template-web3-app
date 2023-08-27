@@ -10,7 +10,6 @@ export const Feed = ({ profileId }: { profileId: ProfileId }) => {
     profileId,
     limit: 10,
   })
-  console.error(data)
   if (loading) return <Spinner />
   return (
     <div>
