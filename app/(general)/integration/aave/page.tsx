@@ -37,7 +37,7 @@ export default function AavePage() {
         </PageHeaderDescription>
         <PageHeaderCTA>
           <Link
-            href={siteConfig.links.docs}
+            href={turboIntegrations.aave.url}
             className={cn(buttonVariants({ variant: "outline" }))}
           >
             <LuBook className="mr-2 h-4 w-4" />
