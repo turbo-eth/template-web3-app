@@ -2,12 +2,8 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa"
 
-import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-
-import { buttonVariants } from "../ui/button"
 
 export interface SidebarNavProps extends React.HTMLAttributes<HTMLDivElement> {
   items: {

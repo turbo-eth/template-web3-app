@@ -1,89 +1,77 @@
-"use client"
+import Link from "next/link"
+import { turboIntegrations } from "@/data/turbo-integrations"
+import { LuBook } from "react-icons/lu"
 
-import { useState } from "react"
-
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { LightDarkImage } from "@/components/light-dark-image"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
+  PageHeader,
+  PageHeaderCTA,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from "@/components/page-header"
+import { PageSection } from "@/components/page-section"
 import { GeneralInfo } from "@/integrations/aave/components/general-info"
 import { ListAssetsToBorrow } from "@/integrations/aave/components/list-assets-to-borrow"
 import { ListAssetsToSupply } from "@/integrations/aave/components/list-assets-to-supply"
 import { ListBorrowedAssets } from "@/integrations/aave/components/list-borrowed-assets"
 import { ListSuppliedAssets } from "@/integrations/aave/components/list-supplied-assets"
-import { useAave } from "@/integrations/aave/hooks/use-aave"
 
-export default function AaveHome() {
-  const [actionSelected, setActionSelected] = useState("supply")
-  const { chainSupported } = useAave()
-
-  return chainSupported ? (
-    <section className="w-full lg:mt-10">
-      <div className="mx-auto max-w-screen-xl">
+export default function AavePage() {
+  return (
+    <div className="container relative mt-20">
+      <PageHeader className="pb-8">
+        <LightDarkImage
+          LightImage={turboIntegrations.aave.imgDark}
+          DarkImage={turboIntegrations.aave.imgLight}
+          alt="Aave Logo"
+          width={100}
+          height={100}
+        />
+        <PageHeaderHeading>Aave</PageHeaderHeading>
+        <PageHeaderDescription>
+          Borrow and lend assets seamlessly
+        </PageHeaderDescription>
+        <PageHeaderCTA>
+          <Link
+            href={siteConfig.links.docs}
+            className={cn(buttonVariants({ variant: "outline" }))}
+          >
+            <LuBook className="mr-2 h-4 w-4" />
+            Documentation
+          </Link>
+        </PageHeaderCTA>
+      </PageHeader>
+      <PageSection className="w-full items-start">
         <GeneralInfo />
-        <div className="m-2 mb-5 w-40 xl:hidden">
-          <Select
-            value={actionSelected}
-            onValueChange={(action) => setActionSelected(action)}
-          >
-            <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
-              <SelectValue placeholder="Select market" />
-            </SelectTrigger>
-            <SelectContent className="w-56 bg-white dark:bg-gray-700">
-              <SelectItem value="supply">
-                <div className="flex items-center justify-between">Supply</div>
-              </SelectItem>
-              <SelectItem value="borrow">
-                <div className="flex items-center justify-between">Borrow</div>
-              </SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="mb-4 flex justify-between dark:text-white">
-          <div
-            className={`${
-              actionSelected === "supply" ? "" : "hidden"
-            } m-2 w-full xl:block`}
-          >
+        <Tabs defaultValue="lend" className="w-full xl:hidden">
+          <TabsList className="grid max-w-md grid-cols-2">
+            <TabsTrigger value="lend">Lend</TabsTrigger>
+            <TabsTrigger value="borrow">Borrow</TabsTrigger>
+          </TabsList>
+          <TabsContent value="lend" className="space-y-4">
             <ListSuppliedAssets />
-          </div>
-          <div
-            className={`${
-              actionSelected === "borrow" ? "" : "hidden"
-            } m-2 w-full xl:block`}
-          >
+            <ListAssetsToSupply />
+          </TabsContent>
+          <TabsContent value="borrow" className="space-y-4">
             <ListBorrowedAssets />
-          </div>
-        </div>
-
-        <div className="flex justify-between dark:text-white ">
-          <div
-            className={`${
-              actionSelected === "supply" ? "" : "hidden"
-            } m-2 w-full xl:block`}
-          >
+            <ListAssetsToBorrow />
+          </TabsContent>
+        </Tabs>
+        <div className="hidden w-full gap-4 p-2 xl:flex">
+          <div className="flex w-1/2 flex-col space-y-4">
+            <ListSuppliedAssets />
             <ListAssetsToSupply />
           </div>
-          <div
-            className={`${
-              actionSelected === "borrow" ? "" : "hidden"
-            } m-2 w-full xl:block`}
-          >
+          <div className="flex w-1/2 flex-col space-y-4">
+            <ListBorrowedAssets />
             <ListAssetsToBorrow />
           </div>
         </div>
-      </div>
-    </section>
-  ) : (
-    <section className="w-full lg:mt-10">
-      <div className="mx-auto max-w-screen-xl">
-        <h1 className=" mt-5 text-center text-2xl">Chain not supported</h1>
-        <GeneralInfo />
-      </div>
-    </section>
+      </PageSection>
+    </div>
   )
 }

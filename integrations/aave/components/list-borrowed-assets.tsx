@@ -1,3 +1,5 @@
+"use client"
+
 import { useAave } from "../hooks/use-aave"
 import { BorrowedAssetsItem } from "./borrowed-assets-item"
 
@@ -19,27 +21,24 @@ export const ListBorrowedAssets = () => {
   })
 
   return (
-    <div className="flex-1 rounded border p-3 dark:border-slate-600">
+    <div className="flex w-full flex-col rounded border p-3">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-bold">Your Borrows</h2>
       </div>
       {filteredUserReserves && filteredUserReserves.length > 0 ? (
         <>
           <div className="flex items-center">
-            <div className="mr-2 rounded border bg-white px-4 py-2 dark:border-slate-600 dark:bg-gray-800">
+            <div className="mr-2 rounded border px-4 py-2">
               <h3 className="text-xs font-bold">
-                <span className="text-slate-500 dark:text-slate-300">
-                  {" "}
-                  Debt ${" "}
-                </span>
+                <span className="text-muted-foreground"> Debt $ </span>
                 {totalDebtInUsd.toFixed(2)}
               </h3>
             </div>
-            <div className="mr-2 rounded border bg-white px-4 py-2 dark:border-slate-600 dark:bg-gray-800">
+            <div className="mr-2 rounded border  px-4 py-2  ">
               <h3 className="text-xs font-bold">
-                <span className="text-slate-500 dark:text-slate-300">APY</span>{" "}
+                <span className="text-muted-foreground">APY</span>{" "}
                 {averageBorrowApy.toFixed(2)}{" "}
-                <span className="text-slate-500 dark:text-slate-300">%</span>
+                <span className="text-muted-foreground">%</span>
               </h3>
             </div>
           </div>
@@ -47,16 +46,16 @@ export const ListBorrowedAssets = () => {
             <table className="mt-7 w-full table-auto border-collapse text-left">
               <thead>
                 <tr>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                  <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                     Asset
                   </th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                  <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                     Debt
                   </th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                  <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                     APY
                   </th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                  <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                     APY Type
                   </th>
                 </tr>
@@ -119,9 +118,7 @@ export const ListBorrowedAssets = () => {
           </div>{" "}
         </>
       ) : (
-        <p className="text-sm text-slate-500 dark:text-slate-300">
-          Nothing borrowed yet
-        </p>
+        <p className="text-sm text-muted-foreground">Nothing borrowed yet</p>
       )}
     </div>
   )

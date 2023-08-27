@@ -19,7 +19,7 @@ function PageSection({ className, children, ...props }: MotionSectionProps) {
       whileInView="show"
       viewport={{ once: true, amount: 0.25 }}
       className={cn(
-        "mx-auto flex max-w-4xl flex-col items-center gap-2 px-4 pt-8 md:pt-12",
+        "mx-auto flex w-full flex-col items-center gap-2 px-4 pt-8 md:pt-12",
         className
       )}
       {...props}

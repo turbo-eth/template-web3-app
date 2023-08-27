@@ -14,7 +14,7 @@ export default function PageDashboardTransactions() {
         <h3 className="text-4xl font-normal">Application Users</h3>
         <IsSignedOut>
           <div className="flex items-center gap-x-5 text-center">
-            <span className="text-sm text-gray-600 dark:text-gray-100">
+            <span className="text-sm text-foreground">
               Authenticate to access admin area.
             </span>
             <ButtonSIWELogin className="btn btn-emerald btn-sm" />

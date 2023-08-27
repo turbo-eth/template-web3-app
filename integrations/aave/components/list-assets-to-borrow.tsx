@@ -1,3 +1,5 @@
+"use client"
+
 import { useAave } from "../hooks/use-aave"
 import { AssetToBorrowItem } from "./asset-to-borrow-item"
 
@@ -5,7 +7,7 @@ export const ListAssetsToBorrow = () => {
   const { usdData } = useAave()
 
   return (
-    <div className="flex-1 rounded border p-3 dark:border-slate-600">
+    <div className="flex w-full flex-col rounded border p-3">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-bold">Asssets to borrow</h2>
       </div>
@@ -13,16 +15,16 @@ export const ListAssetsToBorrow = () => {
         <table className="mt-7 w-full table-auto border-collapse text-left">
           <thead>
             <tr>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+              <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                 Asset
               </th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+              <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                 Available
               </th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+              <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                 APY, variable
               </th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+              <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                 APY, stable
               </th>
             </tr>

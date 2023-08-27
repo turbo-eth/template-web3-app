@@ -19,7 +19,7 @@ export default function PageDashboardTransactions() {
         <IsWalletConnected>
           <IsSignedOut>
             <div className="flex items-center gap-x-5 text-center">
-              <span className="text-sm text-gray-600 dark:text-gray-100">
+              <span className="text-sm text-foreground">
                 Login to access the TurboETH free API
               </span>
               <ButtonSIWELogin className="btn btn-emerald" />

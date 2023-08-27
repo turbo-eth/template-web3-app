@@ -1,3 +1,5 @@
+"use client"
+
 import { useAave } from "../hooks/use-aave"
 import { SuppliedAssetsItem } from "./supplied-assets-item"
 
@@ -13,35 +15,29 @@ export const ListSuppliedAssets = () => {
   })
 
   return (
-    <div className="flex-1 justify-between rounded border p-3 dark:border-slate-600">
+    <div className="flex w-full flex-col justify-between rounded border p-3">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-bold">Your Supplies</h2>
       </div>
       {filteredUserReserves && filteredUserReserves.length > 0 ? (
         <>
           <div className="flex items-center">
-            <div className="mr-2 rounded border bg-white px-4 py-2 dark:border-slate-600 dark:bg-gray-800">
+            <div className="mr-2 rounded border px-4 py-2 ">
               <h3 className="text-xs font-bold">
-                <span className="text-slate-500 dark:text-slate-300">
-                  {" "}
-                  Balance ${" "}
-                </span>
+                <span className="text-muted-foreground"> Balance $ </span>
                 {balanceInUsd.toFixed(2)}
               </h3>
             </div>
-            <div className="mr-2 rounded border bg-white px-4 py-2 dark:border-slate-600 dark:bg-gray-800">
+            <div className="mr-2 rounded border px-4 py-2">
               <h3 className="text-xs font-bold">
-                <span className="text-slate-500 dark:text-slate-300">APY</span>{" "}
+                <span className="text-muted-foreground">APY</span>{" "}
                 {averageSupplyApy.toFixed(2)}{" "}
-                <span className="text-slate-500 dark:text-slate-300">%</span>
+                <span className="text-muted-foreground">%</span>
               </h3>
             </div>
-            <div className="mr-2 rounded border bg-white px-4 py-2 dark:border-slate-600 dark:bg-gray-800">
+            <div className="mr-2 rounded border px-4 py-2">
               <h3 className="text-xs font-bold">
-                <span className="text-slate-500 dark:text-slate-300">
-                  {" "}
-                  Collateral ${" "}
-                </span>
+                <span className="text-muted-foreground"> Collateral $ </span>
                 {collateralInUsd.toFixed(2)}
               </h3>
             </div>
@@ -50,16 +46,16 @@ export const ListSuppliedAssets = () => {
             <table className="mt-7 w-full table-auto border-collapse text-left">
               <thead>
                 <tr>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                  <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                     Asset
                   </th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                  <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                     Balance
                   </th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                  <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                     APY
                   </th>
-                  <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                  <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                     Collateral
                   </th>
                 </tr>
@@ -95,9 +91,7 @@ export const ListSuppliedAssets = () => {
           </div>
         </>
       ) : (
-        <p className="text-sm text-slate-500 dark:text-slate-300">
-          Nothing supplied yet
-        </p>
+        <p className="text-sm text-muted-foreground">Nothing supplied yet</p>
       )}
     </div>
   )

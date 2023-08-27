@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { useNetwork, useSwitchNetwork } from "wagmi"
@@ -25,35 +27,35 @@ export const GeneralInfo = () => {
   return (
     <motion.div
       animate="show"
-      className="m-2 mb-4 flex items-start justify-start py-4 dark:text-white"
+      className="m-2 mb-4 mr-auto flex items-start justify-start py-4"
       initial="hidden"
       variants={FADE_DOWN_ANIMATION_VARIANTS}
     >
-      <div className="rounded border border-slate-200 p-5 dark:border-slate-600">
-        <h3 className="text-lg font-normal">Select Chain</h3>
+      <div className="rounded border p-5">
+        <h3 className="text-lg">Select Chain</h3>
         <div className="mb-4 flex items-center">
           <div className="flex w-60 flex-col ">
             <Select
               value={chain?.id.toString()}
               onValueChange={(e) => switchNetwork?.(+e)}
             >
-              <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
+              <SelectTrigger>
                 <SelectValue placeholder="Select market" />
               </SelectTrigger>
-              <SelectContent className="w-56 bg-white dark:bg-gray-700">
+              <SelectContent>
                 {marketsData.map((market, index) => (
                   <SelectItem key={index} value={market.chainId.toString()}>
                     <div className="flex items-center justify-between">
                       <Image
-                        alt={market.marketTitle}
-                        className="mr-2 rounded-full"
-                        height={30}
                         src={`/integrations/aave/logos/${market.marketTitle
                           .split(" ")[0]
                           .toLowerCase()}.png`}
-                        width={30}
+                        alt={market.marketTitle}
+                        height={20}
+                        width={20}
+                        className="mr-2 rounded-full"
                       />
-                      {market.marketTitle} Market
+                      {market.marketTitle}
                     </div>
                   </SelectItem>
                 ))}
@@ -62,35 +64,26 @@ export const GeneralInfo = () => {
           </div>
         </div>
         <div className="flex justify-between">
-          <div className="mr-3 text-slate-500 dark:text-slate-300">
+          <div className="mr-3 text-muted-foreground">
             <h3 className="mb-2">Net Worth</h3>
-            <p className="font-bold text-black dark:text-white">
-              <span className="text-slate-500 dark:text-slate-300">$ </span>
+            <p className="font-bold text-foreground">
+              ${" "}
               {balanceInUsd > 0
                 ? (balanceInUsd - totalDebtInUsd).toFixed(2)
                 : "0"}
-            </p>{" "}
+            </p>
           </div>
-          <div className="mr-3 text-slate-500 dark:text-slate-300">
+          <div className="mr-3 text-muted-foreground">
             <h3 className="mb-2">Net APY</h3>
-            <p className="font-bold text-black dark:text-white">
-              {balanceInUsd > 0 ? (
-                <>
-                  {averageNetApy.toFixed(2)}
-                  <span className="text-slate-500 dark:text-slate-300"> %</span>
-                </>
-              ) : (
-                "—"
-              )}
-            </p>{" "}
+            <p className="font-bold text-foreground">
+              {balanceInUsd > 0 ? <>{averageNetApy.toFixed(2)}%</> : "—"}
+            </p>
           </div>
-          {totalDebtInUsd > 0 ? (
-            <div className="mr-3 text-slate-500 dark:text-slate-300">
+          {totalDebtInUsd > 0 && (
+            <div className="mr-3 text-muted-foreground">
               <h3 className="mb-2">Health Factor</h3>
               <HealthFactor value={healthFactor} />
             </div>
-          ) : (
-            <div></div>
           )}
         </div>
       </div>

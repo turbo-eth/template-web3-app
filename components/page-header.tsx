@@ -4,11 +4,7 @@ import { motion, MotionProps } from "framer-motion"
 import Balancer from "react-wrap-balancer"
 
 import { cn } from "@/lib/utils"
-import {
-  fadeDownVariant,
-  headingVariant,
-  staggerContainer,
-} from "@/lib/utils/motion"
+import { fadeDownVariant, staggerContainer } from "@/lib/utils/motion"
 
 interface MotionHeaderProps extends MotionProps {
   className?: string
@@ -47,7 +43,7 @@ function PageHeaderHeading({
       )}
       {...props}
     >
-      <Balancer>{children}</Balancer>
+      {children}
     </motion.h1>
   )
 }
@@ -66,7 +62,7 @@ function PageHeaderDescription({
       )}
       {...props}
     >
-      <Balancer>{children}</Balancer>
+      {children}
     </motion.p>
   )
 }

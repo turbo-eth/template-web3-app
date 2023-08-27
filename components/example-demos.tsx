@@ -28,6 +28,7 @@ import { ButtonSIWELogout } from "@/integrations/siwe/components/button-siwe-log
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
 
+import { LightDarkImage } from "./light-dark-image"
 import { PageSectionGrid } from "./page-section"
 import { buttonVariants } from "./ui/button"
 
@@ -441,22 +442,13 @@ const demos = [
     href: turboIntegrations.moralis.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <IsLightTheme>
-          <Image
+          <LightDarkImage
+            LightImage={turboIntegrations.moralis.imgDark}
+            DarkImage={turboIntegrations.moralis.imgLight}
             alt="Moralis logo"
             height={100}
-            src={turboIntegrations.moralis.imgDark}
             width={100}
           />
-        </IsLightTheme>
-        <IsDarkTheme>
-          <Image
-            alt="Mtarter logo"
-            height={100}
-            src={turboIntegrations.moralis.imgLight}
-            width={100}
-          />
-        </IsDarkTheme>
       </div>
     ),
   },
@@ -466,22 +458,13 @@ const demos = [
     href: turboIntegrations.aave.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <IsLightTheme>
-          <Image
-            alt="Aave logo"
-            height={100}
-            src={turboIntegrations.aave.imgDark}
-            width={100}
-          />
-        </IsLightTheme>
-        <IsDarkTheme>
-          <Image
-            alt="Aave logo"
-            height={100}
-            src={turboIntegrations.aave.imgLight}
-            width={100}
-          />
-        </IsDarkTheme>
+        <LightDarkImage
+          LightImage={turboIntegrations.aave.imgDark}
+          DarkImage={turboIntegrations.aave.imgLight}
+          alt="Aave logo"
+          height={100}
+          width={100}
+        />
       </div>
     ),
   },
@@ -491,22 +474,13 @@ const demos = [
     href: turboIntegrations.arweave.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <IsLightTheme>
-          <Image
-            alt="Arweave logo"
-            height={100}
-            src={turboIntegrations.arweave.imgDark}
-            width={100}
-          />
-        </IsLightTheme>
-        <IsDarkTheme>
-          <Image
-            alt="Arweave logo"
-            height={100}
-            src={turboIntegrations.arweave.imgLight}
-            width={100}
-          />
-        </IsDarkTheme>
+        <LightDarkImage
+          LightImage={turboIntegrations.arweave.imgDark}
+          DarkImage={turboIntegrations.arweave.imgLight}
+          alt="Arweave logo"
+          height={100}
+          width={100}
+        />
       </div>
     ),
   },
@@ -516,22 +490,13 @@ const demos = [
     href: turboIntegrations.starter.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-        <IsLightTheme>
-          <Image
-            alt="Starter logo"
-            height={100}
-            src={turboIntegrations.starter.imgDark}
-            width={100}
-          />
-        </IsLightTheme>
-        <IsDarkTheme>
-          <Image
-            alt="Starter logo"
-            height={100}
-            src={turboIntegrations.starter.imgLight}
-            width={100}
-          />
-        </IsDarkTheme>
+        <LightDarkImage
+          LightImage={turboIntegrations.starter.imgDark}
+          DarkImage={turboIntegrations.starter.imgLight}
+          alt="Starter logo"
+          height={100}
+          width={100}
+        />
       </div>
     ),
   },
