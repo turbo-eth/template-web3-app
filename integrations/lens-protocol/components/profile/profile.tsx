@@ -1,4 +1,4 @@
-import { useActiveProfile, useProfile } from '@lens-protocol/react-web'
+import { PublicationTypes, useActiveProfile, useProfile } from '@lens-protocol/react-web'
 
 import { LinkComponent } from '@/components/shared/link-component'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -12,6 +12,8 @@ import { Spinner } from '../spinner'
 import { FollowUnfollowButton } from './follow-unfollow-button'
 import { ProfileRevenue } from './profile-revenue'
 import { ProfileStats } from './profile-stats'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { ProfilePublications } from './profile-publications'
 
 export const Profile = ({ handle }: { handle: string }) => {
   const activeProfile = useActiveProfile()
@@ -61,6 +63,15 @@ export const Profile = ({ handle }: { handle: string }) => {
         <ProfileRevenue profileId={profile.id} />
       </div>
       <div className="w-full md:w-3/4 p-6">
+      <Tabs defaultValue="feed">
+      <div className="flex justify-center">
+        <TabsList className="dark:bg-neutral-800">
+          <TabsTrigger value="feed" className="dark:data-[state=active]:bg-neutral-900">Feed</TabsTrigger>
+          <TabsTrigger value="posts" className="dark:data-[state=active]:bg-neutral-900">Posts</TabsTrigger>
+          <TabsTrigger value="replies" className="dark:data-[state=active]:bg-neutral-900">Replies</TabsTrigger>
+        </TabsList>
+      </div>
+      <TabsContent value="feed" className="dark:border-neutral-700">
         <IsUserAuthenticated>
           <Feed profileId={profile.id} />
         </IsUserAuthenticated>
@@ -68,6 +79,14 @@ export const Profile = ({ handle }: { handle: string }) => {
           <div className="mb-2">You need to login to see the profile feed.</div>
           <LoginButton />
         </NotAuthenticatedYet>
+      </TabsContent>
+      <TabsContent value="posts" className="dark:border-neutral-700">
+        <ProfilePublications profileId={profile.id} publicationTypes={[PublicationTypes.Post, PublicationTypes.Mirror]} title="Posts"/>
+      </TabsContent>
+      <TabsContent value="replies" className="dark:border-neutral-700">
+        <ProfilePublications profileId={profile.id} publicationTypes={[PublicationTypes.Comment]}  title="Replies"/>
+      </TabsContent>
+      </Tabs>
       </div>
     </div>
   )

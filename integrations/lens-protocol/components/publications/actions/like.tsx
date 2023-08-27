@@ -22,7 +22,7 @@ const UnAuthorizedLikeButton = ({ publication, hideCount }: IActionButton) => {
   return (
     <ActionButton
       color="red"
-      count={publication.stats.totalUpvotes}
+      count={publication.stats?.totalUpvotes ?? 0}
       disabled={false}
       execute={() => showErrorToast()}
       hideCount={hideCount}
@@ -62,7 +62,7 @@ const AuthorizedLikeButton = ({ publication, hideCount, profile }: IActionButton
   return (
     <ActionButton
       color="red"
-      count={publication.stats.totalUpvotes}
+      count={publication.stats?.totalUpvotes ?? 0}
       disabled={false}
       execute={execute}
       hideCount={hideCount}

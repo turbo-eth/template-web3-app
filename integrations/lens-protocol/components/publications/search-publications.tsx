@@ -21,6 +21,7 @@ export const SearchPublications = ({ query }: { query: string }) => {
           <Spinner />
         </div>
       )}
+      {!publications?.length && <span>No publications found.</span>}
     </div>
   )
 }

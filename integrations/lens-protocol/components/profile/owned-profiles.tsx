@@ -40,7 +40,10 @@ export const OwnedProfiles = () => {
                       <button
                         className={isProfileSelected ? 'btn btn-primary text-sm' : 'btn btn-blue text-sm'}
                         disabled={isProfileSelected || isPending}
-                        onClick={() => switchActiveProfile(profile.id)}>
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          switchActiveProfile(profile.id)}
+                        }>
                         {isProfileSelected ? 'Current Profile' : 'Use Profile'}
                       </button>
                       <LinkComponent className="btn ml-4 text-sm" href={`/integration/lens-protocol/profiles/${profile.handle}`}>

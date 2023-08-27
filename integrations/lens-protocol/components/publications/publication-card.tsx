@@ -115,7 +115,7 @@ export const PublicationCard = ({
             ((fullMode && !!publication.stats.commentsCount) || feedCommentMode) && bottomLine
           )}>
           <div className={cn('ml-2', compactMode && 'w-full flex flex-row justify-between items-center')}>
-            <div className={cn('w-full break-words pr-2', compactMode && 'flex-1')}>{publication.metadata.content}</div>
+            <div className={cn('w-full break-words pr-2', compactMode && 'flex-1')}>{publication.metadata?.content}</div>
             <div className={cn('w-full mt-4 text-xs text-slate-500 dark:text-gray-300', compactMode && 'w-auto mt-0 flex-0')}>
               {moment(publication.createdAt).format('HH:mm YY MMM DD')}
             </div>
