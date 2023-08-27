@@ -19,9 +19,10 @@ export const ActionButton = ({
   disabled: boolean
   icon: ReactNode
 }) => {
+  const btnColor = `text-${color}-500 dark:text-${color}-300`
   return (
     <button
-      className={`btn text-sm text-${color}-500 dark:text-${color}-300`}
+      className={`btn text-sm ${btnColor}`}
       disabled={disabled}
       onClick={(e) => {
         e.stopPropagation()

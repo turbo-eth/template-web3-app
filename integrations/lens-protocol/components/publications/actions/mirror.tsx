@@ -4,9 +4,9 @@ import { FaRetweet } from 'react-icons/fa'
 import { useToast } from '@/lib/hooks/use-toast'
 
 import { IActionButton } from '.'
+import { ActionButton } from './button'
 import { IsUserAuthenticated } from '../../auth/is-user-authenticated'
 import { NotAuthenticatedYet } from '../../auth/not-authenticated-yet'
-import { ActionButton } from './button'
 
 const UnAuthorizedMirrorButton = ({ publication, hideCount }: IActionButton) => {
   const { toast, dismiss } = useToast()

@@ -7,11 +7,11 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { turboIntegrations } from '@/data/turbo-integrations'
 
+import { ProfileCard } from './profile-card'
 import { IsUserAuthenticated } from '../auth/is-user-authenticated'
 import { LoginButton } from '../auth/login-button'
 import { NotAuthenticatedYet } from '../auth/not-authenticated-yet'
 import { Spinner } from '../spinner'
-import { ProfileCard } from './profile-card'
 
 export const OwnedProfiles = () => {
   const {
@@ -25,10 +25,10 @@ export const OwnedProfiles = () => {
   const { data: activeProfile } = useActiveProfile()
   const { execute: switchActiveProfile, isPending } = useActiveProfileSwitch()
   return (
-    <div className="w-full flex flex-col">
+    <div className="flex w-full flex-col">
       <h2 className="my-4 text-lg font-semibold">Owned Profiles</h2>
       <IsUserAuthenticated>
-        <div className="grid lg:grid-cols-4 gap-4 grid-cols-1 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
           {profiles?.map((profile) => {
             const isProfileSelected = profile.id === activeProfile?.id
             return (
@@ -36,14 +36,14 @@ export const OwnedProfiles = () => {
                 <ProfileCard
                   profile={profile}
                   cta={
-                    <div className="flex flex-row mt-4">
+                    <div className="mt-4 flex flex-row">
                       <button
                         className={isProfileSelected ? 'btn btn-primary text-sm' : 'btn btn-blue text-sm'}
                         disabled={isProfileSelected || isPending}
                         onClick={(e) => {
                           e.stopPropagation()
-                          switchActiveProfile(profile.id)}
-                        }>
+                          switchActiveProfile(profile.id).catch(console.error)
+                        }}>
                         {isProfileSelected ? 'Current Profile' : 'Use Profile'}
                       </button>
                       <LinkComponent className="btn ml-4 text-sm" href={`/integration/lens-protocol/profiles/${profile.handle}`}>
@@ -55,13 +55,13 @@ export const OwnedProfiles = () => {
               </div>
             )
           })}
-          <LinkComponent isExternal className="card flex flex-col items-center text-center justify-center" href="https://testnet.lenster.xyz/">
+          <LinkComponent isExternal className="card flex flex-col items-center justify-center text-center" href="https://testnet.lenster.xyz/">
             <Avatar>
               <AvatarFallback>+</AvatarFallback>
             </Avatar>
             <span className="link mt-2">Create a new profile on testnet</span>
           </LinkComponent>
-          <LinkComponent isExternal className="card flex flex-col items-center text-center justify-center" href="https://claim.lens.xyz/">
+          <LinkComponent isExternal className="card flex flex-col items-center justify-center text-center" href="https://claim.lens.xyz/">
             <IsLightTheme>
               <Image alt="Lens Protocol logo" height={30} src={turboIntegrations.lensProtocol.imgDark} width={50} />
             </IsLightTheme>
@@ -69,16 +69,16 @@ export const OwnedProfiles = () => {
               <Image alt="Lens Protocol logo" height={30} src={turboIntegrations.lensProtocol.imgLight} width={50} />
             </IsDarkTheme>
             <span className="link mt-2">Claim a new handle on Lens</span>
-            <span className="text-xs mt-1">Comming soon...</span>
+            <span className="mt-1 text-xs">Comming soon...</span>
           </LinkComponent>
         </div>
         {hasMore && (
-          <button className="btn btn-primary mt-4 w-auto mb-6 m-auto" disabled={loading} onClick={() => next()}>
+          <button className="btn btn-primary m-auto mt-4 mb-6 w-auto" disabled={loading} onClick={() => next()}>
             Load more
           </button>
         )}
         {loading && (
-          <div className="text-center w-full my-6">
+          <div className="my-6 w-full text-center">
             <Spinner />
           </div>
         )}

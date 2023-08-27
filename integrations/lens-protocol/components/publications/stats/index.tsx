@@ -20,8 +20,8 @@ export const PublicationStats = ({ publication }: { publication: Post | Comment 
     limit: 10,
   })
   return (
-    <div className="border-t-2 dark:border-neutral-600 flex flex-col md:flex-row w-full space-x-4 pt-4 mb-4">
-      <span className="text-sm mt-[6px]">
+    <div className="mb-4 flex w-full flex-col space-x-4 border-t-2 pt-4 dark:border-neutral-600 md:flex-row">
+      <span className="mt-[6px] text-sm">
         <span className="mr-1 font-semibold">{publication.stats.commentsCount}</span>
         <span className="text-gray-600 dark:text-gray-500">comments</span>
       </span>

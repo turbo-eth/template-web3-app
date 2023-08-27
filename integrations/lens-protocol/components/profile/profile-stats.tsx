@@ -25,7 +25,7 @@ export const ProfileStats = ({ profile }: { profile: Profile }) => {
     limit: 10,
   })
   return (
-    <div className="w-full my-6 flex-row flex space-x-4 items-center justify-center md:justify-start">
+    <div className="my-6 flex w-full flex-row items-center justify-center space-x-4 md:justify-start">
       <ProfileListModal
         hasMore={followersHasMore}
         loading={followersLoading}

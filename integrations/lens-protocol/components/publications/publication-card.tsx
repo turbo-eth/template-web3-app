@@ -8,10 +8,10 @@ import { FaRetweet } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
 
-import { getProfilePictureSrc } from '../../utils'
 import { Comments } from './commnets'
 import { PublicationActionsAndStats } from './publication-actions-and-stats'
 import { PublicationRevenue } from './publication-revenue'
+import { getProfilePictureSrc } from '../../utils'
 
 export enum PublicationCardMode {
   Normal = 'normal',
@@ -83,16 +83,16 @@ export const PublicationCard = ({
   return (
     <Wrapper chainedStyle={chainedStyle} classNames={wrapperClassNames} id={publication.id} last={last} shouldLinkToFullMode={!fullMode}>
       {mirrored && (
-        <div className="text-gray-600 dark:text-slate-100 mb-4 relative top-[-10px] flex flex-row items-center">
+        <div className="relative top-[-10px] mb-4 flex flex-row items-center text-gray-600 dark:text-slate-100">
           <FaRetweet />
-          <span className="font-bold mx-1">{feedItem?.electedMirror?.profile.name ?? feedItem?.electedMirror?.profile.handle}</span>
+          <span className="mx-1 font-bold">{feedItem?.electedMirror?.profile.name ?? feedItem?.electedMirror?.profile.handle}</span>
           <span>Mirrored</span>
         </div>
       )}
       <div className={cn(compactMode && 'flex flex-col md:flex-row space-x-4 items-center')}>
-        <div className="flex flex-row items-center cursor-pointer w-auto">
+        <div className="flex w-auto cursor-pointer flex-row items-center">
           <div
-            className="w-auto flex flex-row"
+            className="flex w-auto flex-row"
             onClick={(e) => {
               e.stopPropagation()
               router.push(`/integration/lens-protocol/profiles/${profile.handle}`)
@@ -101,9 +101,9 @@ export const PublicationCard = ({
               <AvatarImage src={getProfilePictureSrc(profile)} />
               <AvatarFallback className="uppercase">{profile.handle.substring(0, 1)}</AvatarFallback>
             </Avatar>
-            <div className="flex flex-col ml-2 w-auto">
+            <div className="ml-2 flex w-auto flex-col">
               <span className="mb-1 font-semibold">{profile.name ?? profile.handle}</span>
-              {!compactMode && <span className="text-blue-600 dark:text-gray-300 text-sm">@{profile.handle}</span>}
+              {!compactMode && <span className="text-sm text-blue-600 dark:text-gray-300">@{profile.handle}</span>}
             </div>
           </div>
         </div>

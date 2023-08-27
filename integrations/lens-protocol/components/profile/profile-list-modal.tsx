@@ -6,9 +6,9 @@ import { useRouter } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Dialog, DialogContent, DialogHeader, DialogTrigger } from '@/components/ui/dialog'
 
+import { FollowUnfollowButton } from './follow-unfollow-button'
 import { getProfilePictureSrc } from '../../utils'
 import { Spinner } from '../spinner'
-import { FollowUnfollowButton } from './follow-unfollow-button'
 
 export const ProfileListModal = ({
   profiles,
@@ -35,9 +35,9 @@ export const ProfileListModal = ({
         </DialogHeader>
         <div className="max-h-[400px] overflow-y-scroll">
           {profiles?.map((profile) => (
-            <div key={profile.handle} className="flex flex-row justify-between items-center h-[70px]">
+            <div key={profile.handle} className="flex h-[70px] flex-row items-center justify-between">
               <div
-                className="w-auto flex flex-row cursor-pointer"
+                className="flex w-auto cursor-pointer flex-row"
                 onClick={(e) => {
                   e.stopPropagation()
                   router.push(`/integration/lens-protocol/profiles/${profile.handle}`)
@@ -46,21 +46,21 @@ export const ProfileListModal = ({
                   <AvatarImage src={getProfilePictureSrc(profile)} />
                   <AvatarFallback className="uppercase">{profile.handle.substring(0, 1)}</AvatarFallback>
                 </Avatar>
-                <div className="flex flex-col ml-2 w-auto">
+                <div className="ml-2 flex w-auto flex-col">
                   <span className="mb-1 font-semibold">{profile.name ?? profile.handle}</span>
-                  <span className="text-blue-600 dark:text-gray-300 text-sm">@{profile.handle}</span>
+                  <span className="text-sm text-blue-600 dark:text-gray-300">@{profile.handle}</span>
                 </div>
               </div>
               <FollowUnfollowButton profile={profile} />
             </div>
           ))}
           {hasMore && (
-            <button className="btn btn-primary mt-4 w-auto mb-6 m-auto" disabled={loading} onClick={() => next()}>
+            <button className="btn btn-primary m-auto mt-4 mb-6 w-auto" disabled={loading} onClick={() => next()}>
               Load more
             </button>
           )}
           {loading && (
-            <div className="text-center w-full my-6">
+            <div className="my-6 w-full text-center">
               <Spinner />
             </div>
           )}

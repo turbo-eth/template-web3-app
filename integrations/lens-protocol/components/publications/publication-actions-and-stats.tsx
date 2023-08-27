@@ -7,9 +7,9 @@ import { PublicationStats } from './stats'
 
 export const PublicationActionsAndStats = ({ publication, showCounts = false }: { publication: Post | Comment; showCounts: boolean }) => {
   return (
-    <div className="flex flex-col w-full mt-8">
+    <div className="mt-8 flex w-full flex-col">
       {showCounts && <PublicationStats publication={publication} />}
-      <div className="flex flex-row w-full space-x-4">
+      <div className="flex w-full flex-row space-x-4">
         <LikeButton hideCount={showCounts} publication={publication} />
         <MirrorButton hideCount={showCounts} publication={publication} />
         <CommentButton hideCount={showCounts} publication={publication} />

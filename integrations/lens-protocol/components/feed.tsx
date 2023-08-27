@@ -13,7 +13,7 @@ export const Feed = ({ profileId }: { profileId: ProfileId }) => {
   if (loading) return <Spinner />
   return (
     <div>
-      <h2 className="font-semibold text-xs mb-2">Feed</h2>
+      <h2 className="mb-2 text-xs font-semibold">Feed</h2>
       {data?.map((feedItem) => (
         <PublicationCard
           key={feedItem.root.id}
@@ -23,12 +23,12 @@ export const Feed = ({ profileId }: { profileId: ProfileId }) => {
         />
       ))}
       {hasMore && (
-        <button className="btn btn-primary mt-4 w-auto mb-6 m-auto" disabled={loading} onClick={() => next()}>
+        <button className="btn btn-primary m-auto mt-4 mb-6 w-auto" disabled={loading} onClick={() => next()}>
           Load more
         </button>
       )}
       {loading && (
-        <div className="text-center w-full my-6">
+        <div className="my-6 w-full text-center">
           <Spinner />
         </div>
       )}

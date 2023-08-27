@@ -6,11 +6,11 @@ import { useRouter } from 'next/navigation'
 import { LinkComponent } from '@/components/shared/link-component'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
-import { getProfilePictureSrc } from '../utils'
 import { IsUserAuthenticated } from './auth/is-user-authenticated'
 import { LoginButton } from './auth/login-button'
 import { LogoutButton } from './auth/logout-button'
 import { NotAuthenticatedYet } from './auth/not-authenticated-yet'
+import { getProfilePictureSrc } from '../utils'
 
 export const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -20,22 +20,22 @@ export const Navbar = () => {
   }, [searchQuery])
   const { data: activeProfile } = useActiveProfile()
   return (
-    <nav className="xs:px-6 xs:py-4 dark:bg-stone-900 flex-col md:flex-row flex justify-between px-8 py-10 rounded-xl items-center bg-neutral-100">
-      <h1 className="text-xl font-bold mb-4 md:mb-0">TurboLens</h1>
-      <div className="flex-col md:flex-row flex items-center">
+    <nav className="xs:px-6 xs:py-4 flex flex-col items-center justify-between rounded-xl bg-neutral-100 px-8 py-10 dark:bg-stone-900 md:flex-row">
+      <h1 className="mb-4 text-xl font-bold md:mb-0">TurboLens</h1>
+      <div className="flex flex-col items-center md:flex-row">
         <form
           onSubmit={(e) => {
             e.preventDefault()
             search()
           }}>
-          <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white" htmlFor="default-search">
+          <label className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white" htmlFor="default-search">
             Search
           </label>
-          <div className="min-w-[300px] relative">
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+          <div className="relative min-w-[300px]">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
               <svg
                 aria-hidden="true"
-                className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                className="h-4 w-4 text-gray-500 dark:text-gray-400"
                 fill="none"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg">
@@ -49,20 +49,20 @@ export const Navbar = () => {
               </svg>
             </div>
             <input
-              className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-neutral-700 dark:border-neutral-600 dark:placeholder:text-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-4 pl-10 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-600 dark:bg-neutral-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               id="default-search"
               placeholder="Search..."
               type="search"
               onChange={(e) => setSearchQuery(e.target.value)}
             />
             <button
-              className="text-white absolute right-2.5 bottom-3 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="absolute right-2.5 bottom-3 rounded-lg bg-blue-700 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               type="submit">
               Search
             </button>
           </div>
         </form>
-        <ul className="ml-0 md:ml-4 mt-4 md:mt-0 flex items-center space-x-6">
+        <ul className="ml-0 mt-4 flex items-center space-x-6 md:ml-4 md:mt-0">
           <li className="font-semibold">
             <LinkComponent href="/integration/lens-protocol/explore">Explore</LinkComponent>
           </li>
