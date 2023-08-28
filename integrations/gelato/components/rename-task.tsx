@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form"
 import { FaSpinner } from "react-icons/fa"
 
+import { Button } from "@/components/ui/button"
+
 import { useRenameTask } from "../hooks"
 import { ValidationError } from "./errors/validation-error"
 
@@ -57,13 +59,14 @@ export function RenameTask({
             className="input max-w-md !rounded-2xl dark:!bg-zinc-700 dark:!text-white"
             defaultValue={name}
           />
-          <button
-            className="btn btn-blue !rounded-full !px-5"
+          <Button
+            variant="blue"
+            className="rounded-full px-5"
             disabled={isLoading}
             type="submit"
           >
             {isLoading ? <FaSpinner className="animate-spin" /> : <>Save</>}
-          </button>
+          </Button>
         </div>
         <ValidationError error={form.formState.errors.name?.message} />
       </form>

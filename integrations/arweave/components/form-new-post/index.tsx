@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { useFieldArray } from "react-hook-form"
 
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -109,20 +110,19 @@ export const FormNewPost = () => {
                               {truncateString(values.file.name, 20)}
                             </div>
                           ) : (
-                            <button
-                              className="btn btn-primary mt-3 text-sm"
-                              type="button"
+                            <Button
+                              className="mt-3 text-sm"
                               onClick={() => fileInputRef.current?.click()}
                             >
                               <span className="mt-2 text-sm leading-normal">
                                 Select a file
                               </span>
-                            </button>
+                            </Button>
                           )}
                           {values.file && (
-                            <button
-                              className="btn ml-3 bg-red-300 text-xs hover:bg-red-400 dark:bg-red-700 hover:dark:bg-red-800"
-                              type="button"
+                            <Button
+                              variant="destructive"
+                              className="ml-3 text-xs"
                               onClick={() => {
                                 removeTag(
                                   tags.findIndex(
@@ -133,7 +133,7 @@ export const FormNewPost = () => {
                               }}
                             >
                               Delete
-                            </button>
+                            </Button>
                           )}
                         </div>
                       </FormControl>
@@ -149,12 +149,13 @@ export const FormNewPost = () => {
             />
             <FeeEstimation {...estimation} />
             <div>
-              <button
-                className="btn btn-emerald w-full"
+              <Button
+                variant="emerald"
+                className="w-full"
                 disabled={isLoading || estimation.isEstimatingTxFee}
               >
                 {isLoading ? "Loading..." : "Create Arweave post"}
-              </button>
+              </Button>
               {isError ? (
                 (error as { insufficientBalance: boolean })
                   .insufficientBalance ? (

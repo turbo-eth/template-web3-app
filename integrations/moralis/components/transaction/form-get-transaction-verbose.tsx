@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useDebounce } from "usehooks-ts"
 
+import { Button } from "@/components/ui/button"
 import { LinkComponent } from "@/components/shared/link-component"
 
 import { useGetTransactionVerbose } from "../../hooks/transaction"
@@ -46,13 +47,14 @@ export function FormGetTransactionVerbose() {
         <label>Transaction Hash</label>
         <input {...register("transactionHash")} className="input" />
         <>{error && <span className="text-red-500">{String(error)}</span>}</>
-        <button
-          className="btn btn-emerald mt-4"
+        <Button
+          variant="emerald"
+          className="mt-4"
           disabled={isFetching || !chain || !transactionHash}
           type="submit"
         >
           {isFetching ? "Loading..." : "Submit"}
-        </button>
+        </Button>
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <LinkComponent

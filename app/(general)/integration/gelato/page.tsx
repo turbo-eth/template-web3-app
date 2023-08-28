@@ -58,7 +58,7 @@ export default function GelatoPage() {
               <>
                 <div className="mb-10 flex w-full max-w-4xl">
                   <Link
-                    className="btn btn-blue ml-auto !rounded-2xl"
+                    className={cn(buttonVariants({ variant: "blue" }))}
                     href={"/integration/gelato/tasks/create"}
                   >
                     Create Task

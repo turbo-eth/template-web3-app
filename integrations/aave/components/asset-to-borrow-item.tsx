@@ -214,14 +214,14 @@ export const AssetToBorrowItem = ({
                       )}
                     </span>{" "}
                     {/* Showing 80% to keep health factor "safe" */}
-                    <button className="btn ml-3" onClick={setMaxAmount}>
+                    <Button className="ml-3" onClick={setMaxAmount}>
                       Max
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
               <ContractWriteButton
-                className="btn btn-primary mt-5 w-full"
+                className="mt-5 w-full"
                 disabled={
                   !Number(borrowAmount) || isLoadingTx || isLoadingWrite
                 }

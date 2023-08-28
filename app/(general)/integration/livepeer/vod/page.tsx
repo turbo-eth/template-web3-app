@@ -1,5 +1,6 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { LinkComponent } from "@/components/shared/link-component"
 import { FormLivepeerApiKey } from "@/integrations/livepeer/components/form-livepeer-api-key"
 import { useIsLivepeerApiKeySet } from "@/integrations/livepeer/hooks/use-livepeer-api-key"
@@ -13,20 +14,22 @@ export default function PageIntegration() {
     <div className="card">
       {!isLivepeerApiKeySet && <FormLivepeerApiKey />}
       <LinkComponent href={newVodPath}>
-        <button
-          className="btn btn-emerald mt-4 w-full"
+        <Button
+          variant="emerald"
+          className="mt-4 w-full"
           disabled={!isLivepeerApiKeySet}
         >
           Upload a new video
-        </button>
+        </Button>
       </LinkComponent>
       <LinkComponent href={watchVodPath}>
-        <button
-          className="btn btn-emerald mt-4 w-full"
+        <Button
+          variant="emerald"
+          className="mt-4 w-full"
           disabled={!isLivepeerApiKeySet}
         >
           Watch an existing video
-        </button>
+        </Button>
       </LinkComponent>
     </div>
   )

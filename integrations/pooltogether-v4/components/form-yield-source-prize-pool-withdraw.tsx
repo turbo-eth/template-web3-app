@@ -13,6 +13,7 @@ import { useAccount, useSwitchNetwork, useWaitForTransaction } from "wagmi"
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import { useErc20Decimals } from "@/lib/generated/blockchain"
+import { Button } from "@/components/ui/button"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
 import {
@@ -75,12 +76,13 @@ export function PoolTogetherFormWithdraw() {
   if (!prizePoolAddress) {
     return (
       <div className="flex w-full flex-col justify-center">
-        <button
-          className="btn btn-red mx-auto text-center font-semibold"
+        <Button
+          variant="destructive"
+          className="mx-auto"
           onClick={() => switchNetwork?.(1)}
         >
           Switch Network
-        </button>
+        </Button>
       </div>
     )
   }

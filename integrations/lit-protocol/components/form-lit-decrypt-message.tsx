@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
@@ -85,13 +86,14 @@ export function FormLitDecryptMessage({
               value={encryptedMessageId}
               onChange={(e) => setEncryptedMessageId(e.target.value)}
             />
-            <button
-              className="btn btn-emerald mt-4"
+            <Button
+              variant="emerald"
+              className="mt-4"
               disabled={isLoading || !isValid}
               type="submit"
             >
               {isLoading ? "Loading..." : "Decrypt"}
-            </button>
+            </Button>
             <hr className="my-4" />
             <div className="flex items-center justify-between">
               <h3 className="text-center">Encrypted message ID</h3>

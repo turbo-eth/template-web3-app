@@ -1,6 +1,7 @@
 "use client"
 
 import { ReactNode } from "react"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { turboIntegrations } from "@/data/turbo-integrations"
 import { motion } from "framer-motion"
@@ -8,6 +9,7 @@ import Balancer from "react-wrap-balancer"
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import { cn } from "@/lib/utils"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { LinkComponent } from "@/components/shared/link-component"
 import { useLivepeerApiKey } from "@/integrations/livepeer/hooks/use-livepeer-api-key"
 import { LivepeerProvider } from "@/integrations/livepeer/livepeer-provider"
@@ -58,32 +60,31 @@ export default function LayoutIntegration({
               className="my-4 text-xl"
               variants={FADE_DOWN_ANIMATION_VARIANTS}
             >
-              <LinkComponent isExternal href={turboIntegrations.livepeer.url}>
-                <button className="btn btn-primary">Documentation</button>
-              </LinkComponent>
+              <Link
+                href={turboIntegrations.livepeer.url}
+                className={cn(buttonVariants({ variant: "outline" }))}
+              >
+                Documentation
+              </Link>
               <motion.div
                 className="mt-8 flex flex-col justify-center gap-x-14 text-2xl sm:flex-row"
                 variants={FADE_DOWN_ANIMATION_VARIANTS}
               >
                 <LinkComponent href={videoOnDemandPath}>
-                  <button
-                    className={cn(
-                      "btn hover:opacity-75",
-                      pathname === livestreamPath && "opacity-50"
-                    )}
+                  <Button
+                    className={cn(pathname === livestreamPath && "opacity-50")}
                   >
                     Video on demand
-                  </button>
+                  </Button>
                 </LinkComponent>
                 <LinkComponent href={livestreamPath}>
-                  <button
+                  <Button
                     className={cn(
-                      "btn hover:opacity-75",
                       pathname === videoOnDemandPath && "opacity-50"
                     )}
                   >
                     Livestream
-                  </button>
+                  </Button>
                 </LinkComponent>
               </motion.div>
             </motion.div>

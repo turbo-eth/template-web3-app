@@ -1,6 +1,7 @@
 import moment from "moment"
 import { Control, useFieldArray, UseFormRegister } from "react-hook-form"
 
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -51,24 +52,24 @@ const TagValues = ({
               />
             </FormControl>
             {fields.length > 1 && (
-              <button
-                className="btn btn-primary mr-2 font-mono text-xs"
+              <Button
+                className="mr-2 font-mono text-xs"
                 type="button"
                 onClick={() => remove(subIndex)}
               >
                 x
-              </button>
+              </Button>
             )}
           </li>
         )
       })}
-      <button
-        className="btn btn-primary mt-2 text-sm"
+      <Button
+        className="mt-2 text-sm"
         type="button"
         onClick={() => append({ value: "" })}
       >
         + New Value
-      </button>
+      </Button>
     </ul>
   )
 }
@@ -98,13 +99,12 @@ export const ListPosts = () => {
               <FormItem>
                 <FormLabel className="flex flex-row items-center justify-between">
                   <span>Owner address</span>
-                  <button
-                    className="btn btn-primary text-xs"
-                    type="button"
+                  <Button
+                    className="text-xs"
                     onClick={() => setValue("address", address ?? "")}
                   >
                     Use connected wallet address
-                  </button>
+                  </Button>
                 </FormLabel>
                 <FormControl className="input dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
                   <Input
@@ -134,27 +134,23 @@ export const ListPosts = () => {
                       register={register}
                       tagIndex={index}
                     />
-                    <button
-                      className="btn h-10 bg-red-300 text-xs hover:bg-red-400 dark:bg-red-700 hover:dark:bg-red-800"
-                      type="button"
-                      onClick={() => remove(index)}
-                    >
+                    <Button variant="destructive" onClick={() => remove(index)}>
                       Delete
-                    </button>
+                    </Button>
                   </li>
                 )
               })}
             </ul>
-            <button
-              className="btn btn-primary mt-2 text-sm"
+            <Button
+              className="mt-2 text-sm"
               type="button"
               onClick={() => append({ name: "", values: [{ value: "" }] })}
             >
               + New Tag
-            </button>
+            </Button>
           </div>
-          <input
-            className="btn btn-primary my-2"
+          <Button
+            className="my-2"
             disabled={loading}
             type="submit"
             value="Search"
@@ -192,12 +188,9 @@ export const ListPosts = () => {
       ))}
       {!loading && !posts.length && <div>No post matched.</div>}
       {!loading && hasNextPage && (
-        <button
-          className="btn btn-primary mt-2 text-sm"
-          onClick={() => getNextPage()}
-        >
+        <Button className="mt-2 text-sm" onClick={() => getNextPage()}>
           Load more
-        </button>
+        </Button>
       )}
       {loading && (
         <div className="flex items-center">

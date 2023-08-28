@@ -2,6 +2,8 @@ import { ButtonHTMLAttributes } from "react"
 
 import { cn } from "@/lib/utils"
 
+import { Button } from "../ui/button"
+
 interface ContractWriteButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoadingTx: boolean
@@ -23,8 +25,8 @@ export const ContractWriteButton = ({
   ...props
 }: ContractWriteButtonProps) => {
   return (
-    <button
-      className={cn("btn btn-emerald", className)}
+    <Button
+      className={className}
       disabled={!write || isLoadingWrite || isLoadingTx}
       {...props}
     >
@@ -33,6 +35,6 @@ export const ContractWriteButton = ({
         : isLoadingTx
         ? loadingTxText
         : children}
-    </button>
+    </Button>
   )
 }

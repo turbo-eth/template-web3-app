@@ -1,6 +1,7 @@
 import CopyToClipboard from "react-copy-to-clipboard"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 
 import { PlayerType } from "./player"
 
@@ -40,8 +41,9 @@ export function ButtonShare({
   }
   return (
     <CopyToClipboard text={url}>
-      <span
-        className="btn btn-emerald mt-4 flex w-full cursor-pointer rounded-md"
+      <Button
+        variant="emerald"
+        className="mt-4 flex w-full"
         onClick={() => {
           handleToast({
             title: "Copied to clipboard!",
@@ -50,7 +52,7 @@ export function ButtonShare({
         }}
       >
         <span>{`Share ${assetOnDescription[PlayerType]}`}</span>
-      </span>
+      </Button>
     </CopyToClipboard>
   )
 }

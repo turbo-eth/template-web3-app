@@ -80,10 +80,7 @@ export default function DiscoPage() {
               </IsSignedIn>
               <IsSignedOut>
                 <div className="text-center">
-                  <ButtonSIWELogin
-                    className="btn btn-emerald"
-                    label="Sign-In With Ethereum"
-                  />
+                  <ButtonSIWELogin label="Sign-In With Ethereum" />
                   <p className="mt-4 text-sm text-muted-foreground">
                     Accessing the Disco API requires authenticating with an
                     Ethereum Account.
@@ -102,10 +99,7 @@ export default function DiscoPage() {
               </IsSignedIn>
               <IsSignedOut>
                 <div className="text-center">
-                  <ButtonSIWELogin
-                    className="btn btn-emerald"
-                    label="Sign-In With Ethereum"
-                  />
+                  <ButtonSIWELogin label="Sign-In With Ethereum" />
                   <p className="mt-4 text-sm text-muted-foreground">
                     Accessing the Disco API requires authenticating with an
                     Ethereum Account.

@@ -1,6 +1,8 @@
 import { HTMLAttributes } from "react"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 
+import { Button } from "../ui/button"
+
 interface WalletConnectCustomProps extends HTMLAttributes<HTMLDivElement> {
   classNameConnect?: string
   classNameConnected?: string
@@ -11,9 +13,6 @@ interface WalletConnectCustomProps extends HTMLAttributes<HTMLDivElement> {
 
 export const WalletConnectCustom = ({
   className,
-  classNameConnect = "btn btn-primary w-full",
-  classNameConnected = "btn btn-primary w-full",
-  classNameWrongNetwork = "btn btn-red w-full",
   labelConnect = "Connect Wallet",
   labelWrongNetwork = "Wrong Network",
   ...props
@@ -38,37 +37,24 @@ export const WalletConnectCustom = ({
               if (!connected) {
                 return (
                   <>
-                    <button
-                      className={classNameConnect}
-                      type="button"
-                      onClick={openConnectModal}
-                    >
+                    <Button variant="default" onClick={openConnectModal}>
                       {labelConnect}
-                    </button>
+                    </Button>
                   </>
                 )
               }
 
               if (chain.unsupported) {
                 return (
-                  <button
-                    className={classNameWrongNetwork}
-                    type="button"
-                    onClick={openChainModal}
-                  >
+                  <Button variant="destructive" onClick={openChainModal}>
                     {labelWrongNetwork}
-                  </button>
+                  </Button>
                 )
               }
 
               return (
-                <div className="">
-                  <button
-                    className={classNameConnected}
-                    style={{ display: "flex", alignItems: "center" }}
-                    type="button"
-                    onClick={openChainModal}
-                  >
+                <div>
+                  <Button variant="default" onClick={openChainModal}>
                     {chain.hasIcon && (
                       <div
                         style={{
@@ -90,7 +76,7 @@ export const WalletConnectCustom = ({
                       </div>
                     )}
                     <span className="ml-1 text-lg lowercase">{chain.name}</span>
-                  </button>
+                  </Button>
                 </div>
               )
             })()}

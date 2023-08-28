@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -74,13 +75,13 @@ const ArweaveAccountForm = () => {
             })}
             <FeeEstimation {...estimation} />
             <div>
-              <button className="btn btn-emerald w-full" disabled={isLoading}>
+              <Button variant="emerald" className="w-full" disabled={isLoading}>
                 {isLoading
                   ? "Loading..."
                   : userHasAccount
                   ? "Update Arweave account"
                   : "Create Arweave account"}
-              </button>
+              </Button>
               {isError ? (
                 (error as { insufficientBalance: boolean })
                   .insufficientBalance ? (

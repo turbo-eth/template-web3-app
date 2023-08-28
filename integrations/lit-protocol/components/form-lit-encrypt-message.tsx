@@ -9,6 +9,7 @@ import { FaCopy } from "react-icons/fa"
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
@@ -202,13 +203,14 @@ export function FormLitEncryptMessage() {
                     value={messageToEncrypt}
                     onChange={(e) => setMessageToEncrypt(e.target.value)}
                   />
-                  <button
-                    className="btn btn-emerald mt-4"
+                  <Button
+                    variant="emerald"
+                    className="mt-4"
                     disabled={!isValid || isLoading}
                     type="submit"
                   >
                     {isLoading ? "Loading..." : "Encrypt"}
-                  </button>
+                  </Button>
                 </form>
                 <hr className="my-4" />
                 <div className="flex items-center justify-between">

@@ -8,6 +8,7 @@ import { FaExternalLinkAlt, FaSpinner } from "react-icons/fa"
 import { useNetwork } from "wagmi"
 
 import { useEthersSigner } from "@/lib/hooks/web3/use-ethers-signer"
+import { Button } from "@/components/ui/button"
 
 import { useNewTask } from "../../hooks"
 import { useMsgSender } from "../../hooks/use-msg-sender"
@@ -196,8 +197,9 @@ export function CreateTask() {
             <PaymentInput />
             <TaskNameInput />
             <div className="mt-10 flex w-full">
-              <button
-                className="btn btn-blue mx-auto !rounded-full"
+              <Button
+                variant="blue"
+                className="mx-auto rounded-full"
                 disabled={!isValid || createTaskIsLoading}
                 type="submit"
               >
@@ -207,7 +209,7 @@ export function CreateTask() {
                   )}
                   <span>Create Task</span>
                 </span>
-              </button>
+              </Button>
             </div>
           </>
         )}

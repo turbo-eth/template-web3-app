@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form"
 import { FaCopy } from "react-icons/fa"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 
 import { useIsLivepeerApiKeySet } from "../hooks/use-livepeer-api-key"
 import { ButtonShare } from "./button-share"
@@ -85,13 +86,14 @@ export const CreateStream = ({
                   value={streamName}
                   onChange={(e) => setStreamName(e.target.value)}
                 />
-                <button
-                  className="btn btn-emerald mt-4 w-full"
+                <Button
+                  variant="emerald"
+                  className="mt-4 w-full"
                   disabled={!streamName || isLoading}
                   type="submit"
                 >
                   {isLoading ? "Loading..." : "Create Stream"}
-                </button>
+                </Button>
               </form>
             </div>
           )}

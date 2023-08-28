@@ -71,10 +71,7 @@ export default function EtherscanPage() {
           </IsSignedIn>
           <IsSignedOut>
             <div className="">
-              <ButtonSIWELogin
-                className="btn btn-emerald"
-                label="Sign-In With Ethereum"
-              />
+              <ButtonSIWELogin label="Sign-In With Ethereum" />
               <p className="mt-4 text-sm text-muted-foreground">
                 Accessing the Etherscan API requires authenticating with an
                 Ethereum Account.

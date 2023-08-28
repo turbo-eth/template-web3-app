@@ -1,5 +1,6 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { LinkComponent } from "@/components/shared/link-component"
 import { FormLivepeerApiKey } from "@/integrations/livepeer/components/form-livepeer-api-key"
 import { useIsLivepeerApiKeySet } from "@/integrations/livepeer/hooks/use-livepeer-api-key"
@@ -15,28 +16,31 @@ export default function PageIntegration() {
     <div className="card">
       {!isLivepeerApiKeySet && <FormLivepeerApiKey />}
       <LinkComponent href={newStreamObsPath}>
-        <button
-          className="btn btn-emerald mt-4 w-full"
+        <Button
+          variant="emerald"
+          className="w-ful"
           disabled={!isLivepeerApiKeySet}
         >
           Go live from OBS
-        </button>
+        </Button>
       </LinkComponent>
       <LinkComponent href={newStreamBrowserPath}>
-        <button
-          className="btn btn-emerald mt-4 w-full"
+        <Button
+          variant="emerald"
+          className="w-ful"
           disabled={!isLivepeerApiKeySet}
         >
           Go live from your browser
-        </button>
+        </Button>
       </LinkComponent>
       <LinkComponent href={watchStreamPath}>
-        <button
-          className="btn btn-emerald mt-4 w-full"
+        <Button
+          variant="emerald"
+          className="w-ful"
           disabled={!isLivepeerApiKeySet}
         >
           Watch an existing livestream
-        </button>
+        </Button>
       </LinkComponent>
     </div>
   )

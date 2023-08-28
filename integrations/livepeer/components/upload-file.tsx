@@ -6,6 +6,7 @@ import { useCreateAsset } from "@livepeer/react"
 import { useDropzone } from "react-dropzone"
 import { BiVideoPlus } from "react-icons/bi"
 
+import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 
 import { useIsLivepeerApiKeySet } from "../hooks/use-livepeer-api-key"
@@ -114,15 +115,15 @@ export function UploadFile() {
           )}
 
           {!asset?.[0].id && (
-            <button
-              className="btn btn-emerald"
+            <Button
+              variant="emerald"
               disabled={isLoading || !createAsset}
               onClick={() => {
                 createAsset?.()
               }}
             >
               {isLoading ? "Uploading..." : "Upload Video"}
-            </button>
+            </Button>
           )}
         </div>
       )}

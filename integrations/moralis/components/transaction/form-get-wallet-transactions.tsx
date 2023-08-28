@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { useDebounce } from "usehooks-ts"
 
+import { Button } from "@/components/ui/button"
 import { LinkComponent } from "@/components/shared/link-component"
 
 import { useGetWalletTransactions } from "../../hooks/transaction"
@@ -45,13 +46,14 @@ export function FormGetWalletTransactions() {
         <label>Address</label>
         <input {...register("address")} className="input" />
         <>{error && <span className="text-red-500">{String(error)}</span>}</>
-        <button
-          className="btn btn-emerald mt-4"
+        <Button
+          variant="emerald"
+          className="mt-4"
           disabled={isFetching || !chain || !address}
           type="submit"
         >
           {isFetching ? "Loading..." : "Submit"}
-        </button>
+        </Button>
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <LinkComponent

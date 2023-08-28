@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form"
 import { BiInfoCircle } from "react-icons/bi"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 import {
   Tooltip,
   TooltipContent,
@@ -113,13 +114,14 @@ export function FormLivepeerApiKey() {
           {...register("apiKey")}
           placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         />
-        <button
-          className="btn btn-emerald mt-4 w-full"
+        <Button
+          variant="emerald"
+          className="mt-4 w-full"
           disabled={!watchApiKey || isLoading}
           type="submit"
         >
           {isLoading ? "Loading..." : "Submit"}
-        </button>
+        </Button>
       </form>
     </div>
   )

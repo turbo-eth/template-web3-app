@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react"
 import { redirect } from "next/navigation"
 import { useAccount } from "wagmi"
 
+import { Button } from "@/components/ui/button"
+
 import { useArweaveWallet } from "../hooks/use-arweave-wallet"
 import { Spinner } from "./spinner"
 
@@ -21,8 +23,9 @@ export function ConnectArweaveWallet() {
     return (
       <div>
         <div>Use your Eth address</div>
-        <button
-          className="btn btn-emerald mt-2"
+        <Button
+          variant="emerald"
+          className="mt-2"
           disabled={!ethAccountAddress}
           onClick={() => {
             if (ethAccountAddress) {
@@ -32,26 +35,26 @@ export function ConnectArweaveWallet() {
           }}
         >
           Generate wallet
-        </button>
+        </Button>
         <div className="my-5 text-slate-500"> - or - </div>
         <div>Generate a new Arweave Wallet</div>
-        <button
-          className="btn btn-primary mt-2"
+        <Button
+          className="mt-2"
           onClick={() => {
             setLoading(true)
             void generate()
           }}
         >
           Generate wallet
-        </button>
+        </Button>
         <div className="my-5 text-slate-500"> - or - </div>
         <div>Import your wallet KeyFile</div>
-        <button
-          className="btn btn-primary mt-2"
+        <Button
+          className="mt-2"
           onClick={() => fileInputRef.current?.click()}
         >
           <span className="mt-2 text-base leading-normal">Select a file</span>
-        </button>
+        </Button>
         <input
           ref={fileInputRef}
           accept="application/json"

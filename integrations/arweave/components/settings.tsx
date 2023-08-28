@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button"
+
 import { useArweaveWallet } from "../hooks/use-arweave-wallet"
 import { ConnectArweaveWallet } from "./connect-arweave-wallet"
 
@@ -10,18 +12,8 @@ export const ArweaveSettings = () => {
         Connected to <span className="break-words font-mono">{address}</span>
       </h4>
       <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
-        <button
-          className="btn btn-primary text-sm"
-          onClick={() => backupWallet()}
-        >
-          backup keyfile
-        </button>
-        <button
-          className="btn btn-primary text-sm"
-          onClick={() => disconnect()}
-        >
-          disconnect
-        </button>
+        <Button onClick={() => backupWallet()}>backup keyfile</Button>
+        <Button onClick={() => disconnect()}>disconnect</Button>
       </div>
     </div>
   )

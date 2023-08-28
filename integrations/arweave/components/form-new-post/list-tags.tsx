@@ -5,6 +5,7 @@ import {
   useFormContext,
 } from "react-hook-form"
 
+import { Button } from "@/components/ui/button"
 import { FormControl } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
@@ -45,24 +46,24 @@ export const FormListTags = ({
                   {...register(`tags.${index}.value`)}
                 />
               </FormControl>
-              <button
-                className="btn bg-red-300 text-xs hover:bg-red-400 dark:bg-red-700 hover:dark:bg-red-800"
-                type="button"
+              <Button
+                variant="destructive"
+                className="text-xs"
                 onClick={() => remove(index)}
               >
                 Delete
-              </button>
+              </Button>
             </li>
           )
         })}
       </ul>
-      <button
-        className="btn btn-primary mt-2 text-sm"
+      <Button
+        className="mt-2"
         type="button"
         onClick={() => append({ name: "", value: "" })}
       >
         + New Tag
-      </button>
+      </Button>
     </div>
   )
 }

@@ -22,7 +22,7 @@ export default function PageDashboardTransactions() {
               <span className="text-sm text-foreground">
                 Login to access the TurboETH free API
               </span>
-              <ButtonSIWELogin className="btn btn-emerald" />
+              <ButtonSIWELogin />
             </div>
           </IsSignedOut>
         </IsWalletConnected>

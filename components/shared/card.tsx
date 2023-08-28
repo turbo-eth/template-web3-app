@@ -1,11 +1,13 @@
 import { ReactNode } from "react"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import ReactMarkdown from "react-markdown"
 import Balancer from "react-wrap-balancer"
 
 import { FADE_UP_ANIMATION_VARIANTS } from "@/config/design"
+import { cn } from "@/lib/utils"
 
-import { LinkComponent } from "./link-component"
+import { buttonVariants } from "../ui/button"
 
 export default function Card({
   title,
@@ -58,9 +60,9 @@ export default function Card({
           </Balancer>
         </div>
         {!href ? null : (
-          <LinkComponent className="btn btn-light my-4" href={href}>
+          <Link href={href} className={cn(buttonVariants(), "my-4")}>
             Demo
-          </LinkComponent>
+          </Link>
         )}
       </div>
     </motion.div>

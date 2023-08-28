@@ -17,7 +17,7 @@ export default function PageDashboardTransactions() {
             <span className="text-sm text-foreground">
               Authenticate to access admin area.
             </span>
-            <ButtonSIWELogin className="btn btn-emerald btn-sm" />
+            <ButtonSIWELogin />
           </div>
         </IsSignedOut>
       </div>

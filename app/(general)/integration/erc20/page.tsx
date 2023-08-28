@@ -65,12 +65,14 @@ export default function Erc20Page() {
                       Access the token page where you can update the url
                       parameters to select which ERC20 token to view
                     </span>
-                    <LinkComponent
-                      className="btn btn-emerald btn-sm font-bold"
+                    <Link
+                      className={cn(
+                        buttonVariants({ variant: "emerald", size: "sm" })
+                      )}
                       href={`/integration/erc20/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}
                     >
                       View Token Page
-                    </LinkComponent>
+                    </Link>
                   </div>
                   <ERC20Read address={token} />
                   <ERC20WriteMint address={token} />

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import Link from "next/link"
 import { ArAccount } from "arweave-account"
 import { TransactionStatusResponse } from "arweave/node/transactions"
 import moment from "moment"
@@ -6,7 +7,9 @@ import CopyToClipboard from "react-copy-to-clipboard"
 import { FaCopy } from "react-icons/fa"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { buttonVariants } from "@/components/ui/button"
 import { LinkComponent } from "@/components/shared/link-component"
 
 import { arweaveGatewayUrl, getArweaveTxData, getArweaveTxStatus } from ".."
@@ -90,13 +93,12 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
             </span>
           </CopyToClipboard>
         </div>
-        <LinkComponent
-          className="btn btn-primary text-xs"
+        <Link
           href={`https://arweave.app/tx/${txId}`}
-          isExternal={true}
+          className={cn(buttonVariants(), "text-xs")}
         >
           View on Arweave.app
-        </LinkComponent>
+        </Link>
       </div>
       {txStatus && (
         <div className="mt-8">
@@ -223,7 +225,7 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
         {downloadLink && (
           <LinkComponent
             isExternal
-            className="btn btn-blue mt-3 text-sm"
+            className={cn(buttonVariants({ variant: "blue" }), "mt-3")}
             href={downloadLink}
           >
             Download Data from Arweave

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { isAddress } from "viem"
 
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
@@ -190,9 +191,9 @@ export function AccessControlTokenGroup({
             )}
           </div>
         )}
-        <button className="btn btn-emerald mt-4" type="submit">
+        <Button variant="emerald" className="mt-4" type="submit">
           Save
-        </button>
+        </Button>
       </form>
     </div>
   )

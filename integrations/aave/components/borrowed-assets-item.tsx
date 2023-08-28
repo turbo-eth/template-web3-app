@@ -330,9 +330,9 @@ export const BorrowedAssetsItem = ({
                         5
                       )}
                     </span>
-                    <button className="btn ml-3" onClick={setMaxAmount}>
+                    <Button className="ml-3" onClick={setMaxAmount}>
                       Max
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -362,7 +362,7 @@ export const BorrowedAssetsItem = ({
                 </div>
               </div>
               <ContractWriteButton
-                className="btn btn-primary mt-5 w-full"
+                className="mt-5 w-full"
                 disabled={!Number(repayAmount)}
                 isLoadingTx={
                   isLoadingApproveTx ||

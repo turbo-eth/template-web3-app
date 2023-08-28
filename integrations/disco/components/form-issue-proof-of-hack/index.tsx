@@ -2,6 +2,7 @@ import CopyToClipboard from "react-copy-to-clipboard"
 import { FaCopy } from "react-icons/fa"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -70,9 +71,9 @@ export function FormCredentialIssuanceProofOfHack() {
                   {error instanceof Error ? error.message : String(error)}
                 </div>
               )}
-              <button className="btn btn-emerald w-full" disabled={isLoading}>
+              <Button variant="emerald" className="w-full" disabled={isLoading}>
                 {isLoading ? "Loading..." : "Issue Proof of Hack Credential"}
-              </button>
+              </Button>
             </div>
           </form>
         </Form>

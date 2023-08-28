@@ -147,13 +147,10 @@ const demos = [
       <div className="text-center text-gray-800">
         <IsWalletConnected>
           <IsSignedIn>
-            <ButtonSIWELogout className="btn btn-blue btn-lg " />
+            <ButtonSIWELogout />
           </IsSignedIn>
           <IsSignedOut>
-            <ButtonSIWELogin
-              className="btn btn-emerald"
-              label="Sign-In With Ethereum"
-            />
+            <ButtonSIWELogin label="Sign-In With Ethereum" />
           </IsSignedOut>
         </IsWalletConnected>
         <IsWalletDisconnected>
@@ -199,12 +196,9 @@ const demos = [
             chainId={1}
           />
         </p>
-        <LinkComponent
-          className="btn btn-light btn-sm mt-4 font-bold"
-          href={`integration/erc20`}
-        >
+        <Link href="/integration/erc20" className={cn(buttonVariants())}>
           View Token Page
-        </LinkComponent>
+        </Link>
       </div>
     ),
   },
@@ -227,12 +221,9 @@ const demos = [
           tokenId={BigInt(1)}
           width={100}
         />
-        <LinkComponent
-          className="btn btn-light btn-sm mt-4 font-bold"
-          href={`/integration/erc721`}
-        >
+        <Link href={`/integration/erc721`} className={cn(buttonVariants())}>
           View Token Page
-        </LinkComponent>
+        </Link>
       </div>
     ),
   },
