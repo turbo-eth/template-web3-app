@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import { ProfileOwnedByMe, useActiveProfile, useCreateMirror } from '@lens-protocol/react-web'
 import { FaRetweet } from 'react-icons/fa'
 
@@ -22,7 +24,7 @@ const UnAuthorizedMirrorButton = ({ publication, hideCount }: IActionButton) => 
   return (
     <ActionButton
       color="blue"
-      count={publication.stats.totalAmountOfMirrors}
+      count={publication.stats?.totalAmountOfMirrors ?? 0}
       disabled={!publication.canMirror.result}
       execute={() => showErrorToast()}
       hideCount={hideCount}
@@ -34,11 +36,24 @@ const UnAuthorizedMirrorButton = ({ publication, hideCount }: IActionButton) => 
 
 const AuthorizedMirrorButton = ({ publication, hideCount, profile }: IActionButton & { profile: ProfileOwnedByMe }) => {
   const { execute: create, isPending, error } = useCreateMirror({ publisher: profile })
-  if (error) alert(error)
+  const { toast, dismiss } = useToast()
+  const showErrorToast = (error: string) => {
+    toast({
+      title: 'Mirror failed.',
+      description: error,
+    })
+
+    setTimeout(() => {
+      dismiss()
+    }, 10000)
+  }
+  useEffect(() => {
+    showErrorToast(String(error))
+  }, [error])
   return (
     <ActionButton
       color="blue"
-      count={publication.stats.totalAmountOfMirrors}
+      count={publication.stats?.totalAmountOfMirrors ?? 0}
       disabled={!publication.canMirror.result || isPending || publication.isMirroredByMe}
       hideCount={hideCount}
       icon={<FaRetweet />}

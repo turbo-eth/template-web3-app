@@ -64,7 +64,7 @@ export const ProfileListModal = ({
               <Spinner />
             </div>
           )}
-          {profiles.length === 0 && <span>This list is empty.</span>}
+          {!loading && profiles?.length === 0 && <span>This list is empty.</span>}
         </div>
       </DialogContent>
     </Dialog>
