@@ -1,5 +1,7 @@
 import { ReactElement } from "react"
 
+import { Input } from "@/components/ui/input"
+
 interface ITablePagination {
   canPreviousPage: boolean
   canNextPage: boolean
@@ -68,8 +70,8 @@ export const TablePagination = ({
         <span className="bg-card mx-2 inline-block rounded-xl py-3 px-2">
           <span className="p-2">
             Go to page:{" "}
-            <input
-              className="input ml-3 h-[32px] w-[64px] text-neutral-700 dark:text-neutral-800"
+            <Input
+              className="ml-3 h-[32px] w-[64px]"
               type="number"
               min={1}
               max={pageCount}

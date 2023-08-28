@@ -1,8 +1,9 @@
 import { FormEvent, useEffect, useMemo, useState } from "react"
 import { Address, isAddress } from "viem"
 
-import { useErc721TokenStorage } from "../hooks/use-erc721-token-storage"
 import { Button } from "@/components/ui/button"
+
+import { useErc721TokenStorage } from "../hooks/use-erc721-token-storage"
 
 export function Erc721SetTokenStorage() {
   const [token, setToken] = useErc721TokenStorage()
@@ -31,10 +32,7 @@ export function Erc721SetTokenStorage() {
           value={tokenAddress}
           onChange={(e) => setTokenAddress(e.target.value as Address)}
         />
-        <Button variant="emerald"
-          disabled={!isValidAddress}
-          type="submit"
-        >
+        <Button variant="emerald" disabled={!isValidAddress} type="submit">
           {"Select Contract Address"}
         </Button>
         <hr className="my-4" />

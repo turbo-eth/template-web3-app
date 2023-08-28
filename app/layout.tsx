@@ -1,5 +1,4 @@
 import "@/styles/app.css"
-import "@/styles/periphery.css"
 import "@/styles/globals.css"
 
 import { ReactNode } from "react"

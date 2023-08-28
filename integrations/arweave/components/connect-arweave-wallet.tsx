@@ -49,10 +49,7 @@ export function ConnectArweaveWallet() {
         </Button>
         <div className="my-5 text-slate-500"> - or - </div>
         <div>Import your wallet KeyFile</div>
-        <Button
-          className="mt-2"
-          onClick={() => fileInputRef.current?.click()}
-        >
+        <Button className="mt-2" onClick={() => fileInputRef.current?.click()}>
           <span className="mt-2 text-base leading-normal">Select a file</span>
         </Button>
         <input

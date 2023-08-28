@@ -1,8 +1,11 @@
 import { useEffect, useMemo } from "react"
+import Link from "next/link"
 import CopyToClipboard from "react-copy-to-clipboard"
 import { FaCheck, FaCopy } from "react-icons/fa"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import { LinkComponent } from "@/components/shared/link-component"
 
 import { CONFIRMED_THRESHOLD } from ".."
@@ -59,12 +62,12 @@ export const PendingTx = ({ txId, onConfirmation }: AddPendingTxPayload) => {
             </CopyToClipboard>
           </div>
         </div>
-        <LinkComponent
-          className="link"
+        <Link
           href={`/integration/arweave/posts/${txId}`}
+          className={cn(buttonVariants({ variant: "link" }))}
         >
           View tx
-        </LinkComponent>
+        </Link>
       </div>
     </div>
   )

@@ -208,10 +208,10 @@ export const BorrowedAssetsItem = ({
           value={rateMode.toString()}
           onValueChange={() => swapBorrowRateModeWrite()}
         >
-          <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
+          <SelectTrigger>
             <SelectValue placeholder="Select market" />
           </SelectTrigger>
-          <SelectContent className="w-56 bg-white dark:bg-gray-700">
+          <SelectContent className="w-56">
             <SelectItem value="2">
               <div className="flex items-center justify-between">Variable</div>
             </SelectItem>
@@ -238,10 +238,10 @@ export const BorrowedAssetsItem = ({
                   setRepayWithATokens(value === "aTokens")
                 }
               >
-                <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
+                <SelectTrigger>
                   <SelectValue placeholder="Select market" />
                 </SelectTrigger>
-                <SelectContent className="w-56 bg-white dark:bg-gray-700">
+                <SelectContent className="w-56">
                   <SelectItem value="walletBalance">
                     <div className="flex items-center justify-between">
                       Wallet balance

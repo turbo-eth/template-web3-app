@@ -148,10 +148,10 @@ export const AssetToBorrowItem = ({
                       setBorrowVariableRateMode(value === "variable")
                     }
                   >
-                    <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
+                    <SelectTrigger>
                       <SelectValue placeholder="Select market" />
                     </SelectTrigger>
-                    <SelectContent className="w-56 bg-white dark:bg-gray-700">
+                    <SelectContent className="w-56">
                       <SelectItem value="variable">
                         <div className="flex items-center justify-between">
                           Variable
