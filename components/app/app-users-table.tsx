@@ -6,6 +6,7 @@ import type { Users } from "@/app/api/app/users/route"
 
 import TableCore from "../shared/table/table-core"
 import { TimeFromUtc } from "../shared/time-from-utc"
+import { Badge } from "../ui/badge"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 
 interface AppUsersTableProps extends HTMLAttributes<HTMLElement> {
@@ -41,7 +42,7 @@ function AppUsersTable({ data, className, ...props }: AppUsersTableProps) {
           <div className="flex items-center justify-end gap-2">
             <Popover>
               <PopoverTrigger>
-                <span className="tag tag-white text-xs">Profile</span>
+                <Badge>Profile</Badge>
               </PopoverTrigger>
               <PopoverContent>Add user profile information 🥳</PopoverContent>
             </Popover>

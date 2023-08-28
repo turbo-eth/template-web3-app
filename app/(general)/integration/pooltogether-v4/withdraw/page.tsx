@@ -13,7 +13,7 @@ export default function PoolTogetherWithdraw() {
         <PoolTogetherFormWithdraw />
       </IsWalletConnected>
       <IsWalletDisconnected>
-        <div className="flex-center flex">
+        <div className="flex items-center justify-center">
           <WalletConnect />
         </div>
       </IsWalletDisconnected>

@@ -52,7 +52,7 @@ export default function ArweaveLayout({ children }: ArweaveLayoutProps) {
       <PageSection className="w-full">
         <section className="flex w-full flex-col overflow-hidden rounded-xl bg-muted sm:flex-row">
           <SideBar />
-          <div className="flex-center min-h-[600px] flex-1 flex-col items-center justify-center p-10 text-center">
+          <div className="min-h-[600px] flex-1 flex-col items-center justify-center p-10 text-center">
             {children}
           </div>
         </section>

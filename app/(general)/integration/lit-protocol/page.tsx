@@ -62,7 +62,7 @@ export default function LitProtocolPage() {
               <FormLitEncryptMessage />
             </IsWalletConnected>
             <IsWalletDisconnected>
-              <div className="flex-center flex">
+              <div className="flex items-center justify-center">
                 <WalletConnect />
               </div>
             </IsWalletDisconnected>
@@ -72,7 +72,7 @@ export default function LitProtocolPage() {
               <FormLitDecryptMessage initialEencryptedMessageId={id} />
             </IsWalletConnected>
             <IsWalletDisconnected>
-              <div className="flex-center flex">
+              <div className="flex items-center justify-center">
                 <WalletConnect />
               </div>
             </IsWalletDisconnected>

@@ -535,7 +535,7 @@ function DemoCard({ title, description, href, demo, large }: DemoCardProps) {
         <h2 className="mb-3 bg-gradient-to-br from-black to-stone-500 bg-clip-text text-xl font-bold text-transparent dark:from-stone-100 dark:to-emerald-200 md:text-3xl md:font-normal">
           <Balancer>{title}</Balancer>
         </h2>
-        <div className="content prose-sm md:prose -mt-2 leading-normal text-muted-foreground">
+        <div className="prose-sm md:prose -mt-2 leading-normal text-muted-foreground">
           <Balancer>
             <ReactMarkdown
               components={{

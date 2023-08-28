@@ -14,7 +14,7 @@ export default function PageDashboardAccount() {
     <>
       <motion.div
         animate="show"
-        className="flex-center flex h-full w-full"
+        className="flex h-full w-full items-center justify-center"
         initial="hidden"
         variants={FADE_DOWN_ANIMATION_VARIANTS}
         viewport={{ once: true }}

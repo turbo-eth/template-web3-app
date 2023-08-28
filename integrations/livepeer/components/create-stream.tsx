@@ -160,7 +160,7 @@ export const CreateStream = ({
                       <input className="input" value={streamRtpmIngestUrl} />
                       <CopyToClipboard text={streamRtpmIngestUrl}>
                         <span
-                          className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
+                          className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
                           onClick={() => {
                             handleToast({
                               title: "Copied to clipboard!",
@@ -180,7 +180,7 @@ export const CreateStream = ({
                       <input className="input" value={streamData?.streamKey} />
                       <CopyToClipboard text={streamData?.streamKey}>
                         <span
-                          className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
+                          className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
                           onClick={() => {
                             handleToast({
                               title: "Copied to clipboard!",

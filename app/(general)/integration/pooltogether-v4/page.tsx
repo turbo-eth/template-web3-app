@@ -55,7 +55,7 @@ export default function PoolTogetherPage() {
               <PoolTogetherFormDeposit />
             </IsWalletConnected>
             <IsWalletDisconnected>
-              <div className="flex-center flex">
+              <div className="flex items-center justify-center">
                 <WalletConnect />
               </div>
             </IsWalletDisconnected>
@@ -65,7 +65,7 @@ export default function PoolTogetherPage() {
               <PoolTogetherFormWithdraw />
             </IsWalletConnected>
             <IsWalletDisconnected>
-              <div className="flex-center flex">
+              <div className="flex items-center justify-center">
                 <WalletConnect />
               </div>
             </IsWalletDisconnected>

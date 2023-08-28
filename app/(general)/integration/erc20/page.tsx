@@ -82,7 +82,7 @@ export default function Erc20Page() {
             </div>
           </IsWalletConnected>
           <IsWalletDisconnected>
-            <div className="flex-center flex">
+            <div className="flex items-center justify-center">
               <WalletConnect />
             </div>
           </IsWalletDisconnected>

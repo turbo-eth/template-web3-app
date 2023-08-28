@@ -31,7 +31,7 @@ export default function ERC20EventMint() {
   if (!token || !event) return null
 
   return (
-    <div className="content py-6">
+    <div className="px-10 py-6">
       {!event?.to ? null : (
         <>
           <p className="">From: {event?.from}</p>
