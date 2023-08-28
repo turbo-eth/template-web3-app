@@ -64,7 +64,7 @@ export function ListSessionKeys({
             <Button
               key={address}
               className="my-3 flex w-full items-center py-2 text-lg"
-              variant="subtle"
+              variant="outline"
               onClick={() => handleSelectSessionKey(address)}
             >
               {address === selectedSessionKey && (

@@ -60,14 +60,6 @@ body {
   @apply relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100 dark:hover:bg-neutral-800;
 }
 
-.bg-card {
-  @apply bg-white dark:bg-neutral-700 dark:text-white;
-}
-
-.bg-card-with-hover {
-  @apply bg-white dark:bg-neutral-700 dark:text-white hover:dark:bg-neutral-800;
-}
-
 .card {
   @apply bg-card border-2 dark:border-neutral-700 rounded-lg p-6 shadow-sm;
 }

@@ -1,6 +1,8 @@
 import type { Dispatch, SetStateAction } from "react"
 import type { Address } from "wagmi"
 
+import { Button } from "@/components/ui/button"
+
 import { useSessionKeys } from "../hooks/use-session-keys"
 
 interface DeleteSessionKeyProps {
@@ -22,12 +24,12 @@ export function DeleteSessionKey({
   }
 
   return (
-    <button
-      className="btn btn-red"
+    <Button
+      variant="destructive"
       disabled={!selectedSessionKey}
       onClick={handleDeleteSessionKey}
     >
       Delete Session Key
-    </button>
+    </Button>
   )
 }
