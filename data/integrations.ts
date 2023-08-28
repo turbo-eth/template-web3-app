@@ -65,7 +65,7 @@ export const integrations = {
     },
     pooltogether_v4: {
       name: "PoolTogether",
-      href: "/integration/pooltogether-v4/deposit",
+      href: "/integration/pooltogether-v4",
       url: "https://pooltogether.com/",
       description:
         "PoolTogether is a prize savings protocol, enable you to win by saving.",
@@ -120,7 +120,7 @@ export const integrations = {
     },
     litProtocol: {
       name: "Lit Protocol",
-      href: "/integration/lit-protocol/share",
+      href: "/integration/lit-protocol",
       url: "https://litprotocol.com/",
       description:
         "Lit is distributed key management for encryption, signing, and compute.",

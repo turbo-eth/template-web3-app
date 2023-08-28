@@ -6,6 +6,8 @@ import { BiInfoCircle } from "react-icons/bi"
 
 import { useToast } from "@/lib/hooks/use-toast"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import {
   Tooltip,
   TooltipContent,
@@ -98,7 +100,7 @@ export function FormLivepeerApiKey() {
     <div className="w-full">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center gap-x-2">
-          <label>Livepeer API Key</label>
+          <Label htmlFor="apiKey">Livepeer API Key</Label>
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
@@ -108,9 +110,10 @@ export function FormLivepeerApiKey() {
             </Tooltip>
           </TooltipProvider>
         </div>
-        <input
+        <Input
+          id="apiKey"
           required
-          className="input mt-4"
+          className="mt-4"
           {...register("apiKey")}
           placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         />

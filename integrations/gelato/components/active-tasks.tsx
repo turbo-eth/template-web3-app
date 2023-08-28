@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from "react"
 import { BsSearch } from "react-icons/bs"
 
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 
 import { useActiveTasks } from "../hooks"
@@ -30,9 +31,9 @@ export function ActiveTasks() {
   )
 
   return (
-    <div className="card w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
-      <div className="mb-5 flex w-full items-center justify-between">
-        <h3 className="text-lg font-bold">My tasks</h3>
+    <Card className="w-full max-w-4xl">
+      <CardHeader className="flex w-full flex-row items-center justify-between">
+        <CardTitle>My Tasks</CardTitle>
         <div className="flex items-center space-x-3">
           <BsSearch
             className="cursor-pointer"
@@ -42,13 +43,12 @@ export function ActiveTasks() {
           />
           <Input
             ref={searchInputRef}
-            className="w-56 !border-none duration-100 hover:outline-none focus:w-96 focus:bg-black/10 focus:!shadow-none"
             placeholder="Search"
             onChange={(e) => setSearch(e.target.value)}
           />
         </div>
-      </div>
-      <div className="mb-5">
+      </CardHeader>
+      <CardContent>
         {isLoading ? (
           <div className="h-20 w-full animate-pulse rounded-lg bg-slate-400/70"></div>
         ) : (
@@ -80,7 +80,7 @@ export function ActiveTasks() {
             </div>
           </>
         )}
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }

@@ -44,7 +44,7 @@ export function NotificationBell(props: NotificationBellProps) {
     <Popover>
       <PopoverTrigger asChild>
         <Button variant="default" onClick={() => setRead(true)}>
-          <BsBell size={30} />
+          <BsBell size={24} />
           {allNotifications.length > 0 && !read && (
             <div className="absolute right-2 top-2 h-5 w-5 rounded-full bg-red-500">
               {allNotifications.length}
