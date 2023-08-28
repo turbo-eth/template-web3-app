@@ -19,6 +19,7 @@ import { LinkComponent } from '@/components/shared/link-component'
 import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
 import { DEPLOY_URL, siteConfig } from '@/config/site'
 import { turboIntegrations } from '@/data/turbo-integrations'
+import { ERC1155TokenUriImage, ERC1155TokenUriName } from '@/integrations/erc1155'
 import { ERC20Decimals, ERC20Name, ERC20Symbol } from '@/integrations/erc20/components/erc20-read'
 import { ERC721TokenUriImage, ERC721TokenUriName } from '@/integrations/erc721'
 import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
@@ -239,6 +240,26 @@ const features = [
           width={100}
         />
         <LinkComponent className="btn btn-light btn-sm mt-4 font-bold" href={`/integration/erc721`}>
+          View Token Page
+        </LinkComponent>
+      </div>
+    ),
+  },
+  {
+    title: 'ERC1155 WAGMI',
+    description: 'Read and Write to ERC1155 smart contracts using minimal UI components.',
+    demo: (
+      <div className="text-center">
+        <ERC1155TokenUriName address={'0x67bcbc1c0e120d0a700eb38a2d769c20a1dfb8f6'} chainId={1} tokenId={BigInt(3)} />
+        <ERC1155TokenUriImage
+          address={'0x67bcbc1c0e120d0a700eb38a2d769c20a1dfb8f6'}
+          chainId={1}
+          className="mx-auto my-4 rounded-xl border-2 border-white shadow-md"
+          height={100}
+          tokenId={BigInt(3)}
+          width={100}
+        />
+        <LinkComponent className="btn btn-light btn-sm mt-4 font-bold" href={`/integration/erc1155`}>
           View Token Page
         </LinkComponent>
       </div>
