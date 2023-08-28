@@ -83,6 +83,7 @@ export const ETH_CHAINS_PROD = [
   goerli,
   base,
   baseGoerli,
+  polygonMumbai,
 ]
 export const ETH_CHAINS_DEV =
   env.NEXT_PUBLIC_PROD_NETWORKS_DEV === "true"
