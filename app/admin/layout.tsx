@@ -6,8 +6,8 @@ import { menuDashboard } from "@/config/menu-dashboard"
 import { siteConfig } from "@/config/site"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
-import { SidebarNav } from "@/components/navigation/sidebar-nav"
-import { SiteHeader } from "@/components/navigation/site-header"
+import { SidebarNav } from "@/components/layout/sidebar-nav"
+import { SiteHeader } from "@/components/layout/site-header"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
