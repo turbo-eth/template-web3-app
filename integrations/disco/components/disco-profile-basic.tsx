@@ -43,7 +43,7 @@ export const DiscoProfileBasic = ({
     >
       <div className="col-span-1">
         {isLoading ? (
-          <div className="h-60 w-60 max-w-full animate-pulse rounded-lg border-4 bg-gray-500/80 shadow-xl dark:bg-gray-200" />
+          <div className="h-60 w-60 max-w-full animate-pulse rounded-lg border-4 bg-muted shadow-xl" />
         ) : (
           <Image
             alt="Profile Avatar"
@@ -57,17 +57,17 @@ export const DiscoProfileBasic = ({
       </div>
       <div className="col-span-1 lg:col-span-3">
         {isLoading ? (
-          <div className="mx-auto h-60 w-[800px] max-w-full animate-pulse rounded-lg bg-gray-500/80 shadow-xl dark:bg-gray-200 lg:w-full" />
+          <div className="mx-auto h-60 w-[800px] max-w-full animate-pulse rounded-lg bg-muted shadow-xl lg:w-full" />
         ) : (
           <div className="max-w-full">
             {data?.profile?.name && (
-              <div className="text-3xl font-bold text-neutral-900 dark:text-white">
+              <div className="text-3xl font-bold text-foreground">
                 {data?.linkages && data?.linkages?.[data?.profile?.name]?.id}
               </div>
             )}
             {data?.did && (
               <LinkComponent href={`${DISCO_APP_URL}/${data?.did}`}>
-                <div className="flex max-w-full items-center text-xl font-medium text-neutral-600 transition-colors hover:text-neutral-500 dark:text-neutral-400 dark:hover:text-neutral-300">
+                <div className="flex max-w-full items-center text-xl font-medium text-muted-foreground transition-colors hover:text-accent">
                   <span className="overflow-x-auto break-words">
                     {data?.did}
                   </span>{" "}
@@ -76,7 +76,7 @@ export const DiscoProfileBasic = ({
               </LinkComponent>
             )}
             {data?.profile?.bio && (
-              <div className="mt-10 text-neutral-900 dark:text-white">
+              <div className="mt-10 text-foreground">
                 <ReactMarkdown
                   components={{
                     a: ({ ...props }: HTMLAttributes<HTMLElement>) => (

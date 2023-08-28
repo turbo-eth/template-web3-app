@@ -14,8 +14,8 @@ export const turboIntegrations = {
     url: "https://disco.xyz",
     description:
       "Disco is identity simplified. Giving the tools to consent to how information is shared and with whom.",
-    imgLight: "/integrations/disco.jpeg",
-    imgDark: "/integrations/disco.jpeg",
+    imgLight: "/integrations/disco-light.png",
+    imgDark: "/integrations/disco-dark.png",
   },
   discoProgrammaticIssuance: {
     name: "Disco Programmatic Issuance",
