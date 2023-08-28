@@ -27,7 +27,7 @@ export default function LayoutIntegration({
     <LivepeerProvider customApiKey={livepeerApiKey}>
       <motion.div
         animate="show"
-        className="h-full w-full"
+        className="mt-20 h-full w-full"
         initial="hidden"
         viewport={{ once: true }}
         whileInView="show"

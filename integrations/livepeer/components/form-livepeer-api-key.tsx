@@ -8,6 +8,7 @@ import { useToast } from "@/lib/hooks/use-toast"
 import {
   Tooltip,
   TooltipContent,
+  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 
@@ -97,12 +98,14 @@ export function FormLivepeerApiKey() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex items-center gap-x-2">
           <label>Livepeer API Key</label>
-          <Tooltip>
-            <TooltipTrigger>
-              <BiInfoCircle />
-            </TooltipTrigger>
-            <TooltipContent>{ApiKeyTooltip}</TooltipContent>
-          </Tooltip>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <BiInfoCircle />
+              </TooltipTrigger>
+              <TooltipContent>{ApiKeyTooltip}</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         </div>
         <input
           required

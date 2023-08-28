@@ -1,8 +1,15 @@
+"use client"
+
 import { FormEvent, useState } from "react"
 import CopyToClipboard from "react-copy-to-clipboard"
 import { FaCopy } from "react-icons/fa"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Textarea } from "@/components/ui/textarea"
 import { LinkComponent } from "@/components/shared/link-component"
 
 import { useOpenAIPrompt } from "../hooks/use-openai-prompt"
@@ -45,78 +52,74 @@ export function FormOpenAIPrompt() {
   }
 
   return (
-    <div className="card w-full">
-      <form className="flex flex-col gap-4" onSubmit={handleGenerateResponse}>
-        <label>
-          OpenAI API Key
-          <input
+    <Card className="w-full pt-6">
+      <CardContent>
+        <form className="flex flex-col gap-4" onSubmit={handleGenerateResponse}>
+          <Label htmlFor="apiKey">OpenAI API Key</Label>
+          <Input
+            id="apiKey"
             required
-            className="input mt-2"
             pattern="sk-[a-zA-Z0-9]{48}"
-            placeholder="sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
             type="password"
+            placeholder="sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
             value={apiKey}
             onChange={(e) => setApiKey(e.target.value)}
           />
-        </label>
-        <label>
-          Prompt
-          <textarea
-            className="input mt-2 h-40"
-            placeholder="Write your prompt"
+          <Label htmlFor="prompt">Prompt</Label>
+          <Textarea
+            id="prompt"
+            placeholder="Type your prompt here."
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
           />
-        </label>
-        <div className="relative">
-          <label>
-            Response
-            <textarea
+          <div className="relative">
+            <Label htmlFor="response">Response</Label>
+            <Textarea
               readOnly
-              className="input relative mt-2 h-60"
-              placeholder="Your AI response will appear here"
+              className="mt-2 h-60"
+              placeholder="Your AI response will appear here."
               value={response}
             />
-          </label>
-          {response && (
-            <CopyToClipboard text={response}>
-              <span
-                className="flex-center absolute right-2 top-8 flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
-                onClick={() =>
-                  handleToast({
-                    title: "AI response copied to clipboard",
-                    description:
-                      "You can now paste the response anywhere you want.",
-                  })
-                }
-              >
-                <FaCopy className="text-neutral-600 dark:text-neutral-100" />
-              </span>
-            </CopyToClipboard>
-          )}
-        </div>
-        <button
-          className="btn btn-emerald"
-          disabled={isLoading || !prompt}
-          type="submit"
-        >
-          {isLoading ? "Generating..." : "Generate"}
-        </button>
-      </form>{" "}
-      <hr className="my-4" />
-      <div className="flex items-center justify-between">
-        <h3 className="text-center">OpenAI</h3>
-        <p className="text-center text-sm text-gray-500">
-          <LinkComponent
-            isExternal
-            className="font-bold"
-            href={"https://platform.openai.com/account/api-keys"}
+            {response && (
+              <CopyToClipboard text={response}>
+                <span
+                  className="absolute right-2 top-8 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-muted p-2 hover:bg-accent"
+                  onClick={() =>
+                    handleToast({
+                      title: "AI response copied to clipboard",
+                      description:
+                        "You can now paste the response anywhere you want.",
+                    })
+                  }
+                >
+                  <FaCopy className="text-neutral-600 dark:text-neutral-100" />
+                </span>
+              </CopyToClipboard>
+            )}
+          </div>
+          <Button
+            variant="default"
+            disabled={isLoading || !prompt}
+            type="submit"
           >
-            Get your API keys
-          </LinkComponent>{" "}
-          to interact with OpenAI.
-        </p>
-      </div>
-    </div>
+            {isLoading ? "Generating..." : "Generate"}
+          </Button>
+        </form>{" "}
+        <hr className="my-4" />
+        <div className="flex items-center justify-between">
+          <h3 className="text-center">OpenAI</h3>
+          <p className="text-center text-sm text-muted-foreground">
+            <LinkComponent
+              isExternal
+              className="font-bold"
+              href={"https://platform.openai.com/account/api-keys"}
+            >
+              Get your API keys
+            </LinkComponent>{" "}
+            to interact with OpenAI.
+          </p>
+        </div>
+      </CardContent>
+    </Card>
   )
 }

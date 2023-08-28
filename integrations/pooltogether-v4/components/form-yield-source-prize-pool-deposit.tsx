@@ -1,3 +1,5 @@
+"use client"
+
 import { useLoadContractFromChainId } from "@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id"
 import { PRIZE_POOL_CONTRACT } from "@/actions/pooltogether-v4/utils/prize-pool-contract-list"
 import { USDC_CONTRACT } from "@/actions/pooltogether-v4/utils/usdc-contract-list"
