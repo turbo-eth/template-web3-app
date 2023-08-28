@@ -31,6 +31,8 @@ export default function HomePage() {
         <PageHeaderCTA>
           <Link
             href={siteConfig.links.docs}
+            target="_blank"
+            rel="noreferrer noopener"
             className={buttonVariants({ variant: "default" })}
           >
             <LuBook className="mr-2 h-4 w-4" />
@@ -38,6 +40,8 @@ export default function HomePage() {
           </Link>
           <Link
             href={siteConfig.links.github}
+            target="_blank"
+            rel="noreferrer noopener"
             className={buttonVariants({ variant: "secondary" })}
           >
             <FaGithub className="mr-2 h-4 w-4" />
@@ -45,6 +49,8 @@ export default function HomePage() {
           </Link>
           <Link
             href={siteConfig.links.discord}
+            target="_blank"
+            rel="noreferrer noopener"
             className={cn(
               buttonVariants(),
               "bg-[#7289da] text-white hover:bg-[#7289da]/80"

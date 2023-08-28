@@ -48,6 +48,8 @@ export default function EtherscanPage() {
         <PageHeaderCTA>
           <Link
             href={turboIntegrations.etherscan.url}
+            target="_blank"
+            rel="noreferrer noopener"
             className={cn(buttonVariants({ variant: "outline" }))}
           >
             <LuBook className="mr-2 h-4 w-4" />
@@ -70,7 +72,7 @@ export default function EtherscanPage() {
             </div>
           </IsSignedIn>
           <IsSignedOut>
-            <div className="">
+            <div className="flex flex-col items-center">
               <ButtonSIWELogin label="Sign-In With Ethereum" />
               <p className="mt-4 text-sm text-muted-foreground">
                 Accessing the Etherscan API requires authenticating with an

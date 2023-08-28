@@ -44,6 +44,8 @@ export default function LitProtocolPage() {
         <PageHeaderCTA>
           <Link
             href={turboIntegrations.litProtocol.url}
+            target="_blank"
+            rel="noreferrer noopener"
             className={cn(buttonVariants({ variant: "outline" }))}
           >
             <LuBook className="mr-2 h-4 w-4" />

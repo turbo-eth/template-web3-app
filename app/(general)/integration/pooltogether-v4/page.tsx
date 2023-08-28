@@ -37,6 +37,8 @@ export default function PoolTogetherPage() {
         <PageHeaderCTA>
           <Link
             href={turboIntegrations.pooltogether_v4.url}
+            target="_blank"
+            rel="noreferrer noopener"
             className={cn(buttonVariants({ variant: "outline" }))}
           >
             <LuBook className="mr-2 h-4 w-4" />

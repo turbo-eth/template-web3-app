@@ -14,8 +14,8 @@ export const turboIntegrations = {
     url: "https://disco.xyz",
     description:
       "Disco is identity simplified. Giving the tools to consent to how information is shared and with whom.",
-    imgLight: "/integrations/disco-light.png",
-    imgDark: "/integrations/disco-dark.png",
+    imgLight: "/integrations/discoLight.png",
+    imgDark: "/integrations/discoDark.png",
   },
   discoProgrammaticIssuance: {
     name: "Disco Programmatic Issuance",
@@ -23,8 +23,8 @@ export const turboIntegrations = {
     url: "https://docs.disco.xyz/v2/for-organizations/issuing-credentials/manual-issuance",
     description:
       "Welcome to the pilot beta of our Programmatic Issuance for Partners. We are excited to deliver this feature to you.",
-    imgLight: "/integrations/disco.jpeg",
-    imgDark: "/integrations/disco.jpeg",
+    imgLight: "/integrations/discoLight.png",
+    imgDark: "/integrations/discoDark.png",
   },
   etherscan: {
     name: "Etherscan",

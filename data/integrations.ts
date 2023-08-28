@@ -52,8 +52,8 @@ export const integrations = {
       href: "/integration/erc20",
       url: "https://eips.ethereum.org/EIPS/eip-20",
       description: "ERC20 is a standard for fungible tokens on EVM chains",
-      imgLight: "/integrations/erc20-icon.png",
-      imgDark: "/integrations/erc20-icon.png",
+      imgLight: "/integrations/erc20.png",
+      imgDark: "/integrations/erc20.png",
     },
     erc721: {
       name: "ERC721",
@@ -115,8 +115,8 @@ export const integrations = {
       url: "https://disco.xyz",
       description:
         "Disco's identity simplified. Giving the tools to consent to how information is shared and with whom.",
-      imgLight: "/integrations/disco.jpeg",
-      imgDark: "/integrations/disco.jpeg",
+      imgLight: "/integrations/discoLight.png",
+      imgDark: "/integrations/discoDark.png",
     },
     litProtocol: {
       name: "Lit Protocol",
