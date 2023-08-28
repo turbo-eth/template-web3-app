@@ -442,13 +442,13 @@ const demos = [
     href: turboIntegrations.moralis.href,
     demo: (
       <div className="flex items-center justify-center space-x-20">
-          <LightDarkImage
-            LightImage={turboIntegrations.moralis.imgDark}
-            DarkImage={turboIntegrations.moralis.imgLight}
-            alt="Moralis logo"
-            height={100}
-            width={100}
-          />
+        <LightDarkImage
+          LightImage={turboIntegrations.moralis.imgDark}
+          DarkImage={turboIntegrations.moralis.imgLight}
+          alt="Moralis logo"
+          height={100}
+          width={100}
+        />
       </div>
     ),
   },
