@@ -62,12 +62,12 @@ export default function LayoutIntegration({ children }: { children: ReactNode })
           </IsWalletDisconnected>
         </div>
       </div>
-      <section className="w-full lg:mt-10 max-w-screen-2xl">
+      <section className="w-full max-w-screen-2xl lg:mt-10">
         <IsWalletConnected>
           <LensProvider config={lensProviderConfig}>
-            <div className="shadow-md pb-8 w-full rounded-xl dark:bg-neutral-900">
+            <div className="w-full rounded-xl pb-8 shadow-md dark:bg-neutral-900">
               <Navbar />
-              <div className="container px-8 flex w-full flex-col items-center">{children}</div>
+              <div className="container flex w-full flex-col items-center px-8">{children}</div>
             </div>
           </LensProvider>
         </IsWalletConnected>
