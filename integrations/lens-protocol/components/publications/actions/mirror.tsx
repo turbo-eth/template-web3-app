@@ -48,7 +48,7 @@ const AuthorizedMirrorButton = ({ publication, hideCount, profile }: IActionButt
     }, 10000)
   }
   useEffect(() => {
-    showErrorToast(String(error))
+    if (error) showErrorToast(String(error))
   }, [error])
   return (
     <ActionButton
