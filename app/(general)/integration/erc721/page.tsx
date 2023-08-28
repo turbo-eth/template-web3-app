@@ -40,9 +40,9 @@ export default function ERC721Page() {
           width={100}
           height={100}
         />
-        <PageHeaderHeading>ERC20</PageHeaderHeading>
+        <PageHeaderHeading>ERC721</PageHeaderHeading>
         <PageHeaderDescription>
-          ERC20 is a standard for fungible tokens on EVM chains
+          ERC721 is a standard for non-fungible tokens on EVM chains
         </PageHeaderDescription>
         <PageHeaderCTA>
           <Link
