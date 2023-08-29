@@ -24,6 +24,14 @@ export const turboIntegrations = {
     imgLight: "/integrations/erc721-icon.png",
     imgDark: "/integrations/erc721-icon.png",
   },
+  erc1155: {
+    name: 'ERC1155',
+    href: '/integration/erc1155',
+    url: 'https://eips.ethereum.org/EIPS/eip-1155',
+    description: 'ERC1155 is a multi-token standard on EVM chains',
+    imgLight: '/integrations/erc1155-icon.png',
+    imgDark: '/integrations/erc1155-icon.png',
+  },
   etherscan: {
     name: "Etherscan",
     href: "/integration/etherscan",
