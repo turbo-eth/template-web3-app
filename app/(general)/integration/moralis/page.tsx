@@ -9,14 +9,14 @@ import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { LightDarkImage } from "@/components/light-dark-image"
 import {
   PageHeader,
   PageHeaderCTA,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@/components/page-header"
-import { PageSection } from "@/components/page-section"
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import {
   FormGetContractEvents,
   FormGetContractLogs,

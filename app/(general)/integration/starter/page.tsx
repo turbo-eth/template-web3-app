@@ -21,14 +21,14 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { LightDarkImage } from "@/components/light-dark-image"
 import {
   PageHeader,
   PageHeaderCTA,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@/components/page-header"
-import { PageSection } from "@/components/page-section"
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 
 export default function IntegrationPage() {
   return (

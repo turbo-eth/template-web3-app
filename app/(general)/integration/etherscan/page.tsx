@@ -8,16 +8,16 @@ import { useNetwork } from "wagmi"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
-import { LightDarkImage } from "@/components/light-dark-image"
 import {
   PageHeader,
   PageHeaderCTA,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@/components/page-header"
-import { PageSection } from "@/components/page-section"
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import TransactionsTable from "@/integrations/etherscan/components/transactions-table"
 import { useEtherscanAccountTransactions } from "@/integrations/etherscan/hooks/use-etherscan-account-transactions"
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"

@@ -15,7 +15,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Separator } from "@/components/ui/separator"
-import { LightDarkImage } from "@/components/light-dark-image"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 
 export function MainNav() {
   return (

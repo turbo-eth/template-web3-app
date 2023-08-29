@@ -9,14 +9,14 @@ import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
-import { LightDarkImage } from "@/components/light-dark-image"
 import {
   PageHeader,
   PageHeaderCTA,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@/components/page-header"
-import { PageSection } from "@/components/page-section"
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { DiscoProfileBasic } from "@/integrations/disco/components/disco-profile-basic"

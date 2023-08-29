@@ -6,14 +6,14 @@ import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { LightDarkImage } from "@/components/light-dark-image"
 import {
   PageHeader,
   PageHeaderCTA,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@/components/page-header"
-import { PageSection } from "@/components/page-section"
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { GeneralInfo } from "@/integrations/aave/components/general-info"
 import { ListAssetsToBorrow } from "@/integrations/aave/components/list-assets-to-borrow"
 import { ListAssetsToSupply } from "@/integrations/aave/components/list-assets-to-supply"

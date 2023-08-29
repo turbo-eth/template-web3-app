@@ -8,14 +8,14 @@ import { Address } from "viem"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { LightDarkImage } from "@/components/light-dark-image"
 import {
   PageHeader,
   PageHeaderCTA,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@/components/page-header"
-import { PageSection } from "@/components/page-section"
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { CreateSessionKey } from "@/integrations/session-keys/components/create-session-key"
 import { DeleteAllSessionKeys } from "@/integrations/session-keys/components/delete-all-session-keys"
 import { DeleteSessionKey } from "@/integrations/session-keys/components/delete-session-key"

@@ -5,16 +5,16 @@ import { LuBook } from "react-icons/lu"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
-import { LightDarkImage } from "@/components/light-dark-image"
 import {
   PageHeader,
   PageHeaderCTA,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@/components/page-header"
-import { PageSection } from "@/components/page-section"
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { ButtonSIWELogout } from "@/integrations/siwe/components/button-siwe-logout"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"

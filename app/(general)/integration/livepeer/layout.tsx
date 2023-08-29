@@ -8,14 +8,14 @@ import { LuBook } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { LightDarkImage } from "@/components/light-dark-image"
 import {
   PageHeader,
   PageHeaderCTA,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@/components/page-header"
-import { PageSection } from "@/components/page-section"
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { LinkComponent } from "@/components/shared/link-component"
 import { useLivepeerApiKey } from "@/integrations/livepeer/hooks/use-livepeer-api-key"
 import { LivepeerProvider } from "@/integrations/livepeer/livepeer-provider"
