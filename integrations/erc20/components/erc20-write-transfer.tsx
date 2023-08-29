@@ -48,7 +48,7 @@ export function ERC20ContractTransferTokens({
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 

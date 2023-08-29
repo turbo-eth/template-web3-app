@@ -43,7 +43,7 @@ export function Erc1155WriteApproveForAll({
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 

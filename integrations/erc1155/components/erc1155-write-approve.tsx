@@ -48,7 +48,7 @@ export function Erc1155WriteApprove({ address }: Erc1155WriteApproveProps) {
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 

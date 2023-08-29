@@ -173,7 +173,7 @@ export function FormConnextXTransfer({
     return chain?.id === getChain(originChain)?.chain_id
   }
 
-  const swapChains = async () => {
+  const swapChains = () => {
     const temp = originChain
     setOriginChain(destinationChain)
     setDestinationChain(temp)

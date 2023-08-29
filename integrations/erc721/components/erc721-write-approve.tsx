@@ -37,7 +37,7 @@ export function Erc721WriteApprove({ address }: Erc721WriteApproveProps) {
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 

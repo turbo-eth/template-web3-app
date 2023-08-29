@@ -106,7 +106,7 @@ export function Erc1155WriteBatchTransfer({
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 

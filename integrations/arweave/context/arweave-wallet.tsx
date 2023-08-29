@@ -120,7 +120,7 @@ export const ArweaveWalletProvider = ({
     return (json as JWKInterface).kty !== undefined
   }
 
-  const importFromFile = useCallback(async (file: File) => {
+  const importFromFile = useCallback((file: File) => {
     try {
       const fileReader = new FileReader()
       fileReader.readAsText(file, "UTF-8")
@@ -138,7 +138,7 @@ export const ArweaveWalletProvider = ({
     }
   }, [])
 
-  const backupWallet = useCallback(async () => {
+  const backupWallet = useCallback(() => {
     if (!wallet || !address) return
     const json = JSON.stringify(wallet, null, 2)
     const blob = new Blob([json], { type: "application/json" })

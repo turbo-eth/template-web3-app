@@ -46,7 +46,7 @@ export function useGetPosts() {
     []
   )
 
-  const onSubmit = async (values: z.infer<typeof txSearchSchema>) => {
+  const onSubmit = (values: z.infer<typeof txSearchSchema>) => {
     try {
       setPosts([])
       setLastCursor("")

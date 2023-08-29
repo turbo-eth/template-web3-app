@@ -61,7 +61,7 @@ export function Erc1155WriteTransfer({ address }: Erc1155WriteTransferProps) {
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 

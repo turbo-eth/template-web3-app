@@ -7,7 +7,7 @@ export function Erc721SetTokenStorage() {
   const [token, setToken] = useErc721TokenStorage()
   const [tokenAddress, setTokenAddress] = useState<Address>()
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setToken(tokenAddress)
   }

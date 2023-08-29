@@ -53,7 +53,7 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 

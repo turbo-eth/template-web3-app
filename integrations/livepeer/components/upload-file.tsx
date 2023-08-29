@@ -29,7 +29,7 @@ export function UploadFile() {
   )
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
 
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
     if (acceptedFiles && acceptedFiles.length > 0 && acceptedFiles?.[0]) {
       setVideo(acceptedFiles[0])
     }

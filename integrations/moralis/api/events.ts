@@ -39,7 +39,7 @@ export async function POST(
     if (!safeRequest.success) throw new Error("Invalid request body")
     const { data } = safeRequest
 
-    const Moralis = await getMoralis()
+    const Moralis = getMoralis()
     if (!Moralis) throw new Error("Moralis not initialized")
 
     let events

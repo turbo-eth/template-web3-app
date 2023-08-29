@@ -7,7 +7,7 @@ export function Erc20SetTokenStorage() {
   const [token, setToken] = useERC20TokenStorage()
   const [tokenAddress, setTokenAddress] = useState(token)
 
-  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setToken(tokenAddress)
   }

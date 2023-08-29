@@ -82,7 +82,7 @@ export const useArweaveAccountForm = () => {
     }
   }, [debouncedFormData])
 
-  const onSubmit = async (values: z.infer<typeof profileSchema>) => {
+  const onSubmit = (values: z.infer<typeof profileSchema>) => {
     try {
       if (!wallet) {
         console.error("No Arweave wallet connected.")
