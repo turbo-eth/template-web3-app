@@ -1,10 +1,9 @@
 "use client"
 
 import { motion, MotionProps } from "framer-motion"
-import Balancer from "react-wrap-balancer"
 
 import { cn } from "@/lib/utils"
-import { headingVariant, staggerContainer } from "@/lib/utils/motion"
+import { staggerContainer } from "@/lib/utils/motion"
 
 interface MotionSectionProps extends MotionProps {
   className?: string

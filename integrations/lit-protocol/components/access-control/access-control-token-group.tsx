@@ -89,11 +89,11 @@ export function AccessControlTokenGroup({
             <SelectTrigger>
               <SelectValue placeholder="Select a token type" />
             </SelectTrigger>
-            <SelectConten>
+            <SelectContent>
               <SelectItem value="ERC20">ERC20</SelectItem>
               <SelectItem value="ERC721">ERC721</SelectItem>
               <SelectItem value="ERC1155">ERC1155</SelectItem>
-            </SelectConten>
+            </SelectContent>
           </Select>
           {errors.tokenType && (
             <p className="mt-1 text-sm text-red-500">

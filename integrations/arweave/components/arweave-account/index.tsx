@@ -4,7 +4,6 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { LinkComponent } from "@/components/shared/link-component"
 
 import { uploadArweaveAccountAvatar } from "../../arweave-account"
 import { useArweaveWallet } from "../../hooks/use-arweave-wallet"
@@ -174,7 +173,9 @@ export const ArweaveAccount = () => {
                 {val instanceof Object
                   ? Object.entries(val).map(([key, val]) => (
                       <div key={key} className="my-4 ml-6">
-                        <span className="text-sm text-muted-foreground">{key}</span>
+                        <span className="text-sm text-muted-foreground">
+                          {key}
+                        </span>
                         <span className="ml-2 text-sm">{val ? val : "-"}</span>
                       </div>
                     ))
