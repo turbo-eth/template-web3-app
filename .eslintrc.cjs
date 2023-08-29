@@ -20,7 +20,6 @@ module.exports = {
     "react-hooks/exhaustive-deps": "off", // Incorrectly report needed dependency with Next.js router
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "error",
-    // "@typescript-eslint/require-await": "off", // TODO: remove & fix
     "@typescript-eslint/no-misused-promises": "off", // TODO: remove & fix
     "@typescript-eslint/no-unsafe-assignment": "off", // TODO: remove & fix
     "@typescript-eslint/no-unsafe-member-access": "off", // TODO: remove & fix
