@@ -92,7 +92,7 @@ export function FormOpenAIPrompt() {
                     })
                   }
                 >
-                  <FaCopy className="text-neutral-600 dark:text-neutral-100" />
+                  <FaCopy className="text-muted-foreground" />
                 </span>
               </CopyToClipboard>
             )}

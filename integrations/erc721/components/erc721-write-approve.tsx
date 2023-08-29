@@ -67,7 +67,7 @@ export function Erc721WriteApprove({ address }: Erc721WriteApproveProps) {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC721 Approve</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             Approve NFTs to any address
           </p>
         </div>

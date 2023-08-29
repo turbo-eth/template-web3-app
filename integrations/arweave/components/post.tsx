@@ -81,7 +81,7 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
       <h2>Transaction</h2>
       <div className="mt-2 flex flex-col items-center justify-between gap-2 sm:flex-row">
         <div className="flex max-w-full flex-wrap items-center gap-2">
-          <span className="max-w-full break-words rounded-xl bg-slate-100 p-2 font-mono text-sm text-blue-500 dark:bg-slate-600 dark:text-blue-100">
+          <span className="max-w-full break-words rounded-xl bg-muted p-2 font-mono text-sm text-blue-500 dark:text-blue-100">
             {txId}
           </span>
           <CopyToClipboard
@@ -89,7 +89,7 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
             onCopy={() => handleToast("Arweave Tx ID Copied")}
           >
             <span className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-              <FaCopy className="text-neutral-600 dark:text-neutral-100" />
+              <FaCopy className="text-muted-foreground" />
             </span>
           </CopyToClipboard>
         </div>
@@ -106,23 +106,17 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
           {txStatus?.confirmed ? (
             <>
               <div className="mt-2 text-sm">
-                <span className="text-gray-600 dark:text-gray-500">
-                  Confirmations:
-                </span>
+                <span className="text-muted-foreground">Confirmations:</span>
                 <span className="ml-2">
                   {txStatus.confirmed?.number_of_confirmations}
                 </span>
               </div>
               <div className="mt-2 text-sm">
-                <span className="text-gray-600 dark:text-gray-500">
-                  Block height:
-                </span>
+                <span className="text-muted-foreground">Block height:</span>
                 <span className="ml-2">{txStatus.confirmed?.block_height}</span>
               </div>
               <div className="mt-2 text-sm">
-                <span className="text-gray-600 dark:text-gray-500">
-                  Block Hash:
-                </span>
+                <span className="text-muted-foreground">Block Hash:</span>
                 <span className="ml-2 break-words font-mono text-xs">
                   {txStatus.confirmed?.block_indep_hash}
                 </span>
@@ -139,13 +133,13 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
       {txDetails && (
         <div>
           <div className="mt-2 text-sm">
-            <span className="text-gray-600 dark:text-gray-500">Fee:</span>
+            <span className="text-muted-foreground">Fee:</span>
             <span className="ml-2 font-mono text-xs">
               {txDetails.fee.winston} winston
             </span>
           </div>
           <div className="mt-2 text-sm">
-            <span className="text-gray-600 dark:text-gray-500">Time:</span>
+            <span className="text-muted-foreground">Time:</span>
             <span className="ml-2 font-mono text-xs">
               {txDetails.block?.timestamp
                 ? moment(parseInt(txDetails.block.timestamp) * 1000).format(
@@ -171,7 +165,7 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
                   onCopy={() => handleToast("Owner address Copied")}
                 >
                   <span className="ml-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                    <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+                    <FaCopy className="text-muted-foreground" />
                   </span>
                 </CopyToClipboard>
               </div>
@@ -183,10 +177,8 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
         <div>Tags</div>
         {txDetails?.tags.map((tag) => (
           <div key={tag.name}>
-            <div className="mt-2 inline-block w-auto rounded bg-blue-100 p-2 text-sm dark:bg-slate-800">
-              <span className="mr-2 text-gray-600 dark:text-gray-500">
-                {tag.name}
-              </span>
+            <div className="mt-2 inline-block w-auto rounded bg-background p-2 text-sm">
+              <span className="mr-2 text-muted-foreground">{tag.name}</span>
               <span className="ml-2 font-mono">{tag.value}</span>
             </div>
           </div>
@@ -197,13 +189,13 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
         {txDetails && (
           <>
             <div className="mt-2 text-sm">
-              <span className="text-gray-600 dark:text-gray-500">Size:</span>
+              <span className="text-muted-foreground">Size:</span>
               <span className="ml-2 font-mono text-xs">
                 {humanFileSize(txDetails.data.size)}
               </span>
             </div>
             <div className="mt-2 text-sm">
-              <span className="text-gray-600 dark:text-gray-500">Type:</span>
+              <span className="text-muted-foreground">Type:</span>
               <span className="ml-2 font-mono text-xs">
                 {txDetails.data.type ?? "-"}
               </span>
@@ -218,7 +210,7 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
           />
         )}
         {txData && (
-          <div className="mt-2 break-all bg-slate-100 p-4 font-mono text-sm dark:bg-slate-500">
+          <div className="mt-2 break-all bg-muted p-4 font-mono text-sm">
             {txData}
           </div>
         )}

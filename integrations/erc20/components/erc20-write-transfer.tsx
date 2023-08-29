@@ -88,7 +88,7 @@ export function ERC20WriteTransfer({ address }: ERC20WriteTransferProps) {
           <hr className="my-4" />
           <div className="flex items-center justify-between">
             <h3 className="text-center">ERC20 Transfer</h3>
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-muted-foreground">
               Transer tokens to a friend... or enemy.
             </p>
           </div>

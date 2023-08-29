@@ -113,7 +113,7 @@ export const AssetToBorrowItem = ({
       </td>
       <td
         className={`px-4 py-2 text-center ${
-          maxBorrowableInUsd === 0 ? "text-slate-400" : ""
+          maxBorrowableInUsd === 0 ? "text-muted-foreground" : ""
         }`}
       >
         {/* Only allowing borrowing 80% of max borrow amount to keep health factor safe */}
@@ -169,10 +169,10 @@ export const AssetToBorrowItem = ({
               <div className="mb-2 mt-4">
                 <label>Amount</label>
               </div>
-              <div className="input dark:bg-slate-900">
+              <div className="input bg-background">
                 <div className="flex items-center justify-between">
                   <input
-                    className="border-none dark:bg-slate-900"
+                    className="border-none bg-background"
                     placeholder="0.00"
                     type="text"
                     value={borrowAmount}

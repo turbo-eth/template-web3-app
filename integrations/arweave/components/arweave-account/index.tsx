@@ -166,7 +166,7 @@ export const ArweaveAccount = () => {
           )
           .map(([key, val]) => (
             <div key={key} className="mt-2">
-              <span className="text-sm text-slate-400">
+              <span className="text-sm text-muted-foreground">
                 {key}
                 {val instanceof Object ? ":" : ""}
               </span>
@@ -174,7 +174,7 @@ export const ArweaveAccount = () => {
                 {val instanceof Object
                   ? Object.entries(val).map(([key, val]) => (
                       <div key={key} className="my-4 ml-6">
-                        <span className="text-sm text-slate-400">{key}</span>
+                        <span className="text-sm text-muted-foreground">{key}</span>
                         <span className="ml-2 text-sm">{val ? val : "-"}</span>
                       </div>
                     ))

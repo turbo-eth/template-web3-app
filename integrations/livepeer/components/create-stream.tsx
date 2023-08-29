@@ -169,7 +169,7 @@ export const CreateStream = ({
                             })
                           }}
                         >
-                          <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+                          <FaCopy className="text-muted-foreground" />
                         </span>
                       </CopyToClipboard>
                     </div>
@@ -189,7 +189,7 @@ export const CreateStream = ({
                             })
                           }}
                         >
-                          <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+                          <FaCopy className="text-muted-foreground" />
                         </span>
                       </CopyToClipboard>
                     </div>

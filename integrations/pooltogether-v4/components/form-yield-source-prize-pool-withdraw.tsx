@@ -142,7 +142,9 @@ export function PoolTogetherFormWithdraw() {
       <hr className="my-4" />
       <div className="flex items-center justify-between">
         <h3 className="text-center">Withdraw</h3>
-        <p className="text-center text-sm text-gray-500">Start saving today</p>
+        <p className="text-center text-sm text-muted-foreground">
+          Start saving today
+        </p>
       </div>
     </motion.div>
   )

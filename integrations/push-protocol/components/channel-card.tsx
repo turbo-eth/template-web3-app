@@ -87,7 +87,7 @@ export function ChannelCard({
                     text={channel.channel}
                     onCopy={() => setCopied(true)}
                   >
-                    <button className="rounded-full bg-slate-200 px-2 py-1 text-xs text-gray-700">
+                    <button className="rounded-full bg-muted px-2 py-1 text-xs text-muted-foreground">
                       {copied ? (
                         <>Copied!</>
                       ) : (

@@ -82,7 +82,7 @@ export function TaskView({ taskId }: TasKViewProps) {
 
   if (isLoading || !taskWithName) {
     return (
-      <div className="mx-auto h-20 w-full max-w-4xl animate-pulse rounded-lg bg-slate-400/70"></div>
+      <div className="mx-auto h-20 w-full max-w-4xl animate-pulse rounded-lg bg-muted/80"></div>
     )
   }
 

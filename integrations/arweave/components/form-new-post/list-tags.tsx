@@ -34,13 +34,13 @@ export const FormListTags = ({
         {fields.map((item, index) => {
           return (
             <li key={item.id} className="mb-2 flex">
-              <FormControl className="mr-2 dark:border-none dark:bg-neutral-800 dark:text-gray-400 dark:[color-scheme:dark]">
+              <FormControl className="mr-2 bg-background text-muted-foreground">
                 <Input
                   placeholder="Tag Name"
                   {...register(`tags.${index}.name`)}
                 />
               </FormControl>
-              <FormControl className="mr-2 dark:border-none dark:bg-neutral-800 dark:text-gray-400 dark:[color-scheme:dark]">
+              <FormControl className="mr-2 bg-background text-muted-foreground">
                 <Input
                   placeholder="Tag Value"
                   {...register(`tags.${index}.value`)}

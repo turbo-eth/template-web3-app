@@ -1,7 +1,7 @@
 export const Spinner = ({ isSmall }: { isSmall?: boolean }) => {
   const cn = isSmall
-    ? "mr-2 h-4 w-4 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
-    : "mr-2 h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
+    ? "mr-2 h-4 w-4 animate-spin fill-blue-600 text-muted-foreground"
+    : "mr-2 h-8 w-8 animate-spin fill-blue-600 text-muted-foreground"
   return (
     <div role="status">
       <svg

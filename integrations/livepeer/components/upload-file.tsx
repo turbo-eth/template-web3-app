@@ -96,7 +96,7 @@ export function UploadFile() {
                 <input {...getInputProps()} />
 
                 <BiVideoPlus fill="rgb(226 232 240)" size={108} />
-                <span className="mt-2 block justify-center text-sm font-semibold text-gray-400">
+                <span className="mt-2 block justify-center text-sm font-semibold text-muted-foreground">
                   Drop a video or Click to browse
                 </span>
               </div>

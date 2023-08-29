@@ -38,7 +38,7 @@ export function Erc721SetTokenStorage() {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">Select ERC721 Contract</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             Select which NFT contract to interact with
           </p>
         </div>

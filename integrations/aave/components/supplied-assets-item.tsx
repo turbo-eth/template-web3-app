@@ -164,10 +164,10 @@ export const SuppliedAssetsItem = ({
               <div className="mb-2 mt-4">
                 <label>Amount</label>
               </div>
-              <div className="input dark:bg-slate-900">
+              <div className="input bg-background">
                 <div className="flex items-center justify-between">
                   <input
-                    className="border-none dark:bg-slate-900"
+                    className="border-none bg-background"
                     placeholder="0.00"
                     type="text"
                     value={withdrawAmount}
@@ -210,7 +210,7 @@ export const SuppliedAssetsItem = ({
               <div className="mb-2 mt-5">
                 <label>Transaction overview</label>
               </div>
-              <div className="input dark:bg-slate-900">
+              <div className="input bg-background">
                 <div className="flex items-center justify-between">
                   <span>Remaining debt</span>
                   <div className="flex items-center justify-between">

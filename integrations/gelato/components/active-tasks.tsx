@@ -50,7 +50,7 @@ export function ActiveTasks() {
       </CardHeader>
       <CardContent>
         {isLoading ? (
-          <div className="h-20 w-full animate-pulse rounded-lg bg-slate-400/70"></div>
+          <div className="h-20 w-full animate-pulse rounded-lg bg-muted/80"></div>
         ) : (
           <>
             <div className="flex justify-between text-sm dark:text-white dark:text-opacity-30">

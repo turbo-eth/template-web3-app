@@ -11,7 +11,7 @@ export const FeeEstimation = ({
   estimationError: string | null
 }) => (
   <div className="flex items-center text-sm">
-    <span className="mr-2 text-slate-700 dark:text-slate-200">
+    <span className="mr-2 text-muted-foreground">
       Estimated Tx Fee:
     </span>
     {isEstimatingTxFee ? (

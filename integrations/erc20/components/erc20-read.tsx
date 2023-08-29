@@ -201,7 +201,7 @@ export function ERC20Read({
           <hr className="my-4" />
           <div className="flex items-center justify-between">
             <h3 className="text-center">ERC20 Read</h3>
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-muted-foreground">
               Read core ERC20 token storage values
             </p>
           </div>

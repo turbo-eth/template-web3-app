@@ -62,7 +62,7 @@ export const FormNewPost = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Data to be stored</FormLabel>
-                    <FormControl className="input dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
+                    <FormControl className="input border bg-background text-muted-foreground">
                       <Textarea
                         {...field}
                         {...register("data")}
@@ -75,7 +75,7 @@ export const FormNewPost = () => {
               />
             )}
             {!values.file && !values.data && (
-              <div className="my-2 w-full text-center dark:text-gray-600">
+              <div className="my-2 w-full text-center text-muted-foreground">
                 - or -
               </div>
             )}
@@ -87,7 +87,7 @@ export const FormNewPost = () => {
                   return (
                     <FormItem>
                       <FormLabel>File to be stored</FormLabel>
-                      <FormControl className="dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
+                      <FormControl className="border bg-background text-muted-foreground">
                         <div className="flex items-center">
                           <Input
                             ref={fileInputRef}
@@ -173,7 +173,7 @@ export const FormNewPost = () => {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">Arweave post</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             Arweave post is a type of transaction which can store data on-chain
             permanently.
           </p>

@@ -26,7 +26,7 @@ export function ERC721TokenUriImage({
   if (metadata.isLoading)
     return (
       <div
-        className={cn(className, "animate-pulse bg-gray-200")}
+        className={cn(className, "animate-pulse bg-muted")}
         style={{ width, height }}
         {...props}
       />

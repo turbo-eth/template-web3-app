@@ -45,7 +45,7 @@ const TagValues = ({
       {fields.map((item, subIndex) => {
         return (
           <li key={item.id} className="mb-2 flex">
-            <FormControl className="mr-2 dark:border-none dark:bg-neutral-800 dark:text-gray-400 dark:[color-scheme:dark]">
+            <FormControl className="mr-2 bg-background text-muted-foreground dark:border-none">
               <Input
                 placeholder="Tag Value"
                 {...register(`tags.${tagIndex}.values.${subIndex}.value`)}
@@ -106,7 +106,7 @@ export const ListPosts = () => {
                     Use connected wallet address
                   </Button>
                 </FormLabel>
-                <FormControl className="input dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
+                <FormControl className="input border text-muted-foreground">
                   <Input
                     {...field}
                     {...register("address")}
@@ -123,7 +123,7 @@ export const ListPosts = () => {
               {fields.map((item, index) => {
                 return (
                   <li key={item.id} className="mb-2 flex">
-                    <FormControl className="mr-2 dark:border-none dark:bg-neutral-800 dark:text-gray-400 dark:[color-scheme:dark]">
+                    <FormControl className="mr-2 bg-background text-muted-foreground">
                       <Input
                         placeholder="Tag Name"
                         {...register(`tags.${index}.name`)}

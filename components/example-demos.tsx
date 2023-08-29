@@ -144,7 +144,7 @@ const demos = [
     title: "Web3 Login",
     description: "Authenticate using an Ethereum Account",
     demo: (
-      <div className="text-center text-gray-800">
+      <div className="text-center">
         <IsWalletConnected>
           <IsSignedIn>
             <ButtonSIWELogout />

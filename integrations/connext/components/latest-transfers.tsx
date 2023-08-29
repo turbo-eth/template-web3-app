@@ -56,7 +56,7 @@ export function LatestTransfers({ isMainnet }: LatestTransfersProps) {
           </div>
           {address && transfers.length > 3 && (
             <LinkComponent
-              className="3xl:text-2xl mt-2.5 flex items-center justify-center text-blue-500 dark:text-slate-200"
+              className="3xl:text-2xl mt-2.5 flex items-center justify-center text-blue-500 dark:text-blue-200"
               href={`https://connextscan.io//address/${address}`}
               target="_blank"
             >

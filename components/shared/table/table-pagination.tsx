@@ -30,7 +30,7 @@ export const TablePagination = ({
   setPageSize,
 }: ITablePagination): ReactElement => {
   return (
-    <div className="flex justify-between items-center bg-white text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 shadow-sm px-3 py-5 rounded-b-lg">
+    <div className="flex justify-between items-center bg-background text-foreground shadow-sm px-3 py-5 rounded-b-lg">
       <div className="">
         <button
           className="tag tag-smoke"
@@ -87,7 +87,7 @@ export const TablePagination = ({
       </div>
       <div className="">
         <select
-          className="tag tag-smoke min-w-[90px] bg-white text-xl text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
+          className="tag tag-smoke min-w-[90px] bg-background text-xl text-foreground"
           value={pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value))

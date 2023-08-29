@@ -84,14 +84,14 @@ export const DiscoProfileBasic = ({
                         rel="noopener noreferrer"
                         target="_blank"
                         {...props}
-                        className="font-medium text-gray-800 underline transition-colors dark:text-blue-200"
+                        className="font-medium text-muted-foreground underline transition-colors"
                       />
                     ),
 
                     code: ({ ...props }: HTMLAttributes<HTMLElement>) => (
                       <code
                         {...props}
-                        className="rounded-sm bg-gray-100 px-1 py-0.5 font-mono font-medium text-gray-800"
+                        className="rounded-sm bg-muted px-1 py-0.5 font-mono font-medium text-muted-foreground"
                       />
                     ),
                   }}

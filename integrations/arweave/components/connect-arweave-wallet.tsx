@@ -36,7 +36,7 @@ export function ConnectArweaveWallet() {
         >
           Generate wallet
         </Button>
-        <div className="my-5 text-slate-500"> - or - </div>
+        <div className="my-5 text-muted-foreground"> - or - </div>
         <div>Generate a new Arweave Wallet</div>
         <Button
           className="mt-2"
@@ -47,7 +47,7 @@ export function ConnectArweaveWallet() {
         >
           Generate wallet
         </Button>
-        <div className="my-5 text-slate-500"> - or - </div>
+        <div className="my-5 text-muted-foreground"> - or - </div>
         <div>Import your wallet KeyFile</div>
         <Button className="mt-2" onClick={() => fileInputRef.current?.click()}>
           <span className="mt-2 text-base leading-normal">Select a file</span>
@@ -70,7 +70,7 @@ export function ConnectArweaveWallet() {
             <span className="text-sm text-red-400">{error}</span>
           </div>
         )}
-        <div className="mt-4 w-80 text-sm text-gray-600">
+        <div className="mt-4 w-80 text-sm text-muted-foreground">
           You can get a backup of your Arweave wallet by clicking your wallet
           address in the sidebar once connected.
         </div>

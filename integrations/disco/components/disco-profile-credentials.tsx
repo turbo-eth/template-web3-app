@@ -49,7 +49,7 @@ export const DiscoProfileCredentials = ({
               className="card flex h-[224px] flex-col justify-between transition duration-300 hover:scale-105 dark:bg-neutral-500/80"
               href={`${DISCO_APP_URL}/${credential.id}`}
             >
-              <div className="break-words font-bold text-neutral-900 dark:text-neutral-100">{`${
+              <div className="break-words font-bold text-foreground">{`${
                 credential?.type[1] || credential?.type[0]
               }`}</div>
               <div>
@@ -75,6 +75,6 @@ export const DiscoProfileCredentials = ({
 
 function CredentialCardSkeleton() {
   return (
-    <div className="h-56 w-[600px] max-w-full animate-pulse rounded-lg bg-gray-500/80 dark:bg-gray-200"></div>
+    <div className="h-56 w-[600px] max-w-full animate-pulse rounded-lg bg-muted/80"></div>
   )
 }

@@ -38,7 +38,7 @@ export function Erc20SetTokenStorage() {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">Select ERC20 Contract</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             Select which ERC20 contract to interact with
           </p>
         </div>

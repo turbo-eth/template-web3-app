@@ -15,7 +15,7 @@ export const SideBar = () => {
   const arweaveBaseUrl = turboIntegrations.arweave.href
   return (
     <aside aria-label="Sidebar" className="w-full sm:w-64">
-      <div className="overflow-y-auto bg-neutral-50 px-3 py-4 text-left dark:bg-neutral-900 sm:h-full">
+      <div className="overflow-y-auto bg-background px-3 py-4 text-left sm:h-full">
         <ArweaveAccountPreview />
         <ul className="space-y-2 font-medium">
           <li>

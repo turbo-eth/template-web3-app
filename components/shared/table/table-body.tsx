@@ -28,9 +28,8 @@ export const TableBody = ({
       {page.map((row, idx) => {
         prepareRow(row)
         const styleRow = cn("row py-3", {
-          "bg-gray-100 text-gray-500 dark:text-white": row.original.disabled,
-          "bg-white dark:bg-neutral-800 dark:text-white":
-            !row.original.disabled,
+          "bg-foreground text-muted-foreground": row.original.disabled,
+          "bg-foreground": !row.original.disabled,
         })
         return (
           <tr {...row.getRowProps()} className={styleRow} key={idx}>

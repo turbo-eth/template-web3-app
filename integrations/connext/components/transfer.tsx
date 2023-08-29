@@ -49,7 +49,7 @@ export function Transfer({ isMainnet, transfer }: TransferProps) {
 
   return (
     <div className="3xl:w-96 mx-auto w-72">
-      <div className="mx-auto max-w-xs rounded border-0 border-green-500 bg-slate-100 px-4 py-5 dark:bg-slate-900 sm:max-w-none">
+      <div className="mx-auto max-w-xs rounded border-0 border-green-500 bg-background px-4 py-5 sm:max-w-none">
         <div className="flex items-center justify-between space-x-2">
           <div className="flex items-center space-x-1.5">
             <Image
@@ -110,7 +110,7 @@ export function Transfer({ isMainnet, transfer }: TransferProps) {
         <div className="mt-0.5 flex items-center justify-between">
           <span></span>
           <div className="flex items-center">
-            <span className="3xl:text-xl text-xs font-medium text-slate-400 dark:text-slate-500">{formatTimestamp(transfer.xcall_timestamp)}</span>
+            <span className="3xl:text-xl text-xs font-medium text-muted-foreground">{formatTimestamp(transfer.xcall_timestamp)}</span>
           </div>
         </div>
         <div className="-mb-2 mt-1 flex items-center justify-end">

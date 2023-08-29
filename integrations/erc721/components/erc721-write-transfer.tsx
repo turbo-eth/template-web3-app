@@ -99,7 +99,7 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC721 Transfer</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             Transfer NFTs to any address
           </p>
         </div>

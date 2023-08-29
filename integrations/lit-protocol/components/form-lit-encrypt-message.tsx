@@ -96,7 +96,7 @@ export function FormLitEncryptMessage() {
                 >
                   <p>{`${origin}/integration/lit-protocol/unseal?id=${encryptedMessageId}`}</p>
                   <span className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                    <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+                    <FaCopy className="text-muted-foreground" />
                   </span>
                 </span>
               </CopyToClipboard>
@@ -114,10 +114,10 @@ export function FormLitEncryptMessage() {
                   value={accessControlType}
                   onValueChange={setAccessControlType}
                 >
-                  <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
+                  <SelectTrigger>
                     <SelectValue placeholder="Select Condition" />
                   </SelectTrigger>
-                  <SelectContent className="bg-white dark:bg-white">
+                  <SelectContent>
                     <SelectItem value="singleAddress">
                       Single Address
                     </SelectItem>
@@ -144,7 +144,7 @@ export function FormLitEncryptMessage() {
                 <hr className="my-4" />
                 <div className="flex items-center justify-between">
                   <h3 className="text-center">Access Control Condition</h3>
-                  <p className="text-center text-sm text-gray-500">
+                  <p className="text-center text-sm text-muted-foreground">
                     <LinkComponent
                       isExternal
                       className="font-bold"
@@ -165,7 +165,7 @@ export function FormLitEncryptMessage() {
                 >
                   <h4 className="mb-4">Selected Access Control Conditions:</h4>
                   <Textarea
-                    className="input h-80 dark:text-gray-600 dark:placeholder:text-neutral-400"
+                    className="h-80"
                     value={JSON.stringify(accessControlConditions, null, 2)}
                   />
                   <hr className="my-4" />
@@ -173,7 +173,7 @@ export function FormLitEncryptMessage() {
                     <h3 className="text-center">
                       Selected Access control condition
                     </h3>
-                    <p className="text-center text-sm text-gray-500">
+                    <p className="text-center text-sm text-muted-foreground">
                       <LinkComponent
                         isExternal
                         className="font-bold"
@@ -199,7 +199,7 @@ export function FormLitEncryptMessage() {
                   <label className="mb-4">Message:</label>
                   <Textarea
                     {...register("message")}
-                    className="input h-40 dark:text-gray-600 dark:placeholder:text-neutral-400"
+                    className="h-40"
                     value={messageToEncrypt}
                     onChange={(e) => setMessageToEncrypt(e.target.value)}
                   />
@@ -215,7 +215,7 @@ export function FormLitEncryptMessage() {
                 <hr className="my-4" />
                 <div className="flex items-center justify-between">
                   <h3 className="text-center">Message Encryption</h3>
-                  <p className="text-center text-sm text-gray-500">
+                  <p className="text-center text-sm text-muted-foreground">
                     Select the Lit Protocol access control conditions and insert
                     your message.
                   </p>

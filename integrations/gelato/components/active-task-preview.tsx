@@ -19,7 +19,7 @@ export function ActiveTaskPreview({
       href={`/integration/gelato/tasks/${task.id}`}
     >
       <div className="flex w-full items-center gap-4 md:w-auto lg:gap-10">
-        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gray-200 text-xs font-bold dark:bg-gray-800">
+        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-muted text-xs font-bold">
           {index}
         </div>
         <div className="flex w-full flex-col gap-2">

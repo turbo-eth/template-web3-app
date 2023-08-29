@@ -49,10 +49,10 @@ export function AccessControlSingleERC721({
             value={chain}
             onValueChange={(value) => setChain(value)}
           >
-            <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
+            <SelectTrigger>
               <SelectValue placeholder="Select a chain" />
             </SelectTrigger>
-            <SelectContent className="bg-white dark:bg-white">
+            <SelectContent>
               {supportedChains.map((chain) => (
                 <SelectItem key={chain} value={chain}>
                   {chain}
