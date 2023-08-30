@@ -1,3 +1,5 @@
+"use client"
+
 import { parseUnits } from "viem"
 
 import { useAave } from "../hooks/use-aave"
