@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Use HSL values for theming with format `X X% X%`
+  Note: do not include opacity value.
+ */
 @layer base {
   :root {
     /* Default background color of <body />...etc */
