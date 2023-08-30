@@ -76,7 +76,7 @@ export function PoolTogetherFormDeposit() {
 
   const { isLoading: isLoadingTx, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
-    onSuccess: async () => setValue("depositAmount", ""),
+    onSuccess: () => setValue("depositAmount", ""),
   })
 
   const {

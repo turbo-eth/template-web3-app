@@ -33,7 +33,7 @@ export async function GET(
     if (!chain || acceptsTransactionHash ? !transactionHash : !address)
       throw new Error("Invalid query parameters")
 
-    const Moralis = await getMoralis()
+    const Moralis = getMoralis()
     if (!Moralis) throw new Error("Moralis not initialized")
 
     let transaction

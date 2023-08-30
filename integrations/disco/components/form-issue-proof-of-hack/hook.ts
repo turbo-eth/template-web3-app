@@ -46,7 +46,7 @@ export const useDiscoIssueForm = () => {
     },
   })
 
-  const onSubmit = async (values: z.infer<typeof discoSchema>) => {
+  const onSubmit = (values: z.infer<typeof discoSchema>) => {
     try {
       mutate({
         eventDate: values.eventDate,

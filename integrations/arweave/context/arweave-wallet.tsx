@@ -32,8 +32,8 @@ export interface IArweaveWalletContext {
   pendingTxs: PendingTx[]
   disconnect: () => void
   generate: () => Promise<void>
-  importFromFile: (file: File) => Promise<void>
-  backupWallet: () => Promise<void>
+  importFromFile: (file: File) => void
+  backupWallet: () => void
   getBalance: () => Promise<void>
   generateBasedOnEthAddress: () => Promise<void>
   addPendingTx: ({ txId, onConfirmation }: AddPendingTxPayload) => void
@@ -120,7 +120,7 @@ export const ArweaveWalletProvider = ({
     return (json as JWKInterface).kty !== undefined
   }
 
-  const importFromFile = useCallback(async (file: File) => {
+  const importFromFile = useCallback((file: File) => {
     try {
       const fileReader = new FileReader()
       fileReader.readAsText(file, "UTF-8")
@@ -138,7 +138,7 @@ export const ArweaveWalletProvider = ({
     }
   }, [])
 
-  const backupWallet = useCallback(async () => {
+  const backupWallet = useCallback(() => {
     if (!wallet || !address) return
     const json = JSON.stringify(wallet, null, 2)
     const blob = new Blob([json], { type: "application/json" })
@@ -211,11 +211,11 @@ export const ArweaveWalletProvider = ({
       account,
       isAccountLoading,
       userHasAccount: !!account?.txid,
-      getAccount,
       wallet,
       error,
       address,
       balance,
+      pendingTxs,
       disconnect,
       generate,
       importFromFile,
@@ -223,7 +223,7 @@ export const ArweaveWalletProvider = ({
       getBalance,
       generateBasedOnEthAddress,
       addPendingTx,
-      pendingTxs,
+      getAccount,
     }),
     [address, wallet, balance, error, account, isAccountLoading, pendingTxs]
   )

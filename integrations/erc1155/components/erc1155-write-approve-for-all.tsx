@@ -7,31 +7,37 @@ import { ContractWriteButton } from "@/components/blockchain/contract-write-butt
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
 
 import {
-  useErc721Approve,
-  usePrepareErc721Approve,
-} from "../generated/erc721-wagmi"
+  useErc1155SetApprovalForAll,
+  usePrepareErc1155SetApprovalForAll,
+} from "../generated/erc1155-wagmi"
 
-interface Erc721WriteApproveProps {
+interface Erc1155WriteSetApprovalForAllProps {
   address: Address
 }
 
-export function Erc721WriteApprove({ address }: Erc721WriteApproveProps) {
+export function Erc1155WriteApproveForAll({
+  address,
+}: Erc1155WriteSetApprovalForAllProps) {
   const { register, handleSubmit, watch } = useForm()
   const watchToAddress: Address = watch("toAddress")
-  const watchTokenId: string = watch("tokenId")
+  const watchShouldApproved: boolean = watch("shouldApproved")
   const debouncedToAddress = useDebounce(watchToAddress, 500)
-  const debouncedTokenId = useDebounce(watchTokenId, 500)
+  const debouncedShouldApproved = useDebounce(watchShouldApproved, 500)
 
-  const { config, error, isError } = usePrepareErc721Approve({
+  const { config, error, isError } = usePrepareErc1155SetApprovalForAll({
     address,
     args:
-      debouncedToAddress && debouncedTokenId
-        ? [debouncedToAddress, BigInt(debouncedTokenId)]
+      debouncedToAddress && debouncedShouldApproved
+        ? [debouncedToAddress, debouncedShouldApproved]
         : undefined,
-    enabled: Boolean(debouncedToAddress && debouncedTokenId),
+    enabled: Boolean(debouncedToAddress && debouncedShouldApproved),
   })
 
-  const { data, write, isLoading: isLoadingWrite } = useErc721Approve(config)
+  const {
+    data,
+    write,
+    isLoading: isLoadingWrite,
+  } = useErc1155SetApprovalForAll(config)
 
   const { isLoading: isLoadingTx, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
@@ -46,8 +52,12 @@ export function Erc721WriteApprove({ address }: Erc721WriteApproveProps) {
       <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
         <label>Address</label>
         <input {...register("toAddress")} className="input" />
-        <label>Token ID</label>
-        <input type="number" {...register("tokenId")} className="input" />
+        <label>Approve?</label>
+        <input
+          type="checkbox"
+          {...register("shouldApproved")}
+          className="input"
+        />
         <ContractWriteButton
           isLoadingTx={isLoadingTx}
           isLoadingWrite={isLoadingWrite}
@@ -55,20 +65,22 @@ export function Erc721WriteApprove({ address }: Erc721WriteApproveProps) {
           type="submit"
           write={!!write}
         >
-          Approve
+          Approve For All
         </ContractWriteButton>
         <TransactionStatus
           error={error as BaseError}
           hash={data?.hash}
-          isError={isError && Boolean(debouncedToAddress && debouncedTokenId)}
+          isError={
+            isError && Boolean(debouncedToAddress && debouncedShouldApproved)
+          }
           isLoadingTx={isLoadingTx}
           isSuccess={isSuccess}
         />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
-          <h3 className="text-center">ERC721 Approve</h3>
-          <p className="text-center text-sm text-muted-foreground">
-            Approve NFTs to any address
+          <h3 className="text-center">ERC1155 Set Approval For All</h3>
+          <p className="text-center text-sm text-gray-500">
+            Approve all tokens to any address
           </p>
         </div>
       </form>

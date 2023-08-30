@@ -7,22 +7,24 @@ import { ContractWriteButton } from "@/components/blockchain/contract-write-butt
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
 
 import {
-  useErc721SafeTransferFrom,
-  usePrepareErc721SafeTransferFrom,
-} from "../generated/erc721-wagmi"
+  useErc1155SafeTransferFrom,
+  usePrepareErc1155SafeTransferFrom,
+} from "../generated/erc1155-wagmi"
 
-interface Erc721WriteTransferProps {
+interface Erc1155WriteTransferProps {
   address: Address
 }
 
-export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
+export function Erc1155WriteTransfer({ address }: Erc1155WriteTransferProps) {
   const { register, watch, handleSubmit } = useForm()
 
   const watchDifferentFromAddress: boolean = watch("differentFromAddress")
   const watchTokenId: string = watch("tokenId")
+  const watchAmount: string = watch("amount")
   const watchFromAddress: Address = watch("fromAddress")
   const watchToAddress: Address = watch("toAddress")
   const debouncedTokenId = useDebounce(watchTokenId, 500)
+  const debouncedAmount = useDebounce(watchAmount, 500)
   const debouncedFromAddress = useDebounce(watchFromAddress, 500)
   const debouncedToAddress = useDebounce(watchToAddress, 500)
 
@@ -32,11 +34,17 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
     ? debouncedFromAddress
     : accountAddress
 
-  const { config, error, isError } = usePrepareErc721SafeTransferFrom({
+  const { config, error, isError } = usePrepareErc1155SafeTransferFrom({
     address,
     args:
       transferFromAddress && debouncedToAddress && debouncedTokenId
-        ? [transferFromAddress, debouncedToAddress, BigInt(debouncedTokenId)]
+        ? [
+            transferFromAddress,
+            debouncedToAddress,
+            BigInt(debouncedTokenId),
+            BigInt(debouncedAmount),
+            "0x",
+          ]
         : undefined,
     enabled: Boolean(
       transferFromAddress && debouncedToAddress && debouncedTokenId
@@ -47,7 +55,7 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
     data,
     write,
     isLoading: isLoadingWrite,
-  } = useErc721SafeTransferFrom(config)
+  } = useErc1155SafeTransferFrom(config)
 
   const { isLoading: isLoadingTx, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
@@ -80,6 +88,8 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
         <input {...register("toAddress")} className="input" />
         <label>Token ID</label>
         <input type="number" {...register("tokenId")} className="input" />
+        <label>Amount</label>
+        <input type="number" {...register("amount")} className="input" />
         <ContractWriteButton
           isLoadingTx={isLoadingTx}
           isLoadingWrite={isLoadingWrite}
@@ -98,9 +108,9 @@ export function Erc721WriteTransfer({ address }: Erc721WriteTransferProps) {
         />
         <hr className="my-4" />
         <div className="flex items-center justify-between">
-          <h3 className="text-center">ERC721 Transfer</h3>
-          <p className="text-center text-sm text-muted-foreground">
-            Transfer NFTs to any address
+          <h3 className="text-center">ERC1155 Transfer</h3>
+          <p className="text-center text-sm text-gray-500">
+            Transfer NFTs or FTs to any address
           </p>
         </div>
       </form>

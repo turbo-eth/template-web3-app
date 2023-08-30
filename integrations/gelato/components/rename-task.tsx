@@ -31,7 +31,7 @@ export function RenameTask({
   const onSubmit = async () => {
     const { name } = form.getValues()
 
-    renameTask({
+    await renameTask({
       taskId,
       name,
     })

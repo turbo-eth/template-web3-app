@@ -9,7 +9,7 @@ import Moralis from "moralis"
   })
 })().catch((e) => console.error(e))
 
-export async function getMoralis() {
+export function getMoralis() {
   try {
     if (!Moralis) throw new Error("Moralis not initialized")
     return Moralis
