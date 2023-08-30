@@ -5,10 +5,9 @@ import Link from "next/link"
 import useScroll from "@/lib/hooks/use-scroll"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-
-import { ModeToggle } from "../mode-toggle"
-import { MainNav } from "./main-nav"
-import { MobileNav } from "./mobile-nav"
+import { MainNav } from "@/components/layout/main-nav"
+import { MobileNav } from "@/components/layout/mobile-nav"
+import { ModeToggle } from "@/components/shared/mode-toggle"
 
 export function SiteHeader() {
   const scrolled = useScroll(0)

@@ -7,16 +7,18 @@ import { motion, MotionProps } from "framer-motion"
 import ReactMarkdown from "react-markdown"
 import Balancer from "react-wrap-balancer"
 
-import { DEPLOY_URL, siteConfig } from "@/config/site"
+import { DEPLOY_URL } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { fadeUpVariant } from "@/lib/utils/motion"
+import { buttonVariants } from "@/components/ui/button"
 import { WalletAddress } from "@/components/blockchain/wallet-address"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { PageSectionGrid } from "@/components/layout/page-section"
 import { IsDarkTheme } from "@/components/shared/is-dark-theme"
 import { IsLightTheme } from "@/components/shared/is-light-theme"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
-import { LinkComponent } from "@/components/shared/link-component"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import {
   ERC20Decimals,
   ERC20Name,
@@ -27,10 +29,6 @@ import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-logi
 import { ButtonSIWELogout } from "@/integrations/siwe/components/button-siwe-logout"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
-
-import { LightDarkImage } from "./light-dark-image"
-import { PageSectionGrid } from "./page-section"
-import { buttonVariants } from "./ui/button"
 
 const demos = [
   {

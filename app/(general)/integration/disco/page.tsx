@@ -16,9 +16,9 @@ import {
   PageHeaderHeading,
 } from "@/components/layout/page-header"
 import { PageSection } from "@/components/layout/page-section"
-import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { DiscoProfileBasic } from "@/integrations/disco/components/disco-profile-basic"
 import { DiscoProfileCredentials } from "@/integrations/disco/components/disco-profile-credentials"
 import { FormCredentialIssuanceProofOfHack } from "@/integrations/disco/components/form-issue-proof-of-hack"

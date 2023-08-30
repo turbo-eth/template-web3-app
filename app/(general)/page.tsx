@@ -6,7 +6,6 @@ import { LuBook } from "react-icons/lu"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { ExampleDemos } from "@/components/example-demos"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -14,6 +13,7 @@ import {
   PageHeaderHeading,
 } from "@/components/layout/page-header"
 import { CopyButton } from "@/components/shared/copy-button"
+import { ExampleDemos } from "@/components/shared/example-demos"
 
 export default function HomePage() {
   return (
