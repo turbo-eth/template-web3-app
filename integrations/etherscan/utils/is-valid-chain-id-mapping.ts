@@ -1,4 +1,7 @@
-export function isValidChainIdMapping(chain: number | string, validChainIds: number[]) {
+export function isValidChainIdMapping(
+  chain: number | string,
+  validChainIds: number[]
+) {
   return validChainIds.includes(Number(chain))
 }
 

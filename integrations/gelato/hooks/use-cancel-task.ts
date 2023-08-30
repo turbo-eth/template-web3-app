@@ -1,7 +1,7 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation } from "@tanstack/react-query"
 
-import { useGelatoAutomateSdk } from './use-automate-sdk'
-import { UseCancelTaskProps } from '../utils/types'
+import { UseCancelTaskProps } from "../utils/types"
+import { useGelatoAutomateSdk } from "./use-automate-sdk"
 
 export const useCancelTask = () => {
   const { automateSdk } = useGelatoAutomateSdk()

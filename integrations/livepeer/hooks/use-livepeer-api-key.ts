@@ -1,6 +1,5 @@
-import { atom, useAtom } from 'jotai'
-
-import { env } from '@/env.mjs'
+import { env } from "@/env.mjs"
+import { atom, useAtom } from "jotai"
 
 const livepeerApiKeyAtom = atom<string | undefined>(undefined)
 

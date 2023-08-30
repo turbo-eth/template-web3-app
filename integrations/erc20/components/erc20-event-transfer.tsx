@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useState } from "react"
+import { formatEther, zeroAddress } from "viem"
+import type { Address } from "wagmi"
 
-import { formatEther, zeroAddress } from 'viem'
-import type { Address } from 'wagmi'
-
-import { useErc20TransferEvent } from '../generated/erc20-wagmi'
-import { useERC20TokenStorage } from '../hooks/use-erc20-token-storage'
+import { useErc20TransferEvent } from "../generated/erc20-wagmi"
+import { useERC20TokenStorage } from "../hooks/use-erc20-token-storage"
 
 export default function ERC20EventTransfer() {
   const [token] = useERC20TokenStorage()
@@ -37,7 +36,9 @@ export default function ERC20EventTransfer() {
         <>
           <p className="">From: {event?.from}</p>
           <p className="">To: {event?.to}</p>
-          <p className="">Amount: {event?.amount ? formatEther(event?.amount) : '0'}</p>
+          <p className="">
+            Amount: {event?.amount ? formatEther(event?.amount) : "0"}
+          </p>
         </>
       )}
     </div>

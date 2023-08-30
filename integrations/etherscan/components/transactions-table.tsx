@@ -1,11 +1,10 @@
-import { useMemo } from 'react'
+import { useMemo } from "react"
+import type { Address } from "wagmi"
 
-import type { Address } from 'wagmi'
+import { Address as AddressComponent } from "@/components/blockchain/address"
 
-import { Address as AddressComponent } from '@/components/blockchain/address'
-
-import TableCore from '../../../components/shared/table/table-core'
-import TimeFromEpoch from '../../../components/shared/time-from-epoch'
+import TableCore from "../../../components/shared/table/table-core"
+import TimeFromEpoch from "../../../components/shared/time-from-epoch"
 
 /*
 {
@@ -36,29 +35,49 @@ export function TransactionsTable({ data }: any) {
   const columns = useMemo(
     () => [
       {
-        Header: 'From',
-        accessor: 'from',
-        Cell: ({ value }: { value: Address }) => <AddressComponent truncate address={value} className="text-sm font-medium" />,
+        Header: "From",
+        accessor: "from",
+        Cell: ({ value }: { value: Address }) => (
+          <AddressComponent
+            truncate
+            address={value}
+            className="text-sm font-medium"
+          />
+        ),
       },
       {
-        Header: 'To',
-        accessor: 'to',
-        Cell: ({ value }: { value: Address }) => <AddressComponent truncate address={value} className="text-sm font-medium" />,
+        Header: "To",
+        accessor: "to",
+        Cell: ({ value }: { value: Address }) => (
+          <AddressComponent
+            truncate
+            address={value}
+            className="text-sm font-medium"
+          />
+        ),
       },
       {
-        Header: 'Created',
-        accessor: 'timeStamp',
-        Cell: ({ value }: { value: string | number }) => <TimeFromEpoch epoch={value || 0} />,
+        Header: "Created",
+        accessor: "timeStamp",
+        Cell: ({ value }: { value: string | number }) => (
+          <TimeFromEpoch epoch={value || 0} />
+        ),
       },
       {
-        Header: 'Sent',
-        accessor: 'value',
+        Header: "Sent",
+        accessor: "value",
       },
     ],
     []
   )
   if (!data) return null
-  return <TableCore className="w-full overflow-hidden rounded-xl" columns={columns} data={data} />
+  return (
+    <TableCore
+      className="w-full overflow-hidden rounded-xl"
+      columns={columns}
+      data={data}
+    />
+  )
 }
 
 export default TransactionsTable

@@ -1,5 +1,8 @@
-import type { GetTransactionVerboseJSONResponse, GetTransactionVerboseResponse } from '@moralisweb3/common-evm-utils'
-import { useQuery } from '@tanstack/react-query'
+import type {
+  GetTransactionVerboseJSONResponse,
+  GetTransactionVerboseResponse,
+} from "@moralisweb3/common-evm-utils"
+import { useQuery } from "@tanstack/react-query"
 
 interface GetTransactionVerboseArgs {
   chain: string
@@ -7,8 +10,12 @@ interface GetTransactionVerboseArgs {
   enabled?: boolean
 }
 
-export function useGetTransactionVerbose({ chain, transactionHash, enabled }: GetTransactionVerboseArgs) {
-  return useQuery(['get-transaction-verbose', chain, transactionHash], {
+export function useGetTransactionVerbose({
+  chain,
+  transactionHash,
+  enabled,
+}: GetTransactionVerboseArgs) {
+  return useQuery(["get-transaction-verbose", chain, transactionHash], {
     queryFn: async () => {
       const res = await fetch(
         `/integration/moralis/api/transaction/getTransactionVerbose?chain=${chain}&transactionHash=${transactionHash}&format=result`
@@ -24,8 +31,12 @@ export function useGetTransactionVerbose({ chain, transactionHash, enabled }: Ge
   })
 }
 
-export function useGetTransactionVerboseRaw({ chain, transactionHash, enabled }: GetTransactionVerboseArgs) {
-  return useQuery(['get-transaction-verbose-raw', chain, transactionHash], {
+export function useGetTransactionVerboseRaw({
+  chain,
+  transactionHash,
+  enabled,
+}: GetTransactionVerboseArgs) {
+  return useQuery(["get-transaction-verbose-raw", chain, transactionHash], {
     queryFn: async () => {
       const res = await fetch(
         `/integration/moralis/api/transaction/getTransactionVerbose?chain=${chain}&transactionHash=${transactionHash}&format=raw`

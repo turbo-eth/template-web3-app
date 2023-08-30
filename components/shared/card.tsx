@@ -1,12 +1,11 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
+import { motion } from "framer-motion"
+import ReactMarkdown from "react-markdown"
+import Balancer from "react-wrap-balancer"
 
-import { motion } from 'framer-motion'
-import ReactMarkdown from 'react-markdown'
-import Balancer from 'react-wrap-balancer'
+import { FADE_UP_ANIMATION_VARIANTS } from "@/config/design"
 
-import { FADE_UP_ANIMATION_VARIANTS } from '@/config/design'
-
-import { LinkComponent } from './link-component'
+import { LinkComponent } from "./link-component"
 
 export default function Card({
   title,
@@ -25,8 +24,9 @@ export default function Card({
     <motion.div
       variants={FADE_UP_ANIMATION_VARIANTS}
       className={`relative col-span-1  overflow-hidden rounded-xl border border-gray-200 bg-white px-4 shadow-md dark:border-gray-800 dark:bg-neutral-800 dark:text-white ${
-        large ? 'md:col-span-2' : ''
-      }`}>
+        large ? "md:col-span-2" : ""
+      }`}
+    >
       <div className="flex h-60 items-center justify-center">{demo}</div>
       <div className="mx-auto max-w-xl text-center">
         <h2 className="mb-3 bg-gradient-to-br from-black to-stone-500 bg-clip-text text-xl font-bold text-transparent dark:from-stone-100 dark:to-emerald-200 md:text-3xl md:font-normal">
@@ -45,8 +45,14 @@ export default function Card({
                   />
                 ),
 
-                code: ({ ...props }) => <code {...props} className="rounded-sm bg-gray-100 px-1 py-0.5 font-mono font-medium text-gray-800" />,
-              }}>
+                code: ({ ...props }) => (
+                  <code
+                    {...props}
+                    className="rounded-sm bg-gray-100 px-1 py-0.5 font-mono font-medium text-gray-800"
+                  />
+                ),
+              }}
+            >
               {description}
             </ReactMarkdown>
           </Balancer>

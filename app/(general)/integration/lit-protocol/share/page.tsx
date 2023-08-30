@@ -1,7 +1,7 @@
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
-import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
-import { FormLitEncryptMessage } from '@/integrations/lit-protocol/components/form-lit-encrypt-message'
+import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
+import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { FormLitEncryptMessage } from "@/integrations/lit-protocol/components/form-lit-encrypt-message"
 
 export default function PageIntegration() {
   return (

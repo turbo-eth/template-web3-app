@@ -1,23 +1,26 @@
-import { useState } from 'react'
+import { useState } from "react"
+import { motion } from "framer-motion"
+import { useForm } from "react-hook-form"
 
-import { motion } from 'framer-motion'
-import { useForm } from 'react-hook-form'
+import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
+import { useToast } from "@/lib/hooks/use-toast"
+import { Textarea } from "@/components/ui/textarea"
+import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
+import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
-import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
-import { Textarea } from '@/components/ui/textarea'
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
-import { useToast } from '@/lib/hooks/use-toast'
-
-import { useLitClient } from '../hooks/use-lit-client'
+import { useLitClient } from "../hooks/use-lit-client"
 
 interface FormLitDecryptMessageProps {
   initialEencryptedMessageId: string
 }
 
-export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDecryptMessageProps) {
-  const [encryptedMessageId, setEncryptedMessageId] = useState<string>(initialEencryptedMessageId)
+export function FormLitDecryptMessage({
+  initialEencryptedMessageId,
+}: FormLitDecryptMessageProps) {
+  const [encryptedMessageId, setEncryptedMessageId] = useState<string>(
+    initialEencryptedMessageId
+  )
   const [decryptedMessage, setDecryptedMessage] = useState<string>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
@@ -35,14 +38,20 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
 
     if (!error) {
       setDecryptedMessage(decryptedString)
-    } else if (error === 'Message not found') {
-      handleToast('No ID found', 'The ID you entered does not match any encrypted message. Please check the ID and try again.')
+    } else if (error === "Message not found") {
+      handleToast(
+        "No ID found",
+        "The ID you entered does not match any encrypted message. Please check the ID and try again."
+      )
       return
-    } else if (error === 'Access denied') {
-      handleToast('Access denied', 'Your address do not met the access control conditions of this message.')
+    } else if (error === "Access denied") {
+      handleToast(
+        "Access denied",
+        "Your address do not met the access control conditions of this message."
+      )
       return
     } else {
-      handleToast('Error', 'Something went wrong. Please try again.')
+      handleToast("Error", "Something went wrong. Please try again.")
       return
     }
   }
@@ -67,31 +76,50 @@ export function FormLitDecryptMessage({ initialEencryptedMessageId }: FormLitDec
             className="card flex flex-col"
             initial="hidden"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
-            onSubmit={handleSubmit(onSubmit)}>
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <label>ID:</label>
             <input
               className="input mt-4"
-              {...register('message')}
+              {...register("message")}
               value={encryptedMessageId}
               onChange={(e) => setEncryptedMessageId(e.target.value)}
             />
-            <button className="btn btn-emerald mt-4" disabled={isLoading || !isValid} type="submit">
-              {isLoading ? 'Loading...' : 'Decrypt'}
+            <button
+              className="btn btn-emerald mt-4"
+              disabled={isLoading || !isValid}
+              type="submit"
+            >
+              {isLoading ? "Loading..." : "Decrypt"}
             </button>
             <hr className="my-4" />
             <div className="flex items-center justify-between">
               <h3 className="text-center">Encrypted message ID</h3>
-              <p className="text-center text-sm text-gray-500">The ID of the encrypted message saved into a database.</p>
+              <p className="text-center text-sm text-gray-500">
+                The ID of the encrypted message saved into a database.
+              </p>
             </div>
           </motion.form>
           {decryptedMessage && (
-            <motion.div animate="show" className="card my-8" initial="hidden" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            <motion.div
+              animate="show"
+              className="card my-8"
+              initial="hidden"
+              variants={FADE_DOWN_ANIMATION_VARIANTS}
+            >
               <h4>Decrypted Message:</h4>
-              <Textarea readOnly className="input mt-4 h-40 dark:text-gray-600 dark:placeholder:text-neutral-400" value={decryptedMessage} />
+              <Textarea
+                readOnly
+                className="input mt-4 h-40 dark:text-gray-600 dark:placeholder:text-neutral-400"
+                value={decryptedMessage}
+              />
               <hr className="my-4" />
               <div className="flex items-center justify-between">
                 <h3 className="text-center">Decrypted Message</h3>
-                <p className="text-center text-sm text-gray-500">Make sure to only share the decrypted message with trusted individuals.</p>
+                <p className="text-center text-sm text-gray-500">
+                  Make sure to only share the decrypted message with trusted
+                  individuals.
+                </p>
               </div>
             </motion.div>
           )}

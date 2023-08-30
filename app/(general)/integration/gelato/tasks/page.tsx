@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation'
+import { redirect } from "next/navigation"
 
 export default function PageIntegration() {
-  redirect('/integration/gelato/tasks/create')
+  redirect("/integration/gelato/tasks/create")
 }

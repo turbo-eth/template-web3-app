@@ -1,12 +1,17 @@
-import { useState } from 'react'
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { isAddress } from "viem"
 
-import { useForm } from 'react-hook-form'
-import { isAddress } from 'viem'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-
-import { AccessControlProps } from './types'
-import { supportedChains } from '../../utils/config'
+import { supportedChains } from "../../utils/config"
+import { AccessControlProps } from "./types"
 
 interface FormSchema {
   address: string
@@ -14,10 +19,12 @@ interface FormSchema {
   chain: string
 }
 
-export function AccessControlSingleERC721({ setAccessControlConditions }: AccessControlProps) {
-  const [address, setAddress] = useState<string>('')
+export function AccessControlSingleERC721({
+  setAccessControlConditions,
+}: AccessControlProps) {
+  const [address, setAddress] = useState<string>("")
   const [tokenId, setTokenId] = useState<number>()
-  const [chain, setChain] = useState<string>('ethereum')
+  const [chain, setChain] = useState<string>("ethereum")
 
   const {
     register,
@@ -26,7 +33,9 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
   } = useForm<FormSchema>()
 
   const onSubmit = (data: FormSchema) => {
-    setAccessControlConditions(getAccessControlConditions(chain, data.address, data.tokenId))
+    setAccessControlConditions(
+      getAccessControlConditions(chain, data.address, data.tokenId)
+    )
   }
 
   return (
@@ -34,7 +43,11 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
       <form className="my-4 flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label>Chain:</label>
-          <Select {...register('chain')} value={chain} onValueChange={(value) => setChain(value)}>
+          <Select
+            {...register("chain")}
+            value={chain}
+            onValueChange={(value) => setChain(value)}
+          >
             <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
               <SelectValue placeholder="Select a chain" />
             </SelectTrigger>
@@ -51,10 +64,11 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
           <label>ERC721 Contract Address:</label>
           <input
             className="input mt-4"
-            {...register('address', {
-              required: 'Contract address is required',
+            {...register("address", {
+              required: "Contract address is required",
               validate: {
-                isValidEthereumAddress: (value) => isAddress(value) || 'Invalid Contract address',
+                isValidEthereumAddress: (value) =>
+                  isAddress(value) || "Invalid Contract address",
               },
             })}
             placeholder="0x1234567890123456789012345678901234567890"
@@ -62,7 +76,11 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
-          {errors.address && <p className="mt-1 text-sm text-red-500">{String(errors.address?.message)}</p>}
+          {errors.address && (
+            <p className="mt-1 text-sm text-red-500">
+              {String(errors.address?.message)}
+            </p>
+          )}
         </div>
         <div className="mt-4">
           <label>Token ID:</label>
@@ -71,8 +89,8 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
             min={0}
             placeholder="0"
             type="number"
-            {...register('tokenId', {
-              required: 'Token ID is required',
+            {...register("tokenId", {
+              required: "Token ID is required",
             })}
             value={tokenId}
             onChange={(e) => {
@@ -80,7 +98,11 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
               setTokenId(Number(e.target.value))
             }}
           />
-          {errors.tokenId && <p className="mt-1 text-sm text-red-500">{String(errors.tokenId?.message)}</p>}
+          {errors.tokenId && (
+            <p className="mt-1 text-sm text-red-500">
+              {String(errors.tokenId?.message)}
+            </p>
+          )}
         </div>
         <button className="btn btn-emerald mt-4" type="submit">
           Save
@@ -90,18 +112,22 @@ export function AccessControlSingleERC721({ setAccessControlConditions }: Access
   )
 }
 
-const getAccessControlConditions = (chain: string, address: string, tokenId: string) => {
+const getAccessControlConditions = (
+  chain: string,
+  address: string,
+  tokenId: string
+) => {
   return [
     {
-      conditionType: 'evmBasic',
+      conditionType: "evmBasic",
       contractAddress: address,
-      standardContractType: 'ERC721',
+      standardContractType: "ERC721",
       chain,
-      method: 'ownerOf',
+      method: "ownerOf",
       parameters: [tokenId],
       returnValueTest: {
-        comparator: '=',
-        value: ':userAddress',
+        comparator: "=",
+        value: ":userAddress",
       },
     },
   ]

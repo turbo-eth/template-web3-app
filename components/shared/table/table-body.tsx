@@ -1,7 +1,7 @@
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
+import { TableBodyProps } from "react-table"
 
-import { cn } from '@/lib/utils'
-import { TableBodyProps } from 'react-table'
+import { cn } from "@/lib/utils"
 
 interface ITableBody extends HTMLAttributes<HTMLElement> {
   page: Array<any>
@@ -13,22 +13,31 @@ interface ITableBody extends HTMLAttributes<HTMLElement> {
  * @name TableBody
  * @param {Object} props
  */
-export const TableBody = ({ className, page, prepareRow, ...props }: ITableBody) => {
-  const styleCell = cn(className, 'border-b-2 border-gray-100 dark:border-neutral-700 px-4 py-3')
+export const TableBody = ({
+  className,
+  page,
+  prepareRow,
+  ...props
+}: ITableBody) => {
+  const styleCell = cn(
+    className,
+    "border-b-2 border-gray-100 dark:border-neutral-700 px-4 py-3"
+  )
   return (
     <tbody {...props} className="">
       {page.map((row, idx) => {
         prepareRow(row)
-        const styleRow = cn('row py-3', {
-          'bg-gray-100 text-gray-500 dark:text-white': row.original.disabled,
-          'bg-white dark:bg-neutral-800 dark:text-white': !row.original.disabled,
+        const styleRow = cn("row py-3", {
+          "bg-gray-100 text-gray-500 dark:text-white": row.original.disabled,
+          "bg-white dark:bg-neutral-800 dark:text-white":
+            !row.original.disabled,
         })
         return (
           <tr {...row.getRowProps()} className={styleRow} key={idx}>
             {row.cells.map((cell: any, cIdx: number) => {
               return (
                 <td key={cIdx} className={styleCell} {...cell.getCellProps()}>
-                  {cell.render('Cell')}
+                  {cell.render("Cell")}
                 </td>
               )
             })}

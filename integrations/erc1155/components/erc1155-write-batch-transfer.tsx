@@ -1,20 +1,24 @@
-import { useState } from 'react'
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { useDebounce } from "usehooks-ts"
+import { BaseError } from "viem"
+import { Address, useAccount, useWaitForTransaction } from "wagmi"
 
-import { useForm } from 'react-hook-form'
-import { useDebounce } from 'usehooks-ts'
-import { BaseError } from 'viem'
-import { Address, useAccount, useWaitForTransaction } from 'wagmi'
+import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
+import { TransactionStatus } from "@/components/blockchain/transaction-status"
 
-import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
-import { TransactionStatus } from '@/components/blockchain/transaction-status'
-
-import { useErc1155SafeBatchTransferFrom, usePrepareErc1155SafeBatchTransferFrom } from '../generated/erc1155-wagmi'
+import {
+  useErc1155SafeBatchTransferFrom,
+  usePrepareErc1155SafeBatchTransferFrom,
+} from "../generated/erc1155-wagmi"
 
 interface Erc1155WriteTransferProps {
   address: Address
 }
 
-export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps) {
+export function Erc1155WriteBatchTransfer({
+  address,
+}: Erc1155WriteTransferProps) {
   const { register, watch, handleSubmit } = useForm()
   const [batchNumber, setBatchNumber] = useState<number>(2)
 
@@ -25,21 +29,29 @@ export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps
     batchFields.push(
       <>
         <label>Token Id (batch: {i}) </label>
-        <input type="number" {...register('tokenId' + i.toString())} className="input" />
+        <input
+          type="number"
+          {...register("tokenId" + i.toString())}
+          className="input"
+        />
         <label>Amount (batch: {i})</label>
-        <input type="number" {...register('amount' + i.toString())} className="input" />
+        <input
+          type="number"
+          {...register("amount" + i.toString())}
+          className="input"
+        />
       </>
     )
 
-    const watchTokenId: string = watch('tokenId' + i.toString())
+    const watchTokenId: string = watch("tokenId" + i.toString())
     tokenIdArr.push(watchTokenId)
-    const watchAmount: string = watch('amount' + i.toString())
+    const watchAmount: string = watch("amount" + i.toString())
     amountArr.push(watchAmount)
   }
 
-  const watchDifferentFromAddress: boolean = watch('differentFromAddress')
-  const watchFromAddress: Address = watch('fromAddress')
-  const watchToAddress: Address = watch('toAddress')
+  const watchDifferentFromAddress: boolean = watch("differentFromAddress")
+  const watchFromAddress: Address = watch("fromAddress")
+  const watchToAddress: Address = watch("toAddress")
 
   const debouncedFromAddress = useDebounce(watchFromAddress, 500)
   const debouncedToAddress = useDebounce(watchToAddress, 500)
@@ -48,27 +60,53 @@ export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps
 
   const { address: accountAddress } = useAccount()
 
-  const transferFromAddress = watchDifferentFromAddress ? debouncedFromAddress : accountAddress
+  const transferFromAddress = watchDifferentFromAddress
+    ? debouncedFromAddress
+    : accountAddress
 
-  const isTokenIdArrValid = !debouncedTokenIdArr.reduce((acc, val) => acc || !val || val.trim() === '', false)
-  const isAmountArrValid = !debouncedAmountArr.reduce((acc, val) => acc || !val || val.trim() === '', false)
+  const isTokenIdArrValid = !debouncedTokenIdArr.reduce(
+    (acc, val) => acc || !val || val.trim() === "",
+    false
+  )
+  const isAmountArrValid = !debouncedAmountArr.reduce(
+    (acc, val) => acc || !val || val.trim() === "",
+    false
+  )
 
   const { config, error, isError } = usePrepareErc1155SafeBatchTransferFrom({
     address,
     args:
-      transferFromAddress && debouncedToAddress && isTokenIdArrValid && isAmountArrValid
-        ? [transferFromAddress, debouncedToAddress, debouncedTokenIdArr.map((id) => BigInt(id)), debouncedAmountArr.map((num) => BigInt(num)), '0x']
+      transferFromAddress &&
+      debouncedToAddress &&
+      isTokenIdArrValid &&
+      isAmountArrValid
+        ? [
+            transferFromAddress,
+            debouncedToAddress,
+            debouncedTokenIdArr.map((id) => BigInt(id)),
+            debouncedAmountArr.map((num) => BigInt(num)),
+            "0x",
+          ]
         : undefined,
-    enabled: Boolean(transferFromAddress && debouncedToAddress && isTokenIdArrValid && isAmountArrValid),
+    enabled: Boolean(
+      transferFromAddress &&
+        debouncedToAddress &&
+        isTokenIdArrValid &&
+        isAmountArrValid
+    ),
   })
 
-  const { data, write, isLoading: isLoadingWrite } = useErc1155SafeBatchTransferFrom(config)
+  const {
+    data,
+    write,
+    isLoading: isLoadingWrite,
+  } = useErc1155SafeBatchTransferFrom(config)
 
   const { isLoading: isLoadingTx, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
     write?.()
   }
 
@@ -78,21 +116,36 @@ export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps
         <div className="flex items-center justify-between text-sm">
           <label>Use different from address</label>
           <div className="h-6 w-6">
-            <input {...register('differentFromAddress')} className="input" type="checkbox" />
+            <input
+              {...register("differentFromAddress")}
+              className="input"
+              type="checkbox"
+            />
           </div>
         </div>
         {watchDifferentFromAddress && (
           <>
             <label>From Address</label>
-            <input {...register('fromAddress')} className="input" />
+            <input {...register("fromAddress")} className="input" />
           </>
         )}
         <label>To Address</label>
-        <input {...register('toAddress')} className="input" />
+        <input {...register("toAddress")} className="input" />
         <label>Batch Number</label>
-        <input className="input" type="number" value={batchNumber} onChange={(e) => setBatchNumber(e.target.valueAsNumber)} />
+        <input
+          className="input"
+          type="number"
+          value={batchNumber}
+          onChange={(e) => setBatchNumber(e.target.valueAsNumber)}
+        />
         {batchFields}
-        <ContractWriteButton isLoadingTx={isLoadingTx} isLoadingWrite={isLoadingWrite} loadingTxText="Transferring..." type="submit" write={!!write}>
+        <ContractWriteButton
+          isLoadingTx={isLoadingTx}
+          isLoadingWrite={isLoadingWrite}
+          loadingTxText="Transferring..."
+          type="submit"
+          write={!!write}
+        >
           Batch Transfer
         </ContractWriteButton>
         <TransactionStatus
@@ -105,7 +158,9 @@ export function Erc1155WriteBatchTransfer({ address }: Erc1155WriteTransferProps
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC1155 Batch Transfer</h3>
-          <p className="text-center text-sm text-gray-500">Batch Transfer ERC1155 to any address</p>
+          <p className="text-center text-sm text-gray-500">
+            Batch Transfer ERC1155 to any address
+          </p>
         </div>
       </form>
     </div>

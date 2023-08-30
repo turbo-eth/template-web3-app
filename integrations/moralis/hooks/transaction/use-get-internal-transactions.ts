@@ -1,5 +1,8 @@
-import type { GetInternalTransactionsJSONResponse, GetInternalTransactionsResponse } from '@moralisweb3/common-evm-utils'
-import { useQuery } from '@tanstack/react-query'
+import type {
+  GetInternalTransactionsJSONResponse,
+  GetInternalTransactionsResponse,
+} from "@moralisweb3/common-evm-utils"
+import { useQuery } from "@tanstack/react-query"
 
 interface GetInternalTransactionsArgs {
   chain: string
@@ -7,8 +10,12 @@ interface GetInternalTransactionsArgs {
   enabled?: boolean
 }
 
-export function useGetInternalTransactions({ chain, transactionHash, enabled }: GetInternalTransactionsArgs) {
-  return useQuery(['get-internal-transactions', chain, transactionHash], {
+export function useGetInternalTransactions({
+  chain,
+  transactionHash,
+  enabled,
+}: GetInternalTransactionsArgs) {
+  return useQuery(["get-internal-transactions", chain, transactionHash], {
     queryFn: async () => {
       const res = await fetch(
         `/integration/moralis/api/transaction/getInternalTransactions?chain=${chain}&transactionHash=${transactionHash}&format=result`
@@ -24,8 +31,12 @@ export function useGetInternalTransactions({ chain, transactionHash, enabled }: 
   })
 }
 
-export function useGetInternalTransactionsRaw({ chain, transactionHash, enabled }: GetInternalTransactionsArgs) {
-  return useQuery(['get-internal-transactions-raw', chain, transactionHash], {
+export function useGetInternalTransactionsRaw({
+  chain,
+  transactionHash,
+  enabled,
+}: GetInternalTransactionsArgs) {
+  return useQuery(["get-internal-transactions-raw", chain, transactionHash], {
     queryFn: async () => {
       const res = await fetch(
         `/integration/moralis/api/transaction/getInternalTransactions?chain=${chain}&transactionHash=${transactionHash}&format=raw`

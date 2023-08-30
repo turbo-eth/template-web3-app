@@ -1,19 +1,27 @@
-import { useForm } from 'react-hook-form'
-import { FaSpinner } from 'react-icons/fa'
+import { useForm } from "react-hook-form"
+import { FaSpinner } from "react-icons/fa"
 
-import { ValidationError } from './errors/validation-error'
-import { useRenameTask } from '../hooks'
+import { useRenameTask } from "../hooks"
+import { ValidationError } from "./errors/validation-error"
 
 type RenameTaskForm = {
   name: string
 }
 
-export function RenameTask({ taskId, name, onSave }: { taskId: string; name: string; onSave: () => void }) {
+export function RenameTask({
+  taskId,
+  name,
+  onSave,
+}: {
+  taskId: string
+  name: string
+  onSave: () => void
+}) {
   const form = useForm<RenameTaskForm>({
     defaultValues: {
       name,
     },
-    mode: 'all',
+    mode: "all",
   })
 
   const { mutateAsync: renameTask, isLoading } = useRenameTask()
@@ -21,7 +29,7 @@ export function RenameTask({ taskId, name, onSave }: { taskId: string; name: str
   const onSubmit = async () => {
     const { name } = form.getValues()
 
-    renameTask({
+    await renameTask({
       taskId,
       name,
     })
@@ -37,16 +45,23 @@ export function RenameTask({ taskId, name, onSave }: { taskId: string; name: str
         <div className="flex items-center space-x-3">
           <div>Rename task</div>
           <input
-            {...form.register('name', {
-              required: 'Name is required',
+            {...form.register("name", {
+              required: "Name is required",
               validate: {
-                min: (val) => (val.length > 3 ? true : 'Name needs to be min 3 characters long'),
+                min: (val) =>
+                  val.length > 3
+                    ? true
+                    : "Name needs to be min 3 characters long",
               },
             })}
             className="input max-w-md !rounded-2xl dark:!bg-zinc-700 dark:!text-white"
             defaultValue={name}
           />
-          <button className="btn btn-blue !rounded-full !px-5" disabled={isLoading} type="submit">
+          <button
+            className="btn btn-blue !rounded-full !px-5"
+            disabled={isLoading}
+            type="submit"
+          >
             {isLoading ? <FaSpinner className="animate-spin" /> : <>Save</>}
           </button>
         </div>

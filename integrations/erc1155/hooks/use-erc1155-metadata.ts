@@ -1,9 +1,10 @@
-import { useQuery } from 'wagmi'
+import { useQuery } from "wagmi"
 
-import { useErc1155Uri } from '../generated/erc1155-wagmi'
-import { ERC1155Props } from '../utils/types'
+import { useErc1155Uri } from "../generated/erc1155-wagmi"
+import { ERC1155Props } from "../utils/types"
 
-interface useERC1155MetadataProps extends Pick<ERC1155Props, 'address' | 'chainId'> {
+interface useERC1155MetadataProps
+  extends Pick<ERC1155Props, "address" | "chainId"> {
   tokenId: bigint
   ipfsGatewayUrl?: string
 }
@@ -30,29 +31,39 @@ interface IERC1155Metadata {
  * @throws Will throw an error if no image or attributes are found in the metadata
  * @returns metadataQuery - Query object with the metadata
  */
-export function useERC1155Metadata({ address, chainId, tokenId, ipfsGatewayUrl = 'https://gateway.ipfs.io' }: useERC1155MetadataProps) {
+export function useERC1155Metadata({
+  address,
+  chainId,
+  tokenId,
+  ipfsGatewayUrl = "https://gateway.ipfs.io",
+}: useERC1155MetadataProps) {
   const { data: tokenUriData } = useErc1155Uri({
     address,
     chainId,
     args: [tokenId],
   })
 
-  const metadataQuery = useQuery([address, chainId, 'uri', tokenId, tokenUriData], {
-    queryFn: async () => {
-      if (!tokenUriData) throw new Error('No tokenUri found')
-      const uri = tokenUriData.replace('ipfs://', '')
-      const response = await fetch(`${ipfsGatewayUrl}/${uri}`)
+  const metadataQuery = useQuery(
+    [address, chainId, "uri", tokenId, tokenUriData],
+    {
+      queryFn: async () => {
+        if (!tokenUriData) throw new Error("No tokenUri found")
+        const uri = tokenUriData.replace("ipfs://", "")
+        const response = await fetch(`${ipfsGatewayUrl}/${uri}`)
 
-      const json = (await response.json()) as IERC1155Metadata
+        const json = (await response.json()) as IERC1155Metadata
 
-      if (!json.image) throw new Error('No image found in metadata')
-      if (!json.attributes) throw new Error('No attributes found in metadata')
+        if (!json.image) throw new Error("No image found in metadata")
+        if (!json.attributes) throw new Error("No attributes found in metadata")
 
-      json.image = json.image.startsWith('ipfs://') ? json.image.replace('ipfs://', `${ipfsGatewayUrl}/`) : json.image
-      return json
-    },
-    enabled: !!tokenUriData,
-  })
+        json.image = json.image.startsWith("ipfs://")
+          ? json.image.replace("ipfs://", `${ipfsGatewayUrl}/`)
+          : json.image
+        return json
+      },
+      enabled: !!tokenUriData,
+    }
+  )
 
   return metadataQuery
 }

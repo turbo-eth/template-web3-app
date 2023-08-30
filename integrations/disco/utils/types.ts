@@ -42,7 +42,7 @@ export interface Credential {
     name: string
     profilePicture: string
   }
-  '@context': string[]
+  "@context": string[]
   isPublic: boolean
   recipient: string
   updatedAt: string
@@ -81,7 +81,7 @@ export interface Profile {
 }
 
 export interface IssuedCredentials {
-  '@context': string[]
+  "@context": string[]
   type: string[]
   issuer: {
     id: string
@@ -129,7 +129,7 @@ export interface IssuedCredentials {
           type: string
         }[]
       }
-      primaryType: 'VerifiableCredential'
+      primaryType: "VerifiableCredential"
     }
   }
 }

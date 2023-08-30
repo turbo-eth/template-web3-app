@@ -1,6 +1,12 @@
-import { GetChannelOptionsType, SearchChannelOptionsType } from '@pushprotocol/restapi/src/lib/channels'
-import { ChatsOptionsType } from '@pushprotocol/restapi/src/lib/chat'
-import { FeedsOptionsType, UserSubscriptionsOptionsType } from '@pushprotocol/restapi/src/lib/user'
+import {
+  GetChannelOptionsType,
+  SearchChannelOptionsType,
+} from "@pushprotocol/restapi/src/lib/channels"
+import { ChatsOptionsType } from "@pushprotocol/restapi/src/lib/chat"
+import {
+  FeedsOptionsType,
+  UserSubscriptionsOptionsType,
+} from "@pushprotocol/restapi/src/lib/user"
 
 export type UseNotificationsProps = FeedsOptionsType
 export type UseChannelProps = GetChannelOptionsType

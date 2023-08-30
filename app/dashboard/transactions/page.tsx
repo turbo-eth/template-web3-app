@@ -1,15 +1,15 @@
-'use client'
+"use client"
 
-import { useNetwork } from 'wagmi'
+import { useNetwork } from "wagmi"
 
-import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
-import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
-import { TransactionsTable } from '@/integrations/etherscan/components/transactions-table'
-import { useEtherscanAccountTransactions } from '@/integrations/etherscan/hooks/use-etherscan-account-transactions'
-import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
-import { IsSignedIn } from '@/integrations/siwe/components/is-signed-in'
-import { IsSignedOut } from '@/integrations/siwe/components/is-signed-out'
-import { useUser } from '@/lib/hooks/use-user'
+import { useUser } from "@/lib/hooks/use-user"
+import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
+import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { TransactionsTable } from "@/integrations/etherscan/components/transactions-table"
+import { useEtherscanAccountTransactions } from "@/integrations/etherscan/hooks/use-etherscan-account-transactions"
+import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
+import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
+import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
 
 export default function PageDashboardTransactions() {
   return (
@@ -19,7 +19,9 @@ export default function PageDashboardTransactions() {
         <IsWalletConnected>
           <IsSignedOut>
             <div className="flex items-center gap-x-5 text-center">
-              <span className="text-sm text-gray-600 dark:text-gray-100">Login to access the TurboETH free API</span>
+              <span className="text-sm text-gray-600 dark:text-gray-100">
+                Login to access the TurboETH free API
+              </span>
               <ButtonSIWELogin className="btn btn-emerald" />
             </div>
           </IsSignedOut>
@@ -46,5 +48,11 @@ const Table = () => {
     [user]
   )
 
-  return <div className="w-full">{!isLoading && <TransactionsTable className="w-full" data={data?.transactions} />}</div>
+  return (
+    <div className="w-full">
+      {!isLoading && (
+        <TransactionsTable className="w-full" data={data?.transactions} />
+      )}
+    </div>
+  )
 }

@@ -1,15 +1,22 @@
-import moment from 'moment'
-import { Control, UseFormRegister, useFieldArray } from 'react-hook-form'
+import moment from "moment"
+import { Control, useFieldArray, UseFormRegister } from "react-hook-form"
 
-import { LinkComponent } from '@/components/shared/link-component'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { LinkComponent } from "@/components/shared/link-component"
 
-import { ConnectArweaveWallet } from './connect-arweave-wallet'
-import { Spinner } from './spinner'
-import { useArweaveWallet } from '../hooks/use-arweave-wallet'
-import { useGetPosts } from '../hooks/use-get-posts'
-import { humanFileSize } from '../utils'
+import { useArweaveWallet } from "../hooks/use-arweave-wallet"
+import { useGetPosts } from "../hooks/use-get-posts"
+import { humanFileSize } from "../utils"
+import { ConnectArweaveWallet } from "./connect-arweave-wallet"
+import { Spinner } from "./spinner"
 
 type FormType = {
   tags: {
@@ -19,7 +26,15 @@ type FormType = {
   address: string
 }
 
-const TagValues = ({ control, tagIndex, register }: { control: Control<FormType>; tagIndex: number; register: UseFormRegister<FormType> }) => {
+const TagValues = ({
+  control,
+  tagIndex,
+  register,
+}: {
+  control: Control<FormType>
+  tagIndex: number
+  register: UseFormRegister<FormType>
+}) => {
   const { fields, append, remove } = useFieldArray({
     control,
     name: `tags.${tagIndex}.values`,
@@ -30,17 +45,28 @@ const TagValues = ({ control, tagIndex, register }: { control: Control<FormType>
         return (
           <li key={item.id} className="mb-2 flex">
             <FormControl className="mr-2 dark:border-none dark:bg-neutral-800 dark:text-gray-400 dark:[color-scheme:dark]">
-              <Input placeholder="Tag Value" {...register(`tags.${tagIndex}.values.${subIndex}.value`)} />
+              <Input
+                placeholder="Tag Value"
+                {...register(`tags.${tagIndex}.values.${subIndex}.value`)}
+              />
             </FormControl>
             {fields.length > 1 && (
-              <button className="btn btn-primary mr-2 font-mono text-xs" type="button" onClick={() => remove(subIndex)}>
+              <button
+                className="btn btn-primary mr-2 font-mono text-xs"
+                type="button"
+                onClick={() => remove(subIndex)}
+              >
                 x
               </button>
             )}
           </li>
         )
       })}
-      <button className="btn btn-primary mt-2 text-sm" type="button" onClick={() => append({ value: '' })}>
+      <button
+        className="btn btn-primary mt-2 text-sm"
+        type="button"
+        onClick={() => append({ value: "" })}
+      >
         + New Value
       </button>
     </ul>
@@ -49,18 +75,22 @@ const TagValues = ({ control, tagIndex, register }: { control: Control<FormType>
 
 export const ListPosts = () => {
   const { wallet, address } = useArweaveWallet()
-  const { posts, loading, form, onSubmit, hasNextPage, getNextPage } = useGetPosts()
+  const { posts, loading, form, onSubmit, hasNextPage, getNextPage } =
+    useGetPosts()
   const { handleSubmit, control, register, setValue } = form
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'tags',
+    name: "tags",
   })
 
   if (!wallet) return <ConnectArweaveWallet />
   return (
     <div className="flex w-full flex-col text-left">
       <Form {...form}>
-        <form className="flex w-full flex-col space-y-8" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="flex w-full flex-col space-y-8"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <FormField
             control={control}
             name="address"
@@ -68,12 +98,20 @@ export const ListPosts = () => {
               <FormItem>
                 <FormLabel className="flex flex-row items-center justify-between">
                   <span>Owner address</span>
-                  <button className="btn btn-primary text-xs" type="button" onClick={() => setValue('address', address ?? '')}>
+                  <button
+                    className="btn btn-primary text-xs"
+                    type="button"
+                    onClick={() => setValue("address", address ?? "")}
+                  >
                     Use connected wallet address
                   </button>
                 </FormLabel>
                 <FormControl className="input dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
-                  <Input {...field} {...register('address')} className="dark:bg-neutral-800" />
+                  <Input
+                    {...field}
+                    {...register("address")}
+                    className="dark:bg-neutral-800"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -86,44 +124,78 @@ export const ListPosts = () => {
                 return (
                   <li key={item.id} className="mb-2 flex">
                     <FormControl className="mr-2 dark:border-none dark:bg-neutral-800 dark:text-gray-400 dark:[color-scheme:dark]">
-                      <Input placeholder="Tag Name" {...register(`tags.${index}.name`)} />
+                      <Input
+                        placeholder="Tag Name"
+                        {...register(`tags.${index}.name`)}
+                      />
                     </FormControl>
-                    <TagValues control={control} register={register} tagIndex={index} />
+                    <TagValues
+                      control={control}
+                      register={register}
+                      tagIndex={index}
+                    />
                     <button
                       className="btn h-10 bg-red-300 text-xs hover:bg-red-400 dark:bg-red-700 hover:dark:bg-red-800"
                       type="button"
-                      onClick={() => remove(index)}>
+                      onClick={() => remove(index)}
+                    >
                       Delete
                     </button>
                   </li>
                 )
               })}
             </ul>
-            <button className="btn btn-primary mt-2 text-sm" type="button" onClick={() => append({ name: '', values: [{ value: '' }] })}>
+            <button
+              className="btn btn-primary mt-2 text-sm"
+              type="button"
+              onClick={() => append({ name: "", values: [{ value: "" }] })}
+            >
               + New Tag
             </button>
           </div>
-          <input className="btn btn-primary my-2" disabled={loading} type="submit" value="Search" />
+          <input
+            className="btn btn-primary my-2"
+            disabled={loading}
+            type="submit"
+            value="Search"
+          />
         </form>
       </Form>
       <h2 className="mt-4 mb-2">Posts</h2>
       {posts.map((p) => (
-        <LinkComponent key={p.id} className="card mt-1 mb-2 flex justify-between" href={`/integration/arweave/posts/${p.id}`}>
+        <LinkComponent
+          key={p.id}
+          className="card mt-1 mb-2 flex justify-between"
+          href={`/integration/arweave/posts/${p.id}`}
+        >
           <div className="flex flex-col items-start text-sm capitalize">
-            <span>{p.data.type?.replace('/', ' ') ?? 'data'}</span>
-            <span className="mt-1 text-xs">{p.tags.find((tag) => tag.name === 'Protocol-Name')?.value ?? 'Data'}</span>
+            <span>{p.data.type?.replace("/", " ") ?? "data"}</span>
+            <span className="mt-1 text-xs">
+              {p.tags.find((tag) => tag.name === "Protocol-Name")?.value ??
+                "Data"}
+            </span>
           </div>
           <div className="flex flex-col items-end text-xs">
             <span>
-              Size: <span className="font-mono">{humanFileSize(p.data.size)}</span>
+              Size:{" "}
+              <span className="font-mono">{humanFileSize(p.data.size)}</span>
             </span>
-            <span className="mt-1">{p.block?.timestamp ? moment(parseInt(p.block?.timestamp) * 1000).format('MMM D, YYYY h:mm A') : ''}</span>
+            <span className="mt-1">
+              {p.block?.timestamp
+                ? moment(parseInt(p.block?.timestamp) * 1000).format(
+                    "MMM D, YYYY h:mm A"
+                  )
+                : ""}
+            </span>
           </div>
         </LinkComponent>
       ))}
       {!loading && !posts.length && <div>No post matched.</div>}
       {!loading && hasNextPage && (
-        <button className="btn btn-primary mt-2 text-sm" onClick={() => getNextPage()}>
+        <button
+          className="btn btn-primary mt-2 text-sm"
+          onClick={() => getNextPage()}
+        >
           Load more
         </button>
       )}

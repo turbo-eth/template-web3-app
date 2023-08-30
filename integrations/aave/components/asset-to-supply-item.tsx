@@ -1,18 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import { TiTick } from "react-icons/ti"
+import { formatUnits, parseUnits } from "viem"
+import { useAccount, useWaitForTransaction } from "wagmi"
 
-import Image from 'next/image'
-import { TiTick } from 'react-icons/ti'
-import { formatUnits, parseUnits } from 'viem'
-import { useAccount, useWaitForTransaction } from 'wagmi'
+import {
+  useErc20Allowance,
+  useErc20Approve,
+  useErc20BalanceOf,
+  useErc20Decimals,
+} from "@/lib/generated/blockchain"
+import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 
-import { ContractWriteButton } from '@/components/blockchain/contract-write-button'
-import { Button } from '@/components/ui/button'
-import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { useErc20Allowance, useErc20Approve, useErc20BalanceOf, useErc20Decimals } from '@/lib/generated/blockchain'
-import { useToast } from '@/lib/hooks/use-toast'
-
-import { usePoolSupply } from '../generated/aave-wagmi'
-import { useAave } from '../hooks/use-aave'
+import { usePoolSupply } from "../generated/aave-wagmi"
+import { useAave } from "../hooks/use-aave"
 
 interface IAssetToSupplyItem {
   address: `0x${string}`
@@ -23,21 +33,35 @@ interface IAssetToSupplyItem {
   showIfZeroBalance: boolean
 }
 
-export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityRate, showIfZeroBalance }: IAssetToSupplyItem) => {
+export const AssetToSupplyItem = ({
+  address,
+  symbol,
+  canBeCollateral,
+  liquidityRate,
+  showIfZeroBalance,
+}: IAssetToSupplyItem) => {
   const { poolAddress } = useAave()
   const { address: user } = useAccount()
-  const [supplyAmount, setSupplyAmount] = useState('')
+  const [supplyAmount, setSupplyAmount] = useState("")
   const [open, setOpen] = useState(false)
 
-  const { data: tokenBalance } = useErc20BalanceOf({ address, args: user ? [user] : undefined, watch: true })
+  const { data: tokenBalance } = useErc20BalanceOf({
+    address,
+    args: user ? [user] : undefined,
+    watch: true,
+  })
   const { data: decimals } = useErc20Decimals({ address })
-  const allowance = useErc20Allowance({ address, args: user ? [user, poolAddress] : undefined, watch: true }).data
+  const allowance = useErc20Allowance({
+    address,
+    args: user ? [user, poolAddress] : undefined,
+    watch: true,
+  }).data
 
   const { toast } = useToast()
 
   const handleToast = () => {
     toast({
-      title: 'Success',
+      title: "Success",
       description: `${symbol} successfully supplied`,
       duration: 4200,
     })
@@ -62,24 +86,38 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
     write: supplyWrite,
   } = usePoolSupply({
     address: poolAddress,
-    args: [address, parseUnits(`${Number(supplyAmount)}`, decimals ?? 18), user as `0x${string}`, 0],
+    args: [
+      address,
+      parseUnits(`${Number(supplyAmount)}`, decimals ?? 18),
+      user as `0x${string}`,
+      0,
+    ],
   })
 
-  const { isLoading: isLoadingSupplyTx, isSuccess: isSuccessTx } = useWaitForTransaction({
-    hash: dataSupply?.hash,
-  })
+  const { isLoading: isLoadingSupplyTx, isSuccess: isSuccessTx } =
+    useWaitForTransaction({
+      hash: dataSupply?.hash,
+    })
 
   const buttonAction = () => {
-    if (Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(supplyAmount)) {
+    if (
+      Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) <
+      Number(supplyAmount)
+    ) {
       approveWrite()
     } else {
       supplyWrite()
     }
   }
 
-  const isApproving = () => Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) < Number(supplyAmount)
+  const isApproving = () =>
+    Number(formatUnits(allowance ?? BigInt(1), decimals ?? 18)) <
+    Number(supplyAmount)
 
-  const setMaxAmount = () => setSupplyAmount(Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toString())
+  const setMaxAmount = () =>
+    setSupplyAmount(
+      Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toString()
+    )
 
   useEffect(() => {
     if (isSuccessTx) {
@@ -92,7 +130,7 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
     <tr>
       <td className="mt-2 flex items-center justify-center px-4 py-2">
         <Image
-          alt={symbol?.toString() ?? ''}
+          alt={symbol?.toString() ?? ""}
           className="mr-2 rounded-full"
           height={25}
           src={`https://app.aave.com/icons/tokens/${symbol.toLowerCase()}.svg`}
@@ -103,11 +141,19 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
       {tokenBalance === BigInt(0) ? (
         <td className="px-4 py-2 text-center text-slate-400">0</td>
       ) : (
-        <td className="px-4 py-2 text-center">{Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toFixed(5)}</td>
+        <td className="px-4 py-2 text-center">
+          {Number(
+            formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)
+          ).toFixed(5)}
+        </td>
       )}
 
-      <td className="px-4 py-2 text-center">{liquidityRate !== 0 ? `${liquidityRate.toFixed(2)}%` : '0'}</td>
-      <td className="flex justify-center px-4 pb-2 text-center">{canBeCollateral ? <TiTick color="green" size={30} /> : <p>—</p>}</td>
+      <td className="px-4 py-2 text-center">
+        {liquidityRate !== 0 ? `${liquidityRate.toFixed(2)}%` : "0"}
+      </td>
+      <td className="flex justify-center px-4 pb-2 text-center">
+        {canBeCollateral ? <TiTick color="green" size={30} /> : <p>—</p>}
+      </td>
       <td className="px-4 py-2 text-center">
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger disabled={tokenBalance === BigInt(0)}>
@@ -131,19 +177,28 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                     onChange={(e) => {
                       const regex = /^[0-9.,\b]+$/
                       let value = e.target.value
-                      if (value === '' || regex.test(value)) {
-                        if (value.startsWith('.') || value.startsWith(',')) {
+                      if (value === "" || regex.test(value)) {
+                        if (value.startsWith(".") || value.startsWith(",")) {
                           value = `0${value}`
                         }
-                        value = value.replace(',', '.')
+                        value = value.replace(",", ".")
                         setSupplyAmount(value)
-                        if (Number(value) > Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18))) setMaxAmount()
+                        if (
+                          Number(value) >
+                          Number(
+                            formatUnits(
+                              tokenBalance ?? BigInt(1),
+                              decimals ?? 18
+                            )
+                          )
+                        )
+                          setMaxAmount()
                       }
                     }}
                   />
                   <div className="flex items-center justify-between">
                     <Image
-                      alt={symbol?.toString() ?? ''}
+                      alt={symbol?.toString() ?? ""}
                       className="mr-2 rounded-full"
                       height={25}
                       src={`https://app.aave.com/icons/tokens/${symbol.toLowerCase()}.svg`}
@@ -154,7 +209,12 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
                 </div>
                 <div className="mt-2 flex items-center justify-between">
                   <div className="flex items-center justify-between">
-                    <span>Available: {Number(formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)).toFixed(5)}</span>
+                    <span>
+                      Available:{" "}
+                      {Number(
+                        formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)
+                      ).toFixed(5)}
+                    </span>
                     <button className="btn ml-3" onClick={setMaxAmount}>
                       Max
                     </button>
@@ -167,21 +227,36 @@ export const AssetToSupplyItem = ({ address, symbol, canBeCollateral, liquidityR
               <div className="input dark:bg-slate-900">
                 <div className="my-3 flex items-center justify-between">
                   <span>Supply APY</span>
-                  <span className="font-bold">{liquidityRate !== 0 ? `${liquidityRate.toFixed(2)}` : '0'}%</span>
+                  <span className="font-bold">
+                    {liquidityRate !== 0 ? `${liquidityRate.toFixed(2)}` : "0"}%
+                  </span>
                 </div>
                 <div className="mt-3 flex items-center justify-between">
                   <span>Collateralization</span>
-                  <span className={canBeCollateral ? 'text-green-500' : 'text-red-500'}>{canBeCollateral ? 'Enabled' : 'Disabled'}</span>
+                  <span
+                    className={
+                      canBeCollateral ? "text-green-500" : "text-red-500"
+                    }
+                  >
+                    {canBeCollateral ? "Enabled" : "Disabled"}
+                  </span>
                 </div>
               </div>
               <ContractWriteButton
                 className="btn btn-primary mt-5 w-full"
-                disabled={!Number(supplyAmount) || isLoadingApproveTx || isLoadingSupplyTx || isLoadingSupplyWrite || isLoadingApproveWrite}
+                disabled={
+                  !Number(supplyAmount) ||
+                  isLoadingApproveTx ||
+                  isLoadingSupplyTx ||
+                  isLoadingSupplyWrite ||
+                  isLoadingApproveWrite
+                }
                 isLoadingTx={isLoadingApproveTx || isLoadingSupplyTx}
                 isLoadingWrite={isLoadingApproveWrite || isLoadingSupplyWrite}
                 loadingTxText={isApproving() ? `Approving...` : `Supplying...`}
                 write={!!approveWrite || !!supplyWrite}
-                onClick={buttonAction}>
+                onClick={buttonAction}
+              >
                 {`${isApproving() ? `Approve` : `Supply`} ${symbol}`}
               </ContractWriteButton>
             </DialogDescription>

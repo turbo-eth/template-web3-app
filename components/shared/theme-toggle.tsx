@@ -1,36 +1,44 @@
-import { useEffect } from 'react'
+import { useEffect } from "react"
+import { useTheme } from "next-themes"
 
-import { useTheme } from 'next-themes'
+import { useColorMode } from "@/lib/state/color-mode"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Icons } from "@/components/shared/icons"
 
-import { Icons } from '@/components/shared/icons'
-import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { useColorMode } from '@/lib/state/color-mode'
-
-import { IsDarkTheme } from './is-dark-theme'
-import { IsLightTheme } from './is-light-theme'
+import { IsDarkTheme } from "./is-dark-theme"
+import { IsLightTheme } from "./is-light-theme"
 
 export function ThemeToggle() {
   const { setTheme } = useTheme()
   const [colorMode, toggleMode, setMode] = useColorMode()
 
   const handleSetLightTheme = () => {
-    setTheme('light')
-    setMode('light')
+    setTheme("light")
+    setMode("light")
   }
 
   const handleSetDarkTheme = () => {
-    setTheme('dark')
-    setMode('dark')
+    setTheme("dark")
+    setMode("dark")
   }
 
   const handleSetSystemTheme = () => {
-    setTheme('system')
-    setMode('system')
+    setTheme("system")
+    setMode("system")
   }
 
   useEffect(() => {
-    colorMode === 'system' ? setTheme('system') : colorMode === 'dark' ? setTheme('dark') : setTheme('light')
+    colorMode === "system"
+      ? setTheme("system")
+      : colorMode === "dark"
+      ? setTheme("dark")
+      : setTheme("light")
   }, [colorMode])
 
   return (

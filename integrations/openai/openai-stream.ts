@@ -1,9 +1,12 @@
-import { ParsedEvent, ReconnectInterval, createParser } from 'eventsource-parser'
-import { z } from 'zod'
+import { env } from "@/env.mjs"
+import {
+  createParser,
+  ParsedEvent,
+  ReconnectInterval,
+} from "eventsource-parser"
+import { z } from "zod"
 
-import { env } from '@/env.mjs'
-
-import { ModelConfig } from './utils/types'
+import { ModelConfig } from "./utils/types"
 
 const readableStreamSchema = z.object({
   id: z.string(),
@@ -30,11 +33,14 @@ const readableStreamSchema = z.object({
  * @param customApiKey Custom API key. If not set, the default API key from env variable OPENAI_API_KEY will be used.
  * @returns A readable stream of text data from OpenAI API.
  */
-export async function OpenAIStream(payload: ModelConfig, customApiKey?: string) {
+export async function OpenAIStream(
+  payload: ModelConfig,
+  customApiKey?: string
+) {
   const apiKey = customApiKey ?? env.OPENAI_API_KEY
 
   if (!apiKey) {
-    throw new Error('No OpenAI API key provided')
+    throw new Error("No OpenAI API key provided")
   }
 
   const encoder = new TextEncoder()
@@ -42,12 +48,12 @@ export async function OpenAIStream(payload: ModelConfig, customApiKey?: string) 
 
   let counter = 0
 
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
     },
-    method: 'POST',
+    method: "POST",
     body: JSON.stringify(payload),
   })
 
@@ -58,15 +64,15 @@ export async function OpenAIStream(payload: ModelConfig, customApiKey?: string) 
   const stream = new ReadableStream({
     async start(controller) {
       function onParse(event: ParsedEvent | ReconnectInterval) {
-        if (event.type === 'event') {
+        if (event.type === "event") {
           const data = event.data
-          if (data === '[DONE]') {
+          if (data === "[DONE]") {
             controller.close()
             return
           }
           try {
             const json = readableStreamSchema.parse(JSON.parse(data))
-            const text = json.choices[0].delta?.content || ''
+            const text = json.choices[0].delta?.content || ""
             if (counter < 2 && (text.match(/\n/) || []).length) {
               return
             }

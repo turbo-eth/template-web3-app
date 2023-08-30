@@ -86,7 +86,7 @@ body {
   height: 22px;
 }
 .lds-dual-ring:after {
-  content: ' ';
+  content: " ";
   display: block;
   width: 18px;
   height: 18px;
@@ -97,12 +97,12 @@ body {
   border-color: #fff transparent #fff transparent;
 }
 
-[data-theme='light'] .colormode .lds-dual-ring:after {
+[data-theme="light"] .colormode .lds-dual-ring:after {
   border: 6px solid #3e3e3e !important;
   border-color: #3e3e3e transparent #3e3e3e transparent !important;
 }
 
-[data-theme='dark'] .colormode .lds-dual-ring:after {
+[data-theme="dark"] .colormode .lds-dual-ring:after {
   border: 6px solid #fff !important;
   border-color: #fff transparent #fff transparent !important;
 }

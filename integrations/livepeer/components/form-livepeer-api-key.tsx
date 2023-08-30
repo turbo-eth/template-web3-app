@@ -1,15 +1,26 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
+import { BiInfoCircle } from "react-icons/bi"
 
-import { useForm } from 'react-hook-form'
-import { BiInfoCircle } from 'react-icons/bi'
+import { useToast } from "@/lib/hooks/use-toast"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
-import { useToast } from '@/lib/hooks/use-toast'
-
-import { FailedToFetchError, NotFoundError, PermissionError, useCheckLivepeerApiKey } from '../hooks/use-check-livepeer-api-key'
-import { useIsLivepeerApiKeySet, useLivepeerApiKey } from '../hooks/use-livepeer-api-key'
+import {
+  FailedToFetchError,
+  NotFoundError,
+  PermissionError,
+  useCheckLivepeerApiKey,
+} from "../hooks/use-check-livepeer-api-key"
+import {
+  useIsLivepeerApiKeySet,
+  useLivepeerApiKey,
+} from "../hooks/use-livepeer-api-key"
 
 interface livepeerForm {
   apiKey: string
@@ -22,15 +33,16 @@ export function FormLivepeerApiKey() {
   const { toast, dismiss } = useToast()
   const [, setLivepeerApiKey] = useLivepeerApiKey()
 
-  const watchApiKey = watch('apiKey')
-  const ApiKeyTooltip = 'Livepeer API Key has to have CORS access to the current domain'
+  const watchApiKey = watch("apiKey")
+  const ApiKeyTooltip =
+    "Livepeer API Key has to have CORS access to the current domain"
 
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
   useEffect(() => {
     if (!isLivepeerApiKeySet) {
       toast({
-        title: 'Livepeer API Key not set',
-        description: 'Please set a Livepeer API Key to use this integration',
+        title: "Livepeer API Key not set",
+        description: "Please set a Livepeer API Key to use this integration",
         duration: 100000,
       })
     }
@@ -39,7 +51,13 @@ export function FormLivepeerApiKey() {
     }
   }, [isLivepeerApiKeySet])
 
-  const handleToast = ({ title, description }: { title: string; description: string }) => {
+  const handleToast = ({
+    title,
+    description,
+  }: {
+    title: string
+    description: string
+  }) => {
     toast({
       title,
       description,
@@ -61,14 +79,14 @@ export function FormLivepeerApiKey() {
         setIsLoading(false)
       } else if (e instanceof FailedToFetchError) {
         handleToast({
-          title: 'Failed to fetch',
-          description: 'Please check if you API Key has CORS access',
+          title: "Failed to fetch",
+          description: "Please check if you API Key has CORS access",
         })
         setIsLoading(false)
       } else {
         handleToast({
-          title: 'Invalid API Key',
-          description: 'Please enter a valid Livepeer API Key',
+          title: "Invalid API Key",
+          description: "Please enter a valid Livepeer API Key",
         })
         setIsLoading(false)
       }
@@ -86,9 +104,18 @@ export function FormLivepeerApiKey() {
             <TooltipContent>{ApiKeyTooltip}</TooltipContent>
           </Tooltip>
         </div>
-        <input required className="input mt-4" {...register('apiKey')} placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx" />
-        <button className="btn btn-emerald mt-4 w-full" disabled={!watchApiKey || isLoading} type="submit">
-          {isLoading ? 'Loading...' : 'Submit'}
+        <input
+          required
+          className="input mt-4"
+          {...register("apiKey")}
+          placeholder="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        />
+        <button
+          className="btn btn-emerald mt-4 w-full"
+          disabled={!watchApiKey || isLoading}
+          type="submit"
+        >
+          {isLoading ? "Loading..." : "Submit"}
         </button>
       </form>
     </div>

@@ -1,10 +1,8 @@
+dist
+node_modules
+.next
+build
+pnpm-lock.yaml
 **/generated/**-wagmi.ts
 **/generated/blockchain.ts
 **/generated/
-
-.next/**
-.husky/**
-.vscode/**
-.github/**
-
-pnpm-lock.yaml

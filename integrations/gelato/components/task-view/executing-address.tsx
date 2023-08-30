@@ -1,10 +1,9 @@
-import { useState } from 'react'
+import { useState } from "react"
+import CopyToClipboard from "react-copy-to-clipboard"
+import { FaCopy } from "react-icons/fa"
 
-import CopyToClipboard from 'react-copy-to-clipboard'
-import { FaCopy } from 'react-icons/fa'
-
-import { useMsgSender } from '../../hooks/use-msg-sender'
-import { truncateEthAddress } from '../../utils/helpers'
+import { useMsgSender } from "../../hooks/use-msg-sender"
+import { truncateEthAddress } from "../../utils/helpers"
 
 export function ExecutingAddress() {
   const [copied, setCopied] = useState(false)
@@ -19,17 +18,21 @@ export function ExecutingAddress() {
         <p className="col-span-2 opacity-70 md:col-span-1">Your msg.sender</p>
         <p className="col-span-2 md:col-span-3">
           <CopyToClipboard
-            text={dedicatedMsgSender?.address || ''}
+            text={dedicatedMsgSender?.address || ""}
             onCopy={() => {
               setCopied(true)
               setTimeout(() => setCopied(false), 3000)
-            }}>
+            }}
+          >
             <div className="flex cursor-pointer space-x-3 text-lg">
               {copied ? (
                 <>Copied!</>
               ) : (
                 <>
-                  <span>{truncateEthAddress(dedicatedMsgSender?.address || '', 20)}</span> <FaCopy />
+                  <span>
+                    {truncateEthAddress(dedicatedMsgSender?.address || "", 20)}
+                  </span>{" "}
+                  <FaCopy />
                 </>
               )}
             </div>

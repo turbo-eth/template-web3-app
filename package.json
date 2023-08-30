@@ -125,6 +125,7 @@
     "@graphprotocol/client-cli": "^3.0.0",
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/client-preset": "^4.1.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.1.0",
     "@svgr/webpack": "^6.5.1",
     "@tsconfig/next": "^1.0.4",
     "@types/luxon": "^3.2.0",

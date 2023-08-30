@@ -1,19 +1,20 @@
-'use client'
-import { motion } from 'framer-motion'
-import Balancer from 'react-wrap-balancer'
+"use client"
 
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
-import { IsWalletConnected } from '@/components/shared/is-wallet-connected'
-import { IsWalletDisconnected } from '@/components/shared/is-wallet-disconnected'
-import { LinkComponent } from '@/components/shared/link-component'
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
-import { turboIntegrations } from '@/data/turbo-integrations'
-import { ERC20Deploy } from '@/integrations/erc20/components/erc20-deploy'
-import { ERC20Read } from '@/integrations/erc20/components/erc20-read'
-import { Erc20SetTokenStorage } from '@/integrations/erc20/components/erc20-set-token-storage'
-import { ERC20WriteMint } from '@/integrations/erc20/components/erc20-write-mint'
-import { ERC20WriteTransfer } from '@/integrations/erc20/components/erc20-write-transfer'
-import { useERC20TokenStorage } from '@/integrations/erc20/hooks/use-erc20-token-storage'
+import { turboIntegrations } from "@/data/turbo-integrations"
+import { motion } from "framer-motion"
+import Balancer from "react-wrap-balancer"
+
+import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
+import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
+import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { LinkComponent } from "@/components/shared/link-component"
+import { ERC20Deploy } from "@/integrations/erc20/components/erc20-deploy"
+import { ERC20Read } from "@/integrations/erc20/components/erc20-read"
+import { Erc20SetTokenStorage } from "@/integrations/erc20/components/erc20-set-token-storage"
+import { ERC20WriteMint } from "@/integrations/erc20/components/erc20-write-mint"
+import { ERC20WriteTransfer } from "@/integrations/erc20/components/erc20-write-transfer"
+import { useERC20TokenStorage } from "@/integrations/erc20/hooks/use-erc20-token-storage"
 
 export default function PageIntegration() {
   const [token] = useERC20TokenStorage()
@@ -33,17 +34,29 @@ export default function PageIntegration() {
                 staggerChildren: 0.15,
               },
             },
-          }}>
+          }}
+        >
           <motion.h1
             className="text-gradient-sand my-4 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
-            variants={FADE_DOWN_ANIMATION_VARIANTS}>
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+          >
             {turboIntegrations.erc20.name}
           </motion.h1>
-          <motion.p className="my-4 text-lg" variants={FADE_DOWN_ANIMATION_VARIANTS}>
+          <motion.p
+            className="my-4 text-lg"
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+          >
             <Balancer>{turboIntegrations.erc20.description}</Balancer>
           </motion.p>
-          <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-            <LinkComponent isExternal className="btn btn-primary" href={turboIntegrations.erc20.url}>
+          <motion.div
+            className="my-4 text-xl"
+            variants={FADE_DOWN_ANIMATION_VARIANTS}
+          >
+            <LinkComponent
+              isExternal
+              className="btn btn-primary"
+              href={turboIntegrations.erc20.url}
+            >
               Documentation
             </LinkComponent>
           </motion.div>
@@ -59,11 +72,13 @@ export default function PageIntegration() {
                 <>
                   <div className="card flex flex-col">
                     <span className="mb-4 text-lg">
-                      Access the token page where you can update the url parameters to select which ERC20 token to view
+                      Access the token page where you can update the url
+                      parameters to select which ERC20 token to view
                     </span>
                     <LinkComponent
                       className="btn btn-emerald btn-sm font-bold"
-                      href={`/integration/erc20/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}>
+                      href={`/integration/erc20/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}
+                    >
                       View Token Page
                     </LinkComponent>
                   </div>

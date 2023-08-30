@@ -1,11 +1,13 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState } from "react"
 
-import { estimateTxFee as estimateTxFeeAPI } from '@/integrations/arweave'
+import { estimateTxFee as estimateTxFeeAPI } from "@/integrations/arweave"
 
-import { ArweaveAmount } from '../utils/types'
+import { ArweaveAmount } from "../utils/types"
 
 export const useEstimateTxFee = () => {
-  const [estimatedTxFee, setEstimatedTxFee] = useState<ArweaveAmount | null>(null)
+  const [estimatedTxFee, setEstimatedTxFee] = useState<ArweaveAmount | null>(
+    null
+  )
   const [isEstimatingTxFee, setIsEstimatingTxFee] = useState<boolean>(false)
   const [estimationError, setEstimationError] = useState<string | null>(null)
 
@@ -23,5 +25,12 @@ export const useEstimateTxFee = () => {
     setEstimationError(null)
   }, [])
 
-  return { estimatedTxFee, isEstimatingTxFee, estimationError, estimateTxFee, setIsEstimatingTxFee, reset }
+  return {
+    estimatedTxFee,
+    isEstimatingTxFee,
+    estimationError,
+    estimateTxFee,
+    setIsEstimatingTxFee,
+    reset,
+  }
 }

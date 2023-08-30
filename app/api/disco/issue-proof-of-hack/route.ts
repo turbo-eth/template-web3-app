@@ -1,1 +1,1 @@
-export { POST } from '@/integrations/disco/api/issue-proof-of-hack'
+export { POST } from "@/integrations/disco/api/issue-proof-of-hack"

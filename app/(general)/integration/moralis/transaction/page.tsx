@@ -1,15 +1,15 @@
-'use client'
+"use client"
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion"
 
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
+import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import {
   FormGetInternalTransactions,
   FormGetTransaction,
   FormGetTransactionVerbose,
   FormGetWalletTransactions,
   FormGetWalletTransactionsVerbose,
-} from '@/integrations/moralis/components/transaction'
+} from "@/integrations/moralis/components/transaction"
 
 export default function PageIntegration() {
   return (
@@ -17,7 +17,8 @@ export default function PageIntegration() {
       animate="show"
       className="container mx-auto mt-10 flex w-full max-w-screen-lg flex-col gap-y-8"
       initial="hidden"
-      variants={FADE_DOWN_ANIMATION_VARIANTS}>
+      variants={FADE_DOWN_ANIMATION_VARIANTS}
+    >
       <FormGetTransaction />
       <FormGetTransactionVerbose />
       <FormGetInternalTransactions />

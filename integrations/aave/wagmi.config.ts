@@ -1,18 +1,18 @@
-import { defineConfig } from '@wagmi/cli'
-import { react } from '@wagmi/cli/plugins'
+import { defineConfig } from "@wagmi/cli"
+import { react } from "@wagmi/cli/plugins"
 
-import { poolAbi } from './abis/pool-abi'
-import { uiPoolDataProvider } from './abis/ui-pool-data-provider-abi'
+import { poolAbi } from "./abis/pool-abi"
+import { uiPoolDataProvider } from "./abis/ui-pool-data-provider-abi"
 
 export default defineConfig({
-  out: './generated/aave-wagmi.ts',
+  out: "./generated/aave-wagmi.ts",
   contracts: [
     {
-      name: 'ui-pool-data-provider',
+      name: "ui-pool-data-provider",
       abi: uiPoolDataProvider,
     },
     {
-      name: 'pool',
+      name: "pool",
       abi: poolAbi,
     },
   ],

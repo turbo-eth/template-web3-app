@@ -1,13 +1,13 @@
-'use client'
-import { ReactNode } from 'react'
+"use client"
 
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import Balancer from 'react-wrap-balancer'
+import { ReactNode } from "react"
+import Image from "next/image"
+import { turboIntegrations } from "@/data/turbo-integrations"
+import { motion } from "framer-motion"
+import Balancer from "react-wrap-balancer"
 
-import { LinkComponent } from '@/components/shared/link-component'
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
-import { turboIntegrations } from '@/data/turbo-integrations'
+import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
+import { LinkComponent } from "@/components/shared/link-component"
 
 export default function ConnextLayout({ children }: { children: ReactNode }) {
   return (
@@ -28,18 +28,38 @@ export default function ConnextLayout({ children }: { children: ReactNode }) {
                     staggerChildren: 0.15,
                   },
                 },
-              }}>
-              <Image alt="Connext Icon" className="mx-auto mb-5" height={100} src={turboIntegrations.connext.imgDark} width={100} />
+              }}
+            >
+              <Image
+                alt="Connext Icon"
+                className="mx-auto mb-5"
+                height={100}
+                src={turboIntegrations.connext.imgDark}
+                width={100}
+              />
               <motion.h1
                 className="text-gradient-sand pb-5 text-center text-2xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
-                variants={FADE_DOWN_ANIMATION_VARIANTS}>
+                variants={FADE_DOWN_ANIMATION_VARIANTS}
+              >
                 Connext
               </motion.h1>
-              <motion.p className=" mb-8 text-center text-gray-500 dark:text-gray-200 md:text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-                <Balancer className="text-xl font-semibold">Bridge assets directly from your app</Balancer>
+              <motion.p
+                className=" mb-8 text-center text-gray-500 dark:text-gray-200 md:text-xl"
+                variants={FADE_DOWN_ANIMATION_VARIANTS}
+              >
+                <Balancer className="text-xl font-semibold">
+                  Bridge assets directly from your app
+                </Balancer>
               </motion.p>
-              <motion.div className="my-4 text-xl" variants={FADE_DOWN_ANIMATION_VARIANTS}>
-                <LinkComponent isExternal className="btn btn-primary" href={turboIntegrations.connext.url}>
+              <motion.div
+                className="my-4 text-xl"
+                variants={FADE_DOWN_ANIMATION_VARIANTS}
+              >
+                <LinkComponent
+                  isExternal
+                  className="btn btn-primary"
+                  href={turboIntegrations.connext.url}
+                >
                   Documentation
                 </LinkComponent>
               </motion.div>

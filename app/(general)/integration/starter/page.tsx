@@ -1,4 +1,4 @@
-import { WalletConnect } from '@/components/blockchain/wallet-connect'
+import { WalletConnect } from "@/components/blockchain/wallet-connect"
 
 export default function PageIntegration() {
   return (

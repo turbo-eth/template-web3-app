@@ -1,26 +1,31 @@
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from "react"
+import { BsSearch } from "react-icons/bs"
 
-import { BsSearch } from 'react-icons/bs'
+import { Input } from "@/components/ui/input"
 
-import { Input } from '@/components/ui/input'
-
-import { ActiveTaskPreview } from './active-task-preview'
-import { useActiveTasks } from '../hooks'
+import { useActiveTasks } from "../hooks"
+import { ActiveTaskPreview } from "./active-task-preview"
 
 export function ActiveTasks() {
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("")
 
   const { data: activeTasks, isLoading } = useActiveTasks()
 
   const searchInputRef = useRef<HTMLInputElement>({} as HTMLInputElement)
 
   const activeTaskIdsFilteredByName = useMemo(
-    () => activeTasks?.names?.filter((item) => item.name.toLowerCase().includes(search)).map((item) => item.taskId),
+    () =>
+      activeTasks?.names
+        ?.filter((item) => item.name.toLowerCase().includes(search))
+        .map((item) => item.taskId),
     [activeTasks]
   )
 
   const filteredActiveTasks = useMemo(
-    () => activeTasks?.tasks.filter((item) => activeTaskIdsFilteredByName?.includes(item.id)),
+    () =>
+      activeTasks?.tasks.filter((item) =>
+        activeTaskIdsFilteredByName?.includes(item.id)
+      ),
     [activeTasks, activeTaskIdsFilteredByName]
   )
 
@@ -51,17 +56,24 @@ export function ActiveTasks() {
             <div className="flex justify-between text-sm dark:text-white dark:text-opacity-30">
               <div className="flex gap-4 lg:gap-10">
                 <span>#</span>
-                <span className="pl-3">Task, owner, contract &amp; function</span>
+                <span className="pl-3">
+                  Task, owner, contract &amp; function
+                </span>
               </div>
               <div>Total Tx Fees</div>
             </div>
             <div className="mt-5">
-              {filteredActiveTasks?.length === 0 && <div>No active tasks found...</div>}
+              {filteredActiveTasks?.length === 0 && (
+                <div>No active tasks found...</div>
+              )}
               {filteredActiveTasks?.map((task, index) => (
                 <ActiveTaskPreview
                   key={task.id}
                   index={index + 1}
-                  name={activeTasks?.names?.find((item) => item.taskId === task.id)?.name || ''}
+                  name={
+                    activeTasks?.names?.find((item) => item.taskId === task.id)
+                      ?.name || ""
+                  }
                   task={task}
                 />
               ))}

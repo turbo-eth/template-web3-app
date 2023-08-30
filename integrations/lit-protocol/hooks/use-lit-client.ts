@@ -1,12 +1,12 @@
-import * as LitJsSdk from '@lit-protocol/lit-node-client'
-import { LitProtocolMessage } from '@prisma/client'
-import { useAccount, useNetwork, useSignMessage } from 'wagmi'
+import * as LitJsSdk from "@lit-protocol/lit-node-client"
+import { LitProtocolMessage } from "@prisma/client"
+import { useAccount, useNetwork, useSignMessage } from "wagmi"
 
-import { siweMessage } from '@/integrations/siwe/actions/siwe-message'
+import { siweMessage } from "@/integrations/siwe/actions/siwe-message"
 
-import litClient from '../client'
-import { blobToString } from '../utils/data-types'
-import { AccessControlConditions } from '../utils/types'
+import litClient from "../client"
+import { blobToString } from "../utils/data-types"
+import { AccessControlConditions } from "../utils/types"
 
 export const useLitClient = () => {
   const { signMessageAsync } = useSignMessage()
@@ -18,12 +18,16 @@ export const useLitClient = () => {
    * @returns Promise that resolves to the signature
    */
   const signAuthMessage = async () => {
-    if (!address || !chain?.id) throw new Error('Wallet not connected')
+    if (!address || !chain?.id) throw new Error("Wallet not connected")
 
-    const { messageToSign, signature } = await siweMessage({ address, chainId: chain.id, signMessageAsync })
+    const { messageToSign, signature } = await siweMessage({
+      address,
+      chainId: chain.id,
+      signMessageAsync,
+    })
     const signAuthMessage = {
       sig: signature,
-      derivedVia: 'web3.eth.personal.sign',
+      derivedVia: "web3.eth.personal.sign",
       signedMessage: messageToSign,
       address,
     }
@@ -38,15 +42,20 @@ export const useLitClient = () => {
    * @throws Error if the wallet is not connected
    * @throws Error if the message cannot be encrypted
    */
-  const encryptMessage = async (messageToEncrypt: string, accessControlConditions: AccessControlConditions) => {
-    if (!address || !chain?.id) throw new Error('Wallet not connected')
+  const encryptMessage = async (
+    messageToEncrypt: string,
+    accessControlConditions: AccessControlConditions
+  ) => {
+    if (!address || !chain?.id) throw new Error("Wallet not connected")
     await litClient.connect()
 
     // Get auth signature using SIWE
     const authSig = await signAuthMessage()
 
     // Encrypt message into an encripted blob and a symmetric key
-    const { encryptedString, symmetricKey } = await LitJsSdk.encryptString(messageToEncrypt)
+    const { encryptedString, symmetricKey } = await LitJsSdk.encryptString(
+      messageToEncrypt
+    )
 
     // Save symmetric key and access control conditions to Lit Protocol
     // This will return an encrypted symmetric key in Uint8Array format
@@ -54,26 +63,42 @@ export const useLitClient = () => {
       accessControlConditions: accessControlConditions as any,
       symmetricKey,
       authSig,
-      chain: 'ethereum',
+      chain: "ethereum",
     })
 
     // Convert encrypted symmetric key from Uint8Array  to a string
-    const encryptedSymmetricKeyString = LitJsSdk.uint8arrayToString(encryptedSymmetricKey, 'base16')
+    const encryptedSymmetricKeyString = LitJsSdk.uint8arrayToString(
+      encryptedSymmetricKey,
+      "base16"
+    )
 
-    if (typeof encryptedSymmetricKeyString !== 'string') throw new Error('Encrypted symmetric key is not a string')
+    if (typeof encryptedSymmetricKeyString !== "string")
+      throw new Error("Encrypted symmetric key is not a string")
 
     // Store encrypted message, encrypted symmetric key and access control conditions into the database
-    const litProtocolMessage: LitProtocolMessage = await fetch('/api/lit-protocol/encrypt', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ encryptedString: await blobToString(encryptedString), accessControlConditions, encryptedSymmetricKeyString }),
-    }).then((res) => res.json())
+    const litProtocolMessage: LitProtocolMessage = await fetch(
+      "/api/lit-protocol/encrypt",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          encryptedString: await blobToString(encryptedString),
+          accessControlConditions,
+          encryptedSymmetricKeyString,
+        }),
+      }
+    ).then((res) => res.json())
 
-    if (!litProtocolMessage) throw new Error('Could not save message to database')
+    if (!litProtocolMessage)
+      throw new Error("Could not save message to database")
 
-    return { id: litProtocolMessage.id, encryptedString, encryptedSymmetricKey: encryptedSymmetricKeyString }
+    return {
+      id: litProtocolMessage.id,
+      encryptedString,
+      encryptedSymmetricKey: encryptedSymmetricKeyString,
+    }
   }
 
   /**
@@ -84,7 +109,7 @@ export const useLitClient = () => {
    * @throws Error if the wallet is not connected
    */
   const decryptMessage = async (id: string) => {
-    if (!address || !chain?.id) throw new Error('Wallet not connected')
+    if (!address || !chain?.id) throw new Error("Wallet not connected")
     await litClient.connect()
 
     // Get encrypted message, encrypted symmetric key and access control conditions from the database using the id
@@ -97,13 +122,17 @@ export const useLitClient = () => {
     }
 
     try {
-      response = await fetch(`/api/lit-protocol/${id}`).then((res) => res.json())
+      response = await fetch(`/api/lit-protocol/${id}`).then((res) =>
+        res.json()
+      )
     } catch (e) {
-      return { error: 'Message not found' }
+      return { error: "Message not found" }
     }
     const { encryptedString, metadata } = response
 
-    const encryptedStringBlob = await fetch(encryptedString).then((res) => res.blob())
+    const encryptedStringBlob = await fetch(encryptedString).then((res) =>
+      res.blob()
+    )
 
     // Get auth signature using SIWE
     const authSig = await signAuthMessage()
@@ -115,20 +144,23 @@ export const useLitClient = () => {
       _symmetricKey = await litClient.getEncryptionKey({
         accessControlConditions: metadata.accessControlConditions as any,
         toDecrypt: metadata.encryptedSymmetricKey,
-        chain: 'ethereum',
+        chain: "ethereum",
         authSig,
       })
     } catch (e) {
-      return { error: 'Access denied' }
+      return { error: "Access denied" }
     }
 
     let decryptedString
 
     try {
       // Decrypt the message using the symmetric key
-      decryptedString = await LitJsSdk.decryptString(encryptedStringBlob, _symmetricKey)
+      decryptedString = await LitJsSdk.decryptString(
+        encryptedStringBlob,
+        _symmetricKey
+      )
     } catch (e) {
-      return { error: 'Failed to decrypt message' }
+      return { error: "Failed to decrypt message" }
     }
 
     return { decryptedString }

@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState } from "react"
 
-import { Checkbox } from '@/components/ui/checkbox'
+import { Checkbox } from "@/components/ui/checkbox"
 
-import { AssetToSupplyItem } from './asset-to-supply-item'
-import { useAave } from '../hooks/use-aave'
+import { useAave } from "../hooks/use-aave"
+import { AssetToSupplyItem } from "./asset-to-supply-item"
 
 export const ListAssetsToSupply = () => {
   const { usdData } = useAave()
@@ -15,7 +15,12 @@ export const ListAssetsToSupply = () => {
         <h2 className="font-bold">Asssets to supply</h2>
       </div>
       <div className="mt-3 flex items-center">
-        <Checkbox id="c1" onCheckedChange={() => setShowZeroBalanceAssets(!showZeroBalanceAssets)} />
+        <Checkbox
+          id="c1"
+          onCheckedChange={() =>
+            setShowZeroBalanceAssets(!showZeroBalanceAssets)
+          }
+        />
         <label className="ml-3 text-sm" htmlFor="c1">
           Show assets with 0 balance
         </label>
@@ -24,10 +29,18 @@ export const ListAssetsToSupply = () => {
         <table className="mt-7 w-full table-auto border-collapse text-left">
           <thead>
             <tr>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Asset</th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Wallet balance</th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">APY</th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Can be collateral</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                Asset
+              </th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                Wallet balance
+              </th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                APY
+              </th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                Can be collateral
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -36,8 +49,13 @@ export const ListAssetsToSupply = () => {
                 <AssetToSupplyItem
                   key={index}
                   address={reserve.underlyingAsset}
-                  canBeCollateral={reserve.reserveData.usageAsCollateralEnabled && reserve.reserveData.debtCeiling === BigInt(0)}
-                  liquidityRate={Number(reserve.reserveData.liquidityRate) / 10 ** 25}
+                  canBeCollateral={
+                    reserve.reserveData.usageAsCollateralEnabled &&
+                    reserve.reserveData.debtCeiling === BigInt(0)
+                  }
+                  liquidityRate={
+                    Number(reserve.reserveData.liquidityRate) / 10 ** 25
+                  }
                   showIfZeroBalance={showZeroBalanceAssets}
                   symbol={reserve.reserveData.symbol}
                   tokenPriceInUsd={reserve.tokenPriceInUsd}

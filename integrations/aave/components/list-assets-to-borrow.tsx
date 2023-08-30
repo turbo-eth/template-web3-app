@@ -1,5 +1,5 @@
-import { AssetToBorrowItem } from './asset-to-borrow-item'
-import { useAave } from '../hooks/use-aave'
+import { useAave } from "../hooks/use-aave"
+import { AssetToBorrowItem } from "./asset-to-borrow-item"
 
 export const ListAssetsToBorrow = () => {
   const { usdData } = useAave()
@@ -13,10 +13,18 @@ export const ListAssetsToBorrow = () => {
         <table className="mt-7 w-full table-auto border-collapse text-left">
           <thead>
             <tr>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Asset</th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">Available</th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">APY, variable</th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">APY, stable</th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                Asset
+              </th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                Available
+              </th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                APY, variable
+              </th>
+              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+                APY, stable
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -26,17 +34,27 @@ export const ListAssetsToBorrow = () => {
                   <AssetToBorrowItem
                     key={index}
                     address={userReserve.underlyingAsset}
-                    canBorrowStableRateMode={userReserve.reserveData.stableBorrowRateEnabled && userReserve.scaledVariableDebt === BigInt(0)}
+                    canBorrowStableRateMode={
+                      userReserve.reserveData.stableBorrowRateEnabled &&
+                      userReserve.scaledVariableDebt === BigInt(0)
+                    }
                     symbol={userReserve.reserveData.symbol}
                     tokenPriceInUsd={userReserve.tokenPriceInUsd}
-                    variableBorrowRate={Number(userReserve.reserveData.variableBorrowRate) / 10 ** 25}
+                    variableBorrowRate={
+                      Number(userReserve.reserveData.variableBorrowRate) /
+                      10 ** 25
+                    }
                     aTokensBalance={
-                      ((Number(userReserve.scaledATokenBalance) / 10 ** Number(userReserve.reserveData.decimals)) *
+                      ((Number(userReserve.scaledATokenBalance) /
+                        10 ** Number(userReserve.reserveData.decimals)) *
                         Number(userReserve.reserveData.liquidityIndex)) /
                       10 ** 27
                     }
                     stableBorrowRate={
-                      userReserve.reserveData.stableBorrowRateEnabled ? Number(userReserve.reserveData.stableBorrowRate) / 10 ** 25 : 0
+                      userReserve.reserveData.stableBorrowRateEnabled
+                        ? Number(userReserve.reserveData.stableBorrowRate) /
+                          10 ** 25
+                        : 0
                     }
                   />
                 )

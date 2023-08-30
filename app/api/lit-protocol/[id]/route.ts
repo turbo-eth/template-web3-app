@@ -1,1 +1,1 @@
-export { GET } from '@/integrations/lit-protocol/api/[id]'
+export { GET } from "@/integrations/lit-protocol/api/[id]"

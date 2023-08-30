@@ -1,8 +1,7 @@
-'use client'
+"use client"
 
-import { ReactNode } from 'react'
-
-import { useAccount } from 'wagmi'
+import { ReactNode } from "react"
+import { useAccount } from "wagmi"
 
 interface IsWalletConnectedProps {
   children: ReactNode
