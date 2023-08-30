@@ -1,6 +1,6 @@
 import { env } from "@/env.mjs"
 import { IronSessionOptions } from "iron-session"
-import { SiweMessage } from "siwe"
+import type { SiweMessage } from "siwe"
 
 import { siteConfig } from "@/config/site"
 
