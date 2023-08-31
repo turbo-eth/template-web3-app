@@ -1,13 +1,13 @@
 import Link from "next/link"
 import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa"
 
+import { menuAdmin } from "@/config/menu-admin"
 import { menuDashboard } from "@/config/menu-dashboard"
 import { siteConfig } from "@/config/site"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import { SidebarNav } from "@/components/layout/sidebar-nav"
 import { SiteHeader } from "@/components/layout/site-header"
-import { menuAdmin } from "@/config/menu-admin"
 
 interface DashboardLayoutProps {
   children: React.ReactNode

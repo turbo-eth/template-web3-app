@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Separator } from "@/components/ui/separator"
 import { LightDarkImage } from "@/components/shared/light-dark-image"
+
 import { LinkComponent } from "../shared/link-component"
 
 export function MainNav() {
