@@ -22,7 +22,7 @@ export const siteConfig: SiteConfig = {
   title: "TurboETH - Web3 App Template",
   emoji: "⚡",
   description:
-    "Start building full-stack Web3 applications in minutes using the Open Source TurboETH codebase.",
+    "Start building full-stack Web3 applications in minutes with TurboETH.",
   localeDefault: "en",
   links: {
     docs: "https://docs.turboeth.xyz/overview",
