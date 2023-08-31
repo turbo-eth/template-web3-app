@@ -30,8 +30,8 @@ export function MobileNav() {
       <div className="flex w-full items-center justify-between md:hidden">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <LightDarkImage
-            LightImage="/logo-fill.png"
-            DarkImage="/logo-fill.png"
+            LightImage="/logo-dark.png"
+            DarkImage="/logo-light.png"
             alt="TurboETH"
             height={32}
             width={32}
@@ -58,8 +58,8 @@ export function MobileNav() {
             onOpenChange={setOpen}
           >
             <LightDarkImage
-              LightImage="/logo-fill.png"
-              DarkImage="/logo-fill.png"
+              LightImage="/logo-dark.png"
+              DarkImage="/logo-light.png"
               alt="TurboETH"
               height={32}
               width={32}

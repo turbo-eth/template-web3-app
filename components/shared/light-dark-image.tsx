@@ -21,12 +21,10 @@ const LightDarkImage = ({
   width,
   className,
 }: LightDarkImageProps) => {
-  const { theme } = useTheme()
-
-  console.log(theme, 'themetheme')
+  const { resolvedTheme } = useTheme()
 
   let imageUrl = LightImage
-  if (theme === "dark" || theme === "system" ) {
+  if (resolvedTheme === "dark") {
     imageUrl = DarkImage
   }
 

@@ -8,9 +8,9 @@ interface IsLightThemeProps {
 }
 
 export const IsLightTheme = ({ children }: IsLightThemeProps) => {
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
 
-  if (theme === "light") return <>{children}</>
+  if (resolvedTheme === "light") return <>{children}</>
 
   return null
 }
