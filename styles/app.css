@@ -2,42 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.card {
-  @apply bg-card border-2 dark:border-neutral-700 rounded-lg p-6 shadow-sm;
-}
-
 .input {
   @apply border-0 px-3 py-3 placeholder-neutral-400 text-gray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150;
-}
-
-.tag {
-  @apply inline-flex text-xs leading-5 font-semibold rounded-lg;
-  padding-left: 0.65rem;
-  padding-right: 0.65rem;
-  padding-bottom: 0.125rem;
-  padding-top: 0.125rem;
-}
-
-.tag-base {
-  @apply text-base;
-}
-
-.tag-primary {
-  @apply text-gray-600 bg-gray-300 dark:text-gray-200 dark:bg-gray-700;
-}
-
-.tag-white {
-  @apply text-gray-700 bg-white;
-}
-.tag-light {
-  @apply text-gray-600 bg-gray-100;
-}
-.tag-dark {
-  @apply text-gray-100 bg-gray-800;
-}
-.tag-gray {
-  @apply text-gray-100 bg-gray-700;
-}
-.tag-emerald {
-  @apply text-emerald-100 bg-emerald-800;
 }

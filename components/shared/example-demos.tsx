@@ -524,7 +524,7 @@ function DemoCard({ title, description, href, demo, large }: DemoCardProps) {
   return (
     <motion.div
       variants={fadeUpVariant()}
-      className={`relative col-span-1 overflow-hidden rounded-xl border bg-muted px-4 shadow-md ${
+      className={`relative col-span-1 overflow-hidden rounded-xl border bg-card px-4 shadow-sm transition-shadow hover:shadow-md ${
         large ? "md:col-span-2" : ""
       }`}
     >
