@@ -2,7 +2,11 @@
 
 # ⚡ TurboETH - Web3 App Starter Kit
 
-Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!
+![CI](https://github.com/turbo-eth/template-web3-app/actions/workflows/ci.yml/badge.svg)
+![TS](https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
+
+Web3 App Template built using Next.js, RainbowKit, Tailwind, Sign-In With Ethereum, and more.
 
 ### Starter Kit Examples
 
