@@ -34,6 +34,5 @@
     "**/*.js",
     "*.cjs"
   ],
-
   "exclude": ["node_modules", ".next", ".vscode", "generated"]
 }

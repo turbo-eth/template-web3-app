@@ -2,6 +2,8 @@ import { useState, type ChangeEvent } from "react"
 import { useForm } from "react-hook-form"
 import { isAddress } from "viem"
 
+import { Button } from "@/components/ui/button"
+
 import { AccessControlProps } from "./types"
 
 interface FormSchema {
@@ -49,9 +51,9 @@ export function AccessControlSingleAddress({
           {String(errors.address?.message)}
         </p>
       )}
-      <button className="btn btn-emerald mt-4" type="submit">
+      <Button variant="emerald" className="mt-4" type="submit">
         Save
-      </button>
+      </Button>
     </form>
   )
 }

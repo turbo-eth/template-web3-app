@@ -14,7 +14,7 @@ export const TableHead = ({
   ...props
 }: ITableHead) => {
   const styleBase = cn(className, {
-    "rounded-xl shadow-sm border-b-2 border-blue-300 pb-5 h-20 z-10":
+    "rounded-xl shadow-sm border-b-2 border-blue-300 pb-5 h-20 z-10 bg-card rounded-t-xl":
       defaultStyle,
   })
   return (

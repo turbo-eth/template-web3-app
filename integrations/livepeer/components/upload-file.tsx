@@ -6,6 +6,7 @@ import { useCreateAsset } from "@livepeer/react"
 import { useDropzone } from "react-dropzone"
 import { BiVideoPlus } from "react-icons/bi"
 
+import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 
 import { useIsLivepeerApiKeySet } from "../hooks/use-livepeer-api-key"
@@ -95,7 +96,7 @@ export function UploadFile() {
                 <input {...getInputProps()} />
 
                 <BiVideoPlus fill="rgb(226 232 240)" size={108} />
-                <span className="mt-2 block justify-center text-sm font-semibold text-gray-400">
+                <span className="mt-2 block justify-center text-sm font-semibold text-muted-foreground">
                   Drop a video or Click to browse
                 </span>
               </div>
@@ -114,15 +115,15 @@ export function UploadFile() {
           )}
 
           {!asset?.[0].id && (
-            <button
-              className="btn btn-emerald"
+            <Button
+              variant="emerald"
               disabled={isLoading || !createAsset}
               onClick={() => {
                 createAsset?.()
               }}
             >
               {isLoading ? "Uploading..." : "Upload Video"}
-            </button>
+            </Button>
           )}
         </div>
       )}

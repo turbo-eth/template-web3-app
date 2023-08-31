@@ -2,11 +2,9 @@ import { useState } from "react"
 import { FieldValues, useForm } from "react-hook-form"
 import { usePublicClient, useWalletClient } from "wagmi"
 
+import { Card } from "@/components/ui/card"
 import { BlockExplorerLink } from "@/components/blockchain/block-explorer-link"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
-import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
-import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 
 import { erc20MintableABI } from "../abis/erc20-mintable-abi"
 import { erc20MintableByteCode } from "../abis/erc20-mintable-bytecode"
@@ -84,24 +82,15 @@ export function DeployERC20Contract() {
 
 export function ERC20Deploy() {
   return (
-    <div className="card w-full">
-      <IsWalletConnected>
-        <div className="w-full">
-          <DeployERC20Contract />
-          <hr className="my-4" />
-          <div className="flex items-center justify-between">
-            <h3 className="text-center">ERC20 Deploy</h3>
-            <p className="text-center text-sm text-gray-500">
-              Deploy a new mintable ERC20 token to any blockchain
-            </p>
-          </div>
-        </div>
-      </IsWalletConnected>
-      <IsWalletDisconnected>
-        <div className="flex items-center justify-center gap-10">
-          <WalletConnect />
-        </div>
-      </IsWalletDisconnected>
-    </div>
+    <Card className="w-full p-6">
+      <DeployERC20Contract />
+      <hr className="my-4" />
+      <div className="flex items-center justify-between">
+        <h3 className="text-center">ERC20 Deploy</h3>
+        <p className="text-center text-sm text-muted-foreground">
+          Deploy a new mintable ERC20 token to any blockchain
+        </p>
+      </div>
+    </Card>
   )
 }

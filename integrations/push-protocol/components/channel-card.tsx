@@ -71,7 +71,7 @@ export function ChannelCard({
               {strLimit(channel.info, 100)}
             </p>
             <div className="mt-auto">
-              <div className="mt-2 flex flex-col items-start space-y-2 md:flex-row md:items-end md:space-y-0 md:space-x-2">
+              <div className="mt-2 flex flex-col items-start space-y-2 md:flex-row md:items-end md:space-x-2 md:space-y-0">
                 <SubscribeButton
                   channelAddress={channelAddress}
                   env={env}
@@ -87,7 +87,7 @@ export function ChannelCard({
                     text={channel.channel}
                     onCopy={() => setCopied(true)}
                   >
-                    <button className="rounded-full bg-slate-200 px-2 py-1 text-xs text-gray-700">
+                    <button className="rounded-full bg-muted px-2 py-1 text-xs text-muted-foreground">
                       {copied ? (
                         <>Copied!</>
                       ) : (

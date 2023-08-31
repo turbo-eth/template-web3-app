@@ -1,95 +1,59 @@
-import { ReactNode } from "react"
-import Image from "next/image"
+import Link from "next/link"
+import { FaDiscord, FaGithub, FaTwitter } from "react-icons/fa"
 
+import { menuAdmin } from "@/config/menu-admin"
+import { menuDashboard } from "@/config/menu-dashboard"
 import { siteConfig } from "@/config/site"
-import { Toaster } from "@/components/ui/toaster"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
-import { DashboardFooter } from "@/components/layout/dashboard-footer"
-import { DashboardHeader } from "@/components/layout/dashboard-header"
-import { MenuDashboardSidebar } from "@/components/layout/menu-dashboard-sidebar"
-import { UserDropdown } from "@/components/layout/user-dropdown"
-import { IsDarkTheme } from "@/components/shared/is-dark-theme"
-import { IsDesktop } from "@/components/shared/is-desktop"
-import { IsLightTheme } from "@/components/shared/is-light-theme"
-import { IsMobile } from "@/components/shared/is-mobile"
-import { LinkComponent } from "@/components/shared/link-component"
+import { SidebarNav } from "@/components/layout/sidebar-nav"
+import { SiteHeader } from "@/components/layout/site-header"
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+interface DashboardLayoutProps {
+  children: React.ReactNode
+}
+
+export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (
-    <>
-      <div className="flex h-screen flex-col lg:grid lg:grid-cols-12">
-        <div className="col-span-12 flex flex-col bg-slate-50 shadow-md dark:bg-slate-800 lg:col-span-2 lg:pb-8">
-          <IsMobile>
-            <div className="flex p-4">
-              <LinkComponent className="flex flex-1 items-center " href="/">
-                <IsLightTheme>
-                  <Image
-                    alt="Logo"
-                    height={32}
-                    src="/logo-dark.png"
-                    width={32}
-                  />
-                </IsLightTheme>
-                <IsDarkTheme>
-                  <Image
-                    alt="Logo"
-                    height={32}
-                    src="/logo-white.png"
-                    width={32}
-                  />
-                </IsDarkTheme>
-              </LinkComponent>
-              <div className="">
-                <UserDropdown />
-              </div>
+    <div className="relative flex min-h-screen flex-col">
+      <SiteHeader />
+      <div className="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[240px_minmax(0,1fr)] lg:gap-10">
+        <aside className="fixed top-20 z-30 -ml-2 hidden h-[calc(100vh-5rem)] w-full shrink-0 justify-between overflow-y-auto border-r md:sticky md:flex md:flex-col">
+          <ScrollArea className="py-6 pr-6 lg:py-8">
+            <h3 className="text-lg font-normal">User</h3>
+            <SidebarNav items={menuDashboard} />
+            <hr className="my-6 border-t border-muted" />
+            <h3 className="text-lg font-normal">Admin</h3>
+            <SidebarNav items={menuAdmin} />
+          </ScrollArea>
+          <footer className="fixed bottom-6 flex flex-col border-t pr-2 pt-4">
+            <h3 className="text-sm font-semibold">{siteConfig.title}</h3>
+            <a
+              href="https://districtlabs.com"
+              target="_blank"
+              rel="noreferrer"
+              className="w-fit py-2 text-xs text-primary underline-offset-4 hover:underline"
+            >
+              Built by District Labs
+            </a>
+            <div className="mt-2 flex items-center space-x-2">
+              <Link href={siteConfig.links.github}>
+                <FaGithub />
+              </Link>
+              <Link href={siteConfig.links.twitter}>
+                <FaTwitter />
+              </Link>
+              <Link href={siteConfig.links.discord}>
+                <FaDiscord />
+              </Link>
             </div>
-          </IsMobile>
-          <IsDesktop>
-            <div className="flex p-4 py-6">
-              <LinkComponent className="flex items-center" href="/">
-                <IsLightTheme>
-                  <Image
-                    alt="Logo"
-                    height={32}
-                    src="/logo-dark.png"
-                    width={32}
-                  />
-                </IsLightTheme>
-                <IsDarkTheme>
-                  <Image
-                    alt="Logo"
-                    height={32}
-                    src="/logo-white.png"
-                    width={32}
-                  />
-                </IsDarkTheme>
-                <h1 className="text-gradient-sand ml-2 text-2xl font-bold">
-                  {siteConfig.name}
-                </h1>
-              </LinkComponent>
-            </div>
-            <div className="flex-1 px-8 py-5">
-              <MenuDashboardSidebar className="mt-4 flex-1" />
-            </div>
-            <div className="px-8">
-              <WalletConnect />
-              <LinkComponent
-                className="link my-2 mt-8 inline-block text-xs"
-                href="/admin"
-              >
-                Admin
-              </LinkComponent>
-            </div>
-            <hr className="my-4 opacity-25" />
-            <DashboardFooter className="px-8 " />
-          </IsDesktop>
-        </div>
-        <div className="relative col-span-12 flex max-h-[100vh] flex-1 flex-col lg:col-span-10">
-          <DashboardHeader className="bg-slate-100 py-3 shadow-md dark:bg-slate-700" />
-          <main className="w-full flex-1 overflow-auto">{children}</main>
-        </div>
+          </footer>
+        </aside>
+        <main className="flex w-full flex-col overflow-hidden">{children}</main>
       </div>
-      <Toaster />
-    </>
+      <div className="fixed bottom-6 right-6">
+        <WalletConnect />
+      </div>
+    </div>
   )
 }

@@ -32,24 +32,21 @@ export function LatestTransfers({ isMainnet }: LatestTransfersProps) {
       <button
         className={`flex w-full items-center justify-center ${
           collapse
-            ? "font-medium text-slate-300 hover:text-slate-800 dark:text-slate-700 dark:hover:text-slate-200"
+            ? "font-medium text-muted hover:text-accent"
             : "font-semibold"
         } mb-3 space-x-1`}
         onClick={() => setCollapse(!collapse)}
       >
-        <span className="3xl:text-2xl text-sm capitalize text-black dark:text-white">
+        <span className="3xl:text-2xl text-sm capitalize text-foreground">
           Latest Transfers
         </span>
         {collapse ? (
           <BiChevronDown
-            className="3xl:w-6 3xl:h-6 text-black dark:text-white"
+            className="3xl:w-6 3xl:h-6 text-foreground"
             size={18}
           />
         ) : (
-          <BiChevronUp
-            className="3xl:w-6 3xl:h-6 text-black dark:text-white"
-            size={18}
-          />
+          <BiChevronUp className="3xl:w-6 3xl:h-6 text-foreground" size={18} />
         )}
       </button>
       {!collapse && (
@@ -59,7 +56,7 @@ export function LatestTransfers({ isMainnet }: LatestTransfersProps) {
           </div>
           {address && transfers.length > 3 && (
             <LinkComponent
-              className="3xl:text-2xl mt-2.5 flex items-center justify-center text-blue-500 dark:text-slate-200"
+              className="3xl:text-2xl mt-2.5 flex items-center justify-center text-blue-500 dark:text-blue-200"
               href={`https://connextscan.io//address/${address}`}
               target="_blank"
             >

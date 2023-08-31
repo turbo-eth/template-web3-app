@@ -278,7 +278,7 @@ export function FormConnextXTransfer({
           disabled
           className="3xl:text-xl mt-3 flex w-full items-center justify-start rounded bg-red-400 p-4 text-sm font-medium text-white dark:bg-red-500"
         >
-          Insufficient balance :(
+          Insufficient balance :
         </button>
       )
     }
@@ -296,7 +296,7 @@ export function FormConnextXTransfer({
       return (
         <button
           disabled
-          className="mt-5 w-full cursor-not-allowed rounded bg-slate-100 p-4 text-gray-400 dark:bg-slate-800 dark:text-white"
+          className="mt-5 w-full cursor-not-allowed rounded bg-muted p-4 text-muted-foreground"
         >
           {getButtonContent()}
         </button>
@@ -367,7 +367,7 @@ export function FormConnextXTransfer({
   }, [approveTxSuccess])
 
   return showTransferStatus ? (
-    <div className="space-y-4 rounded border bg-slate-50 px-4 pt-5 pb-6 dark:border-slate-700 dark:bg-slate-900 sm:px-6 sm:pt-5 sm:pb-6">
+    <div className="space-y-4 rounded border bg-muted px-4 pb-6 pt-5 sm:px-6 sm:pb-6 sm:pt-5">
       <div className="flex items-center justify-between space-x-2">
         <span className="text-lg font-semibold">Transfer status</span>
         <button onClick={() => setShowTransferStatus(false)}>
@@ -381,7 +381,7 @@ export function FormConnextXTransfer({
         src="/penguin-working.gif"
         width={400}
       />
-      <p className="mt-3 text-xs font-medium text-slate-500 dark:text-slate-500 sm:text-sm">
+      <p className="mt-3 text-xs font-medium text-muted-foreground sm:text-sm">
         Your transfer is on his way. You can close this window and the
         transaction will still be processed
       </p>
@@ -389,7 +389,7 @@ export function FormConnextXTransfer({
   ) : (
     <motion.div
       animate="show"
-      className="card my-8 mx-4 max-w-fit dark:bg-gray-800 sm:mx-auto"
+      className="mx-4 my-8 max-w-fit rounded-lg border bg-background p-6 sm:mx-auto"
       initial="hidden"
       style={{
         boxShadow: `${`${
@@ -414,14 +414,12 @@ export function FormConnextXTransfer({
 
       <div className="mb-10 flex items-center justify-between">
         <div className="flex w-40 flex-col">
-          <span className="text-sm text-gray-600 dark:text-slate-200">
-            From
-          </span>
+          <span className="text-sm text-muted-foreground">From</span>
           <Select value={originChain} onValueChange={updateOriginChain}>
-            <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-200 dark:placeholder:text-neutral-400">
+            <SelectTrigger>
               <SelectValue placeholder="Select chain" />
             </SelectTrigger>
-            <SelectContent className="bg-white dark:bg-gray-700">
+            <SelectContent>
               {isMainnet
                 ? mainnetChains.map((chain, index) => (
                     <SelectItem key={index} value={chain.domain_id}>
@@ -461,15 +459,15 @@ export function FormConnextXTransfer({
           <MdOutlineSwapHoriz />
         </button>
         <div className="flex w-40 flex-col">
-          <span className="text-sm text-gray-600 dark:text-slate-200">To</span>
+          <span className="text-sm">To</span>
           <Select
             value={destinationChain}
             onValueChange={updateDestinationChain}
           >
-            <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-200 dark:placeholder:text-neutral-400">
+            <SelectTrigger>
               <SelectValue placeholder="Select chain" />
             </SelectTrigger>
-            <SelectContent className="bg-white dark:bg-gray-700">
+            <SelectContent>
               {isMainnet
                 ? mainnetChains.map((chain, index) => (
                     <SelectItem key={index} value={chain.domain_id}>
@@ -505,23 +503,21 @@ export function FormConnextXTransfer({
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-sm text-gray-600 dark:text-slate-200">
-          You send
-        </span>
-        <span className="text-sm text-gray-600 dark:text-slate-200">
+        <span className="text-sm">You send</span>
+        <span className="text-sm">
           Balance:{" "}
           <span className="font-bold">
             {formatNumber(originBalance?.formatted ?? "")} {getAsset()?.symbol}
           </span>{" "}
         </span>
       </div>
-      <div className="mt-2 flex items-center justify-between rounded border border-slate-200 dark:border-gray-700">
+      <div className="mt-2 flex items-center justify-between rounded border">
         <div className="flex w-48 flex-col border-none">
           <Select value={asset} onValueChange={setAsset}>
-            <SelectTrigger className="input border-none text-gray-600 placeholder:text-neutral-400 dark:bg-gray-800 dark:text-slate-200 dark:placeholder:text-neutral-400">
+            <SelectTrigger className="border-none">
               <SelectValue placeholder="Select chain" />
             </SelectTrigger>
-            <SelectContent className="dark:bg-gray-700">
+            <SelectContent>
               {isMainnet
                 ? mainnetAssets.map((asset, index) => (
                     <SelectItem key={index} value={asset.id}>
@@ -555,7 +551,7 @@ export function FormConnextXTransfer({
           </Select>
         </div>
         <input
-          className="3xl:text-2xl w-36 rounded  border-0 bg-transparent py-1.5 text-right font-semibold focus:ring-0 sm:w-48 sm:text-lg"
+          className="3xl:text-2xl w-36 rounded border-0 bg-transparent py-1.5 text-right font-semibold focus:ring-0 sm:w-48 sm:text-lg"
           placeholder="0.00"
           type="text"
           value={amount}
@@ -576,10 +572,8 @@ export function FormConnextXTransfer({
         <>
           {" "}
           <div className="mt-8 flex items-center justify-between">
-            <span className="text-sm text-gray-600 dark:text-slate-200">
-              You receive
-            </span>
-            <span className="text-sm text-gray-600 dark:text-slate-200">
+            <span className="text-sm">You receive</span>
+            <span className="text-sm">
               Balance:{" "}
               <span className="font-bold">
                 {formatNumber(destinationBalance?.formatted ?? "0")}{" "}
@@ -587,13 +581,13 @@ export function FormConnextXTransfer({
               </span>{" "}
             </span>
           </div>
-          <div className="mt-2 flex items-center justify-between rounded border border-slate-200 dark:border-gray-700">
+          <div className="mt-2 flex items-center justify-between rounded border">
             <div className="flex w-48 flex-col border-none">
               <Select disabled value={asset}>
-                <SelectTrigger className="input border-none text-gray-600 placeholder:text-neutral-400 dark:bg-gray-800 dark:text-slate-200 dark:placeholder:text-neutral-400">
+                <SelectTrigger className="border-none">
                   <SelectValue placeholder="Select chain" />
                 </SelectTrigger>
-                <SelectContent className="dark:bg-gray-700">
+                <SelectContent>
                   {isMainnet
                     ? mainnetAssets.map((asset, index) => (
                         <SelectItem key={index} value={asset.id}>
@@ -640,11 +634,9 @@ export function FormConnextXTransfer({
               )}
             </div>
           </div>
-          <div className="mt-5 rounded border border-slate-200 py-2 dark:border-gray-700">
+          <div className="mt-5 rounded border">
             <div className="my-2 flex items-center justify-between">
-              <span className="ml-3 text-sm text-gray-600 dark:text-slate-200">
-                Estimated time
-              </span>
+              <span className="ml-3 text-sm">Estimated time</span>
               {isFastPath ? (
                 <span className="mr-2 text-green-500 dark:text-green-500">
                   {"< 4 minutes"}
@@ -658,7 +650,7 @@ export function FormConnextXTransfer({
           </div>{" "}
         </>
       ) : (
-        <div className="3xl:text-2xl mt-6 mb-2 text-center font-medium text-slate-400 dark:text-slate-200">
+        <div className="3xl:text-2xl mb-2 mt-6 text-center font-medium text-muted-foreground">
           Route not supported
         </div>
       )}

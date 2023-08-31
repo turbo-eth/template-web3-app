@@ -7,7 +7,7 @@ import { CreateTask } from "@/integrations/gelato"
 
 export default function PageIntegration() {
   return (
-    <div className="w-full">
+    <div className="mt-20 w-full">
       <div className="mx-auto w-full !max-w-4xl">
         <Link
           className="flex items-center space-x-2 text-indigo-400"

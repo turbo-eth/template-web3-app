@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -61,7 +62,7 @@ const ArweaveAccountForm = () => {
                       <FormLabel>{item?.label}</FormLabel>
                       <FormControl className="input">
                         <Component
-                          className="dark:border-gray-600 dark:bg-neutral-800 dark:text-gray-400 dark:[color-scheme:dark]"
+                          className="border bg-background text-muted-foreground"
                           {...field}
                           {...register(item?.formfieldName as "handleName")}
                         />
@@ -74,13 +75,13 @@ const ArweaveAccountForm = () => {
             })}
             <FeeEstimation {...estimation} />
             <div>
-              <button className="btn btn-emerald w-full" disabled={isLoading}>
+              <Button variant="emerald" className="w-full" disabled={isLoading}>
                 {isLoading
                   ? "Loading..."
                   : userHasAccount
                   ? "Update Arweave account"
                   : "Create Arweave account"}
-              </button>
+              </Button>
               {isError ? (
                 (error as { insufficientBalance: boolean })
                   .insufficientBalance ? (
@@ -98,7 +99,7 @@ const ArweaveAccountForm = () => {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">Arweave account</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             Arweave profile is the universal account in arweave ecosystem.
           </p>
         </div>

@@ -1,3 +1,5 @@
+"use client"
+
 import { FormEvent, useState } from "react"
 import { usePublicClient, useWalletClient } from "wagmi"
 
@@ -83,7 +85,7 @@ export function ERC721Deploy() {
       <hr className="my-4" />
       <div className="flex items-center justify-between">
         <h3 className="text-center">ERC721 Deploy</h3>
-        <p className="text-center text-sm text-gray-500">
+        <p className="text-center text-sm text-muted-foreground">
           Deploy a new mintable ERC721 token to any blockchain
         </p>
       </div>

@@ -1,3 +1,5 @@
+"use client"
+
 import { useLoadContractFromChainId } from "@/actions/pooltogether-v4/hooks/use-load-contract-from-chain-id"
 import { PRIZE_POOL_CONTRACT } from "@/actions/pooltogether-v4/utils/prize-pool-contract-list"
 import { USDC_CONTRACT } from "@/actions/pooltogether-v4/utils/usdc-contract-list"
@@ -15,6 +17,7 @@ import {
   useErc20Approve,
   useErc20Decimals,
 } from "@/lib/generated/blockchain"
+import { Button } from "@/components/ui/button"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
 import { LinkComponent } from "@/components/shared/link-component"
@@ -105,12 +108,13 @@ export function PoolTogetherFormDeposit() {
   if (!prizePoolAddress) {
     return (
       <div className="flex w-full flex-col justify-center">
-        <button
-          className="btn btn-red mx-auto text-center font-semibold"
+        <Button
+          variant="destructive"
+          className="mx-auto"
           onClick={() => switchNetwork?.(1)}
         >
           Switch Network
-        </button>
+        </Button>
       </div>
     )
   }
@@ -206,7 +210,9 @@ export function PoolTogetherFormDeposit() {
       <hr className="my-4" />
       <div className="flex items-center justify-between">
         <h3 className="text-center">Deposit</h3>
-        <p className="text-center text-sm text-gray-500">Start saving today</p>
+        <p className="text-center text-sm text-muted-foreground">
+          Start saving today
+        </p>
       </div>
     </motion.div>
   )

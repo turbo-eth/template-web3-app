@@ -31,7 +31,7 @@ export function ResolverValues({
                   <span key={index}>
                     <span className="text-green-500">{input.type}</span>
                     <span>: </span>
-                    <span key={input.name} className="dark:text-slate-100">
+                    <span key={input.name} className="text-foreground">
                       {input.name}
                     </span>
                     {index < functionData.func.inputs.length - 1 && (

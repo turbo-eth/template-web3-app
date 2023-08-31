@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button"
+
 import { useSessionKeys } from "../hooks/use-session-keys"
 
 export function DeleteAllSessionKeys() {
@@ -6,12 +8,12 @@ export function DeleteAllSessionKeys() {
   const hasSessionKeys = sessionKeys && sessionKeys?.length > 0
 
   return (
-    <button
-      className="btn btn-red"
+    <Button
+      variant="destructive"
       disabled={!hasSessionKeys}
       onClick={deleteAllSessionKeys}
     >
       Delete All Session Keys
-    </button>
+    </Button>
   )
 }

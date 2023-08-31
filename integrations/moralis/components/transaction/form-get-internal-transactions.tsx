@@ -1,6 +1,11 @@
 import { useForm } from "react-hook-form"
 import { useDebounce } from "usehooks-ts"
 
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Separator } from "@/components/ui/separator"
 import { LinkComponent } from "@/components/shared/link-component"
 
 import { useGetInternalTransactions } from "../../hooks/transaction"
@@ -36,38 +41,40 @@ export function FormGetInternalTransactions() {
   }
 
   return (
-    <div className="w-full">
-      <form
-        className="card flex w-full flex-col gap-4"
-        onSubmit={handleSubmit(onsubmit)}
-      >
-        <label>Chain</label>
-        <input {...register("chain")} className="input" />
-        <label>Transaction Hash</label>
-        <input {...register("transactionHash")} className="input" />
-        <>{error && <span className="text-red-500">{String(error)}</span>}</>
-        <button
-          className="btn btn-emerald mt-4"
-          disabled={isFetching || !chain || !transactionHash}
-          type="submit"
+    <Card className="w-full pt-6">
+      <CardContent>
+        <form
+          className="flex w-full flex-col gap-4"
+          onSubmit={handleSubmit(onsubmit)}
         >
-          {isFetching ? "Loading..." : "Submit"}
-        </button>
-        <hr className="my-4" />
-        <div className="flex items-center justify-between">
-          <LinkComponent
-            isExternal
-            className="font-bold hover:underline"
-            href="https://docs.moralis.io/web3-data-api/evm/reference/get-internal-transactions"
+          <Label htmlFor="chain">Chain</Label>
+          <Input id="chain" {...register("chain")} />
+          <Label htmlFor="transactionHash">Transaction Hash</Label>
+          <Input id="transactionHash" {...register("transactionHash")} />
+          <>{error && <span className="text-red-500">{String(error)}</span>}</>
+          <Button
+            variant="emerald"
+            disabled={isFetching || !chain || !transactionHash}
+            type="submit"
           >
-            <h3 className="text-center">Get internal transactions by hash</h3>
-          </LinkComponent>
-          <p className="text-center text-sm text-gray-500">
-            Get the contents of a internal transaction by transaction hash
-          </p>
-        </div>
-      </form>
-      <OutputData data={data} />
-    </div>
+            {isFetching ? "Loading..." : "Submit"}
+          </Button>
+          <Separator />
+          <div className="flex items-center justify-between">
+            <LinkComponent
+              isExternal
+              className="font-bold hover:underline"
+              href="https://docs.moralis.io/web3-data-api/evm/reference/get-internal-transactions"
+            >
+              Get internal transactions by hash
+            </LinkComponent>
+            <p className="text-right text-sm text-muted-foreground">
+              Get the contents of a internal transaction by transaction hash
+            </p>
+          </div>
+        </form>
+        <OutputData data={data} />
+      </CardContent>
+    </Card>
   )
 }

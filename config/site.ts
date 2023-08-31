@@ -30,7 +30,7 @@ export const siteConfig: SiteConfig = {
     docs: "https://docs.turboeth.xyz/overview",
     discord: "https://discord.gg/U4jy7Xfh76",
     twitter: "https://twitter.com/district_labs",
-    github: "https://github.com/turbo-eth",
+    github: "https://github.com/turbo-eth/template-web3-app",
   },
 }
 

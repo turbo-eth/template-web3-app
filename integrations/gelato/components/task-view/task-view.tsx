@@ -82,7 +82,7 @@ export function TaskView({ taskId }: TasKViewProps) {
 
   if (isLoading || !taskWithName) {
     return (
-      <div className="mx-auto h-20 w-full max-w-4xl animate-pulse rounded-lg bg-slate-400/70"></div>
+      <div className="mx-auto h-20 w-full max-w-4xl animate-pulse rounded-lg bg-muted/80"></div>
     )
   }
 
@@ -208,11 +208,11 @@ export function TaskView({ taskId }: TasKViewProps) {
                 {functionData && (
                   <FunctionData functionData={functionData.data} />
                 )}
-                <hr className="!mt-10 !mb-5" />
+                <hr className="!mb-5 !mt-10" />
                 {functionData && (
                   <InputValues functionData={functionData.data} />
                 )}
-                <hr className="!mt-10 !mb-5" />
+                <hr className="!mb-5 !mt-10" />
                 <IntervalValues
                   createdAt={task.createdAt}
                   interval={functionData?.args.interval}
@@ -221,7 +221,7 @@ export function TaskView({ taskId }: TasKViewProps) {
               </>
             ) : (
               <>
-                <hr className="!mt-10 !mb-5" />
+                <hr className="!mb-5 !mt-10" />
                 {functionData && (
                   <ResolverValues
                     functionData={functionData.data}
@@ -230,9 +230,9 @@ export function TaskView({ taskId }: TasKViewProps) {
                 )}
               </>
             )}
-            <hr className="!mt-10 !mb-5" />
+            <hr className="!mb-5 !mt-10" />
             <PaymentInfo useTaskTreasuryFunds={task.useTaskTreasuryFunds} />
-            <hr className="!mt-10 !mb-5" />
+            <hr className="!mb-5 !mt-10" />
             <ExecutingAddress />
           </div>
         </div>

@@ -5,6 +5,7 @@ import { useAccount, useNetwork, useSignMessage } from "wagmi"
 
 import { useUser } from "@/lib/hooks/use-user"
 import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import { siweLogin } from "@/integrations/siwe/actions/siwe-login"
 
 interface ButtonSIWELoginProps extends HTMLAttributes<HTMLButtonElement> {
@@ -38,7 +39,9 @@ export const ButtonSIWELogin = ({
   })
 
   return (
-    <button
+    <Button
+      variant="emerald"
+      size="lg"
       className={classes}
       disabled={disabled}
       type="button"
@@ -46,9 +49,9 @@ export const ButtonSIWELogin = ({
       {...props}
     >
       {isLoading && (
-        <span className="lds-dual-ring absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
+        <span className="absolute left-1/2 top-1/2 inline-block h-5 w-5 -translate-x-1/2 -translate-y-1/2" />
       )}
       <span className={labelClasses}>{children || label || "Logout"}</span>
-    </button>
+    </Button>
   )
 }

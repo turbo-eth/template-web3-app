@@ -1,6 +1,7 @@
 import { useRef } from "react"
 import { useFieldArray } from "react-hook-form"
 
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -61,7 +62,7 @@ export const FormNewPost = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Data to be stored</FormLabel>
-                    <FormControl className="input dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
+                    <FormControl className="input border bg-background text-muted-foreground">
                       <Textarea
                         {...field}
                         {...register("data")}
@@ -74,7 +75,7 @@ export const FormNewPost = () => {
               />
             )}
             {!values.file && !values.data && (
-              <div className="my-2 w-full text-center dark:text-gray-600">
+              <div className="my-2 w-full text-center text-muted-foreground">
                 - or -
               </div>
             )}
@@ -86,7 +87,7 @@ export const FormNewPost = () => {
                   return (
                     <FormItem>
                       <FormLabel>File to be stored</FormLabel>
-                      <FormControl className="dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
+                      <FormControl className="border bg-background text-muted-foreground">
                         <div className="flex items-center">
                           <Input
                             ref={fileInputRef}
@@ -109,20 +110,19 @@ export const FormNewPost = () => {
                               {truncateString(values.file.name, 20)}
                             </div>
                           ) : (
-                            <button
-                              className="btn btn-primary mt-3 text-sm"
-                              type="button"
+                            <Button
+                              className="mt-3 text-sm"
                               onClick={() => fileInputRef.current?.click()}
                             >
                               <span className="mt-2 text-sm leading-normal">
                                 Select a file
                               </span>
-                            </button>
+                            </Button>
                           )}
                           {values.file && (
-                            <button
-                              className="btn ml-3 bg-red-300 text-xs hover:bg-red-400 dark:bg-red-700 hover:dark:bg-red-800"
-                              type="button"
+                            <Button
+                              variant="destructive"
+                              className="ml-3 text-xs"
                               onClick={() => {
                                 removeTag(
                                   tags.findIndex(
@@ -133,7 +133,7 @@ export const FormNewPost = () => {
                               }}
                             >
                               Delete
-                            </button>
+                            </Button>
                           )}
                         </div>
                       </FormControl>
@@ -149,12 +149,13 @@ export const FormNewPost = () => {
             />
             <FeeEstimation {...estimation} />
             <div>
-              <button
-                className="btn btn-emerald w-full"
+              <Button
+                variant="emerald"
+                className="w-full"
                 disabled={isLoading || estimation.isEstimatingTxFee}
               >
                 {isLoading ? "Loading..." : "Create Arweave post"}
-              </button>
+              </Button>
               {isError ? (
                 (error as { insufficientBalance: boolean })
                   .insufficientBalance ? (
@@ -172,7 +173,7 @@ export const FormNewPost = () => {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">Arweave post</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             Arweave post is a type of transaction which can store data on-chain
             permanently.
           </p>

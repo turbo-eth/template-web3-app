@@ -1,97 +1,66 @@
-"use client"
-
-import Image from "next/image"
+import Link from "next/link"
 import { turboIntegrations } from "@/data/turbo-integrations"
-import { motion } from "framer-motion"
-import Balancer from "react-wrap-balancer"
+import { LuBook } from "react-icons/lu"
 
-import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
-import { IsDarkTheme } from "@/components/shared/is-dark-theme"
-import { IsLightTheme } from "@/components/shared/is-light-theme"
+import {
+  PageHeader,
+  PageHeaderCTA,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
-import { LinkComponent } from "@/components/shared/link-component"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { ButtonSIWELogout } from "@/integrations/siwe/components/button-siwe-logout"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"
 
-export default function PageIntegration() {
+export default function SIWEPage() {
   return (
-    <div className="flex-center flex flex-1 flex-col items-center justify-center text-center">
-      <motion.div
-        animate="show"
-        className="max-w-3xl px-5 text-center xl:px-0"
-        initial="hidden"
-        viewport={{ once: true }}
-        whileInView="show"
-        variants={{
-          hidden: {},
-          show: {
-            transition: {
-              staggerChildren: 0.15,
-            },
-          },
-        }}
-      >
-        <IsLightTheme>
-          <Image
-            alt="Sign-In With Ethereum logo"
-            className="mx-auto"
-            height={100}
-            src={turboIntegrations.siwe.imgDark}
-            width={100}
-          />
-        </IsLightTheme>
-        <IsDarkTheme>
-          <Image
-            alt="Sign-In With Ethereum logo"
-            className="mx-auto"
-            height={100}
-            src={turboIntegrations.siwe.imgLight}
-            width={100}
-          />
-        </IsDarkTheme>
-        <motion.h1
-          className="text-gradient-sand my-8 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
-          variants={FADE_DOWN_ANIMATION_VARIANTS}
-        >
-          {turboIntegrations.siwe.name}
-        </motion.h1>
-        <motion.p
-          className="my-4 text-xl"
-          variants={FADE_DOWN_ANIMATION_VARIANTS}
-        >
-          <Balancer>{turboIntegrations.siwe.description}</Balancer>
-        </motion.p>
-        <motion.div
-          className="my-4 text-xl"
-          variants={FADE_DOWN_ANIMATION_VARIANTS}
-        >
-          <LinkComponent
-            isExternal
-            className="btn btn-primary"
+    <div className="container relative mt-20">
+      <PageHeader className="pb-8">
+        <LightDarkImage
+          LightImage={turboIntegrations.siwe.imgDark}
+          DarkImage={turboIntegrations.siwe.imgLight}
+          alt="Sign In with Ethereum Logo"
+          width={100}
+          height={100}
+        />
+        <PageHeaderHeading>SIWE</PageHeaderHeading>
+        <PageHeaderDescription>
+          Sign-In with Ethereum is Web3 authentication using an Ethereum
+          account.
+        </PageHeaderDescription>
+        <PageHeaderCTA>
+          <Link
             href={turboIntegrations.siwe.url}
+            target="_blank"
+            rel="noreferrer noopener"
+            className={cn(buttonVariants({ variant: "outline" }))}
           >
+            <LuBook className="mr-2 h-4 w-4" />
             Documentation
-          </LinkComponent>
-        </motion.div>
-      </motion.div>
-
-      <div className="container mx-auto mt-10  max-w-screen-xl gap-6 text-center">
+          </Link>
+        </PageHeaderCTA>
+      </PageHeader>
+      <PageSection>
         <IsWalletConnected>
           <IsSignedIn>
-            <ButtonSIWELogout className="btn btn-blue btn-lg " />
+            <ButtonSIWELogout />
           </IsSignedIn>
           <IsSignedOut>
-            <ButtonSIWELogin className="btn btn-pill btn-emerald btn-lg min-h-[70px] min-w-[200px] text-xl" />
+            <ButtonSIWELogin />
           </IsSignedOut>
         </IsWalletConnected>
         <IsWalletDisconnected>
           <WalletConnect className="mx-auto inline-block" />
         </IsWalletDisconnected>
-      </div>
+      </PageSection>
     </div>
   )
 }

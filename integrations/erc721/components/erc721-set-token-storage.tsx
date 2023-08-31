@@ -1,6 +1,8 @@
 import { FormEvent, useEffect, useMemo, useState } from "react"
 import { Address, isAddress } from "viem"
 
+import { Button } from "@/components/ui/button"
+
 import { useErc721TokenStorage } from "../hooks/use-erc721-token-storage"
 
 export function Erc721SetTokenStorage() {
@@ -30,17 +32,13 @@ export function Erc721SetTokenStorage() {
           value={tokenAddress}
           onChange={(e) => setTokenAddress(e.target.value as Address)}
         />
-        <button
-          className="btn btn-emerald disabled:opacity-60"
-          disabled={!isValidAddress}
-          type="submit"
-        >
+        <Button variant="emerald" disabled={!isValidAddress} type="submit">
           {"Select Contract Address"}
-        </button>
+        </Button>
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">Select ERC721 Contract</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             Select which NFT contract to interact with
           </p>
         </div>

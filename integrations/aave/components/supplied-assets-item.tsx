@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { TiArrowRight } from "react-icons/ti"
@@ -164,10 +166,10 @@ export const SuppliedAssetsItem = ({
               <div className="mb-2 mt-4">
                 <label>Amount</label>
               </div>
-              <div className="input dark:bg-slate-900">
+              <div className="input bg-background">
                 <div className="flex items-center justify-between">
                   <input
-                    className="border-none dark:bg-slate-900"
+                    className="border-none bg-background"
                     placeholder="0.00"
                     type="text"
                     value={withdrawAmount}
@@ -201,16 +203,16 @@ export const SuppliedAssetsItem = ({
                   <div></div>
                   <div className="flex items-center justify-between">
                     <span>Available: {balance.toFixed(5)}</span>
-                    <button className="btn ml-3" onClick={setMaxAmount}>
+                    <Button className="ml-3" onClick={setMaxAmount}>
                       Max
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
               <div className="mb-2 mt-5">
                 <label>Transaction overview</label>
               </div>
-              <div className="input dark:bg-slate-900">
+              <div className="input bg-background">
                 <div className="flex items-center justify-between">
                   <span>Remaining debt</span>
                   <div className="flex items-center justify-between">
@@ -233,7 +235,7 @@ export const SuppliedAssetsItem = ({
                 </div>
               </div>
               <ContractWriteButton
-                className="btn btn-primary mt-5 w-full"
+                className="mt-5 w-full"
                 disabled={
                   !Number(withdrawAmount) || isLoadingTx || isLoadingWrite
                 }

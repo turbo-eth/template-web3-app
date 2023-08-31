@@ -87,7 +87,7 @@ export function ERC20WriteMint({ address }: ERC20WriteMintProps) {
           <hr className="my-4" />
           <div className="flex items-center justify-between">
             <h3 className="text-center">ERC20 Mint</h3>
-            <p className="text-center text-sm text-gray-500">
+            <p className="text-center text-sm text-muted-foreground">
               Mint tokens to yourself
             </p>
           </div>

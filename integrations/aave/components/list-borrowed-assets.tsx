@@ -1,3 +1,6 @@
+"use client"
+
+import React from "react"
 import { parseUnits } from "viem"
 
 import { useAave } from "../hooks/use-aave"

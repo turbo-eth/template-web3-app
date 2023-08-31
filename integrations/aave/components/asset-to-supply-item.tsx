@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { TiTick } from "react-icons/ti"
@@ -139,7 +141,7 @@ export const AssetToSupplyItem = ({
         {symbol}
       </td>
       {tokenBalance === BigInt(0) ? (
-        <td className="px-4 py-2 text-center text-slate-400">0</td>
+        <td className="px-4 py-2 text-center text-muted-foreground">0</td>
       ) : (
         <td className="px-4 py-2 text-center">
           {Number(
@@ -167,10 +169,10 @@ export const AssetToSupplyItem = ({
               <div className="mb-2 mt-4">
                 <label>Amount</label>
               </div>
-              <div className="input dark:bg-slate-900">
+              <div className="input bg-background">
                 <div className="flex items-center justify-between">
                   <input
-                    className="border-none dark:bg-slate-900"
+                    className="border-none bg-background"
                     placeholder="0.00"
                     type="text"
                     value={supplyAmount}
@@ -215,16 +217,16 @@ export const AssetToSupplyItem = ({
                         formatUnits(tokenBalance ?? BigInt(1), decimals ?? 18)
                       ).toFixed(5)}
                     </span>
-                    <button className="btn ml-3" onClick={setMaxAmount}>
+                    <Button className="ml-3" onClick={setMaxAmount}>
                       Max
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
               <div className="mb-2 mt-5">
                 <label>Transaction overview</label>
               </div>
-              <div className="input dark:bg-slate-900">
+              <div className="input bg-background">
                 <div className="my-3 flex items-center justify-between">
                   <span>Supply APY</span>
                   <span className="font-bold">
@@ -243,7 +245,7 @@ export const AssetToSupplyItem = ({
                 </div>
               </div>
               <ContractWriteButton
-                className="btn btn-primary mt-5 w-full"
+                className="mt-5 w-full"
                 disabled={
                   !Number(supplyAmount) ||
                   isLoadingApproveTx ||

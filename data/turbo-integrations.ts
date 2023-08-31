@@ -13,8 +13,8 @@ export const turboIntegrations = {
     href: "/integration/erc20",
     url: "https://eips.ethereum.org/EIPS/eip-20",
     description: "ERC20 is a standard for fungible tokens on EVM chains",
-    imgLight: "/integrations/erc20-icon.png",
-    imgDark: "/integrations/erc20-icon.png",
+    imgLight: "/integrations/erc20.png",
+    imgDark: "/integrations/erc20.png",
   },
   erc721: {
     name: "ERC721",
@@ -47,8 +47,8 @@ export const turboIntegrations = {
     url: "https://disco.xyz",
     description:
       "Disco is identity simplified. Giving the tools to consent to how information is shared and with whom.",
-    imgLight: "/integrations/disco.jpeg",
-    imgDark: "/integrations/disco.jpeg",
+    imgLight: "/integrations/discoLight.png",
+    imgDark: "/integrations/discoDark.png",
   },
   sessionKeys: {
     name: "Session Keys",
@@ -61,7 +61,7 @@ export const turboIntegrations = {
   },
   litProtocol: {
     name: "Lit Protocol",
-    href: "/integration/lit-protocol/share",
+    href: "/integration/lit-protocol",
     url: "https://litprotocol.com/",
     description:
       "Lit is distributed key management for encryption, signing, and compute.",
@@ -79,7 +79,7 @@ export const turboIntegrations = {
   },
   pooltogether_v4: {
     name: "PoolTogether",
-    href: "/integration/pooltogether-v4/deposit",
+    href: "/integration/pooltogether-v4",
     url: "https://pooltogether.com/",
     description:
       "PoolTogether is a prize savings protocol, enable you to win by saving.",

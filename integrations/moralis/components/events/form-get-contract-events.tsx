@@ -1,7 +1,14 @@
+import Link from "next/link"
 import { useForm } from "react-hook-form"
 import { useDebounce } from "usehooks-ts"
 
-import { LinkComponent } from "@/components/shared/link-component"
+import { cn } from "@/lib/utils"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Separator } from "@/components/ui/separator"
+import { Textarea } from "@/components/ui/textarea"
 
 import { useGetContractEvents } from "../../hooks/events"
 import { OutputData } from "../output-data"
@@ -62,43 +69,47 @@ export function FormGetContractEvents() {
   }
 
   return (
-    <div className="w-full">
-      <form
-        className="card flex w-full flex-col gap-4"
-        onSubmit={handleSubmit(onsubmit)}
-      >
-        <label>Chain</label>
-        <input {...register("chain")} className="input" />
-        <label>Address</label>
-        <input {...register("address")} className="input" />
-        <label>Topic</label>
-        <input {...register("topic")} className="input" />
-        <label>ABI</label>
-        <textarea {...register("abi")} className="input h-72" />
-        <>{error && <span className="text-red-500">{String(error)}</span>}</>
-        <button
-          className="btn btn-emerald mt-4"
-          disabled={isFetching || !chain || !address || !topic || !abi}
-          type="submit"
+    <Card className="w-full pt-6">
+      <CardContent>
+        <form
+          className="flex w-full flex-col gap-4"
+          onSubmit={handleSubmit(onsubmit)}
         >
-          {isFetching ? "Loading..." : "Submit"}
-        </button>
-        <hr className="my-4" />
-        <div className="flex items-center justify-between">
-          <LinkComponent
-            isExternal
-            className="font-bold hover:underline"
-            href="https://docs.moralis.io/web3-data-api/evm/reference/get-contract-events"
+          <Label htmlFor="chain">Chain</Label>
+          <Input id="chain" {...register("chain")} />
+          <Label htmlFor="address">Address</Label>
+          <Input id="address" {...register("address")} />
+          <Label htmlFor="topic">Topic</Label>
+          <Input id="topic" {...register("topic")} />
+          <Label htmlFor="abi">ABI</Label>
+          <Textarea id="abi" {...register("abi")} className="h-72" />
+          <>{error && <span className="text-red-500">{String(error)}</span>}</>
+          <Button
+            variant="emerald"
+            className="mt-4"
+            disabled={isFetching || !chain || !address || !topic || !abi}
+            type="submit"
           >
-            <h3 className="text-center">Get events by contract</h3>
-          </LinkComponent>
-          <p className="text-center text-sm text-gray-500">
-            Get events for a contract ordered by block number in descending
-            order
-          </p>
-        </div>
-      </form>
-      <OutputData data={data} />
-    </div>
+            {isFetching ? "Loading..." : "Submit"}
+          </Button>
+          <Separator />
+          <div className="flex items-center justify-between">
+            <Link
+              href="https://docs.moralis.io/web3-data-api/evm/reference/get-contract-events"
+              target="_blank"
+              rel="noreferrer noopener"
+              className={cn(buttonVariants({ variant: "link" }), "px-0")}
+            >
+              Get events by contract
+            </Link>
+            <p className="text-right text-sm text-muted-foreground">
+              Get events for a contract ordered by block number in descending
+              order
+            </p>
+          </div>
+        </form>
+        <OutputData data={data} />
+      </CardContent>
+    </Card>
   )
 }

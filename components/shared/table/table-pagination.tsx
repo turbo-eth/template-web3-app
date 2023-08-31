@@ -1,5 +1,7 @@
 import { ReactElement } from "react"
 
+import { Input } from "@/components/ui/input"
+
 interface ITablePagination {
   canPreviousPage: boolean
   canNextPage: boolean
@@ -28,48 +30,37 @@ export const TablePagination = ({
   setPageSize,
 }: ITablePagination): ReactElement => {
   return (
-    <div className="flex justify-between items-center bg-white text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100 shadow-sm px-3 py-5 rounded-b-lg">
-      <div className="">
-        <button
-          className="tag tag-smoke"
-          onClick={() => gotoPage(0)}
-          disabled={!canPreviousPage}
-        >
-          {"<<"}
-        </button>{" "}
-        <button
-          className="tag tag-smoke"
-          onClick={() => previousPage()}
-          disabled={!canPreviousPage}
-        >
-          {"<"}
-        </button>{" "}
-        <button
-          className="tag tag-smoke"
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-        >
-          {">"}
-        </button>{" "}
-        <button
-          className="tag tag-smoke"
-          onClick={() => gotoPage(pageCount - 1)}
-          disabled={!canNextPage}
-        >
-          {">>"}
-        </button>{" "}
-        <span className="mx-2">
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {pageCount}
-          </strong>{" "}
-        </span>
+    <div className="flex justify-between items-center bg-background text-foreground shadow-sm px-3 py-5 rounded-b-lg">
+      <div className="flex items-center">
+        <div className="">
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+            {"<<"}
+          </button>{" "}
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+            {"<"}
+          </button>{" "}
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
+            {">"}
+          </button>{" "}
+          <button
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            {">>"}
+          </button>{" "}
+          <span className="mx-2">
+            Page{" "}
+            <strong>
+              {pageIndex + 1} of {pageCount}
+            </strong>{" "}
+          </span>
+        </div>
         |
         <span className="bg-card mx-2 inline-block rounded-xl py-3 px-2">
           <span className="p-2">
             Go to page:{" "}
-            <input
-              className="input ml-3 h-[32px] w-[64px] text-neutral-700 dark:text-neutral-800"
+            <Input
+              className="inline-block ml-3 h-[32px] w-[64px]"
               type="number"
               min={1}
               max={pageCount}
@@ -83,25 +74,23 @@ export const TablePagination = ({
           </span>
         </span>{" "}
       </div>
-      <div className="">
-        <select
-          className="tag tag-smoke min-w-[90px] bg-white text-xl text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[5, 10, 20, 30, 40, 50].map((pageSizeParams) => (
-            <option
-              className="text-xl"
-              key={pageSizeParams}
-              value={pageSizeParams}
-            >
-              Show {pageSizeParams}
-            </option>
-          ))}
-        </select>
-      </div>
+      <select
+        className=" min-w-[90px] bg-background text-foreground"
+        value={pageSize}
+        onChange={(e) => {
+          setPageSize(Number(e.target.value))
+        }}
+      >
+        {[5, 10, 20, 30, 40, 50].map((pageSizeParams) => (
+          <option
+            className="text-xl"
+            key={pageSizeParams}
+            value={pageSizeParams}
+          >
+            Show {pageSizeParams}
+          </option>
+        ))}
+      </select>
     </div>
   )
 }

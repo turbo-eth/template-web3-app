@@ -1,13 +1,21 @@
 "use client"
 
 import { ReactNode } from "react"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { turboIntegrations } from "@/data/turbo-integrations"
-import { motion } from "framer-motion"
-import Balancer from "react-wrap-balancer"
+import { LuBook } from "react-icons/lu"
 
-import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import { cn } from "@/lib/utils"
+import { Button, buttonVariants } from "@/components/ui/button"
+import {
+  PageHeader,
+  PageHeaderCTA,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from "@/components/layout/page-header"
+import { PageSection } from "@/components/layout/page-section"
+import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { LinkComponent } from "@/components/shared/link-component"
 import { useLivepeerApiKey } from "@/integrations/livepeer/hooks/use-livepeer-api-key"
 import { LivepeerProvider } from "@/integrations/livepeer/livepeer-provider"
@@ -25,77 +33,51 @@ export default function LayoutIntegration({
 
   return (
     <LivepeerProvider customApiKey={livepeerApiKey}>
-      <motion.div
-        animate="show"
-        className="h-full w-full"
-        initial="hidden"
-        viewport={{ once: true }}
-        whileInView="show"
-        variants={{
-          hidden: {},
-          show: {
-            transition: {
-              staggerChildren: 0.15,
-            },
-          },
-        }}
-      >
-        <div className="flex-center flex flex-1 flex-col items-center justify-center">
-          <div className="max-w-screen-xl px-5 text-center xl:px-0">
-            <motion.h1
-              className="text-gradient-sand my-4 text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text-8xl md:leading-[6rem]"
-              variants={FADE_DOWN_ANIMATION_VARIANTS}
+      <div className="container relative mt-20">
+        <PageHeader className="pb-8">
+          <LightDarkImage
+            LightImage={turboIntegrations.livepeer.imgDark}
+            DarkImage={turboIntegrations.livepeer.imgLight}
+            alt="Livepeer Logo"
+            width={100}
+            height={100}
+          />
+          <PageHeaderHeading>Livepeer</PageHeaderHeading>
+          <PageHeaderDescription>
+            Livepeer is the world&apos;s open video infrastructure.
+          </PageHeaderDescription>
+          <PageHeaderCTA>
+            <Link
+              href={turboIntegrations.livepeer.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              className={cn(buttonVariants({ variant: "outline" }))}
             >
-              {turboIntegrations.livepeer.name}
-            </motion.h1>
-            <motion.p
-              className="my-4 text-lg"
-              variants={FADE_DOWN_ANIMATION_VARIANTS}
-            >
-              <Balancer>{turboIntegrations.livepeer.description}</Balancer>
-            </motion.p>
-            <motion.div
-              className="my-4 text-xl"
-              variants={FADE_DOWN_ANIMATION_VARIANTS}
-            >
-              <LinkComponent isExternal href={turboIntegrations.livepeer.url}>
-                <button className="btn btn-primary">Documentation</button>
-              </LinkComponent>
-              <motion.div
-                className="mt-8 flex flex-col justify-center gap-x-14 text-2xl sm:flex-row"
-                variants={FADE_DOWN_ANIMATION_VARIANTS}
+              <LuBook className="mr-2 h-4 w-4" />
+              Documentation
+            </Link>
+          </PageHeaderCTA>
+        </PageHeader>
+        <PageSection>
+          <div className="mt-8 flex flex-col justify-center gap-x-14 text-2xl sm:flex-row">
+            <LinkComponent href={videoOnDemandPath}>
+              <Button
+                className={cn(pathname === livestreamPath && "opacity-50")}
               >
-                <LinkComponent href={videoOnDemandPath}>
-                  <button
-                    className={cn(
-                      "btn hover:opacity-75",
-                      pathname === livestreamPath && "opacity-50"
-                    )}
-                  >
-                    Video on demand
-                  </button>
-                </LinkComponent>
-                <LinkComponent href={livestreamPath}>
-                  <button
-                    className={cn(
-                      "btn hover:opacity-75",
-                      pathname === videoOnDemandPath && "opacity-50"
-                    )}
-                  >
-                    Livestream
-                  </button>
-                </LinkComponent>
-              </motion.div>
-            </motion.div>
+                Video on demand
+              </Button>
+            </LinkComponent>
+            <LinkComponent href={livestreamPath}>
+              <Button
+                className={cn(pathname === videoOnDemandPath && "opacity-50")}
+              >
+                Livestream
+              </Button>
+            </LinkComponent>
           </div>
-        </div>
-        <motion.div
-          className="flex h-full w-full justify-center"
-          variants={FADE_DOWN_ANIMATION_VARIANTS}
-        >
           <div className="w-7/12">{children}</div>
-        </motion.div>
-      </motion.div>
+        </PageSection>
+      </div>
     </LivepeerProvider>
   )
 }

@@ -4,6 +4,8 @@ import { Popover, PopoverContent, PopoverTrigger } from "components/ui/popover"
 import { BsBell } from "react-icons/bs"
 import { useAccount } from "wagmi"
 
+import { Button } from "@/components/ui/button"
+
 import { ENV } from ".."
 import { useNotifications } from "../hooks"
 import { NotificationFeed } from "./notification-feed"
@@ -41,17 +43,14 @@ export function NotificationBell(props: NotificationBellProps) {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button
-          className="btn btn-primary relative"
-          onClick={() => setRead(true)}
-        >
-          <BsBell size={30} />
+        <Button variant="default" onClick={() => setRead(true)}>
+          <BsBell size={24} />
           {allNotifications.length > 0 && !read && (
-            <div className="absolute top-2 right-2 h-5 w-5 rounded-full bg-red-500">
+            <div className="absolute right-2 top-2 h-5 w-5 rounded-full bg-red-500">
               {allNotifications.length}
             </div>
           )}
-        </button>
+        </Button>
       </PopoverTrigger>
       <PopoverContent
         avoidCollisions={false}

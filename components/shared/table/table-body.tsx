@@ -24,13 +24,12 @@ export const TableBody = ({
     "border-b-2 border-gray-100 dark:border-neutral-700 px-4 py-3"
   )
   return (
-    <tbody {...props} className="">
+    <tbody {...props}>
       {page.map((row, idx) => {
         prepareRow(row)
         const styleRow = cn("row py-3", {
-          "bg-gray-100 text-gray-500 dark:text-white": row.original.disabled,
-          "bg-white dark:bg-neutral-800 dark:text-white":
-            !row.original.disabled,
+          "bg-card text-muted-foreground": row.original.disabled,
+          "bg-card": !row.original.disabled,
         })
         return (
           <tr {...row.getRowProps()} className={styleRow} key={idx}>

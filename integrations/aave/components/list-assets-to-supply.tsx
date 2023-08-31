@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 
 import { Checkbox } from "@/components/ui/checkbox"
@@ -10,7 +12,7 @@ export const ListAssetsToSupply = () => {
   const [showZeroBalanceAssets, setShowZeroBalanceAssets] = useState(false)
 
   return (
-    <div className="flex-1 rounded border p-3 dark:border-slate-600">
+    <div className="flex w-full flex-col rounded border p-3">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="font-bold">Asssets to supply</h2>
       </div>
@@ -29,16 +31,16 @@ export const ListAssetsToSupply = () => {
         <table className="mt-7 w-full table-auto border-collapse text-left">
           <thead>
             <tr>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+              <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                 Asset
               </th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+              <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                 Wallet balance
               </th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+              <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                 APY
               </th>
-              <th className="px-4 py-2 text-center text-xs text-slate-500 dark:text-slate-300">
+              <th className="px-4 py-2 text-center text-xs text-muted-foreground">
                 Can be collateral
               </th>
             </tr>

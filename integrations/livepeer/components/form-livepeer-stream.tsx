@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 
+import { Button } from "@/components/ui/button"
+
 interface livepeerForm {
   streamId: string
 }
@@ -31,13 +33,14 @@ export function FormLivepeerStream() {
           value={streamId}
           onChange={(e) => setStreamId(e.target.value)}
         />
-        <button
-          className="btn btn-emerald mt-4 w-full"
+        <Button
+          variant="emerald"
+          className="mt-4 w-full"
           disabled={!streamId || isLoading}
           type="submit"
         >
           {isLoading ? "Loading..." : "Submit"}
-        </button>
+        </Button>
       </form>
     </div>
   )

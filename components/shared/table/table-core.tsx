@@ -58,7 +58,7 @@ export function TableCore({ className, columns, data, ...props }: TableProps) {
         <TableHead
           defaultStyle
           headerGroups={headerGroups}
-          className=" bg-white text-neutral-700 dark:bg-neutral-800 dark:text-neutral-100"
+          className=" bg-background text-foreground"
         />
         <TableBody
           page={page}

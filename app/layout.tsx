@@ -1,14 +1,13 @@
 import "@/styles/app.css"
-import "@/styles/gradient.css"
-import "@/styles/periphery.css"
+import "@/styles/globals.css"
 
 import { ReactNode } from "react"
-import { Inter as FontSans, Raleway } from "next/font/google"
-import localFont from "next/font/local"
 import { env } from "@/env.mjs"
 
 import { siteConfig } from "@/config/site"
+import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
+import { Toaster } from "@/components/ui/toaster"
 import RootProvider from "@/components/providers/root-provider"
 
 const url = env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
@@ -34,37 +33,18 @@ export const metadata = {
   },
 }
 
-const sfPro = localFont({
-  src: "../assets/fonts/SF-Pro-Display-Medium.otf",
-  variable: "--sfPro-font",
-})
-
-const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["100", "200", "400", "500", "600", "700", "800", "900"],
-  variable: "--raleway-font",
-})
-
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <html
-        suppressHydrationWarning
-        className={`${sfPro.variable} ${raleway.variable}`}
-        lang="en"
-      >
+      <html lang="en" suppressHydrationWarning>
         <body
           className={cn(
-            "min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50",
+            "min-h-screen bg-background font-sans antialiased",
             fontSans.variable
           )}
         >
           <RootProvider>{children}</RootProvider>
+          <Toaster />
         </body>
       </html>
     </>

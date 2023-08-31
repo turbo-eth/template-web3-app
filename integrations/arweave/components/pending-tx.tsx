@@ -1,8 +1,11 @@
 import { useEffect, useMemo } from "react"
+import Link from "next/link"
 import CopyToClipboard from "react-copy-to-clipboard"
 import { FaCheck, FaCopy } from "react-icons/fa"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { cn } from "@/lib/utils"
+import { buttonVariants } from "@/components/ui/button"
 import { LinkComponent } from "@/components/shared/link-component"
 
 import { CONFIRMED_THRESHOLD } from ".."
@@ -49,22 +52,22 @@ export const PendingTx = ({ txId, onConfirmation }: AddPendingTxPayload) => {
             </div>
           )}
           <div className="ml-4 flex items-center">
-            <span className="rounded-xl bg-slate-100 p-2 font-mono text-sm text-blue-500 dark:bg-slate-600 dark:text-blue-100">
+            <span className="rounded-xl bg-muted p-2 font-mono text-sm text-blue-500 dark:text-blue-100">
               {txId}
             </span>
             <CopyToClipboard text={txId} onCopy={() => handleToast()}>
-              <span className="flex-center ml-2 flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                <FaCopy className="text-neutral-600 dark:text-neutral-100" />
+              <span className="ml-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+                <FaCopy className="text-muted-foreground" />
               </span>
             </CopyToClipboard>
           </div>
         </div>
-        <LinkComponent
-          className="link"
+        <Link
           href={`/integration/arweave/posts/${txId}`}
+          className={cn(buttonVariants({ variant: "link" }))}
         >
           View tx
-        </LinkComponent>
+        </Link>
       </div>
     </div>
   )

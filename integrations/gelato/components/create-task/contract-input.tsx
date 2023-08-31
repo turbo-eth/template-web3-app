@@ -80,7 +80,7 @@ export function ContractInput({
       )}
 
       {isAbiLoading && !isValidationError && (
-        <div className="mt-5 h-20 w-full animate-pulse rounded-lg bg-slate-400/70"></div>
+        <div className="mt-5 h-20 w-full animate-pulse rounded-lg bg-muted/80"></div>
       )}
 
       {!isValidationError && !isAbiLoading && (
@@ -89,7 +89,7 @@ export function ContractInput({
             <div className="mt-3 flex space-x-4 text-sm">
               <span className="text-green-500">✓ ABI Fetched</span>
               <span
-                className="cursor-pointer text-gray-400 underline"
+                className="cursor-pointertext-muted-foreground underline"
                 onClick={() => setIsCustomAbi(true)}
               >
                 Switch to custom ABI

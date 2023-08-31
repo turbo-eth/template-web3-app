@@ -31,14 +31,14 @@ export function OutputData({ data }: OutputDataProps) {
           text={JSON.stringify(data, null, 2)}
           onCopy={handleToast}
         >
-          <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-            <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+          <span className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+            <FaCopy className="text-muted-foreground" />
           </span>
         </CopyToClipboard>
       </div>
       <Textarea
         readOnly
-        className="input h-80 dark:text-gray-600 dark:placeholder:text-neutral-400"
+        className="h-80"
         value={JSON.stringify(data, null, 2)}
       />
     </div>

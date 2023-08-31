@@ -21,8 +21,8 @@ export const BranchButtonLoginOrAccount = ({
       <IsSignedIn>
         <div className="flex items-center gap-3">
           <ButtonSIWELogout className={classNameButtonLogout} />
-          <LinkComponent className="menu-item" href="/account">
-            <span className="">Account</span>
+          <LinkComponent href="/account">
+            <span>Account</span>
           </LinkComponent>
         </div>
       </IsSignedIn>

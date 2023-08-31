@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from "react"
 import type { Address } from "wagmi"
 
@@ -72,7 +74,7 @@ export function Erc721Read({ address }: Erc721ReadProps) {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">ERC721 Read</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             See detailed NFT information
           </p>
         </div>

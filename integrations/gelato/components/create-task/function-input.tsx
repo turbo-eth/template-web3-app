@@ -73,7 +73,7 @@ export function FunctionInput({
                         {input.type}
                       </span>
                       <span>:</span>
-                      <span key={input.name} className="dark:text-slate-100">
+                      <span key={input.name} className="text-foreground">
                         {input.name}
                       </span>
                       {index < item.inputs.length - 1 && <span>,</span>}

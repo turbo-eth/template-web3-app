@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { TiArrowRight } from "react-icons/ti"
@@ -208,10 +210,10 @@ export const BorrowedAssetsItem = ({
           value={rateMode.toString()}
           onValueChange={() => swapBorrowRateModeWrite()}
         >
-          <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
+          <SelectTrigger>
             <SelectValue placeholder="Select market" />
           </SelectTrigger>
-          <SelectContent className="w-56 bg-white dark:bg-gray-700">
+          <SelectContent className="w-56">
             <SelectItem value="2">
               <div className="flex items-center justify-between">Variable</div>
             </SelectItem>
@@ -238,10 +240,10 @@ export const BorrowedAssetsItem = ({
                   setRepayWithATokens(value === "aTokens")
                 }
               >
-                <SelectTrigger className="input mt-2 bg-white text-gray-600 placeholder:text-neutral-400 dark:bg-gray-700 dark:text-slate-300 dark:placeholder:text-neutral-400">
+                <SelectTrigger>
                   <SelectValue placeholder="Select market" />
                 </SelectTrigger>
-                <SelectContent className="w-56 bg-white dark:bg-gray-700">
+                <SelectContent className="w-56">
                   <SelectItem value="walletBalance">
                     <div className="flex items-center justify-between">
                       Wallet balance
@@ -257,10 +259,10 @@ export const BorrowedAssetsItem = ({
               <div className="mb-2 mt-4">
                 <label>Amount</label>
               </div>
-              <div className="input dark:bg-slate-900">
+              <div className="input bg-background">
                 <div className="flex items-center justify-between">
                   <input
-                    className="border-none dark:bg-slate-900"
+                    className="border-none bg-background"
                     placeholder="0.00"
                     type="text"
                     value={repayAmount}
@@ -330,16 +332,16 @@ export const BorrowedAssetsItem = ({
                         5
                       )}
                     </span>
-                    <button className="btn ml-3" onClick={setMaxAmount}>
+                    <Button className="ml-3" onClick={setMaxAmount}>
                       Max
-                    </button>
+                    </Button>
                   </div>
                 </div>
               </div>
               <div className="mb-2 mt-5">
                 <label>Transaction overview</label>
               </div>
-              <div className="input dark:bg-slate-900">
+              <div className="input bg-background">
                 <div className="flex items-center justify-between">
                   <span>Remaining debt</span>
                   <div className="flex items-center justify-between">
@@ -362,7 +364,7 @@ export const BorrowedAssetsItem = ({
                 </div>
               </div>
               <ContractWriteButton
-                className="btn btn-primary mt-5 w-full"
+                className="mt-5 w-full"
                 disabled={!Number(repayAmount)}
                 isLoadingTx={
                   isLoadingApproveTx ||

@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 
+import { Button } from "@/components/ui/button"
+
 interface livepeerForm {
   playbackId: string
 }
@@ -25,13 +27,14 @@ export function FormLivepeerAsset() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <label>Playback ID</label>
         <input required className="input mt-4" {...register("playbackId")} />
-        <button
-          className="btn btn-emerald mt-4 w-full"
+        <Button
+          variant="emerald"
+          className="mt-4 w-full"
           disabled={!playbackId || isLoading}
           type="submit"
         >
           {isLoading ? "Loading..." : "Submit"}
-        </button>
+        </Button>
       </form>
     </div>
   )

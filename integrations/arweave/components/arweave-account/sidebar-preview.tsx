@@ -39,13 +39,13 @@ export const ArweaveAccountPreview = () => {
         <div className="flex items-center font-mono text-sm">
           {truncateString(address, 15)}
           <CopyToClipboard text={address} onCopy={handleToast}>
-            <span className="flex-center ml-2 flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-              <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+            <span className="ml-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+              <FaCopy className="text-muted-foreground" />
             </span>
           </CopyToClipboard>
         </div>
         {balance !== null && (
-          <div className="text-xs text-slate-400">{balance?.ar} AR</div>
+          <div className="text-xs text-muted-foreground">{balance?.ar} AR</div>
         )}
       </div>
     </LinkComponent>

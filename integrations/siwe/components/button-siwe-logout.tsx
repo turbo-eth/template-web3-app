@@ -3,6 +3,7 @@
 import { HTMLAttributes } from "react"
 
 import { useUser } from "@/lib/hooks/use-user"
+import { Button } from "@/components/ui/button"
 import { siweLogout } from "@/integrations/siwe/actions/siwe-logout"
 
 interface ButtonSIWELogoutProps extends HTMLAttributes<HTMLButtonElement> {
@@ -22,12 +23,14 @@ export const ButtonSIWELogout = ({
   }
 
   return (
-    <button
+    <Button
+      variant="blue"
+      size="lg"
       className={className}
       onClick={() => void handleLogout()}
       {...props}
     >
       {children || label}
-    </button>
+    </Button>
   )
 }

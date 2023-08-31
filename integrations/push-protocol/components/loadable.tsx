@@ -5,7 +5,7 @@ export function Loadable({
   children,
 }: PropsWithChildren<{ isLoading: boolean }>) {
   return isLoading ? (
-    <div className="h-20 w-full animate-pulse rounded-lg bg-slate-400/70"></div>
+    <div className="h-20 w-full animate-pulse rounded-lg bg-muted/80"></div>
   ) : (
     <>{children}</>
   )

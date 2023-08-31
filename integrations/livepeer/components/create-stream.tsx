@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form"
 import { FaCopy } from "react-icons/fa"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 
 import { useIsLivepeerApiKeySet } from "../hooks/use-livepeer-api-key"
 import { ButtonShare } from "./button-share"
@@ -85,13 +86,14 @@ export const CreateStream = ({
                   value={streamName}
                   onChange={(e) => setStreamName(e.target.value)}
                 />
-                <button
-                  className="btn btn-emerald mt-4 w-full"
+                <Button
+                  variant="emerald"
+                  className="mt-4 w-full"
                   disabled={!streamName || isLoading}
                   type="submit"
                 >
                   {isLoading ? "Loading..." : "Create Stream"}
-                </button>
+                </Button>
               </form>
             </div>
           )}
@@ -158,7 +160,7 @@ export const CreateStream = ({
                       <input className="input" value={streamRtpmIngestUrl} />
                       <CopyToClipboard text={streamRtpmIngestUrl}>
                         <span
-                          className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
+                          className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
                           onClick={() => {
                             handleToast({
                               title: "Copied to clipboard!",
@@ -167,7 +169,7 @@ export const CreateStream = ({
                             })
                           }}
                         >
-                          <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+                          <FaCopy className="text-muted-foreground" />
                         </span>
                       </CopyToClipboard>
                     </div>
@@ -178,7 +180,7 @@ export const CreateStream = ({
                       <input className="input" value={streamData?.streamKey} />
                       <CopyToClipboard text={streamData?.streamKey}>
                         <span
-                          className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
+                          className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900"
                           onClick={() => {
                             handleToast({
                               title: "Copied to clipboard!",
@@ -187,7 +189,7 @@ export const CreateStream = ({
                             })
                           }}
                         >
-                          <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+                          <FaCopy className="text-muted-foreground" />
                         </span>
                       </CopyToClipboard>
                     </div>

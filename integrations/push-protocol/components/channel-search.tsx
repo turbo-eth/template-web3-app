@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+import { Input } from "@/components/ui/input"
 import {
   Select,
   SelectContent,
@@ -32,8 +33,7 @@ export function ChannelSearch() {
     <>
       <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
         <div className="grow">
-          <input
-            className="input"
+          <Input
             placeholder="Search by Name or Address"
             onChange={(e) => setSearchQuery(e.target.value)}
           />
@@ -43,14 +43,14 @@ export function ChannelSearch() {
             value={searchEnv}
             onValueChange={(value) => setSearchEnv(value as ENV)}
           >
-            <SelectTrigger className="input text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
+            <SelectTrigger>
               <SelectValue
                 placeholder={searchEnv === ENV.STAGING ? "Goerli" : "Mainnet"}
               >
                 {searchEnv === ENV.STAGING ? "Goerli" : "Mainnet"}
               </SelectValue>
             </SelectTrigger>
-            <SelectContent className="bg-white dark:bg-white">
+            <SelectContent>
               <SelectItem value={ENV.STAGING}>Goerli</SelectItem>
               <SelectItem value={ENV.PROD}>Mainnet</SelectItem>
             </SelectContent>

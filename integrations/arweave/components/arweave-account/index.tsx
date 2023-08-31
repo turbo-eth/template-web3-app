@@ -1,7 +1,9 @@
 import { useCallback, useRef, useState } from "react"
+import Link from "next/link"
 
+import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { LinkComponent } from "@/components/shared/link-component"
+import { Button, buttonVariants } from "@/components/ui/button"
 
 import { uploadArweaveAccountAvatar } from "../../arweave-account"
 import { useArweaveWallet } from "../../hooks/use-arweave-wallet"
@@ -68,36 +70,37 @@ export const ArweaveAccount = () => {
           </AvatarFallback>
         </Avatar>
         {!picture ? (
-          <button
-            className="btn btn-primary mt-3 text-sm"
+          <Button
+            className="mt-3"
             onClick={() => fileInputRef.current?.click()}
           >
             <span className="mt-2 text-sm leading-normal">
               Select profile picture
             </span>
-          </button>
+          </Button>
         ) : (
           <div className="mt-3">
             <FeeEstimation
               {...{ estimatedTxFee, isEstimatingTxFee, estimationError }}
             />
             <div className="flex items-center">
-              <button
-                className="btn btn-primary mt-2 text-sm"
+              <Button
+                className="mt-2"
                 disabled={uploading}
                 onClick={() => setPicture(null)}
               >
                 <span className="mt-2 text-base leading-normal">Cancel</span>
-              </button>
-              <button
-                className="btn btn-emerald mt-2 ml-3 text-sm"
+              </Button>
+              <Button
+                variant="emerald"
+                className="ml-3 mt-2 text-sm"
                 disabled={uploading}
                 onClick={() => upload()}
               >
                 <span className="mt-2 text-base leading-normal">
                   {uploading ? "Storing on Arweave" : "Store on Arweave"}
                 </span>
-              </button>
+              </Button>
             </div>
           </div>
         )}
@@ -149,11 +152,12 @@ export const ArweaveAccount = () => {
       <div className="mt-6 text-left">
         <div className="flex items-center justify-between">
           <h4>Account Info</h4>
-          <LinkComponent href="/integration/arweave/account/edit">
-            <button className="btn bg-blue-500 text-sm hover:bg-blue-600">
-              Edit Account info
-            </button>
-          </LinkComponent>
+          <Link
+            href="/integration/arweave/account/edit"
+            className={cn(buttonVariants({ variant: "blue" }))}
+          >
+            Edit Account info
+          </Link>
         </div>
         {Object.entries(account.profile)
           .filter(
@@ -161,7 +165,7 @@ export const ArweaveAccount = () => {
           )
           .map(([key, val]) => (
             <div key={key} className="mt-2">
-              <span className="text-sm text-slate-400">
+              <span className="text-sm text-muted-foreground">
                 {key}
                 {val instanceof Object ? ":" : ""}
               </span>
@@ -169,7 +173,9 @@ export const ArweaveAccount = () => {
                 {val instanceof Object
                   ? Object.entries(val).map(([key, val]) => (
                       <div key={key} className="my-4 ml-6">
-                        <span className="text-sm text-slate-400">{key}</span>
+                        <span className="text-sm text-muted-foreground">
+                          {key}
+                        </span>
                         <span className="ml-2 text-sm">{val ? val : "-"}</span>
                       </div>
                     ))

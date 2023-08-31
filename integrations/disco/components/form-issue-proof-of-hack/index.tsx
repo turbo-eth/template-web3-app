@@ -2,6 +2,7 @@ import CopyToClipboard from "react-copy-to-clipboard"
 import { FaCopy } from "react-icons/fa"
 
 import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
@@ -51,7 +52,7 @@ export function FormCredentialIssuanceProofOfHack() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>{item?.label}</FormLabel>
-                      <FormControl className="input dark:border-gray-600 dark:text-gray-600 dark:[color-scheme:dark]">
+                      <FormControl className="input border bg-background text-muted-foreground">
                         <Item
                           {...item?.attribute}
                           {...field}
@@ -70,16 +71,16 @@ export function FormCredentialIssuanceProofOfHack() {
                   {error instanceof Error ? error.message : String(error)}
                 </div>
               )}
-              <button className="btn btn-emerald w-full" disabled={isLoading}>
+              <Button variant="emerald" className="w-full" disabled={isLoading}>
                 {isLoading ? "Loading..." : "Issue Proof of Hack Credential"}
-              </button>
+              </Button>
             </div>
           </form>
         </Form>
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">Proof of Hack</h3>
-          <p className="text-center text-sm text-gray-500">
+          <p className="text-center text-sm text-muted-foreground">
             Proof of Hack recognizes the holder for participating in a Hackathon
           </p>
         </div>
@@ -94,8 +95,8 @@ export function FormCredentialIssuanceProofOfHack() {
               text={JSON.stringify(data, null, 2)}
               onCopy={handleToast}
             >
-              <span className="flex-center flex h-7 w-7 cursor-pointer rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                <FaCopy className=" text-neutral-600 dark:text-neutral-100" />
+              <span className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+                <FaCopy className="text-muted-foreground" />
               </span>
             </CopyToClipboard>
           </div>
@@ -103,7 +104,7 @@ export function FormCredentialIssuanceProofOfHack() {
           <hr className="my-4" />
           <textarea
             readOnly
-            className="input h-96 dark:text-gray-600 dark:placeholder:text-neutral-400"
+            className="input h-96 text-muted-foreground"
             value={JSON.stringify(data, null, 2)}
           />
         </div>

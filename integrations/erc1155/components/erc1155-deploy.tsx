@@ -73,7 +73,7 @@ export function Erc1155Deploy() {
         </ContractWriteButton>
       </form>
       {(token || isWaitingTransaction) && (
-        <div className="flex max-w-full flex-wrap items-center justify-between break-words pt-5 pb-2">
+        <div className="flex max-w-full flex-wrap items-center justify-between break-words pb-2 pt-5">
           <span className="font-semibold">
             {token ? "Mint Contract Address" : "Deploying contract"}:
           </span>

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { isAddress } from "viem"
 
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
@@ -61,10 +62,10 @@ export function AccessControlTokenGroup({
             value={chain}
             onValueChange={(value) => setChain(value)}
           >
-            <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
+            <SelectTrigger>
               <SelectValue placeholder="Select a chain" />
             </SelectTrigger>
-            <SelectContent className="bg-white dark:bg-white">
+            <SelectContent>
               {supportedChains.map((chain) => (
                 <SelectItem key={chain} value={chain}>
                   {chain}
@@ -85,10 +86,10 @@ export function AccessControlTokenGroup({
             value={tokenType}
             onValueChange={(value) => setTokenType(value)}
           >
-            <SelectTrigger className="input mt-4 text-gray-600 placeholder:text-neutral-400 dark:text-gray-600 dark:placeholder:text-neutral-400">
+            <SelectTrigger>
               <SelectValue placeholder="Select a token type" />
             </SelectTrigger>
-            <SelectContent className="bg-white dark:bg-white">
+            <SelectContent>
               <SelectItem value="ERC20">ERC20</SelectItem>
               <SelectItem value="ERC721">ERC721</SelectItem>
               <SelectItem value="ERC1155">ERC1155</SelectItem>
@@ -190,9 +191,9 @@ export function AccessControlTokenGroup({
             )}
           </div>
         )}
-        <button className="btn btn-emerald mt-4" type="submit">
+        <Button variant="emerald" className="mt-4" type="submit">
           Save
-        </button>
+        </Button>
       </form>
     </div>
   )
