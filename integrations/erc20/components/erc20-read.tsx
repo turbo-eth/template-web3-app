@@ -179,7 +179,7 @@ export function ERC20Read({
                 </span>
                 {showTotalSupply && (
                   <>
-                    <span className="">|</span>
+                    <span>|</span>
                     <span>
                       <span className="font-medium">Total Supply</span>{" "}
                       <ERC20TotalSupply address={address} chainId={chainId} />
@@ -188,7 +188,7 @@ export function ERC20Read({
                 )}
                 {showBalance && (
                   <>
-                    <span className="">|</span>
+                    <span>|</span>
                     <span>
                       <span className="font-medium">Balance</span>
                       <ERC20Balance address={address} />

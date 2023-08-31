@@ -24,7 +24,7 @@ export const TableBody = ({
     "border-b-2 border-gray-100 dark:border-neutral-700 px-4 py-3"
   )
   return (
-    <tbody {...props} className="">
+    <tbody {...props}>
       {page.map((row, idx) => {
         prepareRow(row)
         const styleRow = cn("row py-3", {

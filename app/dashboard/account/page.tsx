@@ -3,12 +3,12 @@
 import { motion } from "framer-motion"
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
+import { Card } from "@/components/ui/card"
 import { WalletAddress } from "@/components/blockchain/wallet-address"
 import { WalletBalance } from "@/components/blockchain/wallet-balance"
 import { WalletNonce } from "@/components/blockchain/wallet-nonce"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
-import { Card } from "@/components/ui/card"
 
 export default function PageDashboardAccount() {
   return (

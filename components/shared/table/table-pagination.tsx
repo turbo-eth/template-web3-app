@@ -32,23 +32,14 @@ export const TablePagination = ({
   return (
     <div className="flex justify-between items-center bg-background text-foreground shadow-sm px-3 py-5 rounded-b-lg">
       <div className="flex items-center">
-        <div className=''>
-          <button
-            onClick={() => gotoPage(0)}
-            disabled={!canPreviousPage}
-          >
+        <div className="">
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
             {"<<"}
           </button>{" "}
-          <button
-            onClick={() => previousPage()}
-            disabled={!canPreviousPage}
-          >
+          <button onClick={() => previousPage()} disabled={!canPreviousPage}>
             {"<"}
           </button>{" "}
-          <button
-            onClick={() => nextPage()}
-            disabled={!canNextPage}
-          >
+          <button onClick={() => nextPage()} disabled={!canNextPage}>
             {">"}
           </button>{" "}
           <button
@@ -83,23 +74,23 @@ export const TablePagination = ({
           </span>
         </span>{" "}
       </div>
-        <select
-          className=" min-w-[90px] bg-background text-foreground"
-          value={pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[5, 10, 20, 30, 40, 50].map((pageSizeParams) => (
-            <option
-              className="text-xl"
-              key={pageSizeParams}
-              value={pageSizeParams}
-            >
-              Show {pageSizeParams}
-            </option>
-          ))}
-        </select>
+      <select
+        className=" min-w-[90px] bg-background text-foreground"
+        value={pageSize}
+        onChange={(e) => {
+          setPageSize(Number(e.target.value))
+        }}
+      >
+        {[5, 10, 20, 30, 40, 50].map((pageSizeParams) => (
+          <option
+            className="text-xl"
+            key={pageSizeParams}
+            value={pageSizeParams}
+          >
+            Show {pageSizeParams}
+          </option>
+        ))}
+      </select>
     </div>
   )
 }

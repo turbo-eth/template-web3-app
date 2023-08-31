@@ -1,7 +1,6 @@
 "use client"
 
 import { ReactNode } from "react"
-
 import { useTheme } from "next-themes"
 
 interface IsDarkThemeProps {

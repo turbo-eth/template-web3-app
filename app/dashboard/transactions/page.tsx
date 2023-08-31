@@ -27,7 +27,7 @@ export default function PageDashboardTransactions() {
           </IsSignedOut>
         </IsWalletConnected>
         <IsWalletDisconnected>
-          <span className="">Connect wallet and login to access page</span>
+          <span>Connect wallet and login to access page</span>
         </IsWalletDisconnected>
       </div>
       <hr className="my-5 opacity-50" />
