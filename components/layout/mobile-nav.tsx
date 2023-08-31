@@ -4,7 +4,6 @@ import { useState } from "react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/navigation"
 import { integrations } from "@/data/integrations"
-import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { LuMenu } from "react-icons/lu"
 
 import { menuDashboard } from "@/config/menu-dashboard"
@@ -22,6 +21,8 @@ import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { LightDarkImage } from "@/components/shared/light-dark-image"
 
+import { ModeToggle } from "../shared/mode-toggle"
+
 export function MobileNav() {
   const [open, setOpen] = useState(false)
 
@@ -31,7 +32,7 @@ export function MobileNav() {
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <LightDarkImage
             LightImage="/logo-dark.png"
-            DarkImage="/logo-white.png"
+            DarkImage="/logo-light.png"
             alt="TurboETH"
             height={32}
             width={32}
@@ -51,19 +52,22 @@ export function MobileNav() {
         </SheetTrigger>
       </div>
       <SheetContent side="right" className="pr-0">
-        <MobileLink
-          href="/"
-          className="flex items-center"
-          onOpenChange={setOpen}
-        >
-          <LightDarkImage
-            LightImage="/logo-dark.png"
-            DarkImage="/logo-white.png"
-            alt="TurboETH"
-            height={32}
-            width={32}
-          />
-        </MobileLink>
+        <div className="flex items-center gap-x-4">
+          <MobileLink
+            href="/"
+            className="flex items-center"
+            onOpenChange={setOpen}
+          >
+            <LightDarkImage
+              LightImage="/logo-dark.png"
+              DarkImage="/logo-light.png"
+              alt="TurboETH"
+              height={32}
+              width={32}
+            />
+          </MobileLink>
+          <ModeToggle />
+        </div>
         <ScrollArea className="my-4 mr-4 h-[calc(100vh-8rem)] pb-10">
           <div className="flex flex-col space-y-4">
             <Accordion type="single" collapsible className="mx-auto w-full">
