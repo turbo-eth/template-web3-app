@@ -16,11 +16,11 @@ export const metadata = {
   metadataBase: new URL(url),
   title: `${siteConfig.name} - ${siteConfig.description}`,
   description: siteConfig.description,
-  manifest: '/manifest.json',
+  manifest: "/manifest.json",
   icons: {
     icon: "/favicon.ico",
   },
-  themeColor: '#feefc4',
+  themeColor: "#feefc4",
   openGraph: {
     title: siteConfig.name,
     description: siteConfig.description,
