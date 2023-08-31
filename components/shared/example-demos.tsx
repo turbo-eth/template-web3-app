@@ -77,7 +77,7 @@ const demos = [
           alt="Disco logo"
           className="rounded-full"
           height={100}
-          src="/integrations/disco.jpeg"
+          src="/integrations/discoDark.png"
           width={100}
         />
       </div>
