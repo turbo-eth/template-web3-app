@@ -1,24 +1,40 @@
-import { useRef } from 'react'
+import { useRef } from "react"
+import { useFieldArray } from "react-hook-form"
 
-import { useFieldArray } from 'react-hook-form'
+import { Button } from "@/components/ui/button"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-
-import { useArweavePostForm } from './hook'
-import { FormListTags } from './list-tags'
-import { useArweaveWallet } from '../../hooks/use-arweave-wallet'
-import { truncateString } from '../../utils'
-import { ConnectArweaveWallet } from '../connect-arweave-wallet'
-import { FeeEstimation } from '../fee-estimation'
-import { InsufficientBalanceError } from '../insufficient-balance-error'
-import { PendingTx } from '../pending-tx'
+import { useArweaveWallet } from "../../hooks/use-arweave-wallet"
+import { truncateString } from "../../utils"
+import { ConnectArweaveWallet } from "../connect-arweave-wallet"
+import { FeeEstimation } from "../fee-estimation"
+import { InsufficientBalanceError } from "../insufficient-balance-error"
+import { PendingTx } from "../pending-tx"
+import { useArweavePostForm } from "./hook"
+import { FormListTags } from "./list-tags"
 
 export const FormNewPost = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const { wallet, address } = useArweaveWallet()
-  const { onSubmit, form, isLoading, isError, isSuccess, error, data, estimation } = useArweavePostForm()
+  const {
+    onSubmit,
+    form,
+    isLoading,
+    isError,
+    isSuccess,
+    error,
+    data,
+    estimation,
+  } = useArweavePostForm()
   const { control, handleSubmit, register, getValues, setValue } = form
   const values = getValues()
   const {
@@ -27,7 +43,7 @@ export const FormNewPost = () => {
     remove: removeTag,
   } = useFieldArray({
     control,
-    name: 'tags',
+    name: "tags",
   })
   if (!wallet || !address) return <ConnectArweaveWallet />
   return (
@@ -35,7 +51,10 @@ export const FormNewPost = () => {
       <div className="card w-full text-left">
         <h3 className="mb-4">Create a new Arweave post</h3>
         <Form {...form}>
-          <form className="flex w-full flex-col space-y-8" onSubmit={handleSubmit(onSubmit)}>
+          <form
+            className="flex w-full flex-col space-y-8"
+            onSubmit={handleSubmit(onSubmit)}
+          >
             {!values.file && (
               <FormField
                 control={control}
@@ -43,15 +62,23 @@ export const FormNewPost = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Data to be stored</FormLabel>
-                    <FormControl className="input dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
-                      <Textarea {...field} {...register('data')} className="dark:bg-neutral-800" />
+                    <FormControl className="input border bg-background text-muted-foreground">
+                      <Textarea
+                        {...field}
+                        {...register("data")}
+                        className="dark:bg-neutral-800"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             )}
-            {!values.file && !values.data && <div className="my-2 w-full text-center dark:text-gray-600">- or -</div>}
+            {!values.file && !values.data && (
+              <div className="my-2 w-full text-center text-muted-foreground">
+                - or -
+              </div>
+            )}
             {!values.data && (
               <FormField
                 control={control}
@@ -60,7 +87,7 @@ export const FormNewPost = () => {
                   return (
                     <FormItem>
                       <FormLabel>File to be stored</FormLabel>
-                      <FormControl className="dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
+                      <FormControl className="border bg-background text-muted-foreground">
                         <div className="flex items-center">
                           <Input
                             ref={fileInputRef}
@@ -70,28 +97,43 @@ export const FormNewPost = () => {
                             onChange={(e) => {
                               const file = e.target.files?.[0]
                               if (file) {
-                                appendTag({ name: 'Content-type', value: file.type }, { shouldFocus: false })
+                                appendTag(
+                                  { name: "Content-type", value: file.type },
+                                  { shouldFocus: false }
+                                )
                                 field.onChange(file)
                               }
                             }}
                           />
                           {values.file ? (
-                            <div className="font-mono text-sm">{truncateString(values.file.name, 20)}</div>
+                            <div className="font-mono text-sm">
+                              {truncateString(values.file.name, 20)}
+                            </div>
                           ) : (
-                            <button className="btn btn-primary mt-3 text-sm" type="button" onClick={() => fileInputRef.current?.click()}>
-                              <span className="mt-2 text-sm leading-normal">Select a file</span>
-                            </button>
+                            <Button
+                              className="mt-3 text-sm"
+                              onClick={() => fileInputRef.current?.click()}
+                            >
+                              <span className="mt-2 text-sm leading-normal">
+                                Select a file
+                              </span>
+                            </Button>
                           )}
                           {values.file && (
-                            <button
-                              className="btn ml-3 bg-red-300 text-xs hover:bg-red-400 dark:bg-red-700 hover:dark:bg-red-800"
-                              type="button"
+                            <Button
+                              variant="destructive"
+                              className="ml-3 text-xs"
                               onClick={() => {
-                                removeTag(tags.findIndex((tag) => tag.name === 'Content-type'))
-                                setValue('file', undefined)
-                              }}>
+                                removeTag(
+                                  tags.findIndex(
+                                    (tag) => tag.name === "Content-type"
+                                  )
+                                )
+                                setValue("file", undefined)
+                              }}
+                            >
                               Delete
-                            </button>
+                            </Button>
                           )}
                         </div>
                       </FormControl>
@@ -102,17 +144,27 @@ export const FormNewPost = () => {
               />
             )}
             <FormLabel>Tags</FormLabel>
-            <FormListTags {...{ append: appendTag, remove: removeTag, fields: tags }} />
+            <FormListTags
+              {...{ append: appendTag, remove: removeTag, fields: tags }}
+            />
             <FeeEstimation {...estimation} />
             <div>
-              <button className="btn btn-emerald w-full" disabled={isLoading || estimation.isEstimatingTxFee}>
-                {isLoading ? 'Loading...' : 'Create Arweave post'}
-              </button>
+              <Button
+                variant="emerald"
+                className="w-full"
+                disabled={isLoading || estimation.isEstimatingTxFee}
+              >
+                {isLoading ? "Loading..." : "Create Arweave post"}
+              </Button>
               {isError ? (
-                (error as { insufficientBalance: boolean }).insufficientBalance ? (
+                (error as { insufficientBalance: boolean })
+                  .insufficientBalance ? (
                   <InsufficientBalanceError />
                 ) : (
-                  <div className="mt-3 font-medium text-red-500">Error: {error instanceof Error ? error.message : String(error)}</div>
+                  <div className="mt-3 font-medium text-red-500">
+                    Error:{" "}
+                    {error instanceof Error ? error.message : String(error)}
+                  </div>
                 )
               ) : null}
             </div>
@@ -121,7 +173,10 @@ export const FormNewPost = () => {
         <hr className="my-4" />
         <div className="flex items-center justify-between">
           <h3 className="text-center">Arweave post</h3>
-          <p className="text-center text-sm text-gray-500">Arweave post is a type of transaction which can store data on-chain permanently.</p>
+          <p className="text-center text-sm text-muted-foreground">
+            Arweave post is a type of transaction which can store data on-chain
+            permanently.
+          </p>
         </div>
       </div>
       {isSuccess && data && (

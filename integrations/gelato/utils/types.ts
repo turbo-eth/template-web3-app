@@ -1,5 +1,5 @@
-import { CreateTaskOptions } from '@gelatonetwork/automate-sdk'
-import { Overrides } from 'ethers'
+import { CreateTaskOptions } from "@gelatonetwork/automate-sdk"
+import { Overrides } from "ethers"
 
 export type GelatoConstants = {
   subgraphBaseUrl: string
@@ -49,6 +49,17 @@ export type FetchResolverResponse = {
   address: string
 }
 
-export type UseNewTaskProps = { args: CreateTaskOptions; overrides?: Overrides; authToken?: string }
-export type UseCancelTaskProps = { taskId: string; overrides?: Overrides | undefined }
-export type UseRenameTaskProps = { taskId: string; name: string; authToken?: string | undefined }
+export type UseNewTaskProps = {
+  args: CreateTaskOptions
+  overrides?: Overrides
+  authToken?: string
+}
+export type UseCancelTaskProps = {
+  taskId: string
+  overrides?: Overrides | undefined
+}
+export type UseRenameTaskProps = {
+  taskId: string
+  name: string
+  authToken?: string | undefined
+}

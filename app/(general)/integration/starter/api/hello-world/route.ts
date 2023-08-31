@@ -1,5 +1,5 @@
-export async function GET(request: Request) {
-  return new Response('Hello, TurboETH!', {
+export function GET() {
+  return new Response("Hello, TurboETH!", {
     status: 200,
   })
 }

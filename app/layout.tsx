@@ -1,18 +1,16 @@
-import '@/styles/app.css'
-import '@/styles/gradient.css'
-import '@/styles/periphery.css'
-import { ReactNode } from 'react'
+import "@/styles/app.css"
+import "@/styles/globals.css"
 
-import { Raleway } from 'next/font/google'
-import { Inter as FontSans } from 'next/font/google'
-import localFont from 'next/font/local'
+import { ReactNode } from "react"
+import { env } from "@/env.mjs"
 
-import RootProvider from '@/components/providers/root-provider'
-import { siteConfig } from '@/config/site'
-import { env } from '@/env.mjs'
-import { cn } from '@/lib/utils'
+import { siteConfig } from "@/config/site"
+import { fontSans } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
+import { Toaster } from "@/components/ui/toaster"
+import RootProvider from "@/components/providers/root-provider"
 
-const url = env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const url = env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
 export const metadata = {
   metadataBase: new URL(url),
@@ -20,7 +18,7 @@ export const metadata = {
   description: siteConfig.description,
   manifest: '/manifest.json',
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
   themeColor: '#feefc4',
   openGraph: {
@@ -28,37 +26,27 @@ export const metadata = {
     description: siteConfig.description,
     url: url?.toString(),
     siteName: siteConfig.name,
-    type: 'website',
+    type: "website",
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
   },
 }
 
-const sfPro = localFont({
-  src: '../assets/fonts/SF-Pro-Display-Medium.otf',
-  variable: '--sfPro-font',
-})
-
-const raleway = Raleway({
-  subsets: ['latin'],
-  weight: ['100', '200', '400', '500', '600', '700', '800', '900'],
-  variable: '--raleway-font',
-})
-
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-})
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <>
-      <html suppressHydrationWarning className={`${sfPro.variable} ${raleway.variable}`} lang="en">
-        <body className={cn('min-h-screen bg-white font-sans text-slate-900 antialiased dark:bg-slate-900 dark:text-slate-50', fontSans.variable)}>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={cn(
+            "min-h-screen bg-background font-sans antialiased",
+            fontSans.variable
+          )}
+        >
           <RootProvider>{children}</RootProvider>
+          <Toaster />
         </body>
       </html>
     </>

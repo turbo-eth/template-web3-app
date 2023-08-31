@@ -1,14 +1,19 @@
-import Arweave from 'arweave'
-import Transaction from 'arweave/node/lib/transaction'
-import { bufferToString, stringToBuffer } from 'arweave/node/lib/utils'
-import { JWKInterface } from 'arweave/node/lib/wallet'
+import Arweave from "arweave"
+import Transaction from "arweave/node/lib/transaction"
+import { bufferToString, stringToBuffer } from "arweave/node/lib/utils"
+import { JWKInterface } from "arweave/node/lib/wallet"
 
-import { ArweaveAmount, ArweaveTxId, ArweaveTxTag, SignAndSendArweaveTxResponse } from './utils/types'
+import {
+  ArweaveAmount,
+  ArweaveTxId,
+  ArweaveTxTag,
+  SignAndSendArweaveTxResponse,
+} from "./utils/types"
 
 const arweaveConfig = {
-  host: 'arweave.net', // Hostname or IP address for a Arweave host
+  host: "arweave.net", // Hostname or IP address for a Arweave host
   port: 443, // Port
-  protocol: 'https', // Network protocol http or https
+  protocol: "https", // Network protocol http or https
   timeout: 20000, // Network request timeouts in milliseconds
   logging: false, // Enable network request logging
 }
@@ -29,8 +34,12 @@ export const getArweaveWalletAddress = async (wallet: JWKInterface) => {
   return await arweave.wallets.jwkToAddress(wallet)
 }
 
-export const getArweaveWalletBalance = async (wallet: JWKInterface): Promise<ArweaveAmount> => {
-  const balance = await arweave.wallets.getBalance(await getArweaveWalletAddress(wallet))
+export const getArweaveWalletBalance = async (
+  wallet: JWKInterface
+): Promise<ArweaveAmount> => {
+  const balance = await arweave.wallets.getBalance(
+    await getArweaveWalletAddress(wallet)
+  )
   const ar = arweave.ar.winstonToAr(balance)
   return {
     ar,
@@ -38,7 +47,11 @@ export const getArweaveWalletBalance = async (wallet: JWKInterface): Promise<Arw
   }
 }
 
-export const createArweaveWalletToWalletTx = async (wallet: JWKInterface, targetAddress: string, arQuantity: string): Promise<Transaction> => {
+export const createArweaveWalletToWalletTx = async (
+  wallet: JWKInterface,
+  targetAddress: string,
+  arQuantity: string
+): Promise<Transaction> => {
   return await arweave.createTransaction(
     {
       target: targetAddress,
@@ -48,7 +61,10 @@ export const createArweaveWalletToWalletTx = async (wallet: JWKInterface, target
   )
 }
 
-export const createArweaveDataTx = async (wallet: JWKInterface, data: string | ArrayBuffer | Uint8Array): Promise<Transaction> => {
+export const createArweaveDataTx = async (
+  wallet: JWKInterface,
+  data: string | ArrayBuffer | Uint8Array
+): Promise<Transaction> => {
   return await arweave.createTransaction(
     {
       data,
@@ -82,7 +98,11 @@ export const signAndSendArweaveTx = async (
       await uploader.uploadChunk()
     }
     return {
-      response: { status: uploader.lastResponseStatus, statusText: uploader.lastResponseError, data: null },
+      response: {
+        status: uploader.lastResponseStatus,
+        statusText: uploader.lastResponseError,
+        data: null,
+      },
       insufficientBalance: false,
       txId: tx.id,
     }
@@ -97,7 +117,9 @@ export const getArweaveTxStatus = async (txId: ArweaveTxId) => {
 }
 
 export const getArweaveTxData = async (txId: ArweaveTxId) => {
-  return bufferToString((await arweave.transactions.getData(txId, { decode: true })) as Uint8Array)
+  return bufferToString(
+    (await arweave.transactions.getData(txId, { decode: true })) as Uint8Array
+  )
 }
 
 export const estimateTxFee = async (data: string | ArrayBuffer) => {

@@ -1,10 +1,10 @@
-'use client'
-import { ReactNode } from 'react'
+"use client"
 
-import { useAccount } from 'wagmi'
+import { ReactNode } from "react"
+import { useAccount } from "wagmi"
 
-import { siweLogout } from '@/integrations/siwe/actions/siwe-logout'
-import { useUser } from '@/lib/hooks/use-user'
+import { useUser } from "@/lib/hooks/use-user"
+import { siweLogout } from "@/integrations/siwe/actions/siwe-logout"
 
 interface HandleWalletEventsProps {
   children: ReactNode

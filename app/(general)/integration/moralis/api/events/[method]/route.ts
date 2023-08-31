@@ -1,1 +1,1 @@
-export { POST } from '@/integrations/moralis/api/events'
+export { POST } from "@/integrations/moralis/api/events"

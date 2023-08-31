@@ -1,8 +1,7 @@
 // disable eslint for this file due to @bgd-labs/aave-address-book import issues
 /* eslint-disable */
 
-import { ReactNode } from 'react'
-
+import { ReactNode } from "react"
 import {
   AaveV3Arbitrum,
   AaveV3ArbitrumGoerli,
@@ -13,8 +12,18 @@ import {
   AaveV3OptimismGoerli,
   AaveV3Polygon,
   AaveV3Sepolia,
-} from '@bgd-labs/aave-address-book'
-import { arbitrum, arbitrumGoerli, goerli, mainnet, optimism, optimismGoerli, polygon, polygonMumbai, sepolia } from 'wagmi/chains'
+} from "@bgd-labs/aave-address-book"
+import {
+  arbitrum,
+  arbitrumGoerli,
+  goerli,
+  mainnet,
+  optimism,
+  optimismGoerli,
+  polygon,
+  polygonMumbai,
+  sepolia,
+} from "wagmi/chains"
 
 export type MarketDataType = {
   v3?: boolean
@@ -59,7 +68,7 @@ export type MarketDataType = {
 
 export const marketsData: MarketDataType[] = [
   {
-    marketTitle: 'Ethereum',
+    marketTitle: "Ethereum",
     chainId: mainnet.id,
     v3: true,
     enabledFeatures: {
@@ -74,7 +83,8 @@ export const marketsData: MarketDataType[] = [
       LENDING_POOL_ADDRESS_PROVIDER: AaveV3Ethereum.POOL_ADDRESSES_PROVIDER,
       LENDING_POOL: AaveV3Ethereum.POOL,
       WETH_GATEWAY: AaveV3Ethereum.WETH_GATEWAY,
-      REPAY_WITH_COLLATERAL_ADAPTER: AaveV3Ethereum.REPAY_WITH_COLLATERAL_ADAPTER,
+      REPAY_WITH_COLLATERAL_ADAPTER:
+        AaveV3Ethereum.REPAY_WITH_COLLATERAL_ADAPTER,
       SWAP_COLLATERAL_ADAPTER: AaveV3Ethereum.SWAP_COLLATERAL_ADAPTER,
       WALLET_BALANCE_PROVIDER: AaveV3Ethereum.WALLET_BALANCE_PROVIDER,
       UI_POOL_DATA_PROVIDER: AaveV3Ethereum.UI_POOL_DATA_PROVIDER,
@@ -83,7 +93,7 @@ export const marketsData: MarketDataType[] = [
     },
   },
   {
-    marketTitle: 'Ethereum Sepolia',
+    marketTitle: "Ethereum Sepolia",
     v3: true,
     testnet: true,
     chainId: sepolia.id,
@@ -101,7 +111,7 @@ export const marketsData: MarketDataType[] = [
     },
   },
   {
-    marketTitle: 'Ethereum Görli',
+    marketTitle: "Ethereum Görli",
     v3: true,
     testnet: true,
     chainId: goerli.id,
@@ -120,7 +130,7 @@ export const marketsData: MarketDataType[] = [
   },
 
   {
-    marketTitle: 'Arbitrum',
+    marketTitle: "Arbitrum",
     v3: true,
     chainId: arbitrum.id,
     enabledFeatures: {
@@ -139,12 +149,13 @@ export const marketsData: MarketDataType[] = [
       L2_ENCODER: AaveV3Arbitrum.L2_ENCODER,
       COLLECTOR: AaveV3Arbitrum.COLLECTOR,
       SWAP_COLLATERAL_ADAPTER: AaveV3Arbitrum.SWAP_COLLATERAL_ADAPTER,
-      REPAY_WITH_COLLATERAL_ADAPTER: AaveV3Arbitrum.REPAY_WITH_COLLATERAL_ADAPTER,
+      REPAY_WITH_COLLATERAL_ADAPTER:
+        AaveV3Arbitrum.REPAY_WITH_COLLATERAL_ADAPTER,
       DEBT_SWITCH_ADAPTER: AaveV3Arbitrum.DEBT_SWAP_ADAPTER,
     },
   },
   {
-    marketTitle: 'Arbitrum Görli',
+    marketTitle: "Arbitrum Görli",
     v3: true,
     testnet: true,
     chainId: arbitrumGoerli.id,
@@ -153,18 +164,20 @@ export const marketsData: MarketDataType[] = [
       incentives: true,
     },
     addresses: {
-      LENDING_POOL_ADDRESS_PROVIDER: AaveV3ArbitrumGoerli.POOL_ADDRESSES_PROVIDER,
+      LENDING_POOL_ADDRESS_PROVIDER:
+        AaveV3ArbitrumGoerli.POOL_ADDRESSES_PROVIDER,
       LENDING_POOL: AaveV3ArbitrumGoerli.POOL,
       WETH_GATEWAY: AaveV3ArbitrumGoerli.WETH_GATEWAY,
       FAUCET: AaveV3ArbitrumGoerli.FAUCET,
       WALLET_BALANCE_PROVIDER: AaveV3ArbitrumGoerli.WALLET_BALANCE_PROVIDER,
       UI_POOL_DATA_PROVIDER: AaveV3ArbitrumGoerli.UI_POOL_DATA_PROVIDER,
-      UI_INCENTIVE_DATA_PROVIDER: AaveV3ArbitrumGoerli.UI_INCENTIVE_DATA_PROVIDER,
+      UI_INCENTIVE_DATA_PROVIDER:
+        AaveV3ArbitrumGoerli.UI_INCENTIVE_DATA_PROVIDER,
       L2_ENCODER: AaveV3ArbitrumGoerli.L2_ENCODER,
     },
   },
   {
-    marketTitle: 'Optimism Görli',
+    marketTitle: "Optimism Görli",
     v3: true,
     testnet: true,
     chainId: optimismGoerli.id,
@@ -173,18 +186,20 @@ export const marketsData: MarketDataType[] = [
       incentives: true,
     },
     addresses: {
-      LENDING_POOL_ADDRESS_PROVIDER: AaveV3OptimismGoerli.POOL_ADDRESSES_PROVIDER,
+      LENDING_POOL_ADDRESS_PROVIDER:
+        AaveV3OptimismGoerli.POOL_ADDRESSES_PROVIDER,
       LENDING_POOL: AaveV3OptimismGoerli.POOL,
       WETH_GATEWAY: AaveV3OptimismGoerli.WETH_GATEWAY,
       FAUCET: AaveV3OptimismGoerli.FAUCET,
       WALLET_BALANCE_PROVIDER: AaveV3OptimismGoerli.WALLET_BALANCE_PROVIDER,
       UI_POOL_DATA_PROVIDER: AaveV3OptimismGoerli.UI_POOL_DATA_PROVIDER,
-      UI_INCENTIVE_DATA_PROVIDER: AaveV3OptimismGoerli.UI_INCENTIVE_DATA_PROVIDER,
+      UI_INCENTIVE_DATA_PROVIDER:
+        AaveV3OptimismGoerli.UI_INCENTIVE_DATA_PROVIDER,
       L2_ENCODER: AaveV3OptimismGoerli.L2_ENCODER,
     },
   },
   {
-    marketTitle: 'Optimism',
+    marketTitle: "Optimism",
     v3: true,
     chainId: optimism.id,
     enabledFeatures: {
@@ -203,12 +218,13 @@ export const marketsData: MarketDataType[] = [
       L2_ENCODER: AaveV3Optimism.L2_ENCODER,
       COLLECTOR: AaveV3Optimism.COLLECTOR,
       SWAP_COLLATERAL_ADAPTER: AaveV3Optimism.SWAP_COLLATERAL_ADAPTER,
-      REPAY_WITH_COLLATERAL_ADAPTER: AaveV3Optimism.REPAY_WITH_COLLATERAL_ADAPTER,
+      REPAY_WITH_COLLATERAL_ADAPTER:
+        AaveV3Optimism.REPAY_WITH_COLLATERAL_ADAPTER,
       DEBT_SWITCH_ADAPTER: AaveV3Optimism.DEBT_SWAP_ADAPTER,
     },
   },
   {
-    marketTitle: 'Polygon',
+    marketTitle: "Polygon",
     chainId: polygon.id,
     v3: true,
     enabledFeatures: {
@@ -221,7 +237,8 @@ export const marketsData: MarketDataType[] = [
       LENDING_POOL_ADDRESS_PROVIDER: AaveV3Polygon.POOL_ADDRESSES_PROVIDER,
       LENDING_POOL: AaveV3Polygon.POOL,
       WETH_GATEWAY: AaveV3Polygon.WETH_GATEWAY,
-      REPAY_WITH_COLLATERAL_ADAPTER: AaveV3Polygon.REPAY_WITH_COLLATERAL_ADAPTER,
+      REPAY_WITH_COLLATERAL_ADAPTER:
+        AaveV3Polygon.REPAY_WITH_COLLATERAL_ADAPTER,
       SWAP_COLLATERAL_ADAPTER: AaveV3Polygon.SWAP_COLLATERAL_ADAPTER,
       WALLET_BALANCE_PROVIDER: AaveV3Polygon.WALLET_BALANCE_PROVIDER,
       UI_POOL_DATA_PROVIDER: AaveV3Polygon.UI_POOL_DATA_PROVIDER,
@@ -231,7 +248,7 @@ export const marketsData: MarketDataType[] = [
     },
   },
   {
-    marketTitle: 'Polygon Mumbai',
+    marketTitle: "Polygon Mumbai",
     chainId: polygonMumbai.id,
     testnet: true,
     enabledFeatures: {

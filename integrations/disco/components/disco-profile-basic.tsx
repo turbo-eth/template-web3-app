@@ -1,32 +1,49 @@
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
+import Image from "next/image"
+import { LuExternalLink } from "react-icons/lu"
+import ReactMarkdown from "react-markdown"
+import type { Address } from "wagmi"
 
-import Image from 'next/image'
-import { LuExternalLink } from 'react-icons/lu'
-import ReactMarkdown from 'react-markdown'
-import type { Address } from 'wagmi'
+import { useUser } from "@/lib/hooks/use-user"
+import { cn } from "@/lib/utils"
+import { LinkComponent } from "@/components/shared/link-component"
 
-import { LinkComponent } from '@/components/shared/link-component'
-import { useUser } from '@/lib/hooks/use-user'
-import { cn } from '@/lib/utils'
-
-import { useDiscoGetProfileFromAddress } from '../hooks/use-disco-get-profile-from-address'
-import { DISCO_APP_URL } from '../utils/constants'
+import { useDiscoGetProfileFromAddress } from "../hooks/use-disco-get-profile-from-address"
+import { DISCO_APP_URL } from "../utils/constants"
 
 interface DiscoProfileBasicProps extends HTMLAttributes<HTMLDivElement> {
   address?: Address
 }
 
-export const DiscoProfileBasic = ({ className, address, ...props }: DiscoProfileBasicProps) => {
+export const DiscoProfileBasic = ({
+  className,
+  address,
+  ...props
+}: DiscoProfileBasicProps) => {
   const { user } = useUser()
-  const { data, isLoading, isError, error } = useDiscoGetProfileFromAddress(address, user)
+  const { data, isLoading, isError, error } = useDiscoGetProfileFromAddress(
+    address,
+    user
+  )
 
-  if (isError) return <div className={cn('text-red-500 font-medium', className)}>{error instanceof Error ? error.message : String(error)}</div>
+  if (isError)
+    return (
+      <div className={cn("font-medium text-red-500", className)}>
+        {error instanceof Error ? error.message : String(error)}
+      </div>
+    )
 
   return (
-    <div className={cn('grid grid-cols-1 items-center justify-between gap-2 lg:grid-cols-4', className)} {...props}>
+    <div
+      className={cn(
+        "grid grid-cols-1 items-center justify-between gap-2 lg:grid-cols-4",
+        className
+      )}
+      {...props}
+    >
       <div className="col-span-1">
         {isLoading ? (
-          <div className="h-60 w-60 max-w-full animate-pulse rounded-lg border-4 bg-gray-500/80 shadow-xl dark:bg-gray-200" />
+          <div className="h-60 w-60 max-w-full animate-pulse rounded-lg border-4 bg-muted shadow-xl" />
         ) : (
           <Image
             alt="Profile Avatar"
@@ -40,21 +57,26 @@ export const DiscoProfileBasic = ({ className, address, ...props }: DiscoProfile
       </div>
       <div className="col-span-1 lg:col-span-3">
         {isLoading ? (
-          <div className="mx-auto h-60 w-[800px] max-w-full animate-pulse rounded-lg bg-gray-500/80 shadow-xl dark:bg-gray-200 lg:w-full" />
+          <div className="mx-auto h-60 w-[800px] max-w-full animate-pulse rounded-lg bg-muted shadow-xl lg:w-full" />
         ) : (
           <div className="max-w-full">
             {data?.profile?.name && (
-              <div className="text-3xl font-bold text-neutral-900 dark:text-white">{data?.linkages && data?.linkages?.[data?.profile?.name]?.id}</div>
+              <div className="text-3xl font-bold text-foreground">
+                {data?.linkages && data?.linkages?.[data?.profile?.name]?.id}
+              </div>
             )}
             {data?.did && (
               <LinkComponent href={`${DISCO_APP_URL}/${data?.did}`}>
-                <div className="flex max-w-full items-center text-xl font-medium text-neutral-600 transition-colors hover:text-neutral-500 dark:text-neutral-400 dark:hover:text-neutral-300">
-                  <span className="overflow-x-auto break-words">{data?.did}</span> <LuExternalLink className="ml-2" size="20" />
+                <div className="flex max-w-full items-center text-xl font-medium text-muted-foreground transition-colors hover:text-accent">
+                  <span className="overflow-x-auto break-words">
+                    {data?.did}
+                  </span>{" "}
+                  <LuExternalLink className="ml-2" size="20" />
                 </div>
               </LinkComponent>
             )}
             {data?.profile?.bio && (
-              <div className="mt-10 text-neutral-900 dark:text-white">
+              <div className="mt-10 text-foreground">
                 <ReactMarkdown
                   components={{
                     a: ({ ...props }: HTMLAttributes<HTMLElement>) => (
@@ -62,14 +84,18 @@ export const DiscoProfileBasic = ({ className, address, ...props }: DiscoProfile
                         rel="noopener noreferrer"
                         target="_blank"
                         {...props}
-                        className="font-medium text-gray-800 underline transition-colors dark:text-blue-200"
+                        className="font-medium text-muted-foreground underline transition-colors"
                       />
                     ),
 
                     code: ({ ...props }: HTMLAttributes<HTMLElement>) => (
-                      <code {...props} className="rounded-sm bg-gray-100 px-1 py-0.5 font-mono font-medium text-gray-800" />
+                      <code
+                        {...props}
+                        className="rounded-sm bg-muted px-1 py-0.5 font-mono font-medium text-muted-foreground"
+                      />
                     ),
-                  }}>
+                  }}
+                >
                   {data?.profile?.bio}
                 </ReactMarkdown>
               </div>

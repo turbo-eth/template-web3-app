@@ -1,12 +1,12 @@
-import { ApiNotificationType } from '@pushprotocol/restapi'
-import { chainNameType } from '@pushprotocol/uiweb'
-import { motion } from 'framer-motion'
+import { ApiNotificationType } from "@pushprotocol/restapi"
+import { chainNameType } from "@pushprotocol/uiweb"
+import { motion } from "framer-motion"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { FADE_DOWN_ANIMATION_VARIANTS } from '@/config/design'
+import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-import { Loadable } from './loadable'
-import { NotificationItem } from './notification-item'
+import { Loadable } from "./loadable"
+import { NotificationItem } from "./notification-item"
 
 export type NotificationFeedProps = {
   notifications?: ApiNotificationType[]
@@ -15,7 +15,12 @@ export type NotificationFeedProps = {
   spamNotificationsIsLoading: boolean
 }
 
-export function NotificationFeed({ notifications, spamNotifications, notificationsIsLoading, spamNotificationsIsLoading }: NotificationFeedProps) {
+export function NotificationFeed({
+  notifications,
+  spamNotifications,
+  notificationsIsLoading,
+  spamNotificationsIsLoading,
+}: NotificationFeedProps) {
   return (
     <Tabs defaultValue="inbox">
       <div className="flex justify-center">
@@ -24,7 +29,10 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
           <TabsTrigger value="spam">Spam</TabsTrigger>
         </TabsList>
       </div>
-      <TabsContent className="h-96 overflow-y-scroll border-none px-0" value="inbox">
+      <TabsContent
+        className="h-96 overflow-y-scroll border-none px-0"
+        value="inbox"
+      >
         <Loadable isLoading={notificationsIsLoading}>
           <motion.div
             animate="show"
@@ -38,11 +46,20 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
                   staggerChildren: 0.15,
                 },
               },
-            }}>
-            {notifications?.length == 0 && <>You currently have no notifications, try subscribing to some channels.</>}
+            }}
+          >
+            {notifications?.length == 0 && (
+              <>
+                You currently have no notifications, try subscribing to some
+                channels.
+              </>
+            )}
             {notifications?.map((notification, i) => {
               return (
-                <motion.div key={`inbox-${i}`} variants={FADE_DOWN_ANIMATION_VARIANTS}>
+                <motion.div
+                  key={`inbox-${i}`}
+                  variants={FADE_DOWN_ANIMATION_VARIANTS}
+                >
                   <NotificationItem
                     app={notification.payload.data.app}
                     chainName={notification.source as chainNameType}
@@ -51,7 +68,7 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
                     image={notification.payload.data.aimg}
                     notificationBody={notification.payload.data.amsg}
                     notificationTitle={notification.payload.data.asub}
-                    theme={'light'}
+                    theme={"light"}
                     url={notification.payload.data.url}
                   />
                 </motion.div>
@@ -60,7 +77,10 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
           </motion.div>
         </Loadable>
       </TabsContent>
-      <TabsContent className="h-96 overflow-y-scroll border-none px-0" value="spam">
+      <TabsContent
+        className="h-96 overflow-y-scroll border-none px-0"
+        value="spam"
+      >
         <Loadable isLoading={spamNotificationsIsLoading}>
           <motion.div
             animate="show"
@@ -74,11 +94,17 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
                   staggerChildren: 0.15,
                 },
               },
-            }}>
-            {spamNotifications?.length == 0 && <>You currently have no spam notifications</>}
+            }}
+          >
+            {spamNotifications?.length == 0 && (
+              <>You currently have no spam notifications</>
+            )}
             {spamNotifications?.map((notification, i) => {
               return (
-                <motion.div key={`spam-${i}`} variants={FADE_DOWN_ANIMATION_VARIANTS}>
+                <motion.div
+                  key={`spam-${i}`}
+                  variants={FADE_DOWN_ANIMATION_VARIANTS}
+                >
                   <NotificationItem
                     app={notification.payload.data.app}
                     chainName={notification.source as chainNameType}
@@ -87,7 +113,7 @@ export function NotificationFeed({ notifications, spamNotifications, notificatio
                     image={notification.payload.data.aimg}
                     notificationBody={notification.payload.data.amsg}
                     notificationTitle={notification.payload.data.asub}
-                    theme={'light'}
+                    theme={"light"}
                     url={notification.payload.data.url}
                   />
                 </motion.div>

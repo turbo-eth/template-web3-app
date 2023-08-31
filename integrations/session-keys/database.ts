@@ -1,5 +1,5 @@
-import Dexie, { Table } from 'dexie'
-import type { Address } from 'wagmi'
+import Dexie, { Table } from "dexie"
+import type { Address } from "wagmi"
 
 export interface SessionKey {
   id: string
@@ -20,9 +20,9 @@ export class SessionKeysDB extends Dexie {
   sessionKey!: Table<SessionKey>
 
   constructor() {
-    super('sessionKey')
+    super("sessionKey")
     this.version(1).stores({
-      sessionKey: 'id, address, privateKey',
+      sessionKey: "id, address, privateKey",
     })
   }
 }

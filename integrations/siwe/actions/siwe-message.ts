@@ -1,8 +1,8 @@
-import { SiweMessage } from 'siwe'
-import type { Address } from 'wagmi'
-import { SignMessageArgs } from 'wagmi/dist/actions'
+import { SiweMessage } from "siwe"
+import type { Address } from "wagmi"
+import { SignMessageArgs } from "wagmi/dist/actions"
 
-import { siteConfig } from '@/config/site'
+import { siteConfig } from "@/config/site"
 
 interface SiweMessageOptions {
   address: string
@@ -17,9 +17,13 @@ interface SiweMessageOptions {
  * @param signMessageAsync - Wallet sign message function
  * @returns SIWE message, message to sign and signature
  */
-export const siweMessage = async ({ address, chainId, signMessageAsync }: SiweMessageOptions) => {
+export const siweMessage = async ({
+  address,
+  chainId,
+  signMessageAsync,
+}: SiweMessageOptions) => {
   // 1. Get random nonce from API
-  const nonceRes = await fetch('/api/siwe/nonce')
+  const nonceRes = await fetch("/api/siwe/nonce")
   const nonce = await nonceRes.text()
 
   // 2. Create SIWE message with pre-fetched nonce and sign with wallet
@@ -28,7 +32,7 @@ export const siweMessage = async ({ address, chainId, signMessageAsync }: SiweMe
     address,
     statement: `Sign in with Ethereum to ${siteConfig.name}`,
     uri: window.location.origin,
-    version: '1',
+    version: "1",
     chainId: chainId,
     nonce: nonce,
   })

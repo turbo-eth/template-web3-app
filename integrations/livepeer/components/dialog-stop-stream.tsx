@@ -1,20 +1,37 @@
-import { LinkComponent } from '@/components/shared/link-component'
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogTrigger } from '@/components/ui/alert-dialog'
+import Link from "next/link"
+
+import { cn } from "@/lib/utils"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { LinkComponent } from "@/components/shared/link-component"
 
 export function DialogStopStream() {
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="btn btn-red mt-4 flex w-full cursor-pointer rounded-md">
-        <button>Stop Livestream</button>
+      <AlertDialogTrigger>
+        <Button variant="destructive" className="mt-4 w-full">
+          Stop Livestream
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <div className="flex flex-col gap-y-4 text-center">
-          <span className="text-xl font-bold">You are about to stop your Livestream</span>
+          <span className="text-xl font-bold">
+            You are about to stop your Livestream
+          </span>
           <div className="flex w-full justify-center gap-x-4">
-            <AlertDialogAction className="btn-red">
-              <LinkComponent href={`/integration/livepeer/livestream/`}>
+            <AlertDialogAction>
+              <Link
+                href={`/integration/livepeer/livestream/`}
+                className={cn(buttonVariants({ variant: "destructive" }))}
+              >
                 <span>Stop Livestream</span>
-              </LinkComponent>
+              </Link>
             </AlertDialogAction>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
           </div>

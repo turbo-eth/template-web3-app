@@ -1,1 +1,1 @@
-export { GET } from '@/integrations/disco/api/profile-from-address'
+export { GET } from "@/integrations/disco/api/profile-from-address"

@@ -1,4 +1,4 @@
-import * as LitJsSdk from '@lit-protocol/lit-node-client'
+import * as LitJsSdk from "@lit-protocol/lit-node-client"
 
 /**
  * This is a wrapper around the Lit Node Client SDK.

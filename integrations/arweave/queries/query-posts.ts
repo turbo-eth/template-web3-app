@@ -1,5 +1,5 @@
-import { arweave } from '..'
-import { ArweavePost, ArweaveTxSearchTag } from '../utils/types'
+import { arweave } from ".."
+import { ArweavePost, ArweaveTxSearchTag } from "../utils/types"
 
 type QueryReturnType = {
   data: {
@@ -17,17 +17,21 @@ type QueryReturnType = {
 
 const pageSize = 100
 
-const buildQueryObject = (address = '', tags: ArweaveTxSearchTag[], cursor = '') => {
+const buildQueryObject = (
+  address = "",
+  tags: ArweaveTxSearchTag[],
+  cursor = ""
+) => {
   let params = `first: ${pageSize},`
   if (address) params += `owners: ["${address}"],`
   if (tags.length) {
-    params += 'tags: '
+    params += "tags: "
     tags.forEach((tag) => {
       const value = tag.values.reduce((tot, cur, index) => {
         tot += `"${cur.value}"`
-        if (index !== tag.values.length - 1) tot += ','
+        if (index !== tag.values.length - 1) tot += ","
         return tot
-      }, '')
+      }, "")
       params += `{ name: "${tag.name}", values: [${value}]}`
     })
     params += `,`
@@ -62,12 +66,19 @@ const buildQueryObject = (address = '', tags: ArweaveTxSearchTag[], cursor = '')
   }
 }
 
-export const queryPosts = async (address: string, tags: ArweaveTxSearchTag[], lastCursor?: string) => {
-  const results = await arweave.api.post<QueryReturnType>('/graphql', buildQueryObject(address, tags, lastCursor))
+export const queryPosts = async (
+  address: string,
+  tags: ArweaveTxSearchTag[],
+  lastCursor?: string
+) => {
+  const results = await arweave.api.post<QueryReturnType>(
+    "/graphql",
+    buildQueryObject(address, tags, lastCursor)
+  )
   const txs = results.data.data.transactions
   return {
     txs: txs.edges.map((edge) => edge.node),
-    lastCursor: txs.edges.length ? txs.edges[txs.edges.length - 1].cursor : '',
+    lastCursor: txs.edges.length ? txs.edges[txs.edges.length - 1].cursor : "",
     hasNextPage: txs.pageInfo.hasNextPage,
   }
 }

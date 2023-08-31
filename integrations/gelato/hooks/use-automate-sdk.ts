@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react"
+import { AutomateSDK } from "@gelatonetwork/automate-sdk"
+import { useNetwork } from "wagmi"
 
-import { AutomateSDK } from '@gelatonetwork/automate-sdk'
-import { useNetwork } from 'wagmi'
-
-import { useEthersSigner } from '@/lib/hooks/web3/use-ethers-signer'
+import { useEthersSigner } from "@/lib/hooks/web3/use-ethers-signer"
 
 export const useGelatoAutomateSdk = () => {
   const [automateSdk, setAutomateSdk] = useState<AutomateSDK>()

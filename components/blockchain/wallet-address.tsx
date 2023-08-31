@@ -1,17 +1,30 @@
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
+import { useAccount } from "wagmi"
 
-import { useAccount } from 'wagmi'
+import { Address } from "./address"
 
-import { Address } from './address'
-
-export interface WalletAddressProps extends Omit<HTMLAttributes<HTMLElement>, 'children'> {
+export interface WalletAddressProps
+  extends Omit<HTMLAttributes<HTMLElement>, "children"> {
   truncate?: boolean
   isLink?: boolean
 }
-export const WalletAddress = ({ className, truncate, isLink, ...props }: WalletAddressProps) => {
+export const WalletAddress = ({
+  className,
+  truncate,
+  isLink,
+  ...props
+}: WalletAddressProps) => {
   const { address } = useAccount()
 
   if (!address) return null
 
-  return <Address address={address} className={className} isLink={isLink} truncate={truncate} {...props} />
+  return (
+    <Address
+      address={address}
+      className={className}
+      isLink={isLink}
+      truncate={truncate}
+      {...props}
+    />
+  )
 }

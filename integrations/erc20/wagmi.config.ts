@@ -1,18 +1,18 @@
-import { defineConfig } from '@wagmi/cli'
-import { react } from '@wagmi/cli/plugins'
+import { defineConfig } from "@wagmi/cli"
+import { react } from "@wagmi/cli/plugins"
 
-import { erc20ABI } from './abis/erc20-abi'
-import { erc20MintableABI } from './abis/erc20-mintable-abi'
+import { erc20ABI } from "./abis/erc20-abi"
+import { erc20MintableABI } from "./abis/erc20-mintable-abi"
 
 export default defineConfig({
-  out: './integrations/erc20/generated/erc20-wagmi.ts',
+  out: "./integrations/erc20/generated/erc20-wagmi.ts",
   contracts: [
     {
-      name: 'erc20',
+      name: "erc20",
       abi: erc20ABI,
     },
     {
-      name: 'erc20Mintable',
+      name: "erc20Mintable",
       abi: erc20MintableABI,
     },
   ],

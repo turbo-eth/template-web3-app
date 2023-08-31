@@ -1,5 +1,4 @@
-import { useNetwork } from 'wagmi'
-import type { Address } from 'wagmi'
+import { useNetwork, type Address } from "wagmi"
 
 interface ContractChainList {
   [key: number]: Address

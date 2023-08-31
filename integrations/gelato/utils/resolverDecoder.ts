@@ -1,4 +1,4 @@
-import { ethers } from 'ethers'
+import { ethers } from "ethers"
 
 export type DecodedModule = {
   resolverAddress: string | null
@@ -32,12 +32,18 @@ export const decodeModuleArgs = (args: string[], modules: number[]) => {
 }
 
 export const decodeResolverArgs = (arg: string) => {
-  const [resolverAddress, resolverData] = ethers.utils.defaultAbiCoder.decode(['address', 'bytes'], arg)
+  const [resolverAddress, resolverData] = ethers.utils.defaultAbiCoder.decode(
+    ["address", "bytes"],
+    arg
+  )
   return { resolverAddress, resolverData }
 }
 
 export const decodeTimeArgs = (arg: string) => {
-  const [startTime, interval] = ethers.utils.defaultAbiCoder.decode(['uint128', 'uint128'], arg)
+  const [startTime, interval] = ethers.utils.defaultAbiCoder.decode(
+    ["uint128", "uint128"],
+    arg
+  )
 
   return { startTime, interval }
 }

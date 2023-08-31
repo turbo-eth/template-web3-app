@@ -1,15 +1,17 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from "react"
+import { redirect } from "next/navigation"
+import { useAccount } from "wagmi"
 
-import { redirect } from 'next/navigation'
-import { useAccount } from 'wagmi'
+import { Button } from "@/components/ui/button"
 
-import { Spinner } from './spinner'
-import { useArweaveWallet } from '../hooks/use-arweave-wallet'
+import { useArweaveWallet } from "../hooks/use-arweave-wallet"
+import { Spinner } from "./spinner"
 
 export function ConnectArweaveWallet() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
-  const { generate, wallet, importFromFile, error, generateBasedOnEthAddress } = useArweaveWallet()
+  const { generate, wallet, importFromFile, error, generateBasedOnEthAddress } =
+    useArweaveWallet()
   const { address: ethAccountAddress } = useAccount()
   useEffect(() => {
     if (wallet || error) setLoading(false)
@@ -21,32 +23,35 @@ export function ConnectArweaveWallet() {
     return (
       <div>
         <div>Use your Eth address</div>
-        <button
-          className="btn btn-emerald mt-2"
+        <Button
+          variant="emerald"
+          className="mt-2"
           disabled={!ethAccountAddress}
           onClick={() => {
             if (ethAccountAddress) {
               setLoading(true)
               void generateBasedOnEthAddress()
             }
-          }}>
+          }}
+        >
           Generate wallet
-        </button>
-        <div className="my-5 text-slate-500"> - or - </div>
+        </Button>
+        <div className="my-5 text-muted-foreground"> - or - </div>
         <div>Generate a new Arweave Wallet</div>
-        <button
-          className="btn btn-primary mt-2"
+        <Button
+          className="mt-2"
           onClick={() => {
             setLoading(true)
             void generate()
-          }}>
+          }}
+        >
           Generate wallet
-        </button>
-        <div className="my-5 text-slate-500"> - or - </div>
+        </Button>
+        <div className="my-5 text-muted-foreground"> - or - </div>
         <div>Import your wallet KeyFile</div>
-        <button className="btn btn-primary mt-2" onClick={() => fileInputRef.current?.click()}>
+        <Button className="mt-2" onClick={() => fileInputRef.current?.click()}>
           <span className="mt-2 text-base leading-normal">Select a file</span>
-        </button>
+        </Button>
         <input
           ref={fileInputRef}
           accept="application/json"
@@ -65,11 +70,12 @@ export function ConnectArweaveWallet() {
             <span className="text-sm text-red-400">{error}</span>
           </div>
         )}
-        <div className="mt-4 w-80 text-sm text-gray-600">
-          You can get a backup of your Arweave wallet by clicking your wallet address in the sidebar once connected.
+        <div className="mt-4 w-80 text-sm text-muted-foreground">
+          You can get a backup of your Arweave wallet by clicking your wallet
+          address in the sidebar once connected.
         </div>
       </div>
     )
 
-  return redirect('/integration/arweave/settings')
+  return redirect("/integration/arweave/settings")
 }

@@ -1,3 +1,3 @@
-export { POST } from '@/integrations/openai/api/ask'
+export { POST } from "@/integrations/openai/api/ask"
 
-export const runtime = 'edge'
+export const runtime = "edge"

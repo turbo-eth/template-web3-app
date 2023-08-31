@@ -1,1 +1,1 @@
-export { GET } from '@/integrations/siwe/api/logout'
+export { GET } from "@/integrations/siwe/api/logout"

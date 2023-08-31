@@ -1,12 +1,12 @@
-import { Player } from '@livepeer/react'
-import Image, { StaticImageData } from 'next/image'
+import Image, { StaticImageData } from "next/image"
+import { Player } from "@livepeer/react"
 
-import defaultPoster from '../assets/default_poster.png'
+import defaultPoster from "../assets/default_poster.png"
 
 export enum PlayerType {
-  STREAM = 'stream',
-  FILE = 'file',
-  IPFS_URL = 'ipfsUrl',
+  STREAM = "stream",
+  FILE = "file",
+  IPFS_URL = "ipfsUrl",
 }
 
 interface CommonPlayerProps {
@@ -36,12 +36,15 @@ export function PlayerComponent({
   playbackId,
   title,
   poster = defaultPoster,
-  containerBorderRadius = '0px',
+  containerBorderRadius = "0px",
   autoPlay = false,
 }: PlayerProps) {
-  const PosterImage = () => <Image priority alt={title} placeholder="blur" src={poster} />
+  const PosterImage = () => (
+    <Image priority alt={title} placeholder="blur" src={poster} />
+  )
 
-  const source = type === PlayerType.IPFS_URL ? { src: ipfsUrl } : { playbackId }
+  const source =
+    type === PlayerType.IPFS_URL ? { src: ipfsUrl } : { playbackId }
 
   return (
     <Player

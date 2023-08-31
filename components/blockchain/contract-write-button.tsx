@@ -1,8 +1,11 @@
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes } from "react"
 
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils"
 
-interface ContractWriteButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+import { Button } from "../ui/button"
+
+interface ContractWriteButtonProps
+  extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoadingTx: boolean
   isLoadingWrite: boolean
   write?: boolean
@@ -17,13 +20,21 @@ export const ContractWriteButton = ({
   isLoadingTx,
   isLoadingWrite,
   write = true,
-  loadingWriteText = 'Sign the transaction in your wallet',
-  loadingTxText = 'Writing...',
+  loadingWriteText = "Sign the transaction in your wallet",
+  loadingTxText = "Writing...",
   ...props
 }: ContractWriteButtonProps) => {
   return (
-    <button className={cn('btn btn-emerald', className)} disabled={!write || isLoadingWrite || isLoadingTx} {...props}>
-      {isLoadingWrite ? loadingWriteText : isLoadingTx ? loadingTxText : children}
-    </button>
+    <Button
+      className={className}
+      disabled={!write || isLoadingWrite || isLoadingTx}
+      {...props}
+    >
+      {isLoadingWrite
+        ? loadingWriteText
+        : isLoadingTx
+        ? loadingTxText
+        : children}
+    </Button>
   )
 }
