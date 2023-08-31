@@ -20,6 +20,7 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { LightDarkImage } from "@/components/shared/light-dark-image"
+
 import { ModeToggle } from "../shared/mode-toggle"
 
 export function MobileNav() {
@@ -51,7 +52,7 @@ export function MobileNav() {
         </SheetTrigger>
       </div>
       <SheetContent side="right" className="pr-0">
-        <div className='flex items-center gap-x-4'>
+        <div className="flex items-center gap-x-4">
           <MobileLink
             href="/"
             className="flex items-center"
@@ -65,7 +66,7 @@ export function MobileNav() {
               width={32}
             />
           </MobileLink>
-          <ModeToggle/>
+          <ModeToggle />
         </div>
         <ScrollArea className="my-4 mr-4 h-[calc(100vh-8rem)] pb-10">
           <div className="flex flex-col space-y-4">
