@@ -2,16 +2,16 @@
 
 import { ReactNode } from "react"
 
-import { useColorMode } from "@/lib/state/color-mode"
+import { useTheme } from "next-themes"
 
 interface IsLightThemeProps {
   children: ReactNode
 }
 
 export const IsLightTheme = ({ children }: IsLightThemeProps) => {
-  const [colorMode] = useColorMode()
+  const { theme } = useTheme()
 
-  if (colorMode === "light") return <>{children}</>
+  if (theme === "light") return <>{children}</>
 
   return null
 }
