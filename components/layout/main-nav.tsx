@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Separator } from "@/components/ui/separator"
 import { LightDarkImage } from "@/components/shared/light-dark-image"
+import { LinkComponent } from "../shared/link-component"
 
 export function MainNav() {
   return (
@@ -93,11 +94,11 @@ function MainNavMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/docs" legacyBehavior passHref>
+          <LinkComponent href="https://docs.turboeth.xyz/overview">
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <span>Documentation</span>
             </NavigationMenuLink>
-          </Link>
+          </LinkComponent>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
