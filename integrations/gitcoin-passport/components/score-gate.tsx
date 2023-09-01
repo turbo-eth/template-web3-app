@@ -37,7 +37,7 @@ export const ScoreGate = ({ score, children, fallback }: ScoreGateProps) => {
           <FaLock fontSize={50} />
           <span>
             You need a passport with the score of{" "}
-            <span className="rounded-xl bg-green-100 py-1 px-2 font-mono font-semibold text-green-600 dark:bg-emerald-900 dark:text-emerald-100">
+            <span className="rounded-xl bg-green-100 px-2 py-1 font-mono font-semibold text-green-600 dark:bg-emerald-900 dark:text-emerald-100">
               {score}
             </span>{" "}
             or above to view this page.

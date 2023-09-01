@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
 import { useCallback, useEffect } from "react"
 import { useAccount } from "wagmi"
-import { GITCOIN_PASSPORT_API_KEY, GITCOIN_PASSPORT_SCORER_ID, GITCOIN_API_BASE_URL } from "../utils/constants"
+import { GITCOIN_PASSPORT_API_KEY, GITCOIN_API_BASE_URL } from "../utils/constants"
 import { StampId, AddressStamp } from "../utils/types"
 
 type StampsResponse = {

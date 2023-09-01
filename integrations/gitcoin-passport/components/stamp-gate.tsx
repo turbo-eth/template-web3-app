@@ -26,7 +26,7 @@ export const StampGate = ({ stampId, children, fallback }: StampGateProps) => {
           <FaLock fontSize={50} />
           <span>
             Please claim{" "}
-            <span className="rounded-xl bg-green-100 py-1 px-2 font-mono font-semibold text-green-600 dark:bg-emerald-900 dark:text-emerald-100">
+            <span className="rounded-xl bg-green-100 px-2 py-1 font-mono font-semibold text-green-600 dark:bg-emerald-900 dark:text-emerald-100">
               {stampId}
             </span>{" "}
             stamp to be able to view this page
