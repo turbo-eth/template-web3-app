@@ -410,6 +410,21 @@ const features = [
     ),
   },
   {
+    title: turboIntegrations.ipfs.name,
+    description: turboIntegrations.ipfs.description,
+    href: turboIntegrations.ipfs.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <IsLightTheme>
+          <Image alt="Starter logo" height={100} src={turboIntegrations.ipfs.imgDark} width={100} />
+        </IsLightTheme>
+        <IsDarkTheme>
+          <Image alt="Starter logo" height={100} src={turboIntegrations.ipfs.imgLight} width={100} />
+        </IsDarkTheme>
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.starter.name,
     description: turboIntegrations.starter.description,
     href: turboIntegrations.starter.href,
