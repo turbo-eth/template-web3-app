@@ -1,4 +1,3 @@
-import { ethers } from 'ethers'
 
 import { env } from '@/env.mjs'
 
@@ -26,11 +25,8 @@ export const submitPassport = async (address: string) => {
   try {
     // call the API to get the signing message and the nonce
     const signingMessage = await getSigningMessage(env.NEXT_PUBLIC_GITCOIN_PASSPORT_API_KEY)
-    if (signingMessage && window.ethereum) {
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
-      const signer = provider.getSigner()
-      // ask the user to sign the message
-      const signature = await signer.signMessage(signingMessage.message)
+    
+          if (signingMessage) {
 
       // call the API, sending the signing message, the signature, and the nonce
       const response = await fetch(SUBMIT_PASSPORT_URI, {
@@ -42,7 +38,7 @@ export const submitPassport = async (address: string) => {
         body: JSON.stringify({
           address,
           scorer_id: env.NEXT_PUBLIC_GITCOIN_PASSPORT_SCORER_ID,
-          signature,
+          signature:'',
           nonce: signingMessage.nonce,
         }),
       })

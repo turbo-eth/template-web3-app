@@ -6,7 +6,7 @@ import { ScoreResponse } from '../utils/types'
 const GET_PASSPORT_SCORE_URI = 'https://api.scorer.gitcoin.co/registry/score'
 
 export const getScore = async (address: string) => {
-  console.log('api key', env.NEXT_PUBLIC_GITCOIN_PASSPORT_API_KEY)
+  // console.log('api key', env.NEXT_PUBLIC_GITCOIN_PASSPORT_API_KEY)
   await submitPassport(address)
   try {
     const response = await fetch(`${GET_PASSPORT_SCORE_URI}/${env.NEXT_PUBLIC_GITCOIN_PASSPORT_SCORER_ID}/${address}`, {

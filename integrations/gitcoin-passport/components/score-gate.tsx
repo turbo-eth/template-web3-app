@@ -2,13 +2,15 @@ import { useState } from 'react'
 
 import { useToast } from '@/lib/hooks/use-toast'
 
-import { checkConnection } from '../gitcoin-passport-client'
-import { getStamps } from '../hooks/use-get-stamp'
-import { ScoreStampProps } from '../utils/types'
+import { CheckConnection } from '../gitcoin-passport-client'
+import { getScore } from '../hooks/use-get-score'
+import { ScoreGateProps } from '../utils/types'
+import { env } from 'process'
 
-export function ScoreStamp({ setStamps }: ScoreStampProps) {
+export function ScoreGate({ setScore }: ScoreGateProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const { toast, dismiss } = useToast()
+  const address = CheckConnection()
 
   const handleToast = ({ title, description }: { title: string; description: string }) => {
     toast({
@@ -23,18 +25,18 @@ export function ScoreStamp({ setStamps }: ScoreStampProps) {
 
   const handleGetScore = async () => {
     setIsLoading(true)
+    setScore(null)
     try {
-      const address = await checkConnection()
       if (address) {
-        const stamps = await getStamps(address)
-        if (stamps) {
-          setStamps(stamps)
+        const score = await getScore(address)
+        if (score && typeof score === 'number') {
+          setScore(score)
         }
       }
     } catch (e) {
       handleToast({
         title: 'An Error Occurred',
-        description: 'An error occurred while getiing stamps',
+        description: 'An error occurred while getting score.',
       })
     } finally {
       setIsLoading(false)
@@ -42,12 +44,10 @@ export function ScoreStamp({ setStamps }: ScoreStampProps) {
   }
 
   return (
-    <div className="my-4 ml-4">
+    <div className="m-4">
       <button className="btn btn-emerald" disabled={isLoading} onClick={handleGetScore}>
-        {isLoading ? 'Getting Stamps...' : 'Get Stamps'}
+        {isLoading ? 'Getting Score...' : 'Get Score'}
       </button>
     </div>
-
   )
-
 }
