@@ -473,6 +473,22 @@ const demos = [
     ),
   },
   {
+    title: turboIntegrations.gitcoinPassport.name,
+    description: turboIntegrations.gitcoinPassport.description,
+    href: turboIntegrations.gitcoinPassport.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <LightDarkImage
+          LightImage={turboIntegrations.gitcoinPassport.imgDark}
+          DarkImage={turboIntegrations.gitcoinPassport.imgLight}
+          alt="Aave logo"
+          height={100}
+          width={100}
+        />
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.starter.name,
     description: turboIntegrations.starter.description,
     href: turboIntegrations.starter.href,
@@ -523,7 +539,7 @@ function DemoCard({ title, description, href, demo, large }: DemoCardProps) {
   return (
     <motion.div
       variants={fadeUpVariant()}
-      className={`relative col-span-1 overflow-hidden rounded-xl border bg-card px-4 shadow-sm transition-shadow hover:shadow-md ${
+      className={`bg-card relative col-span-1 overflow-hidden rounded-xl border px-4 shadow-sm transition-shadow hover:shadow-md ${
         large ? "md:col-span-2" : ""
       }`}
     >
@@ -532,7 +548,7 @@ function DemoCard({ title, description, href, demo, large }: DemoCardProps) {
         <h2 className="mb-3 bg-gradient-to-br from-black to-stone-500 bg-clip-text text-xl font-bold text-transparent dark:from-stone-100 dark:to-emerald-200 md:text-3xl md:font-normal">
           <Balancer>{title}</Balancer>
         </h2>
-        <div className="prose-sm md:prose -mt-2 leading-normal text-muted-foreground">
+        <div className="prose-sm md:prose text-muted-foreground -mt-2 leading-normal">
           <Balancer>
             <ReactMarkdown
               components={{
@@ -541,14 +557,14 @@ function DemoCard({ title, description, href, demo, large }: DemoCardProps) {
                     rel="noopener noreferrer"
                     target="_blank"
                     {...props}
-                    className="font-medium text-foreground underline transition-colors dark:text-blue-200"
+                    className="text-foreground font-medium underline transition-colors dark:text-blue-200"
                   />
                 ),
 
                 code: ({ ...props }) => (
                   <code
                     {...props}
-                    className="rounded-sm px-1 py-0.5 font-mono font-medium text-foreground"
+                    className="text-foreground rounded-sm px-1 py-0.5 font-mono font-medium"
                   />
                 ),
               }}
