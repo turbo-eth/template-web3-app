@@ -1,6 +1,12 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
 
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { Button } from "@/components/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export const ActionButton = ({
   color,
@@ -19,22 +25,26 @@ export const ActionButton = ({
   disabled: boolean
   icon: ReactNode
 }) => {
-  const btnColor = `text-${color}-500 dark:text-${color}-300`
+  const btnColor = `text-${color}-500 dark:text-${color}-300 hover:text-${color}-600 hover:dark:text-${color}-200`
   return (
-    <button
-      className={`btn text-sm ${btnColor}`}
+    <Button
+      variant="outline"
+      className={btnColor}
       disabled={disabled}
       onClick={(e) => {
         e.stopPropagation()
         !disabled && execute()
-      }}>
+      }}
+    >
       {!hideCount && <span className="mr-1 font-semibold">{count}</span>}
       <span className="relative top-[2px]">
-        <Tooltip>
-          <TooltipTrigger>{icon}</TooltipTrigger>
-          <TooltipContent>{name}</TooltipContent>
-        </Tooltip>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>{icon}</TooltipTrigger>
+            <TooltipContent>{name}</TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       </span>
-    </button>
+    </Button>
   )
 }

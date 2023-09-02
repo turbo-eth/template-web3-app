@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation'
+import { redirect } from "next/navigation"
 
 export default function PageIntegration() {
-  redirect('/integration/lens-protocol/profiles')
+  redirect("/integration/lens-protocol/profiles")
 }

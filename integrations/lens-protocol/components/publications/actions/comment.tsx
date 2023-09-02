@@ -1,15 +1,15 @@
-import { FaRegCommentAlt } from 'react-icons/fa'
+import { FaRegCommentAlt } from "react-icons/fa"
 
-import { useToast } from '@/lib/hooks/use-toast'
+import { useToast } from "@/lib/hooks/use-toast"
 
-import { IActionButton } from '.'
-import { ActionButton } from './button'
+import { IActionButton } from "."
+import { ActionButton } from "./button"
 
 export const CommentButton = ({ publication, hideCount }: IActionButton) => {
   const { toast, dismiss } = useToast()
   const showErrorToast = () => {
     toast({
-      title: 'Commenting on a publication is not supported currently.',
+      title: "Commenting on a publication is not supported currently.",
     })
 
     setTimeout(() => {

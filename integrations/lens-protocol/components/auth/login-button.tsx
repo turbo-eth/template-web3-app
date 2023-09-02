@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect } from "react"
+import { useWalletLogin } from "@lens-protocol/react-web"
+import { useAccount } from "wagmi"
 
-import { useWalletLogin } from '@lens-protocol/react-web'
-import { useAccount } from 'wagmi'
-
-import { useToast } from '@/lib/hooks/use-toast'
+import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 
 export const LoginButton = () => {
   const { execute: login, error: loginError, isPending } = useWalletLogin()
@@ -16,7 +16,7 @@ export const LoginButton = () => {
 
   const showErrorToast = (loginError: string) => {
     toast({
-      title: 'Login failed',
+      title: "Login failed",
       description: loginError,
     })
 
@@ -32,8 +32,13 @@ export const LoginButton = () => {
     })
   }
   return (
-    <button className="btn btn-emerald whitespace-nowrap" disabled={!address || isPending} onClick={onLoginClick}>
+    <Button
+      variant="emerald"
+      className="whitespace-nowrap"
+      disabled={!address || isPending}
+      onClick={onLoginClick}
+    >
       Log in
-    </button>
+    </Button>
   )
 }

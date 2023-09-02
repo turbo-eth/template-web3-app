@@ -1,7 +1,11 @@
-import { ProfileId, useActiveProfile, useFeed } from '@lens-protocol/react-web'
+import { ProfileId, useActiveProfile, useFeed } from "@lens-protocol/react-web"
 
-import { PublicationCard, PublicationCardMode } from './publications/publication-card'
-import { Spinner } from './spinner'
+import { LoadMoreButton } from "./load-more-button"
+import {
+  PublicationCard,
+  PublicationCardMode,
+} from "./publications/publication-card"
+import { Spinner } from "./spinner"
 
 export const Feed = ({ profileId }: { profileId: ProfileId }) => {
   const activeProfile = useActiveProfile()
@@ -18,15 +22,15 @@ export const Feed = ({ profileId }: { profileId: ProfileId }) => {
         <PublicationCard
           key={feedItem.root.id}
           feedItem={feedItem}
-          mode={feedItem.comments?.[0] ? PublicationCardMode.FeedComment : PublicationCardMode.Normal}
+          mode={
+            feedItem.comments?.[0]
+              ? PublicationCardMode.FeedComment
+              : PublicationCardMode.Normal
+          }
           publication={feedItem.root}
         />
       ))}
-      {hasMore && (
-        <button className="btn btn-primary m-auto mt-4 mb-6 w-auto" disabled={loading} onClick={() => next()}>
-          Load more
-        </button>
-      )}
+      <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
       {loading && (
         <div className="my-6 w-full text-center">
           <Spinner />

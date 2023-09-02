@@ -1,14 +1,22 @@
-import { useEffect } from 'react'
+import { useEffect } from "react"
+import {
+  FollowPolicyType,
+  Profile,
+  ProfileOwnedByMe,
+  useActiveProfile,
+  useFollow,
+  useProfile,
+  useUnfollow,
+} from "@lens-protocol/react-web"
 
-import { FollowPolicyType, Profile, ProfileOwnedByMe, useActiveProfile, useFollow, useUnfollow } from '@lens-protocol/react-web'
-
-import { useToast } from '@/lib/hooks/use-toast'
+import { useToast } from "@/lib/hooks/use-toast"
+import { Button } from "@/components/ui/button"
 
 const UnauthorizedFollowButton = () => {
   const { toast, dismiss } = useToast()
   const showErrorToast = () => {
     toast({
-      title: 'You need to login first.',
+      title: "You need to login first.",
     })
 
     setTimeout(() => {
@@ -16,20 +24,39 @@ const UnauthorizedFollowButton = () => {
     }, 10000)
   }
   return (
-    <button
-      className="btn btn-emerald text-sm"
+    <Button
+      variant="emerald"
+      className="text-sm"
       onClick={(e) => {
         e.stopPropagation()
         showErrorToast()
-      }}>
+      }}
+    >
       Follow
-    </button>
+    </Button>
   )
 }
 
-const AuthorizedFollowUnfollowButton = ({ profile, activeProfile }: { profile: Profile; activeProfile: ProfileOwnedByMe }) => {
-  const { execute: follow, error, isPending: followLoading } = useFollow({ follower: activeProfile, followee: profile })
-  const { execute: unfollow, isPending: unfollowLoading } = useUnfollow({ follower: activeProfile, followee: profile })
+const AuthorizedFollowUnfollowButton = ({
+  profile,
+  activeProfile,
+}: {
+  profile: Profile
+  activeProfile: ProfileOwnedByMe
+}) => {
+  const { data: followeeProfile } = useProfile({
+    observerId: activeProfile.id,
+    profileId: profile.id,
+  })
+  const {
+    execute: follow,
+    error,
+    isPending: followLoading,
+  } = useFollow({ follower: activeProfile, followee: profile })
+  const { execute: unfollow, isPending: unfollowLoading } = useUnfollow({
+    follower: activeProfile,
+    followee: profile,
+  })
   const { toast, dismiss } = useToast()
 
   useEffect(() => {
@@ -38,7 +65,7 @@ const AuthorizedFollowUnfollowButton = ({ profile, activeProfile }: { profile: P
 
   const showErrorToast = (error: string) => {
     toast({
-      title: 'Operation failed',
+      title: "Operation failed",
       description: error,
     })
 
@@ -46,28 +73,34 @@ const AuthorizedFollowUnfollowButton = ({ profile, activeProfile }: { profile: P
       dismiss()
     }, 10000)
   }
-  if (profile.isFollowedByMe)
+  if (followeeProfile?.isFollowedByMe)
     return (
-      <button
-        className="btn btn-primary text-sm"
+      <Button
+        variant="outline"
+        className="text-sm"
         disabled={unfollowLoading}
         onClick={(e) => {
           e.stopPropagation()
           unfollow().catch(console.error)
-        }}>
+        }}
+      >
         Unfollow
-      </button>
+      </Button>
     )
   return (
-    <button
-      className="btn btn-emerald text-sm"
+    <Button
+      variant="emerald"
+      className="text-sm"
       disabled={followLoading || !profile.followStatus?.canFollow}
       onClick={(e) => {
         e.stopPropagation()
-        if (profile.followPolicy.type === FollowPolicyType.ANYONE) follow().catch(console.error)
-      }}>
+        if (!activeProfile) showErrorToast("Please create a profile first.")
+        if (profile.followPolicy.type === FollowPolicyType.ANYONE)
+          follow().catch(console.error)
+      }}
+    >
       Follow
-    </button>
+    </Button>
   )
 }
 
@@ -75,5 +108,10 @@ export const FollowUnfollowButton = ({ profile }: { profile: Profile }) => {
   const { data: activeProfile } = useActiveProfile()
   if (!activeProfile) return <UnauthorizedFollowButton />
   if (profile.ownedByMe) return null
-  return <AuthorizedFollowUnfollowButton activeProfile={activeProfile} profile={profile} />
+  return (
+    <AuthorizedFollowUnfollowButton
+      activeProfile={activeProfile}
+      profile={profile}
+    />
+  )
 }

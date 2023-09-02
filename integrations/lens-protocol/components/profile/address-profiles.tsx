@@ -1,7 +1,8 @@
-import { useActiveProfile, useProfilesOwnedBy } from '@lens-protocol/react-web'
+import { useActiveProfile, useProfilesOwnedBy } from "@lens-protocol/react-web"
 
-import { ProfileCard } from './profile-card'
-import { Spinner } from '../spinner'
+import { LoadMoreButton } from "../load-more-button"
+import { Spinner } from "../spinner"
+import { ProfileCard } from "./profile-card"
 
 export const AddressProfiles = ({ address }: { address: string }) => {
   const { data: activeProfile } = useActiveProfile()
@@ -29,11 +30,7 @@ export const AddressProfiles = ({ address }: { address: string }) => {
           )
         })}
       </div>
-      {hasMore && (
-        <button className="btn btn-primary m-auto mt-4 mb-6 w-auto" disabled={loading} onClick={() => next()}>
-          Load more
-        </button>
-      )}
+      <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
       {loading && (
         <div className="my-6 w-full text-center">
           <Spinner />

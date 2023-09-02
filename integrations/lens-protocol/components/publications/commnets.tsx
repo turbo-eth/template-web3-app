@@ -1,9 +1,14 @@
-import { PublicationId, useComments } from '@lens-protocol/react-web'
+import { PublicationId, useComments } from "@lens-protocol/react-web"
 
-import { PublicationCard } from './publication-card'
-import { Spinner } from '../spinner'
+import { LoadMoreButton } from "../load-more-button"
+import { Spinner } from "../spinner"
+import { PublicationCard } from "./publication-card"
 
-export const Comments = ({ publicationId }: { publicationId: PublicationId }) => {
+export const Comments = ({
+  publicationId,
+}: {
+  publicationId: PublicationId
+}) => {
   const {
     data: comments,
     loading,
@@ -25,11 +30,7 @@ export const Comments = ({ publicationId }: { publicationId: PublicationId }) =>
           wrapperClassNames="!px-3 !border-0 !shadow-none"
         />
       ))}
-      {hasMore && (
-        <button className="btn btn-primary m-auto mt-4 mb-6 w-auto" disabled={loading} onClick={() => next()}>
-          Load more
-        </button>
-      )}
+      <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
       {loading && (
         <div className="my-6 w-full text-center">
           <Spinner />

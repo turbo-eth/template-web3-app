@@ -1,20 +1,26 @@
-import { useEffect } from 'react'
+import { useEffect } from "react"
+import {
+  ProfileOwnedByMe,
+  useActiveProfile,
+  useCreateMirror,
+} from "@lens-protocol/react-web"
+import { FaRetweet } from "react-icons/fa"
 
-import { ProfileOwnedByMe, useActiveProfile, useCreateMirror } from '@lens-protocol/react-web'
-import { FaRetweet } from 'react-icons/fa'
+import { useToast } from "@/lib/hooks/use-toast"
 
-import { useToast } from '@/lib/hooks/use-toast'
+import { IActionButton } from "."
+import { IsUserAuthenticated } from "../../auth/is-user-authenticated"
+import { NotAuthenticatedYet } from "../../auth/not-authenticated-yet"
+import { ActionButton } from "./button"
 
-import { IActionButton } from '.'
-import { ActionButton } from './button'
-import { IsUserAuthenticated } from '../../auth/is-user-authenticated'
-import { NotAuthenticatedYet } from '../../auth/not-authenticated-yet'
-
-const UnAuthorizedMirrorButton = ({ publication, hideCount }: IActionButton) => {
+const UnAuthorizedMirrorButton = ({
+  publication,
+  hideCount,
+}: IActionButton) => {
   const { toast, dismiss } = useToast()
   const showErrorToast = () => {
     toast({
-      title: 'You need to login first.',
+      title: "You need to login first.",
     })
 
     setTimeout(() => {
@@ -34,12 +40,20 @@ const UnAuthorizedMirrorButton = ({ publication, hideCount }: IActionButton) => 
   )
 }
 
-const AuthorizedMirrorButton = ({ publication, hideCount, profile }: IActionButton & { profile: ProfileOwnedByMe }) => {
-  const { execute: create, isPending, error } = useCreateMirror({ publisher: profile })
+const AuthorizedMirrorButton = ({
+  publication,
+  hideCount,
+  profile,
+}: IActionButton & { profile: ProfileOwnedByMe }) => {
+  const {
+    execute: create,
+    isPending,
+    error,
+  } = useCreateMirror({ publisher: profile })
   const { toast, dismiss } = useToast()
   const showErrorToast = (error: string) => {
     toast({
-      title: 'Mirror failed.',
+      title: "Mirror failed.",
       description: error,
     })
 
@@ -54,7 +68,9 @@ const AuthorizedMirrorButton = ({ publication, hideCount, profile }: IActionButt
     <ActionButton
       color="blue"
       count={publication.stats?.totalAmountOfMirrors ?? 0}
-      disabled={!publication.canMirror.result || isPending || publication.isMirroredByMe}
+      disabled={
+        !publication.canMirror.result || isPending || publication.isMirroredByMe
+      }
       hideCount={hideCount}
       icon={<FaRetweet />}
       name="mirror"
@@ -74,7 +90,9 @@ export const MirrorButton = (props: IActionButton) => {
       <NotAuthenticatedYet>
         <UnAuthorizedMirrorButton {...props} />
       </NotAuthenticatedYet>
-      <IsUserAuthenticated>{profile && <AuthorizedMirrorButton profile={profile} {...props} />}</IsUserAuthenticated>
+      <IsUserAuthenticated>
+        {profile && <AuthorizedMirrorButton profile={profile} {...props} />}
+      </IsUserAuthenticated>
     </>
   )
 }

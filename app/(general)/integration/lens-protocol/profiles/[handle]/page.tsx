@@ -1,7 +1,11 @@
-'use client'
+"use client"
 
-import { Profile } from '@/integrations/lens-protocol/components/profile/profile'
+import { Profile } from "@/integrations/lens-protocol/components/profile/profile"
 
-export default function PageIntegration({ params }: { params: { handle: string } }) {
+export default function PageIntegration({
+  params,
+}: {
+  params: { handle: string }
+}) {
   return <Profile handle={params.handle} />
 }

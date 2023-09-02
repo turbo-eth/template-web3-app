@@ -15618,7 +15618,7 @@ packages:
       lodash.merge: 4.6.2
       minimatch: 3.1.2
       natural-compare: 1.4.0
-      optionator: 0.9.3
+      optionator: 0.9.1
       regexpp: 3.2.0
       strip-ansi: 6.0.1
       strip-json-comments: 3.1.1
@@ -18733,7 +18733,7 @@ packages:
     resolution: {integrity: sha512-xXAeVWKGr4/njq0rGC9dethMnYCq5hpKYrgQZYTzawt9YQhMiXfD+T1RgrdY3NamOxwq2aXlb0vOI6e29CKgVQ==}
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.1.1
-      '@lit/reactive-element': 1.6.2
+      '@lit/reactive-element': 1.6.1
       lit-html: 2.7.3
 
   /lit-html@2.7.3:
@@ -18761,7 +18761,7 @@ packages:
   /lit@2.6.1:
     resolution: {integrity: sha512-DT87LD64f8acR7uVp7kZfhLRrHkfC/N4BVzAtnw9Yg8087mbBJ//qedwdwX0kzDbxgPccWRW6mFwGbRQIxy0pw==}
     dependencies:
-      '@lit/reactive-element': 1.6.2
+      '@lit/reactive-element': 1.6.1
       lit-element: 3.3.2
       lit-html: 2.7.3
     dev: false
@@ -18769,7 +18769,7 @@ packages:
   /lit@2.7.3:
     resolution: {integrity: sha512-0a+u+vVbmgSfPu+fyvqjMPBX0Kwbyj9QOv9MbQFZhWGlV2cyk3lEwgfUQgYN+i/lx++1Z3wZknSIp3QCKxHLyg==}
     dependencies:
-      '@lit/reactive-element': 1.6.2
+      '@lit/reactive-element': 1.6.1
       lit-element: 3.3.2
       lit-html: 2.7.3
     dev: false
@@ -18777,7 +18777,7 @@ packages:
   /lit@2.7.6:
     resolution: {integrity: sha512-1amFHA7t4VaaDe+vdQejSVBklwtH9svGoG6/dZi9JhxtJBBlqY5D1RV7iLUYY0trCqQc4NfhYYZilZiVHt7Hxg==}
     dependencies:
-      '@lit/reactive-element': 1.6.2
+      '@lit/reactive-element': 1.6.1
       lit-element: 3.3.2
       lit-html: 2.7.3
 

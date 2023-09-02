@@ -1,8 +1,19 @@
-import { Comment, Post, useActiveProfile, useWhoCollectedPublication, useWhoMirroredPublication, useWhoReacted } from '@lens-protocol/react-web'
+import {
+  Comment,
+  Post,
+  useActiveProfile,
+  useWhoCollectedPublication,
+  useWhoMirroredPublication,
+  useWhoReacted,
+} from "@lens-protocol/react-web"
 
-import { Stat } from './stat'
+import { Stat } from "./stat"
 
-export const PublicationStats = ({ publication }: { publication: Post | Comment }) => {
+export const PublicationStats = ({
+  publication,
+}: {
+  publication: Post | Comment
+}) => {
   const { data: profile } = useActiveProfile()
   const likes = useWhoReacted({
     publicationId: publication.id,
@@ -20,9 +31,11 @@ export const PublicationStats = ({ publication }: { publication: Post | Comment 
     limit: 10,
   })
   return (
-    <div className="mb-4 flex w-full flex-col space-x-4 border-t-2 pt-4 dark:border-neutral-600 md:flex-row">
+    <div className="mb-4 flex w-full flex-col space-x-0 border-t-2 pt-4 dark:border-neutral-600 md:flex-row md:space-x-4">
       <span className="mt-[6px] text-sm">
-        <span className="mr-1 font-semibold">{publication.stats.commentsCount}</span>
+        <span className="mr-1 font-semibold">
+          {publication.stats.commentsCount}
+        </span>
         <span className="text-gray-600 dark:text-gray-500">comments</span>
       </span>
       <Stat
@@ -42,7 +55,9 @@ export const PublicationStats = ({ publication }: { publication: Post | Comment 
         value={publication.stats.totalAmountOfMirrors}
       />
       <Stat
-        data={collects.data?.flatMap((wallet) => (wallet.defaultProfile ? [wallet.defaultProfile] : []))}
+        data={collects.data?.flatMap((wallet) =>
+          wallet.defaultProfile ? [wallet.defaultProfile] : []
+        )}
         hasMore={collects.hasMore}
         loading={collects.loading}
         name="collects"

@@ -1,6 +1,11 @@
-import { Profile, useActiveProfile, useProfileFollowers, useProfileFollowing } from '@lens-protocol/react-web'
+import {
+  Profile,
+  useActiveProfile,
+  useProfileFollowers,
+  useProfileFollowing,
+} from "@lens-protocol/react-web"
 
-import { ProfileListModal } from './profile-list-modal'
+import { ProfileListModal } from "./profile-list-modal"
 
 export const ProfileStats = ({ profile }: { profile: Profile }) => {
   const { data: activeProfile } = useActiveProfile()
@@ -30,7 +35,13 @@ export const ProfileStats = ({ profile }: { profile: Profile }) => {
         hasMore={followersHasMore}
         loading={followersLoading}
         next={followersNext}
-        profiles={followers?.flatMap((follower) => (follower.wallet.defaultProfile ? [follower.wallet.defaultProfile] : [])) ?? []}
+        profiles={
+          followers?.flatMap((follower) =>
+            follower.wallet.defaultProfile
+              ? [follower.wallet.defaultProfile]
+              : []
+          ) ?? []
+        }
         title="Followers"
         trigger={
           <span className="text-xs">

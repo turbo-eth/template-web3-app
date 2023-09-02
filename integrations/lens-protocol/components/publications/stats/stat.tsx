@@ -1,6 +1,6 @@
-import { Profile } from '@lens-protocol/react-web'
+import { Profile } from "@lens-protocol/react-web"
 
-import { ProfileListModal } from '../../profile/profile-list-modal'
+import { ProfileListModal } from "../../profile/profile-list-modal"
 
 export const Stat = ({
   name,

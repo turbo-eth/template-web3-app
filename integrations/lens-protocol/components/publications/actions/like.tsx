@@ -1,18 +1,23 @@
-import { Profile, ReactionTypes, useActiveProfile, useReaction } from '@lens-protocol/react-web'
-import { FaHeart, FaRegHeart } from 'react-icons/fa'
+import {
+  Profile,
+  ReactionTypes,
+  useActiveProfile,
+  useReaction,
+} from "@lens-protocol/react-web"
+import { FaHeart, FaRegHeart } from "react-icons/fa"
 
-import { useToast } from '@/lib/hooks/use-toast'
+import { useToast } from "@/lib/hooks/use-toast"
 
-import { IActionButton } from '.'
-import { ActionButton } from './button'
-import { IsUserAuthenticated } from '../../auth/is-user-authenticated'
-import { NotAuthenticatedYet } from '../../auth/not-authenticated-yet'
+import { IActionButton } from "."
+import { IsUserAuthenticated } from "../../auth/is-user-authenticated"
+import { NotAuthenticatedYet } from "../../auth/not-authenticated-yet"
+import { ActionButton } from "./button"
 
 const UnAuthorizedLikeButton = ({ publication, hideCount }: IActionButton) => {
   const { toast, dismiss } = useToast()
   const showErrorToast = () => {
     toast({
-      title: 'You need to login first.',
+      title: "You need to login first.",
     })
 
     setTimeout(() => {
@@ -32,9 +37,13 @@ const UnAuthorizedLikeButton = ({ publication, hideCount }: IActionButton) => {
   )
 }
 
-const AuthorizedLikeButton = ({ publication, hideCount, profile }: IActionButton & { profile: Profile }) => {
+const AuthorizedLikeButton = ({
+  publication,
+  hideCount,
+  profile,
+}: IActionButton & { profile: Profile }) => {
   const { addReaction, removeReaction, hasReaction, isPending } = useReaction({
-    profileId: profile?.id,
+    profileId: profile.id,
   })
 
   const reactionType = ReactionTypes.Upvote
@@ -63,7 +72,7 @@ const AuthorizedLikeButton = ({ publication, hideCount, profile }: IActionButton
     <ActionButton
       color="red"
       count={publication.stats?.totalUpvotes ?? 0}
-      disabled={false}
+      disabled={isPending}
       execute={execute}
       hideCount={hideCount}
       icon={hasReactionType ? <FaHeart /> : <FaRegHeart />}
@@ -79,7 +88,9 @@ export const LikeButton = (props: IActionButton) => {
       <NotAuthenticatedYet>
         <UnAuthorizedLikeButton {...props} />
       </NotAuthenticatedYet>
-      <IsUserAuthenticated>{profile && <AuthorizedLikeButton profile={profile} {...props} />}</IsUserAuthenticated>
+      <IsUserAuthenticated>
+        {profile && <AuthorizedLikeButton profile={profile} {...props} />}
+      </IsUserAuthenticated>
     </>
   )
 }
