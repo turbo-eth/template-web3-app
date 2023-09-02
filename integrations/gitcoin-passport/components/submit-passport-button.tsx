@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button"
+
 import { useSubmitPassport } from "../hooks/use-submit-passport"
 import { Spinner } from "./spinner"
 
@@ -8,8 +10,9 @@ export const SubmitPassportButton = ({
 }) => {
   const { submitPassport, isLoading } = useSubmitPassport()
   return (
-    <button
-      className="btn btn-emerald space-x-4"
+    <Button
+      variant="emerald"
+      className="space-x-4"
       onClick={() => {
         submitPassport()
           .then(() => onSuccess())
@@ -18,13 +21,13 @@ export const SubmitPassportButton = ({
       disabled={isLoading}
     >
       {isLoading ? (
-        <div className="flex flex-row space-x-2">
+        <div className="flex flex-row items-center justify-center space-x-2">
           <Spinner isSmall />
           <span>Submitting Passport</span>
         </div>
       ) : (
         "Submit Passport"
       )}
-    </button>
+    </Button>
   )
 }

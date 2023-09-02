@@ -1,6 +1,8 @@
+import { useEffect } from "react"
 import { useMutation } from "@tanstack/react-query"
 import { useAccount } from "wagmi"
 
+import { useToast } from "@/lib/hooks/use-toast"
 import { useEthersSigner } from "@/lib/hooks/web3/use-ethers-signer"
 
 import {
@@ -17,6 +19,18 @@ type SigningMessageResponse = {
 export const useSubmitPassport = () => {
   const signer = useEthersSigner()
   const { address } = useAccount()
+  const { toast, dismiss } = useToast()
+  const handleToast = (err: string) => {
+    toast({
+      title: "Submit failed",
+      description: err,
+    })
+
+    setTimeout(() => {
+      dismiss()
+    }, 4200)
+  }
+
   const signMessageMutation = useMutation({
     mutationFn: async () => {
       if (!GITCOIN_PASSPORT_API_KEY)
@@ -82,10 +96,16 @@ export const useSubmitPassport = () => {
     return submitResult
   }
 
+  useEffect(() => {
+    if (signMessageMutation.error ?? signMessageMutation.error)
+      handleToast(
+        String(signMessageMutation.error ?? signMessageMutation.error)
+      )
+  }, [signMessageMutation.error, signMessageMutation.error])
+
   return {
     submitPassport,
     isLoading:
       signMessageMutation.isLoading || submitPassportMutation.isLoading,
-    error: signMessageMutation.error || signMessageMutation.error,
   }
 }
