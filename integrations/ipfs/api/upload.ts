@@ -10,10 +10,9 @@ export async function POST(req: Request) {
     // const prunedReq = ipfsSchema.parse(await req.json())
     const haha = await req.json()
     // console.log('prunedReq', prunedReq)
-    console.log(haha, 'apiVal')
-    console.log('elkneklfnljel')
     const info = await ipfsUploadFiles(haha)
 
+    console.log('info', info)
     if (info) {
       return new Response(JSON.stringify(info), { status: 200, headers: { 'Content-Type': 'multipart/form-data' } })
     }

@@ -1,25 +1,16 @@
 import { ipfsClient } from '../../ipfs-client'
 
 export async function ipfsUploadFiles(val: any) {
-  console.log(val, 'okokval')
   const payload = { file: val?.file }
-  console.log(payload, 'pay')
 
-  const formData = new FormData()
-  formData.append('file', values?.file)
+  // const formData = new FormData()
+  // formData.append('file', values?.file)
 
-  const { data } = await ipfsClient.post(
-    `/upload`,
-
-    formData,
-    {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }
-  )
-
-  console.log('finaldata', data)
+  const { data } = await ipfsClient.post(`/upload`, payload, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
 
   return data
 }

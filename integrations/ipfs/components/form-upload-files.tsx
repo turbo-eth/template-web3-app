@@ -10,7 +10,7 @@ export default function FormUploadFiles() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
   // const { form, onSubmit, isLoading, isError, data } = useUploadIpfs()
-  const { form, onSubmit, isLoading, isError, data } = useUploadIpfsForm()
+  const { form, onSubmit, isLoading, isError, data, onClientSubmit } = useUploadIpfsForm()
 
   const { control, handleSubmit, register, getValues, setValue } = form
 
@@ -21,25 +21,7 @@ export default function FormUploadFiles() {
       <div className="card w-full text-left">
         <h3 className="mb-4">Upload New File</h3>
         <Form {...form}>
-          <form className="flex w-full flex-col space-y-8" onSubmit={handleSubmit(onSubmit)}>
-            {/* {!values.file && (
-              <FormField
-                control={control}
-                name="data"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Data to be stored</FormLabel>
-                    <FormControl className="input dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
-                      <Textarea {...field} {...register('data')} className="dark:bg-neutral-800" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            )}
-            {!values.file && !values.data && <div className="my-2 w-full text-center dark:text-gray-600">- or -</div>}
-            
-             */}
+          <form className="flex w-full flex-col space-y-8" onSubmit={handleSubmit(onClientSubmit)}>
             {
               <FormField
                 control={control}
