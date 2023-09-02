@@ -1,6 +1,6 @@
 'use client'
 
-import Upload from '@/integrations/ipfs/components/upload'
+import FormUploadFiles from '@/integrations/ipfs/components/form-upload-files'
 export default function IpfsUpload() {
-  return <Upload />
+  return <FormUploadFiles />
 }

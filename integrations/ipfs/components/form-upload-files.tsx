@@ -1,17 +1,16 @@
 import { useRef } from 'react'
 
-import { Form, FormControl, FormField, FormLabel, FormMessage } from '@/components/ui/form'
-import { FormItem } from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import { truncateString } from '@/integrations/arweave/utils'
 
-import { useUploadIpfs } from '../hooks/use-upload-ipfs'
+import { useUploadIpfsForm } from '../hooks/use-upload-form'
 
-export default function Upload() {
+export default function FormUploadFiles() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
-  const { form, onSubmit, isLoading, isError, data } = useUploadIpfs()
+  // const { form, onSubmit, isLoading, isError, data } = useUploadIpfs()
+  const { form, onSubmit, isLoading, isError, data } = useUploadIpfsForm()
 
   const { control, handleSubmit, register, getValues, setValue } = form
 
@@ -23,7 +22,7 @@ export default function Upload() {
         <h3 className="mb-4">Upload New File</h3>
         <Form {...form}>
           <form className="flex w-full flex-col space-y-8" onSubmit={handleSubmit(onSubmit)}>
-            {!values.file && (
+            {/* {!values.file && (
               <FormField
                 control={control}
                 name="data"
@@ -39,7 +38,9 @@ export default function Upload() {
               />
             )}
             {!values.file && !values.data && <div className="my-2 w-full text-center dark:text-gray-600">- or -</div>}
-            {!values.data && (
+            
+             */}
+            {
               <FormField
                 control={control}
                 name="file"
@@ -62,8 +63,9 @@ export default function Upload() {
                               }
                             }}
                           />
-                          {values.file ? (
-                            <div className="font-mono text-sm">{truncateString(values.file.name, 20)}</div>
+
+                          {!!values?.file ? (
+                            <div className="font-mono text-sm">{truncateString(values?.file.name, 20)}</div>
                           ) : (
                             <button className="btn btn-primary mt-3 text-sm" type="button" onClick={() => fileInputRef.current?.click()}>
                               <span className="mt-2 text-sm leading-normal">Select a file</span>
@@ -76,13 +78,12 @@ export default function Upload() {
                   )
                 }}
               />
-            )}
+            }
 
             <div>
-              <button className="btn btn-emerald w-full" disabled={isLoading}>
-                {isLoading ? 'Loading...' : 'Upload to IPFS'}
+              <button className="btn btn-emerald w-full" disabled={!!isLoading}>
+                {!!isLoading ? 'Loading...' : 'Upload to IPFS'}
               </button>
-              {/* {isError ? <div className="mt-3 font-medium text-red-500">Error: {error instanceof Error ? error.message : String(error)}</div> : null} */}
             </div>
           </form>
         </Form>
@@ -92,13 +93,13 @@ export default function Upload() {
           <p className="text-center text-sm text-gray-500">IPFS uploads provide decentralized and permanent off-chain data storage.</p>
         </div>
       </div>
-      {/* {data && (
+      {data && (
         <div className="card container mt-10 w-full">
           <div className="flex items-center justify-between">
-            <div>okok Success</div>
+            <div> Success</div>
           </div>
         </div>
-      )} */}
+      )}
     </>
   )
 }

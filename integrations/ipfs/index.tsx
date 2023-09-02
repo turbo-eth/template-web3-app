@@ -1,5 +1,5 @@
-import IpfsNode from './components/node'
+import IpfsList from './components/UploadedList'
 
 export function Ipfs() {
-  return <IpfsNode />
+  return <IpfsList />
 }

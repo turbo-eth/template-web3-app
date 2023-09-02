@@ -1,7 +1,7 @@
 'use client'
 
-import IpfsNode from '@/integrations/ipfs/components/node'
+import IpfsList from '@/integrations/ipfs/components/UploadedList'
 
 export default function IpfsNodePage() {
-  return <IpfsNode />
+  return <IpfsList />
 }

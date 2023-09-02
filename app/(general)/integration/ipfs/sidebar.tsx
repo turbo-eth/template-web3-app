@@ -22,13 +22,13 @@ export const SideBar = () => {
                 <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
                 <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
               </svg>
-              <span className="ml-3">Current Node</span>
+              <span className="ml-3">Uploaded List</span>
             </LinkComponent>
           </li>
-          {/* <li>
+          <li>
             <LinkComponent
               className="group flex items-center rounded-lg p-2 text-neutral-900 hover:bg-neutral-100 dark:text-white dark:hover:bg-neutral-700"
-              href={`${ipfsBaseUrl}/search`}>
+              href={`${ipfsBaseUrl}/status`}>
               <svg
                 aria-hidden="true"
                 className="h-5 w-5 shrink-0 text-neutral-500 transition duration-75 group-hover:text-neutral-900 dark:text-neutral-400 dark:group-hover:text-white"
@@ -37,9 +37,9 @@ export const SideBar = () => {
                 xmlns="http://www.w3.org/2000/svg">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
               </svg>
-              <span className="ml-3 flex-1 whitespace-nowrap">Search</span>
+              <span className="ml-3 flex-1 whitespace-nowrap">Status</span>
             </LinkComponent>
-          </li> */}
+          </li>
 
           <li>
             <LinkComponent
