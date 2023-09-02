@@ -1,11 +1,11 @@
-import { isValidHandle, useCreateProfile } from '@lens-protocol/react-web';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useState } from "react"
+import { isValidHandle, useCreateProfile } from "@lens-protocol/react-web"
 
 export const useCreateTestProfile = () => {
-  const [handle, setHandle] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [handle, setHandle] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
-  const { execute: create, error: createError, isPending } = useCreateProfile();
+  const { execute: create, error: createError, isPending } = useCreateProfile()
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault()
