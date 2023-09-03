@@ -7,22 +7,29 @@ class StorageClient {
     this.client = new Web3Storage({
       token: web3StorageKey,
     })
-
-    console.log('web3StorageKey::client', web3StorageKey)
   }
 
   public async storeFiles(file: any) {
     const fileName = file.name
 
-    console.log('fileName', fileName)
     const newFile = new File([file], fileName, { type: file.type })
-    console.log('newFile', newFile)
     const cid = await this.client.put([newFile], { name: fileName, maxRetries: 3 })
 
     console.log('cid', cid)
     const imageURI = `https://${cid}.ipfs.dweb.link/${fileName}`
-    return imageURI
+    return { imageURI, cid }
   }
+
+  public async statusSearch(cid: string) {
+    const data = await this.client.status(cid)
+    return data
+  }
+
+  // public async listUploads() {
+  //   const data = this.client.list()
+  //   console.log('data', data)
+  //   return data
+  // }
 }
 
 export default StorageClient

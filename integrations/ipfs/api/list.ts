@@ -2,8 +2,6 @@ import { ipfsGetUploadList } from '../routes/get-upload-list'
 
 export async function GET(req: Request) {
   try {
-    // console.log('req', req)
-
     const data = await ipfsGetUploadList()
 
     return new Response(JSON.stringify(data), { status: 200, headers: { 'Content-Type': 'application/json' } })

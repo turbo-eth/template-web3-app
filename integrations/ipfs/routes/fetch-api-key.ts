@@ -2,8 +2,6 @@ export const fetchWeb3StorageKey = async () => {
   try {
     const response = await fetch('/api/ipfs/get-api-key')
 
-    console.log('res::::::', response)
-
     if (!response.ok) {
       throw new Error('Failed to fetch Web3 Storage key')
     }

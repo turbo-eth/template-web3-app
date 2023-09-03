@@ -1,5 +1,4 @@
-import IpfsList from './components/UploadedList'
-
+import FormUploadFiles from './components/form-upload-files'
 export function Ipfs() {
-  return <IpfsList />
+  return <FormUploadFiles />
 }

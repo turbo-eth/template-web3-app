@@ -4,7 +4,4 @@ import { appIpfsGetUploadedList } from '@/integrations/ipfs/routes/get-upload-li
 
 export const useIpfsGetListUploads = () => {
   return useQuery(['list'], async () => await appIpfsGetUploadedList())
-
-  // const data = await appIpfsGetUploadedList()
-  // console.log('data::::data', data)
 }
