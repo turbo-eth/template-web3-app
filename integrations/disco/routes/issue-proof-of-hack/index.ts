@@ -1,7 +1,7 @@
-import { discoClient } from '@/integrations/disco/disco-client'
+import { discoClient } from "@/integrations/disco/disco-client"
 
-import { PROOF_OF_HACK_SCHEMA_URL } from '../../utils/constants'
-import { IssueEntity, IssuedCredentials } from '../../utils/types'
+import { PROOF_OF_HACK_SCHEMA_URL } from "../../utils/constants"
+import { IssuedCredentials, IssueEntity } from "../../utils/types"
 
 export async function discoIssueProofOfHack(val: IssueEntity) {
   const payload = {
@@ -10,10 +10,14 @@ export async function discoIssueProofOfHack(val: IssueEntity) {
     recipientDID: val?.subjectData?.recipientDid,
   }
 
-  const { data }: { data: IssuedCredentials } = await discoClient.post(`/credential`, JSON.stringify(payload), {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+  const { data }: { data: IssuedCredentials } = await discoClient.post(
+    `/credential`,
+    JSON.stringify(payload),
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
   return data
 }

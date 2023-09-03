@@ -1,5 +1,5 @@
-import { PROOF_OF_HACK_SCHEMA_URL } from '../../utils/constants'
-import { EventData } from '../../utils/types'
+import { PROOF_OF_HACK_SCHEMA_URL } from "../../utils/constants"
+import { EventData } from "../../utils/types"
 
 export async function appDiscoIssueProofOfHack(values: EventData) {
   const payload = {
@@ -8,10 +8,10 @@ export async function appDiscoIssueProofOfHack(values: EventData) {
     recipientDID: values?.recipientDid,
   }
 
-  const res = await fetch('/api/disco/issue-proof-of-hack', {
-    method: 'POST',
+  const res = await fetch("/api/disco/issue-proof-of-hack", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(payload),
   })

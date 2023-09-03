@@ -1,6 +1,6 @@
-import { getIronSession } from 'iron-session'
+import { getIronSession } from "iron-session"
 
-import { SERVER_SESSION_SETTINGS } from '@/lib/session'
+import { SERVER_SESSION_SETTINGS } from "@/lib/session"
 
 export async function GET(req: Request) {
   const res = new Response()
@@ -13,14 +13,14 @@ export async function GET(req: Request) {
         isLoggedIn: true,
         isAdmin: session.isAdmin,
       }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { status: 200, headers: { "Content-Type": "application/json" } }
     )
   } else {
     return new Response(
       JSON.stringify({
         isLoggedIn: false,
       }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { status: 200, headers: { "Content-Type": "application/json" } }
     )
   }
 }

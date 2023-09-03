@@ -1,11 +1,10 @@
-'use client'
+"use client"
 
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils"
 
 interface LinkComponentProps extends HTMLAttributes<HTMLAnchorElement> {
   href: string
@@ -13,16 +12,30 @@ interface LinkComponentProps extends HTMLAttributes<HTMLAnchorElement> {
   target?: string
 }
 
-export function LinkComponent({ href, children, isExternal, className, target = '_blank', ...props }: LinkComponentProps) {
+export function LinkComponent({
+  href,
+  children,
+  isExternal,
+  className,
+  target = "_blank",
+  ...props
+}: LinkComponentProps) {
   const pathname = usePathname()
   const classes = cn(className, {
     active: pathname === href,
   })
-  const isExternalEnabled = href.match(/^([a-z0-9]*:|.{0})\/\/.*$/) || isExternal
+  const isExternalEnabled =
+    href.match(/^([a-z0-9]*:|.{0})\/\/.*$/) || isExternal
 
   if (isExternalEnabled) {
     return (
-      <a className={classes} href={href} rel="noopener noreferrer" target={target} {...props}>
+      <a
+        className={classes}
+        href={href}
+        rel="noopener noreferrer"
+        target={target}
+        {...props}
+      >
         {children}
       </a>
     )

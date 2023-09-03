@@ -6,7 +6,7 @@ export class PermissionError extends Error {
 
 export class NotFoundError extends Error {
   constructor() {
-    super('Stream not found.')
+    super("Stream not found.")
   }
 }
 
@@ -20,10 +20,10 @@ export const useCheckLivepeerApiKey = () => {
   const deleteStream = async (apiKey: string, streamId: string) => {
     const res = await fetch(`https://livepeer.studio/api/stream/${streamId}`, {
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
       },
-      method: 'DELETE',
+      method: "DELETE",
     })
 
     if (!res.ok) {
@@ -32,18 +32,20 @@ export const useCheckLivepeerApiKey = () => {
       } else if (res.status === 403) {
         throw new PermissionError()
       }
-      throw new Error(`Error from Livepeer API: ${res.status} ${res.statusText}`)
+      throw new Error(
+        `Error from Livepeer API: ${res.status} ${res.statusText}`
+      )
     }
   }
 
   const checkLivepeerApiKey = async (apiKey: string) => {
     try {
-      await deleteStream(apiKey, 'test_api_key_stream')
+      await deleteStream(apiKey, "test_api_key_stream")
     } catch (e) {
       const error = e as Error & { status?: number }
       if (e instanceof PermissionError || e instanceof NotFoundError) {
         throw e
-      } else if (error.message === 'Failed to fetch') {
+      } else if (error.message === "Failed to fetch") {
         throw new FailedToFetchError()
       } else {
         throw new Error(`${error.message}`)

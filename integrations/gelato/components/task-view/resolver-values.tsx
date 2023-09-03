@@ -1,12 +1,15 @@
-import { InputValues } from './input-values'
-import { getTaskFunctionData } from '../../utils/helpers'
+import { getTaskFunctionData } from "../../utils/helpers"
+import { InputValues } from "./input-values"
 
 export type ResolverValuesProps = {
   functionData: ReturnType<typeof getTaskFunctionData>
   resolverAddress: string
 }
 
-export function ResolverValues({ functionData, resolverAddress }: ResolverValuesProps) {
+export function ResolverValues({
+  functionData,
+  resolverAddress,
+}: ResolverValuesProps) {
   return (
     <div>
       <div className="mb-5 flex w-full items-center justify-between opacity-70">
@@ -28,10 +31,12 @@ export function ResolverValues({ functionData, resolverAddress }: ResolverValues
                   <span key={index}>
                     <span className="text-green-500">{input.type}</span>
                     <span>: </span>
-                    <span key={input.name} className="dark:text-slate-100">
+                    <span key={input.name} className="text-foreground">
                       {input.name}
                     </span>
-                    {index < functionData.func.inputs.length - 1 && <span>,</span>}
+                    {index < functionData.func.inputs.length - 1 && (
+                      <span>,</span>
+                    )}
                   </span>
                 ))}
                 <span>)</span>

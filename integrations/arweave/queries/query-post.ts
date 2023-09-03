@@ -1,5 +1,5 @@
-import { arweave } from '..'
-import { ArweavePost } from '../utils/types'
+import { arweave } from ".."
+import { ArweavePost } from "../utils/types"
 
 type QueryReturnType = {
   data: {
@@ -39,7 +39,10 @@ const buildQueryObject = (id: string) => {
 }
 
 export const getArweaveTx = async (id: string) => {
-  const results = await arweave.api.post<QueryReturnType>('/graphql', buildQueryObject(id))
+  const results = await arweave.api.post<QueryReturnType>(
+    "/graphql",
+    buildQueryObject(id)
+  )
   const tx = results.data.data.transactions.edges[0].node
   return tx
 }

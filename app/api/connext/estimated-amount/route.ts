@@ -1,1 +1,1 @@
-export { GET } from '@/integrations/connext/api/estimated-amount'
+export { GET } from "@/integrations/connext/api/estimated-amount"

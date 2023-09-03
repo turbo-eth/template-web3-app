@@ -1,2 +1,2 @@
-export { mainnetAssets } from './mainnet'
-export { testnetAssets } from './testnet'
+export { mainnetAssets } from "./mainnet"
+export { testnetAssets } from "./testnet"

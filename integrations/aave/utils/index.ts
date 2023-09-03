@@ -1,12 +1,12 @@
-import { zeroAddress } from 'viem'
+import { zeroAddress } from "viem"
 
-import { AaveState } from './types'
+import { AaveState } from "./types"
 
 export const limitDecimals = (input: string, decimalPlaces: number): string => {
-  const parts = input.split('.')
+  const parts = input.split(".")
   if (parts[1]) {
     parts[1] = parts[1].slice(0, decimalPlaces)
-    return parts.join('.')
+    return parts.join(".")
   } else {
     return input
   }

@@ -1,6 +1,6 @@
-import { SdkConfig, create } from '@connext/sdk'
+import { create, SdkConfig } from "@connext/sdk"
 
-import { mainnetChains, testnetChains } from './utils/chains'
+import { mainnetChains, testnetChains } from "./utils/chains"
 
 interface ProviderParams {
   chainId: string
@@ -42,12 +42,26 @@ function constructSdkChains(chains: Chain[]) {
   return chainsObj
 }
 
-const testnetSdkConfig: SdkConfig = { network: 'testnet', chains: constructSdkChains(testnetChains), logLevel: 'silent' }
-const mainnetSdkConfig: SdkConfig = { network: 'mainnet', chains: constructSdkChains(mainnetChains), logLevel: 'silent' }
+const testnetSdkConfig: SdkConfig = {
+  network: "testnet",
+  chains: constructSdkChains(testnetChains),
+  logLevel: "silent",
+}
+const mainnetSdkConfig: SdkConfig = {
+  network: "mainnet",
+  chains: constructSdkChains(mainnetChains),
+  logLevel: "silent",
+}
 
 export async function clients(address?: string) {
-  const testnetSdk = await create({ ...testnetSdkConfig, signerAddress: address })
-  const mainnetSdk = await create({ ...mainnetSdkConfig, signerAddress: address })
+  const testnetSdk = await create({
+    ...testnetSdkConfig,
+    signerAddress: address,
+  })
+  const mainnetSdk = await create({
+    ...mainnetSdkConfig,
+    signerAddress: address,
+  })
 
   return {
     testnetSdk,

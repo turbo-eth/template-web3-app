@@ -1,4 +1,4 @@
-import { getTaskFunctionData } from '../../utils/helpers'
+import { getTaskFunctionData } from "../../utils/helpers"
 
 export type InputValuesProps = {
   functionData: ReturnType<typeof getTaskFunctionData>
@@ -14,7 +14,9 @@ export function InputValues({ functionData }: InputValuesProps) {
             <span className="text-green-500">{item.type}</span>
             <span className="ml-1 opacity-70">{item.name}</span>
           </p>
-          <p className="col-span-2 break-words md:col-span-3">{String(functionData.data[index])}</p>
+          <p className="col-span-2 break-words md:col-span-3">
+            {String(functionData.data[index])}
+          </p>
         </div>
       ))}
     </div>

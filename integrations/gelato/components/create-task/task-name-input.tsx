@@ -1,6 +1,6 @@
-import { useFormContext } from 'react-hook-form'
+import { useFormContext } from "react-hook-form"
 
-import { CreateTaskForm } from './create-task'
+import { CreateTaskForm } from "./create-task"
 
 export function TaskNameInput() {
   const { register } = useFormContext<CreateTaskForm>()
@@ -11,7 +11,11 @@ export function TaskNameInput() {
         <h3 className="text-2xl font-bold dark:opacity-70">Task name</h3>
       </div>
       <div>
-        <input {...register('name')} className="input !rounded-2xl dark:bg-zinc-700 dark:text-white" placeholder="Task name" />
+        <input
+          {...register("name")}
+          className="input !rounded-2xl dark:bg-zinc-700 dark:text-white"
+          placeholder="Task name"
+        />
       </div>
     </div>
   )

@@ -1,17 +1,16 @@
-'use client'
+"use client"
 
-import { ReactNode } from 'react'
-
-import { useColorMode } from '@/lib/state/color-mode'
+import { ReactNode } from "react"
+import { useTheme } from "next-themes"
 
 interface IsDarkThemeProps {
   children: ReactNode
 }
 
 export const IsDarkTheme = ({ children }: IsDarkThemeProps) => {
-  const [colorMode] = useColorMode()
+  const { resolvedTheme } = useTheme()
 
-  if (colorMode !== 'light') return <>{children}</>
+  if (resolvedTheme === "dark") return <>{children}</>
 
   return null
 }

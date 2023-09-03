@@ -1,26 +1,31 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
+import { env } from "@/env.mjs"
+import { LivepeerConfig, ThemeConfig } from "@livepeer/react"
 
-import { LivepeerConfig, ThemeConfig } from '@livepeer/react'
-
-import { env } from '@/env.mjs'
-
-import { getLivepeerClient } from './livepeer-client'
+import { getLivepeerClient } from "./livepeer-client"
 
 const livepeerTheme: ThemeConfig = {
   colors: {
-    accent: '#f9f2c0',
-    containerBorderColor: '#f9f2c0',
+    accent: "#f9f2c0",
+    containerBorderColor: "#f9f2c0",
   },
   fonts: {
-    display: 'Inter',
+    display: "Inter",
   },
 }
 
-export function LivepeerProvider({ children, customApiKey }: { children: ReactNode; customApiKey?: string }) {
-  const apiKey = customApiKey ?? env.NEXT_PUBLIC_LIVEPEER_API_KEY ?? 'Initial Key'
+export function LivepeerProvider({
+  children,
+  customApiKey,
+}: {
+  children: ReactNode
+  customApiKey?: string
+}) {
+  const apiKey =
+    customApiKey ?? env.NEXT_PUBLIC_LIVEPEER_API_KEY ?? "Initial Key"
 
   if (!apiKey) {
-    throw new Error('No Livepeer API key provided')
+    throw new Error("No Livepeer API key provided")
   }
 
   const livepeerClient = getLivepeerClient(apiKey)

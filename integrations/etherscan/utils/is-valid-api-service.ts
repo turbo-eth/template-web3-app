@@ -1,4 +1,7 @@
-export function isValidApiService(service: string, validServiceProviders: Array<string>) {
+export function isValidApiService(
+  service: string,
+  validServiceProviders: Array<string>
+) {
   return validServiceProviders.includes(service)
 }
 

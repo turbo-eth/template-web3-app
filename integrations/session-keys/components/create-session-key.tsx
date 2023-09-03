@@ -1,4 +1,6 @@
-import { useSessionKeys } from '../hooks/use-session-keys'
+import { Button } from "@/components/ui/button"
+
+import { useSessionKeys } from "../hooks/use-session-keys"
 
 export function CreateSessionKey() {
   const { createSessionKey } = useSessionKeys()
@@ -11,8 +13,8 @@ export function CreateSessionKey() {
   }
 
   return (
-    <button className="btn btn-emerald" onClick={handleCreateSessionKey}>
+    <Button variant="default" onClick={handleCreateSessionKey}>
       Create Session Key
-    </button>
+    </Button>
   )
 }

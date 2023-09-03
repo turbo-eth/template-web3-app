@@ -1,14 +1,15 @@
-'use client'
+"use client"
 
-import { ReactNode } from 'react'
-
-import { useAccount } from 'wagmi'
+import { ReactNode } from "react"
+import { useAccount } from "wagmi"
 
 interface IsWalletDisconnectedProps {
   children: ReactNode
 }
 
-export const IsWalletDisconnected = ({ children }: IsWalletDisconnectedProps) => {
+export const IsWalletDisconnected = ({
+  children,
+}: IsWalletDisconnectedProps) => {
   const { address } = useAccount()
 
   if (!address) return <>{children}</>

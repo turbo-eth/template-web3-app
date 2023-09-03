@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState } from "react"
 
 export const useOpenAIPrompt = () => {
-  const [response, setResponse] = useState<string>('')
+  const [response, setResponse] = useState<string>("")
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   /**
@@ -13,13 +13,13 @@ export const useOpenAIPrompt = () => {
    * @param apiKey The OpenAI API key to use. If not set, the default API key from env variable OPENAI_API_KEY will be used.
    */
   const generateAIResponse = async (prompt: string, apiKey?: string) => {
-    setResponse('')
+    setResponse("")
     setIsLoading(true)
 
-    const response = await fetch('/api/openai/ask', {
-      method: 'POST',
+    const response = await fetch("/api/openai/ask", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         prompt,

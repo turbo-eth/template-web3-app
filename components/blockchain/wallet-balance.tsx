@@ -1,14 +1,18 @@
-import { HTMLAttributes } from 'react'
+import { HTMLAttributes } from "react"
+import { useAccount, useBalance } from "wagmi"
 
-import { useAccount, useBalance } from 'wagmi'
+import { trimFormattedBalance } from "@/lib/utils"
 
-import { trimFormattedBalance } from '@/lib/utils'
-
-interface WalletBalanceProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'children'> {
+interface WalletBalanceProps
+  extends Omit<HTMLAttributes<HTMLSpanElement>, "children"> {
   decimals?: number
 }
 
-export const WalletBalance = ({ className, decimals = 4, ...props }: WalletBalanceProps) => {
+export const WalletBalance = ({
+  className,
+  decimals = 4,
+  ...props
+}: WalletBalanceProps) => {
   const { address } = useAccount()
   const { data: balance } = useBalance({
     address,

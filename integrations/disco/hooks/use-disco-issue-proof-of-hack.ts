@@ -1,7 +1,7 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation } from "@tanstack/react-query"
 
-import { appDiscoIssueProofOfHack } from '../routes/issue-proof-of-hack/client'
-import { EventData } from '../utils/types'
+import { appDiscoIssueProofOfHack } from "../routes/issue-proof-of-hack/client"
+import { EventData } from "../utils/types"
 
 export const useDiscoIssueProofOfHack = () => {
   return useMutation({

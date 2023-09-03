@@ -1,8 +1,8 @@
-import * as PushAPI from '@pushprotocol/restapi'
-import { useQuery } from '@tanstack/react-query'
-import { z } from 'zod'
+import * as PushAPI from "@pushprotocol/restapi"
+import { useQuery } from "@tanstack/react-query"
+import { z } from "zod"
 
-import { Channel, UseChannelProps } from '../utils/types'
+import { Channel, UseChannelProps } from "../utils/types"
 
 const channelSchema = z.object({
   id: z.number(),
@@ -27,14 +27,17 @@ const channelSchema = z.object({
 })
 
 const fetchChannel = async ({ channel, env }: UseChannelProps) => {
-  const result = (await PushAPI.channels.getChannel({ channel, env })) as Channel
+  const result = (await PushAPI.channels.getChannel({
+    channel,
+    env,
+  })) as Channel
   channelSchema.parse(result)
 
   return result
 }
 
 export const useChannel = ({ channel, env }: UseChannelProps) => {
-  return useQuery(['channel', channel, env], {
+  return useQuery(["channel", channel, env], {
     queryFn: () => fetchChannel({ channel, env }),
     refetchOnWindowFocus: false,
   })
