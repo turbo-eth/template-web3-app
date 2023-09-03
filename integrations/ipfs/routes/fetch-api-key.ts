@@ -14,6 +14,6 @@ export const fetchWeb3StorageKey = async () => {
     return data.web3StorageKey
   } catch (error) {
     console.error('Error fetching Web3 Storage key:', error)
-    throw error // Re-throw the error to handle it at a higher level
+    throw error
   }
 }
