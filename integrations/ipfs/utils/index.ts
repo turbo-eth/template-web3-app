@@ -9,8 +9,8 @@ export function truncateString(fullStr: string, strLen: number, separator: strin
   return fullStr.substring(0, frontChars) + separator + fullStr.substring(fullStr.length - backChars)
 }
 
-export function formatDateTime(dateTimeString) {
-  const options = {
+export function formatDateTime(dateTimeString: string) {
+  const options: Intl.DateTimeFormatOptions = {
     year: 'numeric',
     month: '2-digit',
     day: '2-digit',

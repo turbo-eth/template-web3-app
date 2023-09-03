@@ -9,14 +9,13 @@ import { formatDateTime, truncateString } from '../utils'
 
 const UploadedList: React.FC = () => {
   const { data = [] } = useIpfsGetListUploads()
-  console.log('data', data)
 
   const columns = useMemo(() => {
     return [
       {
         Header: 'Created at',
         accessor: 'created',
-        Cell: ({ value }) => (
+        Cell: ({ value = '' }) => (
           <div className="flex items-center">
             <div className="text-left">{formatDateTime(value)}</div>
           </div>

@@ -11,7 +11,6 @@ import { useUploadIpfsForm } from '../hooks/use-upload-form'
 export default function FormUploadFiles() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
-  // const { form, onSubmit, isLoading, isError, data } = useUploadIpfs()
   const { form, onClientSubmit, isLoading, isError } = useUploadIpfsForm()
 
   const { control, handleSubmit, getValues, setValue } = form
@@ -69,7 +68,6 @@ export default function FormUploadFiles() {
                                   type="file"
                                   onChange={(e) => {
                                     const file = e.target.files?.[0]
-                                    console.log('file', file)
                                     if (file) {
                                       field.onChange(file)
                                     }
@@ -100,13 +98,6 @@ export default function FormUploadFiles() {
           <p className="text-center text-sm text-gray-500">IPFS uploads provide decentralized and permanent off-chain data storage.</p>
         </div>
       </div>
-      {/* {data && (
-        <div className="card container mt-10 w-full">
-          <div className="flex items-center justify-between">
-            <div> Success</div>
-          </div>
-        </div>
-      )} */}
     </>
   )
 }

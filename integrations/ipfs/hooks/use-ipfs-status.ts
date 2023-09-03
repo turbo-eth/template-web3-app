@@ -25,6 +25,12 @@ export const useIpfsStatus = () => {
 
   const { toast, dismiss } = useToast()
 
+  type InfoType = {
+    cid: string
+    dagSize: number
+    created: string
+  }
+
   const handleToast = (info) => {
     toast({
       title: 'Upload Complete',
@@ -45,17 +51,13 @@ export const useIpfsStatus = () => {
       const storageClient = new StorageClient(web3StorageKey)
 
       const info = await storageClient?.statusSearch(values?.cid)
-      // const info = await storageClient.status(values?.cid);
-      console.log('info', info)
       handleToast(info)
 
       form.reset()
     } catch (error) {
       setIsError(error)
       console.error('Error:', error)
-      // Handle the error as needed, e.g., show an error message to the user
     } finally {
-      // Reset loading state when the operation is complete (whether it succeeds or fails)
       setIsLoading(false)
     }
   }

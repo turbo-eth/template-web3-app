@@ -1,4 +1,3 @@
-// import { v4 as uuidv4 } from 'uuid'
 import { Web3Storage } from 'web3.storage'
 
 class StorageClient {
@@ -9,13 +8,12 @@ class StorageClient {
     })
   }
 
-  public async storeFiles(file: any) {
+  public async storeFiles(file: File) {
     const fileName = file.name
 
     const newFile = new File([file], fileName, { type: file.type })
     const cid = await this.client.put([newFile], { name: fileName, maxRetries: 3 })
 
-    console.log('cid', cid)
     const imageURI = `https://${cid}.ipfs.dweb.link/${fileName}`
     return { imageURI, cid }
   }

@@ -15,7 +15,7 @@ export const useUploadIpfsForm = () => {
 
   const { toast, dismiss } = useToast()
 
-  const handleToast = (Link) => {
+  const handleToast = (Link: string) => {
     toast({
       title: 'Upload Complete',
       description: Link,
@@ -38,7 +38,7 @@ export const useUploadIpfsForm = () => {
 
   const onClientSubmit = async (values) => {
     try {
-      setIsLoading(true) // Set isLoading to true while the operation is in progress
+      setIsLoading(true)
 
       const web3StorageKey = await fetchWeb3StorageKey()
       const storageClient = new StorageClient(web3StorageKey)
@@ -48,7 +48,7 @@ export const useUploadIpfsForm = () => {
       handleToast(cid)
       form.reset()
     } catch (e) {
-      setIsLoading(false) // Set isLoading back to false on error
+      setIsLoading(false)
       console.error('Error:', e)
       setIsError(e)
     }

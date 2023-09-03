@@ -28,7 +28,6 @@ const IpfsStatus: React.FC = () => {
                   name={item?.formfieldName as 'cid'}
                   render={({ field }) => (
                     <FormItem>
-                      {/* <FormLabel className="mb-4">{item?.label}</FormLabel> */}
                       <FormControl className="input dark:border-gray-600 dark:text-gray-600 dark:[color-scheme:dark]">
                         <Item {...item?.attribute} {...field} {...register(item?.formfieldName as 'cid')} />
                       </FormControl>
@@ -39,7 +38,6 @@ const IpfsStatus: React.FC = () => {
               )
             })}
             <div>
-              {/* {!!isError && <div className="mb-3 font-medium text-red-500">{isError instanceof Error ? isError.message : String(isError)}</div>} */}
               <button className="btn btn-emerald w-full" disabled={isLoading}>
                 {isLoading ? 'Loading...' : 'Status Check'}
               </button>
