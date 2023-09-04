@@ -23,11 +23,7 @@ class StorageClient {
     return data
   }
 
-  // public async listUploads() {
-  //   const data = this.client.list()
-  //   console.log('data', data)
-  //   return data
-  // }
+  
 }
 
 export default StorageClient

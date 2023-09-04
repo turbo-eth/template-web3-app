@@ -1,7 +1,5 @@
 "use client"
 
-import { data } from "tailwindcss/defaultTheme"
-
 import { Button } from "@/components/ui/button"
 import {
   Form,
