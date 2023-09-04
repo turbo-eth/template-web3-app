@@ -1,6 +1,6 @@
 import { env } from '@/env.mjs'
 
-export async function GET(req: Request) {
+export function GET(req: Request) {
   const web3StorageKey = env.WEB3_STORAGE_KEY
 
   return new Response(JSON.stringify({ web3StorageKey }), {

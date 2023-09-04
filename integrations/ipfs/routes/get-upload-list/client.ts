@@ -30,10 +30,8 @@ interface UploadedItem {
 import axios from 'axios'
 
 export async function appIpfsGetUploadedList(): Promise<UploadedItem[]> {
-  try {
+  
     const { data } = await axios.get<UploadedItem[]>(`/api/ipfs/list`, {})
     return data
-  } catch (error) {
-    throw error
-  }
+  
 }

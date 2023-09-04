@@ -7,11 +7,12 @@ import { Input } from '@/components/ui/input'
 import { truncateString } from '@/integrations/arweave/utils'
 
 import { useUploadIpfsForm } from '../hooks/use-upload-form'
+import { Button } from '@/components/ui/button'
 
 export default function FormUploadFiles() {
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
-  const { form, onClientSubmit, isLoading, isError } = useUploadIpfsForm()
+  const { form, onClientSubmit, isLoading, isError, data , setData} = useUploadIpfsForm()
 
   const { control, handleSubmit, getValues, setValue } = form
 
@@ -32,14 +33,14 @@ export default function FormUploadFiles() {
                     <FormItem>
                       <FormControl className="dark:border-gray-600 dark:text-gray-400 dark:[color-scheme:dark]">
                         <div className="items-center">
-                          {!!values?.file ? (
-                            <div className="flex h-full w-full font-mono text-sm">
+                          {values?.file ? (
+                            <div className="flex h-full w-full justify-between font-mono text-sm">
                               <div>{truncateString(values?.file.name, 20)}</div>
                               <button
                                 onClick={() => {
                                   form.reset()
                                 }}>
-                                delete
+                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/> </svg>
                               </button>
                             </div>
                           ) : (
@@ -86,9 +87,9 @@ export default function FormUploadFiles() {
             }
 
             <div>
-              <button className="btn btn-emerald w-full" disabled={!!isLoading}>
-                {!!isLoading ? 'Loading...' : 'Upload to IPFS'}
-              </button>
+            <Button className='w-full' variant="emerald" disabled={isLoading}>
+                {isLoading ? 'Loading...' : 'Upload to IPFS'}
+              </Button>
             </div>
           </form>
         </Form>
@@ -97,6 +98,23 @@ export default function FormUploadFiles() {
           <h3 className="text-center">IPFS Upload</h3>
           <p className="text-center text-sm text-gray-500">IPFS uploads provide decentralized and permanent off-chain data storage.</p>
         </div>
+
+        {!!data && !values?.file && (
+        <div className="mt-10 flex w-full justify-between">
+            Sucess Link={'>'}      
+            <div className='flex items-center'>
+              <a href={data}>{truncateString(data,50)}</a>
+        &nbsp;
+        <button
+                    onClick={() => {
+                      setData('')
+                    }}>
+                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16"> <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/> <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/> </svg>
+                  </button>
+              </div>   
+            
+        </div>
+        )}
       </div>
     </>
   )

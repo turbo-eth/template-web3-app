@@ -4,16 +4,20 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FieldValues, useForm } from 'react-hook-form'
 import { z } from 'zod'
 
-import { useToast } from '@/lib/hooks/use-toast'
 
 import { fetchWeb3StorageKey } from '../routes/fetch-api-key'
 import { truncateString } from '../utils'
 import StorageClient from '../utils/storageClient'
 
 export const useIpfsStatus = () => {
+
+  interface Data {
+    dagSize?: number
+    created?: string
+  }
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState<string | null>(null)
-
+  const [data,setData] = useState<Data>({})
   const cidSchema = z.object({
     cid: z.string().min(1),
   })
@@ -24,23 +28,6 @@ export const useIpfsStatus = () => {
     },
   })
 
-  const { toast, dismiss } = useToast()
-
-  type InfoType = {
-    cid: string
-  }
-
-  const handleToast = (info: InfoType) => {
-    console.log('info', info)
-    toast({
-      title: 'Status Check',
-      description: `${truncateString(info.cid, 20)}`,
-    })
-
-    setTimeout(() => {
-      dismiss()
-    }, 4200)
-  }
 
   const onSubmit = async (values: FieldValues) => {
     try {
@@ -51,7 +38,7 @@ export const useIpfsStatus = () => {
       const storageClient = new StorageClient(web3StorageKey)
 
       const info = await storageClient?.statusSearch(values?.cid as string)
-      handleToast(info as InfoType)
+      setData(info || {})
 
       form.reset()
     } catch (error) {
@@ -67,5 +54,7 @@ export const useIpfsStatus = () => {
     form,
     isError,
     isLoading,
+    data,
+    setData
   }
 }

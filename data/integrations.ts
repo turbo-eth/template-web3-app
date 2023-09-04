@@ -153,5 +153,15 @@ export const integrations = {
       imgLight: "/integrations/moralis.png",
       imgDark: "/integrations/moralis.png",
     },
+    ipfs: {
+      name: "IPFS",
+      href: "/integration/ipfs/upload",
+      url: "https://ipfs.io/",
+      description:
+        "IPFS (InterPlanetary File System) is a protocol and network designed to create a content-addressable, peer-to-peer method of storing and sharing hypermedia in a distributed file system.",
+      imgLight: "/integrations/ipfs-logo.svg",
+      imgDark: "/integrations/ipfs-logo.svg",
+    },
+    
   },
 }
