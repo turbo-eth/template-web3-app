@@ -73,14 +73,9 @@ const IpfsStatus: React.FC = () => {
           </div>
         </div>
         {Object.keys(data).length > 0 ? (
-          <div className="mt-10 flex w-full justify-between">
-            Sucess ={">"}
-            <div className="items-center">
-              {" "}
-              {data && data.dagSize && <div>DAG Size: {data.dagSize}</div>}{" "}
-              {data && data.created && (
-                <div>Created: {formatDateTime(data.created)}</div>
-              )}
+          <div className="mt-10  w-full justify-start">
+            <div className="flex w-full items-center justify-between">
+              <h3>Sucess</h3>
               <button
                 onClick={() => {
                   setData({})
@@ -102,6 +97,13 @@ const IpfsStatus: React.FC = () => {
                   />{" "}
                 </svg>
               </button>
+            </div>
+            <div className="flex flex-col items-start">
+              {" "}
+              {data && data.dagSize && <div>DAG Size: {data.dagSize}</div>}{" "}
+              {data && data.created && (
+                <div>Created: {formatDateTime(data.created)}</div>
+              )}
             </div>
           </div>
         ) : null}
