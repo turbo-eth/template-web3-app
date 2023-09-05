@@ -148,6 +148,14 @@ export const turboIntegrations = {
     imgLight: "/integrations/arweave-light.png",
     imgDark: "/integrations/arweave-dark.png",
   },
+  unlock: {
+    name: "Unlock Protocol",
+    href: "/integration/unlock",
+    url: "https://docs.unlock-protocol.com/",
+    description: "Unlock Protocol is a protocol for creating memberships and subscriptions as NFTs",
+    imgLight: "/logo-gradient.png", // TODO
+    imgDark: "/logo-dark.png"
+  },
   starter: {
     name: "Starter Template",
     href: "/integration/starter",

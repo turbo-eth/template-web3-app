@@ -20,7 +20,7 @@ export default function UnlockLayoutIntegration({
 }) {
   return (
     <>
-      <div className="flex-center flex-col items-center justify-center text-center">
+      <div className="flex flex-col items-center justify-center text-center">
         <motion.div
           animate="show"
           className="max-w-3xl px-5 text-center xl:px-0"

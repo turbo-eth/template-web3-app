@@ -146,6 +146,9 @@ dependencies:
   '@unlock-protocol/networks':
     specifier: ^0.0.16
     version: 0.0.16
+  '@unlock-protocol/paywall':
+    specifier: ^0.6.8
+    version: 0.6.8
   abitype:
     specifier: ^0.9.6
     version: 0.9.6(typescript@5.0.4)(zod@3.21.4)
@@ -10685,6 +10688,12 @@ packages:
     resolution: {integrity: sha512-rhqUm6Ib4Mh8Lhn/T8TqR4pjGej0YkvwytL5XI7keOm3Pog5xOrAQX20z3097dOZxkAXltlkrusTa5aiASKH+g==}
     dev: false
 
+  /@unlock-protocol/paywall@0.6.8:
+    resolution: {integrity: sha512-EXMvHuOAPEXQgWyiTVh67HBFjZOlv5osGyzsZAwWv1fRVJUbAft6sGKm50un9NI1dkEh8NWQrAa/pqGHq8trQQ==}
+    dependencies:
+      postmate: 1.5.2
+    dev: false
+
   /@vanilla-extract/css@1.9.1:
     resolution: {integrity: sha512-pu2SFiff5jRhPwvGoj8cM5l/qIyLvigOmy22ss5DGjwV5pJYezRjDLxWumi2luIwioMWvh9EozCjyfH8nq+7fQ==}
     dependencies:
@@ -20783,6 +20792,10 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
+
+  /postmate@1.5.2:
+    resolution: {integrity: sha512-EHLlEmrUA/hALls49oBrtE7BzDXXjB9EiO4MZpsoO3R/jRuBmD+2WKQuYAbeuVEpTzrPpUTT79z2cz4qaFgPRg==}
+    dev: false
 
   /preact@10.13.2:
     resolution: {integrity: sha512-q44QFLhOhty2Bd0Y46fnYW0gD/cbVM9dUVtNTDKPcdXSMA7jfY+Jpd6rk3GB0lcQss0z5s/6CmVP0Z/hV+g6pw==}
