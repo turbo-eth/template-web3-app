@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@bgd-labs/aave-address-book':
     specifier: ^1.30.0
@@ -136,6 +140,12 @@ dependencies:
   '@tanstack/react-query':
     specifier: ^4.3.9
     version: 4.26.1(react-dom@18.2.0)(react-native@0.72.4)(react@18.2.0)
+  '@unlock-protocol/contracts':
+    specifier: ^0.0.22
+    version: 0.0.22
+  '@unlock-protocol/networks':
+    specifier: ^0.0.16
+    version: 0.0.16
   abitype:
     specifier: ^0.9.6
     version: 0.9.6(typescript@5.0.4)(zod@3.21.4)
@@ -10666,6 +10676,14 @@ packages:
       '@typescript-eslint/types': 5.59.11
       eslint-visitor-keys: 3.4.1
     dev: true
+
+  /@unlock-protocol/contracts@0.0.22:
+    resolution: {integrity: sha512-Vr3dMEBMBrQZ4tHY9HbGHNSKi4hWuRqt5G7zLI2WPDhhecBjTWD2ad6pY2EyGfoF/oIvhjdhi80uPJgxBSZlvA==}
+    dev: false
+
+  /@unlock-protocol/networks@0.0.16:
+    resolution: {integrity: sha512-rhqUm6Ib4Mh8Lhn/T8TqR4pjGej0YkvwytL5XI7keOm3Pog5xOrAQX20z3097dOZxkAXltlkrusTa5aiASKH+g==}
+    dev: false
 
   /@vanilla-extract/css@1.9.1:
     resolution: {integrity: sha512-pu2SFiff5jRhPwvGoj8cM5l/qIyLvigOmy22ss5DGjwV5pJYezRjDLxWumi2luIwioMWvh9EozCjyfH8nq+7fQ==}
