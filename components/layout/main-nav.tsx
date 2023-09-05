@@ -2,7 +2,10 @@
 
 import React from "react"
 import Link from "next/link"
-import { integrations } from "@/data/integrations"
+import {
+  integrationCategories,
+  turboIntegrations,
+} from "@/data/turbo-integrations"
 
 import { siteConfig } from "@/config/site"
 import {
@@ -49,47 +52,28 @@ function MainNavMenu() {
           <NavigationMenuTrigger>Integrations</NavigationMenuTrigger>
           <NavigationMenuContent className="max-h-[768px] overflow-y-scroll">
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[768px] lg:grid-cols-3">
-              <h4 className="col-span-3 text-lg font-medium leading-none">
-                General
-              </h4>
-              <Separator className="col-span-3" />
-              {Object.values(integrations.general).map((component) => (
-                <NavMenuListItem
-                  key={component.name}
-                  name={component.name}
-                  href={component.href}
-                  description={component.description}
-                  lightImage={component.imgDark}
-                  darkImage={component.imgLight}
-                />
-              ))}
-              <h4 className="col-span-3 mt-2 text-lg font-medium leading-none">
-                Protocols
-              </h4>
-              <Separator className="col-span-3" />
-              {Object.values(integrations.protocols).map((component) => (
-                <NavMenuListItem
-                  key={component.name}
-                  name={component.name}
-                  href={component.href}
-                  description={component.description}
-                  lightImage={component.imgDark}
-                  darkImage={component.imgLight}
-                />
-              ))}
-              <h4 className="col-span-3 mt-2 text-lg font-medium leading-none">
-                Services
-              </h4>
-              <Separator className="col-span-3" />
-              {Object.values(integrations.services).map((component) => (
-                <NavMenuListItem
-                  key={component.name}
-                  name={component.name}
-                  href={component.href}
-                  description={component.description}
-                  lightImage={component.imgDark}
-                  darkImage={component.imgLight}
-                />
+              {integrationCategories.map((category) => (
+                <>
+                  <h4
+                    key={category}
+                    className="col-span-3 text-lg font-medium leading-none"
+                  >
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </h4>
+                  <Separator className="col-span-3" />
+                  {Object.values(turboIntegrations)
+                    .filter((integration) => integration.category === category)
+                    .map(({ name, href, description, imgDark, imgLight }) => (
+                      <NavMenuListItem
+                        key={name}
+                        name={name}
+                        href={href}
+                        description={description}
+                        lightImage={imgDark}
+                        darkImage={imgLight}
+                      />
+                    ))}
+                </>
               ))}
             </ul>
           </NavigationMenuContent>

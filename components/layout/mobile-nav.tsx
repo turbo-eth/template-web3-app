@@ -3,7 +3,10 @@
 import { useState } from "react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/navigation"
-import { integrations } from "@/data/integrations"
+import {
+  integrationCategories,
+  turboIntegrations,
+} from "@/data/turbo-integrations"
 import { LuMenu } from "react-icons/lu"
 
 import { menuDashboard } from "@/config/menu-dashboard"
@@ -77,44 +80,34 @@ export function MobileNav() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="flex flex-col gap-2">
-                    <h4 className="text-sm font-medium leading-none">
-                      General
-                    </h4>
-                    <Separator />
-                    {Object.values(integrations.general).map((component) => (
-                      <NavMenuListItem
-                        key={component.name}
-                        name={component.name}
-                        href={component.href}
-                        lightImage={component.imgDark}
-                        darkImage={component.imgLight}
-                      />
-                    ))}
-                    <h4 className="mt-2 text-sm font-medium leading-none">
-                      Protocols
-                    </h4>
-                    <Separator />
-                    {Object.values(integrations.protocols).map((component) => (
-                      <NavMenuListItem
-                        key={component.name}
-                        name={component.name}
-                        href={component.href}
-                        lightImage={component.imgDark}
-                        darkImage={component.imgLight}
-                      />
-                    ))}
-                    <h4 className="mt-2 text-sm font-medium leading-none">
-                      Services
-                    </h4>
-                    <Separator />
-                    {Object.values(integrations.services).map((component) => (
-                      <NavMenuListItem
-                        key={component.name}
-                        name={component.name}
-                        href={component.href}
-                        lightImage={component.imgDark}
-                        darkImage={component.imgLight}
-                      />
+                    {integrationCategories.map((category) => (
+                      <>
+                        <h4 className="text-sm font-medium leading-none">
+                          {category.charAt(0).toUpperCase() + category.slice(1)}
+                        </h4>
+                        <Separator className="col-span-3" />
+                        {Object.values(turboIntegrations)
+                          .filter(
+                            (integration) => integration.category === category
+                          )
+                          .map(
+                            ({
+                              name,
+                              href,
+                              description,
+                              imgDark,
+                              imgLight,
+                            }) => (
+                              <NavMenuListItem
+                                key={name}
+                                name={name}
+                                href={href}
+                                lightImage={imgDark}
+                                darkImage={imgLight}
+                              />
+                            )
+                          )}
+                      </>
                     ))}
                   </ul>
                 </AccordionContent>

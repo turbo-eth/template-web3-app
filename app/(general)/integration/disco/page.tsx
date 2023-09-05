@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { turboIntegrations } from "@/data/documentation"
+import { turboIntegrations } from "@/data/turbo-integrations"
 import { LuBook } from "react-icons/lu"
 import { useAccount } from "wagmi"
 
