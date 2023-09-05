@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -11,7 +9,7 @@ import { useAccount } from 'wagmi'
 import { Button } from '@/components/ui/button'
 
 export default function PaywallDemo() {
-  const [unlockStatus, setUnlockStatus] = useState<string>('locked')
+  const [unlockStatus, setUnlockStatus] = useState<string | undefined>('locked')
   const { connector } = useAccount()
 
   const paywall = new Paywall(networks)
@@ -26,9 +24,9 @@ export default function PaywallDemo() {
     },
   }
 
-  function handleUnlock(e: any) {
-    console.log(e.detail)
-    setUnlockStatus(e.detail)
+  function handleUnlock(e: CustomEvent) {
+    const detail: string | undefined = e.detail
+    setUnlockStatus(detail)
   }
 
   useEffect(() => {
@@ -41,13 +39,13 @@ export default function PaywallDemo() {
     script.async = true
     document.body.appendChild(script)
 
-    window.addEventListener('unlockProtocol', handleUnlock)
+    window.addEventListener('unlockProtocol', handleUnlock as EventListener)
 
     return () => {
       // remove script when component is unmounted
       document.body.removeChild(script)
       if ('unlockProtocolConfig' in window) delete window.unlockProtocolConfig
-      window.removeEventListener('unlockProtocol', handleUnlock)
+      window.removeEventListener('unlockProtocol', handleUnlock as EventListener)
     }
   }, [])
 

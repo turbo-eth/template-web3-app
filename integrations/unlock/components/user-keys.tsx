@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -18,8 +17,7 @@ export default function UserKeys() {
 
   useEffect(() => {
     async function fetchUserKeys() {
-      const keys = await getUserKeys()
-      console.log(keys)
+      const keys: UserKeysQueryQuery | undefined = await getUserKeys()
       setUserKeys(keys)
     }
     void fetchUserKeys()
