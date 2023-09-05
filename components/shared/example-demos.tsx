@@ -519,6 +519,21 @@ const demos = [
         />
       </div>
     ),
+  },{
+    title: turboIntegrations.tally.name,
+    description: turboIntegrations.tally.description,
+    href: turboIntegrations.tally.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <LightDarkImage
+          LightImage={turboIntegrations.tally.imgDark}
+          DarkImage={turboIntegrations.tally.imgLight}
+          alt="Tally logo"
+          height={100}
+          width={100}
+        />
+      </div>
+    ),
   },
   {
     title: turboIntegrations.starter.name,

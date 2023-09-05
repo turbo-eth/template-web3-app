@@ -208,6 +208,15 @@ export const turboIntegrations = {
     category: "services",
     imgDark: "/integrations/defi-llama.png",
   },
+  tally: {
+    name: "Tally",
+    href: "/integration/tally",
+    url: "https://docs.tally.xyz",
+    description: "Tally is a frontend for onchain decentralized organizations.",
+    category: "services",
+    imgLight: "/integrations/tally.png",
+    imgDark: "/integrations/tally.png",
+  },
   starter: {
     name: "Starter Template",
     href: "/integration/starter",
