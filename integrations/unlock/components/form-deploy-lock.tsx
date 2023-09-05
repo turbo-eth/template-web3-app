@@ -2,10 +2,12 @@
 
 import { useState } from 'react'
 
+import { ethers } from 'ethers'
+
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
 
-import { useDeployLock } from '../hooks/use-deploy-lock'
+import { usePrepareUnlockV12CreateLock, useUnlockV12CreateLock } from '../generated/unlock-wagmi'
 
 export default function FormDeployLock() {
   const [lockName, setLockName] = useState<string>('test lock')
@@ -17,16 +19,21 @@ export default function FormDeployLock() {
   const [unlimitedKeys, setUnlimitedKeys] = useState<boolean>(false)
   const [unlimitedDuration, setUnlimitedDuration] = useState<boolean>(false)
 
-  const { data, isLoading, isSuccess, deployLock } = useDeployLock()
+  const { config } = usePrepareUnlockV12CreateLock({
+    address: '0x627118a4fB747016911e5cDA82e2E77C531e8206', // goerli
+    args: [
+      duration === 0 ? BigInt(ethers.constants.MaxUint256.toString()) : BigInt(duration * 60 * 60 * 24),
+      ethers.constants.AddressZero, // token address defaults to ETH, can be any ERC20
+      BigInt(ethers.utils.parseUnits(keyPrice, 18).toString()), // key price in ETH
+      maxKeys === 0 ? BigInt(ethers.constants.MaxUint256.toString()) : BigInt(maxKeys),
+      lockName,
+      '0x000000000000000000000000',
+    ],
+  })
+  const { write, isLoading, isSuccess } = useUnlockV12CreateLock(config)
 
   function handleDeploy() {
-    deployLock(duration, keyPrice, maxKeys, lockName)
-      .then(() => {
-        console.log('deploying lock...')
-      })
-      .catch((e) => {
-        console.log('error deploying lock', e)
-      })
+    write?.()
   }
 
   function handleUnlimitedKeys(e: boolean) {

@@ -1,4 +1,5 @@
 import { defineConfig } from '@wagmi/cli'
+import { react } from '@wagmi/cli/plugins'
 
 import { publicLockV13Abi } from './abis/public-lock-v13-abi'
 import { unlockV12Abi } from './abis/unlock-v12-abi'
@@ -15,5 +16,5 @@ export default defineConfig({
       abi: publicLockV13Abi,
     },
   ],
-  plugins: [],
+  plugins: [react()],
 })
