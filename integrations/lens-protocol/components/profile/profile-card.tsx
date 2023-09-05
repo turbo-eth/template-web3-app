@@ -28,17 +28,17 @@ export const ProfileCard = ({
           router.push(`/integration/lens-protocol/profiles/${profile.handle}`)
       }}
     >
-      <CardContent className="flex flex-col items-center pt-8">
+      <CardContent className="flex w-full flex-col items-center pt-8">
         <Avatar>
           <AvatarImage src={getProfilePictureSrc(profile)} />
           <AvatarFallback className="uppercase">
             {profile.handle.substring(0, 1)}
           </AvatarFallback>
         </Avatar>
-        <span className="link mt-2 w-full truncate font-semibold">
+        <span className="link mt-2 block w-full truncate font-semibold">
           @{profile.handle}
         </span>
-        <span className="my-2 w-full truncate text-xs">
+        <span className="my-2 block w-full truncate text-xs">
           {profile.name ?? profile.handle}
         </span>
         <div className="mb-2 flex flex-row justify-between space-x-4">
