@@ -3,7 +3,6 @@
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 
 import { useDeployLock } from '../hooks/use-deploy-lock'
@@ -54,13 +53,13 @@ export default function FormDeployLock() {
     <div className="card w-full">
       <div className="flex flex-col gap-4">
         <label>Lock Name</label>
-        <Input placeholder={lockName} onChange={(e) => setLockName(e.target.value)} />
+        <input className="input mt-4" placeholder={lockName} onChange={(e) => setLockName(e.target.value)} />
         <label>Max Number of Keys</label>
         <div className="flex flex-row items-center justify-center space-x-4">
           {unlimitedKeys ? (
-            <Input disabled={true} />
+            <input className="input mt-4" disabled={true} />
           ) : (
-            <Input placeholder={maxKeys.toString()} onChange={(e) => setMaxKeys(Number(e.target.value))} />
+            <input className="input mt-4" placeholder={maxKeys.toString()} onChange={(e) => setMaxKeys(Number(e.target.value))} />
           )}
           <div className="flex flex-row space-x-2">
             <p>unlimited:</p>
@@ -71,9 +70,9 @@ export default function FormDeployLock() {
           <label>Membership Duration (Days)</label>
           <div className="flex flex-row items-center justify-center space-x-4">
             {unlimitedDuration ? (
-              <Input disabled={true} />
+              <input className="input mt-4" disabled={true} />
             ) : (
-              <Input placeholder={duration.toString()} onChange={(e) => setDuration(Number(e.target.value))} />
+              <input className="input mt-4" placeholder={duration.toString()} onChange={(e) => setDuration(Number(e.target.value))} />
             )}
             <div className="flex flex-row space-x-2">
               <p>unlimited</p>
@@ -83,7 +82,7 @@ export default function FormDeployLock() {
         </div>
         <div>
           <label>Key Price</label>
-          <Input placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
+          <input className="input mt-4" placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
         </div>
         <div className="m-10 flex flex-col items-center justify-center">
           <Button onClick={handleDeploy}>Deploy Lock</Button>
