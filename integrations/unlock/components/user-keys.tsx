@@ -17,7 +17,7 @@ export default function UserKeys() {
 
   useEffect(() => {
     async function fetchUserKeys() {
-      const keys: UserKeysQueryQuery | undefined = await getUserKeys()
+      const keys: UserKeysQueryQuery | undefined = (await getUserKeys()) as UserKeysQueryQuery
       setUserKeys(keys)
     }
     void fetchUserKeys()

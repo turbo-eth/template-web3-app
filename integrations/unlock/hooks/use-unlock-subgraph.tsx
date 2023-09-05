@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import { GraphQLResponse } from 'graphql-request/build/esm/types'
 import { useAccount, useNetwork } from 'wagmi'
 

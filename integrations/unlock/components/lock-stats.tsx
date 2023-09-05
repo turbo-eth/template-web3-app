@@ -14,7 +14,7 @@ export default function LockStats({ lockId }: { lockId: string }) {
 
   useEffect(() => {
     async function fetchLockStats() {
-      const stats: LockStatsQueryQuery = await getLockStats({ lockId })
+      const stats: LockStatsQueryQuery = (await getLockStats({ lockId })) as LockStatsQueryQuery
       setLockStats(stats)
     }
     void fetchLockStats()

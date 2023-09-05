@@ -17,7 +17,7 @@ export default function UserLocks() {
 
   useEffect(() => {
     async function fetchUserLocks() {
-      const locks = await getUserLocks()
+      const locks = (await getUserLocks()) as UserLocksQueryQuery
       setUserLocks(locks)
     }
     void fetchUserLocks()
