@@ -488,6 +488,23 @@ const demos = [
       </div>
     ),
   },
+  {
+    title: turboIntegrations.ipfs.name,
+    description: turboIntegrations.ipfs.description,
+    href: turboIntegrations.ipfs.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <LightDarkImage
+          LightImage={turboIntegrations.ipfs.imgDark}
+          DarkImage={turboIntegrations.ipfs.imgLight}
+          alt="Starter logo"
+          height={100}
+          width={100}
+        />
+       
+      </div>
+    ),
+  },
 ]
 
 interface ExampleDemosProps extends MotionProps {

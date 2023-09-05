@@ -157,4 +157,13 @@ export const turboIntegrations = {
     imgLight: "/logo-gradient.png",
     imgDark: "/logo-dark.png",
   },
+  ipfs: {
+    name: 'IPFS',
+    href: '/integration/ipfs',
+    url: 'https://ipfs.io',
+    description:
+      'IPFS (InterPlanetary File System) is a peer-to-peer hypermedia protocol designed to make the web faster, safer, and more open. It enables the creation of distributed applications and the permanent, decentralized storage and sharing of data.',
+    imgLight: '/integrations/ipfs-logo.svg',
+    imgDark: '/integrations/ipfs-logo.svg',
+  },
 }
