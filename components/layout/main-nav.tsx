@@ -110,7 +110,7 @@ const NavMenuListItem = ({
       <NavigationMenuLink asChild>
         <a
           href={href}
-          className="block select-none gap-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+          className="flex select-none flex-col gap-y-2 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
         >
           <div className="flex items-center gap-x-2">
             <LightDarkImage

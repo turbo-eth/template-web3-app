@@ -207,7 +207,7 @@ const NavMenuListItem = ({
           router.push(href.toString())
           onOpenChange?.(false)
         }}
-        className="block select-none space-y-1 rounded-md py-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+        className="block select-none space-y-1 rounded-md py-3 pl-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
       >
         <div className="flex items-center space-x-2">
           <LightDarkImage
