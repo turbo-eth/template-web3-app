@@ -6,6 +6,8 @@ import { formatUnits } from "viem"
 import { Address, useAccount } from "wagmi"
 
 import { cn } from "@/lib/utils"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 
@@ -156,8 +158,14 @@ export function ERC20Read({
   return (
     <>
       <IsWalletConnected>
-        <div className={cn("card w-full", className)} {...props}>
-          <div className="flex items-center justify-center space-x-6">
+        <Card>
+          <CardContent
+            className={cn(
+              "flex items-center justify-center gap-x-6",
+              className
+            )}
+            {...props}
+          >
             <div className="text-center">
               <span className="text-3xl">
                 {showImage && (
@@ -197,15 +205,15 @@ export function ERC20Read({
                 )}
               </div>
             </div>
-          </div>
-          <hr className="my-4" />
-          <div className="flex items-center justify-between">
+          </CardContent>
+          <Separator className="my-4" />
+          <CardFooter className="justify-between">
             <h3 className="text-center">ERC20 Read</h3>
             <p className="text-center text-sm text-muted-foreground">
               Read core ERC20 token storage values
             </p>
-          </div>
-        </div>
+          </CardFooter>
+        </Card>
       </IsWalletConnected>
       <IsWalletDisconnected>
         <div className="flex items-center justify-center gap-10">

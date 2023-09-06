@@ -50,7 +50,7 @@ export const DiscoProfileCredentials = ({
               href={`${DISCO_APP_URL}/${credential.id}`}
             >
               <Card className="transition duration-300 hover:scale-105 dark:bg-neutral-500/80">
-                <CardContent className="flex h-[224px] flex-col justify-between pt-4">
+                <CardContent className="flex h-[224px] flex-col justify-between">
                   <div className="break-words font-bold text-foreground">{`${
                     credential?.type[1] || credential?.type[0]
                   }`}</div>

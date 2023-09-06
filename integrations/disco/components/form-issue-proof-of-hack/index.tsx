@@ -38,7 +38,7 @@ export function FormCredentialIssuanceProofOfHack() {
   return (
     <>
       <Card>
-        <CardContent className="pt-6">
+        <CardContent>
           <Form {...form}>
             <form
               className="flex w-full flex-col gap-y-8"
