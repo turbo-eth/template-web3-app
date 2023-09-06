@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react"
-import { Separator } from "@radix-ui/react-select"
 import { usePublicClient, useWalletClient } from "wagmi"
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { BlockExplorerLink } from "@/components/blockchain/block-explorer-link"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 

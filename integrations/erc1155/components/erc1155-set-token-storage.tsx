@@ -1,8 +1,8 @@
 import { FormEvent, useEffect, useMemo, useState } from "react"
-import { Separator } from "@radix-ui/react-select"
 import { Address, isAddress } from "viem"
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 
 import { useErc1155TokenStorage } from "../hooks/use-erc1155-token-storage"
 

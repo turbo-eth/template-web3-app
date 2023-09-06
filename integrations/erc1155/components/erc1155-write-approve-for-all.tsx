@@ -1,10 +1,10 @@
-import { Separator } from "@radix-ui/react-select"
 import { useForm } from "react-hook-form"
 import { useDebounce } from "usehooks-ts"
 import { BaseError } from "viem"
 import { Address, useWaitForTransaction } from "wagmi"
 
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
 
