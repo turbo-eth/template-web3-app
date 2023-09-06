@@ -1,24 +1,29 @@
 import { useEffect, useState } from 'react'
 
 import { networks } from '@unlock-protocol/networks'
-import { NetworkConfigs } from '@unlock-protocol/paywall'
 import { useNetwork } from 'wagmi'
+
+type UnlockNetworkConfig = {
+  [key: number]: { unlockAddress: string; subgraphEndpoint: string }
+}
 
 export default function useUnlockSuppertedNetworks() {
   const [isSupported, setIsSupported] = useState<boolean>(false)
-  const [unlockAddress, setUnlockAddress] = useState<string>('')
-  const [subgraphEndpoint, setSupgraphEndpoint] = useState<string>('')
+  const [networkData, setNetworkData] = useState<{ unlockAddress: string; subgraphEndpoint: string }>({ unlockAddress: '', subgraphEndpoint: '' })
 
   const { chain } = useNetwork()
-  const networkConfigs: NetworkConfigs = networks
+
+  const unlockNwConfig: UnlockNetworkConfig = networks
 
   useEffect(() => {
-    if (chain && chain.id in networkConfigs) {
+    if (chain && chain.id in networks) {
       setIsSupported(true)
-    } else {
-      setIsSupported(false)
+      setNetworkData({
+        unlockAddress: unlockNwConfig[chain.id].unlockAddress,
+        subgraphEndpoint: unlockNwConfig[chain.id].subgraphEndpoint,
+      })
     }
   }, [chain])
 
-  return { isSupported, unlockAddress, subgraphEndpoint }
+  return { isSupported, networkData }
 }
