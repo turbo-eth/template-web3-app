@@ -56,11 +56,11 @@ function MainNavMenu() {
                 <>
                   <h4
                     key={category}
-                    className="col-span-3 text-lg font-medium leading-none"
+                    className="text-lg font-medium leading-none md:col-span-2 lg:col-span-3"
                   >
                     {category.charAt(0).toUpperCase() + category.slice(1)}
                   </h4>
-                  <Separator className="col-span-3" />
+                  <Separator className="md:col-span-2 lg:col-span-3" />
                   {Object.values(turboIntegrations)
                     .filter((integration) => integration.category === category)
                     .map(({ name, href, description, imgDark, imgLight }) => (
@@ -106,13 +106,13 @@ const NavMenuListItem = ({
   darkImage,
 }: NavMenuListItemProps) => {
   return (
-    <li key={name}>
+    <li className="w-full min-w-full" key={name}>
       <NavigationMenuLink asChild>
         <a
           href={href}
-          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+          className="block select-none gap-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
         >
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-x-2">
             <LightDarkImage
               LightImage={lightImage}
               DarkImage={darkImage}
