@@ -36,7 +36,7 @@ export const DiscoProfileBasic = ({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 items-center justify-between gap-2 lg:grid-cols-4",
+        "grid grid-cols-1 items-center justify-between gap-3 lg:grid-cols-4",
         className
       )}
       {...props}
