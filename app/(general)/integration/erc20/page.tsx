@@ -55,40 +55,38 @@ export default function Erc20Page() {
         </PageHeaderCTA>
       </PageHeader>
       <PageSection>
-        <div className="container w-full max-w-screen-lg">
-          <IsWalletConnected>
-            <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
-              <ERC20Deploy />
-              <Erc20SetTokenStorage />
-              {token && (
-                <>
-                  <div className="card flex flex-col">
-                    <span className="mb-4 text-lg">
-                      Access the token page where you can update the url
-                      parameters to select which ERC20 token to view
-                    </span>
-                    <Link
-                      className={cn(
-                        buttonVariants({ variant: "emerald", size: "sm" })
-                      )}
-                      href={`/integration/erc20/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}
-                    >
-                      View Token Page
-                    </Link>
-                  </div>
-                  <ERC20Read address={token} />
-                  <ERC20WriteMint address={token} />
-                  <ERC20WriteTransfer address={token} />
-                </>
-              )}
-            </div>
-          </IsWalletConnected>
-          <IsWalletDisconnected>
-            <div className="flex items-center justify-center">
-              <WalletConnect />
-            </div>
-          </IsWalletDisconnected>
-        </div>
+        <IsWalletConnected>
+          <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
+            <ERC20Deploy />
+            <Erc20SetTokenStorage />
+            {token && (
+              <>
+                <div className="card flex flex-col">
+                  <span className="mb-4 text-lg">
+                    Access the token page where you can update the url
+                    parameters to select which ERC20 token to view
+                  </span>
+                  <Link
+                    className={cn(
+                      buttonVariants({ variant: "emerald", size: "sm" })
+                    )}
+                    href={`/integration/erc20/1/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48`}
+                  >
+                    View Token Page
+                  </Link>
+                </div>
+                <ERC20Read address={token} />
+                <ERC20WriteMint address={token} />
+                <ERC20WriteTransfer address={token} />
+              </>
+            )}
+          </div>
+        </IsWalletConnected>
+        <IsWalletDisconnected>
+          <div className="flex items-center justify-center">
+            <WalletConnect />
+          </div>
+        </IsWalletDisconnected>
       </PageSection>
     </div>
   )

@@ -90,23 +90,16 @@ export function MobileNav() {
                           .filter(
                             (integration) => integration.category === category
                           )
-                          .map(
-                            ({
-                              name,
-                              href,
-                              description,
-                              imgDark,
-                              imgLight,
-                            }) => (
-                              <NavMenuListItem
-                                key={name}
-                                name={name}
-                                href={href}
-                                lightImage={imgDark}
-                                darkImage={imgLight}
-                              />
-                            )
-                          )}
+                          .map(({ name, href, imgDark, imgLight }) => (
+                            <NavMenuListItem
+                              key={name}
+                              name={name}
+                              href={href}
+                              lightImage={imgDark}
+                              darkImage={imgLight}
+                              onOpenChange={setOpen}
+                            />
+                          ))}
                       </>
                     ))}
                   </ul>
@@ -198,15 +191,11 @@ const NavMenuListItem = ({
   darkImage,
   onOpenChange,
 }: NavMenuListItemProps) => {
-  const router = useRouter()
   return (
     <li key={name}>
-      <Link
+      <MobileLink
+        onOpenChange={onOpenChange}
         href={href}
-        onClick={() => {
-          router.push(href.toString())
-          onOpenChange?.(false)
-        }}
         className="block select-none space-y-1 rounded-md py-3 pl-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
       >
         <div className="flex items-center space-x-2">
@@ -220,7 +209,7 @@ const NavMenuListItem = ({
           />
           <span className="text-sm font-medium leading-none">{name}</span>
         </div>
-      </Link>
+      </MobileLink>
     </li>
   )
 }
