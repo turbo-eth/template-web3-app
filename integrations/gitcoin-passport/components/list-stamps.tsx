@@ -29,8 +29,8 @@ import {
 import { LinkComponent } from "@/components/shared/link-component"
 
 import { useGetAddressStamps } from "../hooks/use-get-address-stamps"
-import { useGetAllStamps } from "../hooks/use-get-all-stamps"
 import { useGetScore } from "../hooks/use-get-score"
+import { useGetStampsMetadata } from "../hooks/use-get-stamps-metadata"
 import { HAS_NOT_SUBMITTED_PASSPORT_YET_ERROR } from "../utils/constants"
 import { Spinner } from "./spinner"
 import { SubmitPassportButton } from "./submit-passport-button"
@@ -42,7 +42,7 @@ const SCORE_INFO_TEXT =
   "Make sure to hit the Submit Passport button after you claimed any new stamps to update your score."
 
 export const ListStamps = () => {
-  const { stamps, isLoading: stampsLoading } = useGetAllStamps()
+  const { stamps, isLoading: stampsLoading } = useGetStampsMetadata()
 
   const {
     data: scoreData,

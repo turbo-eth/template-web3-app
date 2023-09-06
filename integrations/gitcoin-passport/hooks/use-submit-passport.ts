@@ -5,12 +5,6 @@ import { useAccount } from "wagmi"
 import { useToast } from "@/lib/hooks/use-toast"
 import { useEthersSigner } from "@/lib/hooks/web3/use-ethers-signer"
 
-import {
-  GITCOIN_API_BASE_URL,
-  GITCOIN_PASSPORT_API_KEY,
-  GITCOIN_PASSPORT_SCORER_ID,
-} from "../utils/constants"
-
 type SigningMessageResponse = {
   message: string
   nonce: string
@@ -33,14 +27,7 @@ export const useSubmitPassport = () => {
 
   const signMessageMutation = useMutation({
     mutationFn: async () => {
-      if (!GITCOIN_PASSPORT_API_KEY)
-        throw new Error("Gitcoin passport api key not provided.")
-      const response = await fetch(`${GITCOIN_API_BASE_URL}/signing-message`, {
-        headers: {
-          "Content-Type": "application/json",
-          "X-API-Key": GITCOIN_PASSPORT_API_KEY,
-        },
-      })
+      const response = await fetch("/api/gitcoin-passport/signing-message")
       const data = await response.json()
       if (response.status === 200) {
         return data as SigningMessageResponse
@@ -59,19 +46,10 @@ export const useSubmitPassport = () => {
       nonce: string
     }) => {
       if (!address) throw new Error("No address provided.")
-      if (!GITCOIN_PASSPORT_API_KEY)
-        throw new Error("Gitcoin passport api key not provided.")
-      if (!GITCOIN_PASSPORT_SCORER_ID)
-        throw new Error("Gitcoin passport scorer id not provided.")
-      const response = await fetch(`${GITCOIN_API_BASE_URL}/submit-passport`, {
+      const response = await fetch("/api/gitcoin-passport/submit-passport", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-API-Key": GITCOIN_PASSPORT_API_KEY,
-        },
         body: JSON.stringify({
           address,
-          community: GITCOIN_PASSPORT_SCORER_ID,
           signature,
           nonce,
         }),

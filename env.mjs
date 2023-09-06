@@ -21,6 +21,8 @@ export const env = createEnv({
     ETHERSCAN_API_KEY_ARBITRUM: z.string().min(1).optional(),
     ETHERSCAN_API_KEY_POLYGON: z.string().min(1).optional(),
     MORALIS_API_KEY: z.string().min(1).optional(),
+    GITCOIN_PASSPORT_SCORER_ID: z.string().min(1).optional(),
+    GITCOIN_PASSPORT_API_KEY: z.string().min(1).optional(),
   },
   client: {
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER: z.enum(["true", "false"]).default("true"),
@@ -29,8 +31,6 @@ export const env = createEnv({
     NEXT_PUBLIC_INFURA_API_KEY: z.string().min(1).optional(),
     NEXT_PUBLIC_LIVEPEER_API_KEY: z.string().min(1).optional(),
     NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
-    NEXT_PUBLIC_GITCOIN_PASSPORT_SCORER_ID: z.string().min(1).optional(),
-    NEXT_PUBLIC_GITCOIN_PASSPORT_API_KEY: z.string().min(1).optional(),
   },
   runtimeEnv: {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
@@ -44,15 +44,13 @@ export const env = createEnv({
     ETHERSCAN_API_KEY_ARBITRUM: process.env.ETHERSCAN_API_KEY_ARBITRUM,
     ETHERSCAN_API_KEY_POLYGON: process.env.ETHERSCAN_API_KEY_POLYGON,
     MORALIS_API_KEY: process.env.MORALIS_API_KEY,
+    GITCOIN_PASSPORT_SCORER_ID: process.env.GITCOIN_PASSPORT_SCORER_ID,
+    GITCOIN_PASSPORT_API_KEY: process.env.GITCOIN_PASSPORT_API_KEY,
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER:
       process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER,
     NEXT_PUBLIC_ALCHEMY_API_KEY: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     NEXT_PUBLIC_INFURA_API_KEY: process.env.NEXT_PUBLIC_INFURA_API_KEY,
     NEXT_PUBLIC_LIVEPEER_API_KEY: process.env.NEXT_PUBLIC_LIVEPEER_API_KEY,
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
-    NEXT_PUBLIC_GITCOIN_PASSPORT_SCORER_ID:
-      process.env.NEXT_PUBLIC_GITCOIN_PASSPORT_SCORER_ID,
-    NEXT_PUBLIC_GITCOIN_PASSPORT_API_KEY:
-      process.env.NEXT_PUBLIC_GITCOIN_PASSPORT_API_KEY,
   },
 })
