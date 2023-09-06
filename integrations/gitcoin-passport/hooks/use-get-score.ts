@@ -2,11 +2,6 @@ import { useCallback, useEffect } from "react"
 import { useQuery } from "@tanstack/react-query"
 import { useAccount } from "wagmi"
 
-import {
-  GITCOIN_API_BASE_URL,
-  GITCOIN_PASSPORT_API_KEY,
-  GITCOIN_PASSPORT_SCORER_ID,
-} from "../utils/constants"
 import { AddressScoreResponse } from "../utils/types"
 
 export const useGetScore = () => {

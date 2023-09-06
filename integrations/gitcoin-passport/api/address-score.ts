@@ -7,13 +7,18 @@ export async function GET(
   { params }: { params: { address: string } }
 ) {
   if (!env.GITCOIN_PASSPORT_API_KEY)
-    return new Response("Gitcoin passport api key not provided.", {
-      status: 400,
-    })
+    return new Response(
+      JSON.stringify({ detail: "Gitcoin passport api key not provided." }),
+      {
+        status: 400,
+      }
+    )
 
   if (!env.GITCOIN_PASSPORT_SCORER_ID)
     return new Response(
-      "Gitcoin passport scorer (community) id not provided.",
+      JSON.stringify({
+        detail: "Gitcoin passport scorer (community) id not provided.",
+      }),
       {
         status: 400,
       }
