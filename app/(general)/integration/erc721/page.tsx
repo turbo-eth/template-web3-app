@@ -57,25 +57,23 @@ export default function ERC721Page() {
         </PageHeaderCTA>
       </PageHeader>
       <PageSection>
-        <div className="container flex w-full flex-col items-center">
-          <IsWalletConnected>
-            <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
-              <ERC721Deploy />
-              <Erc721SetTokenStorage />
-              {token && (
-                <>
-                  <Erc721Read address={token} />
-                  <Erc721WriteMint address={token} />
-                  <Erc721WriteApprove address={token} />
-                  <Erc721WriteTransfer address={token} />
-                </>
-              )}
-            </div>
-          </IsWalletConnected>
-          <IsWalletDisconnected>
-            <WalletConnect />
-          </IsWalletDisconnected>
-        </div>
+        <IsWalletConnected>
+          <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
+            <ERC721Deploy />
+            <Erc721SetTokenStorage />
+            {token && (
+              <>
+                <Erc721Read address={token} />
+                <Erc721WriteMint address={token} />
+                <Erc721WriteApprove address={token} />
+                <Erc721WriteTransfer address={token} />
+              </>
+            )}
+          </div>
+        </IsWalletConnected>
+        <IsWalletDisconnected>
+          <WalletConnect />
+        </IsWalletDisconnected>
       </PageSection>
     </div>
   )
