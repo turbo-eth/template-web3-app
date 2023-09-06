@@ -27,7 +27,7 @@ export type StampsMetadataResponse = {
   groups: Array<{
     name: string
     stamps: Array<{
-      name: string
+      name: StampId
       description: string
       hash: string
     }>

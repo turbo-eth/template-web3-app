@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button"
 
 import { useSubmitPassport } from "../hooks/use-submit-passport"
-import { Spinner } from "./spinner"
 
 export const SubmitPassportButton = ({
   onSuccess,
@@ -10,24 +9,26 @@ export const SubmitPassportButton = ({
 }) => {
   const { submitPassport, isLoading } = useSubmitPassport()
   return (
-    <Button
-      variant="emerald"
-      className="space-x-4"
-      onClick={() => {
-        submitPassport()
-          .then(() => onSuccess())
-          .catch(console.error)
-      }}
-      disabled={isLoading}
-    >
-      {isLoading ? (
-        <div className="flex flex-row items-center justify-center space-x-2">
-          <Spinner isSmall />
-          <span>Submitting Passport</span>
-        </div>
-      ) : (
-        "Submit Passport"
-      )}
-    </Button>
+    <div>
+      <div className="mb-2 text-sm">
+        <div className="text-md font-semibold">Submit Passport for Scoring</div>
+        this is simply a message-signing to verify you are the owner of the
+        wallet. This operation does not include any fees. once submitted your
+        passport will be created/updated in this community. hit the submit
+        button to get your passport score.
+      </div>
+      <Button
+        variant="emerald"
+        className="w-auto space-x-4"
+        onClick={() => {
+          submitPassport()
+            .then(() => onSuccess())
+            .catch(console.error)
+        }}
+        disabled={isLoading}
+      >
+        Submit
+      </Button>
+    </div>
   )
 }
