@@ -28,5 +28,5 @@ export default function ButtonKeyCheckout({ lockId }: { lockId: string }) {
     }
   }
 
-  return <div>{<Button onClick={handleCheckout}>Checkout</Button>}</div>
+  return <div>{<Button onClick={handleCheckout}>Purchase Lock</Button>}</div>
 }
