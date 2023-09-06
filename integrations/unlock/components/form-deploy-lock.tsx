@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
 
 import { usePrepareUnlockV12CreateLock, useUnlockV12CreateLock } from '../generated/unlock-wagmi'
+import useUnlockSuppertedNetworks from '../hooks/use-unlock-supported-networks'
 
 export default function FormDeployLock() {
   const [lockName, setLockName] = useState<string>('test lock')
@@ -19,8 +20,10 @@ export default function FormDeployLock() {
   const [unlimitedKeys, setUnlimitedKeys] = useState<boolean>(false)
   const [unlimitedDuration, setUnlimitedDuration] = useState<boolean>(false)
 
+  const { isSupported, networkData } = useUnlockSuppertedNetworks()
+
   const { config } = usePrepareUnlockV12CreateLock({
-    address: '0x627118a4fB747016911e5cDA82e2E77C531e8206', // goerli
+    address: networkData.unlockAddress,
     args: [
       duration === 0 ? BigInt(ethers.constants.MaxUint256.toString()) : BigInt(duration * 60 * 60 * 24),
       ethers.constants.AddressZero, // token address defaults to ETH, can be any ERC20
@@ -33,7 +36,7 @@ export default function FormDeployLock() {
   const { write, isLoading, isSuccess } = useUnlockV12CreateLock(config)
 
   function handleDeploy() {
-    write?.()
+    isSupported && write?.()
   }
 
   function handleUnlimitedKeys(e: boolean) {
