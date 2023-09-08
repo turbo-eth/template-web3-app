@@ -1,19 +1,20 @@
+import { SismoConnectConfig } from "@sismo-core/sismo-connect-react"
 
-const CONFIG_MAPPING= {
-  auth:{
-    appId: "0x6687efe350ee1dc1af93a8b118cf016e", 
+const CONFIG_MAPPING = {
+  auth: {
+    appId: "0x6687efe350ee1dc1af93a8b118cf016e",
     vault: {
       impersonate: [
         "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
         "github:leosayous21",
         "twitter:dhadrien_:2390703980",
-      ]
+      ],
     },
     displayRawResponse: false,
-    vaultAppBaseUrl: "https://vault-beta.sismo.io"
+    vaultAppBaseUrl: "https://vault-beta.sismo.io",
   },
-  claims:{
-    appId: "0x32403ced4b65f2079eda77c84e7d2be6", 
+  claims: {
+    appId: "0x32403ced4b65f2079eda77c84e7d2be6",
     vault: {
       impersonate: [
         "dhadrien.sismo.eth",
@@ -23,14 +24,14 @@ const CONFIG_MAPPING= {
         "0xc281bd4db5bf94f02a8525dca954db3895685700",
         "github:dhadrien",
         "twitter:dhadrien_",
-        "telegram:dhadrien",]
+        "telegram:dhadrien",
+      ],
     },
     displayRawResponse: false,
-    vaultAppBaseUrl: "https://vault-beta.sismo.io"
-  
+    vaultAppBaseUrl: "https://vault-beta.sismo.io",
   },
-  signature:{
-    appId: "0x32403ced4b65f2079eda77c84e7d2be6", 
+  signature: {
+    appId: "0x32403ced4b65f2079eda77c84e7d2be6",
     vault: {
       impersonate: [
         "dhadrien.sismo.eth",
@@ -40,17 +41,13 @@ const CONFIG_MAPPING= {
         "0xc281bd4db5bf94f02a8525dca954db3895685700",
         "github:dhadrien",
         "twitter:dhadrien_",
-        "telegram:dhadrien",]
-    }
-  
-  }
+        "telegram:dhadrien",
+      ],
+    },
+  },
 }
-
-
-
-import { SismoConnectConfig } from "@sismo-core/sismo-connect-react";
 
 export const getConfig = (tabValue: keyof typeof CONFIG_MAPPING = "auth") => {
   const config: SismoConnectConfig = CONFIG_MAPPING[tabValue]
-  return config;
+  return config
 }

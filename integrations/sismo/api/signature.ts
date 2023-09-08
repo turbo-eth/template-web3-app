@@ -1,28 +1,35 @@
+import {
+  AuthType,
+  SismoConnect,
+  SismoConnectVerifiedResult,
+} from "@sismo-core/sismo-connect-server"
 
-import { SismoConnect, SismoConnectVerifiedResult, AuthType } from "@sismo-core/sismo-connect-server";
-import { getConfig } from "../utils/getConfig";
+import { getConfig } from "../utils/getConfig"
 
 export async function POST(req: Request) {
-
   try {
+    const config = getConfig("signature")
+    const sismoConnect = SismoConnect({ config })
 
-    const config = getConfig('signature')
-    const sismoConnect = SismoConnect({config})
-    
     const sismoConnectResponse = await req.json().catch((error) => {
-      console.error('Error parsing request body as JSON:', error);
-      return null;
-    });
-    
+      console.error("Error parsing request body as JSON:", error)
+      return null
+    })
+
     if (sismoConnectResponse === null) {
-      return new Response('Invalid JSON in request body', { status: 400 });
+      return new Response("Invalid JSON in request body", { status: 400 })
     }
-    
-    console.log('signapi')
-    const result:SismoConnectVerifiedResult = await sismoConnect.verify(sismoConnectResponse, {
-      auths: [{ authType: AuthType.GITHUB,isOptional:true }],
-      signature:{ message: "I want TurboEth with Sismo",isSelectableByUser: true, },
-    });
+
+    const result: SismoConnectVerifiedResult = await sismoConnect.verify(
+      sismoConnectResponse,
+      {
+        auths: [{ authType: AuthType.GITHUB, isOptional: true }],
+        signature: {
+          message: "I want TurboEth with Sismo",
+          isSelectableByUser: true,
+        },
+      }
+    )
 
     if (result) {
       return new Response(JSON.stringify(result), {
@@ -30,9 +37,8 @@ export async function POST(req: Request) {
         headers: { "Content-Type": "application/json" },
       })
     }
-    
-  }
-  catch (e) {
+  } catch (e) {
     const errorMessage = e instanceof Error ? e.message : String(e)
-    return new Response(errorMessage, { status: 500 })}
+    return new Response(errorMessage, { status: 500 })
+  }
 }

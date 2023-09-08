@@ -7,23 +7,25 @@ import {
   SismoConnectVerifiedResult,
 } from "@sismo-core/sismo-connect-react"
 
-type ErrorSetter = (error: any) => void 
+type ErrorSetter = (error: any) => void
 type PageStateSetter = (state: string) => void
-type SismoConnectVerifiedResultSetter = (result: SismoConnectVerifiedResult) => void;
+type SismoConnectVerifiedResultSetter = (
+  result: SismoConnectVerifiedResult
+) => void
 
 export interface connectPropsType {
-    auths: AuthRequest[]
-    claims?: ClaimRequest[]
-    signature?: {
-      message: string
-      isSelectableByUser: boolean
-    }
-    response: (
-      response: SismoConnectResponse,
-      setError: ErrorSetter,
-      setPageState: PageStateSetter,
-      setSismoConnectVerifiedResult: SismoConnectVerifiedResultSetter
-    ) => void
+  auths: AuthRequest[]
+  claims?: ClaimRequest[]
+  signature?: {
+    message: string
+    isSelectableByUser: boolean
+  }
+  response: (
+    response: SismoConnectResponse,
+    setError: ErrorSetter,
+    setPageState: PageStateSetter,
+    setSismoConnectVerifiedResult: SismoConnectVerifiedResultSetter
+  ) => void
 }
 
 const CONNECT_BUTTON_PROPS = {
@@ -39,7 +41,7 @@ const CONNECT_BUTTON_PROPS = {
       response: SismoConnectResponse,
       setError: ErrorSetter,
       setPageState: PageStateSetter,
-      setSismoConnectVerifiedResult:SismoConnectVerifiedResultSetter
+      setSismoConnectVerifiedResult: SismoConnectVerifiedResultSetter
     ) => {
       setPageState("verifying")
 
@@ -74,7 +76,7 @@ const CONNECT_BUTTON_PROPS = {
       response: SismoConnectResponse,
       setError: ErrorSetter,
       setPageState: PageStateSetter,
-      setSismoConnectVerifiedResult:SismoConnectVerifiedResultSetter
+      setSismoConnectVerifiedResult: SismoConnectVerifiedResultSetter
     ) => {
       setPageState("verifying")
 
@@ -104,7 +106,7 @@ const CONNECT_BUTTON_PROPS = {
       response: SismoConnectResponse,
       setError: ErrorSetter,
       setPageState: PageStateSetter,
-      setSismoConnectVerifiedResult :SismoConnectVerifiedResultSetter
+      setSismoConnectVerifiedResult: SismoConnectVerifiedResultSetter
     ) => {
       setPageState("verifying")
 
@@ -127,6 +129,6 @@ const CONNECT_BUTTON_PROPS = {
 export const getProps = (
   tabValue: keyof typeof CONNECT_BUTTON_PROPS = "auth"
 ) => {
-  const connectProps:connectPropsType = CONNECT_BUTTON_PROPS[tabValue]
+  const connectProps: connectPropsType = CONNECT_BUTTON_PROPS[tabValue]
   return connectProps
 }
