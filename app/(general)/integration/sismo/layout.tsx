@@ -27,7 +27,7 @@ export default function ArweaveLayout({ children }: ArweaveLayoutProps) {
     <div className="container relative mt-20">
       <PageHeader className="pb-8">
         <LightDarkImage
-          LightImage={turboIntegrations.sismo.imgDark}
+          LightImage={turboIntegrations.sismo.imgLight}
           DarkImage={turboIntegrations.sismo.imgDark}
           alt="Sismo Logo"
           width={100}
