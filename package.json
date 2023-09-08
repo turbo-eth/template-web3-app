@@ -77,6 +77,8 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.3",
     "@rainbow-me/rainbowkit": "1.0.1",
+    "@sismo-core/sismo-connect-react": "^0.0.23",
+    "@sismo-core/sismo-connect-server": "^0.0.23",
     "@t3-oss/env-nextjs": "^0.4.0",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/line-clamp": "^0.4.2",

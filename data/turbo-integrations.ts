@@ -148,6 +148,15 @@ export const turboIntegrations = {
     imgLight: "/integrations/arweave-light.png",
     imgDark: "/integrations/arweave-dark.png",
   },
+  sismo: {
+    name: "Sismo ETH",
+    href: "/integration/sismo",
+    url: "https://www.sismo.io/",
+    description:
+    "Sismo ETH is a decentralized identity aggregator and crypto-native SSO that uses zero-knowledge proofs (ZKPs) to enable users to aggregate and selectively disclose personal data to applications.",
+    imgLight: "/integrations/sismo-light.png",
+    imgDark: "/integrations/sismo-light.png",
+    },    
   starter: {
     name: "Starter Template",
     href: "/integration/starter",
