@@ -52,21 +52,6 @@ export function MobileNav() {
         </SheetTrigger>
       </div>
       <SheetContent side="right" className="pr-0">
-<<<<<<< HEAD
-        <MobileLink
-          href="/"
-          className="flex items-center"
-          onOpenChange={setOpen}
-        >
-          <LightDarkImage
-            LightImage="/logo-dark.png"
-            DarkImage="/logo-light.png"
-            alt="TurboETH"
-            height={32}
-            width={32}
-          />
-        </MobileLink>
-=======
         <div className="flex items-center gap-x-4">
           <MobileLink
             href="/"
@@ -83,7 +68,6 @@ export function MobileNav() {
           </MobileLink>
           <ModeToggle />
         </div>
->>>>>>> integrations
         <ScrollArea className="my-4 mr-4 h-[calc(100vh-8rem)] pb-10">
           <div className="flex flex-col space-y-4">
             <Accordion type="single" collapsible className="mx-auto w-full">

@@ -22,11 +22,7 @@ export const siteConfig: SiteConfig = {
   title: "TurboETH - Web3 App Template",
   emoji: "⚡",
   description:
-<<<<<<< HEAD
-    "Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!",
-=======
     "Start building full-stack Web3 applications in minutes with TurboETH.",
->>>>>>> integrations
   localeDefault: "en",
   links: {
     docs: "https://docs.turboeth.xyz/overview",
