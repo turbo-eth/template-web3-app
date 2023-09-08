@@ -30,7 +30,7 @@ export default async function Image() {
       >
         <img
           alt="TurboETH Logo"
-          src={new URL("../public/logo-fill.png", import.meta.url).toString()}
+          src={new URL("../public/logo-gradient.png", import.meta.url).toString()}
           tw="w-20 h-20 mb-4 opacity-95"
         />
         <h1

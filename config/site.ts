@@ -6,7 +6,6 @@ interface SiteConfig {
   title: string
   emoji: string
   description: string
-  previewImg: string
   localeDefault: string
   links: {
     docs: string
@@ -24,7 +23,6 @@ export const siteConfig: SiteConfig = {
   emoji: "⚡",
   description:
     "Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!",
-  previewImg: `${SITE_CANONICAL}/preview.png`,
   localeDefault: "en",
   links: {
     docs: "https://docs.turboeth.xyz/overview",

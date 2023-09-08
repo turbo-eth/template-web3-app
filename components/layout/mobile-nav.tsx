@@ -31,7 +31,7 @@ export function MobileNav() {
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <LightDarkImage
             LightImage="/logo-dark.png"
-            DarkImage="/logo-white.png"
+            DarkImage="/logo-light.png"
             alt="TurboETH"
             height={32}
             width={32}
@@ -58,7 +58,7 @@ export function MobileNav() {
         >
           <LightDarkImage
             LightImage="/logo-dark.png"
-            DarkImage="/logo-white.png"
+            DarkImage="/logo-light.png"
             alt="TurboETH"
             height={32}
             width={32}
