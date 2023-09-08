@@ -5,19 +5,14 @@ import { getConfig } from "../utils/getConfig";
 export async function POST(req: Request) {
 
   try {
-    const res = new Response()
 
     const config = getConfig('claims')
-    console.log('config',config)
     const sismoConnect = SismoConnect({config})
-    console.log('sismo',sismoConnect)
     
     const sismoConnectResponse = await req.json().catch((error) => {
       console.error('Error parsing request body as JSON:', error);
       return null;
     });
-
-    console.log('sismoConnectResponse',sismoConnectResponse,'hahahhahahahahha')
     
     if (sismoConnectResponse === null) {
       return new Response('Invalid JSON in request body', { status: 400 });

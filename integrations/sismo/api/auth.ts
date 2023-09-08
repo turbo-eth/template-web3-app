@@ -1,32 +1,38 @@
+import {
+  AuthType,
+  SismoConnect,
+  SismoConnectVerifiedResult,
+} from "@sismo-core/sismo-connect-server"
 
-import { SismoConnect, SismoConnectVerifiedResult, AuthType } from "@sismo-core/sismo-connect-server";
-import { getConfig } from "../utils/getConfig";
+import { getConfig } from "../utils/getConfig"
 
 export async function POST(req: Request) {
-
   try {
-    const res = new Response()
 
-    const config = getConfig('auth')
-    console.log('config',config)
-    const sismoConnect = SismoConnect({config})
-    console.log('sismo',sismoConnect)
-    
+    const config = getConfig("auth")
+    const sismoConnect = SismoConnect({ config })
+
     const sismoConnectResponse = await req.json().catch((error) => {
-      console.error('Error parsing request body as JSON:', error);
-      return null;
-    });
+      console.error("Error parsing request body as JSON:", error)
+      return null
+    })
 
-    console.log('sismoConnectResponse',sismoConnectResponse,'hahahhahahahahha')
-    
     if (sismoConnectResponse === null) {
-      return new Response('Invalid JSON in request body', { status: 400 });
+      return new Response("Invalid JSON in request body", { status: 400 })
     }
-    
-    console.log('authApi')
-    const result:SismoConnectVerifiedResult = await sismoConnect.verify(sismoConnectResponse, {
-      auths: [{ authType: AuthType.GITHUB },{ authType: AuthType.TWITTER }],
-    });
+
+    console.log("authApi")
+    const result: SismoConnectVerifiedResult = await sismoConnect.verify(
+      sismoConnectResponse,
+      {
+        auths: [
+          { authType: AuthType.GITHUB, isOptional: true },
+          { authType: AuthType.TWITTER },
+          { authType: AuthType.VAULT },
+          { authType: AuthType.EVM_ACCOUNT },
+        ],
+      }
+    )
 
     if (result) {
       return new Response(JSON.stringify(result), {
@@ -34,9 +40,8 @@ export async function POST(req: Request) {
         headers: { "Content-Type": "application/json" },
       })
     }
-    
-  }
-  catch (e) {
+  } catch (e) {
     const errorMessage = e instanceof Error ? e.message : String(e)
-    return new Response(errorMessage, { status: 501 })}
+    return new Response(errorMessage, { status: 501 })
+  }
 }
