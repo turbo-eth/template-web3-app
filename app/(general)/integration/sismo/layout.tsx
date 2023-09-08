@@ -18,11 +18,11 @@ import { LightDarkImage } from "@/components/shared/light-dark-image"
 
 import { SideBar } from "./sidebar"
 
-interface ArweaveLayoutProps {
+interface SismoLayoutProps {
   children?: React.ReactNode
 }
 
-export default function ArweaveLayout({ children }: ArweaveLayoutProps) {
+export default function SismoLayout({ children }: SismoLayoutProps) {
   return (
     <div className="container relative mt-20">
       <PageHeader className="pb-8">

@@ -37,7 +37,7 @@ export const SideBar = () => {
               <span
                 className={cn(
                   "group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:bg-muted hover:text-foreground",
-                  pathname === `${sismoBaseUrl}/posts`
+                  pathname === `${sismoBaseUrl}/claim`
                     ? "bg-muted font-medium text-foreground"
                     : "text-muted-foreground"
                 )}
@@ -51,7 +51,7 @@ export const SideBar = () => {
               <span
                 className={cn(
                   "group flex w-full items-center rounded-md border border-transparent px-2 py-1 hover:bg-muted hover:text-foreground",
-                  pathname === `${sismoBaseUrl}/posts/new`
+                  pathname === `${sismoBaseUrl}/signature`
                     ? "bg-muted font-medium text-foreground"
                     : "text-muted-foreground"
                 )}
