@@ -23,23 +23,10 @@ export async function POST(req: Request) {
       return new Response('Invalid JSON in request body', { status: 400 });
     }
     
-    // console.log('okreq',req)
-    // console.log('resinapi',await req.json())
     console.log('signapi')
-    // const info = await verifyAuth(sismoConnectResponse)
-
-
-
     const result:SismoConnectVerifiedResult = await sismoConnect.verify(sismoConnectResponse, {
-      
       signature:{ message: "I vote Yes to Privacy workworkwokrokwr",isSelectableByUser: true, },
-
-      
     });
-
-
-
-    console.log('result',result)
 
     if (result) {
       return new Response(JSON.stringify(result), {

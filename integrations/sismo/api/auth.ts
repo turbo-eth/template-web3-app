@@ -23,20 +23,10 @@ export async function POST(req: Request) {
       return new Response('Invalid JSON in request body', { status: 400 });
     }
     
-    // console.log('okreq',req)
-    // console.log('resinapi',await req.json())
     console.log('authApi')
-    // const info = await verifyAuth(sismoConnectResponse)
-
-
-
     const result:SismoConnectVerifiedResult = await sismoConnect.verify(sismoConnectResponse, {
       auths: [{ authType: AuthType.GITHUB },{ authType: AuthType.TWITTER }],
     });
-
-
-
-    console.log('result',result)
 
     if (result) {
       return new Response(JSON.stringify(result), {
@@ -48,6 +38,5 @@ export async function POST(req: Request) {
   }
   catch (e) {
     const errorMessage = e instanceof Error ? e.message : String(e)
-    // console.log('err',e)
     return new Response(errorMessage, { status: 501 })}
 }

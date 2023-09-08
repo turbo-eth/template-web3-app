@@ -13,7 +13,7 @@ const CONFIG_MAPPING= {
     vaultAppBaseUrl: "https://vault-beta.sismo.io"
   },
   claims:{
-    appId: "0x6687efe350ee1dc1af93a8b118cf016e", 
+    appId: "0x32403ced4b65f2079eda77c84e7d2be6", 
     vault: {
       impersonate: [
         "dhadrien.sismo.eth",

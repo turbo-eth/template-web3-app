@@ -1,5 +1,5 @@
 
-import { SismoConnect, SismoConnectVerifiedResult, AuthType } from "@sismo-core/sismo-connect-server";
+import { SismoConnect, SismoConnectVerifiedResult, AuthType, ClaimType } from "@sismo-core/sismo-connect-server";
 import { getConfig } from "../utils/getConfig";
 
 export async function POST(req: Request) {
@@ -23,23 +23,21 @@ export async function POST(req: Request) {
       return new Response('Invalid JSON in request body', { status: 400 });
     }
     
-    // console.log('okreq',req)
-    // console.log('resinapi',await req.json())
     console.log('claimApi')
-    // const info = await verifyAuth(sismoConnectResponse)
-
-
-
     const result:SismoConnectVerifiedResult = await sismoConnect.verify(sismoConnectResponse, {
       
       auths: [{ authType: AuthType.GITHUB,isOptional:true }],
-      claims: [{groupId: "0xda1c3726426d5639f4c6352c2c976b87"}]
+      claims: [{
+        groupId: "0xda1c3726426d5639f4c6352c2c976b87",
+      },
+      {
+        groupId: "0x1cde61966decb8600dfd0749bd371f12",
+        claimType: ClaimType.GTE,
+        value: 15, // dhadrien.sismo.eth has a score of 46, eligible. Can reveal more.
+        isSelectableByUser: true, // can reveal more than 15 if they want
+      },]
       
     });
-
-
-
-    console.log('result',result)
 
     if (result) {
       return new Response(JSON.stringify(result), {

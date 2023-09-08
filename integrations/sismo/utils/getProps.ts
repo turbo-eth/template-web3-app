@@ -1,5 +1,5 @@
 
-import { AuthType, SismoConnectResponse } from "@sismo-core/sismo-connect-react";
+import { AuthType, ClaimType, SismoConnectResponse } from "@sismo-core/sismo-connect-react";
 
 type ErrorSetter = (error: any) => void; // You should replace 'any' with the actual error type
 type PageStateSetter = (state: string) => void;
@@ -34,7 +34,15 @@ const CONNECT_BUTTON_PROPS = {
     auths: [{ authType: AuthType.GITHUB,isOptional:true }],
     claims:[{
       groupId: "0xda1c3726426d5639f4c6352c2c976b87",
-    },],
+    },
+    {
+      groupId: "0x1cde61966decb8600dfd0749bd371f12",
+      claimType: ClaimType.GTE,
+      value: 15, // dhadrien.sismo.eth has a score of 46, eligible. Can reveal more.
+      isSelectableByUser: true, // can reveal more than 15 if they want
+    },
+  
+  ],
     signature:{},
     response: async(response: SismoConnectResponse,setError: ErrorSetter, 
       setPageState: PageStateSetter) => {
