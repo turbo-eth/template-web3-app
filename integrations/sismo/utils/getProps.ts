@@ -1,5 +1,7 @@
 import {
+  AuthRequest,
   AuthType,
+  ClaimRequest,
   ClaimType,
   SismoConnectResponse,
   SismoConnectVerifiedResult,
@@ -9,6 +11,20 @@ type ErrorSetter = (error: any) => void
 type PageStateSetter = (state: string) => void
 type SismoConnectVerifiedResultSetter = (result: SismoConnectVerifiedResult) => void;
 
+export interface connectPropsType {
+    auths: AuthRequest[]
+    claims?: ClaimRequest[]
+    signature?: {
+      message: string
+      isSelectableByUser: boolean
+    }
+    response: (
+      response: SismoConnectResponse,
+      setError: ErrorSetter,
+      setPageState: PageStateSetter,
+      setSismoConnectVerifiedResult: SismoConnectVerifiedResultSetter
+    ) => void
+}
 
 const CONNECT_BUTTON_PROPS = {
   auth: {
@@ -19,7 +35,6 @@ const CONNECT_BUTTON_PROPS = {
       { authType: AuthType.EVM_ACCOUNT },
     ],
     claims: [],
-    signature: {},
     response: async (
       response: SismoConnectResponse,
       setError: ErrorSetter,
@@ -55,7 +70,6 @@ const CONNECT_BUTTON_PROPS = {
         isSelectableByUser: true, // can reveal more than 15 if they want
       },
     ],
-    signature: {},
     response: async (
       response: SismoConnectResponse,
       setError: ErrorSetter,
@@ -113,6 +127,6 @@ const CONNECT_BUTTON_PROPS = {
 export const getProps = (
   tabValue: keyof typeof CONNECT_BUTTON_PROPS = "auth"
 ) => {
-  const connectProps = CONNECT_BUTTON_PROPS[tabValue]
+  const connectProps:connectPropsType = CONNECT_BUTTON_PROPS[tabValue]
   return connectProps
 }
