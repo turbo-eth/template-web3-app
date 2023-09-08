@@ -24,7 +24,7 @@ export default function HomePage() {
           alt="TurboETH Logo"
           width={80}
           height={80}
-          className="h-20 w-20"
+          className="h-20 w-20 rounded-2xl"
         />
         <PageHeaderHeading>Build Web3 in Turbo&nbsp;Mode</PageHeaderHeading>
         <PageHeaderDescription>{siteConfig.description}</PageHeaderDescription>
