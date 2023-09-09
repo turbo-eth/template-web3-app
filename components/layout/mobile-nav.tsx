@@ -34,6 +34,7 @@ export function MobileNav() {
             LightImage="/logo-dark.png"
             DarkImage="/logo-light.png"
             alt="TurboETH"
+            className="rounded-full"
             height={32}
             width={32}
           />

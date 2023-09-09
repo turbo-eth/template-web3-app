@@ -20,11 +20,11 @@ export default function HomePage() {
     <div className="container relative mt-20">
       <PageHeader className="pb-8">
         <Image
-          src="/logo-fill.png"
+          src="/logo-gradient.png"
           alt="TurboETH Logo"
           width={80}
           height={80}
-          className="h-20 w-20"
+          className="h-20 w-20 rounded-2xl"
         />
         <PageHeaderHeading>Build Web3 in Turbo&nbsp;Mode</PageHeaderHeading>
         <PageHeaderDescription>{siteConfig.description}</PageHeaderDescription>
