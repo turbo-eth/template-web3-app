@@ -8,7 +8,6 @@ import { getConfig } from "../utils/getConfig"
 
 export async function POST(req: Request) {
   try {
-
     const config = getConfig("auth")
     const sismoConnect = SismoConnect({ config })
 
