@@ -24,15 +24,14 @@ const fetcher = async ({ query, variables }: TallyQueryParams) => {
     })
     const json = await response.json()
     if (json?.errors) {
-      console.error("error when fetching", json?.errors)
-      return null
+      console.error("error when fetching", json.errors)
+      return { error: json.errors }
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return json.data
+    return { result: json.data }
   } catch (error) {
-    console.log("Error when fetching =>", error)
-    return null
+    console.error("Error when fetching =>", error)
+    return { error }
   }
 }
 

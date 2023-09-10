@@ -19,18 +19,17 @@ const governorsDocument = `
         pagination: $pagination,
         sort: $sort,
         includeUnlinked: $includeUnlinked
-      ) {
+      ) { 
           id
-          name
-          tokens {
-            stats {
-              voters
-            }
-          }
+          type
           proposalStats {
             total
             active
+            failed
+            passed
           }
+          name
+          slug
         }
     }
 `
