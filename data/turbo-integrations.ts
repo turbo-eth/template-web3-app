@@ -187,7 +187,7 @@ export const turboIntegrations: Record<string, TurboIntegration> = {
     description:
       "Use this template to get started building integrations with TurboETH.",
     imgLight: "/logo-gradient.png",
-    imgDark: "/logo-dark.png",
     category: "general",
+    imgDark: "/logo-gradient.png",
   },
 }

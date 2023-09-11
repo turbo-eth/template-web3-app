@@ -6,7 +6,7 @@
   "start_url": "/",
   "name": "TurboETH",
   "short_name": "TurboETH",
-  "description": "Web3 App Template built using Next.js, RainbowKit, SIWE, Disco, and more!",
+  "description": "Full-Stack Web3 Application",
   "icons": [
     {
       "src": "/icon-192x192.png",
@@ -26,7 +26,8 @@
     {
       "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
