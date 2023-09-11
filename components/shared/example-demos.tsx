@@ -473,6 +473,22 @@ const demos = [
     ),
   },
   {
+    title: turboIntegrations.gitcoinPassport.name,
+    description: turboIntegrations.gitcoinPassport.description,
+    href: turboIntegrations.gitcoinPassport.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <LightDarkImage
+          LightImage={turboIntegrations.gitcoinPassport.imgDark}
+          DarkImage={turboIntegrations.gitcoinPassport.imgLight}
+          alt="Aave logo"
+          height={100}
+          width={100}
+        />
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.starter.name,
     description: turboIntegrations.starter.description,
     href: turboIntegrations.starter.href,

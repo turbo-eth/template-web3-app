@@ -180,6 +180,16 @@ export const turboIntegrations: Record<string, TurboIntegration> = {
     imgDark: "/integrations/arweave-dark.png",
     category: "protocols",
   },
+  gitcoinPassport: {
+    name: "Gitcoin Passport",
+    href: "/integration/gitcoin-passport",
+    url: "https://docs.passport.gitcoin.co/overview/introducing-gitcoin-passport",
+    description:
+      "Gitcoin Passport is an identity verification application. It enables you to collect verifiable credentials that prove your identity and trustworthiness without exposing personally identifying information.",
+    imgLight: "/integrations/gitcoin-passport.svg",
+    imgDark: "/integrations/gitcoin-passport.svg",
+    category: "services",
+  },
   starter: {
     name: "Starter Template",
     href: "/integration/starter",
