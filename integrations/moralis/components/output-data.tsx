@@ -24,7 +24,7 @@ export function OutputData({ data }: OutputDataProps) {
   if (!data) return null
 
   return (
-    <div className="card mt-4 flex w-full flex-col gap-4">
+    <div className="mt-4 flex w-full flex-col gap-4">
       <div className="flex items-center justify-between">
         <h4 className="mb-2 font-semibold">Output</h4>
         <CopyToClipboard

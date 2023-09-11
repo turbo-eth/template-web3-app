@@ -3,6 +3,8 @@ import { useDebounce } from "usehooks-ts"
 import { BaseError } from "viem"
 import { Address, useAccount, useWaitForTransaction } from "wagmi"
 
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
 
@@ -66,54 +68,56 @@ export function Erc1155WriteTransfer({ address }: Erc1155WriteTransferProps) {
   }
 
   return (
-    <div className="card w-full">
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex items-center justify-between text-sm">
-          <label>Use different from address</label>
-          <div className="h-6 w-6">
-            <input
-              {...register("differentFromAddress")}
-              className="input"
-              type="checkbox"
-            />
+    <Card>
+      <CardContent>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex items-center justify-between text-sm">
+            <label>Use different from address</label>
+            <div className="h-6 w-6">
+              <input
+                {...register("differentFromAddress")}
+                className="input"
+                type="checkbox"
+              />
+            </div>
           </div>
-        </div>
-        {watchDifferentFromAddress && (
-          <>
-            <label>From Address</label>
-            <input {...register("fromAddress")} className="input" />
-          </>
-        )}
-        <label>To Address</label>
-        <input {...register("toAddress")} className="input" />
-        <label>Token ID</label>
-        <input type="number" {...register("tokenId")} className="input" />
-        <label>Amount</label>
-        <input type="number" {...register("amount")} className="input" />
-        <ContractWriteButton
-          isLoadingTx={isLoadingTx}
-          isLoadingWrite={isLoadingWrite}
-          loadingTxText="Transferring..."
-          type="submit"
-          write={!!write}
-        >
-          Transfer
-        </ContractWriteButton>
-        <TransactionStatus
-          error={error as BaseError}
-          hash={data?.hash}
-          isError={isError}
-          isLoadingTx={isLoadingTx}
-          isSuccess={isSuccess}
-        />
-        <hr className="my-4" />
-        <div className="flex items-center justify-between">
-          <h3 className="text-center">ERC1155 Transfer</h3>
-          <p className="text-center text-sm text-gray-500">
-            Transfer NFTs or FTs to any address
-          </p>
-        </div>
-      </form>
-    </div>
+          {watchDifferentFromAddress && (
+            <>
+              <label>From Address</label>
+              <input {...register("fromAddress")} className="input" />
+            </>
+          )}
+          <label>To Address</label>
+          <input {...register("toAddress")} className="input" />
+          <label>Token ID</label>
+          <input type="number" {...register("tokenId")} className="input" />
+          <label>Amount</label>
+          <input type="number" {...register("amount")} className="input" />
+          <ContractWriteButton
+            isLoadingTx={isLoadingTx}
+            isLoadingWrite={isLoadingWrite}
+            loadingTxText="Transferring..."
+            type="submit"
+            write={!!write}
+          >
+            Transfer
+          </ContractWriteButton>
+          <TransactionStatus
+            error={error as BaseError}
+            hash={data?.hash}
+            isError={isError}
+            isLoadingTx={isLoadingTx}
+            isSuccess={isSuccess}
+          />
+        </form>
+      </CardContent>
+      <Separator className="my-4" />
+      <CardFooter className="justify-between">
+        <h3 className="text-center">ERC1155 Transfer</h3>
+        <p className="text-center text-sm text-gray-500">
+          Transfer NFTs or FTs to any address
+        </p>
+      </CardFooter>
+    </Card>
   )
 }

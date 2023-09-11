@@ -4,6 +4,7 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 
 import { uploadArweaveAccountAvatar } from "../../arweave-account"
 import { useArweaveWallet } from "../../hooks/use-arweave-wallet"
@@ -61,131 +62,136 @@ export const ArweaveAccount = () => {
   if (!wallet) return <ConnectArweaveWallet />
   if (!account) return <Spinner />
   return (
-    <div className="card w-full">
-      <div className="flex flex-col items-center">
-        <Avatar className="h-24 w-24">
-          <AvatarImage src={picture?.url ?? account?.profile?.avatarURL} />
-          <AvatarFallback>
-            {(handleName ?? address ?? "").substring(0, 2)}
-          </AvatarFallback>
-        </Avatar>
-        {!picture ? (
-          <Button
-            className="mt-3"
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <span className="mt-2 text-sm leading-normal">
-              Select profile picture
-            </span>
-          </Button>
-        ) : (
-          <div className="mt-3">
-            <FeeEstimation
-              {...{ estimatedTxFee, isEstimatingTxFee, estimationError }}
-            />
-            <div className="flex items-center">
-              <Button
-                className="mt-2"
-                disabled={uploading}
-                onClick={() => setPicture(null)}
-              >
-                <span className="mt-2 text-base leading-normal">Cancel</span>
-              </Button>
-              <Button
-                variant="emerald"
-                className="ml-3 mt-2 text-sm"
-                disabled={uploading}
-                onClick={() => upload()}
-              >
-                <span className="mt-2 text-base leading-normal">
-                  {uploading ? "Storing on Arweave" : "Store on Arweave"}
-                </span>
-              </Button>
+    <Card>
+      <CardContent>
+        <div className="flex flex-col items-center">
+          <Avatar className="h-24 w-24">
+            <AvatarImage src={picture?.url ?? account?.profile?.avatarURL} />
+            <AvatarFallback>
+              {(handleName ?? address ?? "").substring(0, 2)}
+            </AvatarFallback>
+          </Avatar>
+          {!picture ? (
+            <Button
+              className="mt-3"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <span className="mt-2 text-sm leading-normal">
+                Select profile picture
+              </span>
+            </Button>
+          ) : (
+            <div className="mt-3">
+              <FeeEstimation
+                {...{ estimatedTxFee, isEstimatingTxFee, estimationError }}
+              />
+              <div className="flex items-center">
+                <Button
+                  className="mt-2"
+                  disabled={uploading}
+                  onClick={() => setPicture(null)}
+                >
+                  <span className="mt-2 text-base leading-normal">Cancel</span>
+                </Button>
+                <Button
+                  variant="emerald"
+                  className="ml-3 mt-2 text-sm"
+                  disabled={uploading}
+                  onClick={() => upload()}
+                >
+                  <span className="mt-2 text-base leading-normal">
+                    {uploading ? "Storing on Arweave" : "Store on Arweave"}
+                  </span>
+                </Button>
+              </div>
             </div>
-          </div>
-        )}
-        {insufficientBalance && <InsufficientBalanceError />}
-        {error && (
-          <div className="mt-3 font-medium text-red-500">
-            Error: {String(error)}
-          </div>
-        )}
-      </div>
-      <input
-        ref={fileInputRef}
-        accept="image/*"
-        className="hidden"
-        hidden={true}
-        type="file"
-        onChange={(e) => {
-          if (e.target.files) {
-            setError(null)
-            setInsufficientBalance(false)
-            const blobUrl = URL.createObjectURL(e.target.files[0])
-            fetch(blobUrl)
-              .then((r) => r.blob())
-              .then((blob) => {
-                convertBlobToBase64(blob)
-                  .then((res) => {
-                    setPicture({
-                      url: blobUrl,
-                      file: res,
-                      type: e.target.files?.[0]?.type ?? "",
+          )}
+          {insufficientBalance && <InsufficientBalanceError />}
+          {error && (
+            <div className="mt-3 font-medium text-red-500">
+              Error: {String(error)}
+            </div>
+          )}
+        </div>
+        <input
+          ref={fileInputRef}
+          accept="image/*"
+          className="hidden"
+          hidden={true}
+          type="file"
+          onChange={(e) => {
+            if (e.target.files) {
+              setError(null)
+              setInsufficientBalance(false)
+              const blobUrl = URL.createObjectURL(e.target.files[0])
+              fetch(blobUrl)
+                .then((r) => r.blob())
+                .then((blob) => {
+                  convertBlobToBase64(blob)
+                    .then((res) => {
+                      setPicture({
+                        url: blobUrl,
+                        file: res,
+                        type: e.target.files?.[0]?.type ?? "",
+                      })
+                      estimateTxFee(res)
                     })
-                    estimateTxFee(res)
-                  })
-                  .catch((e) => alert(e))
-              })
-              .catch((e) => console.error(e))
-          }
-        }}
-      />
-      {txId && (
-        <PendingTx
-          txId={txId}
-          onConfirmation={() => {
-            getAccount()
-            setPicture(null)
+                    .catch((e) => alert(e))
+                })
+                .catch((e) => console.error(e))
+            }
           }}
         />
-      )}
-      <div className="mt-6 text-left">
-        <div className="flex items-center justify-between">
-          <h4>Account Info</h4>
-          <Link
-            href="/integration/arweave/account/edit"
-            className={cn(buttonVariants({ variant: "blue" }))}
-          >
-            Edit Account info
-          </Link>
+        {txId && (
+          <PendingTx
+            txId={txId}
+            onConfirmation={() => {
+              getAccount()
+              setPicture(null)
+            }}
+          />
+        )}
+        <div className="mt-6 text-left">
+          <div className="flex items-center justify-between">
+            <h4>Account Info</h4>
+            <Link
+              href="/integration/arweave/account/edit"
+              className={cn(buttonVariants({ variant: "blue" }))}
+            >
+              Edit Account info
+            </Link>
+          </div>
+          {Object.entries(account.profile)
+            .filter(
+              ([k]) =>
+                !["avatar", "avatarURL", "banner", "bannerURL"].includes(k)
+            )
+            .map(([key, val]) => (
+              <div key={key} className="mt-2">
+                <span className="text-sm text-muted-foreground">
+                  {key}
+                  {val instanceof Object ? ":" : ""}
+                </span>
+                <span className="ml-2 text-sm">
+                  {val instanceof Object
+                    ? Object.entries(val).map(([key, val]) => (
+                        <div key={key} className="my-4 ml-6">
+                          <span className="text-sm text-muted-foreground">
+                            {key}
+                          </span>
+                          <span className="ml-2 text-sm">
+                            {val ? val : "-"}
+                          </span>
+                        </div>
+                      ))
+                    : val
+                    ? val
+                    : "-"}
+                </span>
+              </div>
+            ))}
         </div>
-        {Object.entries(account.profile)
-          .filter(
-            ([k]) => !["avatar", "avatarURL", "banner", "bannerURL"].includes(k)
-          )
-          .map(([key, val]) => (
-            <div key={key} className="mt-2">
-              <span className="text-sm text-muted-foreground">
-                {key}
-                {val instanceof Object ? ":" : ""}
-              </span>
-              <span className="ml-2 text-sm">
-                {val instanceof Object
-                  ? Object.entries(val).map(([key, val]) => (
-                      <div key={key} className="my-4 ml-6">
-                        <span className="text-sm text-muted-foreground">
-                          {key}
-                        </span>
-                        <span className="ml-2 text-sm">{val ? val : "-"}</span>
-                      </div>
-                    ))
-                  : val
-                  ? val
-                  : "-"}
-              </span>
-            </div>
-          ))}
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }

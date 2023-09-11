@@ -3,7 +3,10 @@
 import { useState } from "react"
 import Link, { LinkProps } from "next/link"
 import { useRouter } from "next/navigation"
-import { integrations } from "@/data/integrations"
+import {
+  integrationCategories,
+  turboIntegrations,
+} from "@/data/turbo-integrations"
 import { LuMenu } from "react-icons/lu"
 
 import { menuDashboard } from "@/config/menu-dashboard"
@@ -78,44 +81,27 @@ export function MobileNav() {
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className="flex flex-col gap-2">
-                    <h4 className="text-sm font-medium leading-none">
-                      General
-                    </h4>
-                    <Separator />
-                    {Object.values(integrations.general).map((component) => (
-                      <NavMenuListItem
-                        key={component.name}
-                        name={component.name}
-                        href={component.href}
-                        lightImage={component.imgDark}
-                        darkImage={component.imgLight}
-                      />
-                    ))}
-                    <h4 className="mt-2 text-sm font-medium leading-none">
-                      Protocols
-                    </h4>
-                    <Separator />
-                    {Object.values(integrations.protocols).map((component) => (
-                      <NavMenuListItem
-                        key={component.name}
-                        name={component.name}
-                        href={component.href}
-                        lightImage={component.imgDark}
-                        darkImage={component.imgLight}
-                      />
-                    ))}
-                    <h4 className="mt-2 text-sm font-medium leading-none">
-                      Services
-                    </h4>
-                    <Separator />
-                    {Object.values(integrations.services).map((component) => (
-                      <NavMenuListItem
-                        key={component.name}
-                        name={component.name}
-                        href={component.href}
-                        lightImage={component.imgDark}
-                        darkImage={component.imgLight}
-                      />
+                    {integrationCategories.map((category) => (
+                      <>
+                        <h4 className="text-sm font-medium leading-none">
+                          {category.charAt(0).toUpperCase() + category.slice(1)}
+                        </h4>
+                        <Separator className="col-span-3" />
+                        {Object.values(turboIntegrations)
+                          .filter(
+                            (integration) => integration.category === category
+                          )
+                          .map(({ name, href, imgDark, imgLight }) => (
+                            <NavMenuListItem
+                              key={name}
+                              name={name}
+                              href={href}
+                              lightImage={imgDark}
+                              darkImage={imgLight}
+                              onOpenChange={setOpen}
+                            />
+                          ))}
+                      </>
                     ))}
                   </ul>
                 </AccordionContent>
@@ -206,16 +192,12 @@ const NavMenuListItem = ({
   darkImage,
   onOpenChange,
 }: NavMenuListItemProps) => {
-  const router = useRouter()
   return (
     <li key={name}>
-      <Link
+      <MobileLink
+        onOpenChange={onOpenChange}
         href={href}
-        onClick={() => {
-          router.push(href.toString())
-          onOpenChange?.(false)
-        }}
-        className="block select-none space-y-1 rounded-md py-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+        className="block select-none space-y-1 rounded-md py-3 pl-2 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
       >
         <div className="flex items-center space-x-2">
           <LightDarkImage
@@ -228,7 +210,7 @@ const NavMenuListItem = ({
           />
           <span className="text-sm font-medium leading-none">{name}</span>
         </div>
-      </Link>
+      </MobileLink>
     </li>
   )
 }

@@ -17,7 +17,7 @@ import { ExampleDemos } from "@/components/shared/example-demos"
 
 export default function HomePage() {
   return (
-    <div className="container relative mt-20">
+    <div className="container relative mt-20 px-0">
       <PageHeader className="pb-8">
         <Image
           src="/logo-gradient.png"
@@ -62,7 +62,9 @@ export default function HomePage() {
         </PageHeaderCTA>
         <PageHeaderCTA>
           <CopyButton value="pnpm create turbo-eth@latest">
-            pnpm create turbo-eth@latest
+            <span className="border text-xs sm:text-base">
+              pnpm create turbo-eth@latest
+            </span>
           </CopyButton>
         </PageHeaderCTA>
       </PageHeader>

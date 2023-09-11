@@ -4,6 +4,6 @@
 export const menuAdmin = [
   {
     label: "Users",
-    href: "/admin",
+    href: "/dashboard/admin",
   },
 ]

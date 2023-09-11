@@ -1,12 +1,13 @@
 "use client"
 
 import Link from "next/link"
-import { turboIntegrations } from "@/data/documentation"
+import { turboIntegrations } from "@/data/turbo-integrations"
 import { LuBook } from "react-icons/lu"
 import { useNetwork } from "wagmi"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
@@ -62,12 +63,14 @@ export default function EtherscanPage() {
           <IsSignedIn>
             <div className="w-full">
               {!isLoading && (
-                <div className="card">
-                  <TransactionsTable
-                    className="w-full"
-                    data={data?.transactions}
-                  />
-                </div>
+                <Card>
+                  <CardContent>
+                    <TransactionsTable
+                      className="w-full"
+                      data={data?.transactions}
+                    />
+                  </CardContent>
+                </Card>
               )}
             </div>
           </IsSignedIn>

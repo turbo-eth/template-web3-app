@@ -24,9 +24,6 @@ Creates a SIWE message to be signed by the user's Ethereum wallet, and returns t
 
 ### Components
 
-`BranchButtonLoginOrAccount()`
-Renders either a login or logout button and a link to the user's account depending on whether the user is authenticated or not.
-
 `IsSignedInd()`
 A React component that conditionally renders its children if the user is signed in.
 

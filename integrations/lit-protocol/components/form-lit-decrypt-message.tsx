@@ -1,10 +1,12 @@
 import { useState } from "react"
+import { Separator } from "@radix-ui/react-select"
 import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import { useToast } from "@/lib/hooks/use-toast"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
@@ -74,55 +76,63 @@ export function FormLitDecryptMessage({
         <div className="w-full">
           <motion.form
             animate="show"
-            className="card flex flex-col"
             initial="hidden"
             variants={FADE_DOWN_ANIMATION_VARIANTS}
             onSubmit={handleSubmit(onSubmit)}
           >
-            <label>ID:</label>
-            <input
-              className="input mt-4"
-              {...register("message")}
-              value={encryptedMessageId}
-              onChange={(e) => setEncryptedMessageId(e.target.value)}
-            />
-            <Button
-              variant="emerald"
-              className="mt-4"
-              disabled={isLoading || !isValid}
-              type="submit"
-            >
-              {isLoading ? "Loading..." : "Decrypt"}
-            </Button>
-            <hr className="my-4" />
-            <div className="flex items-center justify-between">
-              <h3 className="text-center">Encrypted message ID</h3>
-              <p className="text-center text-sm text-muted-foreground">
-                The ID of the encrypted message saved into a database.
-              </p>
-            </div>
+            <Card>
+              <CardContent>
+                <label>ID:</label>
+                <input
+                  className="input mt-4"
+                  {...register("message")}
+                  value={encryptedMessageId}
+                  onChange={(e) => setEncryptedMessageId(e.target.value)}
+                />
+                <Button
+                  variant="emerald"
+                  className="mt-4"
+                  disabled={isLoading || !isValid}
+                  type="submit"
+                >
+                  {isLoading ? "Loading..." : "Decrypt"}
+                </Button>
+              </CardContent>
+              <Separator className="my-4" />
+              <CardFooter className="justify-between">
+                <h3 className="text-center">Encrypted message ID</h3>
+                <p className="text-center text-sm text-muted-foreground">
+                  The ID of the encrypted message saved into a database.
+                </p>
+              </CardFooter>
+            </Card>
           </motion.form>
           {decryptedMessage && (
             <motion.div
               animate="show"
-              className="card my-8"
+              className="my-8"
               initial="hidden"
               variants={FADE_DOWN_ANIMATION_VARIANTS}
             >
-              <h4>Decrypted Message:</h4>
-              <Textarea
-                readOnly
-                className="input mt-4 h-40 text-muted-foreground"
-                value={decryptedMessage}
-              />
-              <hr className="my-4" />
-              <div className="flex items-center justify-between">
-                <h3 className="text-center">Decrypted Message</h3>
-                <p className="text-center text-sm text-muted-foreground">
-                  Make sure to only share the decrypted message with trusted
-                  individuals.
-                </p>
-              </div>
+              <Card>
+                <CardContent>
+                  <h4>Decrypted Message:</h4>
+                  <Textarea
+                    readOnly
+                    className="input mt-4 h-40 text-muted-foreground"
+                    value={decryptedMessage}
+                  />
+                </CardContent>
+                <Separator className="my-4" />
+                <CardFooter className="justify-between">
+                  {" "}
+                  <h3 className="text-center">Decrypted Message</h3>
+                  <p className="text-center text-sm text-muted-foreground">
+                    Make sure to only share the decrypted message with trusted
+                    individuals.
+                  </p>
+                </CardFooter>
+              </Card>
             </motion.div>
           )}
         </div>

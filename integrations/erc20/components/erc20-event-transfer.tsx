@@ -31,7 +31,7 @@ export default function ERC20EventTransfer() {
   if (!token || !event) return null
 
   return (
-    <div className="p-6">
+    <div className="flex flex-col gap-y-1 overflow-auto break-words p-6">
       {!event?.to ? null : (
         <>
           <p>From: {event?.from}</p>

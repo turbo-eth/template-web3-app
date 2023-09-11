@@ -15,8 +15,8 @@ export default function PageIntegration() {
 
   return (
     <Card>
-      <CardHeader>{!isLivepeerApiKeySet && <FormLivepeerApiKey />}</CardHeader>
       <CardContent className="flex flex-col gap-4">
+        {!isLivepeerApiKeySet && <FormLivepeerApiKey />}
         <LinkComponent href={newStreamObsPath}>
           <Button
             variant="ghost"
