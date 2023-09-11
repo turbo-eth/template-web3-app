@@ -180,6 +180,15 @@ export const turboIntegrations: Record<string, TurboIntegration> = {
     imgDark: "/integrations/arweave-dark.png",
     category: "protocols",
   },
+  lensProtocol: {
+    name: "Lens Protocol",
+    href: "/integration/lens-protocol",
+    url: "https://www.lens.xyz/",
+    description: "Lens Protocol is the social layer for Web3",
+    imgLight: "/integrations/lensprotocol-light.svg",
+    imgDark: "/integrations/lensprotocol-dark.svg",
+    category: "protocols",
+  },
   gitcoinPassport: {
     name: "Gitcoin Passport",
     href: "/integration/gitcoin-passport",

@@ -481,7 +481,23 @@ const demos = [
         <LightDarkImage
           LightImage={turboIntegrations.gitcoinPassport.imgDark}
           DarkImage={turboIntegrations.gitcoinPassport.imgLight}
-          alt="Aave logo"
+          alt="Gitcoin Passport logo"
+          height={100}
+          width={100}
+        />
+      </div>
+    ),
+  },
+  {
+    title: turboIntegrations.lensProtocol.name,
+    description: turboIntegrations.lensProtocol.description,
+    href: turboIntegrations.lensProtocol.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <LightDarkImage
+          LightImage={turboIntegrations.lensProtocol.imgDark}
+          DarkImage={turboIntegrations.lensProtocol.imgLight}
+          alt="Lens Protocol logo"
           height={100}
           width={100}
         />
