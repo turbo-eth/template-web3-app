@@ -62,7 +62,7 @@ export default function HomePage() {
         </PageHeaderCTA>
         <PageHeaderCTA>
           <CopyButton value="pnpm create turbo-eth@latest">
-            <span className="border text-xs sm:text-base">
+            <span className="text-xs sm:text-base">
               pnpm create turbo-eth@latest
             </span>
           </CopyButton>
