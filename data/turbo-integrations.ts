@@ -198,6 +198,7 @@ export const turboIntegrations: Record<string, TurboIntegration> = {
       "Sismo ETH is a decentralized identity aggregator and crypto-native SSO that uses zero-knowledge proofs (ZKPs) to enable users to aggregate and selectively disclose personal data to applications.",
     imgLight: "/integrations/sismo-protocol-light.png",
     imgDark: "/integrations/sismo-protocol-dark.png",
+    category: "services",
   },
   starter: {
     name: "Starter Template",
