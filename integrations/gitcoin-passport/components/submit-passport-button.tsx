@@ -11,7 +11,7 @@ export const SubmitPassportButton = ({
   return (
     <div>
       <div className="mb-2 text-sm">
-        <div className="text-md font-semibold">Submit Passport for Scoring</div>
+        <div className="font-semibold">Submit Passport for Scoring</div>
         this is simply a message-signing to verify you are the owner of the
         wallet. This operation does not include any fees. once submitted your
         passport will be created/updated in this community. hit the submit

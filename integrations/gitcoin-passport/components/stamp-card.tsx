@@ -54,7 +54,7 @@ export const StampCard = ({
   return (
     <Card
       className={cn(
-        "card flex flex-1 flex-col items-center justify-between space-y-4 text-center",
+        "flex flex-1 flex-col items-center justify-between space-y-4 text-center",
         className
       )}
     >
@@ -134,7 +134,7 @@ export const StampCard = ({
                     alt={stamp.id}
                   />
                 </div>
-                <div className="text-semibold">{stamp.name}</div>
+                <div className="font-semibold">{stamp.name}</div>
                 <span className="flex flex-1 flex-col justify-center text-sm text-gray-600 dark:text-gray-400">
                   {stamp.description}
                 </span>
@@ -187,7 +187,7 @@ export const StampCard = ({
               </span>
               <DialogFooter>
                 <LinkComponent
-                  className="link flex w-full flex-row items-center justify-center space-x-2"
+                  className="flex w-full flex-row items-center justify-center space-x-2"
                   isExternal
                   href={"https://passport.gitcoin.co/#/dashboard"}
                 >

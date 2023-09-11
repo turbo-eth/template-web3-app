@@ -30,3 +30,33 @@ By using communities, you can manage specific parameter settings and log traffic
 3. **Create a Scorer:** Click on the "+ Create a Scorer" button and input a Scorer name and description.
 4. **Find your Scorer ID:** Click on the newly created Scorer and you will see the Scorer ID in the page URL.\
    Example: `https://www.scorer.gitcoin.co/dashboard/scorer/scorer_id`
+
+## File Structure
+
+```
+integrations/gitcoin-passport
+├─ api/
+│  ├─ address-score.ts
+│  ├─ address-stamps.ts
+│  ├─ signing-message.ts
+│  ├─ stamps-metadata.ts
+│  ├─ submit-passport.ts
+├─ components/
+│  ├─ list-stamps.tsx
+│  ├─ score-gate.tsx
+│  ├─ stamp-card.tsx
+│  ├─ stamp-gate.tsx
+│  ├─ submit-passport-button.tsx
+├─ hooks/
+│  ├─ use-get-address-stamps.ts
+│  ├─ use-get-score.ts
+│  ├─ use-get-stamps-metadata.ts
+│  ├─ use-submit-passport.ts
+├─ utils/
+│  ├─ config.ts
+│  ├─ data-types.ts
+│  ├─ types.ts
+├─ constants.ts
+├─ types.ts
+├─ README.md
+```
