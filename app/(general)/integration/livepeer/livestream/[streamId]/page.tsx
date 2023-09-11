@@ -2,6 +2,7 @@
 
 import { useStream } from "@livepeer/react"
 
+import { Card, CardContent } from "@/components/ui/card"
 import { LinkComponent } from "@/components/shared/link-component"
 import { ButtonShare } from "@/integrations/livepeer/components/button-share"
 import { FormLivepeerApiKey } from "@/integrations/livepeer/components/form-livepeer-api-key"
@@ -28,9 +29,11 @@ export default function Page({ params }: { params: { streamId: string } }) {
     return (
       <div className="mt-20 flex w-full flex-col items-center justify-center">
         {!isLivepeerApiKeySet ? (
-          <div className="card w-full">
-            <FormLivepeerApiKey />
-          </div>
+          <Card>
+            <CardContent>
+              <FormLivepeerApiKey />
+            </CardContent>
+          </Card>
         ) : (
           <>
             <h1 className="text-center">

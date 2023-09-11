@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react"
 import { Address, isAddress } from "viem"
 
+import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 
@@ -34,13 +35,9 @@ export function Erc1155SetTokenStorage() {
             value={tokenAddress}
             onChange={(e) => setTokenAddress(e.target.value as Address)}
           />
-          <button
-            className="btn btn-emerald disabled:opacity-60"
-            disabled={!isValidAddress}
-            type="submit"
-          >
-            {"Select Contract Address"}
-          </button>
+          <Button disabled={!isValidAddress} type="submit">
+            Select Contract Address
+          </Button>
         </form>
       </CardContent>
       <Separator className="my-4" />

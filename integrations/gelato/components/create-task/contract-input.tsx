@@ -89,7 +89,7 @@ export function ContractInput({
             <div className="mt-3 flex space-x-4 text-sm">
               <span className="text-green-500">✓ ABI Fetched</span>
               <span
-                className="cursor-pointertext-muted-foreground underline"
+                className="cursor-pointer text-muted-foreground underline"
                 onClick={() => setIsCustomAbi(true)}
               >
                 Switch to custom ABI

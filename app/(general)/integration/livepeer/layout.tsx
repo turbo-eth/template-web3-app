@@ -59,23 +59,23 @@ export default function LayoutIntegration({
           </PageHeaderCTA>
         </PageHeader>
         <PageSection>
-          <div className="mt-8 flex flex-col justify-center gap-x-14 text-2xl sm:flex-row">
+          <div className="mb-4 mt-8 flex flex-col items-center justify-center gap-x-14 gap-y-4 text-2xl sm:flex-row">
             <LinkComponent href={videoOnDemandPath}>
               <Button
-                className={cn(pathname === livestreamPath && "opacity-50")}
+                className={cn(pathname === videoOnDemandPath && "opacity-50")}
               >
                 Video on demand
               </Button>
             </LinkComponent>
             <LinkComponent href={livestreamPath}>
               <Button
-                className={cn(pathname === videoOnDemandPath && "opacity-50")}
+                className={cn(pathname === livestreamPath && "opacity-50")}
               >
                 Livestream
               </Button>
             </LinkComponent>
           </div>
-          <div className="w-7/12">{children}</div>
+          {children}
         </PageSection>
       </div>
     </LivepeerProvider>

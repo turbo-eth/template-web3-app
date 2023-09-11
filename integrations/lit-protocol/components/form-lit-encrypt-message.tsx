@@ -10,6 +10,8 @@ import { FaCopy } from "react-icons/fa"
 import { FADE_DOWN_ANIMATION_VARIANTS } from "@/config/design"
 import { useToast } from "@/lib/hooks/use-toast"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
 import {
   Select,
   SelectContent,
@@ -17,6 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
@@ -82,144 +85,164 @@ export function FormLitEncryptMessage() {
           {encryptedMessageId ? (
             <motion.div
               animate="show"
-              className="card mx-auto my-8 max-w-fit"
+              className="mx-auto my-8 max-w-fit"
               initial="hidden"
               variants={FADE_DOWN_ANIMATION_VARIANTS}
             >
-              <h4 className="mb-4">Share:</h4>
-              <CopyToClipboard
-                text={`${origin}/integration/lit-protocol/unseal?id=${encryptedMessageId}`}
-              >
-                <span
-                  className="flex max-w-fit cursor-pointer items-center justify-between gap-2 rounded-lg bg-neutral-100 px-4 py-2 hover:bg-neutral-200 dark:bg-neutral-800"
-                  onClick={handleToast}
-                >
-                  <p>{`${origin}/integration/lit-protocol/unseal?id=${encryptedMessageId}`}</p>
-                  <span className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                    <FaCopy className="text-muted-foreground" />
-                  </span>
-                </span>
-              </CopyToClipboard>
+              <Card>
+                <CardContent>
+                  <h4 className="mb-4">Share:</h4>
+                  <CopyToClipboard
+                    text={`${origin}/integration/lit-protocol/unseal?id=${encryptedMessageId}`}
+                  >
+                    <span
+                      className="flex max-w-fit cursor-pointer items-center justify-between gap-2 rounded-lg bg-neutral-100 px-4 py-2 hover:bg-neutral-200 dark:bg-neutral-800"
+                      onClick={handleToast}
+                    >
+                      <p>{`${origin}/integration/lit-protocol/unseal?id=${encryptedMessageId}`}</p>
+                      <span className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+                        <FaCopy className="text-muted-foreground" />
+                      </span>
+                    </span>
+                  </CopyToClipboard>
+                </CardContent>
+              </Card>
             </motion.div>
           ) : (
             <>
               <motion.div
                 animate="show"
-                className="card my-8"
+                className="my-8"
                 initial="hidden"
                 variants={FADE_DOWN_ANIMATION_VARIANTS}
               >
-                <label>Select Access Control Conditions:</label>
-                <Select
-                  value={accessControlType}
-                  onValueChange={setAccessControlType}
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select Condition" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="singleAddress">
-                      Single Address
-                    </SelectItem>
-                    <SelectItem value="singleERC721">Single ERC721</SelectItem>
-                    <SelectItem value="tokenGroup">Token Group</SelectItem>
-                  </SelectContent>
-                </Select>
-                {accessControlType === "singleAddress" ? (
-                  <AccessControlSingleAddress
-                    accessControlConditions={accessControlConditions}
-                    setAccessControlConditions={setAccessControlConditions}
-                  />
-                ) : accessControlType === "singleERC721" ? (
-                  <AccessControlSingleERC721
-                    accessControlConditions={accessControlConditions}
-                    setAccessControlConditions={setAccessControlConditions}
-                  />
-                ) : accessControlType === "tokenGroup" ? (
-                  <AccessControlTokenGroup
-                    accessControlConditions={accessControlConditions}
-                    setAccessControlConditions={setAccessControlConditions}
-                  />
-                ) : null}
-                <hr className="my-4" />
-                <div className="flex items-center justify-between">
-                  <h3 className="text-center">Access Control Condition</h3>
-                  <p className="text-center text-sm text-muted-foreground">
-                    <LinkComponent
-                      isExternal
-                      className="font-bold"
-                      href="https://developer.litprotocol.com/accessControl/conditionTypes/unifiedAccessControlConditions"
+                <Card>
+                  <CardContent>
+                    <Label>Select Access Control Conditions:</Label>
+                    <Select
+                      value={accessControlType}
+                      onValueChange={setAccessControlType}
                     >
-                      Access Control Conditions
-                    </LinkComponent>{" "}
-                    let you filter who can decrypt your message.
-                  </p>
-                </div>
-              </motion.div>
-              {accessControlConditions.length > 0 && (
-                <motion.div
-                  animate="show"
-                  className="card my-8"
-                  initial="hidden"
-                  variants={FADE_DOWN_ANIMATION_VARIANTS}
-                >
-                  <h4 className="mb-4">Selected Access Control Conditions:</h4>
-                  <Textarea
-                    className="h-80"
-                    value={JSON.stringify(accessControlConditions, null, 2)}
-                  />
-                  <hr className="my-4" />
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-center">
-                      Selected Access control condition
-                    </h3>
+                      <SelectTrigger className="mt-2">
+                        <SelectValue placeholder="Select Condition" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="singleAddress">
+                          Single Address
+                        </SelectItem>
+                        <SelectItem value="singleERC721">
+                          Single ERC721
+                        </SelectItem>
+                        <SelectItem value="tokenGroup">Token Group</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    {accessControlType === "singleAddress" ? (
+                      <AccessControlSingleAddress
+                        accessControlConditions={accessControlConditions}
+                        setAccessControlConditions={setAccessControlConditions}
+                      />
+                    ) : accessControlType === "singleERC721" ? (
+                      <AccessControlSingleERC721
+                        accessControlConditions={accessControlConditions}
+                        setAccessControlConditions={setAccessControlConditions}
+                      />
+                    ) : accessControlType === "tokenGroup" ? (
+                      <AccessControlTokenGroup
+                        accessControlConditions={accessControlConditions}
+                        setAccessControlConditions={setAccessControlConditions}
+                      />
+                    ) : null}
+                  </CardContent>
+                  <Separator className="my-4" />
+                  <CardFooter className="justify-between">
+                    <h3 className="text-center">Access Control Condition</h3>
                     <p className="text-center text-sm text-muted-foreground">
                       <LinkComponent
                         isExternal
                         className="font-bold"
-                        href="https://lit-share-modal-v3-playground.netlify.app/"
+                        href="https://developer.litprotocol.com/accessControl/conditionTypes/unifiedAccessControlConditions"
                       >
-                        Check this playground
+                        Access Control Conditions
                       </LinkComponent>{" "}
-                      to create and compose conditions.
+                      let you filter who can decrypt your message.
                     </p>
-                  </div>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+              {accessControlConditions.length > 0 && (
+                <motion.div
+                  animate="show"
+                  className="my-8"
+                  initial="hidden"
+                  variants={FADE_DOWN_ANIMATION_VARIANTS}
+                >
+                  <Card>
+                    <CardContent>
+                      <h4 className="mb-4">
+                        Selected Access Control Conditions:
+                      </h4>
+                      <Textarea
+                        className="h-80"
+                        value={JSON.stringify(accessControlConditions, null, 2)}
+                      />
+                    </CardContent>
+                    <Separator className="my-4" />
+                    <CardFooter className="justify-between">
+                      <h3 className="text-center">
+                        Selected Access control condition
+                      </h3>
+                      <p className="text-center text-sm text-muted-foreground">
+                        <LinkComponent
+                          isExternal
+                          className="font-bold"
+                          href="https://lit-share-modal-v3-playground.netlify.app/"
+                        >
+                          Check this playground
+                        </LinkComponent>{" "}
+                        to create and compose conditions.
+                      </p>
+                    </CardFooter>
+                  </Card>
                 </motion.div>
               )}
               <motion.div
                 animate="show"
-                className="card my-8"
+                className="my-8"
                 initial="hidden"
                 variants={FADE_DOWN_ANIMATION_VARIANTS}
               >
-                <form
-                  className="flex flex-col"
-                  onSubmit={handleSubmit(onSubmit)}
-                >
-                  <label className="mb-4">Message:</label>
-                  <Textarea
-                    {...register("message")}
-                    className="h-40"
-                    value={messageToEncrypt}
-                    onChange={(e) => setMessageToEncrypt(e.target.value)}
-                  />
-                  <Button
-                    variant="emerald"
-                    className="mt-4"
-                    disabled={!isValid || isLoading}
-                    type="submit"
-                  >
-                    {isLoading ? "Loading..." : "Encrypt"}
-                  </Button>
-                </form>
-                <hr className="my-4" />
-                <div className="flex items-center justify-between">
-                  <h3 className="text-center">Message Encryption</h3>
-                  <p className="text-center text-sm text-muted-foreground">
-                    Select the Lit Protocol access control conditions and insert
-                    your message.
-                  </p>
-                </div>
+                <Card>
+                  <CardContent>
+                    <form
+                      className="flex flex-col"
+                      onSubmit={handleSubmit(onSubmit)}
+                    >
+                      <label className="mb-4">Message:</label>
+                      <Textarea
+                        {...register("message")}
+                        className="h-40"
+                        value={messageToEncrypt}
+                        onChange={(e) => setMessageToEncrypt(e.target.value)}
+                      />
+                      <Button
+                        variant="emerald"
+                        className="mt-4"
+                        disabled={!isValid || isLoading}
+                        type="submit"
+                      >
+                        {isLoading ? "Loading..." : "Encrypt"}
+                      </Button>
+                    </form>
+                  </CardContent>
+                  <Separator className="my-4" />
+                  <CardFooter className="justify-between">
+                    <h3 className="text-center">Message Encryption</h3>
+                    <p className="text-center text-sm text-muted-foreground">
+                      Select the Lit Protocol access control conditions and
+                      insert your message.
+                    </p>
+                  </CardFooter>
+                </Card>
               </motion.div>
             </>
           )}
