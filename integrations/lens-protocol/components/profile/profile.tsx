@@ -98,7 +98,7 @@ export const Profile = ({ handle }: { handle: string }) => {
           )}
           {profile ? (
             <Link
-              className="link mt-1 block text-xs"
+              className="mt-1 block text-xs"
               href={`/integration/lens-protocol/profiles/address/${profile.ownedBy}`}
             >
               See all profiles

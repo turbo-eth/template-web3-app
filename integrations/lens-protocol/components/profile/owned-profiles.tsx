@@ -68,7 +68,7 @@ export const OwnedProfiles = () => {
                         {isProfileSelected ? "Current Profile" : "Use Profile"}
                       </Button>
                       <LinkComponent
-                        className="link ml-4 text-sm"
+                        className="ml-4 text-sm"
                         href={`/integration/lens-protocol/profiles/${profile.handle}`}
                       >
                         View
@@ -87,7 +87,7 @@ export const OwnedProfiles = () => {
               <Avatar>
                 <AvatarFallback>+</AvatarFallback>
               </Avatar>
-              <div className="link mt-2 flex flex-col items-center space-y-2">
+              <div className="mt-2 flex flex-col items-center space-y-2">
                 <h2 className="text-sm font-semibold">
                   Create a new profile on testnet
                 </h2>
@@ -123,7 +123,7 @@ export const OwnedProfiles = () => {
                 DarkImage={turboIntegrations.lensProtocol.imgLight}
                 width={50}
               />
-              <div className="link mt-2 flex items-center space-x-1">
+              <div className="mt-2 flex items-center space-x-1">
                 <span>Claim a new handle on Lens</span>
                 <FaExternalLinkAlt fontSize={10} />
               </div>

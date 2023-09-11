@@ -41,7 +41,7 @@ export const ProfileCard = ({
           <Skeleton className="h-10 w-10 rounded-full" />
         )}
         {profile ? (
-          <span className="link mt-2 block w-full truncate font-semibold">
+          <span className="mt-2 block w-full truncate font-semibold">
             @{profile.handle}
           </span>
         ) : (

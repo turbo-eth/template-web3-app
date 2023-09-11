@@ -196,7 +196,7 @@ export const PublicationCard = ({
             <div
               className={cn(
                 "mt-4 w-full text-xs text-slate-500 dark:text-gray-300",
-                compactMode && "flex-0 mt-0 w-auto"
+                compactMode && "mt-0 w-auto"
               )}
             >
               {publication ? (
