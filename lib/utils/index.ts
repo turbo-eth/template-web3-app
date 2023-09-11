@@ -32,3 +32,7 @@ export function trimFormattedBalance(
   const trimmedDecimal = decimal.slice(0, decimals)
   return `${integer}.${trimmedDecimal}`
 }
+
+export function truncateEthAddress(address: string) {
+  return `${address.slice(0, 6)}...${address.slice(-4)}`
+}

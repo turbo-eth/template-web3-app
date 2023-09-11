@@ -7,6 +7,7 @@ import { useDropzone } from "react-dropzone"
 import { BiVideoPlus } from "react-icons/bi"
 
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
 
 import { useIsLivepeerApiKeySet } from "../hooks/use-livepeer-api-key"
@@ -82,9 +83,11 @@ export function UploadFile() {
   return (
     <div>
       {!isLivepeerApiKeySet ? (
-        <div className="card">
-          <FormLivepeerApiKey />
-        </div>
+        <Card>
+          <CardContent>
+            <FormLivepeerApiKey />
+          </CardContent>
+        </Card>
       ) : (
         <div className="flex h-full w-full flex-col gap-y-4">
           {!asset && !video ? (

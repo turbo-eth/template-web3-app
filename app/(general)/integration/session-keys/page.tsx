@@ -52,7 +52,7 @@ export default function SessionKeysPage() {
         </PageHeaderCTA>
       </PageHeader>
       <PageSection>
-        <div className="mb-10 flex items-center justify-between gap-4">
+        <div className="mb-10 flex flex-col items-center justify-between gap-4 md:flex-row">
           <CreateSessionKey />
           <DeleteSessionKey
             selectedSessionKey={selectedSessionKey}
@@ -60,7 +60,7 @@ export default function SessionKeysPage() {
           />
           <DeleteAllSessionKeys />
         </div>
-        <div className="mx-auto">
+        <div className="mx-auto max-w-full">
           <ListSessionKeys
             selectedSessionKey={selectedSessionKey}
             setSelectedSessionKey={setSelectedSessionKey}

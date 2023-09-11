@@ -13,8 +13,8 @@ export default function PageIntegration() {
   const isLivepeerApiKeySet = useIsLivepeerApiKeySet()
   return (
     <Card>
-      <CardHeader>{!isLivepeerApiKeySet && <FormLivepeerApiKey />}</CardHeader>
       <CardContent className="flex flex-col gap-4">
+        {!isLivepeerApiKeySet && <FormLivepeerApiKey />}
         <LinkComponent href={newVodPath}>
           <Button
             variant="ghost"

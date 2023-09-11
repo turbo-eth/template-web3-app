@@ -9,7 +9,6 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { LinkComponent } from "@/components/shared/link-component"
 
 export function DialogStopStream() {
   return (

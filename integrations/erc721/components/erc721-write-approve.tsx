@@ -3,6 +3,8 @@ import { useDebounce } from "usehooks-ts"
 import { BaseError } from "viem"
 import { Address, useWaitForTransaction } from "wagmi"
 
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
 
@@ -42,36 +44,38 @@ export function Erc721WriteApprove({ address }: Erc721WriteApproveProps) {
   }
 
   return (
-    <div className="card w-full">
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <label>Address</label>
-        <input {...register("toAddress")} className="input" />
-        <label>Token ID</label>
-        <input type="number" {...register("tokenId")} className="input" />
-        <ContractWriteButton
-          isLoadingTx={isLoadingTx}
-          isLoadingWrite={isLoadingWrite}
-          loadingTxText="Approving..."
-          type="submit"
-          write={!!write}
-        >
-          Approve
-        </ContractWriteButton>
-        <TransactionStatus
-          error={error as BaseError}
-          hash={data?.hash}
-          isError={isError && Boolean(debouncedToAddress && debouncedTokenId)}
-          isLoadingTx={isLoadingTx}
-          isSuccess={isSuccess}
-        />
-        <hr className="my-4" />
-        <div className="flex items-center justify-between">
-          <h3 className="text-center">ERC721 Approve</h3>
-          <p className="text-center text-sm text-muted-foreground">
-            Approve NFTs to any address
-          </p>
-        </div>
-      </form>
-    </div>
+    <Card>
+      <CardContent>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+          <label>Address</label>
+          <input {...register("toAddress")} className="input" />
+          <label>Token ID</label>
+          <input type="number" {...register("tokenId")} className="input" />
+          <ContractWriteButton
+            isLoadingTx={isLoadingTx}
+            isLoadingWrite={isLoadingWrite}
+            loadingTxText="Approving..."
+            type="submit"
+            write={!!write}
+          >
+            Approve
+          </ContractWriteButton>
+          <TransactionStatus
+            error={error as BaseError}
+            hash={data?.hash}
+            isError={isError && Boolean(debouncedToAddress && debouncedTokenId)}
+            isLoadingTx={isLoadingTx}
+            isSuccess={isSuccess}
+          />
+        </form>
+      </CardContent>
+      <Separator className="my-4" />
+      <CardFooter className="justify-between">
+        <h3 className="text-center">ERC721 Approve</h3>
+        <p className="text-center text-sm text-muted-foreground">
+          Approve NFTs to any address
+        </p>
+      </CardFooter>
+    </Card>
   )
 }

@@ -1,12 +1,14 @@
 "use client"
 
 import Link from "next/link"
-import { turboIntegrations } from "@/data/documentation"
+import { turboIntegrations } from "@/data/turbo-integrations"
 import { LuBook } from "react-icons/lu"
 import { useAccount } from "wagmi"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
@@ -66,18 +68,26 @@ export default function DiscoPage() {
             <IsWalletConnected>
               <IsSignedIn>
                 <section className="flex w-full flex-col gap-y-10">
-                  <div className="container w-full rounded-lg bg-card p-6 shadow">
-                    <h3 className="text-4xl font-bold">Disco Profile</h3>
-                    <hr className="my-4" />
-                    <DiscoProfileBasic address={address} />
-                  </div>
-                  <div className="card container max-w-full">
-                    <h3 className="text-4xl font-bold">
-                      Disco Verifiable Credentials
-                    </h3>
-                    <hr className="my-4" />
-                    <DiscoProfileCredentials address={address} />
-                  </div>
+                  <Card>
+                    <CardHeader>
+                      <h3 className="text-4xl font-bold">Disco Profile</h3>
+                      <Separator className="my-4" />
+                    </CardHeader>
+                    <CardContent>
+                      <DiscoProfileBasic address={address} />
+                    </CardContent>
+                  </Card>
+                  <Card>
+                    <CardHeader>
+                      <h3 className="text-4xl font-bold">
+                        Disco Verifiable Credentials
+                      </h3>
+                      <Separator className="my-4" />
+                    </CardHeader>
+                    <CardContent>
+                      <DiscoProfileCredentials address={address} />
+                    </CardContent>
+                  </Card>
                 </section>
               </IsSignedIn>
               <IsSignedOut>

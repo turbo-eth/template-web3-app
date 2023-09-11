@@ -34,7 +34,7 @@ export function CopyButton({
   return (
     <Button
       className={cn(
-        "relative z-10 h-14 border bg-muted/50 py-4 font-mono text-lg text-muted-foreground hover:bg-muted/80 hover:text-accent-foreground",
+        "relative z-10 flex h-14 items-center gap-x-2 bg-muted/50 py-4 font-mono text-lg text-muted-foreground hover:bg-muted/80 hover:text-accent-foreground",
         className
       )}
       onClick={async () => {
@@ -46,9 +46,9 @@ export function CopyButton({
       {children}
       <span className="sr-only">Copy</span>
       {hasCopied ? (
-        <LuCheck className="ml-2 h-4 w-4" />
+        <LuCheck className="h-4 w-4" />
       ) : (
-        <LuCopy className="ml-2 h-4 w-4" />
+        <LuCopy className="h-4 w-4" />
       )}
     </Button>
   )

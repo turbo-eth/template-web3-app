@@ -22,7 +22,7 @@ export default function PageDashboard() {
       <IsWalletConnected>
         <div className="col-span-12 flex flex-col items-center justify-center lg:col-span-9">
           <div className="text-center">
-            <h3 className="font-primary text-2xl font-bold lg:text-6xl">
+            <h3 className="text-2xl font-bold lg:text-6xl">
               <span className="bg-gradient-to-br from-indigo-600 to-purple-700 bg-clip-text text-transparent dark:from-indigo-100 dark:to-purple-200">
                 hi 👋 <WalletEnsName />
               </span>
@@ -30,7 +30,7 @@ export default function PageDashboard() {
             <span className="font-light">
               <WalletAddress className="mt-5 block text-xl font-light" />
               <div className="mt-4">
-                <span className="font-primary text-3xl font-light">
+                <span className="text-3xl font-light">
                   Balance: <WalletBalance decimals={7} /> ETH
                 </span>
               </div>

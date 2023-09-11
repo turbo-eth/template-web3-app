@@ -10,6 +10,7 @@ import { useToast } from "@/lib/hooks/use-toast"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { LinkComponent } from "@/components/shared/link-component"
 
 import { arweaveGatewayUrl, getArweaveTxData, getArweaveTxStatus } from ".."
@@ -77,158 +78,164 @@ export const Post = ({ txId }: { txId: ArweaveTxId }) => {
     }, 4200)
   }
   return (
-    <div className="card w-full text-left">
-      <h2>Transaction</h2>
-      <div className="mt-2 flex flex-col items-center justify-between gap-2 sm:flex-row">
-        <div className="flex max-w-full flex-wrap items-center gap-2">
-          <span className="max-w-full break-words rounded-xl bg-muted p-2 font-mono text-sm text-blue-500 dark:text-blue-100">
-            {txId}
-          </span>
-          <CopyToClipboard
-            text={txId}
-            onCopy={() => handleToast("Arweave Tx ID Copied")}
-          >
-            <span className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-              <FaCopy className="text-muted-foreground" />
+    <Card className="w-full text-left">
+      <CardContent>
+        <h2>Transaction</h2>
+        <div className="mt-2 flex flex-col items-center justify-between gap-2 sm:flex-row">
+          <div className="flex max-w-full flex-wrap items-center gap-2">
+            <span className="max-w-full break-words rounded-xl bg-muted p-2 font-mono text-sm text-blue-500 dark:text-blue-100">
+              {txId}
             </span>
-          </CopyToClipboard>
+            <CopyToClipboard
+              text={txId}
+              onCopy={() => handleToast("Arweave Tx ID Copied")}
+            >
+              <span className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+                <FaCopy className="text-muted-foreground" />
+              </span>
+            </CopyToClipboard>
+          </div>
+          <Link
+            href={`https://arweave.app/tx/${txId}`}
+            className={cn(buttonVariants(), "text-xs")}
+          >
+            View on Arweave.app
+          </Link>
         </div>
-        <Link
-          href={`https://arweave.app/tx/${txId}`}
-          className={cn(buttonVariants(), "text-xs")}
-        >
-          View on Arweave.app
-        </Link>
-      </div>
-      {txStatus && (
+        {txStatus && (
+          <div className="mt-8">
+            <div>Status</div>
+            {txStatus?.confirmed ? (
+              <>
+                <div className="mt-2 text-sm">
+                  <span className="text-muted-foreground">Confirmations:</span>
+                  <span className="ml-2">
+                    {txStatus.confirmed?.number_of_confirmations}
+                  </span>
+                </div>
+                <div className="mt-2 text-sm">
+                  <span className="text-muted-foreground">Block height:</span>
+                  <span className="ml-2">
+                    {txStatus.confirmed?.block_height}
+                  </span>
+                </div>
+                <div className="mt-2 text-sm">
+                  <span className="text-muted-foreground">Block Hash:</span>
+                  <span className="ml-2 break-words font-mono text-xs">
+                    {txStatus.confirmed?.block_indep_hash}
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div className="mt-2 flex items-center space-x-4 text-sm">
+                <Spinner isSmall={true} />
+                Pending
+              </div>
+            )}
+          </div>
+        )}
+        {txDetails && (
+          <div>
+            <div className="mt-2 text-sm">
+              <span className="text-muted-foreground">Fee:</span>
+              <span className="ml-2 font-mono text-xs">
+                {txDetails.fee.winston} winston
+              </span>
+            </div>
+            <div className="mt-2 text-sm">
+              <span className="text-muted-foreground">Time:</span>
+              <span className="ml-2 font-mono text-xs">
+                {txDetails.block?.timestamp
+                  ? moment(parseInt(txDetails.block.timestamp) * 1000).format(
+                      "MMM D, YYYY h:mm A"
+                    )
+                  : "-"}
+              </span>
+            </div>
+            <div className="mt-8">Owner</div>
+            <div className="mb-5 mt-2 flex items-center">
+              <Avatar>
+                <AvatarImage src={owner?.profile?.avatarURL} />
+                <AvatarFallback>
+                  {(owner?.handle ?? txDetails.owner.address).substring(0, 2)}
+                </AvatarFallback>
+              </Avatar>
+              <div className="ml-2 flex-col">
+                {owner?.handle && (
+                  <div className="text-sm">{owner?.handle}</div>
+                )}
+                <div className="flex items-center font-mono text-xs">
+                  {truncateString(txDetails.owner.address, 15)}
+                  <CopyToClipboard
+                    text={txDetails.owner.address}
+                    onCopy={() => handleToast("Owner address Copied")}
+                  >
+                    <span className="ml-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
+                      <FaCopy className="text-muted-foreground" />
+                    </span>
+                  </CopyToClipboard>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
         <div className="mt-8">
-          <div>Status</div>
-          {txStatus?.confirmed ? (
+          <div>Tags</div>
+          {txDetails?.tags.map((tag) => (
+            <div key={tag.name}>
+              <div className="mt-2 inline-block w-auto rounded bg-background p-2 text-sm">
+                <span className="mr-2 text-muted-foreground">{tag.name}</span>
+                <span className="ml-2 font-mono">{tag.value}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="mt-8">
+          <div>Data</div>
+          {txDetails && (
             <>
               <div className="mt-2 text-sm">
-                <span className="text-muted-foreground">Confirmations:</span>
-                <span className="ml-2">
-                  {txStatus.confirmed?.number_of_confirmations}
+                <span className="text-muted-foreground">Size:</span>
+                <span className="ml-2 font-mono text-xs">
+                  {humanFileSize(txDetails.data.size)}
                 </span>
               </div>
               <div className="mt-2 text-sm">
-                <span className="text-muted-foreground">Block height:</span>
-                <span className="ml-2">{txStatus.confirmed?.block_height}</span>
-              </div>
-              <div className="mt-2 text-sm">
-                <span className="text-muted-foreground">Block Hash:</span>
-                <span className="ml-2 break-words font-mono text-xs">
-                  {txStatus.confirmed?.block_indep_hash}
+                <span className="text-muted-foreground">Type:</span>
+                <span className="ml-2 font-mono text-xs">
+                  {txDetails.data.type ?? "-"}
                 </span>
               </div>
             </>
-          ) : (
-            <div className="mt-2 flex items-center space-x-4 text-sm">
-              <Spinner isSmall={true} />
-              Pending
+          )}
+          {txDetails?.data.type?.split("/")[0] === "image" && (
+            <img
+              alt=""
+              className="mt-3 w-64 rounded"
+              src={`${arweaveGatewayUrl}${txId}`}
+            />
+          )}
+          {txData && (
+            <div className="mt-2 break-all bg-muted p-4 font-mono text-sm">
+              {txData}
             </div>
           )}
+          {downloadLink && (
+            <LinkComponent
+              isExternal
+              className={cn(buttonVariants({ variant: "blue" }), "mt-3")}
+              href={downloadLink}
+            >
+              Download Data from Arweave
+            </LinkComponent>
+          )}
         </div>
-      )}
-      {txDetails && (
-        <div>
-          <div className="mt-2 text-sm">
-            <span className="text-muted-foreground">Fee:</span>
-            <span className="ml-2 font-mono text-xs">
-              {txDetails.fee.winston} winston
-            </span>
-          </div>
-          <div className="mt-2 text-sm">
-            <span className="text-muted-foreground">Time:</span>
-            <span className="ml-2 font-mono text-xs">
-              {txDetails.block?.timestamp
-                ? moment(parseInt(txDetails.block.timestamp) * 1000).format(
-                    "MMM D, YYYY h:mm A"
-                  )
-                : "-"}
-            </span>
-          </div>
-          <div className="mt-8">Owner</div>
-          <div className="mb-5 mt-2 flex items-center">
-            <Avatar>
-              <AvatarImage src={owner?.profile?.avatarURL} />
-              <AvatarFallback>
-                {(owner?.handle ?? txDetails.owner.address).substring(0, 2)}
-              </AvatarFallback>
-            </Avatar>
-            <div className="ml-2 flex-col">
-              {owner?.handle && <div className="text-sm">{owner?.handle}</div>}
-              <div className="flex items-center font-mono text-xs">
-                {truncateString(txDetails.owner.address, 15)}
-                <CopyToClipboard
-                  text={txDetails.owner.address}
-                  onCopy={() => handleToast("Owner address Copied")}
-                >
-                  <span className="ml-2 flex h-7 w-7 cursor-pointer items-center justify-center rounded-md bg-neutral-100 p-2 hover:bg-neutral-200 dark:bg-neutral-800 hover:dark:bg-neutral-900">
-                    <FaCopy className="text-muted-foreground" />
-                  </span>
-                </CopyToClipboard>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-      <div className="mt-8">
-        <div>Tags</div>
-        {txDetails?.tags.map((tag) => (
-          <div key={tag.name}>
-            <div className="mt-2 inline-block w-auto rounded bg-background p-2 text-sm">
-              <span className="mr-2 text-muted-foreground">{tag.name}</span>
-              <span className="ml-2 font-mono">{tag.value}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-8">
-        <div>Data</div>
-        {txDetails && (
-          <>
-            <div className="mt-2 text-sm">
-              <span className="text-muted-foreground">Size:</span>
-              <span className="ml-2 font-mono text-xs">
-                {humanFileSize(txDetails.data.size)}
-              </span>
-            </div>
-            <div className="mt-2 text-sm">
-              <span className="text-muted-foreground">Type:</span>
-              <span className="ml-2 font-mono text-xs">
-                {txDetails.data.type ?? "-"}
-              </span>
-            </div>
-          </>
-        )}
-        {txDetails?.data.type?.split("/")[0] === "image" && (
-          <img
-            alt=""
-            className="mt-3 w-64 rounded"
-            src={`${arweaveGatewayUrl}${txId}`}
-          />
-        )}
-        {txData && (
-          <div className="mt-2 break-all bg-muted p-4 font-mono text-sm">
-            {txData}
+        {(!txDetails || !txStatus) && (
+          <div className="mt-2 flex w-full items-center">
+            <Spinner />
           </div>
         )}
-        {downloadLink && (
-          <LinkComponent
-            isExternal
-            className={cn(buttonVariants({ variant: "blue" }), "mt-3")}
-            href={downloadLink}
-          >
-            Download Data from Arweave
-          </LinkComponent>
-        )}
-      </div>
-      {(!txDetails || !txStatus) && (
-        <div className="mt-2 flex w-full items-center">
-          <Spinner />
-        </div>
-      )}
-    </div>
+      </CardContent>
+    </Card>
   )
 }
