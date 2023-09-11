@@ -19,6 +19,7 @@ const nextConfig = {
   },
   experimental: {
     appDir: true,
+    serverComponentsExternalPackages: ["@sismo-core/sismo-connect-server"],
   },
   webpack: (
     config,

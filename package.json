@@ -69,6 +69,8 @@
     "@radix-ui/react-toast": "^1.1.3",
     "@radix-ui/react-tooltip": "^1.0.3",
     "@rainbow-me/rainbowkit": "1.0.1",
+    "@sismo-core/sismo-connect-react": "^0.0.23",
+    "@sismo-core/sismo-connect-server": "^0.0.23",
     "@t3-oss/env-nextjs": "^0.4.0",
     "@tanstack/react-query": "^4.3.9",
     "abitype": "^0.9.6",

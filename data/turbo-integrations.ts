@@ -190,6 +190,16 @@ export const turboIntegrations: Record<string, TurboIntegration> = {
     imgDark: "/integrations/gitcoin-passport.svg",
     category: "services",
   },
+  sismo: {
+    name: "Sismo ETH",
+    href: "/integration/sismo",
+    url: "https://www.sismo.io/",
+    description:
+      "Sismo ETH is a decentralized identity aggregator and crypto-native SSO that uses zero-knowledge proofs (ZKPs) to enable users to aggregate and selectively disclose personal data to applications.",
+    imgLight: "/integrations/sismo-protocol-light.png",
+    imgDark: "/integrations/sismo-protocol-dark.png",
+    category: "services",
+  },
   starter: {
     name: "Starter Template",
     href: "/integration/starter",
