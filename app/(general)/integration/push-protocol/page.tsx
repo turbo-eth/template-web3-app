@@ -8,6 +8,7 @@ import { LuBook } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import {
   Select,
@@ -16,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Separator } from "@/components/ui/separator"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
@@ -91,65 +93,69 @@ export default function PushProtocolPage() {
             </div>
           </div>
           <div className="mb-6 w-full">
-            <div className="card">
-              <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
-                <div className="grow">
-                  <Input
-                    defaultValue={channelAddress}
-                    placeholder="Enter Channel Address"
-                    onChange={(e) => setChannelAddress(e.target.value)}
-                  />
+            <Card>
+              <CardContent>
+                <div className="mb-4 flex flex-col space-y-4 md:flex-row md:space-x-4 md:space-y-0">
+                  <div className="grow">
+                    <Input
+                      defaultValue={channelAddress}
+                      placeholder="Enter Channel Address"
+                      onChange={(e) => setChannelAddress(e.target.value)}
+                    />
+                  </div>
+                  <div className="w-full md:w-56">
+                    <Select
+                      value={env}
+                      onValueChange={(value) => setEnv(value as ENV)}
+                    >
+                      <SelectTrigger>
+                        <SelectValue
+                          placeholder={
+                            env === ENV.STAGING ? "Goerli" : "Mainnet"
+                          }
+                        >
+                          {env === ENV.STAGING ? "Goerli" : "Mainnet"}
+                        </SelectValue>
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value={ENV.STAGING}>Goerli</SelectItem>
+                        <SelectItem value={ENV.PROD}>Mainnet</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-                <div className="w-full md:w-56">
-                  <Select
-                    value={env}
-                    onValueChange={(value) => setEnv(value as ENV)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue
-                        placeholder={env === ENV.STAGING ? "Goerli" : "Mainnet"}
-                      >
-                        {env === ENV.STAGING ? "Goerli" : "Mainnet"}
-                      </SelectValue>
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value={ENV.STAGING}>Goerli</SelectItem>
-                      <SelectItem value={ENV.PROD}>Mainnet</SelectItem>
-                    </SelectContent>
-                  </Select>
+                <div className="flex w-full flex-col space-y-4  lg:flex-row lg:space-x-4 lg:space-y-0">
+                  <div className="grow">
+                    <ChannelCard
+                      channelAddress={channelAddress}
+                      env={env}
+                      onSubscribe={() => handleSubscribe()}
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="flex w-full flex-col space-y-4  lg:flex-row lg:space-x-4 lg:space-y-0">
-                <div className="grow">
-                  <ChannelCard
-                    channelAddress={channelAddress}
-                    env={env}
-                    onSubscribe={() => handleSubscribe()}
-                  />
-                </div>
-              </div>
-              <hr className="my-4" />
-              <div className="flex items-center justify-between">
+              </CardContent>
+              <Separator className="my-4" />
+              <CardFooter className="justify-between">
                 <h3 className="text-center">Channel Preview</h3>
                 <p className="text-center text-sm text-muted-foreground">
                   Preview and subscribe channel
                 </p>
-              </div>
-            </div>
+              </CardFooter>
+            </Card>
           </div>
           <div className="mb-3 w-full">
-            <div className="card">
-              <div>
+            <Card>
+              <CardContent>
                 <ChannelSearch />
-              </div>
-              <hr className="my-4" />
-              <div className="flex items-center justify-between">
+              </CardContent>
+              <Separator className="my-4" />
+              <CardFooter className="justify-between">
                 <h3 className="text-center">Search Channels</h3>
                 <p className="text-center text-sm text-muted-foreground">
                   Search for PUSH channels
                 </p>
-              </div>
-            </div>
+              </CardFooter>
+            </Card>
           </div>
         </IsWalletConnected>
       </PageSection>

@@ -2,6 +2,7 @@ import moment from "moment"
 import { Control, useFieldArray, UseFormRegister } from "react-hook-form"
 
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import {
   Form,
   FormControl,
@@ -161,29 +162,35 @@ export const ListPosts = () => {
       {posts.map((p) => (
         <LinkComponent
           key={p.id}
-          className="card mb-2 mt-1 flex justify-between"
+          className="mb-2 mt-1 flex justify-between"
           href={`/integration/arweave/posts/${p.id}`}
         >
-          <div className="flex flex-col items-start text-sm capitalize">
-            <span>{p.data.type?.replace("/", " ") ?? "data"}</span>
-            <span className="mt-1 text-xs">
-              {p.tags.find((tag) => tag.name === "Protocol-Name")?.value ??
-                "Data"}
-            </span>
-          </div>
-          <div className="flex flex-col items-end text-xs">
-            <span>
-              Size:{" "}
-              <span className="font-mono">{humanFileSize(p.data.size)}</span>
-            </span>
-            <span className="mt-1">
-              {p.block?.timestamp
-                ? moment(parseInt(p.block?.timestamp) * 1000).format(
-                    "MMM D, YYYY h:mm A"
-                  )
-                : ""}
-            </span>
-          </div>
+          <Card>
+            <CardContent>
+              <div className="flex flex-col items-start text-sm capitalize">
+                <span>{p.data.type?.replace("/", " ") ?? "data"}</span>
+                <span className="mt-1 text-xs">
+                  {p.tags.find((tag) => tag.name === "Protocol-Name")?.value ??
+                    "Data"}
+                </span>
+              </div>
+              <div className="flex flex-col items-end text-xs">
+                <span>
+                  Size:{" "}
+                  <span className="font-mono">
+                    {humanFileSize(p.data.size)}
+                  </span>
+                </span>
+                <span className="mt-1">
+                  {p.block?.timestamp
+                    ? moment(parseInt(p.block?.timestamp) * 1000).format(
+                        "MMM D, YYYY h:mm A"
+                      )
+                    : ""}
+                </span>
+              </div>
+            </CardContent>
+          </Card>
         </LinkComponent>
       ))}
       {!loading && !posts.length && <div>No post matched.</div>}

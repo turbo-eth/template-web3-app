@@ -24,7 +24,7 @@ export function RestrictionInfo({
   }, [abi, func])
 
   return (
-    <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
+    <div className="mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
       <div className="leading-6 text-orange-300">
         If the <span className="text-indigo-400">{functionSignature}</span>{" "}
         function has access restrictions, whitelist this address as a{" "}

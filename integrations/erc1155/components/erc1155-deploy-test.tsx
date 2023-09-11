@@ -1,6 +1,8 @@
 import { FormEvent, useState } from "react"
 import { usePublicClient, useWalletClient } from "wagmi"
 
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { BlockExplorerLink } from "@/components/blockchain/block-explorer-link"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 
@@ -46,31 +48,33 @@ export function Erc1155DeployTest() {
   }
 
   return (
-    <div className="card w-full">
-      <form className="flex flex-col gap-4" onSubmit={onSubmit}>
-        <ContractWriteButton
-          isLoadingTx={isWaitingTransaction}
-          isLoadingWrite={isSigning}
-          loadingTxText="Deploying..."
-        >
-          Deploy Test ERC1155
-        </ContractWriteButton>
-      </form>
-      {(token || isWaitingTransaction) && (
-        <div className="flex max-w-full flex-wrap items-center justify-between break-words pb-2 pt-5">
-          <span className="font-semibold">
-            {token ? "Mint Contract Address" : "Deploying contract"}:
-          </span>
-          <BlockExplorerLink address={token} />
-        </div>
-      )}
-      <hr className="my-4" />
-      <div className="flex items-center justify-between">
+    <Card>
+      <CardContent>
+        <form className="flex flex-col gap-4" onSubmit={onSubmit}>
+          <ContractWriteButton
+            isLoadingTx={isWaitingTransaction}
+            isLoadingWrite={isSigning}
+            loadingTxText="Deploying..."
+          >
+            Deploy Test ERC1155
+          </ContractWriteButton>
+        </form>
+        {(token || isWaitingTransaction) && (
+          <div className="flex max-w-full flex-wrap items-center justify-between break-words pb-2 pt-5">
+            <span className="font-semibold">
+              {token ? "Mint Contract Address" : "Deploying contract"}:
+            </span>
+            <BlockExplorerLink address={token} />
+          </div>
+        )}
+      </CardContent>
+      <Separator className="my-4" />
+      <CardFooter className="justify-between">
         <h3 className="text-center">ERC1155 Deploy</h3>
         <p className="text-center text-sm text-gray-500">
           Deploy a test ERC1155 token to any blockchain
         </p>
-      </div>
-    </div>
+      </CardFooter>
+    </Card>
   )
 }

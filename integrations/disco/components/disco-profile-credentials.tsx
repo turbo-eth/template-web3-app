@@ -3,6 +3,7 @@ import type { Address } from "wagmi"
 
 import { useUser } from "@/lib/hooks/use-user"
 import { cn } from "@/lib/utils"
+import { Card, CardContent } from "@/components/ui/card"
 import { LinkComponent } from "@/components/shared/link-component"
 import { useDiscoGetProfileFromAddress } from "@/integrations/disco/hooks/use-disco-get-profile-from-address"
 
@@ -46,27 +47,30 @@ export const DiscoProfileCredentials = ({
         : data?.creds?.map((credential: Credential) => (
             <LinkComponent
               key={credential.id}
-              className="card flex h-[224px] flex-col justify-between transition duration-300 hover:scale-105 dark:bg-neutral-500/80"
               href={`${DISCO_APP_URL}/${credential.id}`}
             >
-              <div className="break-words font-bold text-foreground">{`${
-                credential?.type[1] || credential?.type[0]
-              }`}</div>
-              <div>
-                <hr className="my-2" />
-                <ul className="flex flex-wrap gap-2">
-                  {credential?.type?.map((type, idx) => {
-                    return (
-                      <li
-                        key={idx}
-                        className="overflow-x-auto break-words text-xs font-bold"
-                      >
-                        {type}
-                      </li>
-                    )
-                  })}
-                </ul>
-              </div>
+              <Card className="transition duration-300 hover:scale-105 dark:bg-neutral-500/80">
+                <CardContent className="flex h-[224px] flex-col justify-between">
+                  <div className="break-words font-bold text-foreground">{`${
+                    credential?.type[1] || credential?.type[0]
+                  }`}</div>
+                  <div>
+                    <hr className="my-2" />
+                    <ul className="flex flex-wrap gap-2">
+                      {credential?.type?.map((type, idx) => {
+                        return (
+                          <li
+                            key={idx}
+                            className="overflow-x-auto break-words text-xs font-bold"
+                          >
+                            {type}
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                </CardContent>
+              </Card>
             </LinkComponent>
           ))}
     </div>

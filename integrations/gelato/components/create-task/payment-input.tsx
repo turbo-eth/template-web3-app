@@ -11,7 +11,7 @@ export function PaymentInput() {
   const [payWith] = watch(["payWith"])
 
   return (
-    <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
+    <div className="mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
       <div className="mb-10 flex w-full items-center justify-between">
         <h3 className="text-2xl font-bold dark:opacity-70">Pay with</h3>
       </div>

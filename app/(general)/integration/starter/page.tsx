@@ -40,6 +40,7 @@ export default function IntegrationPage() {
           alt="TurboETH Logo"
           width={100}
           height={100}
+          className="h-20 w-20 rounded-2xl"
         />
         <PageHeaderHeading>Starter Template</PageHeaderHeading>
         <PageHeaderDescription>

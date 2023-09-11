@@ -2,7 +2,8 @@ import { useState } from "react"
 import { FieldValues, useForm } from "react-hook-form"
 import { usePublicClient, useWalletClient } from "wagmi"
 
-import { Card } from "@/components/ui/card"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { BlockExplorerLink } from "@/components/blockchain/block-explorer-link"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 
@@ -82,15 +83,17 @@ export function DeployERC20Contract() {
 
 export function ERC20Deploy() {
   return (
-    <Card className="w-full p-6">
-      <DeployERC20Contract />
-      <hr className="my-4" />
-      <div className="flex items-center justify-between">
+    <Card>
+      <CardContent>
+        <DeployERC20Contract />
+      </CardContent>
+      <Separator className="my-4" />
+      <CardFooter className="justify-between">
         <h3 className="text-center">ERC20 Deploy</h3>
         <p className="text-center text-sm text-muted-foreground">
           Deploy a new mintable ERC20 token to any blockchain
         </p>
-      </div>
+      </CardFooter>
     </Card>
   )
 }

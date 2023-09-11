@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import { BsCheck2 } from "react-icons/bs"
 import type { Address } from "wagmi"
 
+import { truncateEthAddress } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
@@ -33,7 +34,7 @@ export function ListSessionKeys({
   }
 
   return (
-    <div className="min-w-[540px]">
+    <div className="w-full md:min-w-[560px]">
       <h2 className="mb-4 text-xl font-bold">Session Keys:</h2>
       <Input
         placeholder="Search addresses..."
@@ -70,7 +71,8 @@ export function ListSessionKeys({
               {address === selectedSessionKey && (
                 <BsCheck2 className="mr-2 text-2xl" />
               )}
-              <span>{address}</span>
+              <span className="hidden md:inline-block"> {address}</span>
+              <span className="md:hidden">{truncateEthAddress(address)}</span>
             </Button>
           </motion.div>
         ))}

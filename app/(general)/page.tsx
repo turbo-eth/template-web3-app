@@ -17,14 +17,14 @@ import { ExampleDemos } from "@/components/shared/example-demos"
 
 export default function HomePage() {
   return (
-    <div className="container relative mt-20">
+    <div className="container relative mt-20 px-0">
       <PageHeader className="pb-8">
         <Image
-          src="/logo-fill.png"
+          src="/logo-gradient.png"
           alt="TurboETH Logo"
           width={80}
           height={80}
-          className="h-20 w-20"
+          className="h-20 w-20 rounded-2xl"
         />
         <PageHeaderHeading>Build Web3 in Turbo&nbsp;Mode</PageHeaderHeading>
         <PageHeaderDescription>{siteConfig.description}</PageHeaderDescription>
@@ -62,7 +62,9 @@ export default function HomePage() {
         </PageHeaderCTA>
         <PageHeaderCTA>
           <CopyButton value="pnpm create turbo-eth@latest">
-            pnpm create turbo-eth@latest
+            <span className="border text-xs sm:text-base">
+              pnpm create turbo-eth@latest
+            </span>
           </CopyButton>
         </PageHeaderCTA>
       </PageHeader>

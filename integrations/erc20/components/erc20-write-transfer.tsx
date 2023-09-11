@@ -3,6 +3,8 @@ import { useDebounce } from "usehooks-ts"
 import { BaseError, parseEther } from "viem"
 import { Address, useWaitForTransaction } from "wagmi"
 
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
@@ -82,17 +84,19 @@ export function ERC20WriteTransfer({ address }: ERC20WriteTransferProps) {
   return (
     <>
       <IsWalletConnected>
-        <div className="card w-full">
-          <ERC20ContractTransferTokens address={address} />
-          <ERC20EventTransfer />
-          <hr className="my-4" />
-          <div className="flex items-center justify-between">
+        <Card>
+          <CardContent>
+            <ERC20ContractTransferTokens address={address} />
+            <ERC20EventTransfer />
+          </CardContent>
+          <Separator className="my-4" />
+          <CardFooter className="justify-between">
             <h3 className="text-center">ERC20 Transfer</h3>
             <p className="text-center text-sm text-muted-foreground">
               Transer tokens to a friend... or enemy.
             </p>
-          </div>
-        </div>
+          </CardFooter>
+        </Card>
       </IsWalletConnected>
       <IsWalletDisconnected>
         <div className="flex items-center justify-center gap-10">

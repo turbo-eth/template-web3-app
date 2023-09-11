@@ -3,6 +3,8 @@ import { useDebounce } from "usehooks-ts"
 import { BaseError } from "viem"
 import { Address, useWaitForTransaction } from "wagmi"
 
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
 
@@ -67,44 +69,48 @@ export function Erc1155WriteMint({ address }: Erc1155WriteMintProps) {
   }
 
   return (
-    <div className="card w-full">
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
-        <label>Address</label>
-        <input {...register("toAddress")} className="input" />
-        <label>Token ID</label>
-        <input {...register("tokenId")} className="input" type="number" />
-        <label>Token Amount</label>
-        <input {...register("tokenAmount")} className="input" />
-        <label>Uri</label>
-        <input
-          {...register("uri")}
-          className="input"
-          placeholder="ipfs://ipfs/<CID>"
-        />
-        <ContractWriteButton
-          isLoadingTx={isLoadingTx}
-          isLoadingWrite={isLoadingWrite}
-          loadingTxText="Minting..."
-          type="submit"
-          write={!!write}
-        >
-          Mint
-        </ContractWriteButton>
-        <TransactionStatus
-          error={error as BaseError}
-          hash={data?.hash}
-          isError={isError && Boolean(debouncedTokenId && debouncedTokenAmount)}
-          isLoadingTx={isLoadingTx}
-          isSuccess={isSuccess}
-        />
-        <hr className="my-4" />
-        <div className="flex items-center justify-between">
-          <h3 className="text-center">ERC1155 Mint</h3>
-          <p className="text-center text-sm text-gray-500">
-            Mint NFT/SFT to any address
-          </p>
-        </div>
-      </form>
-    </div>
+    <Card>
+      <CardContent>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+          <label>Address</label>
+          <input {...register("toAddress")} className="input" />
+          <label>Token ID</label>
+          <input {...register("tokenId")} className="input" type="number" />
+          <label>Token Amount</label>
+          <input {...register("tokenAmount")} className="input" />
+          <label>Uri</label>
+          <input
+            {...register("uri")}
+            className="input"
+            placeholder="ipfs://ipfs/<CID>"
+          />
+          <ContractWriteButton
+            isLoadingTx={isLoadingTx}
+            isLoadingWrite={isLoadingWrite}
+            loadingTxText="Minting..."
+            type="submit"
+            write={!!write}
+          >
+            Mint
+          </ContractWriteButton>
+          <TransactionStatus
+            error={error as BaseError}
+            hash={data?.hash}
+            isError={
+              isError && Boolean(debouncedTokenId && debouncedTokenAmount)
+            }
+            isLoadingTx={isLoadingTx}
+            isSuccess={isSuccess}
+          />
+        </form>
+      </CardContent>
+      <Separator className="my-4" />
+      <CardFooter className="justify-between">
+        <h3 className="text-center">ERC1155 Mint</h3>
+        <p className="text-center text-sm text-gray-500">
+          Mint NFT/SFT to any address
+        </p>
+      </CardFooter>
+    </Card>
   )
 }
