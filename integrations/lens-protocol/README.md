@@ -1,30 +1,27 @@
 # Lens Protocol - TurboETH Integration
 
-ntegrate Lens Protocol integration for TurboETH using the [Lens Protocol SDK](https://github.com/lens-protocol/lens-sdk). The integration should allow developers to quickly build on top of Lens features.
+Integrate TurboETH with the Lens Protocol using the [Lens Protocol SDK](https://github.com/lens-protocol/lens-sdk). This integration aims to enable developers to seamlessly utilize the features of the Lens Protocol.
 
 ## Features
 
-- Authenticate with a Lens profile
-- Create a testnet Lens profile
-- Display profiles with explore and search capabilities
-- Display publications and comments with explore and search capabilities
-- Display a profile's feed/posts/replies
-- Display a profile/publication revenue information
-- Like/Mirror a publication
-- Follow/Unfollow a profile
+- Authenticate using a Lens profile
+- Generate a testnet Lens profile
+- View profiles with browsing and search functionalities
+- View publications and comments, also with browsing and search functionalities
+- View a profile's feed, posts, and replies
+- Display revenue information for a profile or publication
+- Like or Mirror a publication
+- Follow or Unfollow a profile
 
 ## Components
 
-`ProfileCard`
-The main profile card, shows a profile's name, handle, picture and followers/following count.
+- `ProfileCard`: Displays the primary profile information, including the name, handle, picture, and follower/following count.
 
-`PublicationCard`
-The main publication card, shows a publication's metadata, date, profile and likes/comments/mirros count and list.
+- `PublicationCard`: Presents the primary publication details, such as metadata, date, associated profile, and count and list of likes, comments, and mirrors.
 
 ## Hooks
 
-`useCreateTestProfile()`
-Creates a testnet profile.
+- `useCreateTestProfile()`: Hook to create a testnet profile.
 
 ## File Structure
 
