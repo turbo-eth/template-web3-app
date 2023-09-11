@@ -9,7 +9,6 @@ import { FaRegCommentAlt, FaRetweet } from "react-icons/fa"
 
 import { LinkComponent } from "@/components/shared/link-component"
 
-import { Spinner } from "../spinner"
 import { PublicationCard, PublicationCardMode } from "./publication-card"
 
 export const Publication = ({
@@ -32,7 +31,10 @@ export const PublicationDetails = ({
   const { data: publication, loading } = usePublication({
     publicationId,
   })
-  if (loading) return <Spinner />
+  if (loading)
+    return (
+      <PublicationCard mode={PublicationCardMode.Full} publication={null} />
+    )
   if (!publication)
     return <div className="w-full pt-6 text-center">Publication not found!</div>
   if (publication.__typename === "Mirror")

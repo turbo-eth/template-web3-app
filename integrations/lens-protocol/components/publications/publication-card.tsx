@@ -7,6 +7,7 @@ import { FaRetweet } from "react-icons/fa"
 import { cn } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Card, CardContent } from "@/components/ui/card"
+import { Skeleton } from "@/components/ui/skeleton"
 
 import { getProfilePictureSrc } from "../../utils"
 import { Comments } from "./commnets"
@@ -30,7 +31,7 @@ const Wrapper = ({
 }: {
   shouldLinkToFullMode: boolean
   children: ReactNode
-  id: string
+  id?: string
   classNames: string
   chainedStyle: boolean
   last: boolean
@@ -58,7 +59,7 @@ const Wrapper = ({
         )}
         onClick={(e) => {
           e.stopPropagation()
-          router.push(`/integration/lens-protocol/publications/${id}`)
+          if (id) router.push(`/integration/lens-protocol/publications/${id}`)
         }}
       >
         <CardContent className="p-0">{children}</CardContent>
@@ -79,7 +80,7 @@ export const PublicationCard = ({
   last = false,
   chainedStyle = false,
 }: {
-  publication: Post | Comment
+  publication: Post | Comment | null
   feedItem?: FeedItem
   mode?: PublicationCardMode
   wrapperClassNames?: string
@@ -90,7 +91,7 @@ export const PublicationCard = ({
   const compactMode = mode === PublicationCardMode.Compact
   const fullMode = mode === PublicationCardMode.Full
   const feedCommentMode = mode === PublicationCardMode.FeedComment
-  const { profile } = publication
+  const { profile } = publication ?? { profile: null }
   const mirrored = feedItem?.electedMirror ?? false
   const bottomLine =
     "relative before:absolute before:left-[-20px] before:top-[-16px] before:h-[calc(100%_+_32px)] before:bg-slate-200 before:dark:bg-neutral-600 before:self-start before:w-[1px]"
@@ -98,7 +99,7 @@ export const PublicationCard = ({
     <Wrapper
       chainedStyle={chainedStyle}
       classNames={wrapperClassNames}
-      id={publication.id}
+      id={publication?.id}
       last={last}
       shouldLinkToFullMode={!fullMode}
     >
@@ -122,24 +123,42 @@ export const PublicationCard = ({
             className="flex w-auto flex-row"
             onClick={(e) => {
               e.stopPropagation()
-              router.push(
-                `/integration/lens-protocol/profiles/${profile.handle}`
-              )
+              if (profile)
+                router.push(
+                  `/integration/lens-protocol/profiles/${profile.handle}`
+                )
             }}
           >
-            <Avatar className={cn(compactMode && "h-6 w-6")}>
-              <AvatarImage src={getProfilePictureSrc(profile)} />
-              <AvatarFallback className="uppercase">
-                {profile.handle.substring(0, 1)}
-              </AvatarFallback>
-            </Avatar>
+            {profile ? (
+              <Avatar className={cn(compactMode && "h-6 w-6")}>
+                <AvatarImage src={getProfilePictureSrc(profile)} />
+                <AvatarFallback className="uppercase">
+                  {profile.handle.substring(0, 1)}
+                </AvatarFallback>
+              </Avatar>
+            ) : (
+              <Skeleton
+                className={cn(
+                  "rounded-full",
+                  compactMode ? "h-6 w-6" : "h-10 w-10"
+                )}
+              />
+            )}
             <div className="ml-2 flex w-auto flex-col">
               <span className="mb-1 font-semibold">
-                {profile.name ?? profile.handle}
+                {profile ? (
+                  profile.name ?? profile.handle
+                ) : (
+                  <Skeleton className="h-4 w-20" />
+                )}
               </span>
               {!compactMode && (
                 <span className="text-sm text-blue-600 dark:text-gray-300">
-                  @{profile.handle}
+                  {profile ? (
+                    <>@{profile.handle}</>
+                  ) : (
+                    <Skeleton className="h-3 w-12" />
+                  )}
                 </span>
               )}
             </div>
@@ -150,7 +169,7 @@ export const PublicationCard = ({
             "ml-10 mt-4",
             compactMode && "mt-4 flex w-full flex-row items-center md:mt-0",
             fullMode && "text-xl",
-            ((fullMode && !!publication.stats.commentsCount) ||
+            ((fullMode && !!publication?.stats.commentsCount) ||
               feedCommentMode) &&
               bottomLine
           )}
@@ -164,7 +183,15 @@ export const PublicationCard = ({
             <div
               className={cn("w-full break-words pr-2", compactMode && "flex-1")}
             >
-              {publication.metadata?.content}
+              {publication ? (
+                publication.metadata?.content
+              ) : (
+                <div className="space-y-1">
+                  <Skeleton className="h-2 w-full" />
+                  <Skeleton className="h-2 w-2/3" />
+                  <Skeleton className="h-2 w-full" />
+                </div>
+              )}
             </div>
             <div
               className={cn(
@@ -172,18 +199,36 @@ export const PublicationCard = ({
                 compactMode && "flex-0 mt-0 w-auto"
               )}
             >
-              {moment(publication.createdAt).format("HH:mm YY MMM DD")}
+              {publication ? (
+                moment(publication.createdAt).format("HH:mm YY MMM DD")
+              ) : (
+                <Skeleton className="h-2 w-20" />
+              )}
             </div>
-            {!compactMode && (
+            {!compactMode && publication && (
               <PublicationActionsAndStats
                 publication={publication}
                 showCounts={fullMode}
               />
             )}
-            {fullMode && <PublicationRevenue publicationId={publication.id} />}
+            {fullMode && publication && (
+              <PublicationRevenue publicationId={publication.id} />
+            )}
           </div>
         </div>
-        {fullMode && <Comments publicationId={publication.id} />}
+        {fullMode ? (
+          publication ? (
+            <Comments publicationId={publication.id} />
+          ) : (
+            <div className="mt-4 flex w-full flex-col">
+              {Array(3)
+                .fill(0)
+                .map((_, index) => (
+                  <PublicationCard key={index} publication={null} />
+                ))}
+            </div>
+          )
+        ) : null}
         {feedCommentMode && feedItem?.comments?.[0] && (
           <PublicationCard
             chainedStyle

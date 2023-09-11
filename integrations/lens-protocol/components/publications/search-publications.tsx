@@ -1,7 +1,6 @@
 import { Post, useSearchPublications } from "@lens-protocol/react-web"
 
 import { LoadMoreButton } from "../load-more-button"
-import { Spinner } from "../spinner"
 import { PublicationCard } from "./publication-card"
 
 export const SearchPublications = ({ query }: { query: string }) => {
@@ -20,13 +19,14 @@ export const SearchPublications = ({ query }: { query: string }) => {
           publication={publication as Post}
         />
       ))}
+      {loading &&
+        Array(5)
+          .fill(0)
+          .map((_, index) => (
+            <PublicationCard publication={null} key={index} />
+          ))}
       <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
-      {loading && (
-        <div className="my-6 w-full text-center">
-          <Spinner />
-        </div>
-      )}
-      {!publications?.length && <span>No publications found.</span>}
+      {!loading && !publications?.length && <span>No publications found.</span>}
     </div>
   )
 }

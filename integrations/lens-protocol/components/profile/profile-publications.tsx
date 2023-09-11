@@ -9,7 +9,6 @@ import { FaRetweet } from "react-icons/fa"
 
 import { LoadMoreButton } from "../load-more-button"
 import { PublicationCard } from "../publications/publication-card"
-import { Spinner } from "../spinner"
 
 export const ProfilePublications = ({
   profileId,
@@ -57,12 +56,13 @@ export const ProfilePublications = ({
           />
         )
       )}
+      {loading &&
+        Array(5)
+          .fill(0)
+          .map((_, index) => (
+            <PublicationCard publication={null} key={index} />
+          ))}
       <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
-      {loading && (
-        <div className="my-6 w-full text-center">
-          <Spinner />
-        </div>
-      )}
       {publications?.length === 0 && <span>No {title} yet.</span>}
     </div>
   )

@@ -5,7 +5,6 @@ import {
 } from "@lens-protocol/react-web"
 
 import { LoadMoreButton } from "../load-more-button"
-import { Spinner } from "../spinner"
 import { PublicationCard } from "./publication-card"
 
 export const ExplorePublications = () => {
@@ -28,12 +27,13 @@ export const ExplorePublications = () => {
             publication={publication as Post}
           />
         ))}
+        {loading &&
+          Array(5)
+            .fill(0)
+            .map((_, index) => (
+              <PublicationCard publication={null} key={index} />
+            ))}
         <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
-        {loading && (
-          <div className="my-6 w-full text-center">
-            <Spinner />
-          </div>
-        )}
       </div>
     </>
   )

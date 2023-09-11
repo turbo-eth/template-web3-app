@@ -5,7 +5,6 @@ import {
   PublicationCard,
   PublicationCardMode,
 } from "./publications/publication-card"
-import { Spinner } from "./spinner"
 
 export const Feed = ({ profileId }: { profileId: ProfileId }) => {
   const activeProfile = useActiveProfile()
@@ -14,7 +13,6 @@ export const Feed = ({ profileId }: { profileId: ProfileId }) => {
     profileId,
     limit: 10,
   })
-  if (loading) return <Spinner />
   return (
     <div>
       <h2 className="mb-2 text-xs font-semibold">Feed</h2>
@@ -30,13 +28,14 @@ export const Feed = ({ profileId }: { profileId: ProfileId }) => {
           publication={feedItem.root}
         />
       ))}
+      {loading &&
+        Array(5)
+          .fill(0)
+          .map((_, index) => (
+            <PublicationCard publication={null} key={index} />
+          ))}
       <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
-      {loading && (
-        <div className="my-6 w-full text-center">
-          <Spinner />
-        </div>
-      )}
-      {!data?.length && <span>User feed is empty.</span>}
+      {!loading && !data?.length && <span>User feed is empty.</span>}
     </div>
   )
 }

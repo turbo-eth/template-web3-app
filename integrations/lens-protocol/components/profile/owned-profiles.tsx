@@ -18,7 +18,6 @@ import { IsUserAuthenticated } from "../auth/is-user-authenticated"
 import { LoginButton } from "../auth/login-button"
 import { NotAuthenticatedYet } from "../auth/not-authenticated-yet"
 import { LoadMoreButton } from "../load-more-button"
-import { Spinner } from "../spinner"
 import { ProfileCard } from "./profile-card"
 
 export const OwnedProfiles = () => {
@@ -52,36 +51,37 @@ export const OwnedProfiles = () => {
             .map((profile) => {
               const isProfileSelected = profile.id === activeProfile?.id
               return (
-                <div key={profile.handle}>
-                  <ProfileCard
-                    profile={profile}
-                    cta={
-                      <div className="mt-4 flex flex-row items-center">
-                        <Button
-                          variant={isProfileSelected ? "outline" : "blue"}
-                          size="sm"
-                          disabled={isProfileSelected || isPending}
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            switchActiveProfile(profile.id).catch(console.error)
-                          }}
-                        >
-                          {isProfileSelected
-                            ? "Current Profile"
-                            : "Use Profile"}
-                        </Button>
-                        <LinkComponent
-                          className="link ml-4 text-sm"
-                          href={`/integration/lens-protocol/profiles/${profile.handle}`}
-                        >
-                          View
-                        </LinkComponent>
-                      </div>
-                    }
-                  />
-                </div>
+                <ProfileCard
+                  key={profile.handle}
+                  profile={profile}
+                  cta={
+                    <div className="flex flex-row items-center">
+                      <Button
+                        variant={isProfileSelected ? "outline" : "blue"}
+                        size="sm"
+                        disabled={isProfileSelected || isPending}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          switchActiveProfile(profile.id).catch(console.error)
+                        }}
+                      >
+                        {isProfileSelected ? "Current Profile" : "Use Profile"}
+                      </Button>
+                      <LinkComponent
+                        className="link ml-4 text-sm"
+                        href={`/integration/lens-protocol/profiles/${profile.handle}`}
+                      >
+                        View
+                      </LinkComponent>
+                    </div>
+                  }
+                />
               )
             })}
+          {loading &&
+            Array(4)
+              .fill(0)
+              .map((_, index) => <ProfileCard key={index} profile={null} />)}
           <Card className="px-2 py-6">
             <div className="flex h-full flex-1 flex-col items-center justify-center text-center">
               <Avatar>
@@ -132,11 +132,6 @@ export const OwnedProfiles = () => {
           </Card>
         </div>
         <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
-        {loading && (
-          <div className="my-6 w-full text-center">
-            <Spinner />
-          </div>
-        )}
       </IsUserAuthenticated>
       <NotAuthenticatedYet>
         <div className="w-auto">

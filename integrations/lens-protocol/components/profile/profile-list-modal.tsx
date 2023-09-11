@@ -9,11 +9,60 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Skeleton } from "@/components/ui/skeleton"
 
 import { getProfilePictureSrc } from "../../utils"
 import { LoadMoreButton } from "../load-more-button"
-import { Spinner } from "../spinner"
 import { FollowUnfollowButton } from "./follow-unfollow-button"
+
+const ProfileRow = ({ profile }: { profile: Profile | null }) => {
+  const router = useRouter()
+
+  return (
+    <div className="flex h-[70px] flex-row items-center justify-between">
+      <div
+        className="flex w-auto cursor-pointer flex-row"
+        onClick={(e) => {
+          e.stopPropagation()
+          if (profile)
+            router.push(`/integration/lens-protocol/profiles/${profile.handle}`)
+        }}
+      >
+        {profile ? (
+          <Avatar>
+            <AvatarImage src={getProfilePictureSrc(profile)} />
+            <AvatarFallback className="uppercase">
+              {profile.handle.substring(0, 1)}
+            </AvatarFallback>
+          </Avatar>
+        ) : (
+          <Skeleton className="h-10 w-10 rounded-full" />
+        )}
+        <div className="ml-2 flex w-auto flex-col">
+          {profile ? (
+            <span className="mb-1 font-semibold">
+              {profile.name ?? profile.handle}
+            </span>
+          ) : (
+            <Skeleton className="mb-1 h-4 w-20" />
+          )}
+          {profile ? (
+            <span className="text-sm text-blue-600 dark:text-gray-300">
+              @{profile.handle}
+            </span>
+          ) : (
+            <Skeleton className="h-3 w-16" />
+          )}
+        </div>
+      </div>
+      {profile ? (
+        <FollowUnfollowButton profile={profile} />
+      ) : (
+        <Skeleton className="h-8 w-24" />
+      )}
+    </div>
+  )
+}
 
 export const ProfileListModal = ({
   profiles,
@@ -30,7 +79,6 @@ export const ProfileListModal = ({
   title: string
   next: () => void
 }) => {
-  const router = useRouter()
   return (
     <Dialog>
       <DialogTrigger className="text-left">{trigger}</DialogTrigger>
@@ -40,43 +88,13 @@ export const ProfileListModal = ({
         </DialogHeader>
         <div className="max-h-[400px] overflow-y-scroll">
           {profiles?.map((profile) => (
-            <div
-              key={profile.handle}
-              className="flex h-[70px] flex-row items-center justify-between"
-            >
-              <div
-                className="flex w-auto cursor-pointer flex-row"
-                onClick={(e) => {
-                  e.stopPropagation()
-                  router.push(
-                    `/integration/lens-protocol/profiles/${profile.handle}`
-                  )
-                }}
-              >
-                <Avatar>
-                  <AvatarImage src={getProfilePictureSrc(profile)} />
-                  <AvatarFallback className="uppercase">
-                    {profile.handle.substring(0, 1)}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="ml-2 flex w-auto flex-col">
-                  <span className="mb-1 font-semibold">
-                    {profile.name ?? profile.handle}
-                  </span>
-                  <span className="text-sm text-blue-600 dark:text-gray-300">
-                    @{profile.handle}
-                  </span>
-                </div>
-              </div>
-              <FollowUnfollowButton profile={profile} />
-            </div>
+            <ProfileRow key={profile.handle} profile={profile} />
           ))}
+          {loading &&
+            Array(4)
+              .fill(0)
+              .map((_, index) => <ProfileRow key={index} profile={null} />)}
           <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
-          {loading && (
-            <div className="my-6 w-full text-center">
-              <Spinner />
-            </div>
-          )}
           {!loading && profiles?.length === 0 && (
             <span>This list is empty.</span>
           )}

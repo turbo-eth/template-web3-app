@@ -1,7 +1,6 @@
 import { PublicationId, useComments } from "@lens-protocol/react-web"
 
 import { LoadMoreButton } from "../load-more-button"
-import { Spinner } from "../spinner"
 import { PublicationCard } from "./publication-card"
 
 export const Comments = ({
@@ -18,7 +17,6 @@ export const Comments = ({
     commentsOf: publicationId,
     limit: 10,
   })
-  if (loading) return <Spinner />
   return (
     <div className="mt-4 flex w-full flex-col">
       {comments?.map((comment, index) => (
@@ -30,12 +28,19 @@ export const Comments = ({
           wrapperClassNames="!px-3 !border-0 !shadow-none"
         />
       ))}
+      {loading &&
+        Array(5)
+          .fill(0)
+          .map((_, index) => (
+            <PublicationCard
+              chainedStyle
+              last={index === 4}
+              publication={null}
+              wrapperClassNames="!px-3 !border-0 !shadow-none"
+              key={index}
+            />
+          ))}
       <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
-      {loading && (
-        <div className="my-6 w-full text-center">
-          <Spinner />
-        </div>
-      )}
     </div>
   )
 }

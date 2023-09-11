@@ -31,7 +31,7 @@ export const PublicationStats = ({
     limit: 10,
   })
   return (
-    <div className="mb-4 flex w-full flex-col space-x-0 border-t-2 pt-4 dark:border-neutral-600 md:flex-row md:space-x-4">
+    <div className="mb-4 flex w-full flex-col space-x-0 border-t-2 pt-4 dark:border-neutral-600/50 md:flex-row md:space-x-4">
       <span className="mt-[6px] text-sm">
         <span className="mr-1 font-semibold">
           {publication.stats.commentsCount}

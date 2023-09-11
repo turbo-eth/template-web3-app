@@ -10,7 +10,7 @@ export const PublicationRevenue = ({
   })
   if (revenueLoading) return null
   return (
-    <div className="mt-4 w-full border-t-2 pt-4 dark:border-neutral-600">
+    <div className="mt-4 w-full border-t-2 pt-4 dark:border-neutral-600/50">
       <h2 className="text-xs font-semibold">Publication Revenue</h2>
       {data ? (
         <div className="mt-3 flex flex-row items-center justify-center font-mono md:justify-start">

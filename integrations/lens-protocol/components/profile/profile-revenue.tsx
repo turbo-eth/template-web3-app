@@ -1,12 +1,11 @@
 import { ProfileId, useProfileFollowRevenue } from "@lens-protocol/react-web"
 
-import { Spinner } from "../spinner"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export const ProfileRevenue = ({ profileId }: { profileId: ProfileId }) => {
   const { data, loading: revenueLoading } = useProfileFollowRevenue({
     profileId,
   })
-  if (revenueLoading) return <Spinner />
   return (
     <div className="mt-4 w-full border-t-2 pt-4 dark:border-neutral-800">
       <h2 className="text-xs font-semibold">Profile Revenue</h2>
@@ -24,6 +23,11 @@ export const ProfileRevenue = ({ profileId }: { profileId: ProfileId }) => {
           </div>
         )
       })}
+      {revenueLoading && (
+        <div className="mt-3 flex flex-row items-center justify-center font-mono md:justify-start">
+          <Skeleton className="h-3 w-10" />
+        </div>
+      )}
       {!data?.length && (
         <span className="mt-1 text-xs text-gray-600">None yet</span>
       )}

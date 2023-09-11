@@ -2,7 +2,6 @@ import { useRouter } from "next/navigation"
 import { useActiveProfile, useSearchProfiles } from "@lens-protocol/react-web"
 
 import { LoadMoreButton } from "../load-more-button"
-import { Spinner } from "../spinner"
 import { ProfileCard } from "./profile-card"
 
 export const SearchProfiles = ({ query }: { query: string }) => {
@@ -21,7 +20,7 @@ export const SearchProfiles = ({ query }: { query: string }) => {
   return (
     <div className="flex w-full flex-col">
       <h2 className="my-4 text-lg font-semibold">Profiles</h2>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-6">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {profiles?.map((profile) => (
           <ProfileCard
             key={profile.handle}
@@ -33,13 +32,13 @@ export const SearchProfiles = ({ query }: { query: string }) => {
             }
           />
         ))}
+        {loading &&
+          Array(4)
+            .fill(0)
+            .map((_, index) => <ProfileCard key={index} profile={null} />)}
       </div>
       <LoadMoreButton hasMore={hasMore} loading={loading} onClick={next} />
-      {loading && (
-        <div className="my-6 w-full text-center">
-          <Spinner />
-        </div>
-      )}
+      {!loading && !profiles?.length && <span>No profiles found.</span>}
     </div>
   )
 }
