@@ -6,11 +6,12 @@ import {
 } from "@sismo-core/sismo-connect-server"
 
 import { Button } from "@/components/ui/button"
-import { Spinner } from "@/integrations/arweave/components/spinner"
+import { Switch } from "@/components/ui/switch"
 
 import { getConfig } from "../utils/getConfig"
 import { getProps } from "../utils/getProps"
 import ConnectButton from "./sismo-connect-button"
+import { Spinner } from "./spinner"
 
 const SIGNATURE_REQUEST: SignatureRequest = {
   message: "I want TurboEth with Sismo",
@@ -23,11 +24,24 @@ export default function Signature() {
   const [sismoConnectVerifiedResult, setSismoConnectVerifiedResult] =
     useState<SismoConnectVerifiedResult>()
 
-  const selectedConfig = getConfig("signature")
   const connectProps = getProps("signature")
+
+  const [toggle, setToggle] = useState(false)
+
+  const selectedConfig = getConfig("signature", toggle)
 
   return (
     <>
+      <div className="mb-6 flex items-center">
+        <label className="Label pr-4" htmlFor="impersonate-mode">
+          Impersonate mode
+        </label>
+        <Switch
+          checked={toggle}
+          className="bg-green-700"
+          onClick={() => setToggle((pv) => !pv)}
+        />
+      </div>
       <div>
         <h2 className="flex items-center text-2xl">{"Signature"}</h2>
         <div className="mb-8 mt-4 flex items-center justify-start">

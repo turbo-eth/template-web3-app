@@ -47,7 +47,37 @@ const CONFIG_MAPPING = {
   },
 }
 
-export const getConfig = (tabValue: keyof typeof CONFIG_MAPPING = "auth") => {
-  const config: SismoConnectConfig = CONFIG_MAPPING[tabValue]
+const NON_IMPERSONATE_CONFIG_MAPPING = {
+  auth: {
+    appId: "0x6687efe350ee1dc1af93a8b118cf016e",
+    vault: {
+      impersonate: [],
+    },
+    displayRawResponse: false,
+    vaultAppBaseUrl: "https://vault-beta.sismo.io",
+  },
+  claims: {
+    appId: "0x32403ced4b65f2079eda77c84e7d2be6",
+    vault: {
+      impersonate: [],
+    },
+    displayRawResponse: false,
+    vaultAppBaseUrl: "https://vault-beta.sismo.io",
+  },
+  signature: {
+    appId: "0x32403ced4b65f2079eda77c84e7d2be6",
+    vault: {
+      impersonate: [],
+    },
+  },
+}
+
+export const getConfig = (
+  tabValue: keyof typeof CONFIG_MAPPING = "auth",
+  toggle = false
+) => {
+  const config: SismoConnectConfig = toggle
+    ? CONFIG_MAPPING[tabValue]
+    : NON_IMPERSONATE_CONFIG_MAPPING[tabValue]
   return config
 }

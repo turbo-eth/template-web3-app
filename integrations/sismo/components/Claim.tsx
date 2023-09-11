@@ -3,22 +3,36 @@ import { AuthType, ClaimType } from "@sismo-core/sismo-connect-react"
 import { SismoConnectVerifiedResult } from "@sismo-core/sismo-connect-server"
 
 import { Button } from "@/components/ui/button"
-import { Spinner } from "@/integrations/arweave/components/spinner"
+import { Switch } from "@/components/ui/switch"
 
 import { getConfig } from "../utils/getConfig"
 import { getProps } from "../utils/getProps"
 import ConnectButton from "./sismo-connect-button"
+import { Spinner } from "./spinner"
 
 export default function Claim() {
   const [pageState, setPageState] = useState<string>("init")
   const [error, setError] = useState<string>("")
-  const selectedConfig = getConfig("claims")
   const connectProps = getProps("claims")
   const [sismoConnectVerifiedResult, setSismoConnectVerifiedResult] =
     useState<SismoConnectVerifiedResult>()
 
+  const [toggle, setToggle] = useState(false)
+
+  const selectedConfig = getConfig("claims", toggle)
+
   return (
     <>
+      <div className="mb-6 flex items-center">
+        <label className="Label pr-4" htmlFor="impersonate-mode">
+          Impersonate mode
+        </label>
+        <Switch
+          checked={toggle}
+          className="bg-green-700"
+          onClick={() => setToggle((pv) => !pv)}
+        />
+      </div>
       <h2 className="flex items-center text-2xl">{"Claims"}</h2>
       <div className="mb-8 mt-4 flex items-center">
         Sismo Connect can be used to request zero-knowledge proofs (ZKPs) that
