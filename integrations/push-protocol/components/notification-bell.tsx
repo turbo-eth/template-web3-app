@@ -5,6 +5,7 @@ import { BsBell } from "react-icons/bs"
 import { useAccount } from "wagmi"
 
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 
 import { ENV } from ".."
 import { useNotifications } from "../hooks"
@@ -54,17 +55,15 @@ export function NotificationBell(props: NotificationBellProps) {
       </PopoverTrigger>
       <PopoverContent
         avoidCollisions={false}
-        className="card w-screen max-w-md !px-4 !shadow-lg !shadow-black/40"
+        className="w-screen max-w-md !px-4 !shadow-lg !shadow-black/40"
         side="bottom"
       >
-        <div>
-          <NotificationFeed
-            notifications={allNotifications}
-            notificationsIsLoading={notificationsIsLoading}
-            spamNotifications={spamNotifications}
-            spamNotificationsIsLoading={spamIsLoading}
-          />
-        </div>
+        <NotificationFeed
+          notifications={allNotifications}
+          notificationsIsLoading={notificationsIsLoading}
+          spamNotifications={spamNotifications}
+          spamNotificationsIsLoading={spamIsLoading}
+        />
       </PopoverContent>
     </Popover>
   )

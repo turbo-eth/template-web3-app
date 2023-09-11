@@ -12,12 +12,13 @@ export default function ERC20({
   const { address, chainId } = params
 
   return (
-    <ERC20Read
-      showBalance
-      showImage
-      address={address}
-      chainId={Number(chainId)}
-      className={"max-w-lg"}
-    />
+    <div className="container max-w-xl pt-20">
+      <ERC20Read
+        showBalance
+        showImage
+        address={address}
+        chainId={Number(chainId)}
+      />
+    </div>
   )
 }

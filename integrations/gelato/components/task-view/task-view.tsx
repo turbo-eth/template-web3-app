@@ -176,7 +176,7 @@ export function TaskView({ taskId }: TasKViewProps) {
             </div>
           </div>
         </div>
-        <div className="card mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
+        <div className="mx-auto mt-10 w-full !max-w-4xl !rounded-xl !border-none !px-10 py-8 dark:!bg-zinc-900">
           <div className="flex flex-col space-y-5">
             <div>
               <div className="mb-5 flex w-full items-center justify-between opacity-70">

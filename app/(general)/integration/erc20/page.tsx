@@ -6,6 +6,7 @@ import { LuBook } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
@@ -17,7 +18,6 @@ import { PageSection } from "@/components/layout/page-section"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { LightDarkImage } from "@/components/shared/light-dark-image"
-import { LinkComponent } from "@/components/shared/link-component"
 import { ERC20Deploy } from "@/integrations/erc20/components/erc20-deploy"
 import { ERC20Read } from "@/integrations/erc20/components/erc20-read"
 import { Erc20SetTokenStorage } from "@/integrations/erc20/components/erc20-set-token-storage"
@@ -55,14 +55,14 @@ export default function Erc20Page() {
         </PageHeaderCTA>
       </PageHeader>
       <PageSection>
-        <div className="container w-full max-w-screen-lg">
-          <IsWalletConnected>
-            <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
-              <ERC20Deploy />
-              <Erc20SetTokenStorage />
-              {token && (
-                <>
-                  <div className="card flex flex-col">
+        <IsWalletConnected>
+          <div className="flex w-full max-w-screen-lg flex-col gap-y-8">
+            <ERC20Deploy />
+            <Erc20SetTokenStorage />
+            {token && (
+              <>
+                <Card>
+                  <CardContent className="flex flex-col">
                     <span className="mb-4 text-lg">
                       Access the token page where you can update the url
                       parameters to select which ERC20 token to view
@@ -75,20 +75,20 @@ export default function Erc20Page() {
                     >
                       View Token Page
                     </Link>
-                  </div>
-                  <ERC20Read address={token} />
-                  <ERC20WriteMint address={token} />
-                  <ERC20WriteTransfer address={token} />
-                </>
-              )}
-            </div>
-          </IsWalletConnected>
-          <IsWalletDisconnected>
-            <div className="flex items-center justify-center">
-              <WalletConnect />
-            </div>
-          </IsWalletDisconnected>
-        </div>
+                  </CardContent>
+                </Card>
+                <ERC20Read address={token} />
+                <ERC20WriteMint address={token} />
+                <ERC20WriteTransfer address={token} />
+              </>
+            )}
+          </div>
+        </IsWalletConnected>
+        <IsWalletDisconnected>
+          <div className="flex items-center justify-center">
+            <WalletConnect />
+          </div>
+        </IsWalletDisconnected>
       </PageSection>
     </div>
   )
