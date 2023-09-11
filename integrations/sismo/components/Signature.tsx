@@ -33,7 +33,7 @@ export default function Signature() {
   return (
     <>
       <div className="mb-6 flex items-center">
-        <label className="Label pr-4" htmlFor="impersonate-mode">
+        <label className="pr-4" htmlFor="impersonate-mode">
           Impersonate mode
         </label>
         <Switch
@@ -73,7 +73,7 @@ export default function Signature() {
             RESET{" "}
           </Button>
           <br></br>
-          <div className="status-wrapper">
+          <div>
             {pageState == "verifying" ? (
               <div className="flex h-24 items-center justify-center">
                 <Spinner isSmall />

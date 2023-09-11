@@ -24,7 +24,7 @@ export default function Auth() {
   return (
     <>
       <div className="mb-6 flex items-center">
-        <label className="Label pr-4" htmlFor="impersonate-mode">
+        <label className="pr-4" htmlFor="impersonate-mode">
           Impersonate mode
         </label>
         <Switch
@@ -61,7 +61,7 @@ export default function Auth() {
             RESET{" "}
           </Button>
           <br></br>
-          <div className="status-wrapper">
+          <div>
             {pageState == "verifying" ? (
               <div className="flex h-24 items-center justify-center">
                 <Spinner isSmall />
@@ -74,9 +74,7 @@ export default function Auth() {
                     Error verifying ZK Proofs: {error}{" "}
                   </span>
                 ) : (
-                  <span className="emerald-200 inline-block rounded-md border px-4 py-2 text-center text-xl">
-                    ZK Proofs verified!🎉
-                  </span>
+                  <span>ZK Proofs verified!🎉</span>
                 )}
               </>
             )}
