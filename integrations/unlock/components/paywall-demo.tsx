@@ -59,9 +59,16 @@ export default function PaywallDemo() {
   return (
     <>
       <div className="flex flex-col justify-center">
-        <p className="text-4xl">Status: {unlockStatus}</p>
-        {unlockStatus === 'locked' && <Button onClick={() => checkout()}>Unlock</Button>}
-        {unlockStatus === 'unlocked' && <p className="text-4xl">Access Granted!</p>}
+        <p className="text-4xl text-center">Status: {unlockStatus}</p>
+        {unlockStatus === 'locked' && (
+          <div className="flex flex-col justify-center text-center items-center">
+            <p className="p-4">This webpage is currently locked by Unlock Protocol. Purchase a key below to unlock the page.</p>
+            <Button className="max-w-[100px]" onClick={() => checkout()}>
+              Unlock
+            </Button>
+          </div>
+        )}
+        {unlockStatus === 'unlocked' && <p className="text-4xl p-4">Access Granted!</p>}
       </div>
     </>
   )
