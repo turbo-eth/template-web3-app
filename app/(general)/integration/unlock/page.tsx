@@ -14,7 +14,7 @@ export default function UnlockIntegration() {
 
   return (
     <div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center p-2">
         <a href="/integration/unlock/paywall">
           <Button>Paywall Example</Button>
         </a>
@@ -35,7 +35,9 @@ export default function UnlockIntegration() {
       </IsWalletConnected>
 
       <IsWalletDisconnected>
-        <WalletConnect />
+        <div className="p-2">
+          <WalletConnect />
+        </div>
       </IsWalletDisconnected>
     </div>
   )

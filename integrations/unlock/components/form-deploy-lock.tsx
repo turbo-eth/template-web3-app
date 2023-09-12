@@ -63,13 +63,13 @@ export default function FormDeployLock() {
     <div className="card w-full">
       <div className="flex flex-col gap-4">
         <label>Lock Name</label>
-        <input className="input mt-4" placeholder={lockName} onChange={(e) => setLockName(e.target.value)} />
+        <input className="input" placeholder={lockName} onChange={(e) => setLockName(e.target.value)} />
         <label>Max Number of Keys</label>
         <div className="flex flex-row items-center justify-center space-x-4">
           {unlimitedKeys ? (
-            <input className="input mt-4" disabled={true} />
+            <input className="input" disabled={true} />
           ) : (
-            <input className="input mt-4" placeholder={maxKeys.toString()} onChange={(e) => setMaxKeys(Number(e.target.value))} />
+            <input className="input" placeholder={maxKeys.toString()} onChange={(e) => setMaxKeys(Number(e.target.value))} />
           )}
           <div className="flex flex-row space-x-2">
             <p>unlimited:</p>
