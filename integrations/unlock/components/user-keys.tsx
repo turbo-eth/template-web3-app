@@ -29,7 +29,7 @@ export default function UserKeys() {
         <div>
           {userKeys.keys.map((key) => (
             <div key={key.id}>
-              <KeyPreview lockName={key.lock.name} />
+              <KeyPreview lockId={key.lock.id} lockName={key.lock.name} />
             </div>
           ))}
         </div>
