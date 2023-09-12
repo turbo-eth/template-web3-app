@@ -34,7 +34,7 @@ export default function UserKeys() {
           ))}
         </div>
       ) : (
-        <p>No Keys Found</p>
+        <p className="text-center">No Keys Found</p>
       )}
     </div>
   )

@@ -32,7 +32,7 @@ export default function UserLocks() {
           ))}
         </div>
       ) : (
-        <p>No Locks Found</p>
+        <p className="text-center">No Locks Found</p>
       )}
     </div>
   )
