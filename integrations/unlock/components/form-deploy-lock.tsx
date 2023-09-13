@@ -2,11 +2,14 @@
 
 import { useState } from 'react'
 
+import { ethers } from 'ethers'
+
+import { TransactionStatus } from '@/components/blockchain/transaction-status'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 
-import { useDeployLock } from '../hooks/use-deploy-lock'
+import { usePrepareUnlockV12CreateLock, useUnlockV12CreateLock } from '../generated/unlock-wagmi'
+import useUnlockSuppertedNetworks from '../hooks/use-unlock-supported-networks'
 
 export default function FormDeployLock() {
   const [lockName, setLockName] = useState<string>('test lock')
@@ -18,16 +21,23 @@ export default function FormDeployLock() {
   const [unlimitedKeys, setUnlimitedKeys] = useState<boolean>(false)
   const [unlimitedDuration, setUnlimitedDuration] = useState<boolean>(false)
 
-  const { data, isLoading, isSuccess, deployLock } = useDeployLock()
+  const { isSupported, networkData } = useUnlockSuppertedNetworks()
+
+  const { config } = usePrepareUnlockV12CreateLock({
+    address: networkData.unlockAddress,
+    args: [
+      duration === 0 ? BigInt(ethers.constants.MaxUint256.toString()) : BigInt(duration * 60 * 60 * 24),
+      ethers.constants.AddressZero, // token address defaults to ETH, can be any ERC20
+      BigInt(ethers.utils.parseUnits(keyPrice, 18).toString()), // key price in ETH
+      maxKeys === 0 ? BigInt(ethers.constants.MaxUint256.toString()) : BigInt(maxKeys),
+      lockName,
+      '0x000000000000000000000000',
+    ],
+  })
+  const { write, isLoading, isSuccess, isError } = useUnlockV12CreateLock(config)
 
   function handleDeploy() {
-    deployLock(duration, keyPrice, maxKeys, lockName)
-      .then(() => {
-        console.log('deploying lock...')
-      })
-      .catch((e) => {
-        console.log('error deploying lock', e)
-      })
+    isSupported && write?.()
   }
 
   function handleUnlimitedKeys(e: boolean) {
@@ -54,13 +64,13 @@ export default function FormDeployLock() {
     <div className="card w-full">
       <div className="flex flex-col gap-4">
         <label>Lock Name</label>
-        <Input placeholder={lockName} onChange={(e) => setLockName(e.target.value)} />
+        <input className="input" placeholder={lockName} onChange={(e) => setLockName(e.target.value)} />
         <label>Max Number of Keys</label>
         <div className="flex flex-row items-center justify-center space-x-4">
           {unlimitedKeys ? (
-            <Input disabled={true} />
+            <input className="input" disabled={true} />
           ) : (
-            <Input placeholder={maxKeys.toString()} onChange={(e) => setMaxKeys(Number(e.target.value))} />
+            <input className="input" placeholder={maxKeys.toString()} onChange={(e) => setMaxKeys(Number(e.target.value))} />
           )}
           <div className="flex flex-row space-x-2">
             <p>unlimited:</p>
@@ -71,9 +81,9 @@ export default function FormDeployLock() {
           <label>Membership Duration (Days)</label>
           <div className="flex flex-row items-center justify-center space-x-4">
             {unlimitedDuration ? (
-              <Input disabled={true} />
+              <input className="input mt-4" disabled={true} />
             ) : (
-              <Input placeholder={duration.toString()} onChange={(e) => setDuration(Number(e.target.value))} />
+              <input className="input mt-4" placeholder={duration.toString()} onChange={(e) => setDuration(Number(e.target.value))} />
             )}
             <div className="flex flex-row space-x-2">
               <p>unlimited</p>
@@ -83,12 +93,13 @@ export default function FormDeployLock() {
         </div>
         <div>
           <label>Key Price</label>
-          <Input placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
+          <input className="input mt-4" placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
         </div>
-        <div className="m-10 flex flex-col items-center justify-center">
-          <Button onClick={handleDeploy}>Deploy Lock</Button>
-          {isLoading && <p>Deploying lock...</p>}
-          {isSuccess && <p>Lock deployed!</p>}
+        <div className="m-10 flex flex-col items-center justify-center space-y-4">
+          <Button disabled={isLoading ? true : false} onClick={handleDeploy}>
+            Deploy Lock
+          </Button>
+          <TransactionStatus isError={isError} isLoadingTx={isLoading} isSuccess={isSuccess} />
         </div>
       </div>
     </div>

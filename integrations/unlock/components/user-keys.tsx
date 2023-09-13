@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -18,8 +17,7 @@ export default function UserKeys() {
 
   useEffect(() => {
     async function fetchUserKeys() {
-      const keys = await getUserKeys()
-      console.log(keys)
+      const keys: UserKeysQueryQuery | undefined = (await getUserKeys()) as UserKeysQueryQuery
       setUserKeys(keys)
     }
     void fetchUserKeys()
@@ -31,12 +29,12 @@ export default function UserKeys() {
         <div>
           {userKeys.keys.map((key) => (
             <div key={key.id}>
-              <KeyPreview lockName={key.lock.name} />
+              <KeyPreview lockId={key.lock.id} lockName={key.lock.name} />
             </div>
           ))}
         </div>
       ) : (
-        <p>No Keys Found</p>
+        <p className="text-center">No Keys Found</p>
       )}
     </div>
   )

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -18,7 +17,7 @@ export default function UserLocks() {
 
   useEffect(() => {
     async function fetchUserLocks() {
-      const locks = await getUserLocks()
+      const locks = (await getUserLocks()) as UserLocksQueryQuery
       setUserLocks(locks)
     }
     void fetchUserLocks()
@@ -33,7 +32,7 @@ export default function UserLocks() {
           ))}
         </div>
       ) : (
-        <p>No Locks Found</p>
+        <p className="text-center">No Locks Found</p>
       )}
     </div>
   )

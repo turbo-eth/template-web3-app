@@ -1,19 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import { networks } from '@unlock-protocol/networks'
+import { GraphQLResponse } from 'graphql-request/build/esm/types'
 import { useAccount, useNetwork } from 'wagmi'
 
 import { LockStatsQueryDocument, UserKeysQueryDocument, UserLocksQueryDocument, execute } from '@/.graphclient'
 
-const getEndpoint = (id: number) => {
+const getEndpoint = (id: number | undefined) => {
   switch (id) {
     case 1:
       return 'mainnet-v2'
     case 5:
       return 'goerli-v2'
     case 80001:
-      return 'goerli-v2'
+      return 'mumbai-v2'
     default:
       return 'goerli-v2'
   }
@@ -23,30 +21,26 @@ export default function useUnlockSubgraph() {
   const { address } = useAccount()
   const { chain } = useNetwork()
 
-  // prevent hook from running if wallet is not connected
-  if (!address || !chain?.id) throw new Error('Wallet not connected')
-
-  // prevent hook from running if chain is not supported
-  const networkConfig = networks[chain.id]
-  if (!networkConfig) throw new Error('Unsupported Chain')
-
-  const unlockNetworkEndpoint = getEndpoint(chain.id)
+  let unlockNetworkEndpoint = getEndpoint(5) // default to goerli
+  if (chain) {
+    unlockNetworkEndpoint = getEndpoint(chain.id)
+  }
 
   async function getUserKeys() {
     const variables = { user: address }
-    const result = await execute(UserKeysQueryDocument, variables, { network: unlockNetworkEndpoint })
-    return result?.data
+    const result: GraphQLResponse = await execute(UserKeysQueryDocument, variables, { network: unlockNetworkEndpoint })
+    return result.data
   }
 
   async function getUserLocks() {
     const variables = { user: address }
-    const result = await execute(UserLocksQueryDocument, variables, { network: unlockNetworkEndpoint })
+    const result: GraphQLResponse = await execute(UserLocksQueryDocument, variables, { network: unlockNetworkEndpoint })
     return result?.data
   }
 
   async function getLockStats({ lockId }: { lockId: string }) {
     const variables = { lockId: lockId }
-    const result = await execute(LockStatsQueryDocument, variables, { network: unlockNetworkEndpoint })
+    const result: GraphQLResponse = await execute(LockStatsQueryDocument, variables, { network: unlockNetworkEndpoint })
     return result?.data
   }
 
