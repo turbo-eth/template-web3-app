@@ -96,7 +96,9 @@ export default function FormDeployLock() {
           <input className="input mt-4" placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
         </div>
         <div className="m-10 flex flex-col items-center justify-center space-y-4">
-          <Button onClick={handleDeploy}>Deploy Lock</Button>
+          <Button disabled={isLoading ? true : false} onClick={handleDeploy}>
+            Deploy Lock
+          </Button>
           <TransactionStatus isError={isError} isLoadingTx={isLoading} isSuccess={isSuccess} />
         </div>
       </div>
