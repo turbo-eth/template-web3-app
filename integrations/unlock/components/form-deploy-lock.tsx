@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { ethers } from 'ethers'
 
+import { TransactionStatus } from '@/components/blockchain/transaction-status'
 import { Button } from '@/components/ui/button'
 import { Switch } from '@/components/ui/switch'
 
@@ -33,7 +34,7 @@ export default function FormDeployLock() {
       '0x000000000000000000000000',
     ],
   })
-  const { write, isLoading, isSuccess } = useUnlockV12CreateLock(config)
+  const { write, isLoading, isSuccess, isError } = useUnlockV12CreateLock(config)
 
   function handleDeploy() {
     isSupported && write?.()
@@ -94,10 +95,9 @@ export default function FormDeployLock() {
           <label>Key Price</label>
           <input className="input mt-4" placeholder={keyPrice} onChange={(e) => setKeyPrice(e.target.value)} />
         </div>
-        <div className="m-10 flex flex-col items-center justify-center">
+        <div className="m-10 flex flex-col items-center justify-center space-y-4">
           <Button onClick={handleDeploy}>Deploy Lock</Button>
-          {isLoading && <p>Deploying lock...</p>}
-          {isSuccess && <p>Lock deployed!</p>}
+          <TransactionStatus isError={isError} isLoadingTx={isLoading} isSuccess={isSuccess} />
         </div>
       </div>
     </div>
