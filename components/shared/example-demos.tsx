@@ -505,6 +505,22 @@ const demos = [
     ),
   },
   {
+    title: turboIntegrations.defiLlama.name,
+    description: turboIntegrations.defiLlama.description,
+    href: turboIntegrations.defiLlama.href,
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <LightDarkImage
+          LightImage={turboIntegrations.defiLlama.imgDark}
+          DarkImage={turboIntegrations.defiLlama.imgLight}
+          alt="Defi Llama logo"
+          height={100}
+          width={100}
+        />
+      </div>
+    ),
+  },
+  {
     title: turboIntegrations.starter.name,
     description: turboIntegrations.starter.description,
     href: turboIntegrations.starter.href,
