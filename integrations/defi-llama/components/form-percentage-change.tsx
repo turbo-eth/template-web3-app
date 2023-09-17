@@ -25,8 +25,7 @@ import {
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 
-import { useChart } from "../hooks/coins"
-import { calculatePeriod } from "../utils"
+import { useTokenPercentageChange } from "../hooks/coins"
 import { OutputData } from "./output-data"
 
 const formSchema = z
@@ -37,14 +36,14 @@ const formSchema = z
     tokenType: z.union([z.literal("erc20"), z.literal("native")], {
       required_error: "Please select a token type",
     }),
-    span: z
+    tokenAddress: z.string().optional(),
+    timestamp: z
       .string()
       .refine(
-        (val) => !isNaN(Number(val)) && Number(val) > 1,
+        (val) => !isNaN(Number(val)) && Number(val) > 0,
         "Please enter a valid number"
       ),
-    tokenAddress: z.string().optional(),
-    timeInterval: z.union(
+    period: z.union(
       [z.literal("1d"), z.literal("5d"), z.literal("30d"), z.literal("365d")],
       {
         required_error: "Please select a time interval",
@@ -63,36 +62,24 @@ const formSchema = z
     })
   })
 
-export function FormChart() {
+export function FormPercentageChange() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      span: "10",
-    },
   })
 
-  const { data, isFetching, error, refetch } = useChart({
+  const { data, isFetching, error, refetch } = useTokenPercentageChange({
     coins: {
       address: form.watch("tokenAddress"),
       chainId: Number(form.watch("chain")),
       type: form.watch("tokenType") as any,
     },
-    timestamp: {
-      type: "end",
-      value: Math.floor(Date.now() / 1000),
-    },
-    searchWidth: "1h",
-    period: calculatePeriod(
-      form.watch("timeInterval"),
-      Number(form.watch("span"))
-    ),
-    spanDataPoints: isNaN(Number(form.watch("span")))
-      ? 0
-      : Number(form.watch("span")),
+    period: form.watch("period"),
+    timestamp: Number(form.watch("timestamp")),
     enabled: false,
   })
 
   async function onSubmit() {
+    console.log("onSubmit")
     await refetch?.()
   }
 
@@ -179,7 +166,24 @@ export function FormChart() {
               )}
               <FormField
                 control={form.control}
-                name="timeInterval"
+                name="timestamp"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Timestamp</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        placeholder="1630483200"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="period"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Time Interval</FormLabel>
@@ -205,19 +209,6 @@ export function FormChart() {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="span"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Data points</FormLabel>
-                    <FormControl>
-                      <Input type="number" defaultValue={10} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <Button disabled={isFetching} type="submit">
                 {isFetching ? "Loading..." : "Submit"}
               </Button>
@@ -229,9 +220,10 @@ export function FormChart() {
       </CardContent>
       <Separator className="my-4" />
       <CardFooter className="justify-between">
-        <h3 className="text-center">Chart</h3>
+        <h3 className="text-center">Percentage Change</h3>
         <p className="text-center text-sm text-muted-foreground">
-          Get token prices at regular time intervals
+          Get the percentage change in price of tokens at a timestamp by
+          contract address.
         </p>
       </CardFooter>
     </Card>

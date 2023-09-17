@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 
-import { useCurrentERC20TokenPrice, useCurrentTokenPrice } from "../hooks/coins"
+import { useCurrentTokenPrice } from "../hooks/coins"
 import { OutputData } from "./output-data"
 
 const formSchema = z

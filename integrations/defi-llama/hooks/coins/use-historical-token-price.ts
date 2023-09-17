@@ -14,35 +14,37 @@ interface QueryOptions
     UseQueryOptions<
       unknown,
       unknown,
-      CurrentTokenPriceResponse,
-      (string | CoinsInput | CoinsInput[])[]
+      HistoricalPriceResponse,
+      (string | number | CoinsInput | CoinsInput[])[]
     >,
     "initialData" | "queryKey"
   > {
   initialData?: (() => undefined) | undefined
 }
 
-export interface CurrentTokenPriceResponse {
+export interface HistoricalPriceResponse {
   coins: {
     [key: string]: PriceResponse
   }
 }
 
-interface UseCurrentTokenPriceProps extends QueryOptions {
+interface UseHistoricalTokenPriceProps extends QueryOptions {
   searchWidth?: string
   coins: CoinsInput[] | CoinsInput
+  timestamp: number
 }
 
 /**
- * Fetches the current price of a token from DeFi Llama
+ * Fetches the historical price of a token from DeFi Llama
  */
-export function useCurrentTokenPrice({
+export function useHistoricalTokenPrice({
   coins,
   searchWidth = DEFAULT_SEARCH_WIDTH,
   cacheTime = DEFAULT_CACHE_TIME,
   enabled,
+  timestamp,
   ...options
-}: UseCurrentTokenPriceProps) {
+}: UseHistoricalTokenPriceProps) {
   const formattedCoins = formatCoinsInput(
     Array.isArray(coins) ? coins : [coins]
   )
@@ -51,7 +53,7 @@ export function useCurrentTokenPrice({
     if (!coins) return
     try {
       const url = new URL(
-        `${DEFI_LLAMA_API_URL}/prices/current/${formattedCoins}`
+        `${DEFI_LLAMA_API_URL}/prices/historical/${timestamp}/${formattedCoins}`
       )
       const params = new URLSearchParams()
 
@@ -63,9 +65,9 @@ export function useCurrentTokenPrice({
       const response = await fetch(url)
 
       if (!response.ok) {
-        throw new Error("Failed to fetch current price")
+        throw new Error("Failed to fetch historical price")
       }
-      const data: CurrentTokenPriceResponse = await response.json()
+      const data: HistoricalPriceResponse = await response.json()
 
       return data
     } catch (error) {
@@ -74,30 +76,33 @@ export function useCurrentTokenPrice({
     }
   }
 
-  return useQuery(["defi-llama", "current-price", coins, searchWidth], {
-    queryFn: fetcher,
-    enabled: !!coins && enabled,
-    ...options,
-  })
+  return useQuery(
+    ["defi-llama", "historical-price", coins, searchWidth, timestamp],
+    {
+      queryFn: fetcher,
+      enabled: !!coins && enabled,
+      ...options,
+    }
+  )
 }
 
-interface UseCurrentNativeTokenPriceProps
-  extends Omit<UseCurrentTokenPriceProps, "coins"> {
+interface UseHistoricalNativeTokenPriceProps
+  extends Omit<UseHistoricalTokenPriceProps, "coins"> {
   chainId?: number
 }
 
 /**
- * Wrapper around `useCurrentTokenPrice` that fetches the current price of the
+ * Wrapper around `useHistoricalTokenPrice` that fetches the historical price of the
  * native token for the given chain. Defaults to the current chain.
  */
-export function useCurrentNativeTokenPrice(
-  props: UseCurrentNativeTokenPriceProps = {}
+export function useHistoricalNativeTokenPrice(
+  props: UseHistoricalNativeTokenPriceProps
 ) {
   const defaultChainId = useChainId()
   const chainId = props.chainId || defaultChainId
 
   const coinsInput = { type: "native", chainId } as const
-  const queryResult = useCurrentTokenPrice({
+  const queryResult = useHistoricalTokenPrice({
     coins: coinsInput,
     ...props,
   })
@@ -108,24 +113,24 @@ export function useCurrentNativeTokenPrice(
   return { ...queryResult, data: formattedData }
 }
 
-interface UseCurrentERC20TokenPriceProps
-  extends Omit<UseCurrentTokenPriceProps, "coins"> {
+interface UseHistoricalERC20TokenPriceProps extends QueryOptions {
   chainId?: number
   address: string
+  timestamp: number
 }
 
 /**
- * Wrapper around `useCurrentTokenPrice` that fetches the current price of an
+ * Wrapper around `useHistoricalTokenPrice` that fetches the historical price of an
  * ERC20 token for the given chain. Defaults to the current chain.
  */
-export function useCurrentERC20TokenPrice(
-  props: UseCurrentERC20TokenPriceProps
+export function useHistoricalERC20TokenPrice(
+  props: UseHistoricalERC20TokenPriceProps
 ) {
   const defaultChainId = useChainId()
   const chainId = props.chainId || defaultChainId
 
   const coinsInput = { type: "erc20", chainId, address: props.address } as const
-  const queryResult = useCurrentTokenPrice({
+  const queryResult = useHistoricalTokenPrice({
     coins: coinsInput,
     ...props,
   })

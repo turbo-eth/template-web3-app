@@ -12,8 +12,12 @@ import {
 } from "@/components/layout/page-header"
 import { PageSection } from "@/components/layout/page-section"
 import { LightDarkImage } from "@/components/shared/light-dark-image"
-import { FormChart } from "@/integrations/defi-llama/components/form-chart"
-import { FormCurrentPrice } from "@/integrations/defi-llama/components/form-current-price"
+import {
+  FormChart,
+  FormCurrentPrice,
+  FormHistoricalPrice,
+  FormPercentageChange,
+} from "@/integrations/defi-llama/components"
 
 const integrationData = turboIntegrations.defiLlama
 
@@ -49,6 +53,8 @@ export default function IntegrationPage() {
         <div className="flex w-full max-w-screen-lg flex-col gap-y-10">
           <FormCurrentPrice />
           <FormChart />
+          <FormHistoricalPrice />
+          <FormPercentageChange />
         </div>
       </PageSection>
     </div>
