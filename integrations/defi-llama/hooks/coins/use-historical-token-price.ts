@@ -36,6 +36,7 @@ interface UseHistoricalTokenPriceProps extends QueryOptions {
 
 /**
  * Fetches the historical price of a token from DeFi Llama
+ * given a timestamp.
  */
 export function useHistoricalTokenPrice({
   coins,

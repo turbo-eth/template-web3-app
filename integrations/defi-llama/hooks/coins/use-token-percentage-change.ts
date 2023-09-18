@@ -33,6 +33,7 @@ interface UseTokenPercentageChangeProps extends QueryOptions {
 
 /**
  * Fetches the percentage change in price of a token from DeFi Llama
+ * given a timestamp and period of time.
  */
 export function useTokenPercentageChange({
   coins,
