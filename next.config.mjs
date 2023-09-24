@@ -17,13 +17,7 @@ const nextConfig = {
   env: {
     mode: process.env.NODE_ENV,
   },
-  experimental: {
-    appDir: true,
-  },
-  webpack: (
-    config,
-    { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
-  ) => {
+  webpack: (config) => {
     config.resolve.fallback = { fs: false, net: false, tls: false }
     config.module.rules.push({
       test: /\.svg$/i,
