@@ -2028,4 +2028,3 @@ export type GovernorsQuery = {
     proposalStats: { total: number; active: number }
   }>
 }
-

@@ -519,7 +519,8 @@ const demos = [
         />
       </div>
     ),
-  },{
+  },
+  {
     title: turboIntegrations.tally.name,
     description: turboIntegrations.tally.description,
     href: turboIntegrations.tally.href,

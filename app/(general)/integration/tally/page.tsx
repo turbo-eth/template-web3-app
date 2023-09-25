@@ -1,7 +1,7 @@
 "use client"
 
-import { Governors } from "@/integrations/tally/components/governor"
+import { ExploreGovernors } from "@/integrations/tally/components/explore-governors"
 
 export default function Page() {
-  return <Governors />
+  return <ExploreGovernors />
 }

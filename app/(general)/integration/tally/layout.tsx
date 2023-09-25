@@ -15,7 +15,9 @@ import {
 } from "@/components/layout/page-header"
 import { PageSection } from "@/components/layout/page-section"
 import { LightDarkImage } from "@/components/shared/light-dark-image"
-import { TallyGovernorsProvider } from "@/integrations/tally/context/governors"
+import { TallyProvider } from "@/integrations/tally/tally-provider"
+
+import { ApiKeyFormGate } from "./api-key-form-gate"
 
 interface LayoutProps {
   children?: React.ReactNode
@@ -23,7 +25,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <TallyGovernorsProvider>
+    <TallyProvider>
       <div className="container relative mt-20">
         <PageHeader className="pb-8">
           <LightDarkImage
@@ -54,8 +56,10 @@ export default function Layout({ children }: LayoutProps) {
             </Link>
           </PageHeaderCTA>
         </PageHeader>
-        <PageSection className="w-full">{children}</PageSection>
+        <PageSection className="w-full">
+          <ApiKeyFormGate>{children}</ApiKeyFormGate>
+        </PageSection>
       </div>
-    </TallyGovernorsProvider>
+    </TallyProvider>
   )
 }
