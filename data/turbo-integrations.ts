@@ -131,6 +131,15 @@ export const turboIntegrations = {
     imgDark: "/integrations/connext.png",
     category: "protocols",
   },
+  safe: {
+    name: 'Safe',
+    href: '/integration/safe',
+    url: 'https://docs.safe.global/',
+    description: 'Safe is the most trusted decentralized custody protocol and collective asset management platform on Ethereum and the EVM',
+    imgLight: '/integrations/safe-light.svg',
+    imgDark: '/integrations/safe-dark.svg',
+    category: "protocols",
+  },
   gelato: {
     name: "Gelato",
     href: "/integration/gelato",
