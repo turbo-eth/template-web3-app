@@ -21,7 +21,7 @@ export const WalletConnect = ({
   className,
   classNameConnected,
   classNameWrongNetwork,
-  labelConnect = 'Connect',
+  labelConnect = 'Connect Wallet',
   labelManage = 'Manage Wallets',
   ...props
 }: WalletConnectPrivyProps) => {
