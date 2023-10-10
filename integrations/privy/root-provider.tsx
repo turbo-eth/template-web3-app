@@ -1,14 +1,13 @@
-'use client'
+"use client"
 
-import { ReactNode } from 'react'
+import { ReactNode } from "react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ThemeProvider } from "next-themes"
+import { Provider as RWBProvider } from "react-wrap-balancer"
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ThemeProvider } from 'next-themes'
-import { ModalProvider } from 'react-modal-hook'
-
-import HandleWalletEvents from '@/components/blockchain/handle-wallet-events'
-import { Privy } from '@/integrations/privy/provider'
-import { useIsMounted } from '@/lib/hooks/use-is-mounted'
+import { useIsMounted } from "@/lib/hooks/use-is-mounted"
+import HandleWalletEvents from "@/components/blockchain/handle-wallet-events"
+import { Privy } from "./provider"
 
 const queryClient = new QueryClient()
 interface RootProviderProps {
@@ -18,13 +17,18 @@ interface RootProviderProps {
 export default function RootProvider({ children }: RootProviderProps) {
   const isMounted = useIsMounted()
   return isMounted ? (
-    <ThemeProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
       <QueryClientProvider client={queryClient}>
-        <ModalProvider>
+        <RWBProvider>
           <Privy>
             <HandleWalletEvents>{children}</HandleWalletEvents>
           </Privy>
-        </ModalProvider>
+        </RWBProvider>
       </QueryClientProvider>
     </ThemeProvider>
   ) : null

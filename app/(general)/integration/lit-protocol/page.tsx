@@ -8,7 +8,7 @@ import { LuBook } from "react-icons/lu"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,

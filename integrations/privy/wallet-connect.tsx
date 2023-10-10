@@ -37,14 +37,14 @@ export const WalletConnect = ({
         if (!authenticated) {
           return (
             <>
-              <Button onClick={login}>{labelConnect}</Button>
+              <Button variant="blue" onClick={login}>{labelConnect}</Button>
             </>
           )
         } else {
           return (
             <Dialog>
               <DialogTrigger>
-                <Button variant="subtle" type="button">
+                <Button variant="blue" type="button">
                   {labelManage}
                 </Button>
               </DialogTrigger>
@@ -61,7 +61,7 @@ export const WalletConnect = ({
                       {wallet.address === activeWallet?.address ? (
                         <span className="ml-4">Active</span>
                       ) : (
-                        <Button variant="subtle" className="ml-3" size="sm" onClick={() => setActiveWallet(wallet)}>
+                        <Button variant="blue" className="ml-3" size="sm" onClick={() => setActiveWallet(wallet)}>
                           Make active
                         </Button>
                       )}
@@ -69,7 +69,7 @@ export const WalletConnect = ({
                   ))}
                 </div>
                 <DialogFooter>
-                  <Button variant="outline" size="sm" onClick={logout}>
+                  <Button variant="destructive" size="sm" onClick={logout}>
                     Logout
                   </Button>
                 </DialogFooter>

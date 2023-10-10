@@ -1,44 +1,35 @@
-'use client'
+"use client"
 
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ThemeProvider } from 'next-themes'
-import { ModalProvider } from 'react-modal-hook'
-import { Provider as RWBProvider } from 'react-wrap-balancer'
-import { SWRConfig } from 'swr'
+import { ReactNode } from "react"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ThemeProvider } from "next-themes"
+import { Provider as RWBProvider } from "react-wrap-balancer"
 
-import HandleWalletEvents from '@/components/blockchain/handle-wallet-events'
-import { RainbowKit } from '@/integrations/rainbow-kit/provider'
-import { useIsMounted } from '@/lib/hooks/use-is-mounted'
-import fetchJson from '@/lib/utils/fetch-json'
+import { useIsMounted } from "@/lib/hooks/use-is-mounted"
+import HandleWalletEvents from "@/components/blockchain/handle-wallet-events"
+import { RainbowKit } from "./provider"
 
 const queryClient = new QueryClient()
 interface RootProviderProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export default function RootProvider({ children }: RootProviderProps) {
   const isMounted = useIsMounted()
-  return (
-    <SWRConfig
-      value={{
-        fetcher: fetchJson,
-        onError: (err) => {
-          console.error(err)
-        },
-      }}>
-      {isMounted && (
-        <ThemeProvider>
-          <QueryClientProvider client={queryClient}>
-            <RWBProvider>
-              <ModalProvider>
-                <RainbowKit>
-                  <HandleWalletEvents>{children}</HandleWalletEvents>
-                </RainbowKit>
-              </ModalProvider>
-            </RWBProvider>
-          </QueryClientProvider>
-        </ThemeProvider>
-      )}
-    </SWRConfig>
-  )
+  return isMounted ? (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <QueryClientProvider client={queryClient}>
+        <RWBProvider>
+          <RainbowKit>
+            <HandleWalletEvents>{children}</HandleWalletEvents>
+          </RainbowKit>
+        </RWBProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
+  ) : null
 }
