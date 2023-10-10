@@ -121,7 +121,7 @@ if (PROVIDERS.length === 0 || env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER === "true") {
   PROVIDERS.push(publicProvider())
 }
 
-export const { chains, publicClient, webSocketPublicClient } = configureChains(
-  CHAINS,
-  PROVIDERS
-)
+// @ts-ignore
+// TODO: The sepolia chain is throwing type errors for some reason.
+export const configureChainsConfig = configureChains(UNIQUE_CHAINS, [...PROVIDERS])
+export const { chains, publicClient, webSocketPublicClient } = configureChainsConfig
