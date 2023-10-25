@@ -33,6 +33,7 @@ export const env = createEnv({
     NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
   },
   runtimeEnv: {
+    NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
     APP_ADMINS: process.env.APP_ADMINS,

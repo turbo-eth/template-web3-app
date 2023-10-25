@@ -92,8 +92,14 @@ export const ETH_CHAINS_DEV =
 
 export const CHAINS: Chain[] =
   process.env.NODE_ENV === "production" ? ETH_CHAINS_PROD : ETH_CHAINS_DEV
+  
+const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!
+if (!projectId) {
+  throw new Error("Project ID is undefined")
+}
 
-const PROVIDERS: ChainProviderFn<Chain>[] = []
+const PROVIDERS: ChainProviderFn<Chain>[] = [walletConnectProvider({ projectId })]
+
 
 if (env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
   if (!env.NEXT_PUBLIC_ALCHEMY_API_KEY)

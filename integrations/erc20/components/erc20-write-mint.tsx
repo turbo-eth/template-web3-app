@@ -1,4 +1,3 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { useForm } from "react-hook-form"
 import { useDebounce } from "usehooks-ts"
 import { BaseError, parseEther } from "viem"
@@ -99,7 +98,7 @@ export function ERC20WriteMint({ address }: ERC20WriteMintProps) {
       </IsWalletConnected>
       <IsWalletDisconnected>
         <div className="flex items-center justify-center gap-10">
-          <ConnectButton />
+          <w3m-button />
         </div>
       </IsWalletDisconnected>
     </>

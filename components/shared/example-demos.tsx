@@ -99,15 +99,14 @@ const demos = [
     ),
   },
   {
-    title: "Rainbowkit",
-    description:
-      "The best way to connect a wallet. Designed for everyone. Built for developers.",
+    title: "Web3Modal",
+    description: "All in one SDK for connecting your app to your wallet.",
     demo: (
       <div className="flex items-center justify-center space-x-20">
         <Image
-          alt="Rainbow logo"
+          alt="Web3Modal logo"
           height={100}
-          src="/integrations/rainbowkit.svg"
+          src="/integrations/walletconnect.svg"
           width={100}
         />
       </div>

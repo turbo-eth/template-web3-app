@@ -7,7 +7,7 @@ import { Provider as RWBProvider } from "react-wrap-balancer"
 
 import { useIsMounted } from "@/lib/hooks/use-is-mounted"
 import HandleWalletEvents from "@/components/blockchain/handle-wallet-events"
-import { RainbowKit } from "@/components/providers/rainbow-kit"
+import { Web3Modal } from "@/components/providers/web3modal"
 
 const queryClient = new QueryClient()
 interface RootProviderProps {
@@ -25,9 +25,9 @@ export default function RootProvider({ children }: RootProviderProps) {
     >
       <QueryClientProvider client={queryClient}>
         <RWBProvider>
-          <RainbowKit>
+          <Web3Modal>
             <HandleWalletEvents>{children}</HandleWalletEvents>
-          </RainbowKit>
+          </Web3Modal>
         </RWBProvider>
       </QueryClientProvider>
     </ThemeProvider>
