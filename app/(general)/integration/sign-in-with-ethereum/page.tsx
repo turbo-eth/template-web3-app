@@ -4,7 +4,6 @@ import { LuBook } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -15,6 +14,7 @@ import { PageSection } from "@/components/layout/page-section"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { LightDarkImage } from "@/components/shared/light-dark-image"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { ButtonSIWELogout } from "@/integrations/siwe/components/button-siwe-logout"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"

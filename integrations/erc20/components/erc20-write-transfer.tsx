@@ -7,9 +7,9 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { ContractWriteButton } from "@/components/blockchain/contract-write-button"
 import { TransactionStatus } from "@/components/blockchain/transaction-status"
-import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 import {
   useErc20Transfer,

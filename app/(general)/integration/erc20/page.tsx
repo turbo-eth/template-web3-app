@@ -7,7 +7,6 @@ import { LuBook } from "react-icons/lu"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -24,6 +23,7 @@ import { Erc20SetTokenStorage } from "@/integrations/erc20/components/erc20-set-
 import { ERC20WriteMint } from "@/integrations/erc20/components/erc20-write-mint"
 import { ERC20WriteTransfer } from "@/integrations/erc20/components/erc20-write-transfer"
 import { useERC20TokenStorage } from "@/integrations/erc20/hooks/use-erc20-token-storage"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 export default function Erc20Page() {
   const [token] = useERC20TokenStorage()

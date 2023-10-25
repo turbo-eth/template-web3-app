@@ -8,9 +8,9 @@ import { useToast } from "@/lib/hooks/use-toast"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
-import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 import { useLitClient } from "../hooks/use-lit-client"
 

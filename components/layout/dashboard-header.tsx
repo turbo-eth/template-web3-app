@@ -1,31 +1,35 @@
-import { WalletAddress } from '@turbo-eth/core-wagmi'
-import classNames from 'clsx'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
-import { FaCopy } from 'react-icons/fa'
-import { useAccount } from 'wagmi'
+import { WalletAddress } from "@turbo-eth/core-wagmi"
+import classNames from "clsx"
+import { CopyToClipboard } from "react-copy-to-clipboard"
+import { FaCopy } from "react-icons/fa"
+import { useAccount } from "wagmi"
 
-import { BranchIsWalletConnected } from '@/components/shared/branch-is-wallet-connected'
-import { WalletConnect } from '@/integrations/rainbow-kit/wallet-connect'
-import { BranchIsAuthenticated } from '@/integrations/siwe/components/branch-is-authenticated'
-import { ButtonSIWELogin } from '@/integrations/siwe/components/button-siwe-login'
-import { ButtonSIWELogout } from '@/integrations/siwe/components/button-siwe-logout'
-import { useToast } from '@/lib/hooks/use-toast'
+import { useToast } from "@/lib/hooks/use-toast"
+import { BranchIsWalletConnected } from "@/components/shared/branch-is-wallet-connected"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
+import { BranchIsAuthenticated } from "@/integrations/siwe/components/branch-is-authenticated"
+import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
+import { ButtonSIWELogout } from "@/integrations/siwe/components/button-siwe-logout"
 
-import { ThemeToggle } from '../shared/theme-toggle'
+import { ThemeToggle } from "../shared/theme-toggle"
 
 interface Props {
   className?: string
 }
 
 export function DashboardHeader(props: Props) {
-  const classes = classNames(props.className, 'Header', 'px-6 lg:px-10 py-3 flex items-center w-full')
+  const classes = classNames(
+    props.className,
+    "Header",
+    "px-6 lg:px-10 py-3 flex items-center w-full"
+  )
   const { address } = useAccount()
   const { toast, dismiss } = useToast()
 
   const handleToast = () => {
     toast({
-      title: 'Addess Copied',
-      description: 'Your address has been copied to your clipboard.',
+      title: "Addess Copied",
+      description: "Your address has been copied to your clipboard.",
     })
 
     setTimeout(() => {
@@ -37,7 +41,11 @@ export function DashboardHeader(props: Props) {
     <header className={classes}>
       <div className="flex flex-1 ">
         <span className="flex items-center gap-2">
-          <WalletAddress truncate isLink className="tag tag-primary hover:shadow-sm" />
+          <WalletAddress
+            truncate
+            isLink
+            className="tag tag-primary hover:shadow-sm"
+          />
           <span className="">
             <BranchIsWalletConnected>
               <span onClick={handleToast} className="">

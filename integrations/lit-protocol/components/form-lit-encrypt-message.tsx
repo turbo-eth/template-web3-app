@@ -21,10 +21,10 @@ import {
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import { Textarea } from "@/components/ui/textarea"
-import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { LinkComponent } from "@/components/shared/link-component"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 import { useLitClient } from "../hooks/use-lit-client"
 import { AccessControlConditions } from "../utils/types"

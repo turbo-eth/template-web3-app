@@ -8,7 +8,6 @@ import { LuBook } from "react-icons/lu"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -21,6 +20,7 @@ import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected
 import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { FormLitDecryptMessage } from "@/integrations/lit-protocol/components/form-lit-decrypt-message"
 import { FormLitEncryptMessage } from "@/integrations/lit-protocol/components/form-lit-encrypt-message"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 export default function LitProtocolPage() {
   const searchParams = useSearchParams()

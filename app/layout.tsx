@@ -3,12 +3,12 @@ import "@/styles/globals.css"
 
 import { ReactNode } from "react"
 import { env } from "@/env.mjs"
-import RootProvider from '@/integrations/rainbow-kit/root-provider'
-import { cn } from '@/lib/utils'
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
+import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
+import RootProvider from "@/integrations/rainbow-kit/root-provider"
 
 const url = env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 

@@ -7,12 +7,11 @@ import { siteConfig } from "@/config/site"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { SidebarNav } from "@/components/layout/sidebar-nav"
 import { SiteHeader } from "@/components/layout/site-header"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 interface DashboardLayoutProps {
   children: React.ReactNode
 }
-
-import { WalletConnect } from '@/integrations/rainbow-kit/wallet-connect'
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   return (

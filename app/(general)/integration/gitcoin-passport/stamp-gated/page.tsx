@@ -1,10 +1,10 @@
 "use client"
 
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
-import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { StampGate } from "@/integrations/gitcoin-passport/components/stamp-gate"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 export default function PageIntegration() {
   return (

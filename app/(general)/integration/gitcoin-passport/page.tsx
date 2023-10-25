@@ -1,9 +1,9 @@
 "use client"
 
-import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { ListStamps } from "@/integrations/gitcoin-passport/components/list-stamps"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 export default function PageIntegration() {
   return (
