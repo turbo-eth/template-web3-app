@@ -23,9 +23,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
-import WalletConnectCustom from "@/components/blockchain/wallet-connect-custom"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 import { useApproveIfNeeded } from "../hooks/use-approve-if-needed"
 import { useEstimatedAmount } from "../hooks/use-estimated-amount"
@@ -656,10 +656,7 @@ export function FormConnextXTransfer({
       )}
       <IsWalletConnected>{getButton()}</IsWalletConnected>
       <IsWalletDisconnected>
-        <WalletConnectCustom
-          className="mt-5 w-full rounded bg-blue-600 p-4"
-          classNameConnect="w-full bg-blue-600 text-white"
-        />
+        <WalletConnect className="mt-5 w-full rounded bg-blue-600 p-4" />
       </IsWalletDisconnected>
     </motion.div>
   )
