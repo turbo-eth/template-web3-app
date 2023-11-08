@@ -18,7 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { WalletConnect } from "@/integrations/wallet/components/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,

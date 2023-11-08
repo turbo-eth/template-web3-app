@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 import { fadeUpVariant } from "@/lib/utils/motion"
 import { buttonVariants } from "@/components/ui/button"
 import { WalletAddress } from "@/components/blockchain/wallet-address"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { WalletConnect } from "@/integrations/wallet/components/wallet-connect"
 import { PageSectionGrid } from "@/components/layout/page-section"
 import { IsDarkTheme } from "@/components/shared/is-dark-theme"
 import { IsLightTheme } from "@/components/shared/is-light-theme"
@@ -94,6 +94,21 @@ const demos = [
           height={80}
           src="/integrations/siwe.svg"
           width={80}
+        />
+      </div>
+    ),
+  },
+  {
+    title: "Rainbowkit",
+    description:
+      "The best way to connect a wallet. Designed for everyone. Built for developers.",
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <Image
+          alt="Rainbow logo"
+          height={100}
+          src="/integrations/rainbowkit.svg"
+          width={100}
         />
       </div>
     ),

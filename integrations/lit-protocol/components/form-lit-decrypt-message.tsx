@@ -8,7 +8,7 @@ import { useToast } from "@/lib/hooks/use-toast"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { WalletConnect } from "@/integrations/wallet/components/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 

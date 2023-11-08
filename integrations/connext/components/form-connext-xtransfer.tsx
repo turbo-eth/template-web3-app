@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
-import WalletConnectCustom from "@/components/blockchain/wallet-connect-custom"
+import WalletConnectCustom from "@/integrations/wallet/components/wallet-connect-custom"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 

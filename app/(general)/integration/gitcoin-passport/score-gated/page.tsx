@@ -1,7 +1,7 @@
 "use client"
 
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { WalletConnect } from "@/integrations/wallet/components/wallet-connect"
 import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { ScoreGate } from "@/integrations/gitcoin-passport/components/score-gate"

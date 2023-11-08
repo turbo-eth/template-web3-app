@@ -6,7 +6,7 @@ import { LuBook } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { WalletConnect } from "@/integrations/wallet/components/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
