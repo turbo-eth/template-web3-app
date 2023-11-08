@@ -6,7 +6,7 @@
 ![TS](https://badgen.net/badge/-/TypeScript?icon=typescript&label&labelColor=blue&color=555555)
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](http://perso.crans.org/besson/LICENSE.html)
 
-Web3 App Template built using Next.js, RainbowKit, Tailwind, Sign-In With Ethereum, and more.
+Web3 App Template built using Next.js, Tailwind, Sign-In With Ethereum, and more.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app&project-name=TurboETH&repository-name=turbo-eth&demo-title=TurboETH&env=NEXTAUTH_SECRET,DATABASE_URL&envDescription=How%20to%20get%20these%20env%20variables%3A&envLink=https%3A%2F%2Fgithub.com%2Fturbo-eth%2Ftemplate-web3-app%2Fblob%integrations%2F.env.example)
 
@@ -19,7 +19,6 @@ Web3 App Template built using Next.js, RainbowKit, Tailwind, Sign-In With Ethere
   - [UI Components](https://docs.turboeth.xyz/getting-started/design-system)
   - [Backend Database](https://docs.turboeth.xyz/getting-started/database)
 - Core Integrations
-  - [🌈 RainbowKit](https://docs.turboeth.xyz/integration/rainbowkit)
   - [🔏 Sign-In With Ethereum](https://docs.turboeth.xyz/integration/sign-in-with-ethereum)
 - Smart Contract Integrations
   - [ERC20](https://docs.turboeth.xyz/integration/smart-contract-erc20)
@@ -50,7 +49,6 @@ pnpm build
 ### Web3 Core
 
 - [WAGMI CLI](https://wagmi.sh/cli/getting-started) - Automatic React Hook Generation
-- [RainbowKit](https://www.rainbowkit.com/) - Wallet connection manager
 - [Sign-In With Ethereum](https://login.xyz/) - Account authentication
 
 ### Web2 Frameworks

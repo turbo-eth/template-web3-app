@@ -1,7 +1,6 @@
 "use client"
 
 import { HTMLAttributes } from "react"
-import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { formatUnits } from "viem"
 import { Address, useAccount } from "wagmi"
 
@@ -217,7 +216,7 @@ export function ERC20Read({
       </IsWalletConnected>
       <IsWalletDisconnected>
         <div className="flex items-center justify-center gap-10">
-          <ConnectButton />
+          <w3m-button />
         </div>
       </IsWalletDisconnected>
     </>

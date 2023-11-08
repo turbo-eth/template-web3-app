@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 import { fadeUpVariant } from "@/lib/utils/motion"
 import { buttonVariants } from "@/components/ui/button"
 import { WalletAddress } from "@/components/blockchain/wallet-address"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
+import { WalletConnect } from "@/integrations/wallet/components/wallet-connect"
 import { PageSectionGrid } from "@/components/layout/page-section"
 import { IsDarkTheme } from "@/components/shared/is-dark-theme"
 import { IsLightTheme } from "@/components/shared/is-light-theme"
@@ -108,6 +108,20 @@ const demos = [
           alt="Rainbow logo"
           height={100}
           src="/integrations/rainbowkit.svg"
+          width={100}
+        />
+      </div>
+    ),
+  },
+  {
+    title: "Web3Modal",
+    description: "All in one SDK for connecting your app to your wallet.",
+    demo: (
+      <div className="flex items-center justify-center space-x-20">
+        <Image
+          alt="Web3Modal logo"
+          height={100}
+          src="/integrations/walletconnect.svg"
           width={100}
         />
       </div>

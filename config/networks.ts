@@ -93,7 +93,9 @@ export const ETH_CHAINS_DEV =
 export const CHAINS: Chain[] =
   process.env.NODE_ENV === "production" ? ETH_CHAINS_PROD : ETH_CHAINS_DEV
 
+
 const PROVIDERS: ChainProviderFn<Chain>[] = []
+
 
 if (env.NEXT_PUBLIC_ALCHEMY_API_KEY) {
   if (!env.NEXT_PUBLIC_ALCHEMY_API_KEY)

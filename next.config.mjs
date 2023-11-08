@@ -32,6 +32,7 @@ const nextConfig = {
       loader: "next-image-loader",
       options: { assetPrefix: "" },
     })
+    config.externals.push("pino-pretty", "lokijs", "encoding")
     return config
   },
   ...withPWA({
