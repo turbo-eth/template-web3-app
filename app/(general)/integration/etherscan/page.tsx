@@ -8,7 +8,6 @@ import { useNetwork } from "wagmi"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -21,6 +20,7 @@ import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected
 import { LightDarkImage } from "@/components/shared/light-dark-image"
 import TransactionsTable from "@/integrations/etherscan/components/transactions-table"
 import { useEtherscanAccountTransactions } from "@/integrations/etherscan/hooks/use-etherscan-account-transactions"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"

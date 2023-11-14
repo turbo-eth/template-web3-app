@@ -7,7 +7,6 @@ import { LuBook } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -19,6 +18,7 @@ import { IsWalletConnected } from "@/components/shared/is-wallet-connected"
 import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected"
 import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { ActiveTasks, useIsAutomateSupported } from "@/integrations/gelato"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 export default function GelatoPage() {
   const isAutomateSupported = useIsAutomateSupported()

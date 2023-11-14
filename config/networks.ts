@@ -121,7 +121,9 @@ if (PROVIDERS.length === 0 || env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER === "true") {
   PROVIDERS.push(publicProvider())
 }
 
-export const { chains, publicClient, webSocketPublicClient } = configureChains(
+export const configureChainsConfig = configureChains(
   CHAINS,
   PROVIDERS
 )
+
+export const { chains, publicClient, webSocketPublicClient } = configureChainsConfig

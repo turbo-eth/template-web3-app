@@ -8,7 +8,6 @@ import { LuBook } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -21,6 +20,7 @@ import { IsWalletDisconnected } from "@/components/shared/is-wallet-disconnected
 import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { Navbar } from "@/integrations/lens-protocol/components/navbar"
 import { lensProviderConfig } from "@/integrations/lens-protocol/lens-provider"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 export default function LayoutIntegration({
   children,

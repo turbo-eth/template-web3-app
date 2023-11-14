@@ -10,7 +10,6 @@ import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -24,6 +23,7 @@ import { LightDarkImage } from "@/components/shared/light-dark-image"
 import { DiscoProfileBasic } from "@/integrations/disco/components/disco-profile-basic"
 import { DiscoProfileCredentials } from "@/integrations/disco/components/disco-profile-credentials"
 import { FormCredentialIssuanceProofOfHack } from "@/integrations/disco/components/form-issue-proof-of-hack"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 import { ButtonSIWELogin } from "@/integrations/siwe/components/button-siwe-login"
 import { IsSignedIn } from "@/integrations/siwe/components/is-signed-in"
 import { IsSignedOut } from "@/integrations/siwe/components/is-signed-out"

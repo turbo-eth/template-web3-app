@@ -6,7 +6,6 @@ import { LuBook } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -28,6 +27,7 @@ import {
 } from "@/integrations/erc1155"
 import { Erc1155SetTokenStorage } from "@/integrations/erc1155/components/erc1155-set-token-storage"
 import { useErc1155TokenStorage } from "@/integrations/erc1155/hooks/use-erc1155-token-storage"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 const integrationData = turboIntegrations.erc1155
 

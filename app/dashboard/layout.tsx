@@ -5,9 +5,9 @@ import { menuAdmin } from "@/config/menu-admin"
 import { menuDashboard } from "@/config/menu-dashboard"
 import { siteConfig } from "@/config/site"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import { SidebarNav } from "@/components/layout/sidebar-nav"
 import { SiteHeader } from "@/components/layout/site-header"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 interface DashboardLayoutProps {
   children: React.ReactNode

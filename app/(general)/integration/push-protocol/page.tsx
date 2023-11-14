@@ -18,7 +18,6 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -37,6 +36,7 @@ import {
   NotificationBell,
 } from "@/integrations/push-protocol"
 import { PUSH_CHANNEL_ADDRESS } from "@/integrations/push-protocol/utils/constants"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 export default function PushProtocolPage() {
   const [mockedNotifications, setMockedNotifications] = useState<

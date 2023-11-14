@@ -6,7 +6,6 @@ import { LuBook } from "react-icons/lu"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
-import { WalletConnect } from "@/components/blockchain/wallet-connect"
 import {
   PageHeader,
   PageHeaderCTA,
@@ -26,6 +25,7 @@ import {
 } from "@/integrations/erc721"
 import { Erc721SetTokenStorage } from "@/integrations/erc721/components/erc721-set-token-storage"
 import { useErc721TokenStorage } from "@/integrations/erc721/hooks/use-erc721-token-storage"
+import { WalletConnect } from "@/integrations/rainbow-kit/wallet-connect"
 
 export default function ERC721Page() {
   const [token] = useErc721TokenStorage()

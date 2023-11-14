@@ -8,7 +8,7 @@ import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
-import RootProvider from "@/components/providers/root-provider"
+import RootProvider from "@/integrations/rainbow-kit/root-provider"
 
 const url = env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
 
