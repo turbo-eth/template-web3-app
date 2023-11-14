@@ -1,26 +1,27 @@
-'use client'
-import * as React from 'react'
+"use client"
 
-import { ConnectButton } from '@rainbow-me/rainbowkit'
+import * as React from "react"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
 
-interface WalletConnectProps {
+interface WalletConnectProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
+  classNameConnect?: string
 }
 
 export const WalletConnect = ({ className }: WalletConnectProps) => {
   return (
-    <span className={className}>
+    <div className={className}>
       <ConnectButton
         showBalance={false}
         accountStatus={{
-          smallScreen: 'avatar',
-          largeScreen: 'avatar',
+          smallScreen: "avatar",
+          largeScreen: "avatar",
         }}
         chainStatus={{
-          smallScreen: 'icon',
-          largeScreen: 'icon',
+          smallScreen: "icon",
+          largeScreen: "icon",
         }}
       />
-    </span>
+    </div>
   )
 }

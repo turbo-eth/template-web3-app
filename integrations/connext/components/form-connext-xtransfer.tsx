@@ -656,7 +656,7 @@ export function FormConnextXTransfer({
       )}
       <IsWalletConnected>{getButton()}</IsWalletConnected>
       <IsWalletDisconnected>
-        <WalletConnect className="mt-5 w-full rounded bg-blue-600 p-4" />
+        <WalletConnect className="mt-5 flex w-full justify-center border-none bg-blue-500 text-white" />
       </IsWalletDisconnected>
     </motion.div>
   )

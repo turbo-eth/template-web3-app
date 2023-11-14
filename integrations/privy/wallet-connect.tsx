@@ -16,16 +16,13 @@ import {
 
 interface WalletConnectPrivyProps extends HTMLAttributes<HTMLDivElement> {
   classNameConnect?: string
-  classNameConnected?: string
-  classNameWrongNetwork?: string
   labelConnect?: string
   labelManage?: string
 }
 
 export const WalletConnect = ({
   className,
-  classNameConnected,
-  classNameWrongNetwork,
+  classNameConnect,
   labelConnect = "Connect Wallet",
   labelManage = "Manage Wallets",
   ...props
