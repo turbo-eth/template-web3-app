@@ -1,4 +1,4 @@
-import { ImageResponse } from "next/server"
+import { ImageResponse } from "next/og"
 import { turboIntegrations } from "@/data/turbo-integrations"
 import { env } from "env.mjs"
 
