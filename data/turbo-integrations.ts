@@ -1,4 +1,12 @@
 export const turboIntegrations = {
+  tally: {
+    name: 'Tally',
+    href: 'https://docs.turboeth.xyz/integration/tally',
+    url: 'https://www.tally.xyz',
+    description: 'Tally is the leading DAO governance platform. Explore DAOs, proposals, and delegates.',
+    imgLight: '/integrations/tally.svg',
+    imgDark: '/integrations/tally.svg',
+  },
   siwe: {
     name: 'SIWE',
     href: 'https://docs.turboeth.xyz/integration/sign-in-with-ethereum',

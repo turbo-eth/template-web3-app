@@ -18,6 +18,7 @@ export const env = createEnv({
     NEXT_PUBLIC_USE_HARDHAT_PROVIDER: z.enum(['true', 'false']).default('false'),
     NEXT_PUBLIC_ALCHEMY_API_KEY: z.string().min(1).optional(),
     NEXT_PUBLIC_INFURA_API_KEY: z.string().min(1).optional(),
+    NEXT_PUBLIC_TALLY_API_KEY: z.string().min(1).optional(),
   },
   runtimeEnv: {
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
@@ -28,5 +29,6 @@ export const env = createEnv({
     NEXT_PUBLIC_USE_HARDHAT_PROVIDER: process.env.NEXT_PUBLIC_USE_HARDHAT_PROVIDER,
     NEXT_PUBLIC_ALCHEMY_API_KEY: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     NEXT_PUBLIC_INFURA_API_KEY: process.env.NEXT_PUBLIC_INFURA_API_KEY,
+    NEXT_PUBLIC_TALLY_API_KEY: process.env.NEXT_PUBLIC_TALLY_API_KEY,
   },
 })

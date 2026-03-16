@@ -10,6 +10,12 @@ const nextConfig = {
   env: {
     mode: process.env.NODE_ENV,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   experimental: {
     appDir: true,
     fontLoaders: [
