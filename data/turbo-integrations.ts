@@ -31,4 +31,12 @@ export const turboIntegrations = {
     imgLight: '/integrations/rainbowkit.svg',
     imgDark: '/integrations/rainbowkit.svg',
   },
+  uniswapV3: {
+    name: 'Uniswap V3 (Base)',
+    href: '/integration/uniswap-v3',
+    url: 'https://docs.uniswap.org/api/subgraph/overview',
+    description: 'Base-focused Uniswap V3 analytics with public protocol, revenue, and token-liquidity views.',
+    imgLight: '/integrations/uniswap.svg',
+    imgDark: '/integrations/uniswap.svg',
+  },
 }
