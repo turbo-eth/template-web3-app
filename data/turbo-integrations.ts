@@ -208,4 +208,14 @@ export const turboIntegrations = {
     category: "general",
     imgDark: "/logo-gradient.png",
   },
+  ensResolver: {
+    name: "ENS Resolver",
+    href: "/integration/ens-resolver",
+    url: "https://docs.ens.domains/",
+    description:
+      "Resolve Ethereum Name Service (ENS) names to addresses and vice versa using viem + wagmi.",
+    imgLight: "/logo-gradient.png",
+    imgDark: "/logo-gradient.png",
+    category: "general",
+  },
 } as const
