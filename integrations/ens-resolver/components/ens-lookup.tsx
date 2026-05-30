@@ -46,7 +46,7 @@ export function ENSLookup() {
             {resolvedAddress && (
               <div>
                 <span className="font-medium">Address:</span>{" "}
-                <code className="text-xs break-all">{resolvedAddress}</code>
+                <code className="break-all text-xs">{resolvedAddress}</code>
               </div>
             )}
             {resolvedName && (
