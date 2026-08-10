@@ -58,6 +58,43 @@ pnpm build
 - [Vercel](https://vercel.com/) - App Infrastructure
 - [Prisma](https://www.prisma.io/) - Database ORM
 
+# IPFS Storage
+
+This template includes an optional IPFS storage provider using [IPFS Pay-to-Pin](https://github.com/IcanBENCHurCAT/ipfs-pay-to-pin) — a pay-as-you-go alternative to Pinata and Infura.
+
+### Why Pay-to-Pin?
+
+- **No monthly subscriptions** — pay only for what you pin
+- **Native USDC** — micro-payments on Algorand (sub-cent fees, instant settlement)
+- **x402 machine-readable payments** — perfect for AI agents and programmatic workflows
+- **Zero vendor lock-in** — open-source SDK, fully self-custodial
+
+### Usage
+
+```typescript
+import { uploadToPayToPin } from "@/integrations/paytopin"
+
+const file = new File(["hello world"], "hello.txt")
+const result = await uploadToPayToPin(file)
+console.log("Pinned:", result.cid)
+console.log("Gateway:", result.gatewayUrl)
+```
+
+### Setup
+
+Add the following to your `.env.local`:
+
+```bash
+IPFS_PAY_TO_PIN_MNEMONIC=<your-algorand-mnemonic>
+IPFS_PAY_TO_PIN_GATEWAY_URL=https://pay-to-pin.duckdns.org
+IPFS_PAY_TO_PIN_NETWORK=mainnet
+```
+
+Generate an Algorand mnemonic at [https://algorand.wtf/generator](https://algorand.wtf/generator) — you can fund a testnet account for development.
+
+---
+
+
 ### Developer Experience
 
 - [TypeScript](https://www.typescriptlang.org/) – Static type checker for end-to-end typesafety

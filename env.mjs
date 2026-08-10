@@ -23,6 +23,11 @@ export const env = createEnv({
     MORALIS_API_KEY: z.string().min(1).optional(),
     GITCOIN_PASSPORT_SCORER_ID: z.string().min(1).optional(),
     GITCOIN_PASSPORT_API_KEY: z.string().min(1).optional(),
+    // IPFS Pay-to-Pin (optional server-side storage provider)
+    IPFS_PAY_TO_PIN_MNEMONIC: z.string().optional(),
+    IPFS_PAY_TO_PIN_GATEWAY_URL: z.string().url().optional(),
+    IPFS_PAY_TO_PIN_NETWORK: z.enum(["mainnet", "testnet"]).default("mainnet"),
+    IPFS_PAY_TO_PIN_MAX_PRICE_USDC: z.string().default("1.0"),
   },
   client: {
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER: z.enum(["true", "false"]).default("true"),
@@ -47,6 +52,11 @@ export const env = createEnv({
     MORALIS_API_KEY: process.env.MORALIS_API_KEY,
     GITCOIN_PASSPORT_SCORER_ID: process.env.GITCOIN_PASSPORT_SCORER_ID,
     GITCOIN_PASSPORT_API_KEY: process.env.GITCOIN_PASSPORT_API_KEY,
+    // IPFS Pay-to-Pin
+    IPFS_PAY_TO_PIN_MNEMONIC: process.env.IPFS_PAY_TO_PIN_MNEMONIC,
+    IPFS_PAY_TO_PIN_GATEWAY_URL: process.env.IPFS_PAY_TO_PIN_GATEWAY_URL,
+    IPFS_PAY_TO_PIN_NETWORK: process.env.IPFS_PAY_TO_PIN_NETWORK,
+    IPFS_PAY_TO_PIN_MAX_PRICE_USDC: process.env.IPFS_PAY_TO_PIN_MAX_PRICE_USDC,
     NEXT_PUBLIC_USE_PUBLIC_PROVIDER:
       process.env.NEXT_PUBLIC_USE_PUBLIC_PROVIDER,
     NEXT_PUBLIC_ALCHEMY_API_KEY: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
