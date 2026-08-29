@@ -208,4 +208,14 @@ export const turboIntegrations = {
     category: "general",
     imgDark: "/logo-gradient.png",
   },
+  delegatableSubscription: {
+    name: "Delegatable Subscription",
+    href: "/integration/delegatable-subscription",
+    url: "https://delegatable.org/",
+    description:
+      "Gas-less recurring token subscriptions and conditional delegations powered by the Delegatable framework and DistrictERC20PermitSubscriptionsEnforcer.",
+    imgLight: "/logo-gradient.png",
+    category: "protocols",
+    imgDark: "/logo-gradient.png",
+  },
 } as const
