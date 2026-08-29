@@ -1,0 +1,303 @@
+export const verifyingContractERC20PermitSubscriptionsABI = [
+  {
+    inputs: [
+      {
+        internalType: "string",
+        name: "name",
+        type: "string",
+      },
+      {
+        internalType: "address",
+        name: "_subToken",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_subAmount",
+        type: "uint256",
+      },
+      {
+        internalType: "uint64",
+        name: "_subPeriod",
+        type: "uint64",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "constructor",
+  },
+  {
+    inputs: [],
+    name: "subToken",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "subAmount",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "subPeriod",
+    outputs: [
+      {
+        internalType: "uint64",
+        name: "",
+        type: "uint64",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getSubPeriod",
+    outputs: [
+      {
+        internalType: "uint64",
+        name: "",
+        type: "uint64",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "subscriber",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "totalSubscriptionAmount",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "deadline",
+        type: "uint256",
+      },
+      {
+        internalType: "uint8",
+        name: "v",
+        type: "uint8",
+      },
+      {
+        internalType: "bytes32",
+        name: "r",
+        type: "bytes32",
+      },
+      {
+        internalType: "bytes32",
+        name: "s",
+        type: "bytes32",
+      },
+    ],
+    name: "approveSubscription",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "paySubscription",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "_token",
+        type: "address",
+      },
+      {
+        internalType: "address",
+        name: "_to",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "_amount",
+        type: "uint256",
+      },
+    ],
+    name: "withdraw",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        components: [
+          {
+            internalType: "bytes",
+            name: "signature",
+            type: "bytes",
+          },
+          {
+            components: [
+              {
+                components: [
+                  {
+                    internalType: "address",
+                    name: "to",
+                    type: "address",
+                  },
+                  {
+                    internalType: "uint256",
+                    name: "gasLimit",
+                    type: "uint256",
+                  },
+                  {
+                    internalType: "bytes",
+                    name: "data",
+                    type: "bytes",
+                  },
+                ],
+                internalType: "struct Transaction",
+                name: "transaction",
+                type: "tuple",
+              },
+              {
+                components: [
+                  {
+                    components: [
+                      {
+                        internalType: "address",
+                        name: "delegate",
+                        type: "address",
+                      },
+                      {
+                        internalType: "bytes32",
+                        name: "authority",
+                        type: "bytes32",
+                      },
+                      {
+                        components: [
+                          {
+                            internalType: "address",
+                            name: "enforcer",
+                            type: "address",
+                          },
+                          {
+                            internalType: "bytes",
+                            name: "terms",
+                            type: "bytes",
+                          },
+                        ],
+                        internalType: "struct Caveat[]",
+                        name: "caveats",
+                        type: "tuple[]",
+                      },
+                    ],
+                    internalType: "struct Delegation",
+                    name: "delegation",
+                    type: "tuple",
+                  },
+                  {
+                    internalType: "bytes",
+                    name: "signature",
+                    type: "bytes",
+                  },
+                ],
+                internalType: "struct SignedDelegation[]",
+                name: "authority",
+                type: "tuple[]",
+              },
+            ],
+            internalType: "struct Invocation[]",
+            name: "batch",
+            type: "tuple[]",
+          },
+          {
+            components: [
+              {
+                internalType: "uint256",
+                name: "nonce",
+                type: "uint256",
+              },
+              {
+                internalType: "uint256",
+                name: "queue",
+                type: "uint256",
+              },
+            ],
+            internalType: "struct ReplayProtection",
+            name: "replayProtection",
+            type: "tuple",
+          },
+        ],
+        internalType: "struct SignedInvocation[]",
+        name: "signedInvocations",
+        type: "tuple[]",
+      },
+    ],
+    name: "invoke",
+    outputs: [
+      {
+        internalType: "bool",
+        name: "success",
+        type: "bool",
+      },
+    ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "target",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "queue",
+        type: "uint256",
+      },
+    ],
+    name: "getNonce",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "nonce",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "owner",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+] as const
