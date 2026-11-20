@@ -6,6 +6,9 @@ import { StoredSubscription } from "../database"
 import { createSubscriptionInvocation } from "../utils/create-invocation"
 import { useDelegatableSubscriptions } from "./use-delegatable-subscriptions"
 
+/**
+ * Hook to execute due subscription payments via delegatable invoke batch transactions.
+ */
 export function useExecuteSubscription() {
   const { address: userAddress, chain } = useAccount()
   const { signTypedDataAsync } = useSignTypedData()
@@ -38,7 +41,6 @@ export function useExecuteSubscription() {
         includeApproval: isFirstExecution,
       })
 
-      // Sign the invocation with delegate / relayer key
       const invocationSig = await signTypedDataAsync({
         domain: invocationData.domain,
         types: invocationData.types,

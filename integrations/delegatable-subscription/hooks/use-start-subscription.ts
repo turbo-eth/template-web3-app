@@ -21,6 +21,9 @@ export interface StartSubscriptionArgs {
   salt?: number
 }
 
+/**
+ * Hook to initiate a gas-less recurring subscription using EIP-2612 Permit and Delegatable delegation signatures.
+ */
 export function useStartSubscription() {
   const { address: userAddress, chain } = useAccount()
   const { signTypedDataAsync } = useSignTypedData()
@@ -55,7 +58,6 @@ export function useStartSubscription() {
       setIsLoading(true)
       setError(null)
 
-      // Step 1: Sign Permit (EIP-2612)
       setStep("signing_permit")
       const totalAmountBigInt = BigInt(args.totalSubscriptionAmount)
 
@@ -86,7 +88,6 @@ export function useStartSubscription() {
         s: parsedPermitSig.s,
       }
 
-      // Step 2: Sign Delegatable Delegation
       setStep("signing_delegation")
       const delegationData = createSubscriptionDelegation({
         delegate: args.delegate,
@@ -104,7 +105,6 @@ export function useStartSubscription() {
         message: delegationData.message,
       })
 
-      // Step 3: Save to Database
       setStep("saving")
       const subscriptionId = `sub_${Date.now()}_${Math.random()
         .toString(36)

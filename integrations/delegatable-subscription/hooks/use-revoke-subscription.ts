@@ -7,6 +7,9 @@ import { StoredSubscription } from "../database"
 import { DELEGATABLE_SUBSCRIPTION_DEFAULTS } from "../utils/constants"
 import { useDelegatableSubscriptions } from "./use-delegatable-subscriptions"
 
+/**
+ * Hook to revoke an active Delegatable subscription either locally or on-chain via the enforcer.
+ */
 export function useRevokeSubscription() {
   const { chain } = useAccount()
   const { writeContractAsync } = useWriteContract()
@@ -26,7 +29,6 @@ export function useRevokeSubscription() {
       if (options?.onChain) {
         const chainId = subscription.chainId || chain?.id || 1
 
-        // EIP712 Domain Hash calculation for Delegatable verifying contract
         const domainTypeHash = keccak256(
           toHex(
             "EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)"

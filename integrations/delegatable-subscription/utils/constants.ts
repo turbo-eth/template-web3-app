@@ -1,19 +1,21 @@
 import type { Address } from "viem"
 
+/**
+ * Default configuration constants for Delegatable subscription management.
+ */
 export const DELEGATABLE_SUBSCRIPTION_DEFAULTS = {
   CONTRACT_NAME: "ERC20PermitSubscriptions",
   CONTRACT_VERSION: "1",
   ENFORCER_NAME: "DistrictERC20PermitSubscriptionsEnforcer",
-  // Standard test deployment address or mock address for UI testing
   DEFAULT_ENFORCER_ADDRESS:
     "0x9A676e781A523b5d0C0e43731313A708CB607508" as Address,
   DEFAULT_VERIFYING_CONTRACT:
     "0x0B306BF915C4d645ff596e518fAf3F9669b97016" as Address,
   DEFAULT_TOKEN_ADDRESS:
-    "0x4200000000000000000000000000000000000042" as Address, // OP / Mock token
-  DEFAULT_SUB_PERIOD: 1800, // 30 minutes in seconds
-  DEFAULT_SUB_AMOUNT: "1", // 1 token per period
-  DEFAULT_TOTAL_AMOUNT: "12", // 12 tokens total limit
+    "0x4200000000000000000000000000000000000042" as Address,
+  DEFAULT_SUB_PERIOD: 1800,
+  DEFAULT_SUB_AMOUNT: "1",
+  DEFAULT_TOTAL_AMOUNT: "12",
   DEFAULT_DEADLINE_DAYS: 365,
 }
 
