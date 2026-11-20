@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/delegatable/cron",
+      "schedule": "*/30 * * * *"
+    }
+  ]
+}
